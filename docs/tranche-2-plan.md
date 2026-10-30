@@ -90,8 +90,10 @@ dispatch solely for a development format.
 Baseline: relative-abundance Bray-Curtis, for the explicit exploratory question
 of compositional differences among samples. Sensitivity: raw-count Bray-Curtis,
 same matrix and diversity definitions. Standardisation is a declared choice,
-not evidence that sample totals contain no ecological information. The sensitivity spec records
-the baseline manifest hash and its purpose, without recursive parent resolution.
+not evidence that sample totals contain no ecological information. The comparison
+artefact records both baseline and sensitivity manifest hashes. A spec may
+optionally declare `baseline_run` when a pre-existing baseline is intended, in
+which case its hash is checked; the prespecified example leaves it absent.
 Jaccard is another explicitly selected distance, tested against references.
 Relative abundance plus binary Jaccard is rejected as a no-op combination.
 
@@ -102,6 +104,12 @@ self-contained, checksummed comparison artefact. Report upper-triangle distance
 Pearson/Spearman correlations, a descriptive symmetric Procrustes statistic
 when the selected subspace is identifiable, and the raw-count Bray-Curtis
 lower-bound matrix `abs(N_i-N_j)/(N_i+N_j)`. There are no p-values.
+
+Require the two runs to have identical implementation fingerprints, Python and
+NumPy versions. A change of numerical implementation/environment must not be
+misattributed to the chosen transformation. This is a constraint on the
+sensitivity contrast, separate from permitting reproducibility checks across
+different environments.
 
 Compare selected-axis Gram geometry only when the cutoff eigengap relative to
 the leading eigenvalue exceeds 1e-8; otherwise report that the selected subspace
