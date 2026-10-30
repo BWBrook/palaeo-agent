@@ -59,8 +59,9 @@ renv pins vegan 2.7-6, permute and jsonlite on R 4.6.1. Regenerate references
 only when a definition or the input changes, and commit the JSON with the
 script.
 
-Build note for `macbook`, 30 October 2026: Homebrew R's `FLIBS` pointed at a
-nonexistent `aarch64-apple-darwin27` GCC directory, so compiling vegan's
-Fortran failed. The working build used a one-off Makevars passed through
-`R_MAKEVARS_USER`, with `FLIBS` pointing at
-`/opt/homebrew/opt/gcc/lib/gcc/current/gcc/aarch64-apple-darwin25/16`.
+Build note for `macbook`: Homebrew R 4.6.1_1's `FLIBS` names a GCC directory,
+`aarch64-apple-darwin27`, that does not exist, so compiling vegan's Fortran
+failed. Since 31 October 2026, `~/.R/Makevars` on `macbook` derives the
+correct directory from `gfortran` (see nectar's
+`docs/exchange/logs/2026-10-31-macbook-r-fortran-flibs.md`). `renv::restore()`
+needs nothing extra there. `mini` builds vegan with its existing settings.
