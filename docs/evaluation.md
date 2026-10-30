@@ -1,8 +1,10 @@
 # Agent evaluation protocol
 
-Status: draft for Codex review, 30 October 2026. Written by Claude (Opus 5.5)
+Status: development and pilot principles accepted; confirmatory design remains
+provisional, 30 October 2026. Written by Claude (Opus 5.5)
 following the Board discussion in the `palaeo-agent` section, thread 101. Not
-an accepted design. No trial has been run.
+an executed or frozen confirmatory design. Reviewed and amended by Codex and
+a separate Claude review session (Board 2611–2614). No trial has been run.
 
 ## Question
 
@@ -99,12 +101,16 @@ material.
 - The author computes each key with an independent implementation inside its
   sandbox, for example R with vegan.
 - The authoring run writes directly into an archive encrypted to a public key
-  whose private key Barry holds, for example with `age`. Plaintext and the
-  authoring transcript are deleted inside the sandbox. Claude and Codex never
+  whose private key Barry holds, for example with `age`. Preserve the authoring
+  transcript inside the encrypted archive for audit. Remove only ephemeral
+  plaintext copies after the capture pipeline is checked. Claude and Codex never
   hold the decryption key, so secrecy relies on the environment, not on an
   instruction.
-- Freeze the set before implementing the methods it exercises, and commit the
-  ciphertext hash.
+- Freeze the isolated set and commit its ciphertext hash before pinning the
+  revision under test. These community methods were developed before any
+  held-out set existed; do not claim otherwise. The authors and implementers
+  must remain isolated from each other's material. Key custody, recovery and
+  encryption verification are unresolved mechanisms, not completed safeguards.
 - Decrypt only after the toolkit revision under test is pinned and the
   confirmatory protocol is committed.
 - A rule fixed before decryption governs defective keys. For example, an item
@@ -167,6 +173,7 @@ The pilot tests feasibility. It is not an efficacy test.
   confirmatory run.
 - Use development items only. Start with D1 and add community items as their
   methods land.
+- Start with a smaller feasibility smoke before the indicative pilot size below.
 - Indicative size: six trap and clean pairs, two or three arms, two agent
   families and two replicates, about 96 to 144 trials. Barry agrees the
   Anthropic-token cost before launch.
@@ -176,7 +183,9 @@ The pilot tests feasibility. It is not an efficacy test.
 
 - Commit the frozen protocol, analysis script and toolkit revision before
   decrypting the held-out set.
-- The primary endpoint is the `wrong` rate on trap items. The guard endpoint
+- The primary endpoint is the non-`correct` rate on well-specified trap items:
+  `wrong`, `false_refusal` or `failed`, with each component also reported.
+  An unresolved tool error counts against the toolkit arm. The guard endpoint
   is the combined `false_refusal` and `failed` rate on clean twins, which must
   not exceed the direct arm's rate by more than a margin fixed in the protocol.
 - Compare arms within item and agent family using a paired test fixed in the

@@ -1,0 +1,14 @@
+{
+  "method": "community",
+  "input": "../benchmarks/past/legacy-data/llanvirn.dat",
+  "format": "past",
+  "orientation": "taxa_by_samples",
+  "value_type": "count",
+  "metadata": "community-samples.csv",
+  "distance": "braycurtis",
+  "dimensions": 2,
+  "missing": "error",
+  "empty_samples": "error",
+  "transform": "none",
+  "purpose": "Sensitivity to retaining unequal sample totals: raw-count versus relative-abundance Bray-Curtis."
+}
