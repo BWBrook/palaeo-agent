@@ -1,0 +1,60 @@
+{
+  "development_only": true,
+  "plan_commit": "228aa27",
+  "protocol_amendment_commit": "6377d9c",
+  "input_sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+  "R_reference": "base_R_stats_library_comparison_not_PAST_execution",
+  "comparisons": [
+    {
+      "transform": "none",
+      "distance": "braycurtis",
+      "maximum_absolute_errors": {
+        "distances": 0.0,
+        "eigenvalues": 1.3322676295501878e-15,
+        "positive_gram": 8.049116928532385e-16
+      }
+    },
+    {
+      "transform": "none",
+      "distance": "jaccard",
+      "maximum_absolute_errors": {
+        "distances": 1.1102230246251565e-16,
+        "eigenvalues": 6.106226635438361e-16,
+        "positive_gram": 5.134781488891349e-16
+      }
+    },
+    {
+      "transform": "relative_abundance",
+      "distance": "braycurtis",
+      "maximum_absolute_errors": {
+        "distances": 2.220446049250313e-16,
+        "eigenvalues": 8.881784197001252e-16,
+        "positive_gram": 3.3306690738754696e-16
+      }
+    }
+  ],
+  "fresh_process_reproductions": [
+    {
+      "arm": "baseline",
+      "status": "reproduced",
+      "differences": [],
+      "environment_identical": true
+    },
+    {
+      "arm": "sensitivity",
+      "status": "reproduced",
+      "differences": [],
+      "environment_identical": true
+    }
+  ],
+  "comparison": {
+    "settings_changed": [
+      "transform"
+    ],
+    "pearson_distance_correlation": 0.7148150579000896,
+    "spearman_distance_correlation": 0.6010540184453227,
+    "symmetric_procrustes_m2": 0.49044931257903135,
+    "warnings": []
+  },
+  "PAST_numerical_runs": 0
+}

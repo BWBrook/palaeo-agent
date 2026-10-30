@@ -56,7 +56,7 @@ for name in ("baseline", "sensitivity"):
     assert record["status"] == "reproduced" and not record["differences"]
     reproductions.append({"arm": name, "status": record["status"], "differences": record["differences"],
                           "environment_identical": record["environment_identical"]})
-evidence = {"development_only": True, "plan_commit": "228aa27",
+evidence = {"development_only": True, "plan_commit": "228aa27", "protocol_amendment_commit": "6377d9c",
             "input_sha256": reference["input_sha256"], "R_reference": reference["reference_kind"],
             "comparisons": checks, "fresh_process_reproductions": reproductions,
             "comparison": comparison["summary"], "PAST_numerical_runs": 0}

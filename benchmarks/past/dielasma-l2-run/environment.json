@@ -2,18 +2,134 @@
   "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
   "platform": "macOS-27.0.1-arm64-arm-64bit",
   "packages": {
-    "palaeo-agent": "0.1.0.dev0",
+    "annotated-types": "0.8.0",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "fonttools": "4.68.0",
+    "iniconfig": "2.3.1",
+    "kiwisolver": "1.5.1",
+    "matplotlib": "3.11.2",
     "numpy": "2.5.4",
+    "packaging": "26.3",
+    "palaeo-agent": "0.2.0.dev0",
+    "pillow": "13.0.0",
+    "pluggy": "1.7.0",
     "pydantic": "2.14.2",
-    "matplotlib": "3.11.2"
+    "pydantic-core": "2.50.2",
+    "pygments": "2.21.0",
+    "pyparsing": "3.3.3",
+    "pytest": "9.2.0",
+    "python-dateutil": "3.0.0",
+    "six": "1.17.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2026.6"
   },
-  "implementation_sha256": "111538552247e06dd3e4fd78b1b0ce7b66767d304aaa53142245eed45cd280c8",
+  "distributions": [
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "palaeo-agent",
+      "version": "0.2.0.dev0"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.2"
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.50.2"
+    },
+    {
+      "name": "pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "pytest",
+      "version": "9.2.0"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    }
+  ],
+  "implementation_sha256": "f34ba7441b7e122527ecf98066efb8158f165fa526d9ed1037c4b9df8c92569d",
   "source_files_sha256": {
-    "__init__.py": "a2304cdb28fb122f86922055dacb1bc9f52bd3330f6c6dc240fd890370104691",
+    "__init__.py": "a10fd69420212f424c72d0f01ca190789656fe1f61e271e0f1ad6e8a48706e8e",
     "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
-    "cli.py": "0a291b9babdac0ddb6f10285e911255dc3e4576de26b5417c6a56fb8dbdc7529",
+    "cli.py": "2f10de8ff7e18e927a3af704d5b8f1ecb709ead3e4d54c46f8ca54e64c590205",
+    "community.py": "89bcafb435cfdc40ee96f34c07cf1cf586a3a48bf2fbeda67aec6dd5a6c1ff2f",
     "core.py": "010aa7bb04a2e76a093660a7e8555bb919517e10d7c267a871090cf76948af98",
-    "runs.py": "52c695d1a97fd7e94f768cd4665f7793b2531c4621483ed632d1e39fb958162d"
+    "methods.py": "7dea7bed3f2d05af0ad022bfc173ecd1b683c007b8fa6a2dae219adf6eb3f185",
+    "runs.py": "ab27115d915c89e1b32427ca16612ce2313394a3190c4a78b823ca73393fa4cf",
+    "sensitivity.py": "fbd411c8e3fd4accf241683c350831ea46ee41b09ed2c43a8f9b9da9b6d14d89"
+  },
+  "lockfile": {
+    "available": true,
+    "path": "uv.lock",
+    "reason": "Project checkout lockfile captured"
   },
   "rng": "not used; deterministic method"
 }

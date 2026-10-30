@@ -1,10 +1,8 @@
-"""Saved evidence bundles and fresh-process reproducibility checks."""
+"""Self-contained evidence bundles and method-specific reproduction checks."""
 
-import csv
 import hashlib
 import importlib.metadata
 import json
-import math
 from pathlib import Path, PurePosixPath
 import platform
 import sys
@@ -12,26 +10,45 @@ import uuid
 
 from pydantic import Field, model_validator
 
-from .core import AnalysisError, RmaResult, RmaSpec, ResultItem, calculate
+from .core import AnalysisError, ResultItem
+from .methods import (
+    calculate_method, compare_results, parse_spec, read_inputs, required_files,
+    steps_for, summary, validate_result, write_tables,
+)
 
 
-NUMERICAL_FIELDS = ("mean_x", "mean_y", "sd_x", "sd_y", "correlation", "slope", "intercept", "vertical_residual_rmse")
-REPRODUCTION_RTOL = 1e-12
-REPRODUCTION_ATOL = 1e-12
+class LockfileRecord(ResultItem):
+    available: bool
+    path: str | None
+    reason: str = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def consistent_lock(self):
+        if self.available != (self.path == "uv.lock") or (not self.available and self.path is not None):
+            raise ValueError("Lockfile availability and path disagree")
+        return self
 
 
 class RunEnvironment(ResultItem):
     python: str = Field(min_length=1)
     platform: str = Field(min_length=1)
     packages: dict[str, str]
+    distributions: list[dict[str, str]]
     implementation_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     source_files_sha256: dict[str, str]
+    lockfile: LockfileRecord
     rng: str = Field(min_length=1)
 
     @model_validator(mode="after")
     def consistent_environment(self):
         if not {"palaeo-agent", "numpy", "pydantic", "matplotlib"} <= self.packages.keys():
             raise ValueError("Required dependency versions are missing")
+        if not self.distributions or any(set(item) != {"name", "version"} or not all(item.values())
+                                         for item in self.distributions):
+            raise ValueError("Installed distribution records are missing or malformed")
+        if any({"name": name, "version": version} not in self.distributions
+               for name, version in self.packages.items()):
+            raise ValueError("Package versions disagree with installed distribution records")
         if not self.source_files_sha256:
             raise ValueError("Implementation source fingerprints are missing")
         if any(len(value) != 64 or any(char not in "0123456789abcdef" for char in value)
@@ -39,6 +56,60 @@ class RunEnvironment(ResultItem):
             raise ValueError("Invalid source fingerprint")
         if _sha(json.dumps(self.source_files_sha256, sort_keys=True).encode()) != self.implementation_sha256:
             raise ValueError("Implementation fingerprint does not match its source-file map")
+        return self
+
+
+class ArtifactRecord(ResultItem):
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    bytes: int = Field(ge=0)
+    media_type: str = Field(min_length=1)
+    produced_by: str = Field(min_length=1)
+
+
+class InputSnapshot(ResultItem):
+    path: str = Field(min_length=1)
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    bytes: int = Field(ge=0)
+
+
+class RunStep(ResultItem):
+    id: str = Field(min_length=1)
+    inputs: list[str]
+    outputs: list[str]
+
+
+class RunManifest(ResultItem):
+    schema_version: int
+    status: str
+    run_id: str = Field(min_length=1)
+    method: str
+    method_version: int
+    inputs: dict[str, InputSnapshot]
+    steps: list[RunStep]
+    files: dict[str, ArtifactRecord]
+
+    @model_validator(mode="after")
+    def coherent_provenance(self):
+        if self.schema_version != 2 or self.status != "complete":
+            raise ValueError("Unsupported completion record")
+        available, step_ids = set(), set()
+        for step in self.steps:
+            if step.id in step_ids or not set(step.inputs) <= available:
+                raise ValueError("Invalid step order or duplicate step ID")
+            if any(name in available for name in step.outputs):
+                raise ValueError("An artefact has more than one producing step")
+            if any(name not in self.files or self.files[name].produced_by != step.id for name in step.outputs):
+                raise ValueError("Artefact producer differs from step provenance")
+            available.update(step.outputs)
+            step_ids.add(step.id)
+        if available != set(self.files):
+            raise ValueError("Step provenance must account for every artefact")
+        for source in self.inputs.values():
+            if source.path not in self.files:
+                raise ValueError("Input snapshot is not an artefact")
+            artifact = self.files[source.path]
+            if (artifact.sha256, artifact.bytes) != (source.sha256, source.bytes):
+                raise ValueError("Input snapshot fingerprint differs from artefact")
         return self
 
 
@@ -50,17 +121,39 @@ def _sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def _environment():
+def _find_lockfile():
+    source = Path(__file__).resolve().parent
+    candidate = source.parents[1] / "uv.lock"
+    if source.parent.name == "src" and (candidate.parent / "pyproject.toml").is_file() and candidate.is_file():
+        return candidate
+    return None
+
+
+def _environment(lock):
     source = Path(__file__).parent
     hashes = {path.name: _sha(path.read_bytes()) for path in sorted(source.glob("*.py"))}
-    return {"python": sys.version, "platform": platform.platform(),
-            "packages": {name: importlib.metadata.version(name)
-                         for name in ("palaeo-agent", "numpy", "pydantic", "matplotlib")},
-            "implementation_sha256": _sha(json.dumps(hashes, sort_keys=True).encode()),
-            "source_files_sha256": hashes, "rng": "not used; deterministic method"}
+    packages, distributions = {}, []
+    for distribution in importlib.metadata.distributions():
+        name = distribution.metadata.get("Name")
+        if name:
+            name = name.lower().replace("_", "-")
+            packages.setdefault(name, distribution.version)
+            distributions.append({"name": name, "version": distribution.version})
+    return RunEnvironment.model_validate({
+        "python": sys.version, "platform": platform.platform(), "packages": dict(sorted(packages.items())),
+        "distributions": sorted(distributions, key=lambda item: (item["name"], item["version"])),
+        "implementation_sha256": _sha(json.dumps(hashes, sort_keys=True).encode()),
+        "source_files_sha256": hashes, "rng": "not used; deterministic method",
+        "lockfile": {"available": lock is not None, "path": "uv.lock" if lock else None,
+                     "reason": "Project checkout lockfile captured" if lock else
+                     "No checkout lockfile available; all installed distribution versions recorded"},
+    }).model_dump(mode="json")
 
 
 def _plot(path, result, spec):
+    if spec.method == "community":
+        from .community import plot_community
+        return plot_community(path, result, spec)
     import matplotlib
     matplotlib.use("Agg")
     from matplotlib import pyplot as plt
@@ -80,84 +173,90 @@ def _plot(path, result, spec):
     plt.close(fig)
 
 
-def run(spec: RmaSpec | dict, output_root: str | Path):
-    spec = spec if isinstance(spec, RmaSpec) else RmaSpec.model_validate(spec)
-    try:
-        data = spec.input.read_bytes()
-    except OSError as exc:
-        raise AnalysisError("input_unreadable", "Cannot read input file", path=str(spec.input), reason=str(exc)) from exc
-    result = calculate(spec, data)
+def run(spec, output_root: str | Path):
+    spec = parse_spec(spec)
+    inputs = read_inputs(spec)
+    result = validate_result(spec, calculate_method(spec, inputs))
     directory = Path(output_root).resolve() / uuid.uuid4().hex
     try:
         directory.mkdir(parents=True, exist_ok=False)
-        (directory / "input.dat").write_bytes(data)
+        snapshots = {}
+        for role, data in inputs.items():
+            filename = "metadata.csv" if role == "metadata" else "input.dat"
+            (directory / filename).write_bytes(data)
+            snapshots[role] = {"path": filename, "sha256": _sha(data), "bytes": len(data)}
         portable = spec.model_copy(update={"input": Path("input.dat")})
+        if spec.method == "community" and spec.metadata is not None:
+            portable = portable.model_copy(update={"metadata": Path("metadata.csv")})
         _json(directory / "spec.json", portable.model_dump(mode="json"))
         _json(directory / "results.json", result)
-        with (directory / "used-pairs.csv").open("w", newline="", encoding="utf-8") as stream:
-            writer = csv.DictWriter(stream, fieldnames=list(result["pairs"][0]))
-            writer.writeheader()
-            writer.writerows(result["pairs"])
-        _json(directory / "environment.json", _environment())
-        lock = Path(__file__).resolve().parents[2] / "uv.lock"
-        if lock.is_file():
+        write_tables(directory, result)
+        lock = _find_lockfile()
+        _json(directory / "environment.json", _environment(lock))
+        if lock is not None:
             (directory / "uv.lock").write_bytes(lock.read_bytes())
         _plot(directory / "diagnostics.svg", result, spec)
+        steps = steps_for(spec, lock is not None)
+        producers = {filename: step["id"] for step in steps for filename in step["outputs"]}
         media_types = {".json": "application/json", ".csv": "text/csv", ".svg": "image/svg+xml", ".png": "image/png",
                        ".dat": "text/plain", ".lock": "text/plain"}
         files = {path.name: {"sha256": _sha(path.read_bytes()), "bytes": path.stat().st_size,
-                             "media_type": media_types.get(path.suffix, "application/octet-stream")}
+                             "media_type": media_types.get(path.suffix, "application/octet-stream"),
+                             "produced_by": producers[path.name]}
                  for path in sorted(directory.iterdir()) if path.is_file()}
-        _json(directory / "manifest.json", {"schema_version": 1, "status": "complete",
-              "run_id": directory.name, "input_sha256": _sha(data), "files": files})
+        manifest = RunManifest.model_validate({"schema_version": 2, "status": "complete", "run_id": directory.name,
+                    "method": spec.method, "method_version": result["method_version"], "inputs": snapshots,
+                    "steps": steps, "files": files})
+        _json(directory / "manifest.json", manifest.model_dump(mode="json"))
     except Exception as exc:
         if directory.is_dir():
             _json(directory / "failure.json", {"status": "failed", "error_type": type(exc).__name__, "message": str(exc)})
         if isinstance(exc, AnalysisError):
             raise
         raise AnalysisError("bundle_write_failed", "Run did not complete", run_dir=str(directory), reason=str(exc)) from exc
-    return {"status": "complete", "run_dir": str(directory),
-            "summary": {key: result[key] for key in ("n", "n_input", "slope", "intercept", "correlation", "excluded", "warnings")}}
+    return {"status": "complete", "run_dir": str(directory), "summary": summary(result)}
 
 
 def inspect_run(run_dir: str | Path):
     directory = Path(run_dir).resolve()
     try:
-        if (directory / "manifest.json").is_symlink():
+        path = directory / "manifest.json"
+        if path.is_symlink():
             raise ValueError("Manifest must not be a symbolic link")
-        manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
-        if not isinstance(manifest, dict) or not isinstance(manifest.get("files"), dict):
-            raise ValueError("Invalid manifest structure")
-        if manifest["schema_version"] != 1 or manifest["status"] != "complete":
-            raise ValueError("Missing completion state")
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(raw, dict) and raw.get("schema_version") != 2:
+            raise AnalysisError("unsupported_schema", "Only run schema 2 is supported; retain older evidence with its producing revision",
+                                schema_version=raw.get("schema_version"))
+        manifest = RunManifest.model_validate(raw).model_dump(mode="json")
         names = set(manifest["files"])
-        required = {"input.dat", "spec.json", "results.json", "used-pairs.csv", "environment.json", "diagnostics.svg", "diagnostics.png"}
-        if not required <= names:
-            raise ValueError("Missing required artefact entries")
-        actual = {item.name for item in directory.iterdir()}
-        if actual != names | {"manifest.json"}:
+        if {item.name for item in directory.iterdir()} != names | {"manifest.json"}:
             raise ValueError("Bundle file set differs from manifest")
         for name, expected in manifest["files"].items():
-            if not isinstance(expected, dict):
-                raise ValueError("Invalid artefact entry")
             relative = PurePosixPath(name)
-            path = directory / name
-            if relative.is_absolute() or len(relative.parts) != 1 or "\\" in name or path.is_symlink() or not path.is_file():
+            artifact = directory / name
+            if relative.is_absolute() or len(relative.parts) != 1 or "\\" in name or artifact.is_symlink() or not artifact.is_file():
                 raise ValueError("Unsafe artefact path")
-            data = path.read_bytes()
+            data = artifact.read_bytes()
             if _sha(data) != expected["sha256"] or len(data) != expected["bytes"]:
                 raise ValueError(f"Artefact integrity failure: {name}")
-        if manifest["input_sha256"] != manifest["files"]["input.dat"]["sha256"]:
-            raise ValueError("Input fingerprint differs from manifest")
-        result = RmaResult.model_validate_json((directory / "results.json").read_bytes()).model_dump(mode="json")
-        spec = RmaSpec.model_validate_json((directory / "spec.json").read_bytes())
+        spec = parse_spec(json.loads((directory / "spec.json").read_text(encoding="utf-8")))
         if spec.input != Path("input.dat"):
             raise ValueError("Saved specification must reference its input snapshot")
-        if spec.x == spec.y:
-            raise ValueError("Saved specification must select distinct measurement columns")
-        if any(getattr(spec, key) != result[key] for key in ("method", "transform", "missing")):
-            raise ValueError("Saved specification and result describe different analyses")
+        expected_roles = {"matrix" if spec.method == "community" else "measurements": "input.dat"}
+        if spec.method == "community" and spec.metadata is not None:
+            if spec.metadata != Path("metadata.csv"):
+                raise ValueError("Saved metadata must reference its snapshot")
+            expected_roles["metadata"] = "metadata.csv"
+        if {role: item["path"] for role, item in manifest["inputs"].items()} != expected_roles:
+            raise ValueError("Named input roles differ from the saved specification")
+        if not required_files(spec) <= names:
+            raise ValueError("Missing required artefact entries")
+        result = validate_result(spec, json.loads((directory / "results.json").read_text(encoding="utf-8")))
+        if manifest["method"] != spec.method or manifest["method_version"] != result["method_version"]:
+            raise ValueError("Manifest method identity differs from saved records")
         environment = RunEnvironment.model_validate_json((directory / "environment.json").read_bytes()).model_dump(mode="json")
+        if environment["lockfile"]["available"] != ("uv.lock" in names):
+            raise ValueError("Lockfile provenance differs from saved artefacts")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         raise AnalysisError("invalid_bundle", "Bundle could not be verified", run_dir=str(directory), reason=str(exc)) from exc
     return {"status": "verified", "run_dir": str(directory), "manifest": manifest, "result": result,
@@ -168,29 +267,19 @@ def inspect_run(run_dir: str | Path):
 def reproduce(run_dir: str | Path, output_root: str | Path):
     original = inspect_run(run_dir)
     directory = Path(original["run_dir"])
-    spec = RmaSpec.model_validate(original["specification"])
-    spec = spec.model_copy(update={"input": directory / "input.dat"})
+    spec = parse_spec(original["specification"])
+    updates = {"input": directory / "input.dat"}
+    if spec.method == "community" and spec.metadata is not None:
+        updates["metadata"] = directory / "metadata.csv"
+    spec = spec.model_copy(update=updates)
     fresh = run(spec, output_root)
-    recreated = inspect_run(fresh["run_dir"])["result"]
-    expected = original["result"]
-    differences = [key for key in NUMERICAL_FIELDS if not math.isclose(
-        recreated[key], expected[key], rel_tol=REPRODUCTION_RTOL, abs_tol=REPRODUCTION_ATOL)]
-    for key in ("n", "n_input", "excluded", "transform", "missing"):
-        if recreated[key] != expected[key]:
-            differences.append(key)
-    if len(recreated["pairs"]) != len(expected["pairs"]):
-        differences.append("pairs")
-    else:
-        for index, (left, right) in enumerate(zip(recreated["pairs"], expected["pairs"], strict=True)):
-            if left["sample_id"] != right["sample_id"]:
-                differences.append(f"pairs[{index}].sample_id")
-            for key in ("x_raw", "y_raw", "x", "y", "residual"):
-                if not math.isclose(left[key], right[key], rel_tol=REPRODUCTION_RTOL, abs_tol=REPRODUCTION_ATOL):
-                    differences.append(f"pairs[{index}].{key}")
-    environment = original["environment"]
-    current = inspect_run(fresh["run_dir"])["environment"]
-    return {"status": "reproduced" if not differences else "different", "original_run": str(directory),
+    recreated = inspect_run(fresh["run_dir"])
+    differences, policy = compare_results(original["result"], recreated["result"])
+    response = {"status": "reproduced" if not differences else "different", "original_run": str(directory),
             "new_run": fresh["run_dir"], "differences": differences,
-            "tolerance": {"rtol": REPRODUCTION_RTOL, "atol": REPRODUCTION_ATOL},
-            "environment_identical": environment == current,
+            "tolerance": {key: policy[key] for key in ("rtol", "atol")},
+            "environment_identical": original["environment"] == recreated["environment"],
             "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation"}
+    if "ordination" in policy:
+        response["ordination_comparison"] = policy["ordination"]
+    return response

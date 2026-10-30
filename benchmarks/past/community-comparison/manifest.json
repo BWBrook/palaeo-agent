@@ -1,0 +1,190 @@
+{
+  "kind": "community_comparison",
+  "schema_version": 1,
+  "status": "complete",
+  "comparison_id": "68b68189785941dcb7a554b88b5a8030",
+  "files": {
+    "baseline/aligned_metadata.csv": {
+      "sha256": "fda53235ce4195aae55a4f2c51f06324ec83067bf83fdba6468361c1f0709fb0",
+      "bytes": 67,
+      "media_type": "text/csv"
+    },
+    "baseline/diagnostics.png": {
+      "sha256": "30a80b845cf7b33d2ea4eb96a77e39d38d73b707a2b8fdad7f1e631f7727683f",
+      "bytes": 72581,
+      "media_type": "image/png"
+    },
+    "baseline/diagnostics.svg": {
+      "sha256": "0017b131987caff5caf6d298904a639e13c4e49fdbb38b55118e5fd9a341e57e",
+      "bytes": 63817,
+      "media_type": "image/svg+xml"
+    },
+    "baseline/distances.csv": {
+      "sha256": "5d81da9f859bdbd23c014a94f8d699ecb765d7ff7b80517bf1b065604f81ea42",
+      "bytes": 1844,
+      "media_type": "text/csv"
+    },
+    "baseline/diversity.csv": {
+      "sha256": "07069b6c4d2d5b1d8692ca25f358e5c2f4cadf6ac5cb25aef7f84d6ea84ee096",
+      "bytes": 522,
+      "media_type": "text/csv"
+    },
+    "baseline/eigenvalues.csv": {
+      "sha256": "cd0efb1690c0f531efdc731d7213c5d4685f75d006e68feaee0cbd4d16f674a4",
+      "bytes": 247,
+      "media_type": "text/csv"
+    },
+    "baseline/environment.json": {
+      "sha256": "70c0f3d224832d1968f12cf805fb2b1e38b726f4c8629ab8f8fe24e0ed2fa957",
+      "bytes": 3186,
+      "media_type": "application/json"
+    },
+    "baseline/input.dat": {
+      "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+      "bytes": 965,
+      "media_type": "text/plain"
+    },
+    "baseline/manifest.json": {
+      "sha256": "12244b7f88f89a336bf8a4ae57354fe4b0ecbc0b7bc96ef5f8b9cabafb9d34b8",
+      "bytes": 5542,
+      "media_type": "application/json"
+    },
+    "baseline/metadata.csv": {
+      "sha256": "7192f6040cbe47626f4d65e268b701ea3041985e17f8d41c2a148fe96e3177f1",
+      "bytes": 67,
+      "media_type": "text/csv"
+    },
+    "baseline/ordination.csv": {
+      "sha256": "9e8d02a138b0c7d03455cc6e5034a273cf0a5896f1846d00c79dfb8fcdd01e77",
+      "bytes": 446,
+      "media_type": "text/csv"
+    },
+    "baseline/positive_gram.csv": {
+      "sha256": "faf5eb4e71e19041d214b3ce51c78d15f308449e214e8b00b7bdd00618fe3d45",
+      "bytes": 2124,
+      "media_type": "text/csv"
+    },
+    "baseline/results.json": {
+      "sha256": "6b44df194f2819f9b3ef29e27d715a6c99d69a9379528ddd57362804154f88b0",
+      "bytes": 18025,
+      "media_type": "application/json"
+    },
+    "baseline/retained_counts.csv": {
+      "sha256": "3127a03542684113d4f87b08fcd751a156cd0a80203110d72361512d44e8b1bf",
+      "bytes": 1187,
+      "media_type": "text/csv"
+    },
+    "baseline/spec.json": {
+      "sha256": "cb04d77639ca1701faa32b88395c0b5f0d170529def0a7b1c725166b425bcd09",
+      "bytes": 442,
+      "media_type": "application/json"
+    },
+    "baseline/transformed_matrix.csv": {
+      "sha256": "90ff5a30f075c93ff8db187cdc12d5586be98aad6d0956cc93d7e90d9c46e552",
+      "bytes": 2752,
+      "media_type": "text/csv"
+    },
+    "baseline/uv.lock": {
+      "sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27",
+      "bytes": 174433,
+      "media_type": "text/plain"
+    },
+    "raw_count_total_imbalance_bound.csv": {
+      "sha256": "f3da6b00ca7cd2f5d589dadbf7cd892679fa3aed3e66b0b82bc095a8bf2dc2c6",
+      "bytes": 1722,
+      "media_type": "text/csv"
+    },
+    "report.json": {
+      "sha256": "25451fe5adf2d94a9f4d9cc22126815d85cc66589e1ddbd4eaccfce6b0b5e1d6",
+      "bytes": 5462,
+      "media_type": "application/json"
+    },
+    "sensitivity/aligned_metadata.csv": {
+      "sha256": "fda53235ce4195aae55a4f2c51f06324ec83067bf83fdba6468361c1f0709fb0",
+      "bytes": 67,
+      "media_type": "text/csv"
+    },
+    "sensitivity/diagnostics.png": {
+      "sha256": "42780bcb0e8b6fa829232774af66122a9c53271ab3295a7dbea0046cb956dbf2",
+      "bytes": 69851,
+      "media_type": "image/png"
+    },
+    "sensitivity/diagnostics.svg": {
+      "sha256": "6a6af8e334663012ab9c8ecef24ad7644fe3f04b2806b928fe4de75bdf451ee3",
+      "bytes": 61520,
+      "media_type": "image/svg+xml"
+    },
+    "sensitivity/distances.csv": {
+      "sha256": "27636cd2e5659f87c646327a5979f45976b74e825e20694a3e2b0e11680b80e4",
+      "bytes": 1732,
+      "media_type": "text/csv"
+    },
+    "sensitivity/diversity.csv": {
+      "sha256": "07069b6c4d2d5b1d8692ca25f358e5c2f4cadf6ac5cb25aef7f84d6ea84ee096",
+      "bytes": 522,
+      "media_type": "text/csv"
+    },
+    "sensitivity/eigenvalues.csv": {
+      "sha256": "eab566c12d5488dc606a7be9458921dcc85ab7696b202abc3df8c20d255f7da3",
+      "bytes": 243,
+      "media_type": "text/csv"
+    },
+    "sensitivity/environment.json": {
+      "sha256": "70c0f3d224832d1968f12cf805fb2b1e38b726f4c8629ab8f8fe24e0ed2fa957",
+      "bytes": 3186,
+      "media_type": "application/json"
+    },
+    "sensitivity/input.dat": {
+      "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+      "bytes": 965,
+      "media_type": "text/plain"
+    },
+    "sensitivity/manifest.json": {
+      "sha256": "ede8504453b9b6189f583f7ade2e7b29697396a3a094fd8e7c995a653709e805",
+      "bytes": 5542,
+      "media_type": "application/json"
+    },
+    "sensitivity/metadata.csv": {
+      "sha256": "7192f6040cbe47626f4d65e268b701ea3041985e17f8d41c2a148fe96e3177f1",
+      "bytes": 67,
+      "media_type": "text/csv"
+    },
+    "sensitivity/ordination.csv": {
+      "sha256": "19096f2370198bae839481545e6dca5cb31b4a101b38f6e7918cdeaf3997c5c3",
+      "bytes": 452,
+      "media_type": "text/csv"
+    },
+    "sensitivity/positive_gram.csv": {
+      "sha256": "f74576fe1e4318ee4b8cc1a3b499b3255462578a702b771ffb8453c1ee905bf0",
+      "bytes": 2084,
+      "media_type": "text/csv"
+    },
+    "sensitivity/results.json": {
+      "sha256": "f03bc6c879d1211e43c02efc74660b95d944bdbfbedde8f57c0d3ae5f03e2bfc",
+      "bytes": 16292,
+      "media_type": "application/json"
+    },
+    "sensitivity/retained_counts.csv": {
+      "sha256": "3127a03542684113d4f87b08fcd751a156cd0a80203110d72361512d44e8b1bf",
+      "bytes": 1187,
+      "media_type": "text/csv"
+    },
+    "sensitivity/spec.json": {
+      "sha256": "49d8d65f0dca7b8e3874a60ac265717d1153af363ff59da168a85cd976cbd2b7",
+      "bytes": 420,
+      "media_type": "application/json"
+    },
+    "sensitivity/transformed_matrix.csv": {
+      "sha256": "3127a03542684113d4f87b08fcd751a156cd0a80203110d72361512d44e8b1bf",
+      "bytes": 1187,
+      "media_type": "text/csv"
+    },
+    "sensitivity/uv.lock": {
+      "sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27",
+      "bytes": 174433,
+      "media_type": "text/plain"
+    }
+  },
+  "baseline": "baseline",
+  "sensitivity": "sensitivity"
+}

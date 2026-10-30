@@ -6,6 +6,10 @@ scientific contract and comparison tolerances were recorded in
 [first-comparison.md](first-comparison.md) before implementation was compared
 with the independent numerical reference.
 
+Historical note: version 0.2 subsequently regenerated the stored L2 example
+under run schema 2. Original schema-1 bytes remain in Git commit 445da1b.
+The numerical results reported here are unchanged.
+
 ## Acquired reference material
 
 - PAST 5.4 manual: 321 pages, supplied by Barry, preserved unchanged.

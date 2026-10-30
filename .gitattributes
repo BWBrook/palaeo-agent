@@ -8,3 +8,6 @@ benchmarks/past/dielasma-l2-run/input.dat -text -diff
 benchmarks/past/dielasma-l2-run/used-pairs.csv -text -diff
 benchmarks/past/dielasma-l2-run/diagnostics.svg -text -diff linguist-generated
 benchmarks/past/dielasma-l2-run/diagnostics.png binary linguist-generated
+benchmarks/past/community-comparison/**/input.dat -text -diff
+benchmarks/past/community-comparison/**/diagnostics.svg -text -diff linguist-generated
+benchmarks/past/community-comparison/**/diagnostics.png binary linguist-generated

@@ -436,7 +436,7 @@ wheels = [
 
 [[package]]
 name = "palaeo-agent"
-version = "0.1.0.dev0"
+version = "0.2.0.dev0"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },

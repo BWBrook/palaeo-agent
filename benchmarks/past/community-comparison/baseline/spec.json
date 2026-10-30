@@ -1,0 +1,15 @@
+{
+  "method": "community",
+  "input": "input.dat",
+  "format": "past",
+  "orientation": "taxa_by_samples",
+  "value_type": "count",
+  "metadata": "metadata.csv",
+  "transform": "relative_abundance",
+  "distance": "braycurtis",
+  "dimensions": 2,
+  "missing": "error",
+  "empty_samples": "error",
+  "baseline_run": null,
+  "purpose": "Baseline exploratory compositional differences among samples; observed diversity remains unstandardised."
+}

@@ -9,7 +9,12 @@ implied by completing this tranche.
 Stages 1 (bounded legacy-corpus acquisition) and 2 (one complete operation)
 have now been implemented and checked; see
 [the first implementation results](tranche-1-results.md). The current PAST 5
-example corpus remains unenumerated. Stage 3 is the next scientific tranche.
+example corpus remains unenumerated. Stage 3 describes the community tranche.
+
+The descriptive community workflow in stage 3 has since been implemented;
+see [tranche 2 results](tranche-2-results.md). The comparative agent experiment
+has not been run. Its accepted development principles and provisional
+confirmatory design are documented in [evaluation.md](evaluation.md).
 
 ## 1. Ground the corpus and select the first comparison
 

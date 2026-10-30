@@ -1,48 +1,117 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "complete",
-  "run_id": "0435482f2a3241a5adb7638b2135826c",
-  "input_sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
+  "run_id": "ba9e306ae51e4deba52461f64ccafb97",
+  "method": "rma",
+  "method_version": 1,
+  "inputs": {
+    "measurements": {
+      "path": "input.dat",
+      "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
+      "bytes": 3522
+    }
+  },
+  "steps": [
+    {
+      "id": "snapshot_inputs",
+      "inputs": [],
+      "outputs": [
+        "input.dat"
+      ]
+    },
+    {
+      "id": "resolve_specification",
+      "inputs": [],
+      "outputs": [
+        "spec.json"
+      ]
+    },
+    {
+      "id": "record_environment",
+      "inputs": [],
+      "outputs": [
+        "environment.json",
+        "uv.lock"
+      ]
+    },
+    {
+      "id": "descriptive_rma",
+      "inputs": [
+        "input.dat"
+      ],
+      "outputs": [
+        "used-pairs.csv"
+      ]
+    },
+    {
+      "id": "collect_results",
+      "inputs": [
+        "input.dat",
+        "spec.json"
+      ],
+      "outputs": [
+        "results.json"
+      ]
+    },
+    {
+      "id": "plot_diagnostics",
+      "inputs": [
+        "results.json"
+      ],
+      "outputs": [
+        "diagnostics.svg",
+        "diagnostics.png"
+      ]
+    }
+  ],
   "files": {
     "diagnostics.png": {
       "sha256": "b17b09753b6d36c4b582baf8719c5585e9dc1986b0956bd8481d028ccb5ec2c3",
       "bytes": 59796,
-      "media_type": "image/png"
+      "media_type": "image/png",
+      "produced_by": "plot_diagnostics"
     },
     "diagnostics.svg": {
-      "sha256": "b799cc36ffe7833c947e5dd7bfa1afdffce74daa126998673ef7528be5525272",
+      "sha256": "839e955c39f1ed2e223046ecb748034483ed8f57ff0e6d070f8bdbcb2548906b",
       "bytes": 55278,
-      "media_type": "image/svg+xml"
+      "media_type": "image/svg+xml",
+      "produced_by": "plot_diagnostics"
     },
     "environment.json": {
-      "sha256": "a35d48f82ab7f1fddb8279b23e0d3d5be744380a989bab9ef098857c721d76f0",
-      "bytes": 839,
-      "media_type": "application/json"
+      "sha256": "70c0f3d224832d1968f12cf805fb2b1e38b726f4c8629ab8f8fe24e0ed2fa957",
+      "bytes": 3186,
+      "media_type": "application/json",
+      "produced_by": "record_environment"
     },
     "input.dat": {
       "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
       "bytes": 3522,
-      "media_type": "text/plain"
+      "media_type": "text/plain",
+      "produced_by": "snapshot_inputs"
     },
     "results.json": {
       "sha256": "c43217ec9292bf1e534ca679fbef109d63caac34eb6a47219f85286b391333b5",
       "bytes": 15861,
-      "media_type": "application/json"
+      "media_type": "application/json",
+      "produced_by": "collect_results"
     },
     "spec.json": {
       "sha256": "fda85eb50f70d0ce825bb88ac90cd78bb9a3e110795e699a54b4336c4d6fa83d",
       "bytes": 148,
-      "media_type": "application/json"
+      "media_type": "application/json",
+      "produced_by": "resolve_specification"
     },
     "used-pairs.csv": {
-      "sha256": "69c5c7c7e0ae271749b58b955cd21cf15c21a3eb538c092399c388d13c759737",
-      "bytes": 3503,
-      "media_type": "text/csv"
+      "sha256": "05f892f87e6002c836852d000026a3f907c2de96b8d2e2099b2a4e138b840ea9",
+      "bytes": 3423,
+      "media_type": "text/csv",
+      "produced_by": "descriptive_rma"
     },
     "uv.lock": {
-      "sha256": "8aa365f1e5bfca6a29d7c170e50117a29c959f865bafb0acb8531eac21a573d9",
+      "sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27",
       "bytes": 174433,
-      "media_type": "text/plain"
+      "media_type": "text/plain",
+      "produced_by": "record_environment"
     }
   }
 }

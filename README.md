@@ -12,7 +12,8 @@ every feature.
 ## Current state
 
 Private development repository, established 30 October 2026. The first native
-Python operation is descriptive reduced-major-axis regression, available through
+Python operations include descriptive reduced-major-axis regression and an
+explicit count-community workflow, available through
 the Python API and structured CLI. It saves a self-contained input snapshot,
 resolved specification, numerical results, diagnostics and integrity manifest.
 The name is provisional. No public release or full PAST compatibility is claimed.
@@ -26,6 +27,9 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [Offline index of all 14 legacy vignettes](benchmarks/past/vignettes/html/doc1.html)
 - [First numerical comparison](docs/first-comparison.md)
 - [First implementation results and limits](docs/tranche-1-results.md)
+- [Community workflow plan](docs/tranche-2-plan.md)
+- [Community workflow results](docs/tranche-2-results.md)
+- [Agent evaluation protocol](docs/evaluation.md)
 - [Third-party reference material](THIRD_PARTY.md)
 
 ## Run the first workflow
@@ -75,6 +79,38 @@ assert result["slope"] == 2
 Inspection checks artefact integrity, and reproduction compares numerical
 outputs. Neither certifies scientific interpretation or source authenticity.
 
+## Community workflow and sensitivity
+
+The complete stored comparison at `benchmarks/past/community-comparison`
+contains a relative-abundance Bray-Curtis baseline and a raw-count sensitivity
+run for the 10-sample, 23-taxon Llanvirn example. Each child is a normal run
+bundle with snapshots, intermediate tables, diversity, PCoA and diagnostics.
+
+```sh
+uv run palaeo-agent validate examples/community-llanvirn-relative.json
+uv run palaeo-agent run examples/community-llanvirn-relative.json --output runs
+uv run palaeo-agent run examples/community-llanvirn-raw.json --output runs
+uv run palaeo-agent compare BASELINE_RUN_DIR SENSITIVITY_RUN_DIR --output runs
+uv run palaeo-agent inspect-comparison benchmarks/past/community-comparison
+uv run palaeo-agent reproduce benchmarks/past/community-comparison/baseline --output runs
+```
+
+The comparison checks input identity, fixed settings and the same implementation,
+Python and NumPy before attributing differences to transformation/distance.
+Count semantics, orientation, missing values and empty-sample handling must be
+declared. Metadata are joined by exact sample ID. Diversity is observed and
+unstandardised. Negative PCoA eigenvalues remain visible; no correction or group
+inference is applied. Binary Jaccard is also supported with `transform: none`.
+
+`compare_community_runs` and `inspect_comparison` are also Python API functions.
+Use `uv run python scripts/verify_community.py` to regenerate the complete
+development verification in a new run directory. Reference regeneration uses
+`python3 scripts/reference_community.py`, requiring R and jsonlite only for that
+optional validation step; R is not an analysis runtime dependency.
+
+Run bundle schema 2 replaces the development schema 1. The committed RMA demo
+was regenerated with version 0.2; the original remains in Git commit `445da1b`.
+
 ## Check the implementation and reference archive
 
 ```sh
@@ -86,10 +122,11 @@ uv run python scripts/reference_dielasma.py
 The archive contains the supplied PAST 5.4 manual, all 17 data files from the
 2001 ZIP, all 14 vignettes, 10 answer pages and 49 images. Original bytes and
 offline reading copies are separate. These legacy examples do not establish a
-complete current PAST 5 corpus. No PAST executable has been run for this project.
+complete current PAST 5 corpus. The installed Mac app was opened to verify its
+About version (5.4); no numerical PAST reference comparison has been executed.
 
-The next scientific capability is a community-data workflow, building on the
-validated execution path rather than expanding the transport infrastructure.
+Community workflows remain descriptive. Agent efficacy trials, inferential
+methods and current-PAST numerical comparisons are separate future tranches.
 
 ## Working principles
 

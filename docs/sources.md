@@ -43,6 +43,9 @@ URLs, capture times and original/derived checksums. Start reading from the
 - Freeze the bounded source inventory before reporting coverage percentages.
 
 The supplied manual and ZIP, extracted data and captured pages are retained.
-No PAST executable has been downloaded, installed or executed for this project.
+Barry installed the Mac PAST app separately. CUA inspection of Help > About on
+30 October 2026 shows Past 5.4, October 2026; the App Store bundle version is
+not used as the scientific version. No numerical PAST reference analysis has
+been executed for this project.
 The first numerical reference is an independent calculation, described in
 [first-comparison.md](first-comparison.md), not a PAST 5 run.

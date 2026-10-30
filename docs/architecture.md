@@ -1,8 +1,8 @@
 # Implementation framework
 
-Status: implementation framework, 30 October 2026. The first operation is
-descriptive RMA regression of paired measurements. Broader community analysis,
-MCP integration and other expansion remain planned.
+Status: version 0.2 implementation framework, 30 October 2026. Descriptive RMA
+and the count-community workflow are implemented. MCP integration, inferential
+community methods and other expansion remain planned.
 
 ## Smallest complete architecture
 
@@ -50,9 +50,9 @@ implementation without separate evidence and implementation work.
 
 ## Data contract
 
-The first implemented object contains labelled pairs of measurements, selected
-from a classic PAST table or supplied directly in Python. A subsequent
-community-data object will contain a sample-by-taxon matrix plus sample
+Implemented objects contain labelled pairs of measurements and a declared
+count matrix in canonical sample-by-taxon orientation, both accessible from
+classic PAST tables or directly in Python. Community inputs accept optional
 metadata keyed by sample ID. Declare value semantics, row/column orientation,
 missing-value handling and taxonomic resolution where known. Preserve raw input
 and record derived transformations as explicit operations.

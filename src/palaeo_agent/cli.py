@@ -7,8 +7,10 @@ import sys
 
 from pydantic import ValidationError
 
-from .core import AnalysisError, RmaSpec, discover, validate
+from .core import AnalysisError
+from .methods import discover, parse_spec, validate
 from .runs import inspect_run, reproduce, run
+from .sensitivity import compare_community_runs, inspect_comparison
 
 
 class JsonArgumentParser(argparse.ArgumentParser):
@@ -18,9 +20,11 @@ class JsonArgumentParser(argparse.ArgumentParser):
 
 def _spec(path):
     spec_path = Path(path).resolve()
-    spec = RmaSpec.model_validate_json(spec_path.read_text(encoding="utf-8"))
+    spec = parse_spec(json.loads(spec_path.read_text(encoding="utf-8")))
     if not spec.input.is_absolute():
         spec = spec.model_copy(update={"input": (spec_path.parent / spec.input).resolve()})
+    if spec.method == "community" and spec.metadata is not None and not spec.metadata.is_absolute():
+        spec = spec.model_copy(update={"metadata": (spec_path.parent / spec.metadata).resolve()})
     return spec
 
 
@@ -33,11 +37,15 @@ def main(argv=None):
         sub.add_argument("spec")
         if command == "run":
             sub.add_argument("--output", required=True)
-    for command in ("inspect", "reproduce"):
+    for command in ("inspect", "reproduce", "inspect-comparison"):
         sub = commands.add_parser(command)
         sub.add_argument("run_dir")
         if command == "reproduce":
             sub.add_argument("--output", required=True)
+    comparison = commands.add_parser("compare")
+    comparison.add_argument("baseline")
+    comparison.add_argument("sensitivity")
+    comparison.add_argument("--output", required=True)
     try:
         args = parser.parse_args(argv)
         match args.command:
@@ -51,6 +59,10 @@ def main(argv=None):
                 result = inspect_run(args.run_dir)
             case "reproduce":
                 result = reproduce(args.run_dir, args.output)
+            case "compare":
+                result = compare_community_runs(args.baseline, args.sensitivity, args.output)
+            case "inspect-comparison":
+                result = inspect_comparison(args.run_dir)
         print(json.dumps(result, allow_nan=False))
         return 1 if result.get("status") == "different" else 0
     except ValidationError as exc:

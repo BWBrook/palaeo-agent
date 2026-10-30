@@ -1,10 +1,14 @@
 """Explicit scientific operations with inspectable evidence."""
 
-from .core import AnalysisError, RmaResult, RmaSpec, discover, rma_regression, validate
+from .core import AnalysisError, RmaResult, RmaSpec, rma_regression
+from .community import CommunityResult, CommunitySpec, analyse_community
+from .methods import discover, validate
 from .runs import inspect_run, reproduce, run
+from .sensitivity import compare_community_runs, inspect_comparison
 
-__version__ = "0.1.0.dev0"
+__version__ = "0.2.0.dev0"
 __all__ = [
     "AnalysisError", "RmaResult", "RmaSpec", "discover", "inspect_run", "reproduce",
-    "rma_regression", "run", "validate",
+    "rma_regression", "run", "validate", "CommunitySpec", "CommunityResult", "analyse_community",
+    "compare_community_runs", "inspect_comparison",
 ]
