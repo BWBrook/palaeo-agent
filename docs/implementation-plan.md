@@ -1,9 +1,15 @@
 # Staged implementation plan
 
-Status: proposed implementation route. The founding design tranche is complete
+Status: staged route authorised by Barry on 30 October 2026, including source
+capture and a private GitHub main branch. The founding design tranche is complete
 when these documents are coherent, the source inventory states its gaps, and
 the local Git repository has a clean initial commit. No numerical validation is
 implied by completing this tranche.
+
+Stages 1 (bounded legacy-corpus acquisition) and 2 (one complete operation)
+have now been implemented and checked; see
+[the first implementation results](tranche-1-results.md). The current PAST 5
+example corpus remains unenumerated. Stage 3 is the next scientific tranche.
 
 ## 1. Ground the corpus and select the first comparison
 
@@ -14,9 +20,11 @@ scope and record unavailable material rather than claiming universal discovery.
 
 Create a machine-readable inventory once actual datasets are acquired: source,
 identity, attribution/terms, original format, checksum, documented procedure,
-PAST version, reference-output availability and planned method coverage. Keep
-raw third-party files outside tracked source unless redistribution rights are
-established. Record corrections as derivatives, never overwrite originals.
+PAST version, reference-output availability and planned method coverage. Barry
+explicitly authorised storing his uploaded sources and captured vignettes in
+the private development repository. Preserve third-party rights and review
+redistribution before public release; see [THIRD_PARTY.md](../THIRD_PARTY.md).
+Record corrections as derivatives, never overwrite originals.
 
 Choose one publicly available tabular example with a straightforward numerical
 method and defensible expected result. If a current PAST example cannot yet be
@@ -97,8 +105,10 @@ versions, and present the release artefacts for Barry's review.
 Keep progress in this plan until it needs a dedicated tracking surface. Report
 at complete capabilities, consequential scientific choices or real blockers.
 
-Open choices for the next tranche are the first accessible benchmark, the
-minimal dependency set and Python support version. The project name is a taste
+The first benchmark is Dielasma descriptive RMA regression, with independent
+reference calculations and acceptance criteria in
+[first-comparison.md](first-comparison.md). The first runtime is Python 3.12,
+with NumPy, Pydantic and Matplotlib. The project name is a taste
 decision that can wait; it does not block implementation. A choice about a
 scientific estimand, unsupported sampling design or unexplained comparator
 disagreement must be resolved before making a validation claim.

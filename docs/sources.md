@@ -21,13 +21,18 @@ dataset inventory. URLs and observed versions may change.
 
 ## Open evidence work
 
-Initial legacy reconnaissance is recorded in
-[the machine-readable case inventory](../benchmarks/past/legacy-cases.json):
-fourteen indexed cases, twelve readable case pages and fifteen distinct linked
-filenames. Cases 4 and 11 returned verification challenges during this check.
-Only `dielasma.dat` was viewed as data content; the other entries record links,
-not verified payloads. No files were acquired. These are source observations,
-not a completed corpus or numerical test suite.
+The initial reconnaissance found twelve readable case pages and fifteen linked
+filenames; that partial snapshot is superseded by the acquired corpus. Barry
+then supplied the original ZIP and PAST 5.4 PDF and authorised preserving them
+and the vignettes in the private repository. All fourteen case pages are now
+captured, with ten linked answer pages and forty-nine images. All seventeen ZIP
+members are extracted byte-for-byte. Case 4 supplies `outlines.dat`; case 11
+supplies `directions.dat`, accounting for the two previously unobserved files.
+
+The updated [case inventory](../benchmarks/past/legacy-cases.json) and
+[capture manifest](../benchmarks/past/vignettes/manifest.json) record the source
+URLs, capture times and original/derived checksums. Start reading from the
+[offline index](../benchmarks/past/vignettes/html/doc1.html).
 
 - Enumerate current official worked examples and their actual downloadable data.
 - Establish whether examples are separate downloads, embedded in documentation,
@@ -37,5 +42,7 @@ not a completed corpus or numerical test suite.
 - Determine where expected numerical outputs and complete settings are available.
 - Freeze the bounded source inventory before reporting coverage percentages.
 
-No binaries or datasets have been downloaded into this repository. No reference
-application has been installed or executed for these observations.
+The supplied manual and ZIP, extracted data and captured pages are retained.
+No PAST executable has been downloaded, installed or executed for this project.
+The first numerical reference is an independent calculation, described in
+[first-comparison.md](first-comparison.md), not a PAST 5 run.

@@ -1,0 +1,9 @@
+{
+  "method": "rma",
+  "input": "../benchmarks/past/legacy-data/dielasma.dat",
+  "format": "past",
+  "x": "L2/X1",
+  "y": "L2/X2",
+  "transform": "none",
+  "missing": "drop_pairs"
+}

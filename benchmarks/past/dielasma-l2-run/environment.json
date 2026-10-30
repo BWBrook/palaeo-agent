@@ -1,0 +1,19 @@
+{
+  "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "packages": {
+    "palaeo-agent": "0.1.0.dev0",
+    "numpy": "2.5.4",
+    "pydantic": "2.14.2",
+    "matplotlib": "3.11.2"
+  },
+  "implementation_sha256": "111538552247e06dd3e4fd78b1b0ce7b66767d304aaa53142245eed45cd280c8",
+  "source_files_sha256": {
+    "__init__.py": "a2304cdb28fb122f86922055dacb1bc9f52bd3330f6c6dc240fd890370104691",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "0a291b9babdac0ddb6f10285e911255dc3e4576de26b5417c6a56fb8dbdc7529",
+    "core.py": "010aa7bb04a2e76a093660a7e8555bb919517e10d7c267a871090cf76948af98",
+    "runs.py": "52c695d1a97fd7e94f768cd4665f7793b2531c4621483ed632d1e39fb958162d"
+  },
+  "rng": "not used; deterministic method"
+}

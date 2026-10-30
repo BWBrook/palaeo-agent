@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "palaeo-agent"
+version = "0.1.0.dev0"
+description = "Scientific operations and reproducible evidence for ecology and palaeontology agents"
+requires-python = ">=3.12"
+dependencies = ["numpy>=2.2", "pydantic>=2.10,<3", "matplotlib>=3.10"]
+
+[project.scripts]
+palaeo-agent = "palaeo_agent.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

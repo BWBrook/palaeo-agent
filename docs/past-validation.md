@@ -4,9 +4,11 @@
 
 Target: account for every publicly available example dataset associated with
 PAST 5 within a documented source scope, then compare the supported documented
-analyses against actual, versioned PAST outputs. The complete public corpus has
-not yet been enumerated or acquired. No PAST numerical reference runs have been
-performed by this project.
+analyses against actual, versioned PAST outputs. The complete public PAST 5
+corpus has not yet been enumerated or acquired. Barry supplied the version 5.4
+manual and original 2001 case-study ZIP; the legacy corpus is preserved under
+his explicit private-repository authorisation. No PAST numerical reference runs
+have been performed by this project.
 
 The official site currently lists Windows PAST 5.4 and a Mac 5.2 download. The
 linked manual identifies itself as version 5.4. Record the version actually
@@ -15,9 +17,10 @@ page label or an old screenshot is not an execution record.
 
 The 2001 site contains fourteen case studies. These are a separate legacy
 source, not evidence that PAST 5 has exactly fourteen example datasets.
-The initial [legacy inventory](../benchmarks/past/legacy-cases.json) records
-linked files and unresolved pages; it contains no dataset payloads or numerical
-reference results.
+The [legacy inventory](../benchmarks/past/legacy-cases.json) maps all fourteen
+captured cases to the seventeen acquired datasets. Original HTML and offline
+reading copies, with source provenance, are available from the
+[archived index](../benchmarks/past/vignettes/html/doc1.html).
 
 ## What a comparison means
 
@@ -91,8 +94,9 @@ designs must fail explicitly or remain unsupported.
 
 Public download availability does not establish an open redistribution licence.
 Record the terms applying to each dataset separately from PAST's software terms.
-Until established, track source metadata and acquisition instructions rather
-than commit raw third-party content. This does not prevent local validation of
-material that may lawfully be acquired and used.
+Barry explicitly requested preserving the uploaded sources and captured pages
+in the private development repository. Their original rights remain attached;
+public release requires a separate distribution review. See
+[THIRD_PARTY.md](../THIRD_PARTY.md).
 
 The scope and current source observations are maintained in [sources.md](sources.md).

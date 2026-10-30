@@ -1,0 +1,117 @@
+{
+  "reference_kind": "independent_stdlib_calculation_not_PAST_execution",
+  "tolerance": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "comparisons": [
+    {
+      "locality": "L1",
+      "transform": "none",
+      "n": 103,
+      "slope": 0.8427557846904125,
+      "intercept": -0.05423665457772664,
+      "absolute_differences": {
+        "slope": 0.0,
+        "intercept": 1.7763568394002505e-15,
+        "mean_x": 0.0,
+        "mean_y": 1.7763568394002505e-15,
+        "sd_x": 0.0,
+        "sd_y": 0.0,
+        "correlation": 3.3306690738754696e-16
+      },
+      "status": "matched_independent_reference"
+    },
+    {
+      "locality": "L1",
+      "transform": "log10",
+      "n": 103,
+      "slope": 1.0183654435676797,
+      "intercept": -0.09781735211676779,
+      "absolute_differences": {
+        "slope": 2.220446049250313e-16,
+        "intercept": 0.0,
+        "mean_x": 2.220446049250313e-16,
+        "mean_y": 0.0,
+        "sd_x": 2.7755575615628914e-17,
+        "sd_y": 2.7755575615628914e-17,
+        "correlation": 0.0
+      },
+      "status": "matched_independent_reference"
+    },
+    {
+      "locality": "L2",
+      "transform": "none",
+      "n": 79,
+      "slope": 0.819167040027981,
+      "intercept": 0.2621471236354722,
+      "absolute_differences": {
+        "slope": 1.1102230246251565e-16,
+        "intercept": 3.552713678800501e-15,
+        "mean_x": 0.0,
+        "mean_y": 1.7763568394002505e-15,
+        "sd_x": 0.0,
+        "sd_y": 8.881784197001252e-16,
+        "correlation": 1.1102230246251565e-16
+      },
+      "status": "matched_independent_reference"
+    },
+    {
+      "locality": "L2",
+      "transform": "log10",
+      "n": 79,
+      "slope": 0.9817911055076792,
+      "intercept": -0.054562233229950574,
+      "absolute_differences": {
+        "slope": 0.0,
+        "intercept": 3.3306690738754696e-16,
+        "mean_x": 2.220446049250313e-16,
+        "mean_y": 1.1102230246251565e-16,
+        "sd_x": 0.0,
+        "sd_y": 0.0,
+        "correlation": 0.0
+      },
+      "status": "matched_independent_reference"
+    },
+    {
+      "locality": "L3",
+      "transform": "none",
+      "n": 35,
+      "slope": 0.9054241567685909,
+      "intercept": -0.8029899113932712,
+      "absolute_differences": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "mean_x": 0.0,
+        "mean_y": 0.0,
+        "sd_x": 0.0,
+        "sd_y": 0.0,
+        "correlation": 0.0
+      },
+      "status": "matched_independent_reference"
+    },
+    {
+      "locality": "L3",
+      "transform": "log10",
+      "n": 35,
+      "slope": 1.1071123900450557,
+      "intercept": -0.19270266419259063,
+      "absolute_differences": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "mean_x": 0.0,
+        "mean_y": 0.0,
+        "sd_x": 0.0,
+        "sd_y": 0.0,
+        "correlation": 2.220446049250313e-16
+      },
+      "status": "matched_independent_reference"
+    }
+  ],
+  "fresh_process_reproduction": {
+    "status": "reproduced",
+    "differences": [],
+    "environment_identical": true
+  },
+  "past_application_runs": 0
+}

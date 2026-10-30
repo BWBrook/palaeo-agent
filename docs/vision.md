@@ -11,6 +11,14 @@ The central product question is: does this make agent-led analysis more
 correct, easier to check and easier to reproduce than an agent assembling an
 equivalent script directly from general scientific libraries?
 
+Barry explicitly confirmed this as the project's north star on 30 October
+2026. A paper should be able to specify versioned Palaeo-Agent API operations
+and their inputs rather than maintain a bespoke implementation of common
+analyses. The operational aim is reproducibility and verification by
+construction: capture the executable specification, data, implementation,
+environment and checks. This is not a universal guarantee of numerical identity
+across platforms or correctness of a scientific interpretation.
+
 ## Direction established in the founding discussion
 
 Barry described the aim as "an ecology and palaeontology analysis toolkit
@@ -82,8 +90,11 @@ publication-quality figures remain core outputs despite the absence of a GUI.
 
 ## Authority and release
 
-This tranche establishes a local repository and a reviewable design. Numerical
-implementation is the next tranche. Routine local development, verification
+The founding tranche established a local repository and reviewable design.
+Barry subsequently authorised the first implementation, source capture and
+push to GitHub main in an initially private repository: "Proceed with your
+recommended next tranche. And push to GH main as an initially private repo
+(whilst we develop it)." Routine local development, verification
 and commits follow Barry's standing reversible-work policy. First public
 release, external correspondence and publication remain subject to his review.
 No redistribution right for PAST software or third-party examples is inferred

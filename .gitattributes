@@ -1,0 +1,10 @@
+docs/past5manual.pdf binary linguist-vendored
+benchmarks/past/casefiles.ZIP binary linguist-vendored
+benchmarks/past/legacy-data/** -text -diff linguist-vendored
+benchmarks/past/vignettes/originals/** -text -diff linguist-vendored
+benchmarks/past/vignettes/html/** -text -diff linguist-vendored
+benchmarks/past/vignettes/assets/** binary linguist-vendored
+benchmarks/past/dielasma-l2-run/input.dat -text -diff
+benchmarks/past/dielasma-l2-run/used-pairs.csv -text -diff
+benchmarks/past/dielasma-l2-run/diagnostics.svg -text -diff linguist-generated
+benchmarks/past/dielasma-l2-run/diagnostics.png binary linguist-generated

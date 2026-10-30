@@ -2,240 +2,359 @@
   "schema_version": 1,
   "observed_date": "2026-10-30",
   "corpus": "legacy_2001",
-  "scope": "Fourteen cases linked from the archived 2001 case-study index; distinct from the unenumerated PAST 5 corpus.",
+  "scope": "Fourteen archived 2001 case studies; distinct from the unenumerated PAST 5 corpus.",
   "index_url": "https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html",
-  "acquired_files": 0,
+  "acquired_files": 17,
   "past_reference_runs": 0,
-  "dataset_redistribution_terms": "not_established",
+  "dataset_redistribution_terms": "no_open_licence_asserted",
+  "acquisition_manifest": "benchmarks/past/vignettes/manifest.json",
   "cases": [
     {
       "case_id": 1,
-      "title": "Dielasma",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study1.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "dielasma.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/dielasma.dat",
-          "source_status": "content_viewed_via_web",
-          "acquired": false,
-          "sha256": null
+          "source_status": "link_observed",
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
         }
       ],
-      "reference_status": "published_procedures_and_rounded_answers"
+      "title": "PAST - Case study 1 - The Permian brachiopod Dielasma",
+      "offline_path": "benchmarks/past/vignettes/html/study1.html",
+      "source_sha256": "47a3589230a5b7ab254395f25e3e85ff67b4238dd42abd7549c523a2492c1669",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study1tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 2,
-      "title": "Trilobite tubercles",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study2.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "paradox.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/paradox.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/paradox.dat",
+          "sha256": "6a79009271ca023930eaa51773f51a59c77525441968b736ccad39eb9d526330"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 2 - Distribution of trilobite tubercles",
+      "offline_path": "benchmarks/past/vignettes/html/study2.html",
+      "source_sha256": "6931df5880ac96996692ecf7e31de06f84c4c3bb29a74af83be9fcb9470616cd",
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 3,
-      "title": "Trilobite morphometrics",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study3.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "glaber.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/glaber.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/glaber.dat",
+          "sha256": "a6da4fca324e2165838f0e6796a6c724a2fed6d93e852f7dedab27c7a5bfcff0"
         },
         {
           "filename": "linnars1.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/linnars1.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/linnars1.dat",
+          "sha256": "583d682fd1505edd7b785c344fc74d16eb78ccc5569d8827e4eed64f28c232c9"
         },
         {
           "filename": "linnars2.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/linnars2.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/linnars2.dat",
+          "sha256": "627826fdb4c0565c8dd3ac3feb25b783bde88abb65b1e7ec1d54de4a1dad6c03"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 3 - Morphometrics of Ordovician trilobites",
+      "offline_path": "benchmarks/past/vignettes/html/study3.html",
+      "source_sha256": "fa6b7f14c3fedbd9291654d3e16be349a922320f6961d1209576f3a0cfe44fcf",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study3tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 4,
-      "title": null,
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study4.html",
-      "page_status": "verification_challenge",
-      "files": [],
-      "reference_status": "not_catalogued"
+      "page_status": "captured",
+      "files": [
+        {
+          "filename": "outlines.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/outlines.dat",
+          "source_status": "link_observed",
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/outlines.dat",
+          "sha256": "17a59f42efc62532b97972dffc3b93e3f698a7144d2c654324cf56ce19d15a3f"
+        }
+      ],
+      "title": "PAST - Case study 4 - Shape change through trilobite ontogeny",
+      "offline_path": "benchmarks/past/vignettes/html/study4.html",
+      "source_sha256": "d7e201c3dc77775dbb05f60c1510402ea0ea81ad214fb3a2d03c56b0a860e774",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study4tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 5,
-      "title": "Rhynchosaur heterochrony",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study5.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "rhynch.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/rhynch.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/rhynch.dat",
+          "sha256": "bfb64d0527521451371cc3fa61a3d67c06435965c9e88fdec741b83a4bd8b4a4"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 5 - Heterochrony in a fossil rhynchosaur reptile",
+      "offline_path": "benchmarks/past/vignettes/html/study5.html",
+      "source_sha256": "a888740285daedd7f4e89e6676fcc94cba89db5e760c99693f034069f4061874",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study5tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 6,
-      "title": "Cladistics",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study6.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
-        {
-          "filename": "paradoxididae.nex",
-          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/paradoxididae.nex",
-          "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
-        },
         {
           "filename": "eutheria.nex",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/eutheria.nex",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/eutheria.nex",
+          "sha256": "6d04183b93b93176d45b498f71d6fed5d56244d63629f316f9a5d2081e66ba83"
+        },
+        {
+          "filename": "paradoxididae.nex",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/paradoxididae.nex",
+          "source_status": "link_observed",
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/paradoxididae.nex",
+          "sha256": "95326ccc641722b99c6db63bf0ab247d2936b5ed6c1362a37268b9681ca319a6"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 6 - Systematics of Cambrian trilobites and the Eutheria",
+      "offline_path": "benchmarks/past/vignettes/html/study6.html",
+      "source_sha256": "5269930857fd5c728ed3115fc291afbf49f827a191172f191704894c24436cc5",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study6tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 7,
-      "title": "Hirnantian biogeography",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study7.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "hirnanti.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/hirnanti.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/hirnanti.dat",
+          "sha256": "05cb43d51821d6825545ad554ec5fd2f010e4696265bf9905ce0a192771c1da3"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 7 - Biogeography of late Ordovician brachiopods",
+      "offline_path": "benchmarks/past/vignettes/html/study7.html",
+      "source_sha256": "851cfea999eaa71d0aec397b36ea078921c9d10bd283b4088a4fa2df2a1a75ab",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study7tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 8,
-      "title": "Llanvirn palaeoecology",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study8.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "llanvirn.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/llanvirn.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 8 - Dynamic Llanvirn shelly faunas from Wales - a palaeoecological study",
+      "offline_path": "benchmarks/past/vignettes/html/study8.html",
+      "source_sha256": "ab5d3f7bb1cb1d09a54794249514cdeea546c05a9e720513cc55fba12001e255",
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 9,
-      "title": "Llandovery communities",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study9.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "llandov.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/llandov.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/llandov.dat",
+          "sha256": "bf38ea258b8824279418de49ab818912076fadd8601421517d828889c6e9fd57"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 9 - Lower Silurian marine communities from Britain",
+      "offline_path": "benchmarks/past/vignettes/html/study9.html",
+      "source_sha256": "39a2581f1122a6ce524cd3e6028e9cc250856340980564ce3c9bd79ed4f43156",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study9tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 10,
-      "title": "Jurassic associations",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study10.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "jurass.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/jurass.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/jurass.dat",
+          "sha256": "edb6c11e60a05c1c726678fce7f4da1c8fa6df0e1cc3d590c28e40035e3ffdb3"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 10 - Jurassic fossil associations from England and Normandy",
+      "offline_path": "benchmarks/past/vignettes/html/study10.html",
+      "source_sha256": "1b5ae06a813d30d0b003ac58380445def2f0164236290f7ee20f35446a56c9d9",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study10tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 11,
-      "title": null,
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study11.html",
-      "page_status": "verification_challenge",
-      "files": [],
-      "reference_status": "not_catalogued"
+      "page_status": "captured",
+      "files": [
+        {
+          "filename": "directions.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/directions.dat",
+          "source_status": "link_observed",
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/directions.dat",
+          "sha256": "0b9b19de8482d63ecb0aa9b41c19dbab35d69128f4ac2eb14b3d4b176260cecc"
+        }
+      ],
+      "title": "PAST - Case study 11 - Brachiopod directional statistics",
+      "offline_path": "benchmarks/past/vignettes/html/study11.html",
+      "source_sha256": "63fde6ec84a49ffac3abbc0d28c662df27c819b568d5b91036debea2450cb271",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study11tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 12,
-      "title": "Phanerozoic diversity",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study12.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "fr2.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/fr2.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/fr2.dat",
+          "sha256": "55a7eefd43109a9e169715ebadbcf123869a7ac994459ffcb83fd80bcb8c3a7b"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 12 - Diversity through the Phanerozoic",
+      "offline_path": "benchmarks/past/vignettes/html/study12.html",
+      "source_sha256": "3b8fc61ef35aff00e8e6f7f6f10815be4e98b6596c2d72701c04dfe2468a1385",
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 13,
-      "title": "Isotope cycles",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study13.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "composite.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/composite.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/composite.dat",
+          "sha256": "3a71697b54db4f24968b56ea6f4040d47495724c715b084f45c8ca7bd177b56e"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 13 - Isotope data and glacial cycles",
+      "offline_path": "benchmarks/past/vignettes/html/study13.html",
+      "source_sha256": "c914e05765ed9694909743539c43cf0143e648203334cb4f83780094233a5242",
+      "reference_status": "published_procedures_only_no_new_past_run"
     },
     {
       "case_id": 14,
-      "title": "Unitary associations",
       "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study14.html",
-      "page_status": "read",
+      "page_status": "captured",
       "files": [
         {
           "filename": "alveolinid.dat",
           "url": "https://palaeo-electronica.org/2001_1/past/pastprog/alveolinid.dat",
           "source_status": "link_observed",
-          "acquired": false,
-          "sha256": null
+          "acquired": true,
+          "acquisition": "user_supplied_casefiles_zip",
+          "path": "benchmarks/past/legacy-data/alveolinid.dat",
+          "sha256": "266c4c6ad29e6f705b6519ff5265bfd887ca85f2a745dca3cd1645e0fb46a910"
         }
       ],
-      "reference_status": "not_catalogued"
+      "title": "PAST - Case study 14 - Biostratigraphy with unitary associations",
+      "offline_path": "benchmarks/past/vignettes/html/study14.html",
+      "source_sha256": "a6de6801a774a048e865b5717216b86cf67105ac2746c5420d1bd1382413b718",
+      "suggested_answers": {
+        "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study14tips.html",
+        "status": "captured"
+      },
+      "reference_status": "published_procedures_only_no_new_past_run"
     }
   ]
 }

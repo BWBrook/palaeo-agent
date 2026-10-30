@@ -1,6 +1,8 @@
 # Implementation framework
 
-Status: proposed design, 30 October 2026. No interfaces below exist yet.
+Status: implementation framework, 30 October 2026. The first operation is
+descriptive RMA regression of paired measurements. Broader community analysis,
+MCP integration and other expansion remain planned.
 
 ## Smallest complete architecture
 
@@ -48,7 +50,9 @@ implementation without separate evidence and implementation work.
 
 ## Data contract
 
-The first data object contains a labelled sample-by-taxon matrix plus sample
+The first implemented object contains labelled pairs of measurements, selected
+from a classic PAST table or supplied directly in Python. A subsequent
+community-data object will contain a sample-by-taxon matrix plus sample
 metadata keyed by sample ID. Declare value semantics, row/column orientation,
 missing-value handling and taxonomic resolution where known. Preserve raw input
 and record derived transformations as explicit operations.
