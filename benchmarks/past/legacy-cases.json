@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-10-30",
+  "corpus": "legacy_2001",
+  "scope": "Fourteen cases linked from the archived 2001 case-study index; distinct from the unenumerated PAST 5 corpus.",
+  "index_url": "https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html",
+  "acquired_files": 0,
+  "past_reference_runs": 0,
+  "dataset_redistribution_terms": "not_established",
+  "cases": [
+    {
+      "case_id": 1,
+      "title": "Dielasma",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study1.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "dielasma.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/dielasma.dat",
+          "source_status": "content_viewed_via_web",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "published_procedures_and_rounded_answers"
+    },
+    {
+      "case_id": 2,
+      "title": "Trilobite tubercles",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study2.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "paradox.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/paradox.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 3,
+      "title": "Trilobite morphometrics",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study3.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "glaber.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/glaber.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        },
+        {
+          "filename": "linnars1.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/linnars1.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        },
+        {
+          "filename": "linnars2.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/linnars2.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 4,
+      "title": null,
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study4.html",
+      "page_status": "verification_challenge",
+      "files": [],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 5,
+      "title": "Rhynchosaur heterochrony",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study5.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "rhynch.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/rhynch.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 6,
+      "title": "Cladistics",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study6.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "paradoxididae.nex",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/paradoxididae.nex",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        },
+        {
+          "filename": "eutheria.nex",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/eutheria.nex",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 7,
+      "title": "Hirnantian biogeography",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study7.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "hirnanti.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/hirnanti.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 8,
+      "title": "Llanvirn palaeoecology",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study8.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "llanvirn.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/llanvirn.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 9,
+      "title": "Llandovery communities",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study9.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "llandov.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/llandov.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 10,
+      "title": "Jurassic associations",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study10.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "jurass.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/jurass.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 11,
+      "title": null,
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study11.html",
+      "page_status": "verification_challenge",
+      "files": [],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 12,
+      "title": "Phanerozoic diversity",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study12.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "fr2.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/fr2.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 13,
+      "title": "Isotope cycles",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study13.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "composite.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/composite.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    },
+    {
+      "case_id": 14,
+      "title": "Unitary associations",
+      "case_url": "https://palaeo-electronica.org/2001_1/past/pastprog/study14.html",
+      "page_status": "read",
+      "files": [
+        {
+          "filename": "alveolinid.dat",
+          "url": "https://palaeo-electronica.org/2001_1/past/pastprog/alveolinid.dat",
+          "source_status": "link_observed",
+          "acquired": false,
+          "sha256": null
+        }
+      ],
+      "reference_status": "not_catalogued"
+    }
+  ]
+}
