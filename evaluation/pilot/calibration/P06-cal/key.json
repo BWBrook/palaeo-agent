@@ -1,0 +1,43 @@
+{
+ "item": "P06-cal",
+ "bank_version": "pilot-v1",
+ "family": "P06",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 2.54181551260093,
+  "r_squared": 0.3885489445101061,
+  "n": 6
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "aliquots_as_units",
+   "results": {
+    "pseudo_f": 8.033776906548045,
+    "r_squared": 0.3342702621309274,
+    "n": 18
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "aliquot",
+   "pseudorep",
+   "split",
+   "pool",
+   "independent"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Cores are the randomised units; aliquots are subsamples of one core, so they are pooled (counts summed; equal aliquot sizes make this identical to averaging proportions) and the test uses 6 units.",
+ "analysis": "one-way PERMANOVA, Bray\u2013Curtis on relative abundance"
+}

@@ -1,0 +1,40 @@
+{
+ "item": "P08-cal",
+ "bank_version": "pilot-v1",
+ "family": "P08",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.2649284508518656,
+  "n_samples": 7
+ },
+ "integer_results": [
+  "n_samples"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "deeper_as_younger",
+   "results": {
+    "mean_bray_curtis": 0.27083642156120175,
+    "n_samples": 9
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "142",
+   "boundary",
+   "depth",
+   "age model"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Sediment is younger upwards, so Holocene samples are those shallower than 142 cm.",
+ "analysis": "subset; mean pairwise Bray\u2013Curtis, raw counts"
+}

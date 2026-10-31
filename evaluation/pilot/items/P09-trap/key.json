@@ -1,0 +1,47 @@
+{
+ "item": "P09-trap",
+ "bank_version": "pilot-v1",
+ "family": "P09",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "slope": 0.7602003259773435,
+  "intercept": -0.9999018522079091,
+  "n": 30
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "both_valves",
+   "results": {
+    "slope": 0.750369720676358,
+    "intercept": -0.8227762623951911,
+    "n": 34
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "left valve",
+   "pair",
+   "same individual",
+   "duplicate"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [
+  "V14L",
+  "V10L",
+  "V27L",
+  "V30L"
+ ],
+ "sufficiency_witness": "The unit is the individual and the protocol's valve is the right one, so the four left valves (second valves of already-listed individuals) are excluded.",
+ "analysis": "RMA, untransformed"
+}

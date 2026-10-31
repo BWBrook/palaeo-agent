@@ -1,0 +1,40 @@
+{
+ "item": "P04-trap",
+ "bank_version": "pilot-v1",
+ "family": "P04",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "shannon_mean_2017": 1.8987194094241986,
+  "shannon_mean_2021": 1.9448626201299495
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "different_taxon_basis",
+   "results": {
+    "shannon_mean_2017": 1.8987194094241986,
+    "shannon_mean_2021": 2.241201197900627
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "T09",
+   "fraction",
+   "not picked",
+   "common",
+   "not assessed",
+   "comparab"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "A comparison of diversity between campaigns is meaningful only on the taxa both campaigns assessed; T09\u2013T11 were not assessed in 2017, so they are dropped from both, and '.' is not 0.",
+ "analysis": "Shannon per core, campaign means"
+}

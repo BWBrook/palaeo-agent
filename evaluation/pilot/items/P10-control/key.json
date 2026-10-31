@@ -1,0 +1,29 @@
+{
+ "item": "P10-control",
+ "bank_version": "pilot-v1",
+ "family": "P10",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "shannon_change": 0.24585556544429088
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "reversed_age",
+   "results": {
+    "shannon_change": -0.24585556544429088
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "S1 is lowest and therefore oldest; S12 is youngest.",
+ "analysis": "Shannon difference"
+}

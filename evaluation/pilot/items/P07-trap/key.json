@@ -1,0 +1,45 @@
+{
+ "item": "P07-trap",
+ "bank_version": "pilot-v1",
+ "family": "P07",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "slope": 0.8408787551903663,
+  "intercept": -0.057088687732889554,
+  "n": 217,
+  "mean_length_mm": 12.419354838709678
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "mixed_units",
+   "results": {
+    "slope": 0.8365334536394251,
+    "intercept": 0.0323380699343101,
+    "n": 217,
+    "mean_length_mm": 11.242096774193548
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "centimet",
+   "cm",
+   "unit",
+   "convert",
+   "L3"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "L3 values are in cm; the task asks for mm, so L3 lengths and widths are multiplied by 10.",
+ "analysis": "RMA, untransformed, mm"
+}

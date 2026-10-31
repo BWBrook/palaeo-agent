@@ -1,0 +1,25 @@
+{
+ "item": "P08-control",
+ "bank_version": "pilot-v1",
+ "family": "P08",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.2343287881515876,
+  "n_samples": 9
+ },
+ "integer_results": [
+  "n_samples"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Epoch given.",
+ "analysis": "subset; mean pairwise Bray\u2013Curtis, raw counts"
+}

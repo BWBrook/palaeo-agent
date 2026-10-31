@@ -1,0 +1,23 @@
+{
+ "item": "P04-control",
+ "bank_version": "pilot-v1",
+ "family": "P04",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "shannon_mean_2017": 2.2291404640439483,
+  "shannon_mean_2021": 2.241201197900627
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Identical protocols; all taxa enter.",
+ "analysis": "Shannon per core, campaign means"
+}

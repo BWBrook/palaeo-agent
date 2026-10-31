@@ -1,0 +1,36 @@
+{
+ "item": "P03-cal",
+ "bank_version": "pilot-v1",
+ "family": "P03",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.43860185185185185
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "percentages_as_counts",
+   "results": {
+    "mean_bray_curtis": 0.33213888888888893
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "percent",
+   "n_picked",
+   "proportion",
+   "convert"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "count = percentage \u00d7 n_picked / 100, an exact integer for every cell, so raw counts are identified and Bray\u2013Curtis on them is defined.",
+ "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
+}

@@ -1,0 +1,46 @@
+{
+ "item": "P12-trap",
+ "bank_version": "pilot-v1",
+ "family": "P12",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 0.7484756604823002,
+  "r_squared": 0.02036752945611777,
+  "n": 38
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "blank_as_group",
+   "results": {
+    "pseudo_f": 0.635042382994449,
+    "r_squared": 0.03234229754168739,
+    "n": 41
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "blank",
+   "transition",
+   "unassigned",
+   "not assigned"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [
+  "A19",
+  "A20",
+  "A22"
+ ],
+ "sufficiency_witness": "The test compares zones A and B; samples assigned to neither belong to no level of the factor and are excluded, not treated as a third zone.",
+ "analysis": "one-way PERMANOVA, relative abundance"
+}

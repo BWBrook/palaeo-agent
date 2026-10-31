@@ -1,0 +1,22 @@
+{
+ "item": "P03-control",
+ "bank_version": "pilot-v1",
+ "family": "P03",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.4544046737213404
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Values are counts.",
+ "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
+}

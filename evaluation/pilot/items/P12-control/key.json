@@ -1,0 +1,26 @@
+{
+ "item": "P12-control",
+ "bank_version": "pilot-v1",
+ "family": "P12",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 0.967466722226251,
+  "r_squared": 0.024206355858131846,
+  "n": 41
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "All assigned.",
+ "analysis": "one-way PERMANOVA, relative abundance"
+}

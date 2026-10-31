@@ -1,0 +1,40 @@
+{
+ "item": "P11-trap",
+ "bank_version": "pilot-v1",
+ "family": "P11",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.19563211122283328,
+  "n_genera": 5
+ },
+ "integer_results": [
+  "n_genera"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "obsolete_genus",
+   "results": {
+    "mean_bray_curtis": 0.25503550184015644,
+    "n_genera": 5
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "obsolete",
+   "synonym",
+   "pachyderma",
+   "Neogloboquadrina"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Globigerina pachyderma is Neogloboquadrina pachyderma, so its counts belong to Neogloboquadrina at genus level.",
+ "analysis": "genus aggregation; mean pairwise Bray\u2013Curtis, raw counts"
+}

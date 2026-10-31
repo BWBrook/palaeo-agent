@@ -1,0 +1,41 @@
+{
+ "item": "P05-cal",
+ "bank_version": "pilot-v1",
+ "family": "P05",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "richness": 8,
+  "mean_bray_curtis": 0.2689575406354573
+ },
+ "integer_results": [
+  "richness"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "variants_as_species",
+   "results": {
+    "richness": 11,
+    "mean_bray_curtis": 0.32464962718697826
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "capital",
+   "spacing",
+   "case",
+   "variant",
+   "merge"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Binomials are case-insensitive in this sense and spacing carries no meaning, so columns whose names differ only in case or spacing are one species; their counts sum.",
+ "analysis": "richness; mean pairwise Bray\u2013Curtis, raw counts"
+}

@@ -1,0 +1,44 @@
+{
+ "item": "P01-trap",
+ "bank_version": "pilot-v1",
+ "family": "P01",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.6981803468241241,
+  "n_cores": 12
+ },
+ "integer_results": [
+  "n_cores"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "zeros_as_sample",
+   "results": {
+    "mean_bray_curtis": 0.7401269601332332,
+    "n_cores": 13
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "lost",
+   "flood",
+   "not counted",
+   "uncounted",
+   "missing",
+   "3"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [
+  "3"
+ ],
+ "sufficiency_witness": "The dictionary states that core 3 was never counted and that zeros are an export convention for uncounted cores. Its row records no observation, so it is excluded; 'all cores' means all cores with counts.",
+ "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
+}

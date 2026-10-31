@@ -1,0 +1,5 @@
+{
+ "source": "real: PAST alveolinid.dat; zones synthetic",
+ "generator": "build_bank.py",
+ "bank_version": "pilot-v1"
+}

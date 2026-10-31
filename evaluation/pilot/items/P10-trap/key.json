@@ -1,0 +1,36 @@
+{
+ "item": "P10-trap",
+ "bank_version": "pilot-v1",
+ "family": "P10",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "shannon_change": -0.24585556544429088
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "reversed_age",
+   "results": {
+    "shannon_change": 0.24585556544429088
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "downcore",
+   "uppermost",
+   "surface",
+   "S1"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "S1 is uppermost and therefore youngest; S12 is oldest.",
+ "analysis": "Shannon difference"
+}

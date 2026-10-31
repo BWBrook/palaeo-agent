@@ -1,0 +1,25 @@
+{
+ "item": "P05-control",
+ "bank_version": "pilot-v1",
+ "family": "P05",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "richness": 8,
+  "mean_bray_curtis": 0.21565511419588368
+ },
+ "integer_results": [
+  "richness"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Standardised distinct species.",
+ "analysis": "richness; mean pairwise Bray\u2013Curtis, raw counts"
+}

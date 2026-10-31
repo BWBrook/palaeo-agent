@@ -1,0 +1,31 @@
+{
+ "item": "P02-control",
+ "bank_version": "pilot-v1",
+ "family": "P02",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 0.4622020545177857,
+  "r_squared": 0.05461959564898666
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "join_by_position",
+   "results": {
+    "pseudo_f": 4.718258110547586,
+    "r_squared": 0.3709830441823327
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "sufficiency_witness": "Codes match exactly; the join is by code, not by order.",
+ "analysis": "one-way PERMANOVA, Bray\u2013Curtis raw"
+}
