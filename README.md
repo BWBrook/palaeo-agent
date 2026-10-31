@@ -12,8 +12,8 @@ every feature.
 ## Current state
 
 Private development repository, established 30 October 2026. The first native
-Python operations include descriptive reduced-major-axis regression and an
-explicit count-community workflow, available through
+Python operations include descriptive reduced-major-axis regression, an
+explicit count-community workflow and one-way free-permutation PERMANOVA, available through
 the Python API and structured CLI. It saves a self-contained input snapshot,
 resolved specification, numerical results, diagnostics and integrity manifest.
 The name is provisional. No public release or full PAST compatibility is claimed.
@@ -30,6 +30,8 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [Community workflow plan](docs/tranche-2-plan.md)
 - [Community workflow results](docs/tranche-2-results.md)
 - [Agent evaluation protocol](docs/evaluation.md)
+- [PERMANOVA statistical contract](docs/permanova-contract.md)
+- [Sprint plan and counter-review sequence](docs/sprints-1-2.md)
 - [Third-party reference material](THIRD_PARTY.md)
 
 ## Run the first workflow
@@ -112,6 +114,20 @@ Run bundle schema 2 replaces the development schema 1. The committed RMA demo
 was regenerated with version 0.2; the original remains in Git commit `445da1b`.
 
 ## Check the implementation and reference archive
+
+The group-comparison example uses synthetic A/B assignments on Llanvirn solely
+for numerical validation; it asserts no ecological group hypothesis:
+
+```sh
+uv run palaeo-agent run examples/permanova-llanvirn.json --output runs
+uv run python scripts/compare_past_permanova.py
+```
+
+PERMANOVA requires declared independent sampling units and free exchangeability
+under the null. These assumptions cannot be verified from counts and group
+labels. Results include exact or seeded Monte Carlo permutation schedules and
+descriptive centroid dispersion. Blocks/repeated measures, dispersion inference
+and inferential sensitivity comparisons are unsupported.
 
 ```sh
 uv run pytest -q

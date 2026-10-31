@@ -8,7 +8,7 @@ import sys
 from pydantic import ValidationError
 
 from .core import AnalysisError
-from .methods import discover, parse_spec, validate
+from .methods import METHOD_INDEX, discover, parse_spec, validate
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 
@@ -23,13 +23,16 @@ def _spec(path):
     spec = parse_spec(json.loads(spec_path.read_text(encoding="utf-8")))
     if not spec.input.is_absolute():
         spec = spec.model_copy(update={"input": (spec_path.parent / spec.input).resolve()})
-    if spec.method == "community" and spec.metadata is not None and not spec.metadata.is_absolute():
+    if getattr(spec, "metadata", None) is not None and not spec.metadata.is_absolute():
         spec = spec.model_copy(update={"metadata": (spec_path.parent / spec.metadata).resolve()})
     return spec
 
 
 def main(argv=None):
-    parser = JsonArgumentParser(prog="palaeo-agent")
+    parser = JsonArgumentParser(prog="palaeo-agent", description=(
+        "Supported methods: " + ", ".join(method["id"] for method in METHOD_INDEX) +
+        ". Use discover for method summaries and complete input/output schemas."
+    ))
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("discover")
     for command in ("validate", "run"):

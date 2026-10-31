@@ -129,7 +129,17 @@ def _find_lockfile():
     return None
 
 
-def _environment(lock):
+def _rng_description(result):
+    if result is None or result["method"] != "permanova":
+        return "not used; deterministic method"
+    permutation = result["permutation"]
+    if permutation["mode"] == "exact":
+        return "not used; exact labelled group allocations enumerated"
+    return (f"NumPy Generator({permutation['bit_generator']}), seed={permutation['seed']}; "
+            "actual index schedule saved in permutations.json")
+
+
+def _environment(lock, result=None):
     source = Path(__file__).parent
     hashes = {path.name: _sha(path.read_bytes()) for path in sorted(source.glob("*.py"))}
     packages, distributions = {}, []
@@ -143,7 +153,7 @@ def _environment(lock):
         "python": sys.version, "platform": platform.platform(), "packages": dict(sorted(packages.items())),
         "distributions": sorted(distributions, key=lambda item: (item["name"], item["version"])),
         "implementation_sha256": _sha(json.dumps(hashes, sort_keys=True).encode()),
-        "source_files_sha256": hashes, "rng": "not used; deterministic method",
+        "source_files_sha256": hashes, "rng": _rng_description(result),
         "lockfile": {"available": lock is not None, "path": "uv.lock" if lock else None,
                      "reason": "Project checkout lockfile captured" if lock else
                      "No checkout lockfile available; all installed distribution versions recorded"},
@@ -154,6 +164,8 @@ def _plot(path, result, spec):
     if spec.method == "community":
         from .community import plot_community
         return plot_community(path, result, spec)
+    if spec.method == "permanova":
+        return _plot_permanova(path, result)
     import matplotlib
     matplotlib.use("Agg")
     from matplotlib import pyplot as plt
@@ -173,6 +185,40 @@ def _plot(path, result, spec):
     plt.close(fig)
 
 
+def _plot_permanova(path, result):
+    import matplotlib
+    matplotlib.use("Agg")
+    from matplotlib import pyplot as plt
+    import numpy as np
+
+    permutation = result["permutation"]
+    finite = [value for value in permutation["statistics"] if value is not None]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4), layout="constrained")
+    if finite:
+        axes[0].hist(finite, bins=min(20, max(1, len(finite))), color="steelblue", alpha=.75)
+    axes[0].axvline(result["pseudo_f"], color="black", label="Observed pseudo-F")
+    axes[0].legend()
+    mode = "Exact allocations" if permutation["mode"] == "exact" else "Monte Carlo permutations"
+    axes[0].set(xlabel="Pseudo-F (finite allocations)", ylabel="Allocations", title=mode)
+    axes[0].text(.97, .95, f"p = {result['p_value']:.5g}\nPositive infinity: {permutation['infinite_count']}",
+                 ha="right", va="top", transform=axes[0].transAxes,
+                 bbox={"facecolor": "white", "edgecolor": "none", "alpha": .85})
+    distances = result["dispersion"]["distances"]
+    for position, group in enumerate(result["group_labels"]):
+        values = [distance for distance, label in zip(distances, result["groups"], strict=True) if label == group]
+        jitter = np.linspace(-.12, .12, len(values)) if len(values) > 1 else [0]
+        axes[1].scatter(position + np.asarray(jitter), values, color=f"C{position % 10}", s=18)
+        mean = result["dispersion"]["group_mean_distances"][group]
+        axes[1].plot([position - .18, position + .18], [mean, mean], color="black")
+    axes[1].set_xticks(range(len(result["group_labels"])), result["group_labels"])
+    axes[1].set(xlabel=result["group_column"], ylabel="Distance to group centroid",
+                title="Descriptive dispersion (no test)")
+    axes[1].set_ylim(0, max(distances) * 1.1 if max(distances) > 0 else 1)
+    fig.savefig(path, format="svg", metadata={"Date": None})
+    fig.savefig(path.with_suffix(".png"), format="png", dpi=150)
+    plt.close(fig)
+
+
 def run(spec, output_root: str | Path):
     spec = parse_spec(spec)
     inputs = read_inputs(spec)
@@ -186,13 +232,13 @@ def run(spec, output_root: str | Path):
             (directory / filename).write_bytes(data)
             snapshots[role] = {"path": filename, "sha256": _sha(data), "bytes": len(data)}
         portable = spec.model_copy(update={"input": Path("input.dat")})
-        if spec.method == "community" and spec.metadata is not None:
+        if getattr(spec, "metadata", None) is not None:
             portable = portable.model_copy(update={"metadata": Path("metadata.csv")})
         _json(directory / "spec.json", portable.model_dump(mode="json"))
         _json(directory / "results.json", result)
         write_tables(directory, result)
         lock = _find_lockfile()
-        _json(directory / "environment.json", _environment(lock))
+        _json(directory / "environment.json", _environment(lock, result))
         if lock is not None:
             (directory / "uv.lock").write_bytes(lock.read_bytes())
         _plot(directory / "diagnostics.svg", result, spec)
@@ -242,8 +288,8 @@ def inspect_run(run_dir: str | Path):
         spec = parse_spec(json.loads((directory / "spec.json").read_text(encoding="utf-8")))
         if spec.input != Path("input.dat"):
             raise ValueError("Saved specification must reference its input snapshot")
-        expected_roles = {"matrix" if spec.method == "community" else "measurements": "input.dat"}
-        if spec.method == "community" and spec.metadata is not None:
+        expected_roles = {"measurements" if spec.method == "rma" else "matrix": "input.dat"}
+        if getattr(spec, "metadata", None) is not None:
             if spec.metadata != Path("metadata.csv"):
                 raise ValueError("Saved metadata must reference its snapshot")
             expected_roles["metadata"] = "metadata.csv"
@@ -257,6 +303,19 @@ def inspect_run(run_dir: str | Path):
         environment = RunEnvironment.model_validate_json((directory / "environment.json").read_bytes()).model_dump(mode="json")
         if environment["lockfile"]["available"] != ("uv.lock" in names):
             raise ValueError("Lockfile provenance differs from saved artefacts")
+        if environment["rng"] != _rng_description(result):
+            raise ValueError("RNG provenance differs from the method result")
+        if spec.method == "permanova":
+            if result["permutation"]["numpy_version"] != environment["packages"]["numpy"]:
+                raise ValueError("Permutation NumPy version differs from its recorded environment")
+            schedule = json.loads((directory / "permutations.json").read_text(encoding="utf-8"))
+            if schedule != result["permutation"]:
+                raise ValueError("Saved permutation artefact differs from the numerical result")
+    except AnalysisError as exc:
+        if exc.code == "unsupported_schema":
+            raise
+        raise AnalysisError("invalid_bundle", "Bundle record failed method validation", run_dir=str(directory),
+                            reason=str(exc), method_error=exc.code) from exc
     except (OSError, ValueError, KeyError, TypeError) as exc:
         raise AnalysisError("invalid_bundle", "Bundle could not be verified", run_dir=str(directory), reason=str(exc)) from exc
     return {"status": "verified", "run_dir": str(directory), "manifest": manifest, "result": result,
@@ -269,7 +328,7 @@ def reproduce(run_dir: str | Path, output_root: str | Path):
     directory = Path(original["run_dir"])
     spec = parse_spec(original["specification"])
     updates = {"input": directory / "input.dat"}
-    if spec.method == "community" and spec.metadata is not None:
+    if getattr(spec, "metadata", None) is not None:
         updates["metadata"] = directory / "metadata.csv"
     spec = spec.model_copy(update=updates)
     fresh = run(spec, output_root)

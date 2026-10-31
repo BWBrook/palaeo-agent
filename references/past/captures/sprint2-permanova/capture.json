@@ -1,0 +1,90 @@
+{
+  "case_id": "sprint2-permanova",
+  "past_about": "Past 5.4, October 2026",
+  "input_source": "input-source.json",
+  "acquisition": "Native PAST Copy -> fresh TextEdit plain document -> accessibility text value. Existing user TextEdit documents were preserved.",
+  "settings": {
+    "similarity_index": "Bray-Curtis",
+    "transform": "none",
+    "permutations": 999,
+    "repeated_measures": false,
+    "groups": "samples1..5=A,6..10=B; synthetic validation grouping only",
+    "group_column_type": "Group"
+  },
+  "precision": {
+    "deterministic_significant_digits": 4,
+    "permutation_N": "exact integer",
+    "p_value": "stochastic result retained, not deterministic equality comparator"
+  },
+  "notes": [
+    "Initial edit did not commit before Compute and the module used9999; screenshot retained. Accepted export was recomputed after editing then leaving the N field, and result itself reports999.",
+    "The documented colon-format avoids ambiguous legacy type-prefix imports. Earlier candidate input variants retained; no numbers from those variants were used."
+  ],
+  "outputs": [
+    {
+      "path": "references/past/captures/sprint2-permanova/input-neutral-labels.dat",
+      "sha256": "792a6ea756fde086f3b5bbfe41dad557adaef3b0d1d57f5503194fa71467ad02",
+      "bytes": 898
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/input-source.json",
+      "sha256": "06dfabf3eae156df8c35a26b73dc60a5b01cf9c02b351f6b895b1b12927d0acd",
+      "bytes": 1424
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/input-type4-string.dat",
+      "sha256": "ed27024a47e0d5e33177b7f121d8f0b264a05cb684207936c6a2c23bceba25a2",
+      "bytes": 901
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/input-type5-unspecified.dat",
+      "sha256": "de6101239107fe7c8360834079f68712c4025c09cf8a2b6ea1090046f2c9539e",
+      "bytes": 901
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/input-with-legacy-attributes.dat",
+      "sha256": "d343a9a614e274e132b726979fb14c95cdd6e584ddf29e0640a9004950770f88",
+      "bytes": 967
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/input.dat",
+      "sha256": "02f679ce484a52c4220704e683e4e0523066616851a835e5c05b89f6e1336248",
+      "bytes": 1055
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/metadata.csv",
+      "sha256": "17c95086eec9bdcf3a8064e514b21e546ce995361f3f98964acf61cfff403af4",
+      "bytes": 57
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/raw/permanova.accessibility.txt",
+      "sha256": "c57be16e62c7ce75f5d15301a6df82138a10aedafb82f9de12d31b4339b88b19",
+      "bytes": 990
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/raw/permanova.txt",
+      "sha256": "a37e81a377084252725e7f9218204a0a4ab7bee4732161055e614d9a33eaa999",
+      "bytes": 117
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/screenshots/about.png",
+      "sha256": "0d865acbcf24412f54564b07aa41c93011ab4ef1b53fd6cac8345674ef0f3235",
+      "bytes": 103525
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/screenshots/group-type.png",
+      "sha256": "0ae358b5ff3749d44b5de1e08ecc112efe24497eeecf2d9aaac43fc849489ebe",
+      "bytes": 298243
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/screenshots/initial-budget-reverted.png",
+      "sha256": "a136a5def49a65fcb07df4cd1093265b24649752e9718d6455388f3edaad99f5",
+      "bytes": 101580
+    },
+    {
+      "path": "references/past/captures/sprint2-permanova/screenshots/settings-result.png",
+      "sha256": "3675c4819e8d4aa627cd7dcb431987d006f7538551553fe70de4ff212c2e8a82",
+      "bytes": 100949
+    }
+  ]
+}

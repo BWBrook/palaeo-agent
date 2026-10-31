@@ -1,0 +1,7 @@
+PERMANOVA
+
+Permutation N:	999
+Total sum of squares:	2.147
+Within-group sum of squares:	1.173
+F:	6.65
+p (same):	0.024

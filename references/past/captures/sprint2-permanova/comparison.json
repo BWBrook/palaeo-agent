@@ -1,0 +1,55 @@
+{
+  "runtime": {
+    "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+    "numpy": "2.5.4",
+    "platform": "macOS-27.2-arm64-arm-64bit"
+  },
+  "code_provenance": {
+    "palaeo_agent_version": "0.2.0.dev0",
+    "source_files_sha256": {
+      "__init__.py": "1d0ec0cb0615de2fcb51a3c0b5cca10be006299f93735e1945a7897a2c7452ab",
+      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "cli.py": "1cbaf3c1a712d37a65e560fa22408a1d66a8658eb7959c38f96c319a4ef079f0",
+      "community.py": "1e6467669c0855c3269d0bfb4301cf55d0e6083377fbdb66f443baa35ff76345",
+      "core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
+      "methods.py": "827bef8b5a5e54e55a95c8e9903cb5f72742cc8fd78f756bca61b9e60347fea3",
+      "permanova.py": "10f288505fec51816be13689351576b0a0bba12c3895d01a07e2644afd98fc63",
+      "runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
+      "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6"
+    },
+    "implementation_sha256": "21949f876c63cec7489fb9319181136c0c9bc0df6f928c44bf5b0095f0706ddb",
+    "comparison_script_sha256": "a165330931433b73bd9468f7cf1d97fae2200585ecfa44113a01a636c250a12c",
+    "uv_lock_sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27"
+  },
+  "comparison_script_sha256": "601a21526c7740f1e8835d2f9c9c600758bf6290b3d26a644935fe0ad3abf143",
+  "capture_manifest_sha256": "c0575a15553aae375d3c92d28a43b56c7aecb02ac6840295cd971208ebd754a2",
+  "input_sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+  "deterministic": {
+    "status": "matched",
+    "compared_values": 3,
+    "matched_values": 3,
+    "failed_values": 0,
+    "max_absolute_error": 0.00040761370173614253,
+    "max_ratio_to_rounding_bound": 0.8152274034722851,
+    "largest_error": {
+      "row": "Within-group sum of squares:",
+      "column": "value",
+      "native_token": "1.173",
+      "expected": 1.172592386298264,
+      "absolute_error": 0.00040761370173614253,
+      "rounding_bound": 0.0005,
+      "rounding_bound_used": 0.0005,
+      "float_allowance": 2.0829425052295816e-15,
+      "matched": true,
+      "ratio_to_rounding_bound": 0.8152274034722851
+    },
+    "failures": [],
+    "failure_examples_limit": 10
+  },
+  "native_p": 0.024,
+  "native_permutations": 999,
+  "python_exact_p": 0.015873015873015872,
+  "python_exact_denominator": 252,
+  "p_scope": "Native stochastic p retained separately; schedules differ and p equality is not validated",
+  "group_scope": "Synthetic grouping validates calculations only; no ecological group claim"
+}

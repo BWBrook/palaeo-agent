@@ -1,0 +1,36 @@
+{
+  "item": "G2-twin",
+  "catalogue": "G2",
+  "class": "twin",
+  "expected": "complete",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1470.0,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.984,
+    "ss_within": 0.004,
+    "ss_between": 0.98,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "lagoon": 0.02,
+      "reef": 0.02
+    }
+  },
+  "integer_results": [
+    "n",
+    "df_between",
+    "df_within"
+  ],
+  "tolerance": {
+    "abs": 0.0001,
+    "rel": 0.0001
+  },
+  "failure_signatures": [],
+  "issue_tokens": [],
+  "issue_token_kind": null,
+  "exclusions_expected": [],
+  "smoke": true,
+  "requires_stopped_empty_results": false
+}

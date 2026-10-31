@@ -1,0 +1,24 @@
+{
+  "source": "benchmarks/past/legacy-data/llanvirn.dat",
+  "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+  "steps": [
+    "Transpose original ten sample columns to ten sample rows; preserve all counts and taxon labels.",
+    "Remove legacy row-attribute prefixes from transposed taxon column labels to avoid interpreting them as column types in PAST; preserve all count values.",
+    "Use the documented modern PAST colon-format, two header rows and explicit Group datatype. Group was verified visually on import; legacy numeric prefixes were not used for the accepted analysis.",
+    "Add synthetic group column: samples1..5=A,6..10=B, solely for numerical validation; no biological group hypothesis."
+  ],
+  "native_input_sha256": "02f679ce484a52c4220704e683e4e0523066616851a835e5c05b89f6e1336248",
+  "declared_settings": {
+    "distance": "Bray-Curtis",
+    "transform": "none",
+    "permutations": 999,
+    "repeated_measures": false
+  },
+  "p_value_check": "Stochastic native output retained; deterministic F and sums of squares compared to export precision. No identical-PRNG p-value equality claim.",
+  "retained_initial_input": "input-with-legacy-attributes.dat (not used for numerical capture: imported attribute prefixes mapped to column types)",
+  "initial_type_experiments": [
+    "input-neutral-labels.dat",
+    "input-type4-string.dat",
+    "input-type5-unspecified.dat"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "method": "permanova",
+  "input": "../benchmarks/past/legacy-data/llanvirn.dat",
+  "metadata": "../references/past/captures/sprint2-permanova/metadata.csv",
+  "group_column": "group",
+  "format": "past",
+  "orientation": "taxa_by_samples",
+  "value_type": "count",
+  "distance": "braycurtis",
+  "transform": "none",
+  "missing": "error",
+  "empty_samples": "error",
+  "design": "independent",
+  "permutation_scheme": "free",
+  "permutations": 999,
+  "seed": 20261031
+}

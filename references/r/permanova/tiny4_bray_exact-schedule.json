@@ -1,0 +1,64 @@
+{
+  "case_id": "tiny4_bray_exact",
+  "mode": "exact",
+  "requested": 999,
+  "draws": 6,
+  "space_size": 6,
+  "seed": 20261031,
+  "bit_generator": "PCG64",
+  "numpy_version": "2.5.4",
+  "index_base": 0,
+  "index_semantics": "distance_matrix_reordering_fixed_groups",
+  "sample_ids": [
+    "tiny_1",
+    "tiny_2",
+    "tiny_3",
+    "tiny_4"
+  ],
+  "groups": [
+    "A",
+    "A",
+    "B",
+    "B"
+  ],
+  "indices": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      2,
+      1,
+      3
+    ],
+    [
+      0,
+      3,
+      1,
+      2
+    ],
+    [
+      1,
+      2,
+      0,
+      3
+    ],
+    [
+      1,
+      3,
+      0,
+      2
+    ],
+    [
+      2,
+      3,
+      0,
+      1
+    ]
+  ],
+  "input_sha256": "b123a5ae4f12152976b37845d1a083f93e2a691e458aed47da523b4e6e77879a",
+  "metadata_sha256": "f3cf40b1a6151393149c66bb458004772a9dc02450875722a1f76a5cd0f3decb"
+}

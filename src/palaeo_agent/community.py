@@ -334,6 +334,26 @@ def validate_community(spec, data, metadata=None):
             "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"}
 
 
+def community_distances(counts, *, transform, distance):
+    """Construct declared dissimilarities without any ordination cutoff."""
+    if transform not in {"none", "relative_abundance"} or distance not in {"braycurtis", "jaccard"}:
+        raise AnalysisError("invalid_option", "Declare supported transformation and distance explicitly")
+    if distance == "jaccard" and transform != "none":
+        raise AnalysisError("unsupported_combination", "Relative abundance is an unsupported no-op before binary Jaccard; request transform='none'")
+    transformed = counts if transform == "none" else counts / counts.sum(axis=1)[:, None]
+    n = len(counts)
+    distances = np.zeros((n, n), dtype=np.float64)
+    for i in range(n):
+        for j in range(i):
+            if distance == "braycurtis":
+                value = np.abs(transformed[i] - transformed[j]).sum() / (transformed[i] + transformed[j]).sum()
+            else:
+                a, b = transformed[i] > 0, transformed[j] > 0
+                value = 1 - np.count_nonzero(a & b) / np.count_nonzero(a | b)
+            distances[i, j] = distances[j, i] = value
+    return transformed, distances
+
+
 def analyse_community(matrix, *, sample_ids, taxon_ids, transform, distance, dimensions,
                       empty_samples, metadata=None):
     """Analyse declared counts in canonical sample-by-taxon orientation."""
@@ -353,17 +373,8 @@ def analyse_community(matrix, *, sample_ids, taxon_ids, transform, distance, dim
         diversity.append({"sample_id": name, "total": float(total), "richness": int(np.count_nonzero(row)),
                           "shannon": float(-np.sum(positive * np.log(positive))),
                           "simpson": float(1 - np.sum(proportions**2))})
-    transformed = counts if transform == "none" else relative
+    transformed, distances = community_distances(counts, transform=transform, distance=distance)
     n = len(counts)
-    distances = np.zeros((n, n), dtype=np.float64)
-    for i in range(n):
-        for j in range(i):
-            if distance == "braycurtis":
-                value = np.abs(transformed[i] - transformed[j]).sum() / (transformed[i] + transformed[j]).sum()
-            else:
-                a, b = transformed[i] > 0, transformed[j] > 0
-                value = 1 - np.count_nonzero(a & b) / np.count_nonzero(a | b)
-            distances[i, j] = distances[j, i] = value
     squared = distances**2
     centred = -0.5 * (squared - squared.mean(axis=0)[None, :] - squared.mean(axis=1)[:, None] + squared.mean())
     try:

@@ -1,0 +1,108 @@
+{
+  "contract_commit": "2c335a7",
+  "contract_path": "docs/permanova-contract.md",
+  "rtol": 1e-10,
+  "atol": 1e-10,
+  "cases": [
+    {
+      "id": "balanced6_bray_exact",
+      "input": "references/r/permanova/balanced6.dat",
+      "metadata": "references/r/permanova/balanced6-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/balanced6_bray_exact-schedule.json"
+    },
+    {
+      "id": "balanced6_three_groups_exact",
+      "input": "references/r/permanova/balanced6.dat",
+      "metadata": "references/r/permanova/balanced6-three-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/balanced6_three_groups_exact-schedule.json"
+    },
+    {
+      "id": "unequal8_bray_exact",
+      "input": "references/r/permanova/unequal8.dat",
+      "metadata": "references/r/permanova/unequal8-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/unequal8_bray_exact-schedule.json"
+    },
+    {
+      "id": "unequal8_bray_mc",
+      "input": "references/r/permanova/unequal8.dat",
+      "metadata": "references/r/permanova/unequal8-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 19,
+      "seed": 20261032,
+      "schedule": "references/r/permanova/unequal8_bray_mc-schedule.json"
+    },
+    {
+      "id": "unequal8_relative_bray_mc",
+      "input": "references/r/permanova/unequal8.dat",
+      "metadata": "references/r/permanova/unequal8-groups.csv",
+      "distance": "braycurtis",
+      "transform": "relative_abundance",
+      "permutations": 19,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/unequal8_relative_bray_mc-schedule.json"
+    },
+    {
+      "id": "negative8_jaccard_exact",
+      "input": "references/r/permanova/negative8.dat",
+      "metadata": "references/r/permanova/negative8-groups.csv",
+      "distance": "jaccard",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/negative8_jaccard_exact-schedule.json"
+    },
+    {
+      "id": "negative8_jaccard_mc",
+      "input": "references/r/permanova/negative8.dat",
+      "metadata": "references/r/permanova/negative8-groups.csv",
+      "distance": "jaccard",
+      "transform": "none",
+      "permutations": 19,
+      "seed": 20261033,
+      "schedule": "references/r/permanova/negative8_jaccard_mc-schedule.json"
+    },
+    {
+      "id": "zero_f4_bray_exact",
+      "input": "references/r/permanova/zero-f4.dat",
+      "metadata": "references/r/permanova/zero-f4-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/zero_f4_bray_exact-schedule.json"
+    },
+    {
+      "id": "zero_f4_bray_mc",
+      "input": "references/r/permanova/zero-f4.dat",
+      "metadata": "references/r/permanova/zero-f4-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 3,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/zero_f4_bray_mc-schedule.json"
+    },
+    {
+      "id": "tiny4_bray_exact",
+      "input": "references/r/permanova/tiny4.dat",
+      "metadata": "references/r/permanova/tiny4-groups.csv",
+      "distance": "braycurtis",
+      "transform": "none",
+      "permutations": 999,
+      "seed": 20261031,
+      "schedule": "references/r/permanova/tiny4_bray_exact-schedule.json"
+    }
+  ]
+}

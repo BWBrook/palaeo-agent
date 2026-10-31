@@ -1,0 +1,38 @@
+{
+  "item": "G3-twin",
+  "catalogue": "G3",
+  "class": "twin",
+  "expected": "complete",
+  "results": {
+    "n": 10,
+    "pseudo_f": 873.8133333333334,
+    "r_squared": 0.9909277851699528,
+    "p_value": 0.004761904761904762,
+    "ss_total": 0.99204,
+    "ss_within": 0.009,
+    "ss_between": 0.98304,
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "lagoon": 0.03,
+      "reef": 0.02
+    },
+    "claim_supported": 1
+  },
+  "integer_results": [
+    "n",
+    "df_between",
+    "df_within",
+    "claim_supported"
+  ],
+  "tolerance": {
+    "abs": 0.0001,
+    "rel": 0.0001
+  },
+  "failure_signatures": [],
+  "issue_tokens": [],
+  "issue_token_kind": null,
+  "exclusions_expected": [],
+  "smoke": true,
+  "requires_stopped_empty_results": false
+}

@@ -1,0 +1,76 @@
+{
+  "item": "G2-twin",
+  "version": "sprint2-group-bank-v1",
+  "purpose": "Dependent within-site subsamples must stop; the clean twin has independent sites.",
+  "generator": "evaluation/sprint2/build_items.py",
+  "generator_sha256": "7e6ca35e58402d1fdd59d7e9b28aee42beb38aa7eeeeb921b4cadb32548fb95a",
+  "data": "Synthetic declared integer counts; each row totals 100.",
+  "key_method": "Standalone Python stdlib Fraction arithmetic, all distinct group allocations, and one-dimensional centroid geometry; no palaeo_agent imports.",
+  "rational_results": {
+    "n": 8,
+    "pseudo_f": "1470",
+    "r_squared": "245/246",
+    "p_value": "1/35",
+    "ss_total": "123/125",
+    "ss_within": "1/250",
+    "ss_between": "49/50",
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "lagoon": "1/50",
+      "reef": "1/50"
+    }
+  },
+  "enumeration": {
+    "mode": "exact",
+    "allocations": 70,
+    "exceedances": 2,
+    "observed_allocation_included_once": true,
+    "group_order": [
+      "lagoon",
+      "reef"
+    ]
+  },
+  "group_assignments_sha256": "0ae52db724e55686fd324ec807f370806f0b67ff7d775d34149090c921b32a06",
+  "group_assignments": [
+    [
+      "S1",
+      "reef"
+    ],
+    [
+      "S2",
+      "reef"
+    ],
+    [
+      "S3",
+      "reef"
+    ],
+    [
+      "S4",
+      "reef"
+    ],
+    [
+      "S5",
+      "lagoon"
+    ],
+    [
+      "S6",
+      "lagoon"
+    ],
+    [
+      "S7",
+      "lagoon"
+    ],
+    [
+      "S8",
+      "lagoon"
+    ]
+  ],
+  "sampling_units_sha256": "ff544f923bc1bb12d058a3849ae65b573abacb86577ae2b8d9526a152018dca9",
+  "materials_sha256": {
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "dictionary.md": "5c6901759628a32365bd8c10ebe436e6d800cfb43270b1d4d6c43fa41c90390b",
+    "samples.csv": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b"
+  }
+}

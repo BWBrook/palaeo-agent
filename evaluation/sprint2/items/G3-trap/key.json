@@ -1,0 +1,65 @@
+{
+  "item": "G3-trap",
+  "catalogue": "G3",
+  "class": "trap",
+  "expected": "complete",
+  "results": {
+    "n": 10,
+    "pseudo_f": 8.256479400749063,
+    "r_squared": 0.5078885284576821,
+    "p_value": 0.0380952380952381,
+    "ss_total": 0.81384,
+    "ss_within": 0.4005,
+    "ss_between": 0.41334,
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "lagoon": 0.2,
+      "reef": 0.01
+    },
+    "claim_supported": 0
+  },
+  "integer_results": [
+    "n",
+    "df_between",
+    "df_within",
+    "claim_supported"
+  ],
+  "tolerance": {
+    "abs": 0.0001,
+    "rel": 0.0001
+  },
+  "failure_signatures": [
+    {
+      "name": "dispersion_as_pure_location",
+      "results": {
+        "n": 10,
+        "pseudo_f": 8.256479400749063,
+        "r_squared": 0.5078885284576821,
+        "p_value": 0.0380952380952381,
+        "ss_total": 0.81384,
+        "ss_within": 0.4005,
+        "ss_between": 0.41334,
+        "df_between": 1,
+        "df_within": 8,
+        "group_mean_centroid_distance": {
+          "lagoon": 0.2,
+          "reef": 0.01
+        },
+        "claim_supported": 1
+      }
+    }
+  ],
+  "issue_tokens": [
+    [
+      "dispers",
+      "spread",
+      "location",
+      "centroid"
+    ]
+  ],
+  "issue_token_kind": "keyword",
+  "exclusions_expected": [],
+  "smoke": true,
+  "requires_stopped_empty_results": false
+}

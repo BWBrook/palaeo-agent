@@ -1,0 +1,46 @@
+{
+  "case_id": "zero_f4_bray_mc",
+  "mode": "monte_carlo",
+  "requested": 3,
+  "draws": 3,
+  "space_size": 6,
+  "seed": 20261031,
+  "bit_generator": "PCG64",
+  "numpy_version": "2.5.4",
+  "index_base": 0,
+  "index_semantics": "distance_matrix_reordering_fixed_groups",
+  "sample_ids": [
+    "zero_1",
+    "zero_2",
+    "zero_3",
+    "zero_4"
+  ],
+  "groups": [
+    "A",
+    "A",
+    "B",
+    "B"
+  ],
+  "indices": [
+    [
+      3,
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      2,
+      1,
+      3
+    ],
+    [
+      1,
+      0,
+      3,
+      2
+    ]
+  ],
+  "input_sha256": "f3588c5c606b17e182b99f8a575ab60304f84a9ebb2b2f2f76c6c4bea28c36e4",
+  "metadata_sha256": "71041a69553d04090740869e8ff3ae36afab55a62a7ed48029e65e4d2eb9fd46"
+}

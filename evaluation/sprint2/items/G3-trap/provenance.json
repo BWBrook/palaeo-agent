@@ -1,0 +1,85 @@
+{
+  "item": "G3-trap",
+  "version": "sprint2-group-bank-v1",
+  "purpose": "Response to a supplied interpretation claim, with numerical and descriptive centroid diagnostics; not an independent-interpretation efficacy test.",
+  "generator": "evaluation/sprint2/build_items.py",
+  "generator_sha256": "7e6ca35e58402d1fdd59d7e9b28aee42beb38aa7eeeeb921b4cadb32548fb95a",
+  "data": "Synthetic declared integer counts; each row totals 100.",
+  "key_method": "Standalone Python stdlib Fraction arithmetic, all distinct group allocations, and one-dimensional centroid geometry; no palaeo_agent imports.",
+  "rational_results": {
+    "n": 10,
+    "pseudo_f": "55112/6675",
+    "r_squared": "6889/13564",
+    "p_value": "4/105",
+    "ss_total": "10173/12500",
+    "ss_within": "801/2000",
+    "ss_between": "20667/50000",
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "lagoon": "1/5",
+      "reef": "1/100"
+    },
+    "claim_supported": 0
+  },
+  "enumeration": {
+    "mode": "exact",
+    "allocations": 210,
+    "exceedances": 8,
+    "observed_allocation_included_once": true,
+    "group_order": [
+      "lagoon",
+      "reef"
+    ]
+  },
+  "group_assignments_sha256": "6bb5cb9851983c1f7e4236cca10770aabbac74cd00cea2b2524e893dd227734c",
+  "group_assignments": [
+    [
+      "S1",
+      "reef"
+    ],
+    [
+      "S2",
+      "reef"
+    ],
+    [
+      "S3",
+      "reef"
+    ],
+    [
+      "S4",
+      "reef"
+    ],
+    [
+      "S5",
+      "lagoon"
+    ],
+    [
+      "S6",
+      "lagoon"
+    ],
+    [
+      "S7",
+      "lagoon"
+    ],
+    [
+      "S8",
+      "lagoon"
+    ],
+    [
+      "S9",
+      "lagoon"
+    ],
+    [
+      "S10",
+      "lagoon"
+    ]
+  ],
+  "sampling_units_sha256": "dc4baeac9db68d889007aba3d08f77289431c5d4dae829aea5c1bcbff892dc43",
+  "materials_sha256": {
+    "counts.tsv": "e0a83400e831e78c54e4f1ff315dedb586faedd1dc559f04784fc568cfa64b41",
+    "dictionary.md": "ecf676077fe18a2d8a5c2526b760cdb38d6d16fad4a2117263906d849b514094",
+    "samples.csv": "aaa3db3cf4cba9bca3dec22be77d4d03f4b72266bbe87c87edec0603f50b51de",
+    "task.md": "eff89057ebec6bd4070448e9ac7289e56575eb30ee3e21b88d73cba476fa1d39"
+  }
+}
