@@ -1,0 +1,165 @@
+{
+ "P01-control": {
+  "class": "preparation",
+  "results": {
+   "mean_bray_curtis": 0.7041988653426426,
+   "n_cores": 12
+  },
+  "answer_edits": {
+   "exclusions": [
+    {
+     "id": "5",
+     "reason": "residue lost before counting"
+    }
+   ]
+  },
+  "detectability_witness": "Dictionary: every core was counted in full."
+ },
+ "P02-control": {
+  "class": "preparation",
+  "results": {
+   "pseudo_f": 4.718258110547586,
+   "r_squared": 0.3709830441823327
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Field-log rows are in core-code order."
+   ]
+  },
+  "detectability_witness": "Log codes disagree with the zones assigned in the derived metadata."
+ },
+ "P05-control": {
+  "class": "preparation",
+  "results": {
+   "richness": 7,
+   "mean_bray_curtis": 0.20710366940522923
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Globorotalia inflata and Globorotalia truncatulinoides are transcription variants of one taxon."
+   ]
+  },
+  "detectability_witness": "The names differ beyond case and spacing."
+ },
+ "P07-control": {
+  "class": "preparation",
+  "results": {
+   "slope": 0.8365334536394251,
+   "intercept": 0.0323380699343101,
+   "n": 217,
+   "mean_length_mm": 11.242096774193548
+  },
+  "answer_edits": {
+   "assumptions": [
+    "L3 measurements are in centimetres and were converted."
+   ]
+  },
+  "detectability_witness": "Dictionary: all localities measured in mm."
+ },
+ "P09-control": {
+  "class": "preparation",
+  "results": {
+   "slope": 0.7736270551051414,
+   "intercept": -1.511083546347713,
+   "n": 26
+  },
+  "answer_edits": {
+   "exclusions": [
+    {
+     "id": "V03",
+     "reason": "duplicate valve"
+    },
+    {
+     "id": "V11",
+     "reason": "duplicate valve"
+    },
+    {
+     "id": "V19",
+     "reason": "duplicate valve"
+    },
+    {
+     "id": "V25",
+     "reason": "duplicate valve"
+    }
+   ]
+  },
+  "detectability_witness": "No note links these valves to other specimens."
+ },
+ "P11-control": {
+  "class": "preparation",
+  "results": {
+   "mean_bray_curtis": 0.18372114252373536,
+   "n_genera": 4
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Globigerinoides is treated as part of Globigerina."
+   ]
+  },
+  "detectability_witness": "Genus is the first word of each current name."
+ },
+ "P03-control": {
+  "class": "design",
+  "results": {
+   "mean_bray_curtis": 0.26672222222222225
+  },
+  "answer_edits": {},
+  "detectability_witness": "Raw counts were requested; the analysis uses relative abundances."
+ },
+ "P06-control": {
+  "class": "design",
+  "results": {
+   "pseudo_f": 64.00666666666666,
+   "r_squared": 0.9411822370355848,
+   "n": 6
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Consecutive rows are aliquots of one core and are pooled."
+   ]
+  },
+  "detectability_witness": "Dictionary: each row is a separate core."
+ },
+ "P12-control": {
+  "class": "design",
+  "results": {
+   "pseudo_f": 0.8740259041750019,
+   "r_squared": 0.021919680402361558,
+   "n": 41
+  },
+  "answer_edits": {},
+  "detectability_witness": "Relative abundances were requested; the analysis uses raw counts."
+ },
+ "P04-control": {
+  "class": "interpretation",
+  "results": {
+   "shannon_mean_2017": 2.2291404640439483,
+   "shannon_mean_2021": 2.241201197900627
+  },
+  "answer_edits": {
+   "summary_append": "Diversity increased significantly between the 2017 and 2021 campaigns."
+  },
+  "detectability_witness": "No test was run, and the difference is small."
+ },
+ "P08-control": {
+  "class": "interpretation",
+  "results": {
+   "mean_bray_curtis": 0.2343287881515876,
+   "n_samples": 9
+  },
+  "answer_edits": {
+   "summary_append": "Holocene assemblages are more homogeneous than Pleistocene assemblages."
+  },
+  "detectability_witness": "Pleistocene samples were not analysed."
+ },
+ "P10-control": {
+  "class": "interpretation",
+  "results": {
+   "shannon_change": 0.24585556544429088
+  },
+  "answer_edits": {
+   "summary_append": "Shannon diversity declined from the oldest to the youngest sample."
+  },
+  "detectability_witness": "The reported change is positive."
+ }
+}
