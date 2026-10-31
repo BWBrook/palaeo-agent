@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-10-31",
+  "local_host_role": "macbook: bounded offline development and protocol tests",
+  "candidate_pilot_host": "mini",
+  "remote_check": "ssh -o BatchMode=yes -o ConnectTimeout=10 mini 'uname -sm; sw_vers -productVersion; sysctl -n hw.memsize; command -v sandbox-exec; command -v uv; ~/.local/bin/codex --version'",
+  "observed": {
+    "platform": "Darwin arm64",
+    "macos": "27.2",
+    "memory_bytes": 25769803776,
+    "sandbox_exec": "/usr/bin/sandbox-exec",
+    "uv": "/opt/homebrew/bin/uv",
+    "codex": "0.166.0"
+  },
+  "decision": "Local offline checks only in sprint 3. Mini is the candidate for long trials, but no remote runtime or confinement qualification is claimed.",
+  "live_trials": 0,
+  "reason": "The complete supervisor tool boundary has not qualified. Worker confinement alone cannot authorise live evaluation."
+}

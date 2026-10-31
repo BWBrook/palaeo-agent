@@ -14,7 +14,7 @@ every feature.
 Private development repository, established 30 October 2026. The first native
 Python operations include descriptive reduced-major-axis regression, an
 explicit count-community workflow and one-way free-permutation PERMANOVA, available through
-the Python API and structured CLI. It saves a self-contained input snapshot,
+the Python API, structured CLI and optional local MCP server. It saves a self-contained input snapshot,
 resolved specification, numerical results, diagnostics and integrity manifest.
 The name is provisional. No public release or full PAST compatibility is claimed.
 
@@ -35,7 +35,26 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [PERMANOVA validation and sprint-2 smoke results](docs/sprint-2-results.md)
 - [Sprint-1 counter-review and evaluation repairs](docs/sprint-1-review.md)
 - [Two-sprint reconciliation and next programme](docs/sprints-1-2-reconciliation.md)
+- [Local scientific tools over MCP](docs/mcp.md)
+- [Sprint-3 implementation and execution hold](docs/sprint-3-results.md)
+- [Revised sprints 3–4 plan](docs/sprints-3-4-proposal.md)
 - [Third-party reference material](THIRD_PARTY.md)
+
+## Use from an agent
+
+Install the optional MCP transport, then configure your agent to start the
+server with a dedicated data directory:
+
+```sh
+uv sync --locked --extra mcp
+uv run --extra mcp palaeo-agent-mcp --root /absolute/path/to/session
+```
+
+The tools discover methods, validate specifications, execute analyses, inspect
+and reproduce bundles, and retrieve selected results. See the [MCP guide](docs/mcp.md)
+for the tool contract and runnable examples. This local product server is
+separate from the confined evaluation worker; live comparative evaluation
+remains on hold pending a verified supervisor boundary.
 
 ## Run the first workflow
 

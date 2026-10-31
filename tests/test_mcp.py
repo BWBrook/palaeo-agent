@@ -1,0 +1,164 @@
+import asyncio
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+import pytest
+
+mcp = pytest.importorskip("mcp")
+from mcp import Client, StdioServerParameters
+
+from palaeo_agent.mcp_server import Transport, tool_definitions
+from palaeo_agent.methods import calculate_method, parse_spec, read_inputs, summary
+from palaeo_agent.runs import run
+
+REPO = Path(__file__).resolve().parents[1]
+
+
+@pytest.fixture
+def materials(tmp_path):
+    specs = {}
+    for method, source in (("rma", "dielasma-l2"), ("community", "community-llanvirn-raw"),
+                           ("permanova", "permanova-llanvirn")):
+        spec_path = REPO / "examples" / f"{source}.json"
+        spec = json.loads(spec_path.read_text())
+        for key in ("input", "metadata"):
+            if spec.get(key):
+                target = f"{method}-{key}.dat" if key == "input" else f"{method}-{key}.csv"
+                shutil.copyfile((spec_path.parent / spec[key]).resolve(), tmp_path / target)
+                spec[key] = target
+        specs[method] = spec
+    return tmp_path, specs
+
+
+def client(root):
+    return Client(StdioServerParameters(command=sys.executable,
+                  args=["-m", "palaeo_agent.mcp_server", "--root", str(root)]))
+
+
+def unpack(result):
+    assert result.structured_content is not None
+    assert json.loads(result.content[0].text) == result.structured_content
+    return result.structured_content
+
+
+def test_stdio_equivalence_and_fresh_reproduction(materials):
+    root, specs = materials
+
+    async def scenario():
+        async with client(root) as session:
+            tools = await session.list_tools()
+            assert {tool.name for tool in tools.tools} == set(item["name"] for item in tool_definitions())
+            discovery = unpack(await session.call_tool("discover", {}))
+            assert [m["id"] for m in discovery["method_index"]] == ["rma", "community", "permanova"]
+            for method, spec in specs.items():
+                schema = unpack(await session.call_tool("discover", {"method": method}))
+                assert schema["input_schema"]["properties"]["method"]["const"] == method
+                py_spec = parse_spec({**spec, "input": str(root / spec["input"]),
+                                     **({"metadata": str(root / spec["metadata"])} if "metadata" in spec else {})})
+                expected = summary(calculate_method(py_spec, read_inputs(py_spec)))
+                valid = unpack(await session.call_tool("validate", {"spec": spec}))
+                assert valid["status"] == "valid"
+                record = unpack(await session.call_tool("run", {"spec": spec}))
+                assert record["summary"] == expected
+                assert not Path(record["run_dir"]).is_absolute()
+                inspection = unpack(await session.call_tool("inspect", {"bundle": record["run_dir"]}))
+                assert inspection["summary"] == expected
+                assert "result" not in inspection
+                assert all((root / entry["path"]).is_file() for entry in inspection["artifacts"])
+                spec_path = root / f"{method}.json"
+                spec_path.write_text(json.dumps(spec))
+                command = subprocess.run([sys.executable, "-m", "palaeo_agent", "run", str(spec_path),
+                                          "--output", str(root / "cli")], capture_output=True, text=True, check=True)
+                assert json.loads(command.stdout)["summary"] == expected
+                async with client(root) as fresh:
+                    repeated = unpack(await fresh.call_tool("reproduce", {"bundle": record["run_dir"]}))
+                    assert repeated["status"] == "reproduced"
+                    assert repeated["differences"] == []
+    asyncio.run(scenario())
+
+
+def test_stdio_refusals_and_root_boundaries(materials, tmp_path):
+    root, specs = materials
+    outside = root.parent / f"{root.name}-outside"
+    outside.mkdir()
+    (outside / "matrix.dat").write_text("secret canary")
+    (root / "escape").symlink_to(outside, target_is_directory=True)
+
+    async def scenario():
+        async with client(root) as session:
+            cases = [
+                ("run", {"spec": {**specs["rma"], "input": str(outside / "matrix.dat")}}, "path_outside_root"),
+                ("run", {"spec": {**specs["rma"], "input": "escape/matrix.dat"}}, "path_outside_root"),
+                ("run", {"spec": specs["rma"], "output": "escape/new"}, "path_outside_root"),
+                ("inspect", {"bundle": "../"}, "path_outside_root"),
+                ("reproduce", {"bundle": "escape"}, "path_outside_root"),
+                ("inspect_comparison", {"bundle": "escape"}, "path_outside_root"),
+                ("compare", {"baseline": "escape", "sensitivity": "runs"}, "path_outside_root"),
+                ("validate", {"spec": {**specs["permanova"], "design": "repeated"}}, "invalid_request"),
+                ("run", {"spec": {}}, "invalid_request"),
+                ("discover", {"unexpected": True}, "invalid_request"),
+                ("result", {"bundle": "runs", "field": "distances", "limit": 101}, "invalid_request"),
+                ("not_a_tool", {}, "unknown_tool"),
+            ]
+            for name, args, code in cases:
+                result = await session.call_tool(name, args)
+                assert result.is_error, (name, args, result)
+                record = unpack(result)
+                assert record["code"] == code
+                assert "secret canary" not in json.dumps(record)
+        assert not (outside / "new").exists()
+    asyncio.run(scenario())
+
+
+def test_comparison_and_pagination(materials):
+    root, specs = materials
+
+    async def scenario():
+        async with client(root) as session:
+            baseline = unpack(await session.call_tool("run", {"spec": specs["community"]}))
+            changed = unpack(await session.call_tool("run", {"spec": {**specs["community"], "transform": "relative_abundance"}}))
+            comparison = unpack(await session.call_tool("compare", {"baseline": baseline["run_dir"],
+                                                                     "sensitivity": changed["run_dir"]}))
+            assert comparison["status"] == "complete"
+            inspection = unpack(await session.call_tool("inspect_comparison", {"bundle": comparison["comparison_dir"]}))
+            assert inspection["status"] == "verified"
+            assert inspection["summary"] == comparison["summary"]
+            result = json.loads((root / baseline["run_dir"] / "results.json").read_text())
+            page = unpack(await session.call_tool("result", {"bundle": baseline["run_dir"], "field": "distances",
+                                                               "offset": 1, "limit": 2, "column_offset": 2,
+                                                               "column_limit": 3}))
+            assert page["total"] == len(result["distances"])
+            assert page["value"] == [row[2:5] for row in result["distances"][1:3]]
+    asyncio.run(scenario())
+
+
+def test_interrupted_bundle_is_never_complete(materials, monkeypatch):
+    root, specs = materials
+
+    def interrupted(*args):
+        raise KeyboardInterrupt("simulated process interruption before manifest")
+
+    monkeypatch.setattr("palaeo_agent.runs._plot", interrupted)
+    with pytest.raises(KeyboardInterrupt):
+        run({**specs["rma"], "input": str(root / specs["rma"]["input"])}, root / "partial")
+    partial, = (root / "partial").iterdir()
+    assert not (partial / "manifest.json").exists()
+
+    async def scenario():
+        async with client(root) as session:
+            result = await session.call_tool("inspect", {"bundle": str(partial)})
+            assert result.is_error
+            assert unpack(result)["code"] == "invalid_bundle"
+    asyncio.run(scenario())
+
+
+def test_single_call_interface(materials):
+    root, specs = materials
+    result = subprocess.run([sys.executable, "-m", "palaeo_agent.mcp_server", "--root", str(root),
+                             "--call", "validate"], input=json.dumps({"spec": specs["rma"]}),
+                            capture_output=True, text=True, check=True)
+    assert json.loads(result.stdout)["status"] == "valid"
+    assert Transport(root).dispatch("run", {"spec": specs["rma"], "output": "/"})["code"] == "path_outside_root"

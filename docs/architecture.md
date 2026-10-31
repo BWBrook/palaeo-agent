@@ -1,8 +1,8 @@
 # Implementation framework
 
-Status: version 0.2 implementation framework, 30 October 2026. Descriptive RMA
-and the count-community workflow are implemented. MCP integration, inferential
-community methods and other expansion remain planned.
+Status: version 0.2 implementation framework, 31 October 2026. Descriptive RMA,
+the count-community workflow, one-way free-permutation PERMANOVA and an optional
+local MCP transport are implemented. Further method families remain planned.
 
 ## Smallest complete architecture
 
@@ -13,7 +13,7 @@ from website snippets or create an untested lockfile now.
 
 The execution path is:
 
-    Python call or CLI request
+    Python call, CLI request or local MCP tool call
         -> typed method specification and input validation
         -> scientific function using a selected numerical library
         -> common result and diagnostics
@@ -25,7 +25,7 @@ exit codes. A method catalogue supplies machine-readable descriptions and
 schemas. Generate transport schemas from the same definitions used for request
 validation, avoiding independently maintained copies.
 
-An MCP adapter is a later, thin transport for discovery, validation, execution
+The optional MCP adapter is a thin transport for discovery, validation, execution
 and result inspection. Do not create one server per analysis or require an HTTP
 daemon for local work. The scientific engine must work without MCP, an agent
 SDK, an API key or a language model.

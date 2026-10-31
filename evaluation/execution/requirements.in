@@ -1,0 +1,3 @@
+-c ../runtime/requirements.txt
+-r ../runtime/requirements.in
+mcp>=1.26,<3

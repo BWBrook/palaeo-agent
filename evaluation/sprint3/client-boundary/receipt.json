@@ -1,0 +1,32 @@
+{
+  "status": "rejected_client_boundary",
+  "client": "codex-cli 0.166.0",
+  "model_metadata": "unmodified bundled gpt-6.1-sol",
+  "inference_requests": 0,
+  "localhost_request_count": 1,
+  "authorization_header_present": false,
+  "config": "temporary empty HOME and CODEX_HOME; ignore user config/rules; empty cwd",
+  "permissions": "initial restricted localhost bind failed; approved escalated invocation permitted localhost bind; child uses read-only sandbox",
+  "limits": [
+    "Observed advertisement, not execution",
+    "No MCP server configured: negative evidence of extra builtins, not positive arm inventory",
+    "No authenticated-provider initialization capture",
+    "No model metadata overrides",
+    "No personal authentication copied or read by probe"
+  ],
+  "sha256": {
+    "capture_offline.py": "ec84624e6a1a1d8c9af7145dc6ef6c979627e236d9cc2fdbbd2a7096003f54dd",
+    "command.json": "b9a0f41d03b72c6a2f5907b1bec8fa68bf7e9b9c7484a566c2e7c04667e190c3",
+    "request-meta.json": "45704b1fcde2b9400c91822587fb7c12bb793c813e6a0aa7881eaf998cbe7917",
+    "request-tools.json": "197b945fe20f3b3a6fe31919170048e0bf6547929f3e1e69936d644f7ee568c1",
+    "request.json": "414d92a32bb7824147b0d5a6cd14d69bed29261f9f4994200018aad3ed7a685d",
+    "stderr.txt": "63a1d71cd91799c390aae938b75b681a7b72b5a09c4021ce1c3ecf5c3011e5e4",
+    "stdout.txt": "1ea88e5b931f7c9592b18a5fadf75ff6e3fab9b72e1c15015ac0e93cf9169534"
+  },
+  "sanity_checks": {
+    "no_user_home_in_request": true,
+    "no_bearer_literal": true,
+    "no_auth_field": true,
+    "single_synthetic_task": true
+  }
+}

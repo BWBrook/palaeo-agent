@@ -1,0 +1,360 @@
+[
+  {
+    "discover": {
+      "method_index": [
+        {
+          "id": "rma",
+          "description": "Descriptive reduced-major-axis regression",
+          "scope": "Paired measurements; no inferential uncertainty",
+          "refuses": [
+            "constant variables",
+            "undefined covariance"
+          ]
+        },
+        {
+          "id": "community",
+          "description": "Count diversity, dissimilarities and uncorrected PCoA",
+          "scope": "Declared counts and orientation",
+          "refuses": [
+            "missing counts",
+            "unresolved positive eigenvalue cutoff"
+          ]
+        },
+        {
+          "id": "permanova",
+          "description": "One-factor free-label PERMANOVA with descriptive dispersion",
+          "scope": "Independent units; exchangeable labels; two or more samples per group",
+          "refuses": [
+            "restricted or repeated designs",
+            "empty samples",
+            "undefined observed finite F"
+          ]
+        }
+      ],
+      "path_policy": "All paths resolve inside the configured session root; relative paths start there"
+    }
+  },
+  {
+    "status": "complete",
+    "run_dir": "runs/15a0b530172c4957ba7af89e92b21016",
+    "summary": {
+      "method": "rma",
+      "n": 79,
+      "n_input": 103,
+      "excluded": [
+        {
+          "sample_id": "80",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "81",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "82",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "83",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "84",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "85",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "86",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "87",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "88",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "89",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "90",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "91",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "92",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "93",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "94",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "95",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "96",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "97",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "98",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "99",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "100",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "101",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "102",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        },
+        {
+          "sample_id": "103",
+          "reason": "declared_missing_pair",
+          "columns": [
+            "x",
+            "y"
+          ]
+        }
+      ],
+      "warnings": [],
+      "slope": 0.819167040027981,
+      "intercept": 0.2621471236354722,
+      "correlation": 0.9881954886816232
+    },
+    "reproduction": {
+      "status": "reproduced",
+      "original_run": "runs/15a0b530172c4957ba7af89e92b21016",
+      "new_run": "runs/67a75f26dfd74f3aaa5dc246e03f43b2",
+      "differences": [],
+      "tolerance": {
+        "rtol": 1e-12,
+        "atol": 1e-12
+      },
+      "environment_identical": true,
+      "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation"
+    }
+  },
+  {
+    "status": "complete",
+    "run_dir": "runs/97b1b1f20ccd4c8d82e155b78cb473c9",
+    "summary": {
+      "method": "community",
+      "n": 10,
+      "n_input": 10,
+      "excluded": [],
+      "warnings": [
+        {
+          "code": "negative_eigenvalues",
+          "message": "Dissimilarities have material negative PCoA eigenvalues; no correction applied",
+          "details": {
+            "count": 1,
+            "threshold": 2.934201963648322e-15,
+            "negative_inertia_magnitude": 0.001401229346849437
+          }
+        }
+      ],
+      "n_taxa": 23,
+      "transform": "none",
+      "distance": "braycurtis",
+      "negative_inertia_magnitude": 0.001401229346849437
+    },
+    "reproduction": {
+      "status": "reproduced",
+      "original_run": "runs/97b1b1f20ccd4c8d82e155b78cb473c9",
+      "new_run": "runs/bd178176558d4804b35ce28aef37a152",
+      "differences": [],
+      "tolerance": {
+        "rtol": 1e-10,
+        "atol": 1e-10
+      },
+      "environment_identical": true,
+      "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+      "ordination_comparison": {
+        "full_positive_gram_compared": true,
+        "selected_gram_compared": true,
+        "cutoff_relative_eigengap": 0.03869743643676035,
+        "cutoff_relative_eigengap_threshold": 1e-08,
+        "selected_subspace_ambiguous": false
+      }
+    }
+  },
+  {
+    "status": "complete",
+    "run_dir": "runs/176800c7af26436eb939ca20b46e6d23",
+    "summary": {
+      "method": "permanova",
+      "n": 10,
+      "n_input": 10,
+      "excluded": [],
+      "warnings": [
+        {
+          "code": "negative_eigenvalues",
+          "message": "Centroid dispersion retains signed negative-eigenvalue coordinates; no correction applied",
+          "details": {
+            "threshold": 1.9691096052700817e-08
+          }
+        }
+      ],
+      "n_taxa": 23,
+      "transform": "none",
+      "distance": "braycurtis",
+      "group_column": "group",
+      "group_sizes": {
+        "A": 5,
+        "B": 5
+      },
+      "pseudo_f": 6.649826373192265,
+      "r_squared": 0.45391844270323845,
+      "p_value": 0.015873015873015872
+    },
+    "reproduction": {
+      "status": "reproduced",
+      "original_run": "runs/176800c7af26436eb939ca20b46e6d23",
+      "new_run": "runs/0690abf631eb4380b721e1c88d635549",
+      "differences": [],
+      "tolerance": {
+        "rtol": 1e-10,
+        "atol": 1e-10
+      },
+      "environment_identical": true,
+      "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation"
+    }
+  },
+  {
+    "unsupported_design": {
+      "status": "error",
+      "code": "invalid_request",
+      "message": "Request does not match the tool schema",
+      "details": [
+        {
+          "type": "literal_error",
+          "loc": [
+            "spec",
+            "permanova",
+            "design"
+          ],
+          "msg": "Input should be 'independent'"
+        }
+      ]
+    }
+  }
+]

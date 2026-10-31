@@ -1,0 +1,15 @@
+{
+  "initial_build": {
+    "root": "/Users/bwbrook/palaeo-eval/sprint3-runtime-20261031",
+    "outcome": "preserved failure",
+    "error": "Arm package manifests differ beyond the toolkit",
+    "diagnosis": "Complete RECORD hashes differ for packages with entry-point scripts because their interpreter shebangs name the direct or toolkit prefix.",
+    "correction": "Retain each RECORD hash as evidence; compare package identities/versions from the same hash-locked requirements instead of requiring environment-specific RECORD hashes to be identical."
+  },
+  "completed_build": {
+    "root": "/Users/bwbrook/palaeo-eval/sprint3-runtime-20261031-v2",
+    "outcome": "complete",
+    "manifest": "runtime.json",
+    "old_evaluation_runtimes_modified": false
+  }
+}

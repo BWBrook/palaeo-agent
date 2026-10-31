@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "cause": "Demonstration helper assumed absolute run_dir; transport correctly returned a root-relative path. Three runs and refusal passed before fresh reproduction helper failed. Corrected helper only; no engine or boundary change.",
+  "work_root": "/Users/bwbrook/palaeo-eval/sprint3-confined-demo-20261031"
+}

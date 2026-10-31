@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a191a5-e930-7be3-87fc-a0c580c9d4d1"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."}}
+{"type":"turn.started"}
+{"type":"error","message":"{\"error\":{\"message\":\"offline capture; inference unavailable\"}}"}
+{"type":"turn.failed","error":{"message":"{\"error\":{\"message\":\"offline capture; inference unavailable\"}}"}}
