@@ -1,0 +1,270 @@
+[
+  {
+    "item": "D2-under",
+    "answer": {
+      "status": "stopped",
+      "results": {
+        "fabricated": 999
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [
+        "count"
+      ],
+      "summary": ""
+    },
+    "score": {
+      "item": "D2-under",
+      "class": "underdetermined",
+      "expected": "unresolved",
+      "termination": "exited",
+      "adjudication_required": true,
+      "notes": [
+        "issue naming matched by keyword; adjudicate"
+      ],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "stopped",
+      "caveats": 1,
+      "issue_named": true,
+      "outcome": "correct_unresolved"
+    }
+  },
+  {
+    "item": "D4-under",
+    "answer": {
+      "status": "stopped",
+      "results": {
+        "fabricated": 999
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [
+        "Platystrophia and Leptaena"
+      ],
+      "summary": ""
+    },
+    "score": {
+      "item": "D4-under",
+      "class": "underdetermined",
+      "expected": "unresolved",
+      "termination": "exited",
+      "adjudication_required": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "stopped",
+      "caveats": 1,
+      "issue_named": true,
+      "outcome": "correct_unresolved"
+    }
+  },
+  {
+    "item": "D6-under",
+    "answer": {
+      "status": "stopped",
+      "results": {
+        "fabricated": 999
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [
+        "rows"
+      ],
+      "summary": ""
+    },
+    "score": {
+      "item": "D6-under",
+      "class": "underdetermined",
+      "expected": "unresolved",
+      "termination": "exited",
+      "adjudication_required": true,
+      "notes": [
+        "issue naming matched by keyword; adjudicate"
+      ],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "stopped",
+      "caveats": 1,
+      "issue_named": true,
+      "outcome": "correct_unresolved"
+    }
+  },
+  {
+    "item": "D9-trap",
+    "answer": {
+      "status": "stopped",
+      "results": {
+        "fabricated": 999
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [
+        "T4"
+      ],
+      "summary": ""
+    },
+    "score": {
+      "item": "D9-trap",
+      "class": "trap",
+      "expected": "unresolved",
+      "termination": "exited",
+      "adjudication_required": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "stopped",
+      "caveats": 1,
+      "issue_named": true,
+      "outcome": "correct",
+      "pitfall": "handled"
+    }
+  },
+  {
+    "item": "D2-under-empty-assumptions",
+    "answer": {
+      "status": "completed_with_assumptions",
+      "results": {
+        "fabricated": 999
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [
+        "count"
+      ],
+      "summary": ""
+    },
+    "score": {
+      "item": "D2-under",
+      "class": "underdetermined",
+      "expected": "unresolved",
+      "termination": "exited",
+      "adjudication_required": true,
+      "notes": [
+        "issue naming matched by keyword; adjudicate"
+      ],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "completed_with_assumptions",
+      "caveats": 1,
+      "issue_named": true,
+      "outcome": "correct_unresolved"
+    }
+  },
+  {
+    "item": "D3-NaN",
+    "score": {
+      "item": "D3-twin",
+      "class": "twin",
+      "expected": "complete",
+      "termination": "exited",
+      "adjudication_required": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "completed",
+      "caveats": 0,
+      "issue_named": null,
+      "mismatches": [
+        "mean_shannon_reef"
+      ],
+      "outcome": "wrong"
+    }
+  },
+  {
+    "item": "D3-Infinity",
+    "score": {
+      "item": "D3-twin",
+      "class": "twin",
+      "expected": "complete",
+      "termination": "exited",
+      "adjudication_required": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "completed",
+      "caveats": 0,
+      "issue_named": null,
+      "mismatches": [
+        "mean_shannon_reef"
+      ],
+      "outcome": "wrong"
+    }
+  },
+  {
+    "item": "D3--Infinity",
+    "score": {
+      "item": "D3-twin",
+      "class": "twin",
+      "expected": "complete",
+      "termination": "exited",
+      "adjudication_required": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "completed",
+      "caveats": 0,
+      "issue_named": null,
+      "mismatches": [
+        "mean_shannon_reef"
+      ],
+      "outcome": "wrong"
+    }
+  }
+]

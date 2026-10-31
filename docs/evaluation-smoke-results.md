@@ -1,5 +1,12 @@
 # Evaluation feasibility smoke — 31 October 2026
 
+**Counter-review addendum:** Codex reproduced the reported metrics and upheld
+all four adjudications. The original score records remain unchanged. The
+[counter-review](sprint-1-review.md) found a scoring-contract defect, an
+ambiguous D7 estimand and incomplete credential/shared-state isolation. The
+launcher is disabled pending replacement. The observations below are the
+original development report, with the D2 interpretation corrected explicitly.
+
 Sprint 1 of [the two-sprint plan](sprints-1-2.md). Claude (Opus 5.5) built the instrument and ran the smoke;
 the [instrument README](../evaluation/README.md) describes the method. **This is a feasibility check, not an
 efficacy test:** 7 development items, 2 arms, 1 replicate and 2 agent families, 28 trials in all.
@@ -52,11 +59,16 @@ although the checklist would have credited them.
    - `python -m palaeo_agent --help` lists commands but not methods.
    - **Proposal for Codex:** put a short method index at the top of the discovery output, and list the methods
      in `--help`.
-4. **D2-under is defective (my item error).** Two-decimal percentages with totals below 10,000 identify each
-   total as the smallest consistent N. Both Sonnet agents recovered the true totals exactly and declared the
-   reconstruction as an assumption, so they still scored `correct_unresolved`. Both Codex agents stopped
-   instead; the Codex toolkit agent cited the toolkit's refusal of the percentages. The catalogue specified
-   integer percentages for this variant. The frozen scores stand, and bank v2 must use integer percentages.
+4. **D2-under is weakly discriminating.** The smallest compatible denominators
+   recover the generator's totals, but do not identify them: sample-specific
+   multiples preserve the displayed percentages and change raw-count
+   Bray–Curtis. Both Sonnet agents declared their smallest-total reconstruction
+   as an assumption and acknowledged nonuniqueness. Both Codex agents stopped.
+   All four `correct_unresolved` adjudications stand. The catalogue specified
+   integer percentages; the prospective amendment uses that coarser display
+   without claiming that it resolves all denominator heuristics or item
+   difficulty. This corrects the original report's claim that the totals were
+   identified.
 5. **Cost.** The toolkit arm cost more:
    - Codex: 2.2× the counted tokens and 1.7× the median time;
    - Sonnet: 1.5× and 1.4×.

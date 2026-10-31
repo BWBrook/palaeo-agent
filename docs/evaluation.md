@@ -8,6 +8,13 @@ a separate Claude review session (Board 2611–2614). A 28-trial feasibility smo
 ran on 31 October 2026 ([results](evaluation-smoke-results.md), [instrument](../evaluation/README.md)); no
 pilot or confirmatory trial has been run.
 
+Counter-review update, 31 October 2026: [sprint 1](sprint-1-review.md) reproduced
+the historical results but found incomplete credential/shared-state isolation
+and prospective instrument defects. Live evaluation through the old launcher
+is disabled. A replacement boundary and corrected, independently checked
+instrument must precede a larger pilot. The existing smokes are development
+evidence; they establish neither efficacy nor complete isolation.
+
 ## Question
 
 The [vision](vision.md) asks whether Palaeo-Agent makes agent-led analysis more

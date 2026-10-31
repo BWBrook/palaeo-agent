@@ -45,6 +45,7 @@ def leak_scan(record, trial_id):
 
 
 def run(plan_path):
+    trial.require_live_evaluation()
     plan = json.loads(plan_path.read_text())
     out = plan_path.parent / "trials"
     spent, log = 0, []
@@ -59,12 +60,6 @@ def run(plan_path):
             continue
         meta = trial.run(EVAL / "items" / step["item"] / "materials", step["arm"], plan["backend"], record,
                          plan["wall_seconds"])
-        if (meta["counted_tokens"] == 0 and meta["elapsed_seconds"] < 30
-                and not (record / "workspace/answer.json").exists()):
-            first = record.rename(record.with_name(record.name + "-infra-failure"))
-            print(json.dumps({"step": n, "infrastructure_failure": first.name}), flush=True)
-            meta = trial.run(EVAL / "items" / step["item"] / "materials", step["arm"], plan["backend"], record,
-                             plan["wall_seconds"])
         scan = leak_scan(record, meta["trial_id"])
         (record / "leak_scan.json").write_text(json.dumps(scan, indent=1) + "\n")
         spent += meta["counted_tokens"]

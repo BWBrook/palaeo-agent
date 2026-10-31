@@ -1,0 +1,28 @@
+{
+  "review_baseline": "e60729d",
+  "sprint1_handoff": "b2e2964",
+  "freeze_commit": "5af0041",
+  "tracked_sprint1_evaluation_files": 639,
+  "post_smoke_amended_original_paths": [
+    "evaluation/README.md",
+    "evaluation/harness/smoke.py",
+    "evaluation/harness/trial.py"
+  ],
+  "all_other_original_evaluation_files_unchanged": true,
+  "baseline_tests": {
+    "command": "uv run pytest -q",
+    "passed": 285,
+    "seconds": 37.27
+  },
+  "live_trials_during_review": 0,
+  "aggregate_sha256_excluding_declared_amendments": "55b74e9b10b4f566f61d40bfb0def58fb5f1eb94a7b5ca671d471b52b3ecd285",
+  "post_repair_targeted_tests": {
+    "command": "uv run pytest -q tests/test_evaluation_revised.py tests/test_evaluation_launch_hold.py",
+    "passed": 15,
+    "seconds": 0.78
+  },
+  "post_repair_full_suite_before_output_writer_regression": {
+    "passed": 299,
+    "seconds": 26.9
+  }
+}

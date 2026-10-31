@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sprint-1 revised task answer",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "results",
+    "assumptions",
+    "exclusions",
+    "issues",
+    "summary"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "completed",
+        "completed_with_assumptions",
+        "stopped"
+      ]
+    },
+    "results": {
+      "type": "object"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "stopped"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "results": {
+            "maxProperties": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed_with_assumptions"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "assumptions": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

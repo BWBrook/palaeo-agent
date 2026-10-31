@@ -1,0 +1,418 @@
+{
+  "scope": "synthetic non-secret sandbox-profile audit; no live agent or API invocation",
+  "source": "/Users/bwbrook/work/palaeo-agent/evaluation/harness/sandbox.py",
+  "source_sha256": "34697b28180142a6bb8dbb9fd447c72a9d848c49fbb67619d7c5592be494c04f",
+  "fake_home": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1",
+  "fake_home_safety": "unique synthetic subtree under ~/palaeo-eval; not the real ~/.claude, keychain or preferences",
+  "profile_sha256": {
+    "codex": "5761f718dc7fe47cd91953274c96350ef8505b12b90ac6434fec816af2b69fa5",
+    "claude": "5e9f65159f70498188065b6fe7766ba552298285e1c49d102beb933651325e45"
+  },
+  "static_generated_rule_checks": {
+    "codex": [
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/palaeo-eval/t/synthetic\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Keychains\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Preferences\"))",
+        "present": true
+      },
+      {
+        "rule": "(deny file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1\"))",
+        "present": true
+      },
+      {
+        "rule": "(deny file-write* (subpath \"/\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-write* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/palaeo-eval/t/synthetic\"))",
+        "present": true
+      }
+    ],
+    "claude": [
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Caches\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Application Support/Claude\"))",
+        "present": true
+      },
+      {
+        "rule": "(deny file-read* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/projects\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-write* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude\"))",
+        "present": true
+      },
+      {
+        "rule": "(allow file-write* (subpath \"/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Caches\"))",
+        "present": true
+      }
+    ]
+  },
+  "source_rule_path_analysis": [
+    {
+      "backend": "codex",
+      "operation": "read",
+      "canary": "trial_auth",
+      "rule_result": "allowed",
+      "basis": "explicit read allow for the enclosing trial_root after broad fake-home denial"
+    },
+    {
+      "backend": "codex",
+      "operation": "write",
+      "canary": "trial_auth",
+      "rule_result": "allowed",
+      "basis": "explicit write allow for the enclosing trial_root after broad root write denial"
+    },
+    {
+      "backend": "codex",
+      "operation": "read",
+      "canary": "common_keychain",
+      "rule_result": "allowed",
+      "basis": "explicit read allow for Library/Keychains"
+    },
+    {
+      "backend": "codex",
+      "operation": "write",
+      "canary": "common_keychain",
+      "rule_result": "denied",
+      "basis": "broad root write denial with no compensating Keychains write allow"
+    },
+    {
+      "backend": "codex",
+      "operation": "read",
+      "canary": "common_preferences",
+      "rule_result": "allowed",
+      "basis": "explicit read allow for Library/Preferences"
+    },
+    {
+      "backend": "codex",
+      "operation": "read",
+      "canary": "denied_private_key",
+      "rule_result": "denied",
+      "basis": "broad fake-home read denial with no compensating .ssh allow"
+    },
+    {
+      "backend": "codex",
+      "operation": "read",
+      "canary": "denied_checkout",
+      "rule_result": "denied",
+      "basis": "broad fake-home read denial with no compensating checkout allow"
+    },
+    {
+      "backend": "claude",
+      "operation": "read",
+      "canary": "claude_credentials",
+      "rule_result": "allowed",
+      "basis": "explicit read allow for .claude; .credentials.json is absent from CLAUDE_DENY"
+    },
+    {
+      "backend": "claude",
+      "operation": "write",
+      "canary": "claude_state",
+      "rule_result": "allowed",
+      "basis": "explicit write allow for all of .claude"
+    },
+    {
+      "backend": "claude",
+      "operation": "read",
+      "canary": "claude_cache",
+      "rule_result": "allowed",
+      "basis": "explicit read allow for Library/Caches"
+    },
+    {
+      "backend": "claude",
+      "operation": "write",
+      "canary": "claude_cache",
+      "rule_result": "allowed",
+      "basis": "explicit write allow for Library/Caches"
+    },
+    {
+      "backend": "claude",
+      "operation": "read",
+      "canary": "denied_claude_project",
+      "rule_result": "denied",
+      "basis": "explicit narrower read denial for .claude/projects"
+    },
+    {
+      "backend": "claude",
+      "operation": "read",
+      "canary": "denied_private_key",
+      "rule_result": "denied",
+      "basis": "broad fake-home read denial with no compensating .ssh allow"
+    },
+    {
+      "backend": "claude",
+      "operation": "read",
+      "canary": "denied_checkout",
+      "rule_result": "denied",
+      "basis": "broad fake-home read denial with no compensating checkout allow"
+    }
+  ],
+  "source_implied_boundaries": {
+    "preserved_denials": [
+      "The broad fake-home read denial remains in both profiles.",
+      "Synthetic private-key and checkout paths have no compensating read allow.",
+      "Claude .claude/projects has an explicit narrower read denial.",
+      "The broad root write denial remains; Codex writes are re-allowed only in the trial root."
+    ],
+    "failed_boundaries": [
+      "Codex's copied auth placeholder is inside the worker-readable and writable trial root.",
+      "Both profiles explicitly re-allow reads from fake-home Library/Keychains and Library/Preferences.",
+      "Claude explicitly re-allows reads and writes across fake-home .claude and Library/Caches.",
+      "Claude's .credentials.json and cache/state canaries are not covered by CLAUDE_DENY."
+    ]
+  },
+  "native_sandbox_execution": {
+    "attempted": true,
+    "available_in_current_outer_sandbox": true,
+    "baseline_returncode": 0,
+    "baseline_stderr": "",
+    "probes": [
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/palaeo-eval/t/synthetic/home/auth.json",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "509aa909ec73ae339912a8ac436bb6fffc7a8d0c74d81f34983e02d7e0e164b7",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "codex"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Keychains/synthetic.keychain",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "04fc46c9b2a3306117405fce23ec36810f547100594b40d32fcc7b5be480743b",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "codex"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Preferences/synthetic.plist",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "e2a1c18f920b61b589739167e2f52ffa7acfd5940e165a1389e99aded3c59217",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "codex"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.ssh/id_synthetic",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "cat: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.ssh/id_synthetic: Operation not permitted",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_matches_synthetic_placeholder": false,
+        "backend": "codex"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/private-checkout/secret.txt",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "cat: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/private-checkout/secret.txt: Operation not permitted",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_matches_synthetic_placeholder": false,
+        "backend": "codex"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Keychains/synthetic.keychain",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "touch: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Keychains/synthetic.keychain: Operation not permitted",
+        "backend": "codex"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/palaeo-eval/t/synthetic/tmp/codex-write",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "backend": "codex"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/codex-outside-write",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "touch: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/codex-outside-write: Operation not permitted",
+        "backend": "codex"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/palaeo-eval/t/synthetic/home/auth.json",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "509aa909ec73ae339912a8ac436bb6fffc7a8d0c74d81f34983e02d7e0e164b7",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Keychains/synthetic.keychain",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "04fc46c9b2a3306117405fce23ec36810f547100594b40d32fcc7b5be480743b",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Preferences/synthetic.plist",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "e2a1c18f920b61b589739167e2f52ffa7acfd5940e165a1389e99aded3c59217",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/.credentials.json",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "d57175ee3adcd41efc28bf63459e10e407c64f2ccc22ea031597c41c8dd6f238",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/cache/synthetic-state.json",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "bb733c92f5168d178648d073dde62fa9c7d4bb7c73b3703aa73288f973ecc5c5",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Caches/synthetic-claude-state",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "stdout_sha256": "5b6cb0bbe3e94bb76a8b862dba458ed79df13ba0f14dc72ea62e359a63366d1a",
+        "stdout_matches_synthetic_placeholder": true,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.ssh/id_synthetic",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "cat: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.ssh/id_synthetic: Operation not permitted",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_matches_synthetic_placeholder": false,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/private-checkout/secret.txt",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "cat: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/private-checkout/secret.txt: Operation not permitted",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_matches_synthetic_placeholder": false,
+        "backend": "claude"
+      },
+      {
+        "operation": "read",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/projects/synthetic/context.txt",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "cat: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/projects/synthetic/context.txt: Operation not permitted",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_matches_synthetic_placeholder": false,
+        "backend": "claude"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/.claude/cache/claude-write",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "backend": "claude"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/Library/Caches/claude-write",
+        "expected_allowed": true,
+        "returncode": 0,
+        "allowed": true,
+        "matches_expected_access": true,
+        "stderr": "",
+        "backend": "claude"
+      },
+      {
+        "operation": "write",
+        "synthetic_path": "/Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/claude-outside-write",
+        "expected_allowed": false,
+        "returncode": 1,
+        "allowed": false,
+        "matches_expected_access": true,
+        "stderr": "touch: /Users/bwbrook/palaeo-eval/review-canaries-2707dca719c245fb8f4988541e3472b1/work/claude-outside-write: Operation not permitted",
+        "backend": "claude"
+      }
+    ],
+    "all_access_results_match_expected": true,
+    "all_allowed_reads_match_synthetic_placeholders": true
+  },
+  "interpretation_limit": "When native sandbox execution is unavailable because this audit itself runs inside an outer sandbox, the receipt proves emitted policy rules and path coverage, not a second live kernel enforcement test."
+}

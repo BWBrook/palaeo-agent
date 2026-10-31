@@ -1,5 +1,14 @@
 # Evaluation instrument
 
+**Post-smoke counter-review, 31 October 2026:** the account below documents the
+historical v1 instrument. Its named checkout/key denials worked, but credential
+and shared-state isolation was incomplete. The live launcher is now disabled,
+without an override. [Counter-review and evidence](../docs/sprint-1-review.md)
+explain the boundary and preserved results; [prospective scoring/item repairs](revised/README.md)
+are available for offline checks. The original instrument is preserved at
+freeze commit `5af0041`. Do not read the historical reproduction commands below
+as an operational live-evaluation recommendation.
+
 Sprint 1 of [the two-sprint plan](../docs/sprints-1-2.md). This directory holds the development item bank, the
 isolated trial runner, the frozen scorer and the feasibility-smoke records described in
 [evaluation.md](../docs/evaluation.md). Claude (Opus 5.5) built it on 31 October 2026. Everything here is

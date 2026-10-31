@@ -1,0 +1,119 @@
+{
+  "project": "palaeo-agent",
+  "scope": "Read-only counter-review of frozen sprint-1 smoke records",
+  "date": "2026-10-31",
+  "source_records": [
+    "evaluation/smoke/codex-v1/run_log.json",
+    "evaluation/smoke/codex-v1/scores.json",
+    "evaluation/smoke/claude-v1/run_log.json",
+    "evaluation/smoke/claude-v1/scores.json",
+    "evaluation/smoke/codex-v1/adjudication.json",
+    "evaluation/smoke/claude-v1/adjudication.json",
+    "docs/evaluation-smoke-results.md"
+  ],
+  "trials": {
+    "total": 28,
+    "codex": 14,
+    "claude": 14,
+    "all_terminated_exited_returncode_zero": true,
+    "timeouts": 0,
+    "retries": 0,
+    "correct_primary": 28
+  },
+  "usage": {
+    "codex_counted_tokens": 204289,
+    "codex_direct_tokens": 63299,
+    "codex_toolkit_tokens": 140990,
+    "claude_counted_tokens": 94515,
+    "claude_direct_tokens": 38163,
+    "claude_toolkit_tokens": 56352,
+    "claude_cache_read_tokens": 591261,
+    "claude_recorded_cost_usd": 0.5503421
+  },
+  "evidence_scores": {
+    "codex_direct_mean": 0.42857142857142855,
+    "codex_toolkit_mean": 0.9285714285714286,
+    "claude_direct_mean": 0.39285714285714285,
+    "claude_toolkit_mean": 0.6071428571428571
+  },
+  "toolkit_execution": {
+    "codex_toolkit_trials": 7,
+    "codex_actual_package_analysis_trials": 6,
+    "codex_nonanalysis_refusal_trial": "04-D2-under-toolkit",
+    "claude_toolkit_trials": 7,
+    "claude_actual_package_analysis_trials": 2,
+    "claude_actual_package_analysis": [
+      "10-D1-trap-toolkit",
+      "13-D1-twin-toolkit"
+    ],
+    "claude_nonanalysis_toolkit_trials": [
+      "01-D6-twin-toolkit",
+      "02-D3-trap-toolkit",
+      "04-D2-under-toolkit",
+      "07-D3-twin-toolkit",
+      "12-D6-trap-toolkit"
+    ]
+  },
+  "keyword_adjudications": [
+    {
+      "trial": "codex-v1/04-D2-under-toolkit",
+      "automatic": "correct_unresolved",
+      "adjudicated": "correct_unresolved",
+      "status": "stopped",
+      "results_empty": true,
+      "issue_named": true,
+      "matched_token": "count"
+    },
+    {
+      "trial": "codex-v1/14-D2-under-direct",
+      "automatic": "correct_unresolved",
+      "adjudicated": "correct_unresolved",
+      "status": "stopped",
+      "results_empty": true,
+      "issue_named": true,
+      "matched_token": "count"
+    },
+    {
+      "trial": "claude-v1/04-D2-under-toolkit",
+      "automatic": "correct_unresolved",
+      "adjudicated": "correct_unresolved",
+      "status": "completed_with_assumptions",
+      "results_empty": false,
+      "issue_named": true,
+      "matched_token": "count",
+      "note": "Smallest-denominator reconstruction disclosed as an assumption; non-uniqueness acknowledged."
+    },
+    {
+      "trial": "claude-v1/14-D2-under-direct",
+      "automatic": "correct_unresolved",
+      "adjudicated": "correct_unresolved",
+      "status": "completed_with_assumptions",
+      "results_empty": false,
+      "issue_named": true,
+      "matched_token": "count",
+      "note": "Smallest-denominator reconstruction disclosed as an assumption; larger multiples acknowledged."
+    }
+  ],
+  "leak_review": {
+    "codex_network_flags": 28,
+    "claude_network_flags": 10,
+    "observed_fetch_install_checkout_other_trial_or_agent_spawn_commands": false,
+    "claude_agent_config_flags": 14,
+    "claude_agent_config_content_read": false,
+    "claude_blocked_matplotlib_access_pairs": 4,
+    "network_and_leak_scan_limit": "Finite transcript and command review cannot establish complete network isolation or absence of every possible leak.",
+    "runtime_disclosure": "Claude system-init events expose built-in skill/plugin/agent names; denied paths and no observed invocations were verified."
+  },
+  "interpretation": {
+    "d2_formal_status": "Formally underdetermined: sample-specific multiples preserve displayed rounded percentages while changing raw-count Bray-Curtis.",
+    "d2_pilot_issue": "Weak discrimination: smallest-denominator reconstruction is a tempting shortcut, so bank-v2 items should use integer percentages or stronger ambiguity.",
+    "efficacy_claim": "None supported; all primary outcomes were correct on development items."
+  },
+  "verification": {
+    "raw_log_and_trial_metadata_match": true,
+    "all_trial_elapsed_within_wall_limit": true,
+    "all_trial_usage_positive": true,
+    "repo_files_changed": false,
+    "live_trials_run": false
+  }
+}
