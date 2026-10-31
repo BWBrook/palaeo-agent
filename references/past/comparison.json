@@ -1,0 +1,2275 @@
+{
+  "status": "matched",
+  "runtime": {
+    "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+    "numpy": "2.5.4",
+    "platform": "macOS-27.0.1-arm64-arm-64bit"
+  },
+  "code_provenance": {
+    "palaeo_agent_version": "0.2.0.dev0",
+    "source_files_sha256": {
+      "__init__.py": "a10fd69420212f424c72d0f01ca190789656fe1f61e271e0f1ad6e8a48706e8e",
+      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "cli.py": "2f10de8ff7e18e927a3af704d5b8f1ecb709ead3e4d54c46f8ca54e64c590205",
+      "community.py": "89bcafb435cfdc40ee96f34c07cf1cf586a3a48bf2fbeda67aec6dd5a6c1ff2f",
+      "core.py": "010aa7bb04a2e76a093660a7e8555bb919517e10d7c267a871090cf76948af98",
+      "methods.py": "7dea7bed3f2d05af0ad022bfc173ecd1b683c007b8fa6a2dae219adf6eb3f185",
+      "runs.py": "ab27115d915c89e1b32427ca16612ce2313394a3190c4a78b823ca73393fa4cf",
+      "sensitivity.py": "fbd411c8e3fd4accf241683c350831ea46ee41b09ed2c43a8f9b9da9b6d14d89"
+    },
+    "implementation_sha256": "f34ba7441b7e122527ecf98066efb8158f165fa526d9ed1037c4b9df8c92569d",
+    "comparison_script_sha256": "a165330931433b73bd9468f7cf1d97fae2200585ecfa44113a01a636c250a12c",
+    "uv_lock_sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27"
+  },
+  "inputs": {
+    "llanvirn": {
+      "path": "/Users/bwbrook/work/palaeo-agent/benchmarks/past/legacy-data/llanvirn.dat",
+      "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+      "bytes": 965
+    },
+    "dielasma": {
+      "path": "/Users/bwbrook/work/palaeo-agent/benchmarks/past/legacy-data/dielasma.dat",
+      "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
+      "bytes": 3522
+    }
+  },
+  "rounding_policy": "Half a last-place unit at each case's declared significant digits; omitted trailing zeroes restored; at signed powers of ten the toward-zero bound is one order finer",
+  "rounding_assumption": "Native export rounds rather than truncates",
+  "float_allowance": "8 * float64 epsilon * max(1, abs(expected)); zero for exact count rows",
+  "case_count": 13,
+  "compared_values": 1059,
+  "verified_capture_manifests": 13,
+  "verified_capture_output_artifacts": 63,
+  "matched_values": 1059,
+  "max_absolute_error": 0.0004879241950916935,
+  "max_ratio_to_rounding_bound": 0.9980288730204734,
+  "cases": [
+    {
+      "case_id": "c1-bray-raw",
+      "input_id": "llanvirn",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c1-bray-raw/raw/matrix.tsv",
+      "artifact_sha256": "8ff29701e26cfb51d13786872af8c329e80f22217b7ddb7684b29ba060eca4cb",
+      "artifact_bytes": 1031,
+      "status": "matched",
+      "compared_values": 100,
+      "matched_values": 100,
+      "failed_values": 0,
+      "max_absolute_error": 4.792899410688278e-09,
+      "max_ratio_to_rounding_bound": 0.9585798821376557,
+      "largest_error": {
+        "row": "4",
+        "column": "10",
+        "native_token": "0.13017751",
+        "expected": 0.1301775147928994,
+        "absolute_error": 4.792899410688278e-09,
+        "rounding_bound": 5e-09,
+        "rounding_bound_used": 5e-09,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.9585798821376557
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 8,
+      "interpretation": "PAST similarity compared with 1 - Python distance",
+      "shape": [
+        10,
+        10
+      ],
+      "diagonal_values": 10,
+      "distinct_off_diagonal_pairs": 45,
+      "structure": "labels, dimensions, exact symmetry, unit diagonal and [0,1] bounds verified",
+      "capture_manifest": {
+        "path": "references/past/captures/c1-bray-raw/capture.json",
+        "sha256": "6275294001de1041e4917da60bb13d72f162edcf1dd822266d6eecd1cf7c5a60",
+        "verified_output_artifacts": 3,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "index": "Bray-Curtis",
+          "data_transform": "none",
+          "output_semantics": "similarity (diagonal 1), compared with 1 - distance",
+          "orientation": "samples_by_taxa"
+        },
+        "verified_native_precision": {
+          "raw/matrix.tsv": 8
+        }
+      }
+    },
+    {
+      "case_id": "c1-jaccard",
+      "input_id": "llanvirn",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c1-jaccard/raw/matrix.tsv",
+      "artifact_sha256": "300db09b3d8ce4a48e4a01afba9c27182747c4f79a7877bb6482074f01a783ae",
+      "artifact_bytes": 893,
+      "status": "matched",
+      "compared_values": 100,
+      "matched_values": 100,
+      "failed_values": 0,
+      "max_absolute_error": 4.705882350464208e-09,
+      "max_ratio_to_rounding_bound": 0.9411764700928416,
+      "largest_error": {
+        "row": "4",
+        "column": "5",
+        "native_token": "0.52941176",
+        "expected": 0.5294117647058824,
+        "absolute_error": 4.705882350464208e-09,
+        "rounding_bound": 5e-09,
+        "rounding_bound_used": 5e-09,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.9411764700928416
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 8,
+      "interpretation": "PAST similarity compared with 1 - Python distance",
+      "shape": [
+        10,
+        10
+      ],
+      "diagonal_values": 10,
+      "distinct_off_diagonal_pairs": 45,
+      "structure": "labels, dimensions, exact symmetry, unit diagonal and [0,1] bounds verified",
+      "capture_manifest": {
+        "path": "references/past/captures/c1-jaccard/capture.json",
+        "sha256": "bd833c93323b0ab21424cb2952e0e577f411c0524051e5eb66c029250c74215c",
+        "verified_output_artifacts": 3,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "index": "Jaccard",
+          "data_transform": "none",
+          "output_semantics": "similarity (diagonal 1), compared with 1 - distance",
+          "orientation": "samples_by_taxa"
+        },
+        "verified_native_precision": {
+          "raw/matrix.tsv": 8
+        }
+      }
+    },
+    {
+      "case_id": "c2-diversity",
+      "input_id": "llanvirn",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c2-diversity/raw/indices.tsv",
+      "artifact_sha256": "687d64a3ad4c4c3488e088ed1bdbe9c89a2fcfe30001fa1b3a4e8e0d5572a941",
+      "artifact_bytes": 1138,
+      "status": "matched",
+      "compared_values": 40,
+      "matched_values": 40,
+      "failed_values": 0,
+      "max_absolute_error": 0.00048644288516186407,
+      "max_ratio_to_rounding_bound": 0.9728857703237281,
+      "largest_error": {
+        "row": "Shannon_H",
+        "column": "10",
+        "native_token": "1.411",
+        "expected": 1.4105135571148382,
+        "absolute_error": 0.00048644288516186407,
+        "rounding_bound": 0.0005,
+        "rounding_bound_used": 0.0005,
+        "float_allowance": 2.5055754042477186e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.9728857703237281
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 4,
+      "compared_rows": [
+        "Taxa_S",
+        "Individuals",
+        "Simpson_1-D",
+        "Shannon_H"
+      ],
+      "uncompared_rows": [
+        "Dominance_D",
+        "Evenness_e^H/S",
+        "Brillouin",
+        "Menhinick",
+        "Margalef",
+        "Equitability_J",
+        "Fisher_alpha",
+        "Berger-Parker",
+        "Chao-1",
+        "iChao-1",
+        "ACE",
+        "Squares"
+      ],
+      "exact_count_rows": [
+        "Taxa_S",
+        "Individuals"
+      ],
+      "interpretation": "Observed plug-in diversity; unbiased and ACE correction off, natural-log Shannon",
+      "capture_manifest": {
+        "path": "references/past/captures/c2-diversity/capture.json",
+        "sha256": "376edcad26551df24983994836e2b65dd3d3eaca60539767594e204161bd241b",
+        "verified_output_artifacts": 3,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "unbiased_versions": false,
+          "use_ACE_for_S": false,
+          "log2": false,
+          "CI_type": "None",
+          "orientation": "taxa_by_samples",
+          "recomputed_after_setting_change": true
+        },
+        "verified_native_precision": {
+          "raw/indices.tsv": 4
+        }
+      }
+    },
+    {
+      "case_id": "c3-l1-raw",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l1-raw/raw/statistics.txt",
+      "artifact_sha256": "3b645d14f6c8d5942e0817273d3f9243e0443c41c0f97367cfc43bf62a9dca16",
+      "artifact_bytes": 350,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 4.215309587496385e-06,
+      "max_ratio_to_rounding_bound": 0.843061917499277,
+      "largest_error": {
+        "row": "slope",
+        "column": "value",
+        "native_token": "0.84276",
+        "expected": 0.8427557846904125,
+        "absolute_error": 4.215309587496385e-06,
+        "rounding_bound": 5e-06,
+        "rounding_bound_used": 5e-06,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.843061917499277
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L1/X1",
+      "y": "L1/X2",
+      "transform": "none",
+      "expected_pairs_from_source": 103,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l1-raw/capture.json",
+        "sha256": "b15bceb32f316686b9e9c5db12632509923f087cd30fe7e65e66cb21b5509a10",
+        "verified_output_artifacts": 3,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L1/X1",
+          "y": "L1/X2",
+          "selected_columns": "specified pair only",
+          "transform": "none",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-l1-log10",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l1-log10/raw/statistics.txt",
+      "artifact_sha256": "1318ce77ab65928bbeb099a8ff9be1639761ab972d407689704e929552f7f7ef",
+      "artifact_bytes": 371,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 3.455643232030958e-05,
+      "max_ratio_to_rounding_bound": 0.7042335355700313,
+      "largest_error": {
+        "row": "slope",
+        "column": "value",
+        "native_token": "1.0184",
+        "expected": 1.0183654435676797,
+        "absolute_error": 3.455643232030958e-05,
+        "rounding_bound": 5e-05,
+        "rounding_bound_used": 5e-05,
+        "float_allowance": 1.8089804206903176e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.6911286464061916
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L1/X1",
+      "y": "L1/X2",
+      "transform": "log10",
+      "expected_pairs_from_source": 103,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l1-log10/capture.json",
+        "sha256": "6059371e4fee793ac99fc17ca37cb2a4738b19b7c761b57b107bd46452374fe0",
+        "verified_output_artifacts": 4,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L1/X1",
+          "y": "L1/X2",
+          "selected_columns": "specified pair only",
+          "transform": "log10",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-l2-raw",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l2-raw/raw/statistics.txt",
+      "artifact_sha256": "feb14f770c219b179a94872b30834f787a871826c8d7dd1e592173278d63d705",
+      "artifact_bytes": 348,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 4.511318376754225e-06,
+      "max_ratio_to_rounding_bound": 0.902263675350845,
+      "largest_error": {
+        "row": "correlation",
+        "column": "value",
+        "native_token": "0.9882",
+        "expected": 0.9881954886816232,
+        "absolute_error": 4.511318376754225e-06,
+        "rounding_bound": 5e-06,
+        "rounding_bound_used": 5e-06,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.902263675350845
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L2/X1",
+      "y": "L2/X2",
+      "transform": "none",
+      "expected_pairs_from_source": 79,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l2-raw/capture.json",
+        "sha256": "e135c2aaed3d737a4e7e0d814be31958775a63ccf3c4a6bb8fa3a1a41122b072",
+        "verified_output_artifacts": 4,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L2/X1",
+          "y": "L2/X2",
+          "selected_columns": "specified pair only",
+          "transform": "none",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-l2-log10",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l2-log10/raw/statistics.txt",
+      "artifact_sha256": "81a37b91e98784aee3b22a69c0df6537f33a2f19a1951d4ecccadb8011e5c208",
+      "artifact_bytes": 373,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 2.958446176815066e-06,
+      "max_ratio_to_rounding_bound": 0.5916892353630132,
+      "largest_error": {
+        "row": "correlation",
+        "column": "value",
+        "native_token": "0.99266",
+        "expected": 0.9926570415538232,
+        "absolute_error": 2.958446176815066e-06,
+        "rounding_bound": 5e-06,
+        "rounding_bound_used": 5e-06,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.5916892353630132
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L2/X1",
+      "y": "L2/X2",
+      "transform": "log10",
+      "expected_pairs_from_source": 79,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l2-log10/capture.json",
+        "sha256": "31ebe4c69c2d3585fbaae17606a5c79068a06fbaf4886897a4a527292b84a259",
+        "verified_output_artifacts": 4,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L2/X1",
+          "y": "L2/X2",
+          "selected_columns": "specified pair only",
+          "transform": "log10",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-l3-raw",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l3-raw/raw/statistics.txt",
+      "artifact_sha256": "7685fb5a97e08de873b4ca657c416710dcecfdc8753571a04f3862643d14d982",
+      "artifact_bytes": 346,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 4.156768590890536e-06,
+      "max_ratio_to_rounding_bound": 0.8313537181781071,
+      "largest_error": {
+        "row": "slope",
+        "column": "value",
+        "native_token": "0.90542",
+        "expected": 0.9054241567685909,
+        "absolute_error": 4.156768590890536e-06,
+        "rounding_bound": 5e-06,
+        "rounding_bound_used": 5e-06,
+        "float_allowance": 1.7763568394002505e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.8313537181781071
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L3/X1",
+      "y": "L3/X2",
+      "transform": "none",
+      "expected_pairs_from_source": 35,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l3-raw/capture.json",
+        "sha256": "3ab6dfc11ca3ba8c35fa7b950f3fdec9ca761dbd7a47cfdc9902fe86acd36f49",
+        "verified_output_artifacts": 4,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L3/X1",
+          "y": "L3/X2",
+          "selected_columns": "specified pair only",
+          "transform": "none",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-l3-log10",
+      "input_id": "dielasma",
+      "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-l3-log10/raw/statistics.txt",
+      "artifact_sha256": "14eccea5a5f0132fc86b232885d20056ee1e423a9c63d6ca600cfd076ae6c656",
+      "artifact_bytes": 371,
+      "status": "matched",
+      "compared_values": 3,
+      "matched_values": 3,
+      "failed_values": 0,
+      "max_absolute_error": 1.2390045055710175e-05,
+      "max_ratio_to_rounding_bound": 0.730780229174499,
+      "largest_error": {
+        "row": "slope",
+        "column": "value",
+        "native_token": "1.1071",
+        "expected": 1.1071123900450557,
+        "absolute_error": 1.2390045055710175e-05,
+        "rounding_bound": 5e-05,
+        "rounding_bound_used": 5e-05,
+        "float_allowance": 1.9666266660412924e-15,
+        "matched": true,
+        "ratio_to_rounding_bound": 0.2478009011142035
+      },
+      "failures": [],
+      "failure_examples_limit": 10,
+      "significant_digits": 5,
+      "compared_fields": [
+        "slope",
+        "intercept",
+        "correlation"
+      ],
+      "x": "L3/X1",
+      "y": "L3/X2",
+      "transform": "log10",
+      "expected_pairs_from_source": 35,
+      "past_exported_pair_count": null,
+      "uncompared_outputs": [
+        "standard errors",
+        "bootstrap confidence intervals",
+        "t statistics",
+        "p values",
+        "permutation results",
+        "r squared"
+      ],
+      "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export",
+      "capture_manifest": {
+        "path": "references/past/captures/c3-l3-log10/capture.json",
+        "sha256": "a444aae9cdb005fe1ba7719f4b81fef8ee1d1241f2c229be20bcb4ae07709919",
+        "verified_output_artifacts": 4,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L3/X1",
+          "y": "L3/X2",
+          "selected_columns": "specified pair only",
+          "transform": "log10",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c3-all6-l1-raw",
+      "input_id": "dielasma",
+      "status": "matched",
+      "compared_values": 654,
+      "matched_values": 654,
+      "failed_values": 0,
+      "max_absolute_error": 0.0004879241950916935,
+      "max_ratio_to_rounding_bound": 0.9980288730204734,
+      "artifacts": [
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-all6-l1-raw/raw/statistics.txt",
+          "artifact_sha256": "f1dbb680c934d23b6bb203a68e79992b48bcccc574e0203665c46ee1bcc65af7",
+          "artifact_bytes": 350,
+          "status": "matched",
+          "compared_values": 3,
+          "matched_values": 3,
+          "failed_values": 0,
+          "max_absolute_error": 4.215309587496385e-06,
+          "max_ratio_to_rounding_bound": 0.843061917499277,
+          "largest_error": {
+            "row": "slope",
+            "column": "value",
+            "native_token": "0.84276",
+            "expected": 0.8427557846904125,
+            "absolute_error": 4.215309587496385e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.843061917499277
+          },
+          "failures": [],
+          "failure_examples_limit": 10,
+          "significant_digits": 5,
+          "compared_fields": [
+            "slope",
+            "intercept",
+            "correlation"
+          ],
+          "x": "L1/X1",
+          "y": "L1/X2",
+          "transform": "none",
+          "expected_pairs_from_source": 103,
+          "past_exported_pair_count": null,
+          "uncompared_outputs": [
+            "standard errors",
+            "bootstrap confidence intervals",
+            "t statistics",
+            "p values",
+            "permutation results",
+            "r squared"
+          ],
+          "interpretation": "Descriptive RMA point estimates only; pair count is verified from source, not the PAST export"
+        },
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c3-all6-l1-raw/raw/residuals.tsv",
+          "artifact_sha256": "156d19599d015a1aa9f8d533101b4095ebbc9b21582cf9f5f4bdc3f8c5876c8f",
+          "artifact_bytes": 5711,
+          "status": "matched",
+          "compared_values": 651,
+          "matched_values": 651,
+          "failed_values": 0,
+          "max_absolute_error": 0.0004879241950916935,
+          "max_ratio_to_rounding_bound": 0.9980288730204734,
+          "significant_digits": 5,
+          "native_row_count": 103,
+          "native_column_count": 12,
+          "groups": [
+            {
+              "locality": "L1",
+              "past_observed_pair_count": 103,
+              "expected_pairs_from_source": 103,
+              "missing_mask": "matched",
+              "row_identity": "source order checked by observed X and Y values; native table has no row-ID column",
+              "status": "matched",
+              "compared_values": 309,
+              "matched_values": 309,
+              "failed_values": 0,
+              "max_absolute_error": 0.0004876458441103182,
+              "max_ratio_to_rounding_bound": 0.978072329562707,
+              "largest_error": {
+                "row": "3",
+                "column": "Regress.",
+                "native_token": "15.099",
+                "expected": 15.09851235415589,
+                "absolute_error": 0.0004876458441103182,
+                "rounding_bound": 0.0005,
+                "rounding_bound_used": 0.0005,
+                "float_allowance": 2.6820345685073992e-14,
+                "matched": true,
+                "ratio_to_rounding_bound": 0.9752916882206364
+              },
+              "failures": [],
+              "failure_examples_limit": 10
+            },
+            {
+              "locality": "L2",
+              "past_observed_pair_count": 79,
+              "expected_pairs_from_source": 79,
+              "missing_mask": "matched",
+              "row_identity": "source order checked by observed X and Y values; native table has no row-ID column",
+              "status": "matched",
+              "compared_values": 237,
+              "matched_values": 237,
+              "failed_values": 0,
+              "max_absolute_error": 0.0004879241950916935,
+              "max_ratio_to_rounding_bound": 0.9980288730204734,
+              "largest_error": {
+                "row": "54",
+                "column": "Regress.",
+                "native_token": "16.645",
+                "expected": 16.64548792419509,
+                "absolute_error": 0.0004879241950916935,
+                "rounding_bound": 0.0005,
+                "rounding_bound_used": 0.0005,
+                "float_allowance": 2.956832631929823e-14,
+                "matched": true,
+                "ratio_to_rounding_bound": 0.975848390183387
+              },
+              "failures": [],
+              "failure_examples_limit": 10
+            },
+            {
+              "locality": "L3",
+              "past_observed_pair_count": 35,
+              "expected_pairs_from_source": 35,
+              "missing_mask": "matched",
+              "row_identity": "source order checked by observed X and Y values; native table has no row-ID column",
+              "status": "matched",
+              "compared_values": 105,
+              "matched_values": 105,
+              "failed_values": 0,
+              "max_absolute_error": 4.834370736261917e-05,
+              "max_ratio_to_rounding_bound": 0.9668741472523834,
+              "largest_error": {
+                "row": "5",
+                "column": "Regress.",
+                "native_token": "8.2513",
+                "expected": 8.251251656292638,
+                "absolute_error": 4.834370736261917e-05,
+                "rounding_bound": 5e-05,
+                "rounding_bound_used": 5e-05,
+                "float_allowance": 1.4657167313268072e-14,
+                "matched": true,
+                "ratio_to_rounding_bound": 0.9668741472523834
+              },
+              "failures": [],
+              "failure_examples_limit": 10
+            }
+          ],
+          "uncompared_columns": "Residual in each locality block",
+          "interpretation": "Six-column selection retains each locality's complete pairs; observed X/Y and fitted values compared"
+        }
+      ],
+      "capture_manifest": {
+        "path": "references/past/captures/c3-all6-l1-raw/capture.json",
+        "sha256": "f87a87a78a67a6d4b9394f56bc41dff0f7c2b7862aa4f7eb9f16def148c38773",
+        "verified_output_artifacts": 6,
+        "input": {
+          "path": "benchmarks/past/legacy-data/dielasma.dat",
+          "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+        },
+        "verified_settings": {
+          "method": "RMA",
+          "x": "L1/X1",
+          "y": "L1/X2",
+          "selected_columns": "all six",
+          "transform": "none",
+          "zero_intercept": false
+        },
+        "verified_native_precision": {
+          "raw/residuals.tsv": 5,
+          "raw/statistics.txt": 5
+        }
+      }
+    },
+    {
+      "case_id": "c4-bray-raw",
+      "input_id": "llanvirn",
+      "status": "matched",
+      "compared_values": 49,
+      "matched_values": 49,
+      "failed_values": 0,
+      "max_absolute_error": 4.708701163602669e-05,
+      "max_ratio_to_rounding_bound": 0.9553093943265312,
+      "significant_digits": 5,
+      "spectrum": {
+        "status": "matched",
+        "compared_values": 9,
+        "matched_values": 9,
+        "failed_values": 0,
+        "max_absolute_error": 4.708701163602669e-05,
+        "max_ratio_to_rounding_bound": 0.9417402327205338,
+        "largest_error": {
+          "row": "1",
+          "column": "Eigenvalue",
+          "native_token": "1.3214",
+          "expected": 1.321447087011636,
+          "absolute_error": 4.708701163602669e-05,
+          "rounding_bound": 5e-05,
+          "rounding_bound_used": 5e-05,
+          "float_allowance": 2.3473615709186574e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.9417402327205338
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "scaled_scores": {
+        "status": "matched",
+        "compared_values": 40,
+        "matched_values": 40,
+        "failed_values": 0,
+        "max_absolute_error": 4.66591486442125e-06,
+        "max_ratio_to_rounding_bound": 0.9553093943265312,
+        "largest_error": {
+          "row": "8",
+          "column": "Coord 4",
+          "native_token": "0.11858",
+          "expected": 0.11858466591486443,
+          "absolute_error": 4.66591486442125e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.9331829728842499
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "compared_coordinate_axes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "axis_signs": [
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "minimum_adjacent_relative_eigengaps": [
+        0.750516689008267,
+        0.03869743643676035,
+        0.03869743643676035,
+        0.046048698781514394
+      ],
+      "relative_eigengap_threshold": 1e-08,
+      "native_score_columns": [
+        "Coord 1",
+        "Coord 2",
+        "Coord 3",
+        "Coord 4",
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "uncompared_score_columns": [
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "sample_identity": "Native numeric row labels matched to declared frozen source order",
+      "structural_null": {
+        "axis": 9,
+        "native_token": "1.3556E-16",
+        "python_value": -1.0454470040510125e-17,
+        "absolute_tolerance": 3.755778513469852e-13,
+        "rule": "128 * float64 epsilon * n * largest absolute eigenvalue; both values must qualify",
+        "excluded_from_numeric_count": true
+      },
+      "percent_convention": "absolute",
+      "percent_definition_status": "explained_difference",
+      "percent_candidates": {
+        "positive": {
+          "denominator": 2.1486855875714435,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.040253673931147205,
+          "max_ratio_to_rounding_bound": 113.33747396233828,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "61.46",
+            "expected": 61.50025367393115,
+            "absolute_error": 0.040253673931147205,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 1.0924639623853798e-13,
+            "matched": false,
+            "ratio_to_rounding_bound": 80.50734786229441
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "61.46",
+              "expected": 61.50025367393115,
+              "absolute_error": 0.040253673931147205,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.0924639623853798e-13,
+              "matched": false,
+              "ratio_to_rounding_bound": 80.50734786229441
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "15.333",
+              "expected": 15.343286913403839,
+              "absolute_error": 0.010286913403838582,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 2.7255152647505267e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 20.573826807677165
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "12.955",
+              "expected": 12.963384756012251,
+              "absolute_error": 0.008384756012251415,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 2.302759717311931e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 16.76951202450283
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "5.0537",
+              "expected": 5.057013797030551,
+              "absolute_error": 0.0033137970305512354,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 8.98306104529665e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 66.27594061102471
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "2.2236",
+              "expected": 2.2250071406129717,
+              "absolute_error": 0.0014071406129718689,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.952406651942247e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 28.142812259437378
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "1.9667",
+              "expected": 1.9680036385415929,
+              "absolute_error": 0.0013036385415929885,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.495876723287937e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 26.07277083185977
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "0.8742",
+              "expected": 0.8747666873698117,
+              "absolute_error": 0.0005666873698116914,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 113.33747396233828
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.068239",
+              "expected": 0.06828339309782452,
+              "absolute_error": 4.439309782452994e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 88.78619564905988
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.065171",
+              "expected": -0.06521332646127996,
+              "absolute_error": 4.2326461279953986e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 84.65292255990798
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "signed": {
+          "denominator": 2.147284358224594,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.08038620689378462,
+          "max_ratio_to_rounding_bound": 227.50481740654303,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "61.46",
+            "expected": 61.540386206893785,
+            "absolute_error": 0.08038620689378462,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 1.0931768593794861e-13,
+            "matched": false,
+            "ratio_to_rounding_bound": 160.77241378756923
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "61.46",
+              "expected": 61.540386206893785,
+              "absolute_error": 0.08038620689378462,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.0931768593794861e-13,
+              "matched": false,
+              "ratio_to_rounding_bound": 160.77241378756923
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "15.333",
+              "expected": 15.353299310605843,
+              "absolute_error": 0.02029931060584289,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 2.727293823775384e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 40.59862121168578
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "12.955",
+              "expected": 12.971844127070886,
+              "absolute_error": 0.016844127070886117,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 2.304262403475634e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 33.688254141772234
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "5.0537",
+              "expected": 5.060313795986293,
+              "absolute_error": 0.0066137959862926365,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 8.988923021011695e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 132.27591972585273
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "2.2236",
+              "expected": 2.226459088646978,
+              "absolute_error": 0.0028590886469781474,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.954985829762908e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 57.18177293956295
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "1.9667",
+              "expected": 1.9692878766735704,
+              "absolute_error": 0.0025878766735705216,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.4981579884770938e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 51.75753347141043
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "0.8742",
+              "expected": 0.8753375240870327,
+              "absolute_error": 0.0011375240870327152,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 227.50481740654303
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.068239",
+              "expected": 0.06832795202824501,
+              "absolute_error": 8.895202824502069e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 177.90405649004137
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.065171",
+              "expected": -0.06525588199263901,
+              "absolute_error": 8.488199263900764e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 169.7639852780153
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "absolute": {
+          "denominator": 2.150086816918293,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 0.00028756652583261655,
+          "max_ratio_to_rounding_bound": 0.8582985593896808,
+          "largest_error": {
+            "row": "2",
+            "column": "Percent",
+            "native_token": "15.333",
+            "expected": 15.333287566525833,
+            "absolute_error": 0.00028756652583261655,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 2.7237390239288986e-14,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.5751330516652331
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        }
+      },
+      "percent_scope": "Candidate denominator checks diagnose PAST's convention; excluded from product-match counts because product fractions use positive inertia",
+      "interpretation": "Nine non-null eigenvalues and four scaled coordinate axes compared; sign flips only, no rescaling or rotation",
+      "unscaled_diagnostic": {
+        "status": "matched",
+        "compared_values": 40,
+        "matched_values": 40,
+        "failed_values": 0,
+        "max_absolute_error": 4.951929624408269e-06,
+        "max_ratio_to_rounding_bound": 0.9920373163913032,
+        "largest_error": {
+          "row": "9",
+          "column": "Coord 1",
+          "native_token": "-0.30097",
+          "expected": -0.3009650480703756,
+          "absolute_error": 4.951929624408269e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.9903859248816537
+        },
+        "failures": [],
+        "failure_examples_limit": 10,
+        "axis_signs": [
+          -1,
+          -1,
+          -1,
+          1
+        ],
+        "scope": "Unit eigenvectors explain scaling-off output; diagnostic only, excluded from product-match count"
+      },
+      "artifacts": [
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-bray-raw/raw/eigenvalues.tsv",
+          "artifact_sha256": "0d35e2f378904a7f37689468e04f181877ef99c6615e8a31f9eeba71e0986f5b",
+          "artifact_bytes": 212,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 4.708701163602669e-05,
+          "max_ratio_to_rounding_bound": 0.9417402327205338,
+          "largest_error": {
+            "row": "1",
+            "column": "Eigenvalue",
+            "native_token": "1.3214",
+            "expected": 1.321447087011636,
+            "absolute_error": 4.708701163602669e-05,
+            "rounding_bound": 5e-05,
+            "rounding_bound_used": 5e-05,
+            "float_allowance": 2.3473615709186574e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.9417402327205338
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        },
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-bray-raw/raw/scores.tsv",
+          "artifact_sha256": "24e160ac84fb19b54152c4627719ed6243b5fd9eb99880dfe83417a6f011a92d",
+          "artifact_bytes": 853,
+          "status": "matched",
+          "compared_values": 40,
+          "matched_values": 40,
+          "failed_values": 0,
+          "max_absolute_error": 4.66591486442125e-06,
+          "max_ratio_to_rounding_bound": 0.9553093943265312,
+          "largest_error": {
+            "row": "8",
+            "column": "Coord 4",
+            "native_token": "0.11858",
+            "expected": 0.11858466591486443,
+            "absolute_error": 4.66591486442125e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.9331829728842499
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        },
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-bray-raw/raw/scores-unscaled.tsv",
+          "artifact_sha256": "94d1ced1356225be45fa3b164f0b88cf121a6a26fad889d030da75a29c847894",
+          "artifact_bytes": 869,
+          "status": "matched",
+          "compared_values": 40,
+          "matched_values": 40,
+          "failed_values": 0,
+          "max_absolute_error": 4.951929624408269e-06,
+          "max_ratio_to_rounding_bound": 0.9920373163913032,
+          "largest_error": {
+            "row": "9",
+            "column": "Coord 1",
+            "native_token": "-0.30097",
+            "expected": -0.3009650480703756,
+            "absolute_error": 4.951929624408269e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.9903859248816537
+          },
+          "failures": [],
+          "failure_examples_limit": 10,
+          "axis_signs": [
+            -1,
+            -1,
+            -1,
+            1
+          ],
+          "scope": "Unit eigenvectors explain scaling-off output; diagnostic only, excluded from product-match count"
+        }
+      ],
+      "capture_manifest": {
+        "path": "references/past/captures/c4-bray-raw/capture.json",
+        "sha256": "5880116c9710c599719363fb32ccea06c5096c33e0b5b66bdd5acd8bc5b1233c",
+        "verified_output_artifacts": 10,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "index": "Bray-Curtis",
+          "data_transform": "none",
+          "transformation_exponent": 2,
+          "eigenvalue_scale": true,
+          "correction": "none offered in this module",
+          "orientation": "samples_by_taxa",
+          "recomputed_after_setting_change": true
+        },
+        "verified_native_precision": {
+          "raw/eigenvalues.tsv": 5,
+          "raw/scores-unscaled.tsv": 5,
+          "raw/scores.tsv": 5
+        }
+      }
+    },
+    {
+      "case_id": "c4-jaccard",
+      "input_id": "llanvirn",
+      "status": "matched",
+      "compared_values": 49,
+      "matched_values": 49,
+      "failed_values": 0,
+      "max_absolute_error": 4.967319681636884e-06,
+      "max_ratio_to_rounding_bound": 0.9934639363273766,
+      "significant_digits": 5,
+      "spectrum": {
+        "status": "matched",
+        "compared_values": 9,
+        "matched_values": 9,
+        "failed_values": 0,
+        "max_absolute_error": 3.737474878584557e-06,
+        "max_ratio_to_rounding_bound": 0.9701378191409593,
+        "largest_error": {
+          "row": "3",
+          "column": "Eigenvalue",
+          "native_token": "0.26563",
+          "expected": 0.2656262625251214,
+          "absolute_error": 3.737474878584557e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.7474949757169113
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "scaled_scores": {
+        "status": "matched",
+        "compared_values": 40,
+        "matched_values": 40,
+        "failed_values": 0,
+        "max_absolute_error": 4.967319681636884e-06,
+        "max_ratio_to_rounding_bound": 0.9934639363273766,
+        "largest_error": {
+          "row": "1",
+          "column": "Coord 3",
+          "native_token": "0.37468",
+          "expected": 0.3746750326803184,
+          "absolute_error": 4.967319681636884e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.9934639363273766
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "compared_coordinate_axes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "axis_signs": [
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "minimum_adjacent_relative_eigengaps": [
+        0.3763312548093849,
+        0.050889774560912315,
+        0.050889774560912315,
+        0.11675081281207321
+      ],
+      "relative_eigengap_threshold": 1e-08,
+      "native_score_columns": [
+        "Coord 1",
+        "Coord 2",
+        "Coord 3",
+        "Coord 4",
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "uncompared_score_columns": [
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "sample_identity": "Native numeric row labels matched to declared frozen source order",
+      "structural_null": {
+        "axis": 9,
+        "native_token": "7.2623E-17",
+        "python_value": -2.1422696528748481e-16,
+        "absolute_tolerance": 1.318056848748021e-13,
+        "rule": "128 * float64 epsilon * n * largest absolute eigenvalue; both values must qualify",
+        "excluded_from_numeric_count": true
+      },
+      "percent_convention": "absolute",
+      "percent_definition_status": "explained_difference",
+      "percent_candidates": {
+        "positive": {
+          "denominator": 1.3284176098994975,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.24995772337907596,
+          "max_ratio_to_rounding_bound": 1033.8251214157879,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "34.66",
+            "expected": 34.90995772337907,
+            "absolute_error": 0.24995772337907596,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 6.201254216509801e-14,
+            "matched": false,
+            "ratio_to_rounding_bound": 499.9154467581519
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "34.66",
+              "expected": 34.90995772337907,
+              "absolute_error": 0.24995772337907596,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 6.201254216509801e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 499.9154467581519
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "21.616",
+              "expected": 21.77224952799725,
+              "absolute_error": 0.15624952799725023,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 3.867528435818679e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 312.49905599450045
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "19.852",
+              "expected": 19.995689649523506,
+              "absolute_error": 0.14368964952350538,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 3.5519480067455877e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 287.37929904701076
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "10.492",
+              "expected": 10.568060373625006,
+              "absolute_error": 0.07606037362500473,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.8772646323883545e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 152.12074725000946
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "6.4458",
+              "expected": 6.492294434185386,
+              "absolute_error": 0.04649443418538546,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 1.1532631621565389e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 929.8886837077091
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "3.5344",
+              "expected": 3.5599558130779623,
+              "absolute_error": 0.025555813077962064,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 6.323751856523718e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 511.11626155924125
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "2.0062",
+              "expected": 2.020715350095801,
+              "absolute_error": 0.014515350095800628,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.589511532623747e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 290.30700191601255
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.6762",
+              "expected": 0.6810771281160188,
+              "absolute_error": 0.004877128116018814,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 975.4256232037627
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.71667",
+              "expected": -0.721839125607079,
+              "absolute_error": 0.005169125607078939,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 1033.8251214157879
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "signed": {
+          "denominator": 1.3188285718397883,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.5037836719671773,
+          "max_ratio_to_rounding_bound": 2083.505572117228,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "34.66",
+            "expected": 35.163783671967174,
+            "absolute_error": 0.5037836719671773,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 6.246342762488974e-14,
+            "matched": false,
+            "ratio_to_rounding_bound": 1007.5673439343547
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "34.66",
+              "expected": 35.163783671967174,
+              "absolute_error": 0.5037836719671773,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 6.246342762488974e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 1007.5673439343547
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "21.616",
+              "expected": 21.93055283885001,
+              "absolute_error": 0.31455283885000895,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 3.895648752711979e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 629.1056777000178
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "19.852",
+              "expected": 20.141075815074906,
+              "absolute_error": 0.28907581507490576,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 3.5777737776987284e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 578.1516301498115
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "10.492",
+              "expected": 10.644899422538412,
+              "absolute_error": 0.15289942253841105,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.8909139893953885e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 305.7988450768221
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "6.4458",
+              "expected": 6.539499097288336,
+              "absolute_error": 0.09369909728833559,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 1.1616483947719899e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 1873.9819457667115
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "3.5344",
+              "expected": 3.5858398077922007,
+              "absolute_error": 0.051439807792200476,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 6.369731067565355e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 1028.7961558440095
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "2.0062",
+              "expected": 2.035407719379912,
+              "absolute_error": 0.029207719379911623,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 3.615610423288572e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 584.1543875982325
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.6762",
+              "expected": 0.6860291549696617,
+              "absolute_error": 0.009829154969661635,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 1965.830993932327
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.71667",
+              "expected": -0.7270875278605862,
+              "absolute_error": 0.01041752786058614,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 2083.505572117228
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "absolute": {
+          "denominator": 1.3380066479592068,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 0.0003873502622404601,
+          "max_ratio_to_rounding_bound": 0.8564383430531564,
+          "largest_error": {
+            "row": "3",
+            "column": "Percent",
+            "native_token": "19.852",
+            "expected": 19.85238735026224,
+            "absolute_error": 0.0003873502622404601,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 3.526492404806135e-14,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.7747005244809202
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        }
+      },
+      "percent_scope": "Candidate denominator checks diagnose PAST's convention; excluded from product-match counts because product fractions use positive inertia",
+      "interpretation": "Nine non-null eigenvalues and four scaled coordinate axes compared; sign flips only, no rescaling or rotation",
+      "artifacts": [
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-jaccard/raw/eigenvalues.tsv",
+          "artifact_sha256": "6e0e82cdf9b190080661897805ad81ab0877ebca7a06a874689c5f82a9048619",
+          "artifact_bytes": 210,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 3.737474878584557e-06,
+          "max_ratio_to_rounding_bound": 0.9701378191409593,
+          "largest_error": {
+            "row": "3",
+            "column": "Eigenvalue",
+            "native_token": "0.26563",
+            "expected": 0.2656262625251214,
+            "absolute_error": 3.737474878584557e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.7474949757169113
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        },
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-jaccard/raw/scores.tsv",
+          "artifact_sha256": "9a0200704cdbf4316b86d6c2ec118daa5dcf9e6fe5a8bbd5f5432123b2699d3b",
+          "artifact_bytes": 857,
+          "status": "matched",
+          "compared_values": 40,
+          "matched_values": 40,
+          "failed_values": 0,
+          "max_absolute_error": 4.967319681636884e-06,
+          "max_ratio_to_rounding_bound": 0.9934639363273766,
+          "largest_error": {
+            "row": "1",
+            "column": "Coord 3",
+            "native_token": "0.37468",
+            "expected": 0.3746750326803184,
+            "absolute_error": 4.967319681636884e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.9934639363273766
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        }
+      ],
+      "capture_manifest": {
+        "path": "references/past/captures/c4-jaccard/capture.json",
+        "sha256": "dab81ef74817f618099921655638db7f10cfbf9d115b8b2f7a3de188c49ddaaa",
+        "verified_output_artifacts": 7,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "index": "Jaccard",
+          "data_transform": "none",
+          "transformation_exponent": 2,
+          "eigenvalue_scale": true,
+          "correction": "none offered in this module",
+          "orientation": "samples_by_taxa",
+          "recomputed_after_setting_change": true
+        },
+        "verified_native_precision": {
+          "raw/eigenvalues.tsv": 5,
+          "raw/scores.tsv": 5
+        }
+      }
+    },
+    {
+      "case_id": "c4-bray-relative",
+      "input_id": "llanvirn",
+      "status": "matched",
+      "compared_values": 49,
+      "matched_values": 49,
+      "failed_values": 0,
+      "max_absolute_error": 4.8637699134046475e-06,
+      "max_ratio_to_rounding_bound": 0.9770315398116569,
+      "significant_digits": 5,
+      "spectrum": {
+        "status": "matched",
+        "compared_values": 9,
+        "matched_values": 9,
+        "failed_values": 0,
+        "max_absolute_error": 1.748549313007608e-06,
+        "max_ratio_to_rounding_bound": 0.8888891432634605,
+        "largest_error": {
+          "row": "1",
+          "column": "Eigenvalue",
+          "native_token": "0.53074",
+          "expected": 0.530741748549313,
+          "absolute_error": 1.748549313007608e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.34970986260152154
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "scaled_scores": {
+        "status": "matched",
+        "compared_values": 40,
+        "matched_values": 40,
+        "failed_values": 0,
+        "max_absolute_error": 4.8637699134046475e-06,
+        "max_ratio_to_rounding_bound": 0.9770315398116569,
+        "largest_error": {
+          "row": "10",
+          "column": "Coord 1",
+          "native_token": "0.13741",
+          "expected": 0.1374051362300866,
+          "absolute_error": 4.8637699134046475e-06,
+          "rounding_bound": 5e-06,
+          "rounding_bound_used": 5e-06,
+          "float_allowance": 1.7763568394002505e-15,
+          "matched": true,
+          "ratio_to_rounding_bound": 0.9727539826809294
+        },
+        "failures": [],
+        "failure_examples_limit": 10
+      },
+      "compared_coordinate_axes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "axis_signs": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "minimum_adjacent_relative_eigengaps": [
+        0.6271245416307722,
+        0.27388965191049836,
+        0.045954824514878,
+        0.040369540529245046
+      ],
+      "relative_eigengap_threshold": 1e-08,
+      "native_score_columns": [
+        "Coord 1",
+        "Coord 2",
+        "Coord 3",
+        "Coord 4",
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "uncompared_score_columns": [
+        "Coord 5",
+        "Coord 6",
+        "Coord 7",
+        "Coord 8",
+        "Coord 9"
+      ],
+      "sample_identity": "Native numeric row labels matched to declared frozen source order",
+      "structural_null": {
+        "axis": 9,
+        "native_token": "9.1628E-17",
+        "python_value": 1.8496342622313985e-16,
+        "absolute_tolerance": 1.5084587759853122e-13,
+        "rule": "128 * float64 epsilon * n * largest absolute eigenvalue; both values must qualify",
+        "excluded_from_numeric_count": true
+      },
+      "percent_convention": "absolute",
+      "percent_definition_status": "explained_difference",
+      "percent_candidates": {
+        "positive": {
+          "denominator": 0.8202957950306277,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.056264076270991836,
+          "max_ratio_to_rounding_bound": 153.87236814037865,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "64.645",
+            "expected": 64.70126407627099,
+            "absolute_error": 0.056264076270991836,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 1.149325329597257e-13,
+            "matched": false,
+            "ratio_to_rounding_bound": 112.52815254198367
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "64.645",
+              "expected": 64.70126407627099,
+              "absolute_error": 0.056264076270991836,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.149325329597257e-13,
+              "matched": false,
+              "ratio_to_rounding_bound": 112.52815254198367
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "24.104",
+              "expected": 24.12551349950799,
+              "absolute_error": 0.02151349950798931,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 4.2855520908894087e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 43.02699901597862
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "6.3989",
+              "expected": 6.404506803488899,
+              "absolute_error": 0.005606803488898748,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 1.1376689463362942e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 112.13606977797497
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "3.4282",
+              "expected": 3.431171566973085,
+              "absolute_error": 0.0029715669730849825,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 6.094985080148314e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 59.43133946169965
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "0.81849",
+              "expected": 0.8192112645526766,
+              "absolute_error": 0.0007212645526765149,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 144.25291053530296
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "0.29142",
+              "expected": 0.29167465516788355,
+              "absolute_error": 0.00025465516788353293,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 50.93103357670658
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "0.20509",
+              "expected": 0.2052702167010409,
+              "absolute_error": 0.00018021670104090282,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 36.04334020818056
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.021369",
+              "expected": 0.02138791733743444,
+              "absolute_error": 1.891733743444174e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 37.83467486888348
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.087641",
+              "expected": -0.08771793618407019,
+              "absolute_error": 7.693618407018932e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 153.87236814037865
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "signed": {
+          "denominator": 0.8195762484886223,
+          "status": "different",
+          "compared_values": 9,
+          "matched_values": 0,
+          "failed_values": 9,
+          "max_absolute_error": 0.11306851748717861,
+          "max_ratio_to_rounding_bound": 307.8962012358078,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "64.645",
+            "expected": 64.75806851748717,
+            "absolute_error": 0.11306851748717861,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 1.1503343791738838e-13,
+            "matched": false,
+            "ratio_to_rounding_bound": 226.13703497435722
+          },
+          "failures": [
+            {
+              "row": "1",
+              "column": "Percent",
+              "native_token": "64.645",
+              "expected": 64.75806851748717,
+              "absolute_error": 0.11306851748717861,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 1.1503343791738838e-13,
+              "matched": false,
+              "ratio_to_rounding_bound": 226.13703497435722
+            },
+            {
+              "row": "2",
+              "column": "Percent",
+              "native_token": "24.104",
+              "expected": 24.146694481563884,
+              "absolute_error": 0.04269448156388478,
+              "rounding_bound": 0.0005,
+              "rounding_bound_used": 0.0005,
+              "float_allowance": 4.289314589123429e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 85.38896312776956
+            },
+            {
+              "row": "3",
+              "column": "Percent",
+              "native_token": "6.3989",
+              "expected": 6.410129636913121,
+              "absolute_error": 0.011229636913120622,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 1.1386677621972866e-14,
+              "matched": false,
+              "ratio_to_rounding_bound": 224.59273826241244
+            },
+            {
+              "row": "4",
+              "column": "Percent",
+              "native_token": "3.4282",
+              "expected": 3.434183962269551,
+              "absolute_error": 0.005983962269551224,
+              "rounding_bound": 5e-05,
+              "rounding_bound_used": 5e-05,
+              "float_allowance": 6.100336169136169e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 119.67924539102448
+            },
+            {
+              "row": "5",
+              "column": "Percent",
+              "native_token": "0.81849",
+              "expected": 0.8199304906572248,
+              "absolute_error": 0.0014404906572247356,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 288.0981314449471
+            },
+            {
+              "row": "6",
+              "column": "Percent",
+              "native_token": "0.29142",
+              "expected": 0.29193073078001075,
+              "absolute_error": 0.0005107307800107375,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 102.14615600214748
+            },
+            {
+              "row": "7",
+              "column": "Percent",
+              "native_token": "0.20509",
+              "expected": 0.20545043358125956,
+              "absolute_error": 0.0003604335812595616,
+              "rounding_bound": 5e-06,
+              "rounding_bound_used": 5e-06,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 72.0867162519123
+            },
+            {
+              "row": "8",
+              "column": "Percent",
+              "native_token": "0.021369",
+              "expected": 0.021406694848360636,
+              "absolute_error": 3.7694848360636524e-05,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 75.38969672127305
+            },
+            {
+              "row": "10",
+              "column": "Percent",
+              "native_token": "-0.087641",
+              "expected": -0.0877949481006179,
+              "absolute_error": 0.00015394810061790387,
+              "rounding_bound": 5e-07,
+              "rounding_bound_used": 5e-07,
+              "float_allowance": 1.7763568394002505e-15,
+              "matched": false,
+              "ratio_to_rounding_bound": 307.8962012358078
+            }
+          ],
+          "failure_examples_limit": 10
+        },
+        "absolute": {
+          "denominator": 0.8210153415726335,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 0.0004407969172603998,
+          "max_ratio_to_rounding_bound": 0.8815938345207996,
+          "largest_error": {
+            "row": "1",
+            "column": "Percent",
+            "native_token": "64.645",
+            "expected": 64.64455920308274,
+            "absolute_error": 0.0004407969172603998,
+            "rounding_bound": 0.0005,
+            "rounding_bound_used": 0.0005,
+            "float_allowance": 1.1483180487041042e-13,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.8815938345207996
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        }
+      },
+      "percent_scope": "Candidate denominator checks diagnose PAST's convention; excluded from product-match counts because product fractions use positive inertia",
+      "interpretation": "Nine non-null eigenvalues and four scaled coordinate axes compared; sign flips only, no rescaling or rotation",
+      "artifacts": [
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-bray-relative/raw/eigenvalues.tsv",
+          "artifact_sha256": "9b23bb7d3d469bf08272e2e2dcef7dbfdbf35d980ae25227216c6b3760025e20",
+          "artifact_bytes": 221,
+          "status": "matched",
+          "compared_values": 9,
+          "matched_values": 9,
+          "failed_values": 0,
+          "max_absolute_error": 1.748549313007608e-06,
+          "max_ratio_to_rounding_bound": 0.8888891432634605,
+          "largest_error": {
+            "row": "1",
+            "column": "Eigenvalue",
+            "native_token": "0.53074",
+            "expected": 0.530741748549313,
+            "absolute_error": 1.748549313007608e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.34970986260152154
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        },
+        {
+          "artifact": "/Users/bwbrook/work/palaeo-agent/references/past/captures/c4-bray-relative/raw/scores.tsv",
+          "artifact_sha256": "a7a29dfe19ead28dacf8ef7e35d9f2b4ef5659d5077d73fd1b5b5f7f0a881b7c",
+          "artifact_bytes": 892,
+          "status": "matched",
+          "compared_values": 40,
+          "matched_values": 40,
+          "failed_values": 0,
+          "max_absolute_error": 4.8637699134046475e-06,
+          "max_ratio_to_rounding_bound": 0.9770315398116569,
+          "largest_error": {
+            "row": "10",
+            "column": "Coord 1",
+            "native_token": "0.13741",
+            "expected": 0.1374051362300866,
+            "absolute_error": 4.8637699134046475e-06,
+            "rounding_bound": 5e-06,
+            "rounding_bound_used": 5e-06,
+            "float_allowance": 1.7763568394002505e-15,
+            "matched": true,
+            "ratio_to_rounding_bound": 0.9727539826809294
+          },
+          "failures": [],
+          "failure_examples_limit": 10
+        }
+      ],
+      "capture_manifest": {
+        "path": "references/past/captures/c4-bray-relative/capture.json",
+        "sha256": "cbdcb53bfa4c482dd33e183a3d7fb3455a328f5b5a6bf2e1e75cdbf465c963fb",
+        "verified_output_artifacts": 8,
+        "input": {
+          "path": "benchmarks/past/legacy-data/llanvirn.dat",
+          "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+        },
+        "verified_settings": {
+          "index": "Bray-Curtis",
+          "data_transform": "row percentage",
+          "transformation_exponent": 2,
+          "eigenvalue_scale": true,
+          "correction": "none offered in this module",
+          "orientation": "samples_by_taxa",
+          "recomputed_after_setting_change": true
+        },
+        "verified_native_precision": {
+          "raw/eigenvalues.tsv": 5,
+          "raw/scores.tsv": 5
+        }
+      }
+    }
+  ],
+  "scope": "Only named captured outputs and declared settings; no claim for other PAST methods, indices or full workflow parity"
+}

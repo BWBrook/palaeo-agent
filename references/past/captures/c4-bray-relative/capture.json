@@ -1,0 +1,110 @@
+{
+  "case_id": "c4-bray-relative",
+  "captured_at": "2026-10-31T00:01:12.632098+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Open fresh original Llanvirn file; select ten sample columns and transpose into sample rows.",
+    "Select sample rows 1 through 10.",
+    "Apply Transform > Row percentage to the selected sample rows (100 times relative abundance).",
+    "Open PCoA; select declared similarity index; keep c=2; press Recompute.",
+    "Copy Summary table.",
+    "Enable Eigenvalue scale in Scatter plot tab; copy Scores table."
+  ],
+  "module_path": "Multivariate > Ordination > Principal coordinates (PCoA)",
+  "settings": {
+    "index": "Bray-Curtis",
+    "transformation_exponent": 2,
+    "data_transform": "row percentage",
+    "eigenvalue_scale": true,
+    "correction": "none offered in this module",
+    "orientation": "samples_by_taxa",
+    "recomputed_after_setting_change": true
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c4-bray-relative/raw/eigenvalues.tsv",
+      "sha256": "9b23bb7d3d469bf08272e2e2dcef7dbfdbf35d980ae25227216c6b3760025e20",
+      "bytes": 221,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/raw/eigenvalues.tsv.accessibility.txt",
+      "sha256": "1177293d4b13be91274134a1123f2a404680b711681a12bc4f70661912dc61f7",
+      "bytes": 1394,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/raw/scores.tsv",
+      "sha256": "a7a29dfe19ead28dacf8ef7e35d9f2b4ef5659d5077d73fd1b5b5f7f0a881b7c",
+      "bytes": 892,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/raw/scores.tsv.accessibility.txt",
+      "sha256": "4f54b0400e81bc45d26fe577eb17f8507fa084e62046b2f3b0aecd8752c794ad",
+      "bytes": 2721,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/screenshots/scaling.png",
+      "sha256": "a06f479d1b3b71ae8d12b28fdfe780e2e1b1ecc2212f16eb0b9ab1030b567720",
+      "bytes": 128006,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/screenshots/scores.png",
+      "sha256": "9f82ec1f3d2250c22e6383c787b2133be8e3920ccc7305356d689ec39d2ad432",
+      "bytes": 277726,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/screenshots/summary.png",
+      "sha256": "1a70bdcfe1acb9b006af199ac911ed2bd0456b150114abc240a0f750c6463626",
+      "bytes": 154401,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-bray-relative/screenshots/transformed-input.png",
+      "sha256": "7df38fd9d49af7bfba7b8b907bd73e2847465ae146bac94ebc147c3e70594468",
+      "bytes": 650476,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 5 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": [
+    "Summary exports all ten eigenvalues, including structural null and one negative eigenvalue. Coordinate comparison is limited to first four identifiable positive axes; row labels/order 1..10 come from the transposed source.",
+    "Native Percent is investigated against positive, signed and absolute inertia conventions; it is not treated as equivalent to the package positive-inertia percentages."
+  ]
+}

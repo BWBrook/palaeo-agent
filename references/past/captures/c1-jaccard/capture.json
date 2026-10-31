@@ -1,0 +1,65 @@
+{
+  "case_id": "c1-jaccard",
+  "captured_at": "2026-10-30T23:52:00.988853+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Transpose selected original ten sample columns into ten sample rows by 23 taxa columns.",
+    "Select sample rows 1 through 10."
+  ],
+  "module_path": "Multivariate > Similarity and distance indices",
+  "settings": {
+    "index": "Jaccard",
+    "data_transform": "none",
+    "output_semantics": "similarity (diagonal 1), compared with 1 - distance",
+    "orientation": "samples_by_taxa"
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c1-jaccard/raw/matrix.tsv",
+      "sha256": "300db09b3d8ce4a48e4a01afba9c27182747c4f79a7877bb6482074f01a783ae",
+      "bytes": 893,
+      "kind": "native_export",
+      "significant_digits": 8
+    },
+    {
+      "path": "references/past/captures/c1-jaccard/raw/matrix.tsv.accessibility.txt",
+      "sha256": "97175cad2f1c442fbd6767c60c0b167e4fb2f77d09843712d1290ff2dfc1d552",
+      "bytes": 2667,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c1-jaccard/screenshots/settings.png",
+      "sha256": "d4e6392f7d784058f7ebae73c98bb498fba6958b8eb86d47e145804bc70a1bfa",
+      "bytes": 174317,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 8 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": []
+}

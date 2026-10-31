@@ -1,0 +1,27 @@
+{
+  "session_date_local": "2026-10-31",
+  "timezone": "Australia/Hobart",
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "host": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "about_artifact_sha256": "ae74fdfb05db59c0a5ebe9f7e8ce60f6a76fbad886c6132bee4c4c8d34fe257a",
+  "protocol": "references/past/protocol.md",
+  "protocol_amendments": [
+    "Per-token significant-digit rounding bounds, not internal 1e-10 tolerance.",
+    "E0 command-line/script feasibility deferred because native Copy acquisition works.",
+    "All ten eigenvalues were exportable; first-four coordinate comparison retained."
+  ],
+  "acquisition_note": "Native UI via CUA. Temporary display-awake process only during capture. No PAST source data saved or overwritten."
+}

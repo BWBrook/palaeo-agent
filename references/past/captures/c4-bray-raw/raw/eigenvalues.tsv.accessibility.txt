@@ -1,0 +1,44 @@
+Window: "Regression Results Data", App: TextEdit.
+0 standard window Regression Results Data, Secondary Actions: Raise, URL: file:///Users/bwbrook/Library/Mobile%20Documents/com~apple~TextEdit/Documents/Regression%20Results%20Data.txt
+	1 scroll area Secondary Actions: Scroll Left, Scroll Right, Scroll Up, Scroll Down
+		2 text entry area (settable) ID: First Text View, Value: Axis	Eigenvalue	Percent
+1	1.3214	61.46
+2	0.32968	15.333
+3	0.27854	12.955
+4	0.10866	5.0537
+5	0.047808	2.2236
+6	0.042286	1.9667
+7	0.018796	0.8742
+8	0.0014672	0.068239
+9	1.3556E-16	6.305E-15
+10	-0.0014012	-0.065171
+
+		3 scroll bar (disabled, settable, float) 0.1851851791143417
+		4 scroll bar (disabled, settable, float) 1
+	5 close button
+	6 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	7 minimise button
+	8 menu button (disabled) Suggested, Description: document actions
+	9 text —
+	10 image Regression Results Data
+	11 text Regression Results Data
+12 menu bar
+	13 TextEdit
+	14 File
+	15 Edit
+	16 Format
+	17 View
+	18 Window
+	19 Help
+
+The focused UI element is 2 text entry area (settable) ID: First Text View, Value: Axis	Eigenvalue	Percent
+1	1.3214	61.46
+2	0.32968	15.333
+3	0.27854	12.955
+4	0.10866	5.0537
+5	0.047808	2.2236
+6	0.042286	1.9667
+7	0.018796	0.8742
+8	0.0014672	0.068239
+9	1.3556E-16	6.305E-15
+10	-0.0014012	-0.065171

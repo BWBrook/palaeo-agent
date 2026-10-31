@@ -117,16 +117,20 @@ was regenerated with version 0.2; the original remains in Git commit `445da1b`.
 uv run pytest -q
 uv run python scripts/capture_past.py --offline
 uv run python scripts/reference_dielasma.py
+uv run python scripts/compare_past_captures.py --output /tmp/past-comparison.json
 ```
 
 The archive contains the supplied PAST 5.4 manual, all 17 data files from the
 2001 ZIP, all 14 vignettes, 10 answer pages and 49 images. Original bytes and
 offline reading copies are separate. These legacy examples do not establish a
-complete current PAST 5 corpus. The installed Mac app was opened to verify its
-About version (5.4); no numerical PAST reference comparison has been executed.
+complete current PAST 5 corpus. Native exports from the installed PAST 5.4
+app now agree with the declared community and RMA calculations on two legacy
+datasets, within export precision. See the
+[validation results](docs/validation-tranche-3-results.md) for the captures,
+independent R/vegan checks and the explained PCoA percentage convention.
 
 Community workflows remain descriptive. Agent efficacy trials, inferential
-methods and current-PAST numerical comparisons are separate future tranches.
+methods and broader held-out validation remain future tranches.
 
 ## Working principles
 

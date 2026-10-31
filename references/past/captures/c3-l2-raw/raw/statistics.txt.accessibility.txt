@@ -1,0 +1,54 @@
+Window: "Taxa Diversity Indices", App: TextEdit.
+0 standard window Taxa Diversity Indices, Secondary Actions: Raise, URL: file:///Users/bwbrook/Library/Mobile%20Documents/com~apple~TextEdit/Documents/Taxa%20Diversity%20Indices.txt
+	1 scroll area Secondary Actions: Scroll Left, Scroll Right, Scroll Up, Scroll Down
+		2 text entry area (settable) ID: First Text View, Value: RMA Regression: L2/X1-L2/X2
+
+Slope a:	0.81917	Std. error a:	0.014301
+	t:	57.279	p (slope):	6.8997E-65
+Intercept b:	0.26215	Std. error b:	0.18845
+
+95% bootstrapped confidence intervals (N=1999):
+Slope a:	(0.77706, 0.85235)
+Intercept b:	(-0.033922, 0.63255)
+
+Correlation:
+r:	0.9882
+r2:	0.97653
+t:	56.602
+p (uncorr.):	1.6859E-64
+Permutation p:	0.0001
+
+		3 scroll bar (disabled, settable, float) 0.1851851791143417
+		4 scroll bar (disabled, settable, float) 0.615384578704834
+	5 close button
+	6 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	7 minimise button
+	8 menu button (disabled) Suggested, Description: document actions
+	9 text —
+	10 image Taxa Diversity Indices
+	11 text Taxa Diversity Indices
+12 menu bar
+	13 TextEdit
+	14 File
+	15 Edit
+	16 Format
+	17 View
+	18 Window
+	19 Help
+
+The focused UI element is 2 text entry area (settable) ID: First Text View, Value: RMA Regression: L2/X1-L2/X2
+
+Slope a:	0.81917	Std. error a:	0.014301
+	t:	57.279	p (slope):	6.8997E-65
+Intercept b:	0.26215	Std. error b:	0.18845
+
+95% bootstrapped confidence intervals (N=1999):
+Slope a:	(0.77706, 0.85235)
+Intercept b:	(-0.033922, 0.63255)
+
+Correlation:
+r:	0.9882
+r2:	0.97653
+t:	56.602
+p (uncorr.):	1.6859E-64
+Permutation p:	0.0001

@@ -1,9 +1,11 @@
 # PAST 5.4 reference capture protocol
 
-Status: draft by Claude (Opus 5.5) for Codex review, 30 October 2026. No
-capture has been executed. Codex runs captures through computer use. Their
-outputs go under `references/past/captures/` and belong to the capturing
-agent.
+Status: proposed by Claude (Opus 5.5), accepted and executed by Codex on
+31 October 2026 (Board #2642–2643). See the
+[results](../../docs/validation-tranche-3-results.md) and
+[capture manifests](captures/). E0 remains deferred: native Copy exports
+were sufficient. C1–C4 were executed, including all ten PCoA eigenvalues;
+coordinate comparison remains limited to the first four axes.
 
 ## Purpose
 
@@ -37,18 +39,24 @@ agreement.
    text file. Transcribe from the screen only when no export exists. Mark
    transcribed values as such and have a second read confirm them.
 4. Record the precision PAST exports. Comparison tolerances come from that
-   precision, not from our internal `1e-10`.
+   precision, not from our internal `1e-10`. Use a token-specific half-unit
+   rounding bound at the module's observed significant digits, restoring
+   omitted trailing zeroes, plus an explicit floating-point allowance.
 5. Record stochastic outputs, such as bootstrap intervals and permutation
    p-values, with their replicate counts. Do not compare them for equality.
 6. Use one directory per case: `captures/<case-id>/capture.json`, verbatim
    exports in `raw/`, and screenshots in `screenshots/`.
 7. Keep failed or ambiguous captures. If a capture is repeated, keep both and
    say why.
+8. After changing a numerical option, press Recompute where available before
+   copying output. The diversity module can display results from the previous
+   setting alongside the newly changed checkbox.
 
-`capture.json` records: `case_id`, `captured_at`, `captured_by` (agent and
+`capture.json` records: `case_id`, `captured_at`, `by` (agent and
 model as reported), `past_about`, `macos`, `input` (path, SHA-256),
-`data_steps`, `module` (menu path), `settings`, `outputs` (name → verbatim
-text, exported digits, `export` or `transcribed`), and `notes`.
+`data_steps`, `module_path`, `settings`, `outputs` (paths, hashes, exported
+digits and acquisition kind), and `notes`. Verbatim text remains in the
+referenced raw files.
 
 ## E0: scripting feasibility
 

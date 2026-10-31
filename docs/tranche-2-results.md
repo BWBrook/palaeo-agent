@@ -106,7 +106,10 @@ and execution infrastructure remain provisional. No agent trial campaign was
 run, and no reduction in agents' error rates is claimed.
 
 The installed Mac PAST About dialog was inspected and reports version 5.4.
-No numerical GUI reference run was executed. The next useful validation work
+No numerical GUI reference run was executed during tranche 2. The next useful validation work
 is a curated PAST capture and/or the interactive Claude reference lane, followed
 by a small development smoke of the agent evaluation protocol. Additional
 methods should follow scientific demand rather than precede those checks.
+
+The subsequent [31 October validation tranche](validation-tranche-3-results.md)
+completed the scoped native PAST captures and independent R/vegan regeneration.

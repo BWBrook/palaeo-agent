@@ -1,0 +1,44 @@
+Window: "Coord Regression Results", App: TextEdit.
+0 standard window Coord Regression Results, Secondary Actions: Raise, URL: file:///Users/bwbrook/Library/Mobile%20Documents/com~apple~TextEdit/Documents/Coord%20Regression%20Results.txt
+	1 scroll area Secondary Actions: Scroll Left, Scroll Right, Scroll Up, Scroll Down
+		2 text entry area (settable) ID: First Text View, Value: Axis	Eigenvalue	Percent
+1	0.46375	34.66
+2	0.28923	21.616
+3	0.26563	19.852
+4	0.14039	10.492
+5	0.086245	6.4458
+6	0.047291	3.5344
+7	0.026844	2.0062
+8	0.0090475	0.6762
+9	7.2623E-17	5.4277E-15
+10	-0.009589	-0.71667
+
+		3 scroll bar (disabled, settable, float) 0.1851851791143417
+		4 scroll bar (disabled, settable, float) 1
+	5 close button
+	6 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	7 minimise button
+	8 menu button (disabled) Suggested, Description: document actions
+	9 text —
+	10 image Coord Regression Results
+	11 text Coord Regression Results
+12 menu bar
+	13 TextEdit
+	14 File
+	15 Edit
+	16 Format
+	17 View
+	18 Window
+	19 Help
+
+The focused UI element is 2 text entry area (settable) ID: First Text View, Value: Axis	Eigenvalue	Percent
+1	0.46375	34.66
+2	0.28923	21.616
+3	0.26563	19.852
+4	0.14039	10.492
+5	0.086245	6.4458
+6	0.047291	3.5344
+7	0.026844	2.0062
+8	0.0090475	0.6762
+9	7.2623E-17	5.4277E-15
+10	-0.009589	-0.71667

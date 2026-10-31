@@ -1,0 +1,102 @@
+{
+  "case_id": "c4-jaccard",
+  "captured_at": "2026-10-31T00:00:23.546688+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Open fresh original Llanvirn file; select ten sample columns and transpose into sample rows.",
+    "Select sample rows 1 through 10.",
+    "Open PCoA; select declared similarity index; keep c=2; press Recompute.",
+    "Copy Summary table.",
+    "Enable Eigenvalue scale in Scatter plot tab; copy Scores table."
+  ],
+  "module_path": "Multivariate > Ordination > Principal coordinates (PCoA)",
+  "settings": {
+    "index": "Jaccard",
+    "transformation_exponent": 2,
+    "data_transform": "none",
+    "eigenvalue_scale": true,
+    "correction": "none offered in this module",
+    "orientation": "samples_by_taxa",
+    "recomputed_after_setting_change": true
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c4-jaccard/raw/eigenvalues.tsv",
+      "sha256": "6e0e82cdf9b190080661897805ad81ab0877ebca7a06a874689c5f82a9048619",
+      "bytes": 210,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/raw/eigenvalues.tsv.accessibility.txt",
+      "sha256": "8b79900b11562670b3429eef18f0d2ebc5dca609f036bdad7bbdff9e0159ac3b",
+      "bytes": 1372,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/raw/scores.tsv",
+      "sha256": "9a0200704cdbf4316b86d6c2ec118daa5dcf9e6fe5a8bbd5f5432123b2699d3b",
+      "bytes": 857,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/raw/scores.tsv.accessibility.txt",
+      "sha256": "dc2a2aee45f96c127f1b9426d1c0fd78d7a777b2d01636babd037059a2541e5b",
+      "bytes": 2666,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/screenshots/scaling.png",
+      "sha256": "496eb9b6afdad5ee90704f3683bfdc99f808dd555a08a649a1ccb2db0085a60b",
+      "bytes": 129656,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/screenshots/scores.png",
+      "sha256": "22d5b803568574ee0bf63ac97f7d8a2f368d46a182ff6db6ed16cfe6829a8935",
+      "bytes": 270947,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c4-jaccard/screenshots/summary.png",
+      "sha256": "16c5211cb256c6893a4d113cbb507dc3046c2d7c1d4af6ae842947f240c9f1b6",
+      "bytes": 150713,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 5 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": [
+    "Summary exports all ten eigenvalues, including structural null and one negative eigenvalue. Coordinate comparison is limited to first four identifiable positive axes; row labels/order 1..10 come from the transposed source.",
+    "Native Percent is investigated against positive, signed and absolute inertia conventions; it is not treated as equivalent to the package positive-inertia percentages."
+  ]
+}

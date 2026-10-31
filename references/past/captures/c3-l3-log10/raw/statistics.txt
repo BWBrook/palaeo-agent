@@ -1,0 +1,16 @@
+RMA Regression: L3/X1-L3/X2, log-log transformed
+
+Slope a:	1.1071	Std. error a:	0.063459
+	t:	17.446	p (slope):	3.1788E-18
+Intercept b:	-0.1927	Std. error b:	0.057257
+
+95% bootstrapped confidence intervals (N=1999):
+Slope a:	(0.91581, 1.2051)
+Intercept b:	(-0.28487, -0.0090487)
+
+Correlation:
+r:	0.94423
+r2:	0.89158
+t:	16.473
+p (uncorr.):	1.7471E-17
+Permutation p:	0.0001

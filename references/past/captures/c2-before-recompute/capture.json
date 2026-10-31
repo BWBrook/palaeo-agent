@@ -1,0 +1,72 @@
+{
+  "case_id": "c2-before-recompute",
+  "captured_at": "2026-10-30T23:52:48.139567+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Restore taxa rows by sample columns using Transpose.",
+    "Select original sample columns 1 through 10 only.",
+    "Open Diversity indices; Unbiased versions initially ON.",
+    "Set Unbiased versions OFF."
+  ],
+  "module_path": "Diversity > Diversity indices (Alpha diversity indices)",
+  "settings": {
+    "unbiased_versions": false,
+    "use_ACE_for_S": false,
+    "log2": false,
+    "CI_type": "None",
+    "bootstrap_N_displayed": 9999,
+    "orientation": "taxa_by_samples",
+    "recomputed_after_setting_change": false
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c2-before-recompute/raw/indices.tsv",
+      "sha256": "a36b21c42a81d50d94f5da26fc6e70b7b35b97403d68567607df268b389c5b04",
+      "bytes": 1142,
+      "kind": "native_export",
+      "significant_digits": 4
+    },
+    {
+      "path": "references/past/captures/c2-before-recompute/raw/indices.tsv.accessibility.txt",
+      "sha256": "83def94e864c96e967e282a78e5f01e1dc9ae5b57f5cc160c4e9072c6f9b9f68",
+      "bytes": 3165,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c2-before-recompute/screenshots/settings.png",
+      "sha256": "f78e2da7abcbf6608c4d3e8ae933fe1ea1d8d5351d8b068914b5247e1df40379",
+      "bytes": 289071,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 4 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": [
+    "Diagnostic capture: checkbox OFF but output still contains initial bias-corrected estimates because Recompute was not pressed. Retained as a stale-result counterexample; excluded from successful numerical comparisons."
+  ]
+}

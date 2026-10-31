@@ -1,0 +1,71 @@
+{
+  "case_id": "c2-diversity",
+  "captured_at": "2026-10-30T23:53:10.499658+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Restore taxa rows by sample columns using Transpose.",
+    "Select original sample columns 1 through 10 only.",
+    "Open Diversity indices; Unbiased versions initially ON.",
+    "Set Unbiased versions OFF.",
+    "Press Recompute before copying output."
+  ],
+  "module_path": "Diversity > Diversity indices (Alpha diversity indices)",
+  "settings": {
+    "unbiased_versions": false,
+    "use_ACE_for_S": false,
+    "log2": false,
+    "CI_type": "None",
+    "bootstrap_N_displayed": 9999,
+    "orientation": "taxa_by_samples",
+    "recomputed_after_setting_change": true
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c2-diversity/raw/indices.tsv",
+      "sha256": "687d64a3ad4c4c3488e088ed1bdbe9c89a2fcfe30001fa1b3a4e8e0d5572a941",
+      "bytes": 1138,
+      "kind": "native_export",
+      "significant_digits": 4
+    },
+    {
+      "path": "references/past/captures/c2-diversity/raw/indices.tsv.accessibility.txt",
+      "sha256": "a3eb1f270ad60ccc2d6625e8ca27e8a09a15ee0d03d83710698b81227f9fb674",
+      "bytes": 3157,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c2-diversity/screenshots/settings.png",
+      "sha256": "2d8bf7ccfa2212e1a7d17811159640c9e2bb136ec49bbd0670a1ca52a6456507",
+      "bytes": 289229,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 4 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": []
+}

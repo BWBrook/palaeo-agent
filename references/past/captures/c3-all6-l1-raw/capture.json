@@ -1,0 +1,98 @@
+{
+  "case_id": "c3-all6-l1-raw",
+  "captured_at": "2026-10-30T23:57:20.314396+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/dielasma.dat",
+    "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Select all six original columns together.",
+    "Open bivariate regression; choose RMA.",
+    "Select Statistics tab and copy native text.",
+    "Select Residuals tab and copy entire native table, including all three groups."
+  ],
+  "module_path": "Model > Linear > Bivariate regression",
+  "settings": {
+    "method": "RMA",
+    "x": "L1/X1",
+    "y": "L1/X2",
+    "selected_columns": "all six",
+    "transform": "none",
+    "zero_intercept": false,
+    "bootstrap_CI_N_displayed": 1999,
+    "compared_statistics": [
+      "slope",
+      "intercept",
+      "Pearson r"
+    ]
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/raw/residuals.tsv",
+      "sha256": "156d19599d015a1aa9f8d533101b4095ebbc9b21582cf9f5f4bdc3f8c5876c8f",
+      "bytes": 5711,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/raw/residuals.tsv.accessibility.txt",
+      "sha256": "09e861105af52149f926b3f40db4a62c3dae201f9fd2e94137eed77bac67c3ed",
+      "bytes": 12534,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/raw/statistics.txt",
+      "sha256": "f1dbb680c934d23b6bb203a68e79992b48bcccc574e0203665c46ee1bcc65af7",
+      "bytes": 350,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/raw/statistics.txt.accessibility.txt",
+      "sha256": "e071e9aa4ad98f7b6dc431088f9e0e86fc3c1866f67bbc6a568a8b4752b7b038",
+      "bytes": 1658,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/screenshots/residuals.png",
+      "sha256": "59a8bead1cdce6ca41dbb61fe1b60555c6f739b4531e3229b920684988a751a8",
+      "bytes": 268290,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c3-all6-l1-raw/screenshots/statistics.png",
+      "sha256": "ceeb59a856bbf7c3dedc2c8906d62a586561dddba06244ed978fa8ce78955a86",
+      "bytes": 148574,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 5 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": [
+    "PAST also exports standard errors, inferential quantities and stochastic bootstrap/permutation output. These are retained but not validated; no seed is available in the captured module."
+  ]
+}

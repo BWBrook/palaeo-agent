@@ -1,0 +1,44 @@
+Window: "Regression Results Data", App: TextEdit.
+0 standard window Regression Results Data, Secondary Actions: Raise, URL: file:///Users/bwbrook/Library/Mobile%20Documents/com~apple~TextEdit/Documents/Regression%20Results%20Data.txt
+	1 scroll area Secondary Actions: Scroll Left, Scroll Right, Scroll Up, Scroll Down
+		2 text entry area (settable) ID: First Text View, Value: 	Coord 1	Coord 2	Coord 3	Coord 4	Coord 5	Coord 6	Coord 7	Coord 8	Coord 9
+1	0.31448	0.027755	-0.20376	0.21327	-0.10338	-0.13014	-0.24893	-0.072777	0.31623
+2	0.26862	-0.051718	-0.12106	-0.2089	-0.1453	-0.40922	-0.2919	-0.54925	0.31623
+3	0.2941	-0.011618	-0.18258	0.14991	-0.11844	-0.25663	0.032445	0.7621	0.31623
+4	0.10422	-0.34963	-0.072921	-0.70645	0.076468	0.46645	-0.083141	0.15434	0.31623
+5	0.31688	0.12719	-0.22806	0.36461	0.31937	0.47217	0.40866	-0.2644	0.31623
+6	0.20984	0.34662	0.84084	-0.078503	-0.1021	0.031686	0.096722	0.016848	0.31623
+7	-0.45046	0.098501	-0.097176	0.2134	-0.66667	0.38172	-0.16715	-0.035481	0.31623
+8	-0.31777	-0.40428	0.27291	0.35975	0.49219	-0.011956	-0.42578	0.037458	0.31623
+9	-0.30097	-0.41157	0.038319	-0.034943	-0.11947	-0.35678	0.6777	-0.10917	0.31623
+10	-0.43894	0.62875	-0.24651	-0.27213	0.36733	-0.1873	0.0013812	0.060325	0.31623
+
+		3 scroll bar (disabled, settable, float) 0.1851851791143417
+		4 scroll bar (disabled, settable, float) 1
+	5 close button
+	6 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	7 minimise button
+	8 menu button (disabled) Suggested, Description: document actions
+	9 text —
+	10 image Regression Results Data
+	11 text Regression Results Data
+12 menu bar
+	13 TextEdit
+	14 File
+	15 Edit
+	16 Format
+	17 View
+	18 Window
+	19 Help
+
+The focused UI element is 2 text entry area (settable) ID: First Text View, Value: 	Coord 1	Coord 2	Coord 3	Coord 4	Coord 5	Coord 6	Coord 7	Coord 8	Coord 9
+1	0.31448	0.027755	-0.20376	0.21327	-0.10338	-0.13014	-0.24893	-0.072777	0.31623
+2	0.26862	-0.051718	-0.12106	-0.2089	-0.1453	-0.40922	-0.2919	-0.54925	0.31623
+3	0.2941	-0.011618	-0.18258	0.14991	-0.11844	-0.25663	0.032445	0.7621	0.31623
+4	0.10422	-0.34963	-0.072921	-0.70645	0.076468	0.46645	-0.083141	0.15434	0.31623
+5	0.31688	0.12719	-0.22806	0.36461	0.31937	0.47217	0.40866	-0.2644	0.31623
+6	0.20984	0.34662	0.84084	-0.078503	-0.1021	0.031686	0.096722	0.016848	0.31623
+7	-0.45046	0.098501	-0.097176	0.2134	-0.66667	0.38172	-0.16715	-0.035481	0.31623
+8	-0.31777	-0.40428	0.27291	0.35975	0.49219	-0.011956	-0.42578	0.037458	0.31623
+9	-0.30097	-0.41157	0.038319	-0.034943	-0.11947	-0.35678	0.6777	-0.10917	0.31623
+10	-0.43894	0.62875	-0.24651	-0.27213	0.36733	-0.1873	0.0013812	0.060325	0.31623

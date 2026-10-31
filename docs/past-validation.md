@@ -7,11 +7,14 @@ PAST 5 within a documented source scope, then compare the supported documented
 analyses against actual, versioned PAST outputs. The complete public PAST 5
 corpus has not yet been enumerated or acquired. Barry supplied the version 5.4
 manual and original 2001 case-study ZIP; the legacy corpus is preserved under
-his explicit private-repository authorisation. No PAST numerical reference runs
-have been performed by this project.
+his explicit private-repository authorisation. The
+[31 October validation tranche](validation-tranche-3-results.md) compared
+native PAST 5.4 outputs for declared community and RMA cases on Llanvirn and
+Dielasma. This covers two legacy datasets, not the complete current corpus.
 
-The official site currently lists Windows PAST 5.4 and a Mac 5.2 download. The
-linked manual identifies itself as version 5.4. Record the version actually
+The source inventory records download-page labels separately from execution
+evidence. The supplied manual identifies itself as version 5.4, and the
+installed Mac app's About dialog reports Past 5.4. Record the version actually
 running, platform and executable provenance for every reference run. A download
 page label or an old screenshot is not an execution record.
 

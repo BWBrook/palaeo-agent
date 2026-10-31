@@ -1,0 +1,16 @@
+RMA Regression: L1/X1-L1/X2
+
+Slope a:	0.84276	Std. error a:	0.015267
+	t:	55.201	p (slope):	2.9672E-77
+Intercept b:	-0.054237	Std. error b:	0.23329
+
+95% bootstrapped confidence intervals (N=1999):
+Slope a:	(0.81146, 0.87292)
+Intercept b:	(-0.37618, 0.30562)
+
+Correlation:
+r:	0.98329
+r2:	0.96685
+t:	54.278
+p (uncorr.):	1.5408E-76
+Permutation p:	0.0001

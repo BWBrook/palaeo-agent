@@ -1,0 +1,32 @@
+wrote /private/tmp/palaeo-independent-31oct/community-vegan-regenerated.json 
+LIBPATHS
+
+/Users/bwbrook/work/palaeo-agent/references/r/renv/library/macos/R-4.6/aarch64-apple-darwin27.0.0
+/opt/homebrew/lib/R/4.6/site-library
+/opt/homebrew/Cellar/r/4.6.1_1/lib/R/library
+
+SESSION
+R version 4.6.1 (2026-06-24)
+Platform: aarch64-apple-darwin27.0.0
+Running under: macOS Golden Gate 27.0.1
+
+Matrix products: default
+BLAS:   /opt/homebrew/Cellar/openblas/0.3.34/lib/libopenblasp-r0.3.34.dylib 
+LAPACK: /opt/homebrew/Cellar/r/4.6.1_1/lib/R/lib/libRlapack.dylib;  LAPACK version 3.12.1
+
+locale:
+[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+
+time zone: Australia/Hobart
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] jsonlite_2.0.0 vegan_2.7-6    permute_0.9-10
+
+loaded via a namespace (and not attached):
+ [1] MASS_7.3-65     compiler_4.6.1  Matrix_1.7-5    parallel_4.6.1 
+ [5] mgcv_1.9-4      splines_4.6.1   nlme_3.1-169    grid_4.6.1     
+ [9] cluster_2.1.8.2 lattice_0.22-9 

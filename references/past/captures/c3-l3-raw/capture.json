@@ -1,0 +1,83 @@
+{
+  "case_id": "c3-l3-raw",
+  "captured_at": "2026-10-30T23:55:15.128190+00:00",
+  "by": {
+    "agent": "Codex",
+    "model": "GPT-6",
+    "acquisition": "native PAST Copy button > TextEdit plain text > accessibility text value; no numerical transcription"
+  },
+  "past_about": {
+    "displayed_version": "Past 5.4",
+    "displayed_date": "October 2026",
+    "bundle_identifier": "no.uio.Past5",
+    "bundle_short_version": "1.0.12",
+    "bundle_version": "1.0.12",
+    "executable_sha256": "e5d9bdb4564cd1c54417a946dffc284e28e35a0f3cc55290d391d595fd1ea187",
+    "screenshot": "references/past/captures/session-2026-10-31/screenshots/about.png"
+  },
+  "macos": {
+    "model": "Mac17,5",
+    "macos": "27.0.1",
+    "build": "26A434",
+    "architecture": "arm64"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/dielasma.dat",
+    "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+  },
+  "data_steps": [
+    "Open original file; no source file saved or overwritten.",
+    "Select only original L3/X1 and L3/X2 columns.",
+    "Open bivariate regression; choose RMA.",
+    "Select Statistics tab and copy native text."
+  ],
+  "module_path": "Model > Linear > Bivariate regression",
+  "settings": {
+    "method": "RMA",
+    "x": "L3/X1",
+    "y": "L3/X2",
+    "selected_columns": "specified pair only",
+    "transform": "none",
+    "zero_intercept": false,
+    "bootstrap_CI_N_displayed": 1999,
+    "compared_statistics": [
+      "slope",
+      "intercept",
+      "Pearson r"
+    ]
+  },
+  "outputs": [
+    {
+      "path": "references/past/captures/c3-l3-raw/raw/statistics.txt",
+      "sha256": "7685fb5a97e08de873b4ca657c416710dcecfdc8753571a04f3862643d14d982",
+      "bytes": 346,
+      "kind": "native_export",
+      "significant_digits": 5
+    },
+    {
+      "path": "references/past/captures/c3-l3-raw/raw/statistics.txt.accessibility.txt",
+      "sha256": "20e5c11fc785787a765d8e329ed8f08130e38700662a2e2c3044eeaa957692f5",
+      "bytes": 1650,
+      "kind": "accessibility_evidence",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c3-l3-raw/screenshots/settings.png",
+      "sha256": "d8e7ca00b86a9515db1b03c4da1b658ead1ebc0ffabe6f3079643fe77d153389",
+      "bytes": 133643,
+      "kind": "screenshot",
+      "significant_digits": null
+    },
+    {
+      "path": "references/past/captures/c3-l3-raw/screenshots/statistics.png",
+      "sha256": "4ece7b7862b52756b480c85ae6229a4589e6236b7ee039007e4a094bb7bff7ae",
+      "bytes": 139923,
+      "kind": "screenshot",
+      "significant_digits": null
+    }
+  ],
+  "precision_policy": "Observed export convention: 5 significant digits, trailing zeroes omitted. Compare within half a last-place unit plus explicit floating-point allowance. Exact counts and matrix structural diagonals checked exactly.",
+  "notes": [
+    "PAST also exports standard errors, inferential quantities and stochastic bootstrap/permutation output. These are retained but not validated; no seed is available in the captured module."
+  ]
+}
