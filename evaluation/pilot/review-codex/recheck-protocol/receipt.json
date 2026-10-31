@@ -1,0 +1,90 @@
+{
+  "baseline": "a3ca5706a3cc5b72a26c854366d4c887cfdd9b82",
+  "source_sha256": {
+    "evaluation/pilot/review-codex/recheck-protocol/counterexamples.py": "a90172c45befe643d13b1eb6a878255125d7d389b1c701698a1441d30ae89b69",
+    "docs/pilot-protocol.md": "091ee0777477ababc6e420a7253f5fe4e43e94c462fd520929b6b18b9dc5619d",
+    "docs/sprints-3-4-proposal.md": "849d950a4b282221aff573a1e92cc458a21ffca9e593bb64c90ae797ac0590f5",
+    "evaluation/revised/score.py": "d66e0d1e2dfe60f48ea4f06b554364f1d7c613e581432d44423ba0017fc0b9e7",
+    "evaluation/pilot/items/P10-control/key.json": "ddd97135740b30fdcfd770be84353911e263e307119bca6f19a5cefb4cf61039"
+  },
+  "intact_reference_counterexample": {
+    "answer": {
+      "status": "completed",
+      "results": {
+        "shannon_change": 0.24585556544429088
+      },
+      "assumptions": [],
+      "exclusions": [],
+      "issues": [],
+      "summary": "Shannon diversity decreased from the oldest to the youngest sample."
+    },
+    "score": {
+      "version": "sprint1-revised-v2",
+      "item": "P10-control",
+      "class": "control",
+      "expected": "complete",
+      "termination": "exited",
+      "adjudication_required": false,
+      "provisional": false,
+      "notes": [],
+      "evidence": {
+        "checks": {
+          "answer_valid": true,
+          "analysis_code_saved": false,
+          "input_hashes_recorded": false,
+          "environment_recorded": false
+        },
+        "score": 0.25
+      },
+      "status": "completed",
+      "caveats": 0,
+      "issue_named": null,
+      "mismatches": [],
+      "outcome": "correct"
+    }
+  },
+  "denominator_counterexample": {
+    "E": 12,
+    "correct_direct": 8,
+    "correct_toolkit": 12,
+    "false_rejections_each": 1,
+    "conditional_delta": -0.04166666666666667,
+    "E_normalised_delta": 0
+  },
+  "confined_benefit_counterexample": {
+    "item_effects": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "delta_T": 0.5833333333333334,
+    "bootstrap_80_percent_order_statistic_bounds": [
+      0.4166666666666667,
+      0.75
+    ],
+    "seed": 20261101,
+    "resamples": 10000,
+    "other_delta_T": 0,
+    "other_rule4_conditions": "Assume delta_C=delta_S=delta_A=0, K=1, E=12, I=0 and D=0.",
+    "draft_decision": "expand",
+    "agreed_plan_decision": "stratum-confined repair"
+  },
+  "precedence_counterexample": {
+    "D": 1,
+    "delta_T": -1,
+    "E": 12,
+    "I": 0,
+    "first_matching_rule": 2,
+    "hidden_adverse_condition": "rule 3 primary harm"
+  },
+  "inference_calls": 0
+}

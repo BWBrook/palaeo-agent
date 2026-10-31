@@ -1,0 +1,29 @@
+{
+  "reviewed_commit": "a3ca5706a3cc5b72a26c854366d4c887cfdd9b82",
+  "review_date": "2026-11-01",
+  "suite": {
+    "command": "uv run pytest -q",
+    "passed": 335,
+    "skipped": 1,
+    "duration_seconds": 50.99
+  },
+  "study_independent_checks": 29,
+  "bank_recomputed_targets": 9,
+  "bank_max_absolute_delta": 0,
+  "live_trials": 0,
+  "files_sha256": {
+    "evaluation/pilot/review-codex/recheck-bank/receipt.json": "ff89a272fcd97c5803f8b36105f9aa693d08a3e3061fc9da7740a89d34e495f3",
+    "evaluation/pilot/review-codex/recheck-bank/recheck.py": "7a2adbab07f9c0a5a5f00e746774b6eab8ef73b81072bcf5ce21232953d92228",
+    "evaluation/pilot/review-codex/recheck-bank/report.md": "208048d4d56ebbfe57a39f8fcde2eab2962a39e91180dbf46fb8898dffb3cc53",
+    "evaluation/pilot/review-codex/recheck-client/check.py": "5e2c9bb985e3adba0214d2a2207fd3e1c8c113aeb6db173b4f89153025189661",
+    "evaluation/pilot/review-codex/recheck-client/receipt.json": "acf9b44d8b40bb7132027548cdcac9e258db3d35f9779d01f07486da1418f832",
+    "evaluation/pilot/review-codex/recheck-client/report.md": "99355f8f55b95aa20f4df4c95a021601b66b76a7b7774abc9b8b738358263d8e",
+    "evaluation/pilot/review-codex/recheck-protocol/counterexamples.py": "a90172c45befe643d13b1eb6a878255125d7d389b1c701698a1441d30ae89b69",
+    "evaluation/pilot/review-codex/recheck-protocol/receipt.json": "f031434f4607fc6c0a195cafcf196785a708e9ebcc3183aa5aa1e57e3d9d6392",
+    "evaluation/pilot/review-codex/recheck-protocol/report.md": "902e8286fad9190fede8bdab480953d1d7399255b959a28ba264c2d2026b8e48",
+    "evaluation/pilot/review-codex/recheck-study/check.py": "01ed933d109cd71a1e7fbd44361197596e676b1b8905ba0af7576962e6ec9a46",
+    "evaluation/pilot/review-codex/recheck-study/receipt.json": "13f2a97a734301c0ed151d1b5f87500ebf0c31cfee7ec43d3e5f8f36cac14f6f",
+    "evaluation/pilot/review-codex/recheck-study/report.md": "c85a592aedda997645cbf30c45526dbef55f3cd1a27646176e600b54cc16c3e9",
+    "docs/sprint-4-prefreeze-review.md": "707dcf0fd5d7b8b0f95e66c516ff2de5a349d8b2b34a30e8eb6ec639ca0d6cc0"
+  }
+}

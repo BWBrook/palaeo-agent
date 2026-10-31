@@ -1,0 +1,493 @@
+{
+  "baseline": "a3ca5706a3cc5b72a26c854366d4c887cfdd9b82",
+  "independent_method": "Standard-library Fraction pairwise Bray-Curtis; separate RMA and Shannon formulas; no generator or toolkit imports. This is an unblinded amendment recheck, not a second sealed validation.",
+  "script_sha256": "7a2adbab07f9c0a5a5f00e746774b6eab8ef73b81072bcf5ce21232953d92228",
+  "materials_sha256": {
+    "evaluation/pilot/items/P01-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P01-trap/materials/counts.tsv": "cadc8049f2f60c17029f5b61dc1e4dcd4e7690c51305da87438ed7e2746795c9",
+    "evaluation/pilot/items/P01-trap/materials/dictionary.md": "13e38f548ba1b9aaeb7c9b7bc674c9b39d5f98e932f1c4c383553d423a1fbb67",
+    "evaluation/pilot/items/P01-trap/materials/task.md": "70631d2ee6290bb14dfae32012c0afa8271b8fa4d8846753d6ad3ae463f74b63",
+    "evaluation/pilot/items/P04-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P04-trap/materials/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "evaluation/pilot/items/P04-trap/materials/counts.tsv": "9c6739df5ce3664b71dbf3de1e0fb3fa4ff898a843e9eb98502da6c3bb71c2d5",
+    "evaluation/pilot/items/P04-trap/materials/dictionary.md": "6a1a2aa1579041f1a6081da283d6fa7bb6e9529958ef2b116cd91b9714b4ed5f",
+    "evaluation/pilot/items/P04-trap/materials/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "evaluation/pilot/calibration/P04-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P04-cal/materials/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "evaluation/pilot/calibration/P04-cal/materials/counts.tsv": "fc3f4f8a359cf4cce3980791193724a35eedbdd187be22ab7c16feab2b02866e",
+    "evaluation/pilot/calibration/P04-cal/materials/dictionary.md": "6a1a2aa1579041f1a6081da283d6fa7bb6e9529958ef2b116cd91b9714b4ed5f",
+    "evaluation/pilot/calibration/P04-cal/materials/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "evaluation/pilot/items/P08-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P08-trap/materials/counts.tsv": "dfce6c71f5e162153cc32adaffbcf4fa8c74cd9f7d634954c7bfd3db83f8a37d",
+    "evaluation/pilot/items/P08-trap/materials/dictionary.md": "714608c5dcc6d10fe8b9b9de4bc0c0301ea7c7b6c377e7fc2fbb659cc054e110",
+    "evaluation/pilot/items/P08-trap/materials/samples.csv": "32bfaf7ac53001954cc890971a68e8ba3f32968a41a84f6de96874efc05aa2b4",
+    "evaluation/pilot/items/P08-trap/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/items/P08-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P08-control/materials/counts.tsv": "dfce6c71f5e162153cc32adaffbcf4fa8c74cd9f7d634954c7bfd3db83f8a37d",
+    "evaluation/pilot/items/P08-control/materials/dictionary.md": "bd9f61b2e9aedaa6f96eb790993067399041283ae23842ec7bf27cd24bf312e5",
+    "evaluation/pilot/items/P08-control/materials/samples.csv": "2eec54ef4808d7b6669b1e6b5700495694c6e15fb78e09bc2d7338ac2d26cbd5",
+    "evaluation/pilot/items/P08-control/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/calibration/P08-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P08-cal/materials/counts.tsv": "cd794bfe7e3fb9750fb24bac255e190483017466087f20fce24d02d2eb7296fb",
+    "evaluation/pilot/calibration/P08-cal/materials/dictionary.md": "714608c5dcc6d10fe8b9b9de4bc0c0301ea7c7b6c377e7fc2fbb659cc054e110",
+    "evaluation/pilot/calibration/P08-cal/materials/samples.csv": "41175f60da46c629cbc71e7d1b2c5ba4b152d6bb4214c0088c56fa920510af77",
+    "evaluation/pilot/calibration/P08-cal/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/items/P09-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P09-trap/materials/dictionary.md": "b604a096521bc9a6d47c675c2cde41e880da0bb3b86180fcee9786daa6c2bb46",
+    "evaluation/pilot/items/P09-trap/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/items/P09-trap/materials/valves.csv": "7dbed1c40a8c829bb8b57c640d0a0e9c5066ccd4acfe2a74a9dcb722c34caf32",
+    "evaluation/pilot/items/P09-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P09-control/materials/dictionary.md": "d5931db231d945150b608e9d43cf47ef91fa7bfb9eaeeb5759d8bf40d32de206",
+    "evaluation/pilot/items/P09-control/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/items/P09-control/materials/valves.csv": "03f170c104b74e2e3c78fabe49c0befee5fa2eeba875a14257be9e8a1ab36629",
+    "evaluation/pilot/calibration/P09-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P09-cal/materials/dictionary.md": "b604a096521bc9a6d47c675c2cde41e880da0bb3b86180fcee9786daa6c2bb46",
+    "evaluation/pilot/calibration/P09-cal/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/calibration/P09-cal/materials/valves.csv": "d68b3ca2d5e3f9395726587b4076dc612d9f6e9edd1289473826bd0b1d724224"
+  },
+  "scorer_sha256": "d66e0d1e2dfe60f48ea4f06b554364f1d7c613e581432d44423ba0017fc0b9e7",
+  "computations": [
+    {
+      "item": "items/P01-trap",
+      "results": {
+        "mean_bray_curtis": 0.6981803468241241,
+        "n_cores": 12
+      },
+      "alternatives": {
+        "zeros_as_sample": {
+          "mean_bray_curtis": 0.7446141396204127,
+          "n_cores": 13
+        }
+      },
+      "target_absolute_deltas": {
+        "mean_bray_curtis": 0.0,
+        "n_cores": 0
+      },
+      "key_sha256": "31026dca3d92c7b88fe49cb5c299056796e150bb344b95af6cc45caf7569517b",
+      "signature_deltas": {
+        "zeros_as_sample": {
+          "mean_bray_curtis": 0.0,
+          "n_cores": 0
+        }
+      }
+    },
+    {
+      "item": "items/P04-trap",
+      "results": {
+        "shannon_mean_2017": 1.8987194094241986,
+        "shannon_mean_2021": 1.9448626201299495
+      },
+      "alternatives": {},
+      "retained_taxa": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08"
+      ],
+      "target_absolute_deltas": {
+        "shannon_mean_2017": 0.0,
+        "shannon_mean_2021": 0.0
+      },
+      "key_sha256": "b34b7c6222b88fbf15b0e8966dbd47ccc42ba879dc9309ab4912b7911aff65e6",
+      "signature_deltas": {},
+      "current_scorer_coverage_challenge": {
+        "undisclosed_common_basis": {
+          "outcome": "correct",
+          "adjudication_required": false,
+          "issue_named": false
+        },
+        "coverage_stop": {
+          "outcome": "false_refusal",
+          "adjudication_required": false,
+          "issue_named": true
+        }
+      }
+    },
+    {
+      "item": "calibration/P04-cal",
+      "results": {
+        "shannon_mean_2017": 1.9574135736608804,
+        "shannon_mean_2021": 1.9395207219402053
+      },
+      "alternatives": {},
+      "retained_taxa": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08"
+      ],
+      "target_absolute_deltas": {
+        "shannon_mean_2017": 0.0,
+        "shannon_mean_2021": 0.0
+      },
+      "key_sha256": "416b70a64492a8426c281865d7dd5898820dd60dca7c3e0aa2faf2bc6c522507",
+      "signature_deltas": {},
+      "current_scorer_coverage_challenge": {
+        "undisclosed_common_basis": {
+          "outcome": "correct",
+          "adjudication_required": false,
+          "issue_named": false
+        },
+        "coverage_stop": {
+          "outcome": "false_refusal",
+          "adjudication_required": false,
+          "issue_named": true
+        }
+      }
+    },
+    {
+      "item": "items/P08-trap",
+      "results": {
+        "mean_bray_curtis": 0.2343287881515876,
+        "n_samples": 9
+      },
+      "alternatives": {
+        "deeper_as_younger": {
+          "mean_bray_curtis": 0.27900055133014906,
+          "n_samples": 7
+        }
+      },
+      "retained_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09"
+      ],
+      "out_of_scope_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "minimum_slice_boundary_gap_cm": 0.5,
+      "target_absolute_deltas": {
+        "mean_bray_curtis": 0.0,
+        "n_samples": 0
+      },
+      "key_sha256": "da229c820391dbeaddbfb92c02a726d263c6a8b3edae1836fde9d156970df4f8",
+      "signature_deltas": {
+        "deeper_as_younger": {
+          "mean_bray_curtis": 0.0,
+          "n_samples": 0
+        }
+      }
+    },
+    {
+      "item": "items/P08-control",
+      "results": {
+        "mean_bray_curtis": 0.2343287881515876,
+        "n_samples": 9
+      },
+      "alternatives": {
+        "deeper_as_younger": {
+          "mean_bray_curtis": 0.27900055133014906,
+          "n_samples": 7
+        }
+      },
+      "retained_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09"
+      ],
+      "out_of_scope_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "minimum_slice_boundary_gap_cm": 0.5,
+      "target_absolute_deltas": {
+        "mean_bray_curtis": 0.0,
+        "n_samples": 0
+      },
+      "key_sha256": "b2682854e72956290eb663671f236147a729a4b1850497d2dced940e9a8bad61",
+      "signature_deltas": {}
+    },
+    {
+      "item": "calibration/P08-cal",
+      "results": {
+        "mean_bray_curtis": 0.2649284508518656,
+        "n_samples": 7
+      },
+      "alternatives": {
+        "deeper_as_younger": {
+          "mean_bray_curtis": 0.27083642156120175,
+          "n_samples": 9
+        }
+      },
+      "retained_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "out_of_scope_ids": [
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "minimum_slice_boundary_gap_cm": 0.5,
+      "target_absolute_deltas": {
+        "mean_bray_curtis": 0.0,
+        "n_samples": 0
+      },
+      "key_sha256": "7a6632bcbc0526c4f6a5ddb14bf851b3e3531a1539e1f593855e802a4ef21832",
+      "signature_deltas": {
+        "deeper_as_younger": {
+          "mean_bray_curtis": 0.0,
+          "n_samples": 0
+        }
+      }
+    },
+    {
+      "item": "items/P09-trap",
+      "results": {
+        "slope": 0.7602003259773435,
+        "intercept": -0.9999018522079091,
+        "n": 30
+      },
+      "alternatives": {
+        "both_valves": {
+          "slope": 0.7522476912814918,
+          "intercept": -0.857261751801552,
+          "n": 34
+        },
+        "keep_paired_left": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "average_pairs": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        }
+      },
+      "left_ids": [
+        "V27L",
+        "V30L",
+        "V14L",
+        "V10L"
+      ],
+      "paired_right_ids": [
+        "V27",
+        "V30",
+        "V14",
+        "V10"
+      ],
+      "target_absolute_deltas": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "n": 0
+      },
+      "key_sha256": "ce8a033ee14d6e19f03e8171f8396b1be6a7fe53c6ed2918cf7c652599d12fa1",
+      "signature_deltas": {
+        "both_valves": {
+          "slope": 0.0,
+          "intercept": 0.0,
+          "n": 0
+        }
+      },
+      "current_scorer_equivalence_challenge": {
+        "drop_left": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": true
+            },
+            "score": 0.4
+          }
+        },
+        "drop_paired_right": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": false
+            },
+            "score": 0.2
+          }
+        },
+        "average_pairs": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": false
+            },
+            "score": 0.2
+          }
+        }
+      }
+    },
+    {
+      "item": "items/P09-control",
+      "results": {
+        "slope": 0.7602003259773435,
+        "intercept": -0.9999018522079091,
+        "n": 30
+      },
+      "alternatives": {
+        "both_valves": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "keep_paired_left": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "average_pairs": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        }
+      },
+      "left_ids": [],
+      "paired_right_ids": [],
+      "target_absolute_deltas": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "n": 0
+      },
+      "key_sha256": "807cd1efc3447108bcd56c5b8badfb5f46b110c64815e424af9cad08dfb5602b",
+      "signature_deltas": {}
+    },
+    {
+      "item": "calibration/P09-cal",
+      "results": {
+        "slope": 0.7662579850472728,
+        "intercept": -0.8346781441373139,
+        "n": 30
+      },
+      "alternatives": {
+        "both_valves": {
+          "slope": 0.7600554043221578,
+          "intercept": -0.7427166994465892,
+          "n": 34
+        },
+        "keep_paired_left": {
+          "slope": 0.7662579850472728,
+          "intercept": -0.8346781441373139,
+          "n": 30
+        },
+        "average_pairs": {
+          "slope": 0.7662579850472728,
+          "intercept": -0.8346781441373139,
+          "n": 30
+        }
+      },
+      "left_ids": [
+        "V16L",
+        "V12L",
+        "V20L",
+        "V01L"
+      ],
+      "paired_right_ids": [
+        "V16",
+        "V12",
+        "V20",
+        "V01"
+      ],
+      "target_absolute_deltas": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "n": 0
+      },
+      "key_sha256": "275197410a281b193c82dacd5c358dc8e4c358bdb216ca4284410dc3032a4548",
+      "signature_deltas": {
+        "both_valves": {
+          "slope": 0.0,
+          "intercept": 0.0,
+          "n": 0
+        }
+      },
+      "current_scorer_equivalence_challenge": {
+        "drop_left": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": true
+            },
+            "score": 0.4
+          }
+        },
+        "drop_paired_right": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": false
+            },
+            "score": 0.2
+          }
+        },
+        "average_pairs": {
+          "outcome": "correct",
+          "evidence": {
+            "checks": {
+              "answer_valid": true,
+              "analysis_code_saved": false,
+              "input_hashes_recorded": false,
+              "environment_recorded": false,
+              "expected_exclusions_recorded": false
+            },
+            "score": 0.2
+          }
+        }
+      }
+    }
+  ]
+}

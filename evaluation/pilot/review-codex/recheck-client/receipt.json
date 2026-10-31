@@ -1,0 +1,92 @@
+{
+  "baseline": "a3ca5706a3cc5b72a26c854366d4c887cfdd9b82",
+  "evidence_kind": "Static replay of previously captured offline client records; no new client launches.",
+  "source_sha256": {
+    "evaluation/sprint3/codex-client-scripted/direct/stdout.jsonl": "9f2545f981e2581cdf264dc9aa3cae86958e09983af0ca3fbe619b1f10342b89",
+    "evaluation/sprint3/codex-client-scripted/direct/scripted-results.json": "5cfceb9a6e834ffb244fb01152b78799c99e25029ac560df1b465156c6b0f1ae",
+    "evaluation/sprint3/codex-client-scripted/direct/worker-audit/calls.jsonl": "f808a30f4768fc69ca3bf99cabd8237e0509047ef2961b9a513831b7a65e14db",
+    "evaluation/sprint3/codex-client-scripted/direct/request-tools.json": "e8a2837ef66d36edb135b58dd45061c30ee1550e1e112c03b5df3a9f6112787c",
+    "evaluation/sprint3/codex-client-scripted/toolkit/stdout.jsonl": "3fbd0b010f7f1b876ce6ff805e9d914dc719b9f4c30441ca23e92fe28683ada3",
+    "evaluation/sprint3/codex-client-scripted/toolkit/scripted-results.json": "b0f0775ba640e8e2f475bc0c4b8d8ffad11209e035f3f4717474083dac748bfd",
+    "evaluation/sprint3/codex-client-scripted/toolkit/worker-audit/calls.jsonl": "552c3dc0da9a5ce4dfe9327ed217fe5f69bc8cddbdc541687d3c3c1e980c58aa",
+    "evaluation/sprint3/codex-client-scripted/toolkit/request-tools.json": "f2a5c96d04c858bb3666d9b3bbeca13efe8c7db59b3f40bfaadfe9455ab5e3b8",
+    "evaluation/execution/worker.py": "73f49a3c3b6a4ffeef2607f43419308cafdc6b74ad2c0963fa54a3196139677f"
+  },
+  "cases": {
+    "direct": {
+      "tool_start_events": 6,
+      "scripted_tool_replies": 13,
+      "worker_audit_rows": 3,
+      "legitimate_events_literal_rule_would_kill": [
+        {
+          "id": "item_2",
+          "type": "mcp_tool_call",
+          "server": "codex",
+          "tool": "list_mcp_resources",
+          "arguments": {},
+          "result": null,
+          "error": null,
+          "status": "in_progress"
+        },
+        {
+          "id": "item_3",
+          "type": "mcp_tool_call",
+          "server": "codex",
+          "tool": "list_mcp_resource_templates",
+          "arguments": {},
+          "result": null,
+          "error": null,
+          "status": "in_progress"
+        }
+      ],
+      "refused_hidden_calls_without_tool_start_events": {
+        "call_1": "unsupported call: apply_patch",
+        "call_2": "unsupported custom tool call: apply_patch",
+        "call_3": "unsupported call: exec_command",
+        "call_4": "unsupported call: shell",
+        "call_5": "unsupported call: spawn_agent",
+        "call_6": "unsupported call: collaborationspawn_agent"
+      },
+      "extra_worker_bootstrap_rows": 0
+    },
+    "toolkit": {
+      "tool_start_events": 7,
+      "scripted_tool_replies": 14,
+      "worker_audit_rows": 5,
+      "legitimate_events_literal_rule_would_kill": [
+        {
+          "id": "item_2",
+          "type": "mcp_tool_call",
+          "server": "codex",
+          "tool": "list_mcp_resources",
+          "arguments": {},
+          "result": null,
+          "error": null,
+          "status": "in_progress"
+        },
+        {
+          "id": "item_3",
+          "type": "mcp_tool_call",
+          "server": "codex",
+          "tool": "list_mcp_resource_templates",
+          "arguments": {},
+          "result": null,
+          "error": null,
+          "status": "in_progress"
+        }
+      ],
+      "refused_hidden_calls_without_tool_start_events": {
+        "call_1": "unsupported call: apply_patch",
+        "call_2": "unsupported custom tool call: apply_patch",
+        "call_3": "unsupported call: exec_command",
+        "call_4": "unsupported call: shell",
+        "call_5": "unsupported call: spawn_agent",
+        "call_6": "unsupported call: collaborationspawn_agent"
+      },
+      "extra_worker_bootstrap_rows": 1
+    }
+  },
+  "cleanup_code_observation": "Worker.run_python starts its child in a separate session. Killing only the supervisor process group does not target that child group. No crash-liveness experiment rerun here.",
+  "inference_calls": 0,
+  "script_sha256": "5e2c9bb985e3adba0214d2a2207fd3e1c8c113aeb6db173b4f89153025189661"
+}
