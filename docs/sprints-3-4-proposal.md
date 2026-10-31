@@ -349,6 +349,7 @@ towards whichever arm the selection favoured. If the direct arm gets at least
 | Reviewers | 48 | 5 min | set at freeze (below) |
 | **Codex total** | **at most 160** | | analysts + reviewers capped at **6,000,000** |
 | Sonnet 5.5 reviewer replicate | 48 | 5 min | 1,500,000 Claude counted (separate) |
+| Sonnet 5.5 analysts, only if no Codex client qualifies | ≤ 8 + 16 + 96 | 5 / 10 / 10 min | 5,000,000 Claude counted (replaces the Codex analyst lines) |
 
 - **Why not Codex's 4,000,000.** Sprint-1 and sprint-2 Codex trials used about
   9,000–22,000 counted tokens on toy items. Harder multi-step items in 10
@@ -492,6 +493,30 @@ reviewer replicate in sprint 4?", Barry answered: "Yes, authorise it".
 - It runs under a separate launch-stop ceiling of 1,500,000 counted Claude
   tokens (input, cache-creation input and output, with cache reads reported
   separately), the same ceiling as the earlier Sonnet smoke.
+- No other Anthropic trial spending was authorised at that point. The next
+  entry adds a conditional authorisation for analysts.
+
+**Authorised by Barry: Sonnet 5.5 analysts, if Codex's client cannot be
+qualified.** Asked in Claude chat on 31 October 2026, "If Codex's client can't
+be qualified, authorise Claude Sonnet 5.5 as pilot analysts?", Barry answered:
+"Yes, authorise it".
+
+- **Trigger.** At pilot freeze, the analyst backend is Codex if a Codex client
+  route has passed the inventory, scripted-refusal and worker-probe conditions
+  of the [sprint-3 review](sprint-3-review.md) and Claude's review. Otherwise
+  it is `claude-sonnet-5-5` through the qualified Claude Code route. The
+  backend is frozen with the plan, and the analysts never mix families.
+- **Scope.** Up to 8 integration trials, up to 16 calibration trials and the
+  96 analyst trials, on the same terms as the Codex design: deadlines, no
+  retries, balanced blocks, a turn cap and a wall-clock kill.
+- **Ceiling.** One launch-stop ceiling of 5,000,000 counted Claude tokens
+  (input, cache-creation input and output, with cache reads reported
+  separately) covers those trials. It is separate from the reviewer
+  replicate's 1,500,000. The working ceiling is still derived from calibration
+  under the 1.5 × median rule.
+- **Reviewers.** With Claude analysts, the Codex reviewers become the
+  cross-family population and the Sonnet reviewer replicate becomes
+  same-family. Both are reported, not pooled.
 - No other Anthropic trial spending is authorised.
 
 **Not changed, and agreed:**
