@@ -28,7 +28,8 @@ def make_plan(path, backend, seed, ceiling, version):
             "token_ceiling": ceiling, "counted_tokens": trial.COUNTED[backend], "seed": seed,
             "order": [{"item": i, "arm": a} for i, a in order]}
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(plan, indent=1) + "\n")
+    with path.open("x") as stream:
+        stream.write(json.dumps(plan, indent=1) + "\n")
     return plan
 
 

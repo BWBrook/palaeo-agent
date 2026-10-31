@@ -59,7 +59,7 @@ def test_revised_bank_is_deterministic_and_keeps_legacy_unchanged(tmp_path):
     assert before == after
     manifest = json.loads((first / "MANIFEST.json").read_text())
     assert manifest["version"] == VERSION
-    assert manifest["amended_items"] == ["D2-under", "D7-trap"]
+    assert manifest["amended_items"] == ["D2-under", "D7-control"]
     assert manifest["source_manifest_sha256"] == hashlib.sha256((ROOT / "evaluation/items/MANIFEST.json").read_bytes()).hexdigest()
 
 
@@ -89,12 +89,18 @@ def test_d2_integer_percentages_preserve_nonidentifiability(tmp_path):
 
 def test_d7_explicitly_defines_invalid_k5_and_retains_key(tmp_path):
     bank = build(tmp_path)
-    dictionary = (bank / "D7-trap/materials/dictionary.md").read_text()
-    task = (bank / "D7-trap/materials/task.md").read_text()
-    key = json.loads((bank / "D7-trap/key.json").read_text())
+    dictionary = (bank / "D7-control/materials/dictionary.md").read_text()
+    task = (bank / "D7-control/materials/task.md").read_text()
+    key = json.loads((bank / "D7-control/key.json").read_text())
     assert "failed sampling" in dictionary and "does not establish absence" in dictionary
     assert "valid samples" in task and "must be excluded" in task
     assert key["results"]["n_pairs"] == 10 and key["exclusions_expected"] == ["K5"]
+    assert key["item"] == "D7-control" and key["class"] == "twin"
+    workspace = answer_workspace(tmp_path / "control", "D7-control", valid_answer(
+        status="completed", results={name: str(value) for name, value in key["results"].items()},
+        issues=[], exclusions=[{"id": "K5", "reason": "failed sampling"}]))
+    result = revised_score.score(workspace, bank / "D7-control")
+    assert result["outcome"] == "correct" and "pitfall" not in result
 
 
 def test_strict_answer_contract_rejects_fabrication_and_nonfinite(tmp_path):

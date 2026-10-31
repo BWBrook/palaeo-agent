@@ -37,3 +37,13 @@ def test_standalone_launcher_exits_without_creating_work_or_credentials(tmp_path
     assert result.returncode == 2
     assert "live_evaluation_blocked" in result.stderr
     assert not list(tmp_path.iterdir())
+
+
+def test_offline_plan_generation_cannot_replace_a_frozen_plan(monkeypatch, tmp_path):
+    monkeypatch.syspath_prepend(str(HARNESS))
+    smoke = load("review_plan_writer", HARNESS / "smoke.py")
+    path = tmp_path / "plan.json"
+    path.write_text("historical plan receipt\n")
+    with pytest.raises(FileExistsError):
+        smoke.make_plan(path, "codex", 20261031, 300000, "prospective")
+    assert path.read_text() == "historical plan receipt\n"

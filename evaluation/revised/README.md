@@ -7,11 +7,16 @@ overwritten.
 The builder copies the v1 bank and amends only D2-under and D7-trap. D2 uses
 coarser integer percentages without totals to align the catalogue display;
 harder uncoached ambiguity construction is deferred to a future pilot bank. D7 explicitly
-identifies K5 as failed sampling and requires valid-sample exclusion. Neither
+identifies K5 as failed sampling and requires valid-sample exclusion. Its revised
+ID is `D7-control`, with class `twin`: it is an explicit-instruction control
+and receives no trap-handling credit. Neither
 amendment claims to make a harder pilot or establishes efficacy.
 
 The revised scorer inherits v1's numerical tolerances, pair-key symmetry,
-pitfall labels/signatures and keyword adjudication, while rejecting malformed
+pitfall labels/signatures and keyword adjudication. Numeric result strings
+are accepted, as in v1; finite JSON enforcement rejects nonstandard numeric
+constants, and numeric comparison rejects nonfinite numeric strings. The
+revised contract goes further by rejecting malformed
 answers and marking numerical answers under an unresolved assumption as
 provisional for adjudication. Its evidence check
 uses aligned `(path, text)` records, and therefore does not let an unreadable

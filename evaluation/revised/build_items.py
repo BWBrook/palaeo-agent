@@ -86,7 +86,9 @@ def _amend_d7(destination: Path) -> None:
     )
     key = json.loads((destination / "key.json").read_text())
     key["version"] = VERSION
-    key["amendment"] = "K5 is explicitly invalid sampling; valid-sample analysis excludes it."
+    key["item"] = "D7-control"
+    key["class"] = "twin"
+    key["amendment"] = "Explicit-instruction control: valid-sample analysis excludes failed sampling K5; no trap-detection credit."
     (destination / "key.json").write_text(json.dumps(key, indent=1) + "\n")
     _update_provenance(
         destination / "provenance.json",
@@ -106,7 +108,8 @@ def build(output: Path) -> dict[str, str]:
     for item in sorted(p for p in SOURCE.iterdir() if p.is_dir()):
         shutil.copytree(item, output / item.name)
     _amend_d2(output / "D2-under")
-    _amend_d7(output / "D7-trap")
+    (output / "D7-trap").rename(output / "D7-control")
+    _amend_d7(output / "D7-control")
     manifest = {
         item.name: digest(item / "key.json")
         for item in sorted(p for p in output.iterdir() if p.is_dir())
@@ -115,7 +118,7 @@ def build(output: Path) -> dict[str, str]:
         "version": VERSION,
         "source": "evaluation/items",
         "source_manifest_sha256": digest(SOURCE / "MANIFEST.json"),
-        "amended_items": ["D2-under", "D7-trap"],
+        "amended_items": ["D2-under", "D7-control"],
         "items": manifest,
     }
     (output / "MANIFEST.json").write_text(json.dumps(document, indent=1) + "\n")

@@ -34,8 +34,9 @@ The development outcomes remain useful; causal isolation was not established.
 
 The current trial launcher now fails before preparing a workspace, copying
 authentication or starting a process, with `live_evaluation_blocked`. There is
-no override. The smoke entry point also refuses before reading/re-writing its
-records. The original executable implementation remains at freeze commit
+no override. The smoke run entry point also refuses before reading/re-writing
+its records; offline plan creation refuses to replace any existing plan. The
+original executable implementation remains at freeze commit
 `5af0041`; this is an explicit post-smoke operational amendment. Its automatic
 infrastructure-retry branch was removed; it never ran in the recorded smoke.
 
@@ -76,8 +77,9 @@ select exclusion. Rewarding the toolkit's drop/error policy would bias the
 instrument. D7 was not in the smoke.
 
 The amended D7 material explicitly establishes failed sampling and defines the
-valid-sample estimand. It retains the 10-pair key. This fixes an ambiguity; it
-does not make a harder, uncoached pilot item.
+valid-sample estimand. It retains the 10-pair key as `D7-control`, class `twin`,
+with no trap-handling credit. This fixes an ambiguity; it does not make a
+harder, uncoached pilot item.
 
 ### D2 remains formally underdetermined
 
