@@ -7,8 +7,9 @@ import numpy as np
 import pytest
 
 from palaeo_agent import AnalysisError, inspect_run, run
+from palaeo_agent.community import selected_subspace_info
 from palaeo_agent.sensitivity import (
-    _average_ranks, _correlation, _procrustes_m2,
+    _average_ranks, _correlation, _procrustes_m2, _report,
     compare_community_runs, inspect_comparison,
 )
 
@@ -140,22 +141,34 @@ def test_rank_ties_constant_vectors_and_rotation_invariance():
     assert _procrustes_m2(points, other) == pytest.approx(0, abs=1e-14)
 
 
-def test_tied_axis_boundary_and_constant_distances_are_reported(tmp_path):
+def test_full_positive_tied_subspace_and_constant_distances_are_reported(tmp_path):
     source = tmp_path / "counts.dat"
     source.write_text(". t1 t2 t3\na 1 0 0\nb 0 4 0\nc 0 0 7\n")
     spec = {"method": "community", "input": str(source), "format": "past",
             "orientation": "samples_by_taxa", "value_type": "count",
             "transform": "relative_abundance", "distance": "braycurtis",
-            "dimensions": 1, "missing": "error", "empty_samples": "error"}
+            "dimensions": 2, "missing": "error", "empty_samples": "error"}
     baseline = run(spec, tmp_path / "runs")["run_dir"]
     spec.update(transform="none", purpose="Disjoint-support control")
     sensitivity = run(spec, tmp_path / "runs")["run_dir"]
     directory = compare_community_runs(baseline, sensitivity, tmp_path / "comparison")["comparison_dir"]
     report = inspect_comparison(directory)["report"]
-    assert report["selected_subspace_identifiable"] is False
-    assert report["symmetric_procrustes_m2"] is None
+    assert report["selected_subspace_identifiable"] is True
+    assert report["relative_eigengaps"] == {"baseline": None, "sensitivity": None}
+    assert report["symmetric_procrustes_m2"] == pytest.approx(0, abs=1e-14)
     assert report["pearson_distance_correlation"] is None
     assert report["spearman_distance_correlation"] is None
-    assert {warning["code"] for warning in report["warnings"]} == {
-        "nonidentifiable_selected_subspace", "undefined_distance_correlation",
-    }
+    assert {warning["code"] for warning in report["warnings"]} == {"undefined_distance_correlation"}
+
+
+def test_sensitivity_uses_shared_strict_cutoff_boundary():
+    eigenvalues = [1e8, 2, 1, 0]
+    expected = selected_subspace_info(eigenvalues, 2, 1e-14)
+    assert expected["relative_cutoff_gap"] == expected["threshold"]
+    result = {"n": 4, "distances": (np.ones((4, 4)) - np.eye(4)).tolist(),
+              "eigenvalues": eigenvalues, "dimensions": 2, "eigenvalue_tolerance": 1e-14}
+    arm = {"result": result, "specification": {}}
+    with pytest.raises(AnalysisError) as caught:
+        _report(arm, arm)
+    assert caught.value.code == "nonidentifiable_axes"
+    assert caught.value.details["subspaces"] == {"baseline": expected, "sensitivity": expected}

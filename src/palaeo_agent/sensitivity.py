@@ -10,10 +10,10 @@ import uuid
 import numpy as np
 
 from .core import AnalysisError
+from .community import selected_subspace_info
 from .runs import inspect_run
 
 
-EIGENGAP_THRESHOLD = 1e-8
 REPORT_TOLERANCE = 1e-10
 
 
@@ -45,12 +45,6 @@ def _correlation(left, right):
         return None
     value = float(np.corrcoef(left, right)[0, 1])
     return float(np.clip(value, -1, 1)) if np.isfinite(value) else None
-
-
-def _relative_eigengap(result):
-    eigenvalues = result["eigenvalues"]
-    k = result["dimensions"]
-    return float((eigenvalues[k - 1] - eigenvalues[k]) / eigenvalues[0])
 
 
 def _procrustes_m2(left, right):
@@ -113,15 +107,16 @@ def _report(baseline, sensitivity):
     x, y = d1[upper], d2[upper]
     pearson = _correlation(x, y)
     spearman = _correlation(_average_ranks(x), _average_ranks(y))
-    gaps = {"baseline": _relative_eigengap(left), "sensitivity": _relative_eigengap(right)}
-    identifiable = all(value > EIGENGAP_THRESHOLD for value in gaps.values())
-    m2 = _procrustes_m2(left["coordinates"], right["coordinates"]) if identifiable else None
+    subspaces = {name: selected_subspace_info(result["eigenvalues"], result["dimensions"], result["eigenvalue_tolerance"])
+                 for name, result in (("baseline", left), ("sensitivity", right))}
+    if not all(info["identifiable"] for info in subspaces.values()):
+        raise AnalysisError("nonidentifiable_axes", "A sensitivity arm has a numerically unresolved selected PCoA cutoff",
+                            subspaces=subspaces)
+    gaps = {name: info["relative_cutoff_gap"] for name, info in subspaces.items()}
+    m2 = _procrustes_m2(left["coordinates"], right["coordinates"])
     warnings = []
     if pearson is None or spearman is None:
         warnings.append({"code": "undefined_distance_correlation", "message": "A distance vector is constant or too short"})
-    if not identifiable:
-        warnings.append({"code": "nonidentifiable_selected_subspace",
-                         "message": "The selected-axis boundary is tied or nearly tied; Procrustes m2 is not reported"})
     totals = np.asarray([row["total"] for row in left["diversity"]], dtype=float)
     lower_bound = np.abs(totals[:, None] - totals[None, :]) / (totals[:, None] + totals[None, :])
     delta = np.abs(x - y)
@@ -147,8 +142,8 @@ def _report(baseline, sensitivity):
         "mean_absolute_distance_change": float(delta.mean()),
         "symmetric_procrustes_m2": m2,
         "procrustes_definition": "1 - sum(svd(X_centered_normalised.T @ Y_centered_normalised))**2",
-        "selected_subspace_identifiable": identifiable, "relative_eigengaps": gaps,
-        "eigengap_threshold": EIGENGAP_THRESHOLD,
+        "selected_subspace_identifiable": True, "relative_eigengaps": gaps,
+        "eigengap_threshold": subspaces["baseline"]["threshold"],
         "negative_inertia_magnitude": {"baseline": left["negative_inertia_magnitude"],
                                        "sensitivity": right["negative_inertia_magnitude"]},
         "raw_count_total_imbalance_bound": lower_bound.tolist(),

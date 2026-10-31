@@ -20,6 +20,35 @@ def make_run(tmp_path):
     return source, run(request(source), tmp_path / "runs")
 
 
+def test_unresolved_pcoa_cutoff_is_refused_before_bundle_allocation(tmp_path):
+    source = tmp_path / "equilateral.dat"
+    source.write_text(". x y z\na 1 0 0\nb 0 1 0\nc 0 0 1\n")
+    spec = {"method": "community", "input": str(source), "format": "past",
+            "orientation": "samples_by_taxa", "value_type": "count", "transform": "none",
+            "distance": "braycurtis", "dimensions": 1, "missing": "error", "empty_samples": "error"}
+    with pytest.raises(AnalysisError) as caught:
+        run(spec, tmp_path / "runs")
+    assert caught.value.code == "nonidentifiable_axes"
+    assert not (tmp_path / "runs").exists()
+
+
+def test_reproduction_compares_full_positive_geometry_with_a_small_final_axis(tmp_path):
+    source = tmp_path / "counts.dat"
+    source.write_text(". x y z\na 10000 0 0\nb 10000 1 0\nc 0 0 10000\n")
+    spec = {"method": "community", "input": str(source), "format": "past",
+            "orientation": "samples_by_taxa", "value_type": "count", "transform": "none",
+            "distance": "braycurtis", "dimensions": 2, "missing": "error", "empty_samples": "error"}
+    first = run(spec, tmp_path / "runs")
+    result = inspect_run(first["run_dir"])["result"]
+    assert result["eigenvalue_tolerance"] < result["eigenvalues"][1] < 1e-8 * result["eigenvalues"][0]
+    receipt = reproduce(first["run_dir"], tmp_path / "reproduced")
+    assert receipt["status"] == "reproduced"
+    policy = receipt["ordination_comparison"]
+    assert policy["selected_gram_compared"] is True
+    assert policy["selected_subspace_ambiguous"] is False
+    assert policy["cutoff_relative_eigengap"] is None
+
+
 def test_portable_bundle_and_fresh_process_reproduction(tmp_path):
     source, first = make_run(tmp_path)
     source.unlink()

@@ -8,7 +8,7 @@ from pydantic import ValidationError
 from palaeo_agent import AnalysisError
 from palaeo_agent.community import (
     CommunityResult, CommunitySpec, analyse_community, calculate_community,
-    validate_community,
+    selected_subspace_info, validate_community,
 )
 
 
@@ -64,16 +64,121 @@ def test_pcoa_geometry_for_equilateral_three_points():
     np.testing.assert_allclose(result["positive_gram"], gram, atol=1e-14)
 
 
-def test_full_positive_geometry_is_invariant_when_cutting_a_tied_block():
+def test_full_positive_geometry_allows_rotations_inside_a_retained_tied_block():
     result = analyse_community(np.eye(4), sample_ids=["a", "b", "c", "d"],
                                taxon_ids=["w", "x", "y", "z"], transform="none",
-                               distance="braycurtis", dimensions=1, empty_samples="error")
+                               distance="braycurtis", dimensions=3, empty_samples="error")
     expected = (np.eye(4) - np.ones((4, 4)) / 4) / 2
     np.testing.assert_allclose(result["positive_gram"], expected, atol=1e-14)
-    result["coordinates"] = [[0.5], [-0.5], [0.0], [0.0]]
+    rotation = np.array([[0., -1, 0], [1, 0, 0], [0, 0, 1]])
+    result["coordinates"] = (np.asarray(result["coordinates"]) @ rotation).tolist()
     CommunityResult.model_validate(result)
     result["coordinates"][0][0] += 0.1
     with pytest.raises(ValidationError, match="Coordinates"):
+        CommunityResult.model_validate(result)
+
+
+def test_equilateral_c04_cutoff_refuses_one_axis_and_allows_two():
+    with pytest.raises(AnalysisError, match="numerically unresolved") as caught:
+        analyse(dimensions=1)
+    assert caught.value.code == "nonidentifiable_axes"
+    details = caught.value.details
+    assert details["requested_dimensions"] == 1
+    assert details["positive_rank"] == 2
+    assert details["allowed_identifiable_dimensions"] == [2]
+    assert details["largest_allowed_dimensions_at_or_below_requested"] == 0
+    assert details["relative_cutoff_gap"] <= details["threshold"]
+    assert len(details["eigenvalues"]) == 3
+    assert analyse(dimensions=2)["dimensions"] == 2
+
+
+def test_subspace_rule_allows_internal_ties_and_full_positive_rank():
+    internal = selected_subspace_info([3, 3, 1, 0], 2, 1e-14)
+    assert internal["identifiable"] is True
+    assert internal["allowed_identifiable_dimensions"] == [2, 3]
+    assert internal["largest_allowed_dimensions_at_or_below_requested"] == 2
+    complete = selected_subspace_info([1, 1e-10, 0], 2, 1e-14)
+    assert complete["positive_rank"] == 2
+    assert complete["identifiable"] is True
+    assert complete["relative_cutoff_gap"] is None
+
+
+@pytest.mark.parametrize("second,identifiable", [
+    (2.0, False),
+    (float(np.nextafter(2.0, np.inf)), True),
+    (float(np.nextafter(2.0, -np.inf)), False),
+])
+def test_selected_subspace_cutoff_threshold_is_strict(second, identifiable):
+    info = selected_subspace_info([1e8, second, 1, 0], 2, 1e-14)
+    assert info["threshold"] == 1e-8
+    assert info["identifiable"] is identifiable
+    assert (2 in info["allowed_identifiable_dimensions"]) is identifiable
+
+
+def test_near_tied_positive_cutoff_is_refused():
+    info = selected_subspace_info([1, 1 - 5e-9, 0], 1, 1e-14)
+    assert info["identifiable"] is False
+    assert info["allowed_identifiable_dimensions"] == [2]
+
+
+def force_spectrum(monkeypatch, eigenvalues):
+    original = np.linalg.eigh
+    def eigendecomposition(matrix):
+        _, eigenvectors = original(matrix)
+        return np.asarray(eigenvalues, dtype=float), eigenvectors
+    monkeypatch.setattr(np.linalg, "eigh", eigendecomposition)
+
+
+def test_engine_rejects_near_tie_before_returning_coordinates(monkeypatch):
+    force_spectrum(monkeypatch, [0, 0.5, 0.5 + 1e-9])
+    with pytest.raises(AnalysisError) as caught:
+        analyse(dimensions=1)
+    assert caught.value.code == "nonidentifiable_axes"
+    assert 0 < caught.value.details["relative_cutoff_gap"] < caught.value.details["threshold"]
+
+
+def test_complete_retained_tied_block_allows_rotation_below_full_rank(monkeypatch):
+    force_spectrum(monkeypatch, [0, 0.1, 0.5, 0.5])
+    result = analyse_community(np.eye(4), sample_ids=["a", "b", "c", "d"],
+                               taxon_ids=["w", "x", "y", "z"], transform="none",
+                               distance="braycurtis", dimensions=2, empty_samples="error")
+    angle = np.pi / 5
+    rotation = np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]])
+    coordinates = np.asarray(result["coordinates"]) @ rotation
+    assert not np.allclose(coordinates @ coordinates.T, result["positive_gram"])
+    result["coordinates"] = coordinates.tolist()
+    CommunityResult.model_validate(result)
+
+
+def test_engine_and_saved_result_allow_full_rank_with_tiny_last_positive_axis(monkeypatch):
+    force_spectrum(monkeypatch, [0, 1e-10, 1])
+    result = analyse(dimensions=2)
+    assert result["eigenvalues"][1] / result["eigenvalues"][0] < 1e-8
+    CommunityResult.model_validate(result)
+
+
+def test_engine_and_saved_result_share_strict_cutoff_threshold(monkeypatch):
+    force_spectrum(monkeypatch, [0, 1, 2, 1e8])
+    options = {"sample_ids": ["a", "b", "c", "d"], "taxon_ids": ["w", "x", "y", "z"],
+               "transform": "none", "distance": "braycurtis", "empty_samples": "error"}
+    result = analyse_community(np.eye(4), dimensions=3, **options)
+    with pytest.raises(AnalysisError) as caught:
+        analyse_community(np.eye(4), dimensions=2, **options)
+    assert caught.value.code == "nonidentifiable_axes"
+    assert caught.value.details["relative_cutoff_gap"] == caught.value.details["threshold"]
+    result["dimensions"] = 2
+    result["coordinates"] = [row[:2] for row in result["coordinates"]]
+    result["axis_positive_inertia"] = result["axis_positive_inertia"][:2]
+    with pytest.raises(ValidationError, match="numerically unresolved"):
+        CommunityResult.model_validate(result)
+
+
+def test_saved_result_cannot_cut_an_unresolved_positive_block():
+    result = analyse()
+    result["dimensions"] = 1
+    result["coordinates"] = [row[:1] for row in result["coordinates"]]
+    result["axis_positive_inertia"] = result["axis_positive_inertia"][:1]
+    with pytest.raises(ValidationError, match="numerically unresolved"):
         CommunityResult.model_validate(result)
 
 

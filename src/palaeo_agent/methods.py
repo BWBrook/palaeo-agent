@@ -9,7 +9,7 @@ from pydantic import Field, TypeAdapter
 
 from .core import AnalysisError, RmaResult, RmaSpec, calculate, discover as rma_discover
 from .community import (
-    CommunityResult, CommunitySpec, REFERENCES, calculate_community, validate_community,
+    CommunityResult, CommunitySpec, REFERENCES, calculate_community, selected_subspace_info, validate_community,
 )
 
 
@@ -28,7 +28,8 @@ def discover():
         "id": "community", "version": 1,
         "description": "Count-community diversity, explicit dissimilarities and uncorrected PCoA",
         "requirements": ["Declared count values and matrix orientation", "Unique sample/taxon IDs",
-                         "Metadata joined by exact sample ID", "Sufficient positive eigenaxes"],
+                         "Metadata joined by exact sample ID", "Sufficient positive eigenaxes",
+                         "Requested dimensions must retain complete numerically resolved positive eigenvalue blocks"],
         "limitations": ["No group inference or causal claim", "Negative eigenvalues are reported, not corrected",
                         "Jaccard is binary occurrence distance, not quantitative Jaccard"],
         "references": REFERENCES,
@@ -162,14 +163,13 @@ def compare_results(expected, actual):
         CommunityResult.model_validate(left)
         CommunityResult.model_validate(right)
         a, b = np.asarray(left.pop("coordinates")), np.asarray(right.pop("coordinates"))
-        count = expected["dimensions"]
-        eigenvalues = expected["eigenvalues"]
-        gap = (eigenvalues[count - 1] - eigenvalues[count]) / eigenvalues[0]
-        identifiable = gap > 1e-8
+        subspace = selected_subspace_info(expected["eigenvalues"], expected["dimensions"],
+                                          expected["eigenvalue_tolerance"])
+        identifiable = subspace["identifiable"]
         policy["ordination"] = {"full_positive_gram_compared": True,
                                 "selected_gram_compared": identifiable,
-                                "cutoff_relative_eigengap": gap,
-                                "cutoff_relative_eigengap_threshold": 1e-8,
+                                "cutoff_relative_eigengap": subspace["relative_cutoff_gap"],
+                                "cutoff_relative_eigengap_threshold": subspace["threshold"],
                                 "selected_subspace_ambiguous": not identifiable}
         if identifiable:
             left["selected_ordination_gram"] = (a @ a.T).tolist()

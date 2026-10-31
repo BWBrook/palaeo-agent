@@ -31,6 +31,22 @@ def test_known_log_log_power_law():
     assert result["intercept"] == pytest.approx(1)
 
 
+def test_small_computed_correlation_is_a_numerical_diagnostic():
+    result = fit([-1, 0, 1], [1, -2, 1 + 1e-10])
+    assert 0 < abs(result["correlation"]) < 1e-8
+    assert result["warnings"][0]["code"] == "small_computed_correlation"
+    assert "not a statistical test" in result["warnings"][0]["message"]
+
+
+def test_slope_magnitude_does_not_measure_association_strength():
+    result = fit([-1, 0, 1], [1, -2, 1.1])
+    assert 1e-8 < abs(result["correlation"]) < 0.1
+    assert result["slope"] == pytest.approx(result["sd_y"] / result["sd_x"])
+    assert result["warnings"] == []
+    for limitations in (result["limitations"], discover()["methods"][0]["limitations"]):
+        assert any("independent of correlation strength" in text for text in limitations)
+
+
 def test_missing_requires_explicit_policy_and_preserves_ids():
     with pytest.raises(AnalysisError, match="drop_pairs") as caught:
         fit([1, None, 3], [2, 4, 6], sample_ids=["a", "b", "c"])

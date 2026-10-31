@@ -58,7 +58,7 @@ class RmaExclusion(ResultItem):
 
 
 class RmaWarning(ResultItem):
-    code: Literal["near_zero_correlation", "two_pairs"]
+    code: Literal["small_computed_correlation", "two_pairs"]
     message: str = Field(min_length=1)
 
 
@@ -101,6 +101,7 @@ class RmaResult(ResultItem):
 
 
 REFERENCE = "https://palaeo-electronica.org/2001_1/past/pastprog/study1.html"
+RMA_ASSOCIATION_LIMITATION = "RMA slope magnitude is sd(y)/sd(x), independent of correlation strength; a fitted line does not establish association"
 
 
 def discover():
@@ -112,6 +113,7 @@ def discover():
                          "Positive measurements when log10 is requested"],
         "limitations": ["No standard errors, confidence intervals or significance tests",
                         "RMA is symmetric regression, not ordinary least squares",
+                        RMA_ASSOCIATION_LIMITATION,
                         "No inference of sampling independence or causal effects"],
         "references": [REFERENCE], "input_schema": RmaSpec.model_json_schema(),
         "output_schema": RmaResult.model_json_schema(),
@@ -184,7 +186,8 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
         raise AnalysisError("numerical_range", "Computed summaries are not finite")
     for row, xv, yv, residual in zip(used, xx, yy, residuals, strict=True):
         row.update(x=float(xv), y=float(yv), residual=float(residual))
-    warnings = [{"code": "near_zero_correlation", "message": "Slope direction is unstable near zero correlation"}] if abs(r) < 1e-8 else []
+    warnings = [{"code": "small_computed_correlation",
+                 "message": "Computed |r| is below 1e-8; this numerical diagnostic is not a statistical test of association"}] if abs(r) < 1e-8 else []
     if len(used) == 2:
         warnings.append({"code": "two_pairs", "message": "Two pairs determine a line; residual diagnostics cannot assess its adequacy"})
     return RmaResult.model_validate({"method": "rma", "method_version": 1, "transform": transform,
@@ -194,6 +197,7 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
             "slope": slope, "intercept": intercept, "vertical_residual_rmse": rmse,
             "warnings": warnings, "pairs": used, "references": [REFERENCE],
             "limitations": ["Descriptive fit only; no inferential uncertainty or hypothesis test",
+                            RMA_ASSOCIATION_LIMITATION,
                             "Vertical residuals are diagnostics, not an OLS fitting objective"]}).model_dump(mode="json")
 
 

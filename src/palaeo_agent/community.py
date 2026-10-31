@@ -17,11 +17,31 @@ from .core import AnalysisError, ResultItem
 
 MAX_EXACT_COUNT = 2**53 - 1
 MAX_MATRIX_BYTES = 256 * 1024**2
+EIGENGAP_THRESHOLD = 1e-8
 REFERENCES = [
     "https://vegandevs.github.io/vegan/reference/diversity.html",
     "https://vegandevs.github.io/vegan/reference/vegdist.html",
     "https://vegandevs.github.io/vegan/reference/wcmdscale.html",
 ]
+
+
+def selected_subspace_info(eigenvalues, k, eigenvalue_tolerance):
+    """Describe whether a cutoff retains complete numerically resolved positive blocks."""
+    values = np.asarray(eigenvalues, dtype=float)
+    if (values.ndim != 1 or not len(values) or not np.isfinite(values).all() or
+        np.any(values[:-1] < values[1:]) or not np.isfinite(eigenvalue_tolerance) or eigenvalue_tolerance <= 0):
+        raise ValueError("Expected a finite descending spectrum and positive eigenvalue tolerance")
+    rank = int(np.sum(values > eigenvalue_tolerance))
+    if not isinstance(k, (int, np.integer)) or isinstance(k, (bool, np.bool_)) or not 1 <= k <= rank:
+        raise ValueError("Selected dimensions must lie within the positive eigenvalue rank")
+    gaps = {cutoff: float((values[cutoff - 1] - values[cutoff]) / values[0])
+            for cutoff in range(1, rank)}
+    allowed = [cutoff for cutoff in range(1, rank + 1)
+               if cutoff == rank or gaps[cutoff] > EIGENGAP_THRESHOLD]
+    return {"identifiable": k in allowed, "requested_dimensions": int(k), "positive_rank": rank,
+            "relative_cutoff_gap": gaps.get(k), "threshold": EIGENGAP_THRESHOLD,
+            "allowed_identifiable_dimensions": allowed,
+            "largest_allowed_dimensions_at_or_below_requested": max((cutoff for cutoff in allowed if cutoff <= k), default=0)}
 
 
 class CommunitySpec(BaseModel):
@@ -144,6 +164,8 @@ class CommunityResult(ResultItem):
         positive = eigenvalues[eigenvalues > self.eigenvalue_tolerance]
         if len(positive) < self.dimensions:
             raise ValueError("Requested dimensions exceed the positive eigenvalue rank")
+        if not selected_subspace_info(eigenvalues, self.dimensions, self.eigenvalue_tolerance)["identifiable"]:
+            raise ValueError("Requested PCoA cutoff is numerically unresolved within the positive spectrum")
         gram = np.asarray(self.positive_gram)
         coordinates = np.asarray(self.coordinates)
         scale = max(1.0, positive[0])
@@ -354,6 +376,10 @@ def analyse_community(matrix, *, sample_ids, taxon_ids, transform, distance, dim
     if int(positive.sum()) < dimensions:
         raise AnalysisError("insufficient_positive_axes", "Requested dimensions exceed positive PCoA rank",
                             requested=dimensions, available=int(positive.sum()), eigenvalue_tolerance=tolerance)
+    subspace = selected_subspace_info(eigenvalues, dimensions, tolerance)
+    if not subspace["identifiable"]:
+        raise AnalysisError("nonidentifiable_axes", "Requested PCoA cutoff is numerically unresolved between retained and excluded positive axes",
+                            eigenvalues=eigenvalues.tolist(), **subspace)
     coordinates = eigenvectors[:, :dimensions] * np.sqrt(eigenvalues[:dimensions])
     positive_coordinates = eigenvectors[:, positive] * np.sqrt(eigenvalues[positive])
     positive_gram = positive_coordinates @ positive_coordinates.T

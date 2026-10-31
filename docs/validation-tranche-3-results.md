@@ -1,9 +1,12 @@
 # Independent references and PAST 5.4 validation — 31 October 2026
 
 The declared community and RMA calculations agree with native PAST 5.4
-exports within their exported precision. Thirteen captures supply **1,059
-checked numeric cells**, including source-data identity checks. The full
-Python suite passes: **138 tests**. No product numerical methods changed.
+exports within their exported precision: 90 distinct off-diagonal similarities,
+20 continuous diversity indices and 20 counts, 18 RMA point estimates,
+217 fitted values, 27 non-null eigenvalues and 120 scaled coordinates.
+The audit count is 1,059 cells across thirteen captures, including duplicated
+entries and source-data identity checks. The Python suite passed 138 tests
+at e04b592. No product numerical methods changed in that tranche.
 
 This is validation of two known development datasets and named settings.
 It does not establish general PAST parity, coverage of the current PAST
@@ -101,6 +104,10 @@ eight positive axes, one structural null and one negative axis. The nine
 non-null eigenvalues agree, including the negative value. Both null values
 must lie within `128 * epsilon * n * max(abs(eigenvalues))`; their actual
 values are reported, and they are excluded from the numerical cell count.
+The captured PAST calculations match classical PCoA with distance `d = 1 - s`
+for both Bray–Curtis and Jaccard similarities, exponent `c = 2`, and
+double centring `-0.5 * J * d² * J`. This is empirical agreement for the
+captured cases, rather than an inspection of PAST's internal implementation.
 
 “Eigenvalue scale” defaults OFF in a new PCoA dialog. We explicitly enabled
 it before copying the accepted coordinates. The first four axes agree after

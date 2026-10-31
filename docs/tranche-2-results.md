@@ -113,3 +113,5 @@ methods should follow scientific demand rather than precede those checks.
 
 The subsequent [31 October validation tranche](validation-tranche-3-results.md)
 completed the scoped native PAST captures and independent R/vegan regeneration.
+The following [blind-fixture tranche](validation-tranche-4-results.md) repaired
+the earlier warning-only treatment of cutoffs inside tied positive eigenspaces.

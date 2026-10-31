@@ -111,9 +111,12 @@ misattributed to the chosen transformation. This is a constraint on the
 sensitivity contrast, separate from permitting reproducibility checks across
 different environments.
 
-Compare selected-axis Gram geometry only when the cutoff eigengap relative to
-the leading eigenvalue exceeds 1e-8; otherwise report that the selected subspace
-is ambiguous. Always compare the full positive-space Gram matrix. Plug-in
+As amended after the [31 October blind fixtures](validation-tranche-4-results.md),
+refuse a requested cutoff that splits an unresolved positive block: its gap
+relative to the leading eigenvalue must exceed 1e-8 unless all positive axes
+are retained. Ties wholly within the retained subspace are allowed. Use one
+shared rule for analysis, saved results, sensitivity and reproduction, comparing
+both selected-axis and full positive-space Gram geometry for accepted runs. Plug-in
 diversity is observed and unstandardised: unequal totals confound direct
 sampling-effort comparisons. Plot sample N and defer rarefaction/coverage.
 

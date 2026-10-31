@@ -132,6 +132,12 @@ independent R/vegan checks and the explained PCoA percentage convention.
 Community workflows remain descriptive. Agent efficacy trials, inferential
 methods and broader held-out validation remain future tranches.
 
+The subsequent [blind-fixture validation](docs/validation-tranche-4-results.md)
+passes all 60 objective fixtures and preserves one warning-policy judgment
+disagreement. Requested PCoA dimensions must retain complete numerically
+resolved positive eigenvalue blocks; an unresolved cutoff produces a structured
+refusal with permissible dimensions.
+
 ## Working principles
 
 - Native Python runtime; no R runtime or GUI requirement.
