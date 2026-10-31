@@ -11,6 +11,7 @@ from .core import AnalysisError
 from .methods import METHOD_INDEX, discover, parse_spec, validate
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
+from .study import inspect_study, reproduce_study, run_study
 
 
 class JsonArgumentParser(argparse.ArgumentParser):
@@ -45,6 +46,11 @@ def main(argv=None):
         sub.add_argument("run_dir")
         if command == "reproduce":
             sub.add_argument("--output", required=True)
+    for command in ("study-run", "study-inspect", "study-reproduce"):
+        sub = commands.add_parser(command)
+        sub.add_argument("study" if command == "study-run" else "study_dir")
+        if command != "study-inspect":
+            sub.add_argument("--output", required=True)
     comparison = commands.add_parser("compare")
     comparison.add_argument("baseline")
     comparison.add_argument("sensitivity")
@@ -66,8 +72,14 @@ def main(argv=None):
                 result = compare_community_runs(args.baseline, args.sensitivity, args.output)
             case "inspect-comparison":
                 result = inspect_comparison(args.run_dir)
+            case "study-run":
+                result = run_study(args.study, args.output)
+            case "study-inspect":
+                result = inspect_study(args.study_dir)
+            case "study-reproduce":
+                result = reproduce_study(args.study_dir, args.output)
         print(json.dumps(result, allow_nan=False))
-        return 1 if result.get("status") == "different" else 0
+        return 1 if result.get("status") in ("different", "partial") else 0
     except ValidationError as exc:
         error = {"status": "error", "code": "invalid_specification", "message": "Request does not match the method schema",
                  "details": json.loads(exc.json(include_url=False, include_context=False))}

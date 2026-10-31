@@ -162,3 +162,19 @@ def test_single_call_interface(materials):
                             capture_output=True, text=True, check=True)
     assert json.loads(result.stdout)["status"] == "valid"
     assert Transport(root).dispatch("run", {"spec": specs["rma"], "output": "/"})["code"] == "path_outside_root"
+
+
+def test_study_tools_are_root_scoped(tmp_path):
+    from test_study import community_study
+    study = json.loads(community_study(tmp_path).read_text())
+    transport = Transport(tmp_path)
+    outcome = transport.dispatch("study_run", {"study": study, "output": "study-out"})
+    assert outcome["status"] == "complete" and outcome["study_dir"] == "study-out"
+    verified = transport.dispatch("study_inspect", {"study_dir": "study-out"})
+    assert verified["status"] == "verified" and set(verified["runs"]) == {"describe", "zones"}
+    reproduced = transport.dispatch("study_reproduce", {"study_dir": "study-out", "output": "again"})
+    assert reproduced["status"] == "reproduced" and reproduced["new"] == "again"
+    escaping = json.loads(json.dumps(study))
+    escaping["inputs"]["counts"]["path"] = "../outside.dat"
+    refused = transport.dispatch("study_run", {"study": escaping, "output": "x"})
+    assert refused["code"] == "path_outside_root" and not (tmp_path / "x").exists()

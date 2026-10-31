@@ -13,6 +13,7 @@ from .core import AnalysisError
 from .methods import MethodSpec, METHOD_INDEX, discover, summary, validate
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
+from .study import StudySpec, inspect_study, reproduce_study, run_study
 
 
 class Request(BaseModel):
@@ -45,6 +46,19 @@ class CompareRequest(Request):
     output: str = "comparisons"
 
 
+class StudyRunRequest(Request):
+    study: StudySpec
+    output: str = Field(min_length=1, description="New directory for the study bundle")
+
+
+class StudyRequest(Request):
+    study_dir: str
+
+
+class StudyReproduceRequest(StudyRequest):
+    output: str = Field(min_length=1)
+
+
 class ResultRequest(BundleRequest):
     field: str = Field(min_length=1, description="Dot-separated result-field path; discover fields with inspect")
     offset: int = Field(default=0, ge=0, strict=True)
@@ -62,6 +76,9 @@ REQUESTS = {
     "compare": (CompareRequest, "Compare community runs descriptively under the existing provenance and one-factor rules."),
     "inspect_comparison": (BundleRequest, "Verify a descriptive comparison and both embedded run bundles."),
     "result": (ResultRequest, "Read one verified run-result field, with bounded rows and matrix columns."),
+    "study_run": (StudyRunRequest, "Run a multi-step study: declared exclusions, selections and taxon mappings, then analyses; saves one bundle."),
+    "study_inspect": (StudyRequest, "Verify a study's integrity, recompute its prepared data and verify every run."),
+    "study_reproduce": (StudyReproduceRequest, "Rerun a verified study from its saved inputs and compare every analysis."),
 }
 
 
@@ -110,7 +127,7 @@ class Transport:
             result = self._dispatch(name, request)
             if "summary" in result:
                 result["summary"] = _compact_summary(result["summary"])
-            for key in ("run_dir", "comparison_dir", "original_run", "new_run"):
+            for key in ("run_dir", "comparison_dir", "original_run", "new_run", "study_dir", "original", "new"):
                 if key in result:
                     result[key] = self._relative(result[key])
             return result
@@ -137,6 +154,14 @@ class Transport:
         if name == "compare":
             return compare_community_runs(self._path(request.baseline), self._path(request.sensitivity),
                                           self._path(request.output))
+        if name == "study_run":
+            study = request.study.model_copy(update={"inputs": {
+                key: item.model_copy(update={"path": self._path(item.path)}) for key, item in request.study.inputs.items()}})
+            return run_study(study.model_dump(mode="json"), self._path(request.output), base_dir=self.root)
+        if name == "study_inspect":
+            return inspect_study(self._path(request.study_dir))
+        if name == "study_reproduce":
+            return reproduce_study(self._path(request.study_dir), self._path(request.output))
         directory = self._path(request.bundle)
         if name == "inspect_comparison":
             record = inspect_comparison(directory)

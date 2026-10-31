@@ -6,6 +6,7 @@ from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, vali
 from .methods import discover, validate
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
+from .study import StudySpec, inspect_study, reproduce_study, run_study
 
 __version__ = "0.2.0.dev0"
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "compare_community_runs", "inspect_comparison",
     "PermanovaResult", "PermanovaSpec",
     "calculate_permanova", "validate_permanova",
+    "StudySpec", "run_study", "inspect_study", "reproduce_study",
 ]
