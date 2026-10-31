@@ -1,0 +1,12 @@
+{
+ "item": "D5-twin",
+ "purpose": "Clean twin of D5: only specimens with measured widths.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "dictionary.md": "bdd558f3128880fd8026385c85778b8456f1612e50772b33aeb6c2675a2eeb70",
+  "measurements.tsv": "fc26029414152b95740e218a98c26fab97849ea59292579c67ab9cb77a087e8d",
+  "task.md": "c5762cba8864d596eec1c2ac5316dc69b9567b5ddd7272c309fd0c2f0b25880a"
+ }
+}

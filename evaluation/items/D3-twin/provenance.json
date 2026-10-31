@@ -1,0 +1,13 @@
+{
+ "item": "D3-twin",
+ "purpose": "Clean twin of D3: metadata rows in matrix order.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "e769f2555cd94c8299c576904dcff514dcc234526df852d9e473742565eefebe",
+  "dictionary.md": "f5dfc57c884e9590094d2482b83c4f903457d370570a9dbe1174533a16a0e4f0",
+  "samples.csv": "107785ec357b474063429ab9750e4ccfc59ffb32f5a50609e1388b5d6a0e7a5b",
+  "task.md": "eef02c398c12315c914dd9efa4bd8975d9768a5b1374c3e016dc7e7d488a2c10"
+ }
+}

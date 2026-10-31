@@ -1,0 +1,12 @@
+{
+ "item": "D4-twin",
+ "purpose": "Clean twin of D4: one column per taxon.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "c70fc1a4a592322d285b8c35d1d00d905580f0194f642428ddc0380207ec051c",
+  "dictionary.md": "4fe52208fe3e3b021e813259add643d225d2bea29af8a1ed19f55ab467e6f7c2",
+  "task.md": "3e512cbf683ac7dd182c124ae3a932737db3624700f04c2f31953922d8ff03ec"
+ }
+}

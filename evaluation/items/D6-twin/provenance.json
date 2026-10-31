@@ -1,0 +1,12 @@
+{
+ "item": "D6-twin",
+ "purpose": "Clean twin of D6: samples in rows.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "c44a4d0c3103a2a9afe0cad66a0e7c12396716b370b269650c35401ee58936a1",
+  "dictionary.md": "53825bcd11faa76da91bdd39f83951c1f09607358aac74a3ae8af1bb8aa3c182",
+  "task.md": "3e512cbf683ac7dd182c124ae3a932737db3624700f04c2f31953922d8ff03ec"
+ }
+}

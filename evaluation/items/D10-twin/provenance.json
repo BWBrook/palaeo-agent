@@ -1,0 +1,12 @@
+{
+ "item": "D10-twin",
+ "purpose": "Clean twin of D10: equal totals, so standardisation cannot change the answer.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "a7e1ce7d6d7ca9ee556eee43c5538aae32420e7271f488d3002b2a3af5fca669",
+  "dictionary.md": "95cc5aede62efa2ba6892371cfeb01dae59e40e2cbe56e964288aa988e2ef6c1",
+  "task.md": "5802da4c158e971410998b90d9497f985965ec668f13306d8582821efe606c0e"
+ }
+}

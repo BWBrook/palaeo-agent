@@ -1,0 +1,21 @@
+{
+ "item": "D9-trap",
+ "catalogue": "D9",
+ "class": "trap",
+ "expected": "unresolved",
+ "results": {},
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [
+  [
+   "T4"
+  ]
+ ],
+ "issue_token_kind": "identifier",
+ "exclusions_expected": [],
+ "smoke": false
+}

@@ -1,0 +1,12 @@
+{
+ "item": "D2-twin",
+ "purpose": "Clean twin of D2: the counts themselves.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "assemblages.tsv": "f7596dc4a698451cf6dc75d867fb32abe20df45323fb400d33c00bb84915e3f4",
+  "dictionary.md": "7f74f2c9933b6de2eb90468ef850d7bd03d3328591352b2e9e141000d4e9ad81",
+  "task.md": "820a80f2adb1b85748c2a8e632dbc7443bcf5c4d9957059b2a5a57f3801fd9b1"
+ }
+}

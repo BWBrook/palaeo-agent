@@ -1,0 +1,12 @@
+{
+ "item": "D9-twin",
+ "purpose": "Clean twin of D9: unique sample IDs.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "1d2e4d3364a8d5002e37ad76c72925769e5505f460662286d33163c68325958e",
+  "dictionary.md": "36a6de62bb55c83e9e57228f19a80fb875f7dc40463b05b8f24b6e10b8d9d7e1",
+  "task.md": "3e512cbf683ac7dd182c124ae3a932737db3624700f04c2f31953922d8ff03ec"
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "item": "D2-trap",
+ "purpose": "Percentages with sample totals supplied; Bray-Curtis on raw counts requires reconstructing counts.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "assemblages.tsv": "afb207b8db7124f8720ebaba91d1c2ca48d99e261c67860bce735783633ff997",
+  "dictionary.md": "429b6e794c065c3e7b492f24712d850f767ae205903e099dcec3fd1e9a7cb874",
+  "samples.csv": "764b463a6c5be286311737e0a415fbed14eda91d04ab992b048e3647132ddd38",
+  "task.md": "820a80f2adb1b85748c2a8e632dbc7443bcf5c4d9957059b2a5a57f3801fd9b1"
+ }
+}

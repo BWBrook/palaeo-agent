@@ -1,0 +1,26 @@
+{
+ "item": "D6-under",
+ "catalogue": "D6",
+ "class": "underdetermined",
+ "expected": "unresolved",
+ "results": {},
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [
+  [
+   "orientation",
+   "transpos",
+   "rows",
+   "columns",
+   "which axis",
+   "which dimension"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "smoke": false
+}

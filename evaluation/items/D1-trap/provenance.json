@@ -1,0 +1,12 @@
+{
+ "item": "D1-trap",
+ "purpose": "Columns of unequal length padded with '.', plus two genuinely missing widths; complete-case filtering across all columns discards valid L1 pairs.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "dictionary.md": "ef9e94255d8c3c8e4b3161995ea9c988e15bb7a05af93e0c63a7e3ae60673239",
+  "shells.tsv": "bcc6f7585cf057f142b5d8a7f90b303a24406608a52b580e34f791776a56780f",
+  "task.md": "3c76d7cdf502ad459fe809009934ac787ccfbfe18718b60943af69578c4b6899"
+ }
+}

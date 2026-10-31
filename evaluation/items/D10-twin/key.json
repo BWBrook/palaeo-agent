@@ -1,0 +1,35 @@
+{
+ "item": "D10-twin",
+ "catalogue": "D10",
+ "class": "twin",
+ "expected": "complete",
+ "results": {
+  "braycurtis": {
+   "V1|V2": 0.79,
+   "V1|V3": 0.42,
+   "V1|V4": 0.565,
+   "V1|V5": 0.455,
+   "V1|V6": 0.64,
+   "V2|V3": 0.705,
+   "V2|V4": 0.695,
+   "V2|V5": 0.44,
+   "V2|V6": 0.665,
+   "V3|V4": 0.67,
+   "V3|V5": 0.63,
+   "V3|V6": 0.33,
+   "V4|V5": 0.47,
+   "V4|V6": 0.685,
+   "V5|V6": 0.605
+  }
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": null,
+ "exclusions_expected": [],
+ "smoke": false
+}

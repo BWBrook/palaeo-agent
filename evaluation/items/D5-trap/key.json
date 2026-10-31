@@ -1,0 +1,50 @@
+{
+ "item": "D5-trap",
+ "catalogue": "D5",
+ "class": "trap",
+ "expected": "complete",
+ "results": {
+  "slope": 1.151875429304951,
+  "intercept": -0.354277068055487,
+  "n": 27
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "log10_plus_one_both",
+   "results": {
+    "slope": 2.7067640976194913,
+    "intercept": -2.6697722920161624,
+    "n": 30
+   }
+  },
+  {
+   "name": "log10_plus_one_width",
+   "results": {
+    "slope": 2.5902575785496893,
+    "intercept": -2.4576661967250084,
+    "n": 30
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "zero",
+   "damaged",
+   "not measur"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [
+  "sp07",
+  "sp18",
+  "sp26"
+ ],
+ "smoke": false
+}

@@ -1,0 +1,12 @@
+{
+ "item": "D7-twin",
+ "purpose": "Clean twin of D7: the five samples with specimens.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "edbad8a51c8aeefee39e429c20fe0bebf66fb188626b4c91ec7f67435af56613",
+  "dictionary.md": "947ccd498a7326badd6a73279b37b80428f37da37dc098d44fa1f42afab9705f",
+  "task.md": "bd92e0177c6d3e46a02b580b0fc2eaf4348be72f6c5d43d6494e7c3b9197b2d1"
+ }
+}

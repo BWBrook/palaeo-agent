@@ -1,0 +1,36 @@
+{
+ "item": "D7-trap",
+ "catalogue": "D7",
+ "class": "trap",
+ "expected": "complete",
+ "results": {
+  "mean_braycurtis": 0.5170478520569594,
+  "n_pairs": 10
+ },
+ "integer_results": [
+  "n_pairs"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "empty_sample_as_one",
+   "results": {
+    "mean_braycurtis": 0.6780319013713063,
+    "n_pairs": 15
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "K5"
+  ]
+ ],
+ "issue_token_kind": "identifier",
+ "exclusions_expected": [
+  "K5"
+ ],
+ "smoke": false
+}

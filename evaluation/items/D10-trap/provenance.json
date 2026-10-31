@@ -1,0 +1,12 @@
+{
+ "item": "D10-trap",
+ "purpose": "Very unequal sample totals, where relative-abundance standardisation changes every value.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "b57c082b160ba8923bdebf4dbb42fbcaacb00d8bbac36421049ab7fddac42e9e",
+  "dictionary.md": "95cc5aede62efa2ba6892371cfeb01dae59e40e2cbe56e964288aa988e2ef6c1",
+  "task.md": "5802da4c158e971410998b90d9497f985965ec668f13306d8582821efe606c0e"
+ }
+}

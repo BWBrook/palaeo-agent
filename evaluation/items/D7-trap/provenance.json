@@ -1,0 +1,12 @@
+{
+ "item": "D7-trap",
+ "purpose": "An empty sample, whose dissimilarity to any other sample is undefined in composition.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "e622180f0e54e505a4b71a45ce1ffc406360766bbc2da7b877e99c9d2da72608",
+  "dictionary.md": "a4a9cb8fb05fda59492c89d208c3e3a33d8325f873533deb9b0a02622d494d49",
+  "task.md": "bd92e0177c6d3e46a02b580b0fc2eaf4348be72f6c5d43d6494e7c3b9197b2d1"
+ }
+}

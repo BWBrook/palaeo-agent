@@ -1,0 +1,62 @@
+{
+ "trial_id": "13a0e8cd1da7",
+ "materials": "preflight/materials",
+ "arm": "direct",
+ "backend": "codex",
+ "model": "gpt-6.1-sol",
+ "effort": "medium",
+ "cli_version": "codex-cli 0.166.0",
+ "argv": [
+  "/opt/homebrew/bin/codex",
+  "exec",
+  "--ephemeral",
+  "--ignore-user-config",
+  "--ignore-rules",
+  "--skip-git-repo-check",
+  "--json",
+  "--cd",
+  "/Users/bwbrook/palaeo-eval/t/13a0e8cd1da7/ws",
+  "-m",
+  "gpt-6.1-sol",
+  "-c",
+  "model_reasoning_effort=\"medium\"",
+  "-c",
+  "approval_policy=\"never\"",
+  "--dangerously-bypass-approvals-and-sandbox",
+  "-o",
+  "/Users/bwbrook/palaeo-eval/t/13a0e8cd1da7/last_message.txt",
+  "<prompt>"
+ ],
+ "env_keys": [
+  "CODEX_HOME",
+  "HOME",
+  "LANG",
+  "LOGNAME",
+  "PATH",
+  "TMPDIR",
+  "USER",
+  "VIRTUAL_ENV"
+ ],
+ "prompt_sha256": "b00913ac6e1adb5cdb79b05add7fb10aff3c396b225c4d4f967fe7c0e0dee24f",
+ "runtime": {
+  "python": "3.12.13",
+  "requirements_sha256": "05eb5543a1a91c89091a9e739f08eb604b25d61054eed512d1dab521e808f34f",
+  "wheel": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+  "wheel_sha256": "0a30195bd884ae24df5eaf682e4eb8ba1df31f337d6efbfb57fba45396009026",
+  "arms": null,
+  "discover_sha256": "8ac9fbaba42ae3de05de88a7ceaf69281af5e9767be2a08d94acf12c12ea338d"
+ },
+ "started_utc": "2026-10-31T03:36:52.003221+00:00",
+ "elapsed_seconds": 36.4,
+ "wall_limit_seconds": 300,
+ "termination": "exited",
+ "returncode": 0,
+ "usage": {
+  "input_tokens": 61937,
+  "cached_input_tokens": 57984,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 1427,
+  "reasoning_output_tokens": 159
+ },
+ "counted_tokens": 5380
+}

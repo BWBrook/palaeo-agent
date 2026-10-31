@@ -1,0 +1,1 @@
+- The Python package `palaeo_agent` (Palaeo-Agent) is installed in this environment. `python -m palaeo_agent discover` describes its methods, inputs and outputs; the same output is saved as `palaeo_agent_discover.json`, and `python -m palaeo_agent --help` lists its commands. Use it for the parts of the analysis it supports.

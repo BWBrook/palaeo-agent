@@ -1,0 +1,12 @@
+{
+ "item": "D8-trap",
+ "purpose": "Not-assessed cells coded '.', which become false absences if treated as zero.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "a289baf351adddcb5aeafda2ef754232d6cc192c935d11fbf69630a498f60759",
+  "dictionary.md": "3b64c63a7a0a60c777669fc3d85a51f955eda3a7fecf2dd12cebfc533e565824",
+  "task.md": "791b11ecef30b09c24883f3c44b761a2c1465b77c5d7c22a6a4f2bc59ec4b846"
+ }
+}

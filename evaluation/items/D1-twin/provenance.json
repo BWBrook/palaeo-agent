@@ -1,0 +1,12 @@
+{
+ "item": "D1-twin",
+ "purpose": "Clean twin of D1: the same L1 specimens with no padding or missing values.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "dictionary.md": "a524638c18c850917d5374d63400a2a52eb515956f16668df754f5bd4c840b22",
+  "shells.tsv": "a415eef8e185fb464e12c52771acbeca91e0aa4fe9d2c1b5d8fcf0c568775ea6",
+  "task.md": "af8d87d7dfbdd1f61bcd9e885246d504e22cce66391b41af9a42a8256aac3e0a"
+ }
+}

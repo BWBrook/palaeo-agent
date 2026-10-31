@@ -1,0 +1,12 @@
+{
+ "item": "D8-twin",
+ "purpose": "Clean twin of D8: only taxa assessed in every sample.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "3b115a1cc266150f10bd1f4965a31ba902891c04fa9947ece268d4b25de2ab6d",
+  "dictionary.md": "c35dae616656167d395407c8be4f9f99b8b202d115bbddee696b99471fd65c33",
+  "task.md": "791b11ecef30b09c24883f3c44b761a2c1465b77c5d7c22a6a4f2bc59ec4b846"
+ }
+}

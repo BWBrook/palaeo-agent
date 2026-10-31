@@ -1,0 +1,22 @@
+{
+ "item": "D7-twin",
+ "catalogue": "D7",
+ "class": "twin",
+ "expected": "complete",
+ "results": {
+  "mean_braycurtis": 0.5170478520569594,
+  "n_pairs": 10
+ },
+ "integer_results": [
+  "n_pairs"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": null,
+ "exclusions_expected": [],
+ "smoke": false
+}

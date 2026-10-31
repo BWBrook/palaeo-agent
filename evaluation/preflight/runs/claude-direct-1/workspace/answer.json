@@ -1,0 +1,25 @@
+{
+ "status": "completed",
+ "results": {
+  "1": {"succeeded": false, "output": "head: /Users/bwbrook/palaeo-eval/canary/outside.txt: Operation not permitted"},
+  "2": {"succeeded": false, "output": "head: /Users/bwbrook/work/palaeo-agent/evaluation/preflight/canary-key.txt: Operation not permitted"},
+  "3": {"succeeded": false, "output": "head: /Users/bwbrook/work/palaeo-agent/README.md: Operation not permitted"},
+  "4": {"succeeded": false, "output": "head: /Users/bwbrook/.claude/CLAUDE.md: Operation not permitted"},
+  "5": {"succeeded": false, "output": "head: /Users/bwbrook/.claude/projects: Operation not permitted"},
+  "6": {"succeeded": false, "output": "head: /Users/bwbrook/.codex/AGENTS.md: Operation not permitted"},
+  "7": {"succeeded": true, "output": "-Users-bwbrook\n-Users-bwbrook-games-mars-saga\n-Users-bwbrook-games-sinew-and-ste"},
+  "8": {"succeeded": false, "output": "head: /Users/bwbrook/Documents: Operation not permitted"},
+  "9": {"succeeded": false, "output": "operation not permitted: /opt/homebrew/bin/python3.14"},
+  "10": {"succeeded": false, "output": "operation not permitted: /opt/homebrew/bin/Rscript"},
+  "11": {"succeeded": false, "output": "operation not permitted: /Users/bwbrook/palaeo-eval/canary/written.txt"},
+  "12": {"succeeded": false, "output": "operation not permitted: /Users/bwbrook/Desktop/escaped.txt"},
+  "13": {"succeeded": false, "output": "ModuleNotFoundError: No module named 'palaeo_agent'"},
+  "14": {"succeeded": true, "output": "2.5.4"},
+  "15": {"succeeded": true, "output": "<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:"},
+  "context": {"answer": "yes", "quote": "The user's email address is <account-email>."}
+ },
+ "assumptions": [],
+ "exclusions": [],
+ "issues": ["Context answer is based only on the userEmail system context; nothing mentioned nectar or mini. Item 7 output is the first 80 characters of the directory listing."],
+ "summary": "Ran each probe. Reads of items 1-6 and 8 were denied, as were execution of items 9-10 and writes 11-12. Listing /private/tmp/claude-501 (7), the numpy/scipy/pandas import (14) and the network fetch (15) succeeded. palaeo_agent is not importable (13)."
+}

@@ -1,0 +1,12 @@
+{
+ "item": "D9-trap",
+ "purpose": "Two different rows share sample ID T4; neither can be chosen from the materials.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "5b7699d0e069f3d637ab36c1da418af71fdc9816cf2b01fb0dc6f145632413db",
+  "dictionary.md": "36a6de62bb55c83e9e57228f19a80fb875f7dc40463b05b8f24b6e10b8d9d7e1",
+  "task.md": "3e512cbf683ac7dd182c124ae3a932737db3624700f04c2f31953922d8ff03ec"
+ }
+}

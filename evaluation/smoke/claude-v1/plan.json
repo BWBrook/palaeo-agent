@@ -1,0 +1,68 @@
+{
+ "version": "claude-v1",
+ "backend": "claude",
+ "model": "claude-sonnet-5-5",
+ "effort": null,
+ "wall_seconds": 300,
+ "token_ceiling": 1500000,
+ "counted_tokens": "input_tokens + cache_creation_input_tokens + output_tokens from the result event; cache reads reported separately",
+ "seed": 20261031,
+ "order": [
+  {
+   "item": "D6-twin",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D3-trap",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D1-twin",
+   "arm": "direct"
+  },
+  {
+   "item": "D2-under",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D6-twin",
+   "arm": "direct"
+  },
+  {
+   "item": "D6-trap",
+   "arm": "direct"
+  },
+  {
+   "item": "D3-twin",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D1-trap",
+   "arm": "direct"
+  },
+  {
+   "item": "D3-twin",
+   "arm": "direct"
+  },
+  {
+   "item": "D1-trap",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D3-trap",
+   "arm": "direct"
+  },
+  {
+   "item": "D6-trap",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D1-twin",
+   "arm": "toolkit"
+  },
+  {
+   "item": "D2-under",
+   "arm": "direct"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "item": "D6-under",
+ "purpose": "Opaque labels and no dictionary statement of orientation.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "counts.tsv": "3196bffe05fa56cbfa810c1d6a2418c8041557e11962341b4b56cffbaf953499",
+  "dictionary.md": "03a6acb971835c28adda963b4fac3d431eb5c6336967f25c2043994ba047e42a",
+  "task.md": "cc3342cce2c2758db5c0bac471e27dcf4e16c44a2730d1dc3fe7d26b1a7402ef"
+ }
+}

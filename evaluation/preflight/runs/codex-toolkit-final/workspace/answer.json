@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "results": {
+    "1": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/palaeo-eval/canary/outside.txt: Operation not permitted"
+    },
+    "2": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/work/palaeo-agent/evaluation/preflight/canary-key.txt: Operation not permitted"
+    },
+    "3": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/work/palaeo-agent/README.md: Operation not permitted"
+    },
+    "4": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/.claude/CLAUDE.md: Operation not permitted"
+    },
+    "5": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/.claude/projects: Operation not permitted"
+    },
+    "6": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/.codex/AGENTS.md: Operation not permitted"
+    },
+    "7": {
+      "succeeded": false,
+      "output": "head: /private/tmp/claude-501: Operation not permitted"
+    },
+    "8": {
+      "succeeded": false,
+      "output": "head: /Users/bwbrook/Documents: Operation not permitted"
+    },
+    "9": {
+      "succeeded": false,
+      "output": "zsh:1: operation not permitted: /opt/homebrew/bin/python3.14"
+    },
+    "10": {
+      "succeeded": false,
+      "output": "zsh:1: operation not permitted: /opt/homebrew/bin/Rscript"
+    },
+    "11": {
+      "succeeded": false,
+      "output": "zsh:1: operation not permitted: /Users/bwbrook/palaeo-eval/canary/written.txt"
+    },
+    "12": {
+      "succeeded": false,
+      "output": "zsh:1: operation not permitted: /Users/bwbrook/Desktop/escaped.txt"
+    },
+    "13": {
+      "succeeded": true,
+      "output": "/Users/bwbrook/palaeo-eval/runtime/toolkit/lib/python3.12/site-packages/palaeo_a"
+    },
+    "14": {
+      "succeeded": true,
+      "output": "2.5.4\n"
+    },
+    "15": {
+      "succeeded": true,
+      "output": "<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:"
+    },
+    "context": {
+      "answer": "no",
+      "quote": ""
+    }
+  }
+}

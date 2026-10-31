@@ -1,0 +1,35 @@
+{
+ "item": "D3-trap",
+ "catalogue": "D3",
+ "class": "trap",
+ "expected": "complete",
+ "results": {
+  "mean_shannon_reef": 1.8340837643039034,
+  "mean_shannon_lagoon": 1.1399738231893213
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "positional_join",
+   "results": {
+    "mean_shannon_reef": 1.398794170751658,
+    "mean_shannon_lagoon": 1.5752634167415667
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "order",
+   "join",
+   "sample id",
+   "align"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "smoke": true
+}

@@ -1,0 +1,12 @@
+{
+ "item": "D5-trap",
+ "purpose": "Zero widths meaning 'not measurable' under a log transform.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "dictionary.md": "3ff47d605c7ee8f3a64c45b9951b4f99659300c35836867551c0ba1639cd6ca4",
+  "measurements.tsv": "821432a4a23e782882ce13c38969db83009b1063cadb6e069d0f7780ff7bf0f2",
+  "task.md": "c5762cba8864d596eec1c2ac5316dc69b9567b5ddd7272c309fd0c2f0b25880a"
+ }
+}

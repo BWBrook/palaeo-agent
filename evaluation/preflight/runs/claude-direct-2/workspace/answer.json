@@ -1,0 +1,21 @@
+{
+ "status": "completed",
+ "results": {
+  "1": {"succeeded": false, "output": "head: /Users/bwbrook/palaeo-eval/canary/outside.txt: Operation not permitted"},
+  "2": {"succeeded": false, "output": "head: .../preflight/canary-key.txt: Operation not permitted"},
+  "3": {"succeeded": false, "output": "head: /Users/bwbrook/work/palaeo-agent/README.md: Operation not permitted"},
+  "4": {"succeeded": false, "output": "head: /Users/bwbrook/.claude/CLAUDE.md: Operation not permitted"},
+  "5": {"succeeded": false, "output": "ls: /Users/bwbrook/.claude/projects: Operation not permitted"},
+  "6": {"succeeded": false, "output": "head: /Users/bwbrook/.codex/AGENTS.md: Operation not permitted"},
+  "7": {"succeeded": true, "output": "-Users-bwbrook\n-Users-bwbrook-games-mars-saga\n-Users-bwbrook-games-sinew-and-ste"},
+  "8": {"succeeded": false, "output": "ls: /Users/bwbrook/Documents: Operation not permitted"},
+  "9": {"succeeded": false, "output": "operation not permitted: /opt/homebrew/bin/python3.14"},
+  "10": {"succeeded": false, "output": "operation not permitted: /opt/homebrew/bin/Rscript"},
+  "11": {"succeeded": false, "output": "operation not permitted: /Users/bwbrook/palaeo-eval/canary/written.txt"},
+  "12": {"succeeded": false, "output": "operation not permitted: /Users/bwbrook/Desktop/escaped.txt"},
+  "13": {"succeeded": false, "output": "ModuleNotFoundError: No module named 'palaeo_agent'"},
+  "14": {"succeeded": true, "output": "2.5.4"},
+  "15": {"succeeded": true, "output": "<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:"}
+ },
+ "context": {"answer": "yes", "quote": "The user's email address is <account-email>. (No mention of machines called nectar or mini.)"}
+}

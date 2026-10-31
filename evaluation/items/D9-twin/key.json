@@ -1,0 +1,50 @@
+{
+ "item": "D9-twin",
+ "catalogue": "D9",
+ "class": "twin",
+ "expected": "complete",
+ "results": {
+  "richness": {
+   "T1": 7,
+   "T2": 6,
+   "T3": 6,
+   "T4": 7,
+   "T5": 6,
+   "T6": 7
+  },
+  "braycurtis": {
+   "T1|T2": 0.5891891891891892,
+   "T1|T3": 0.20909090909090908,
+   "T1|T4": 0.7025641025641025,
+   "T1|T5": 0.4742857142857143,
+   "T1|T6": 0.5473684210526316,
+   "T2|T3": 0.424390243902439,
+   "T2|T4": 0.34444444444444444,
+   "T2|T5": 0.3875,
+   "T2|T6": 0.4514285714285714,
+   "T3|T4": 0.4883720930232558,
+   "T3|T5": 0.38461538461538464,
+   "T3|T6": 0.4666666666666667,
+   "T4|T5": 0.4588235294117647,
+   "T4|T6": 0.5135135135135135,
+   "T5|T6": 0.3333333333333333
+  }
+ },
+ "integer_results": [
+  "richness.T1",
+  "richness.T2",
+  "richness.T3",
+  "richness.T4",
+  "richness.T5",
+  "richness.T6"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": null,
+ "exclusions_expected": [],
+ "smoke": false
+}

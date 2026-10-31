@@ -1,0 +1,12 @@
+{
+ "item": "D2-under",
+ "purpose": "Percentages without sample totals: raw-count Bray-Curtis cannot be recovered.",
+ "generator": "evaluation/build_items.py",
+ "author": "Claude (Opus 5.5), sprint 1, 31 October 2026",
+ "data": "Synthetic, seeded; keys from exact rational arithmetic where the quantity is rational",
+ "materials_sha256": {
+  "assemblages.tsv": "afb207b8db7124f8720ebaba91d1c2ca48d99e261c67860bce735783633ff997",
+  "dictionary.md": "686fb37fe5afb8dbee880fe355bce7af7d8f86712551de14ac65c5edba09a8ec",
+  "task.md": "820a80f2adb1b85748c2a8e632dbc7443bcf5c4d9957059b2a5a57f3801fd9b1"
+ }
+}

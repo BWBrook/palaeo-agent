@@ -1,0 +1,20 @@
+{
+ "item": "D3-twin",
+ "catalogue": "D3",
+ "class": "twin",
+ "expected": "complete",
+ "results": {
+  "mean_shannon_reef": 1.8340837643039034,
+  "mean_shannon_lagoon": 1.1399738231893213
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": null,
+ "exclusions_expected": [],
+ "smoke": true
+}

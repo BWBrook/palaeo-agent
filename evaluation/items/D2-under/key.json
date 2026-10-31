@@ -1,0 +1,26 @@
+{
+ "item": "D2-under",
+ "catalogue": "D2",
+ "class": "underdetermined",
+ "expected": "unresolved",
+ "results": {},
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [
+  [
+   "count",
+   "total",
+   "sample size",
+   "number of specimens",
+   "n_counted",
+   "absolute"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "smoke": true
+}

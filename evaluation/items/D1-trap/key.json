@@ -1,0 +1,41 @@
+{
+ "item": "D1-trap",
+ "catalogue": "D1",
+ "class": "trap",
+ "expected": "complete",
+ "results": {
+  "slope": 0.8266909894368556,
+  "intercept": -0.21091768985050052,
+  "n": 38
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "complete_case_all_columns",
+   "results": {
+    "slope": 0.791988276958562,
+    "intercept": 1.5802411346794898,
+    "n": 13
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "L2",
+   "L3",
+   "complete",
+   "pad",
+   "missing",
+   "broken"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "smoke": true
+}
