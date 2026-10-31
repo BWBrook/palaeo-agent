@@ -8,7 +8,8 @@ at 1943c30 after all twelve trials ended. See [sprint-2 results](sprint-2-result
 Claude accepted sprint 2 at e60729d after 25/25 blind cases passed. Codex's
 [sprint-1 counter-review](sprint-1-review.md) retains the historical development
 results, repairs prospective scoring/items and disables the exposed live
-launcher. Both counter-reviews are complete; reconciliation is being recorded.
+launcher. Both counter-reviews and [reconciliation](sprints-1-2-reconciliation.md)
+are complete; live evaluation remains on hold pending a replacement boundary.
 Claude proposed the original draft at 1299297.
 
 Barry, 31 October 2026, Claude Code chat: "Let's step up the autonomy for the

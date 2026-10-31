@@ -24,5 +24,21 @@
   "post_repair_full_suite_before_output_writer_regression": {
     "passed": 299,
     "seconds": 26.9
+  },
+  "post_repair_final_ci": {
+    "source_commit": "59aeb7724111e8c794c0639df460e7ee1e9ad64b",
+    "url": "https://github.com/BWBrook/palaeo-agent/actions/runs/41191815567",
+    "conclusion": "success",
+    "passed": 301,
+    "seconds": 54.6
+  },
+  "final_targeted_tests": {
+    "passed": 16,
+    "seconds": 0.83
+  },
+  "reconciliation": {
+    "claude_message": 2706,
+    "codex_acceptance_and_ci_confirmation": 2707,
+    "disagreements": []
   }
 }

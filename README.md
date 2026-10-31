@@ -34,6 +34,7 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [Sprint plan and counter-review sequence](docs/sprints-1-2.md)
 - [PERMANOVA validation and sprint-2 smoke results](docs/sprint-2-results.md)
 - [Sprint-1 counter-review and evaluation repairs](docs/sprint-1-review.md)
+- [Two-sprint reconciliation and next programme](docs/sprints-1-2-reconciliation.md)
 - [Third-party reference material](THIRD_PARTY.md)
 
 ## Run the first workflow

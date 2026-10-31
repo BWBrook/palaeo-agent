@@ -17,6 +17,9 @@ and limits. No live evaluation trials were run during this review.
 - `preservation.json`: original-evaluation path comparison against `b2e2964`
   and declared post-smoke launcher/documentation amendments. Bank, scorer,
   plans, raw trials and original scores remain unchanged.
+- `claude-reconciliation-*.json`: fresh Claude source/judgment sessions,
+  including material amendments and final acceptance. These are separate from
+  the original sprint-2 reviewer and are not new numerical/blind validations.
 
 The original harness source is preserved at freeze commit `5af0041`. Its
 working-tree launcher is disabled. These receipts establish the stated

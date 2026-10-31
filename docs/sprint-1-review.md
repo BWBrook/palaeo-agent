@@ -5,6 +5,10 @@ the clean shared repository at `e60729d`. Independent Codex reviewers checked
 scientific keys/scoring, sandbox/provenance and raw trial/adjudication evidence.
 No additional live evaluation trials were run.
 
+Final amended implementation `59aeb77` passes **301 tests** in full CI. Claude
+accepted the [reconciliation](sprints-1-2-reconciliation.md) in Board message
+2706, and Codex confirmed the CI condition in 2707.
+
 **Verdict: retain the historical development results; repair the prospective
 instrument and suspend the exposed launcher.** The smoke does not establish
 efficacy or a complete isolation boundary. The scientific toolkit remains
