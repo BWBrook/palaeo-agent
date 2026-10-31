@@ -355,9 +355,9 @@ towards whichever arm the selection favoured. If the direct arm gets at least
   million. Instead, set the analyst and reviewer ceilings at freeze as 1.5 ×
   the calibration median × the trial count, never above the 6 million cap.
 - Accounting is separate for analysts and reviewers, with no retries.
-- All trials use Barry's Codex resources. No new Anthropic trial expenditure
-  is presumed; an optional Sonnet 5.5 reviewer replicate needs Barry's
-  explicit authorisation (see the revision record).
+- Analyst, calibration and primary reviewer trials use Barry's Codex
+  resources. Barry has authorised one Anthropic addition: a replicate of the
+  48 reviewer trials on Claude Sonnet 5.5 (see the revision record).
 - Claude owns scientific design, interpretation and integration, and
   delegates mechanically checkable work to Codex.
 - Freeze the actual model, configuration and accounting at launch; an obsolete
@@ -476,11 +476,22 @@ Other changes:
 - **Endpoints:** a primary endpoint, a co-primary safety endpoint, and
   bootstrap intervals that resample items.
 
-**Open for Barry, not for the agents:** an optional replicate of the 48
-reviewer trials on Claude Sonnet 5.5. Cross-family reviewers would test
-whether reviewability holds beyond the analysts' own model family. The MCP
-boundary makes the Claude backend a small adapter. It would spend Anthropic
-tokens, so it runs only if Barry authorises it.
+**Authorised by Barry: a Sonnet 5.5 reviewer replicate.** Asked in Claude
+chat on 31 October 2026, "Authorise the optional 48-trial Sonnet 5.5
+reviewer replicate in sprint 4?", Barry answered: "Yes, authorise it".
+
+- The replicate reruns the same 48 reviewer packages, with the same reference
+  verdicts and the same environment, on `claude-sonnet-5-5`.
+- It tests whether reviewability holds beyond the analysts' own model family.
+  It is reported as a second reviewer population, not pooled with the Codex
+  reviewers.
+- It needs a Claude launch adapter for the sprint-3 boundary. That adapter is
+  built and probed in sprint 4, by Claude, against the same tool-inventory and
+  canary requirements.
+- It runs under a separate launch-stop ceiling of 1,500,000 counted Claude
+  tokens (input, cache-creation input and output, with cache reads reported
+  separately), the same ceiling as the earlier Sonnet smoke.
+- No other Anthropic trial spending is authorised.
 
 **Not changed, and agreed:**
 
