@@ -1,6 +1,6 @@
 {
  "item": "P04-cal",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P04",
  "class": "trap",
  "stratum": "toolkit",
@@ -49,6 +49,18 @@
    ]
   }
  ],
+ "disclosure_tokens": [
+  [
+   "T01",
+   "T09",
+   "fraction",
+   "common",
+   "63",
+   "not picked",
+   "comparable"
+  ]
+ ],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "Full-community Shannon for 2017 is not identified ('.' is not 0). The only comparable quantity is Shannon on T01\u2013T08, the fraction both campaigns picked completely; it is keyed and must be disclosed as the basis. Stopping because the full-community comparison is not identified, with the coverage issue named, is the accepted alternative.",
  "analysis": "Shannon per core, campaign means"
 }

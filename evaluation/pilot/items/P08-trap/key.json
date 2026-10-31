@@ -1,6 +1,6 @@
 {
  "item": "P08-trap",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P08",
  "class": "trap",
  "stratum": "other",
@@ -45,6 +45,8 @@
   "S16"
  ],
  "acceptable_alternatives": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "Sediment is younger upwards, so Holocene samples are those shallower than 142 cm.",
  "analysis": "subset; mean pairwise Bray\u2013Curtis, raw counts"
 }

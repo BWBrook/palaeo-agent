@@ -1,6 +1,6 @@
 {
  "item": "P02-trap",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P02",
  "class": "trap",
  "stratum": "toolkit",
@@ -36,6 +36,8 @@
  "exclusions_expected": [],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "Each log code is the count-file code without its leading zero (LV7 = LV07); matching on the core number is the only join consistent with the stated convention.",
  "analysis": "one-way PERMANOVA, Bray\u2013Curtis raw"
 }

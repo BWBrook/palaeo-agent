@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 LEGACY = REPO / "benchmarks/past/legacy-data"
 TOLERANCE = {"abs": 1e-4, "rel": 1e-4}
-BANK_VERSION = "pilot-v2"
+BANK_VERSION = "pilot-v3"
 
 
 # ---------- exact definitions ----------
@@ -102,11 +102,12 @@ SPECIES = ["Globigerina bulloides", "Globigerinoides ruber", "Orbulina universa"
 
 
 def item(family, cls, stratum, task, dictionary, files, results, *, integer=(), failures=(), tokens=(),
-         exclusions=(), out_of_scope=(), alternatives=(), witness, source, analysis):
+         exclusions=(), out_of_scope=(), alternatives=(), disclosure=(), equivalents=(), witness, source, analysis):
     return {"family": family, "class": cls, "stratum": stratum, "task": task, "dictionary": dictionary,
             "files": files, "results": results, "integer": list(integer), "failures": list(failures),
             "tokens": [list(t) for t in tokens], "exclusions": list(exclusions), "out_of_scope": list(out_of_scope),
-            "alternatives": list(alternatives), "witness": witness,
+            "alternatives": list(alternatives), "disclosure": [list(t) for t in disclosure],
+            "equivalents": [list(e) for e in equivalents], "witness": witness,
             "source": source, "analysis": analysis}
 
 
@@ -269,6 +270,7 @@ def p04_not_assessed(cls, seed):
                 tokens=[["T09", "fraction", "not picked", "common", "not assessed", "comparab"]] if cls == "trap" else [],
                 alternatives=[{"status": "stopped", "issue_tokens": [["T09", "fraction", "not picked", "not assessed"]]}]
                 if cls == "trap" else [],
+                disclosure=[["T01", "T09", "fraction", "common", "63", "not picked", "comparable"]] if cls == "trap" else [],
                 witness=("Full-community Shannon for 2017 is not identified ('.' is not 0). The only comparable quantity "
                          "is Shannon on T01–T08, the fraction both campaigns picked completely; it is keyed and must be "
                          "disclosed as the basis. Stopping because the full-community comparison is not identified, "
@@ -460,7 +462,7 @@ def p09_valves(cls, seed):
     return item("P09", cls, "other", task, dictionary, {"valves.csv": "\n".join(lines) + "\n"}, key, integer=["n"],
                 failures=[{"name": "both_valves", "results": bad}] if cls == "trap" else [],
                 tokens=[["left valve", "pair", "same individual", "duplicate"]] if cls == "trap" else [],
-                exclusions=[r[0] for r in extra], witness=(
+                equivalents=[[r[0], r[0][:-1]] for r in extra], witness=(
                     "The task's unit is the individual. Four left valves are second valves of listed individuals with "
                     "identical measurements, so dropping them, keeping either valve, or averaging a pair all give the "
                     "keyed answer; counting both valves weights four individuals twice." if cls == "trap" else
@@ -609,6 +611,7 @@ def write(root, label, built):
            "integer_results": built["integer"], "tolerance": TOLERANCE, "failure_signatures": built["failures"],
            "issue_tokens": built["tokens"], "issue_token_kind": "keyword", "exclusions_expected": built["exclusions"],
            "out_of_scope_ids": built["out_of_scope"], "acceptable_alternatives": built["alternatives"],
+           "disclosure_tokens": built["disclosure"], "equivalent_exclusions": built["equivalents"],
            "sufficiency_witness": built["witness"], "analysis": built["analysis"]}
     (directory / "key.json").write_text(json.dumps(key, indent=1) + "\n")
     (directory / "provenance.json").write_text(json.dumps({"source": built["source"], "generator": "build_bank.py",

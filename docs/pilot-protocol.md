@@ -5,16 +5,29 @@ Claude (Opus 5.5), 31 October 2026. This draft implements sprint 4 of the
 specifications, the endpoints and the exhaustive decision table Codex asked for
 (Board 2724 and 2731). Codex reviews it at the pre-freeze gate. **Nothing here
 is frozen.** Bank: [`evaluation/pilot`](../evaluation/pilot/README.md),
-`pilot-v2`.
+`pilot-v3`.
+
+## Revision after Codex's pre-freeze review (F1–F8)
+
+Codex's [pre-freeze review](sprint-4-prefreeze-review.md) raised eight
+findings. All are accepted and resolved below; `evaluation/pilot/score.py`
+implements F1 and F2.
 
 ## Analyst arms and backend
 
-- **Backend.**
-  - Analysts run on Codex if a Codex client route qualifies under the launch
-    conditions below.
-  - Otherwise they run on `claude-sonnet-5-5`, as Barry authorised (31 October
-    2026).
-  - The backend is frozen with the plan. Families never mix.
+- **Backend: `claude-sonnet-5-5` through Claude Code (F8).**
+  - Codex did not accept a runtime tripwire as equivalent to pre-dispatch
+    enforcement, and no admission route for the Codex client exists.
+  - Claude Code's own dispatcher demonstrably refuses every tool it did not
+    advertise (the [sprint-3 review](sprint-3-review.md) scripted these calls
+    offline), and its init record exposes the inventory.
+  - Barry authorised this fallback on 31 October 2026.
+  - The same route carries the reviewer trials. The **governing reviewer
+    population is Sonnet** (F6). Codex reviewers run only if a Codex admission
+    route later qualifies; they would then be a reported secondary population,
+    never pooled and never decisive.
+  - Reviewers are therefore the same family as the analysts. That limits the
+    inference, and the report must say so.
 - **Arms.**
   - Both arms get the confined worker's `worker_execute`, `worker_read` and
     `worker_write`.
@@ -29,7 +42,7 @@ is frozen.** Bank: [`evaluation/pilot`](../evaluation/pilot/README.md),
 
 ## Scoring (amendment to `sprint1-revised-v2`)
 
-The revised scorer applies unchanged, with three additions for `pilot-v2`
+The revised scorer applies unchanged, with five additions for `pilot-v3`
 keys:
 
 1. **`acceptable_alternatives`.** P04-trap may instead stop with the coverage
@@ -37,13 +50,30 @@ keys:
    acceptable.
 2. **`out_of_scope_ids`.** Samples outside the task's scope (P08's
    Pleistocene samples) are neither required nor penalised as exclusions.
-3. **Strata.** Every summary is reported overall and by stratum: `toolkit`
+3. **`disclosure_tokens` (F2).** A numerically correct P04-trap answer that
+   does not disclose its restricted taxonomic basis scores `undisclosed`,
+   which is not acceptable.
+4. **`equivalent_exclusions` (F1).** In P09-trap, excluding either valve of a
+   pair, or neither if the pair is averaged, is equivalent. Excluding both is
+   flagged in the evidence checks.
+5. **Strata.** Every summary is reported overall and by stratum: `toolkit`
    (P01–P06, P12) and `other` (P07–P11).
 
 *Acceptable* means `correct` or `correct_unresolved`. *Harm* on a control
 means `wrong`, `false_refusal` or `failed`.
 
 ## Reviewer experiment
+
+**Whole-package adjudication (F3).** After the analyst trials and before any
+reviewer trial runs:
+
+- Claude and a Codex delegate independently adjudicate each session-1 control
+  package. They judge the numbers *and* the prose, assumptions and exclusions,
+  as scientifically acceptable or not.
+- Disagreements are resolved on the Board and recorded.
+- The adjudications are then frozen. The numerical score alone never sets an
+  intact reference verdict: a correct number with an unsupported claim is
+  unacceptable.
 
 **Eligibility, fixed now.**
 
@@ -54,6 +84,17 @@ means `wrong`, `false_refusal` or `failed`.
 - Ineligible pairs are recorded and never replaced. **E** is the number of
   eligible pairs, at most 12.
 - The denominator for every reviewer rate is E, not 12.
+
+**Analysis set (F4).**
+
+- The primary reviewer analysis set is the pairs whose intact packages were
+  adjudicated acceptable in *both* arms. **E\*** is the number of such pairs.
+- E and E\* are both reported, along with each ineligible or unacceptable
+  pair and its reason.
+- If E\* < 6, the reviewer endpoints are not interpreted. Rule 1 then applies
+  to the reviewer part only.
+- Restricting to packages that are correct in both arms is a selection, and
+  it is reported as one.
 
 **Variants.** Each eligible package is reviewed twice: intact, and with the
 item's planted flaw. That gives 4E Codex reviewer trials, plus 4E in the Sonnet
@@ -97,12 +138,17 @@ The reference verdict for a flawed variant is `reject` with the planted class.
 For an intact variant it comes from the analyst package's own score: `accept`
 if acceptable, otherwise `reject`. The reference is fixed before any review.
 
-**Reviewer metrics, each over E.**
+**Reviewer metrics, each over E\* (F4).**
 
-- **Sensitivity:** flawed variants rejected.
-- **Localisation:** rejections that name the planted class.
-- **False accusation:** correct intact variants rejected.
+- **Sensitivity:** flawed variants rejected *with attribution*, meaning the
+  rejection names the planted class, or the planted step or field. A
+  rejection for another reason is counted separately as non-attributed.
+- **False accusation:** intact variants rejected.
+- **Missing reviews:** a reviewer trial that failed or returned no valid
+  verdict counts as non-detection or non-accusation and is reported
+  separately.
 - **Cost:** tokens and time.
+- A metric with a zero denominator is undefined, never zero.
 
 ## Endpoints
 
@@ -111,35 +157,49 @@ if acceptable, otherwise `reject`. The reference is fixed before any review.
 | D | Direct-arm acceptability on traps | item |
 | ΔT | Toolkit minus direct trap acceptability, item-paired and averaged over sessions | item |
 | ΔC | Toolkit minus direct control harm | item |
-| ΔS | Toolkit minus direct reviewer sensitivity, over E | eligible pair |
-| ΔA | Toolkit minus direct false-accusation rate, over correct intact packages | eligible pair |
-| K | Median counted tokens per analyst trial, toolkit / direct | trial |
-| I | Share of analyst trials that are infrastructure failures | trial |
+| ΔS | Toolkit minus direct attributed reviewer sensitivity, over E\* | pair in E\* |
+| ΔA | Toolkit minus direct false-accusation rate, over E\* | pair in E\* |
+| ΔT_tk, ΔT_other | ΔT within the `toolkit` (7 families) and `other` (5 families) strata | item |
+| K | Median counted tokens per analyst trial, toolkit / direct | item (family clusters, F6) |
+| I | Share of analyst trials that are infrastructure failures | item (family clusters, F6) |
 
 Intervals are 80% percentile bootstraps (10,000 resamples, seed fixed at
 freeze), resampling items or eligible pairs, never trials. Sessions and
 variants stay clustered.
 
-## Decision table
+## Decision table (revised for F5 and F6)
 
-The rules are applied in order, and the first one that matches decides.
-Thresholds are provisional until calibration; any change is recorded with its
-reason before freeze.
+**Two parts.**
+
+- **Part A** checks for harm in every case. It cannot be cancelled by Part B.
+- **Part B** gives the design verdict.
+
+**Part A, toolkit harm.** If ΔT ≤ −0.15 with the interval's upper bound below
+0, or ΔC ≥ 0.10, the report flags **toolkit harm** and the decision includes
+repairing the cause. This applies even when Part B stops the design for
+ceiling or instrument reasons.
+
+**Part B, design verdict.** The rules are applied in order, and the first one
+that matches decides. **Confined** means ΔT_tk ≥ 0.15 and ΔT_other < 0.05.
 
 | # | Condition | Decision |
 | --- | --- | --- |
-| 1 | I > 0.20, or E < 8 | **Repair the instrument.** No toolkit verdict. |
-| 2 | D ≥ 0.90 | **Stop this design.** The bank cannot discriminate. Report descriptively. |
-| 3 | ΔT ≤ −0.15 with the interval's upper bound < 0, or ΔC ≥ 0.10 | **Adverse.** Stop expansion and repair the toolkit behaviour that caused the harm. |
-| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, ΔS ≥ −1/E, ΔA ≤ 1/E, K ≤ 2.0, and the `other` stratum's ΔT ≥ 0 | **Expand.** |
-| 5 | Rule 4 holds except that the gain is confined to the `toolkit` stratum, with `other` ΔT < 0 | **Repair.** Enforcement works but does not generalise; broaden coverage before expanding. |
-| 6 | ΔT ≥ 0.15 with lower bound > 0, but ΔC, ΔS, ΔA or K fails rule 4 | **Repair.** Fix the failing axis, then re-pilot. |
-| 7 | ΔS ≥ 2/E and ΔA ≤ 1/E, with \|ΔT\| < 0.15 and ΔC ≤ 0.05 | **Repair for auditability.** The reviewability gain is real; correctness is null. Develop the evidence format and do not claim error reduction. |
-| 8 | \|ΔT\| < 0.15, \|ΔS\| ≤ 1/E, ΔC ≤ 0.05 | **Null. Stop this efficacy line.** Record that no benefit was measured at this power. |
-| 9 | Anything else (for example 0.05 ≤ ΔT < 0.15, or an interval spanning 0 with a large point estimate) | **Inconclusive.** No claim. Any larger pilot is a new, separately authorised design. |
+| 1 | I > 0.20 | **Repair the instrument.** No efficacy verdict. Part A still applies. |
+| 2 | D ≥ 0.90 | **Stop this design**, because it cannot discriminate. Part A still applies. |
+| 3 | Part A flagged harm | **Adverse.** Stop expansion. |
+| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, K ≤ 2.0, not confined, and (E\* < 6, or ΔS ≥ −1/E\* and ΔA ≤ 1/E\*) | **Expand.** |
+| 5 | Rule 4's conditions hold except that the gain is confined | **Repair:** enforcement works but does not generalise. |
+| 6 | ΔT ≥ 0.15 with lower bound > 0, but ΔC, K, ΔS or ΔA fails rule 4 | **Repair** the failing axis. |
+| 7 | E\* ≥ 6, ΔS ≥ 2/E\*, ΔA ≤ 1/E\*, \|ΔT\| < 0.15, ΔC ≤ 0.05 | **Development signal for auditability.** No claim of established review gain or of correctness equivalence. |
+| 8 | \|ΔT\| < 0.15, ΔC ≤ 0.05, and (E\* < 6 or \|ΔS\| ≤ 1/E\*) | **Null: stop this efficacy line** at this power. |
+| 9 | Anything else | **Inconclusive.** No claim. |
 
-A null or adverse result completes the sprint. No trials are added after
-outcomes are seen.
+When E\* < 6, the reviewer clauses drop out and the verdict rests on the
+analyst endpoints alone. The report states this.
+
+**Counterexample check.** Codex's case had 7 toolkit-stratum improvements and
+5 zeros in the other stratum. It now matches rule 5, not rule 4: ΔT_other = 0
+is below 0.05.
 
 ## Launch conditions (both backends)
 
@@ -153,15 +213,24 @@ outcomes are seen.
   - Immediately before each trial, run the fake-endpoint capture with the
     identical configuration. Refuse the launch if the inventory differs from
     the frozen one.
-- **Live monitoring.** Monitor the client's event stream during the trial.
-  Kill the process group on any tool event that does not belong to the worker
-  MCP server.
-  - After the trial, reconcile tool events with the worker's call log, and,
-    for Codex, with the rollout trace's actual requests.
-  - A missing trace, or any mismatch, invalidates the trial and stops further
-    launches pending review.
-  - This replaces the plan's literal "client init inventory" condition for
-    Codex, whose init record does not expose the inventory. Codex must agree
-    to the replacement.
+- **Admission (Claude route).** Claude Code itself refuses unadvertised tools
+  before dispatch, as the scripted probes show. Its init record must equal the
+  frozen inventory, or the trial is aborted before its first turn.
+- **Event reconciliation, with explicit categories.** Every tool event falls
+  into exactly one of:
+  - a worker MCP call, which must appear in the worker audit log;
+  - a client refusal of an unadvertised name, which must have no worker
+    record;
+  - anything else. That invalidates the trial and halts launches.
+
+  This tripwire comes on top of the admission check; it does not replace it.
+- **Abort cleanup.**
+  - The launcher kills the client's process group.
+  - It then finds and kills any surviving process whose arguments name the
+    trial root (worker calls run in their own sessions).
+  - It verifies that no such process remains. If one does, launches halt.
+- **Codex route.** Retained only if a pre-dispatch admission route qualifies
+  and Codex reviews it. Pinning and fake-endpoint capture are configuration
+  evidence only (F8).
 - **Per-trial limits.** A turn cap, a wall-clock kill and no retries. Unknown
   usage stops launches.

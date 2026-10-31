@@ -1,5 +1,5 @@
 {
  "source": "real: PAST hirnanti.dat (13 cores)",
  "generator": "build_bank.py",
- "bank_version": "pilot-v2"
+ "bank_version": "pilot-v3"
 }

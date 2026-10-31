@@ -1,5 +1,5 @@
 {
  "source": "synthetic",
  "generator": "build_bank.py",
- "bank_version": "pilot-v2"
+ "bank_version": "pilot-v3"
 }

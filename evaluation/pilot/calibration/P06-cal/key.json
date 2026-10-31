@@ -1,6 +1,6 @@
 {
  "item": "P06-cal",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P06",
  "class": "trap",
  "stratum": "toolkit",
@@ -40,6 +40,8 @@
  "exclusions_expected": [],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "Cores are the randomised units; aliquots are subsamples of one core, so they are pooled (counts summed; equal aliquot sizes make this identical to averaging proportions) and the test uses 6 units.",
  "analysis": "one-way PERMANOVA, Bray\u2013Curtis on relative abundance"
 }

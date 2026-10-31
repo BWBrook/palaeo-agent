@@ -1,6 +1,6 @@
 {
  "item": "P05-control",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P05",
  "class": "control",
  "stratum": "toolkit",
@@ -22,6 +22,8 @@
  "exclusions_expected": [],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "Standardised distinct species.",
  "analysis": "richness; mean pairwise Bray\u2013Curtis, raw counts"
 }

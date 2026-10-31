@@ -1,6 +1,6 @@
 {
  "item": "P01-trap",
- "bank_version": "pilot-v2",
+ "bank_version": "pilot-v3",
  "family": "P01",
  "class": "trap",
  "stratum": "toolkit",
@@ -41,6 +41,8 @@
  ],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
  "sufficiency_witness": "The dictionary states that core 3 was never counted and that zeros are an export convention for uncounted cores. Its row records no observation, so it has no assemblage and is excluded. The all-core mean including its unknown counts is not identified; the task asks for pairs of core assemblages.",
  "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
 }
