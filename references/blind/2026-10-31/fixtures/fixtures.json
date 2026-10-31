@@ -1,0 +1,2573 @@
+{
+ "author": "Claude (claude-opus-5-5), interactive session",
+ "authored": "2026-10-31",
+ "basis": "Documented specs and public API of Palaeo-Agent at e04b592; keys from definitions, not from palaeo_agent",
+ "fixtures": [
+  {
+   "id": "R01",
+   "family": "rma",
+   "class": "analytic",
+   "purpose": "Exact line y = 2x + 1",
+   "spec": {
+    "method": "rma",
+    "input": "data/r01.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      1.0,
+      1e-12
+     ],
+     [
+      "correlation",
+      1.0,
+      1e-12
+     ],
+     [
+      "n",
+      5,
+      0
+     ],
+     [
+      "residuals",
+      [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      1e-12
+     ],
+     [
+      "warning_codes",
+      [],
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R02",
+   "family": "rma",
+   "class": "analytic",
+   "purpose": "Negative association: slope -sqrt(Syy/Sxx), intercept 0, r = -22/sqrt(520)",
+   "spec": {
+    "method": "rma",
+    "input": "data/r02.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      -2.280350850198276,
+      1e-12
+     ],
+     [
+      "intercept",
+      0.0,
+      1e-12
+     ],
+     [
+      "correlation",
+      -0.9647638212377322,
+      1e-12
+     ],
+     [
+      "residuals",
+      [
+       -0.5607017003965522,
+       0.7196491498017239,
+       -1.0,
+       1.280350850198276,
+       -0.4392982996034478
+      ],
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R03",
+   "family": "rma",
+   "class": "metamorphic",
+   "purpose": "RMA symmetry: swapping x and y inverts the slope; intercept becomes -b/a; r unchanged",
+   "spec": {
+    "method": "rma",
+    "input": "data/r03.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "relation",
+    "relation": "rma_swap",
+    "partner": {
+     "method": "rma",
+     "input": "data/r03.dat",
+     "format": "past",
+     "x": "Y",
+     "y": "X",
+     "transform": "none",
+     "missing": "error"
+    },
+    "rtol": 1e-12
+   }
+  },
+  {
+   "id": "R04",
+   "family": "rma",
+   "class": "metamorphic",
+   "purpose": "Affine equivariance: x' = 0.5x - 3, y' = 10y + 7 gives slope' = 20a, intercept' = 60a + 10b + 7, r' = r",
+   "spec": {
+    "method": "rma",
+    "input": "data/r04.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "relation",
+    "relation": "rma_affine",
+    "partner": {
+     "method": "rma",
+     "input": "data/r04.dat",
+     "format": "past",
+     "x": "X2",
+     "y": "Y2",
+     "transform": "none",
+     "missing": "error"
+    },
+    "params": {
+     "sx": 0.5,
+     "cx": -3,
+     "sy": 10,
+     "cy": 7
+    },
+    "rtol": 1e-12
+   }
+  },
+  {
+   "id": "R05",
+   "family": "rma",
+   "class": "analytic",
+   "purpose": "log10 of exact power law y = 3 x^0.75: slope 0.75, intercept log10(3), r = 1",
+   "spec": {
+    "method": "rma",
+    "input": "data/r05.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "log10",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      0.75,
+      1e-12
+     ],
+     [
+      "intercept",
+      0.47712125471966244,
+      1e-12
+     ],
+     [
+      "correlation",
+      1.0,
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R06a",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Zero x under log10 with missing='error' must be refused, not dropped",
+   "spec": {
+    "method": "rma",
+    "input": "data/r06.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "log10",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R06b",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Zero x under log10 with missing='drop_pairs': a zero is not a declared missing value; refuse",
+   "spec": {
+    "method": "rma",
+    "input": "data/r06.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "log10",
+    "missing": "drop_pairs"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R07",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Zero variance in x: RMA undefined",
+   "spec": {
+    "method": "rma",
+    "input": "data/r07.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R08",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Zero variance in y: r undefined, slope sign undetermined",
+   "spec": {
+    "method": "rma",
+    "input": "data/r08.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R09",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "r exactly 0: the sign of the RMA slope is undefined",
+   "spec": {
+    "method": "rma",
+    "input": "data/r09.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R09b",
+   "family": "rma",
+   "class": "judgment",
+   "purpose": "Near-zero correlation (r = -0.04298): fit is defined but must carry a near-zero-correlation diagnostic",
+   "spec": {
+    "method": "rma",
+    "input": "data/r09b.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      -0.33237958793552663,
+      1e-12
+     ],
+     [
+      "intercept",
+      0.21618979396776333,
+      1e-12
+     ],
+     [
+      "correlation",
+      -0.04298011912959395,
+      1e-12
+     ],
+     [
+      "warning_codes_include",
+      "near_zero_correlation",
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R10",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Large offset (1e8): naive sum-of-squares formulas lose all precision",
+   "spec": {
+    "method": "rma",
+    "input": "data/r10.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-09
+     ],
+     [
+      "intercept",
+      1.0,
+      1e-06
+     ],
+     [
+      "correlation",
+      1.0,
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R11",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Tiny scale (1e-12): no absolute thresholds that misfire on small magnitudes",
+   "spec": {
+    "method": "rma",
+    "input": "data/r11.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      3.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      0.0,
+      1e-22
+     ],
+     [
+      "correlation",
+      1.0,
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R12",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Declared missing '.' with missing='error' must be refused",
+   "spec": {
+    "method": "rma",
+    "input": "data/r12.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R13",
+   "family": "rma",
+   "class": "analytic",
+   "purpose": "missing='drop_pairs' excludes exactly the incomplete pairs, by ID, and fits the rest",
+   "spec": {
+    "method": "rma",
+    "input": "data/r12.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "drop_pairs"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      1.0,
+      1e-12
+     ],
+     [
+      "n",
+      5,
+      0
+     ],
+     [
+      "n_input",
+      7,
+      0
+     ],
+     [
+      "excluded_ids",
+      [
+       "6",
+       "7"
+      ],
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R14",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Duplicate sample IDs must be refused",
+   "spec": {
+    "method": "rma",
+    "input": "data/r14.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R15",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "'NA' is not the declared missing marker; refuse rather than treat as missing",
+   "spec": {
+    "method": "rma",
+    "input": "data/r15.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "drop_pairs"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R16",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "UTF-8 BOM and CRLF line endings parse identically to R01",
+   "spec": {
+    "method": "rma",
+    "input": "data/r16.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      1.0,
+      1e-12
+     ],
+     [
+      "n",
+      5,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R17",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Tab separators and trailing whitespace parse identically to R01",
+   "spec": {
+    "method": "rma",
+    "input": "data/r17.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      1.0,
+      1e-12
+     ],
+     [
+      "n",
+      5,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R18",
+   "family": "rma",
+   "class": "analytic",
+   "purpose": "Two pairs: slope = dy/dx = 2, r = 1, with a two-pairs diagnostic",
+   "spec": {
+    "method": "rma",
+    "input": "data/r18.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "slope",
+      2.0,
+      1e-12
+     ],
+     [
+      "intercept",
+      0.0,
+      1e-12
+     ],
+     [
+      "correlation",
+      1.0,
+      1e-12
+     ],
+     [
+      "warning_codes_include",
+      "two_pairs",
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "R19",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Overflowing token 1e400 (parses to inf) must be refused",
+   "spec": {
+    "method": "rma",
+    "input": "data/r19.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R20",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "x and y name the same column",
+   "spec": {
+    "method": "rma",
+    "input": "data/r20.dat",
+    "format": "past",
+    "x": "X",
+    "y": "X",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R21",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Unknown column label (case differs)",
+   "spec": {
+    "method": "rma",
+    "input": "data/r20.dat",
+    "format": "past",
+    "x": "x",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R22",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Ragged row",
+   "spec": {
+    "method": "rma",
+    "input": "data/r22.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R23",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Latin-1 bytes (not UTF-8) must be refused, not mis-decoded",
+   "spec": {
+    "method": "rma",
+    "input": "data/r23.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R24",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Header not in classic PAST form",
+   "spec": {
+    "method": "rma",
+    "input": "data/r24.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "R25",
+   "family": "rma",
+   "class": "adversarial",
+   "purpose": "Empty file",
+   "spec": {
+    "method": "rma",
+    "input": "data/r25.dat",
+    "format": "past",
+    "x": "X",
+    "y": "Y",
+    "transform": "none",
+    "missing": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C01a",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Hand-computable 4x4: exact rational braycurtis (none) distances, plug-in diversity, double-centred spectrum invariants (gaps [0.1553, 0.8447, 0.0152])",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C01b",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Hand-computable 4x4: exact rational braycurtis (relative_abundance) distances, plug-in diversity, double-centred spectrum invariants (gaps [0.8084, 0.1916, 0.0002])",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "relative_abundance",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.75,
+       "s1|s3": 0.5,
+       "s1|s4": 0.2,
+       "s2|s3": 0.5,
+       "s2|s4": 0.9,
+       "s3|s4": 0.7
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.5041372093280367,
+       0.0965860633757036,
+       -9.827270373980185e-05
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.600625,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.263483203125,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C01c",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Hand-computable 4x4: exact rational jaccard (none) distances, plug-in diversity, double-centred spectrum invariants (gaps [0.7976, 0.2024, 0.0])",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "jaccard",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.75,
+       "s1|s3": 0.5,
+       "s1|s4": 0.0,
+       "s2|s3": 0.5,
+       "s2|s4": 0.75,
+       "s3|s4": 0.5
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.38984178704790917,
+       0.07890821295209066
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.46875,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.158203125,
+      1e-12
+     ],
+     [
+      "negative_count",
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C02",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Two samples, BC = 7/13: one positive eigenvalue d^2/2, coordinates +-d/2",
+   "spec": {
+    "method": "community",
+    "input": "data/c02.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "distance_pairs",
+      {
+       "a|b": 0.5384615384615384
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.14497041420118342
+      ],
+      1e-12
+     ],
+     [
+      "abs_axis1",
+      [
+       0.2692307692307692,
+       0.2692307692307692
+      ],
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C03",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Disjoint supports form an equilateral triangle: eigenvalues 1/2, 1/2; G2 = J/2",
+   "spec": {
+    "method": "community",
+    "input": "data/c03.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 2,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.5,
+       0.5
+      ],
+      1e-12
+     ],
+     [
+      "positive_gram",
+      [
+       [
+        0.3333333333333333,
+        -0.16666666666666666,
+        -0.16666666666666666
+       ],
+       [
+        -0.16666666666666666,
+        0.3333333333333333,
+        -0.16666666666666666
+       ],
+       [
+        -0.16666666666666666,
+        -0.16666666666666666,
+        0.3333333333333333
+       ]
+      ],
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C04",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Equilateral triangle with dimensions=1: axis 1 is not identifiable (zero eigengap); refuse",
+   "spec": {
+    "method": "community",
+    "input": "data/c03.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C05",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "relative_abundance before binary Jaccard is rejected",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "relative_abundance",
+    "distance": "jaccard",
+    "dimensions": 2,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C06",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Proportions declared as counts must be refused (D2)",
+   "spec": {
+    "method": "community",
+    "input": "data/c06.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C07",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Negative count",
+   "spec": {
+    "method": "community",
+    "input": "data/c07.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C08",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Missing '.' in a count matrix with missing='error' (D8)",
+   "spec": {
+    "method": "community",
+    "input": "data/c08.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C09",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Empty sample with empty_samples='error' (D7)",
+   "spec": {
+    "method": "community",
+    "input": "data/c09.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C10",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Empty sample with empty_samples='drop': excluded with reason; remainder equals C01a",
+   "spec": {
+    "method": "community",
+    "input": "data/c09.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "drop"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ],
+     [
+      "excluded_ids",
+      [
+       "s5"
+      ],
+      0
+     ],
+     [
+      "excluded_reasons",
+      [
+       "empty_sample"
+      ],
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C11",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Duplicate sample IDs (D9)",
+   "spec": {
+    "method": "community",
+    "input": "data/c11.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C12",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Duplicate taxon IDs",
+   "spec": {
+    "method": "community",
+    "input": "data/c12.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C13",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Taxon labels differing only by case (D4): must be flagged (warning) or refused, never silent",
+   "spec": {
+    "method": "community",
+    "input": "data/c13.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal_or_warning",
+    "warning": "near_duplicate_labels"
+   }
+  },
+  {
+   "id": "C14a",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "A taxon absent from every sample leaves braycurtis distances, diversity and spectrum unchanged",
+   "spec": {
+    "method": "community",
+    "input": "data/c14.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C14b",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "A taxon absent from every sample leaves jaccard distances, diversity and spectrum unchanged",
+   "spec": {
+    "method": "community",
+    "input": "data/c14.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "jaccard",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.75,
+       "s1|s3": 0.5,
+       "s1|s4": 0.0,
+       "s2|s3": 0.5,
+       "s2|s4": 0.75,
+       "s3|s4": 0.5
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.38984178704790917,
+       0.07890821295209066
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.46875,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.158203125,
+      1e-12
+     ],
+     [
+      "negative_count",
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C16",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "Multiplying one sample by 7 leaves relative-abundance BC unchanged",
+   "spec": {
+    "method": "community",
+    "input": "data/c16.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "relative_abundance",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.75,
+       "s1|s3": 0.5,
+       "s1|s4": 0.2,
+       "s2|s3": 0.5,
+       "s2|s4": 0.9,
+       "s3|s4": 0.7
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.5041372093280367,
+       0.0965860633757036,
+       -9.827270373980185e-05
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.600625,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.263483203125,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C17",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "Permuting sample columns permutes distances and preserves the spectrum; order follows the input",
+   "spec": {
+    "method": "community",
+    "input": "data/c17.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s3",
+       "s1",
+       "s4",
+       "s2"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s3|s1": 0.8181818181818182,
+       "s3|s4": 0.6666666666666666,
+       "s3|s2": 0.8333333333333334,
+       "s1|s4": 0.3333333333333333,
+       "s1|s2": 0.6666666666666666,
+       "s4|s2": 0.9
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582531,
+       0.3663375508241506,
+       -0.0065786416704661866
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C18",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "The transposed file declared samples_by_taxa gives results identical to C01a",
+   "spec": {
+    "method": "community",
+    "input": "data/c18.dat",
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C19",
+   "family": "community",
+   "class": "analytic",
+   "purpose": "Non-Euclidean BC: negative eigenvalue(s) [-0.173683] reported; spectrum invariants exact",
+   "spec": {
+    "method": "community",
+    "input": "data/c19.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "u1",
+       "u2",
+       "u3",
+       "u4",
+       "u5"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "u1|u2": 0.5833333333333334,
+       "u1|u3": 1.0,
+       "u1|u4": 0.8823529411764706,
+       "u1|u5": 0.47368421052631576,
+       "u2|u3": 0.5652173913043478,
+       "u2|u4": 0.8947368421052632,
+       "u2|u5": 1.0,
+       "u3|u4": 0.375,
+       "u3|u5": 0.6666666666666666,
+       "u4|u5": 0.5714285714285714
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "u1": {
+        "richness": 2,
+        "total": 11,
+        "shannon": 0.6890092384766586,
+        "simpson": 0.49586776859504134
+       },
+       "u2": {
+        "richness": 3,
+        "total": 13,
+        "shannon": 0.8981370031878679,
+        "simpson": 0.5562130177514792
+       },
+       "u3": {
+        "richness": 2,
+        "total": 10,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "u4": {
+        "richness": 2,
+        "total": 6,
+        "shannon": 0.45056120886630463,
+        "simpson": 0.2777777777777778
+       },
+       "u5": {
+        "richness": 2,
+        "total": 8,
+        "shannon": 0.6615632381579821,
+        "simpson": 0.46875
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.6338138694414238,
+       0.5526436445049349,
+       0.0621902194399451,
+       -0.17368253446126053
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      1.0749651989250437,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.7411682650788832,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C20",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "Scaling every count by 1e9 leaves raw BC, Shannon and Simpson unchanged; totals scale",
+   "spec": {
+    "method": "community",
+    "input": "data/c20.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20000000000,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10000000000,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2000000000,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10000000000,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C23",
+   "family": "community",
+   "class": "metamorphic",
+   "purpose": "Metadata rows in a different order join by ID (D3); results equal C01a",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error",
+    "metadata": "data/c23-meta.csv"
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "sample_ids",
+      [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      0
+     ],
+     [
+      "distance_pairs",
+      {
+       "s1|s2": 0.6666666666666666,
+       "s1|s3": 0.8181818181818182,
+       "s1|s4": 0.3333333333333333,
+       "s2|s3": 0.8333333333333334,
+       "s2|s4": 0.9,
+       "s3|s4": 0.6666666666666666
+      },
+      1e-12
+     ],
+     [
+      "diversity_by_id",
+      {
+       "s1": {
+        "richness": 4,
+        "total": 20,
+        "shannon": 1.3862943611198906,
+        "simpson": 0.75
+       },
+       "s2": {
+        "richness": 1,
+        "total": 10,
+        "shannon": -0.0,
+        "simpson": 0.0
+       },
+       "s3": {
+        "richness": 2,
+        "total": 2,
+        "shannon": 0.6931471805599453,
+        "simpson": 0.5
+       },
+       "s4": {
+        "richness": 4,
+        "total": 10,
+        "shannon": 1.2798542258336676,
+        "simpson": 0.7
+       }
+      },
+      1e-12
+     ],
+     [
+      "eigenvalues_nonnull_desc",
+      [
+       0.4337075738582533,
+       0.36633755082415065,
+       -0.006578641670466205
+      ],
+      1e-12
+     ],
+     [
+      "eigen_trace",
+      0.7934664830119376,
+      1e-12
+     ],
+     [
+      "eigen_sumsq",
+      0.32234873929207764,
+      1e-12
+     ],
+     [
+      "negative_count",
+      1,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C24",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Metadata lacks one matrix sample: refuse with the ID difference (D3)",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error",
+    "metadata": "data/c24-meta.csv"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C24b",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Metadata names a sample absent from the matrix: refuse (D3)",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error",
+    "metadata": "data/c24b-meta.csv"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C25",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "dimensions exceeds the number of positive axes (C01a has 3 at most)",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 4,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C26",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "Wrong orientation declared with metadata present: taxa t1..t4 would be read as samples; must refuse (D6)",
+   "spec": {
+    "method": "community",
+    "input": "data/c01.dat",
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error",
+    "metadata": "data/c23-meta.csv"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C30",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "A single sample cannot be ordinated",
+   "spec": {
+    "method": "community",
+    "input": "data/c30.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "C31",
+   "family": "community",
+   "class": "adversarial",
+   "purpose": "All samples identical: no positive axis",
+   "spec": {
+    "method": "community",
+    "input": "data/c31.dat",
+    "format": "past",
+    "orientation": "taxa_by_samples",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 1,
+    "missing": "error",
+    "empty_samples": "error"
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "S01",
+   "family": "sensitivity",
+   "class": "analytic",
+   "purpose": "Raw vs relative BC on the 4x4 set: Pearson, Spearman (average ranks), symmetric Procrustes m2 (k=1), total-imbalance bound",
+   "spec": {
+    "baseline": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error"
+    },
+    "sensitivity": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "relative_abundance",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error",
+     "purpose": "Blind fixture: raw versus relative-abundance Bray-Curtis"
+    }
+   },
+   "expect": {
+    "outcome": "result",
+    "checks": [
+     [
+      "pearson_distance_correlation",
+      0.6909003272979771,
+      1e-12
+     ],
+     [
+      "spearman_distance_correlation",
+      0.5,
+      1e-12
+     ],
+     [
+      "symmetric_procrustes_m2",
+      0.3095010894223226,
+      1e-10
+     ],
+     [
+      "raw_count_total_imbalance_bound",
+      [
+       [
+        0.0,
+        0.3333333333333333,
+        0.8181818181818182,
+        0.3333333333333333
+       ],
+       [
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666,
+        0.0
+       ],
+       [
+        0.8181818181818182,
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666
+       ],
+       [
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666,
+        0.0
+       ]
+      ],
+      1e-12
+     ]
+    ]
+   }
+  },
+  {
+   "id": "S02",
+   "family": "sensitivity",
+   "class": "adversarial",
+   "purpose": "Sensitivity arm on different input bytes (counts x1e9) must be refused",
+   "spec": {
+    "baseline": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error"
+    },
+    "sensitivity": {
+     "method": "community",
+     "input": "data/c20.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "relative_abundance",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error",
+     "purpose": "x"
+    }
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "S03",
+   "family": "sensitivity",
+   "class": "adversarial",
+   "purpose": "Sensitivity arm also changes dimensions: only transform/distance may change",
+   "spec": {
+    "baseline": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error"
+    },
+    "sensitivity": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "relative_abundance",
+     "distance": "braycurtis",
+     "dimensions": 2,
+     "missing": "error",
+     "empty_samples": "error",
+     "purpose": "x"
+    }
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "S04",
+   "family": "sensitivity",
+   "class": "adversarial",
+   "purpose": "Sensitivity arm identical to baseline: nothing changed",
+   "spec": {
+    "baseline": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error"
+    },
+    "sensitivity": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error",
+     "purpose": "x"
+    }
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  },
+  {
+   "id": "S05",
+   "family": "sensitivity",
+   "class": "adversarial",
+   "purpose": "Declared baseline fingerprint does not match the baseline run",
+   "spec": {
+    "baseline": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "none",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error"
+    },
+    "sensitivity": {
+     "method": "community",
+     "input": "data/c01.dat",
+     "format": "past",
+     "orientation": "taxa_by_samples",
+     "value_type": "count",
+     "transform": "relative_abundance",
+     "distance": "braycurtis",
+     "dimensions": 1,
+     "missing": "error",
+     "empty_samples": "error",
+     "purpose": "x",
+     "baseline_run": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+   },
+   "expect": {
+    "outcome": "refusal"
+   }
+  }
+ ]
+}
