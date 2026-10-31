@@ -1,0 +1,346 @@
+{
+  "baseline_commit": "71f29d1",
+  "bank_commit": "4bf28f8",
+  "independence": "Only material snapshots read; stdlib Fraction/statistical formulas; no key, generator or toolkit code read/imported.",
+  "material_sha256": {
+    "items/P01-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P01-control/counts.tsv": "1a1ce9684e3f5c19cb3be61ec5946619b404b21d2faaeeeec354718ab28d97c9",
+    "items/P01-control/dictionary.md": "3a08411f3323e88f957910fc198181536bc4ec7578f19b6f51a12874892cc3a4",
+    "items/P01-control/task.md": "926d661b7c028d53b87eb95098fe40f9ef4d1f2fb186a6364867097fd808f193",
+    "items/P01-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P01-trap/counts.tsv": "cadc8049f2f60c17029f5b61dc1e4dcd4e7690c51305da87438ed7e2746795c9",
+    "items/P01-trap/dictionary.md": "13e38f548ba1b9aaeb7c9b7bc674c9b39d5f98e932f1c4c383553d423a1fbb67",
+    "items/P01-trap/task.md": "926d661b7c028d53b87eb95098fe40f9ef4d1f2fb186a6364867097fd808f193",
+    "items/P02-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P02-control/counts.tsv": "b087b6070d1682b4e65f06c0fb3b373d22b7dee669fb7a494c64407a554d8ee8",
+    "items/P02-control/dictionary.md": "a2bac1ff46a2cf65ea1161e549a3946e050075c9ac42da2f3d11f961a5786824",
+    "items/P02-control/field_log.csv": "9fcfd7399bb08daf561d387a213de12a503832d3ef17d42ef4e4a4628eae31e3",
+    "items/P02-control/task.md": "03bea48144fb53e63369ee5a77caffadf55eb084fb50ccfd04563f3be21b9aef",
+    "items/P02-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P02-trap/counts.tsv": "b087b6070d1682b4e65f06c0fb3b373d22b7dee669fb7a494c64407a554d8ee8",
+    "items/P02-trap/dictionary.md": "6563f81e5c2a216cb5e53fbf95410822a58825c72d6de9ac88b68a48b9584b9f",
+    "items/P02-trap/field_log.csv": "5148a9be1bde0f976b919e6b91049c79bb17edf301e0f26fd70278aafa7093b7",
+    "items/P02-trap/task.md": "03bea48144fb53e63369ee5a77caffadf55eb084fb50ccfd04563f3be21b9aef",
+    "items/P03-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P03-control/assemblage.tsv": "4479279ab1167c0061d88f098ec8aefcfb8a1af43c7e93de75b2b13a0f30cddc",
+    "items/P03-control/dictionary.md": "8bdd01944e758c6784f0b99c77aeb8957a66afe7079b5c8dc0de6eff7601b5a0",
+    "items/P03-control/picking.csv": "b6b19a3b33e54a8f37cd6d5f76eb263d7eea54133e916543063fe13d9c861c3e",
+    "items/P03-control/task.md": "b634b9b01567ac8db5ad8e79e1af98afa896d0a3df4263df4f2d76d84f3d47bb",
+    "items/P03-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P03-trap/assemblage.tsv": "2812702f2a876bd676cd7811b800e90b0129ce7db56e4f2c65428c61a7e8d9c7",
+    "items/P03-trap/dictionary.md": "5fb8eaf6126cd715dc4eac5986571d02b58c4e80db60ea7e132439b165c494a7",
+    "items/P03-trap/picking.csv": "b6b19a3b33e54a8f37cd6d5f76eb263d7eea54133e916543063fe13d9c861c3e",
+    "items/P03-trap/task.md": "b634b9b01567ac8db5ad8e79e1af98afa896d0a3df4263df4f2d76d84f3d47bb",
+    "items/P04-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P04-control/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "items/P04-control/counts.tsv": "f8c04e0b4414aacd902b0a079b56d2aee444c40f4367d7b8ef45fd22d31e9ade",
+    "items/P04-control/dictionary.md": "299f2379e0c7bda9b212d65c5fd8ce7443117bec2b27c42e706d7ebbc3d58447",
+    "items/P04-control/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "items/P04-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P04-trap/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "items/P04-trap/counts.tsv": "9c6739df5ce3664b71dbf3de1e0fb3fa4ff898a843e9eb98502da6c3bb71c2d5",
+    "items/P04-trap/dictionary.md": "cdbcaed8ceef92a3c0dc986acb761fc76d1e434ceb94dd9c7b1f89b36f058351",
+    "items/P04-trap/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "items/P05-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P05-control/counts.txt": "55ef3a5903acdca2debf358e5facbb17ae18ea40fa22c79c5d9d0d56bca77e6e",
+    "items/P05-control/dictionary.md": "e6c56dbbc5b9fac86883e854caa7df796e439a69ad284fabc88468e18d3999a5",
+    "items/P05-control/task.md": "78c368f834a9ac88dbf059640f99f507bec54043ecf02a7b225ec5c0cf0973aa",
+    "items/P05-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P05-trap/counts.txt": "ac27d6763acba45dc9a0c53ee2a2b68fe6979883ec7dc050b6c7649631cfd6d0",
+    "items/P05-trap/dictionary.md": "7de3e2cdfd2e796e4a7a7c83c234b919b48a1dfc92493898739a81c6f06636fa",
+    "items/P05-trap/task.md": "78c368f834a9ac88dbf059640f99f507bec54043ecf02a7b225ec5c0cf0973aa",
+    "items/P06-control/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P06-control/counts.tsv": "4367790d4fc382364826a459d26b9c09b1f8a092935e7748fdb00a7ca96ed507",
+    "items/P06-control/dictionary.md": "66c2fb9579c4cfcb6981d6759934a5c760fd55efbdb1fe9f1e0933955d0c05de",
+    "items/P06-control/task.md": "939185595cf7b1ba8f457349b30221de370e83a84323276d88a2c35ee5754ccd",
+    "items/P06-control/zones.csv": "8200f57dffc3c1f21889c17056619f6aff238864b5e43531515caeb7bc5f25b4",
+    "items/P06-trap/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "items/P06-trap/counts.tsv": "94c1ec028250f9cfbc9a8899b103f811b90116e628cff87739b99aad866d6f07",
+    "items/P06-trap/dictionary.md": "e1b31e10ae91f8b1c114181821eb0b5181c66e712143fed2296217fb1a3001ee",
+    "items/P06-trap/task.md": "939185595cf7b1ba8f457349b30221de370e83a84323276d88a2c35ee5754ccd",
+    "items/P06-trap/zones.csv": "9528cd9ae432dbfa99cd4f47a121b8a10e0ae7ac215fca56310e81c3fbff8f2a",
+    "calibration/P03-cal/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "calibration/P03-cal/assemblage.tsv": "78df0b6099e6cbbbecda05b2ce26cd100ab4aebbb6a5dc25354301629651f09f",
+    "calibration/P03-cal/dictionary.md": "5fb8eaf6126cd715dc4eac5986571d02b58c4e80db60ea7e132439b165c494a7",
+    "calibration/P03-cal/picking.csv": "47eac6b48fa1a900a42742a8ba628dda0beb2bc636a7005f7d8be5e012f029c9",
+    "calibration/P03-cal/task.md": "b634b9b01567ac8db5ad8e79e1af98afa896d0a3df4263df4f2d76d84f3d47bb",
+    "calibration/P04-cal/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "calibration/P04-cal/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "calibration/P04-cal/counts.tsv": "fc3f4f8a359cf4cce3980791193724a35eedbdd187be22ab7c16feab2b02866e",
+    "calibration/P04-cal/dictionary.md": "cdbcaed8ceef92a3c0dc986acb761fc76d1e434ceb94dd9c7b1f89b36f058351",
+    "calibration/P04-cal/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "calibration/P05-cal/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "calibration/P05-cal/counts.txt": "ea9306a12a8842b78564526cbd58a05d8305282320c7e720242eccc68dadb206",
+    "calibration/P05-cal/dictionary.md": "7de3e2cdfd2e796e4a7a7c83c234b919b48a1dfc92493898739a81c6f06636fa",
+    "calibration/P05-cal/task.md": "78c368f834a9ac88dbf059640f99f507bec54043ecf02a7b225ec5c0cf0973aa",
+    "calibration/P06-cal/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "calibration/P06-cal/counts.tsv": "e2260d901061b1c52dd6ffeb5bc814be4ba9f4986855c8e0bf985915c9b43d38",
+    "calibration/P06-cal/dictionary.md": "e1b31e10ae91f8b1c114181821eb0b5181c66e712143fed2296217fb1a3001ee",
+    "calibration/P06-cal/task.md": "939185595cf7b1ba8f457349b30221de370e83a84323276d88a2c35ee5754ccd",
+    "calibration/P06-cal/zones.csv": "9528cd9ae432dbfa99cd4f47a121b8a10e0ae7ac215fca56310e81c3fbff8f2a"
+  },
+  "predictions": {
+    "items/P01-control": {
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.7401269601332332,
+        "n_cores": 13
+      },
+      "handling": "Transpose taxa-by-core counts; retain all counted cores.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work"
+    },
+    "items/P01-trap": {
+      "status": "stopped",
+      "results": {},
+      "handling": "Core 3 is unobserved, not an observed ecological zero.",
+      "sufficiency": "all-core estimand not identifiable; exclusion changes target",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "conditional_results": {
+        "mean_bray_curtis": 0.6981803468241241,
+        "n_cores": 12
+      },
+      "condition": "Restrict the target to the 12 counted cores and disclose exclusion of core 3.",
+      "nonidentifiability_witness": {
+        "zero_actual_counts": {
+          "mean_bray_curtis": 0.7446141396204127,
+          "n_cores": 13
+        },
+        "same_as_core_1": {
+          "mean_bray_curtis": 0.7044515956117148,
+          "n_cores": 13
+        },
+        "ten_thousand_first_taxon": {
+          "mean_bray_curtis": 0.7446115803804046,
+          "n_cores": 13
+        }
+      }
+    },
+    "items/P02-control": {
+      "status": "completed",
+      "results": {
+        "pseudo_f": 0.4622020545177857,
+        "r_squared": 0.05461959564898666
+      },
+      "handling": "Exact unique match after explicitly stated numeric-code zero-padding normalisation.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "assumptions": [
+        "An inferential permutation test requires core-level exchangeability/independence, not established by the supplied dictionary. F and R-squared remain calculable."
+      ],
+      "incorrect_positional_results": {
+        "pseudo_f": 4.718258110547586,
+        "r_squared": 0.3709830441823327
+      }
+    },
+    "items/P02-trap": {
+      "status": "completed",
+      "results": {
+        "pseudo_f": 0.4622020545177857,
+        "r_squared": 0.05461959564898666
+      },
+      "handling": "Exact unique match after explicitly stated numeric-code zero-padding normalisation.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "assumptions": [
+        "An inferential permutation test requires core-level exchangeability/independence, not established by the supplied dictionary. F and R-squared remain calculable."
+      ],
+      "incorrect_positional_results": {
+        "pseudo_f": 4.718258110547586,
+        "r_squared": 0.3709830441823327
+      }
+    },
+    "items/P03-control": {
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.4544046737213404
+      },
+      "handling": "Use raw counts as declared; check row totals against picking.csv.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work"
+    },
+    "items/P03-trap": {
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.4544046737213404
+      },
+      "handling": "Reconstruct counts as percentage times known n_picked / 100; all reconstructed counts are integers.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_percentage_results": {
+        "mean_bray_curtis": 0.26672222222222225
+      },
+      "rounding_check": "Displayed decimal precision and n<=1000 imply an interval of less than or equal to one count per display bin; these exact-centred integer solutions are unique under ordinary nearest rounding."
+    },
+    "items/P04-control": {
+      "status": "completed",
+      "results": {
+        "shannon_mean_2017": 2.2291404640439483,
+        "shannon_mean_2021": 2.241201197900627
+      },
+      "handling": "Compute each core Shannon using all11 observed taxa, then equally average core indices by campaign.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work"
+    },
+    "items/P04-trap": {
+      "status": "stopped",
+      "results": {},
+      "handling": "Unpicked fractions are unknown, not zeros.",
+      "sufficiency": "Full-community 2017 Shannon and common-fraction campaign contrast are not identified.",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "conditional_results": {
+        "shannon_mean_2017": 1.8987194094241986,
+        "shannon_mean_2021": 1.9448626201299495
+      },
+      "condition": "Change the target explicitly to the eight taxa with recorded counts in every core. This alone does not prove fraction comparability: mainly is not exclusively.",
+      "nonidentifiability_witness": {
+        "unobserved_each_equals_0": {
+          "shannon_mean_2017": 1.8987194094241986,
+          "shannon_mean_2021": 2.241201197900627
+        },
+        "unobserved_each_equals_10": {
+          "shannon_mean_2017": 2.186474575115142,
+          "shannon_mean_2021": 2.241201197900627
+        },
+        "unobserved_each_equals_1000": {
+          "shannon_mean_2017": 1.3774262242376896,
+          "shannon_mean_2021": 2.241201197900627
+        }
+      },
+      "exclusions": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    "items/P05-control": {
+      "status": "completed",
+      "results": {
+        "richness": 8,
+        "mean_bray_curtis": 0.21565511419588368
+      },
+      "handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_unmerged_results": {
+        "richness": 8,
+        "mean_bray_curtis": 0.21565511419588368
+      }
+    },
+    "items/P05-trap": {
+      "status": "completed",
+      "results": {
+        "richness": 8,
+        "mean_bray_curtis": 0.21565511419588368
+      },
+      "handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_unmerged_results": {
+        "richness": 11,
+        "mean_bray_curtis": 0.33137747893974484
+      }
+    },
+    "items/P06-control": {
+      "status": "completed",
+      "results": {
+        "pseudo_f": 46.99131369212859,
+        "r_squared": 0.7459967245928487,
+        "n": 18
+      },
+      "handling": "Each row is a separate randomly located core; use its relative abundance.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work"
+    },
+    "items/P06-trap": {
+      "status": "completed",
+      "results": {
+        "pseudo_f": 24.68047164295459,
+        "r_squared": 0.8605322796013849,
+        "n": 6
+      },
+      "handling": "Pool equal-picked aliquots by core (sum then relative abundance); cores are replication units.",
+      "sufficiency": "Core unit is entailed. Pooling all equal-size aliquots is a natural lossless summary; literal 999 distinct permutations impossible for six cores, but repeated Monte Carlo draws are possible.",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_aliquot_results": {
+        "pseudo_f": 80.35221930034265,
+        "r_squared": 0.8339425898419021,
+        "n": 18
+      }
+    },
+    "calibration/P03-cal": {
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.43860185185185185
+      },
+      "handling": "Reconstruct counts as percentage times known n_picked / 100; all reconstructed counts are integers.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_percentage_results": {
+        "mean_bray_curtis": 0.3321388888888889
+      },
+      "rounding_check": "Displayed decimal precision and n<=1000 imply an interval of less than or equal to one count per display bin; these exact-centred integer solutions are unique under ordinary nearest rounding."
+    },
+    "calibration/P04-cal": {
+      "status": "stopped",
+      "results": {},
+      "handling": "Unpicked fractions are unknown, not zeros.",
+      "sufficiency": "Full-community 2017 Shannon and common-fraction campaign contrast are not identified.",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "conditional_results": {
+        "shannon_mean_2017": 1.9574135736608804,
+        "shannon_mean_2021": 1.9395207219402053
+      },
+      "condition": "Change the target explicitly to the eight taxa with recorded counts in every core. This alone does not prove fraction comparability: mainly is not exclusively.",
+      "nonidentifiability_witness": {
+        "unobserved_each_equals_0": {
+          "shannon_mean_2017": 1.9574135736608804,
+          "shannon_mean_2021": 2.2500925859474994
+        },
+        "unobserved_each_equals_10": {
+          "shannon_mean_2017": 2.226487363598464,
+          "shannon_mean_2021": 2.2500925859474994
+        },
+        "unobserved_each_equals_1000": {
+          "shannon_mean_2017": 1.4020584949507893,
+          "shannon_mean_2021": 2.2500925859474994
+        }
+      },
+      "exclusions": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    "calibration/P05-cal": {
+      "status": "completed",
+      "results": {
+        "richness": 8,
+        "mean_bray_curtis": 0.2689575406354573
+      },
+      "handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "sufficiency": "entailed for requested descriptive statistics",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_unmerged_results": {
+        "richness": 11,
+        "mean_bray_curtis": 0.32464962718697826
+      }
+    },
+    "calibration/P06-cal": {
+      "status": "completed",
+      "results": {
+        "pseudo_f": 2.54181551260093,
+        "r_squared": 0.3885489445101061,
+        "n": 6
+      },
+      "handling": "Pool equal-picked aliquots by core (sum then relative abundance); cores are replication units.",
+      "sufficiency": "Core unit is entailed. Pooling all equal-size aliquots is a natural lossless summary; literal 999 distinct permutations impossible for six cores, but repeated Monte Carlo draws are possible.",
+      "difficulty": "low: explicitly stated data convention; modest numerical work",
+      "incorrect_aliquot_results": {
+        "pseudo_f": 8.033776906548045,
+        "r_squared": 0.3342702621309274,
+        "n": 18
+      }
+    }
+  }
+}

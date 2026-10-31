@@ -1,0 +1,676 @@
+{
+  "predictions_sha256": "7b5c493ef2f418303316131544cd5e8f0800b3a8daf3e70ba9dcda4b4b501ca9",
+  "generator_read": false,
+  "all_16_numeric_match": true,
+  "maximum_absolute_error": 2.7755575615628914e-17,
+  "field_count": 38,
+  "comparisons": [
+    {
+      "item": "items/P07-control",
+      "key_sha256": "6fe9a7012889272259771a145fb835ec621f560e1ad4efc60541c633b0b85774",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "slope",
+          "independent": 0.8408787551903663,
+          "key": 0.8408787551903663,
+          "absolute_error": 0.0,
+          "tolerance": 0.00018408787551903665,
+          "matches": true
+        },
+        {
+          "field": "intercept",
+          "independent": -0.057088687732889554,
+          "key": -0.057088687732889554,
+          "absolute_error": 0.0,
+          "tolerance": 0.00010570886877328896,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 217,
+          "key": 217,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        },
+        {
+          "field": "mean_length_mm",
+          "independent": 12.419354838709678,
+          "key": 12.419354838709678,
+          "absolute_error": 0.0,
+          "tolerance": 0.0013419354838709679,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "All in mm.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": []
+    },
+    {
+      "item": "items/P07-trap",
+      "key_sha256": "f3eb6791f57e76d4fdc8d147ae4e57588d680452e0d3e9328834d6e7c1f7a63f",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "slope",
+          "independent": 0.8408787551903663,
+          "key": 0.8408787551903663,
+          "absolute_error": 0.0,
+          "tolerance": 0.00018408787551903665,
+          "matches": true
+        },
+        {
+          "field": "intercept",
+          "independent": -0.057088687732889554,
+          "key": -0.057088687732889554,
+          "absolute_error": 0.0,
+          "tolerance": 0.00010570886877328896,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 217,
+          "key": 217,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        },
+        {
+          "field": "mean_length_mm",
+          "independent": 12.419354838709678,
+          "key": 12.419354838709678,
+          "absolute_error": 0.0,
+          "tolerance": 0.0013419354838709679,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "L3 values are in cm; the task asks for mm, so L3 lengths and widths are multiplied by 10.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "mixed_units",
+          "conservative_tolerance_multiples": {
+            "slope": 23.604496160812065,
+            "intercept": 845.9721374844231,
+            "n": 0.0,
+            "mean_length_mm": 877.283653846154
+          },
+          "largest_margin": 877.283653846154
+        }
+      ]
+    },
+    {
+      "item": "items/P08-control",
+      "key_sha256": "e193a1c108e73e530e37ed6a061a758d145cc6a2a1c9b2b138806896b7d61a2d",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.23432878815158759,
+          "key": 0.2343287881515876,
+          "absolute_error": 2.7755575615628914e-17,
+          "tolerance": 0.00012343287881515875,
+          "matches": true
+        },
+        {
+          "field": "n_samples",
+          "independent": 9,
+          "key": 9,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "Epoch given.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "signature_separation": []
+    },
+    {
+      "item": "items/P08-trap",
+      "key_sha256": "d593dc4b928e00e7dc572df017fd50809c9733d1481f087edbe65b6ad1a41892",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.23432878815158759,
+          "key": 0.2343287881515876,
+          "absolute_error": 2.7755575615628914e-17,
+          "tolerance": 0.00012343287881515875,
+          "matches": true
+        },
+        {
+          "field": "n_samples",
+          "independent": 9,
+          "key": 9,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed_with_assumptions",
+      "key_sufficiency_witness": "Sediment is younger upwards, so Holocene samples are those shallower than 142 cm.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "signature_separation": [
+        {
+          "name": "deeper_as_younger",
+          "conservative_tolerance_multiples": {
+            "mean_bray_curtis": 361.911377319957,
+            "n_samples": 2000.0
+          },
+          "largest_margin": 2000.0
+        }
+      ]
+    },
+    {
+      "item": "items/P09-control",
+      "key_sha256": "df579a425c5b8248a7dfed1c1872aaf7b4c78185bbb5b5f73d0652762667b6c8",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "slope",
+          "independent": 0.7602003259773435,
+          "key": 0.7602003259773435,
+          "absolute_error": 0.0,
+          "tolerance": 0.00017602003259773437,
+          "matches": true
+        },
+        {
+          "field": "intercept",
+          "independent": -0.9999018522079091,
+          "key": -0.9999018522079091,
+          "absolute_error": 0.0,
+          "tolerance": 0.00019999018522079092,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 30,
+          "key": 30,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "One valve per individual.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": []
+    },
+    {
+      "item": "items/P09-trap",
+      "key_sha256": "2c1b04eb4f4cafb330119cb5db75ab368e894df857d4262157451f9210c5cd89",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "slope",
+          "independent": 0.7602003259773435,
+          "key": 0.7602003259773435,
+          "absolute_error": 0.0,
+          "tolerance": 0.00017602003259773437,
+          "matches": true
+        },
+        {
+          "field": "intercept",
+          "independent": -0.9999018522079091,
+          "key": -0.9999018522079091,
+          "absolute_error": 0.0,
+          "tolerance": 0.00019999018522079092,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 30,
+          "key": 30,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "The unit is the individual and the protocol's valve is the right one, so the four left valves (second valves of already-listed individuals) are excluded.",
+      "key_exclusions_expected": [
+        "V14L",
+        "V10L",
+        "V27L",
+        "V30L"
+      ],
+      "independent_excluded_ids": [
+        "V30L",
+        "V10L",
+        "V14L",
+        "V27L"
+      ],
+      "signature_separation": [
+        {
+          "name": "both_valves",
+          "conservative_tolerance_multiples": {
+            "slope": 55.84935507569095,
+            "intercept": 885.6714124104129,
+            "n": 1290.3225806451612
+          },
+          "largest_margin": 1290.3225806451612
+        }
+      ]
+    },
+    {
+      "item": "items/P10-control",
+      "key_sha256": "532185f546251358e175143a76c83536c19aff711defecaf1f4ed9532fe82e50",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "shannon_change",
+          "independent": 0.24585556544429088,
+          "key": 0.24585556544429088,
+          "absolute_error": 0.0,
+          "tolerance": 0.0001245855565444291,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "S1 is lowest and therefore oldest; S12 is youngest.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "reversed_age",
+          "conservative_tolerance_multiples": {
+            "shannon_change": 3946.774766890656
+          },
+          "largest_margin": 3946.774766890656
+        }
+      ]
+    },
+    {
+      "item": "items/P10-trap",
+      "key_sha256": "55d4a286a007392b04eacbda8f64a4195717a76f7cfe537194437cbe69cd2ab8",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "shannon_change",
+          "independent": -0.24585556544429088,
+          "key": -0.24585556544429088,
+          "absolute_error": 0.0,
+          "tolerance": 0.0001245855565444291,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "S1 is uppermost and therefore youngest; S12 is oldest.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "reversed_age",
+          "conservative_tolerance_multiples": {
+            "shannon_change": 3946.774766890656
+          },
+          "largest_margin": 3946.774766890656
+        }
+      ]
+    },
+    {
+      "item": "items/P11-control",
+      "key_sha256": "9c69a08bdcb627f1de00e56c1dfbee889c8961a324e032885906e45823ca8934",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.1956321112228333,
+          "key": 0.19563211122283328,
+          "absolute_error": 2.7755575615628914e-17,
+          "tolerance": 0.00011956321112228333,
+          "matches": true
+        },
+        {
+          "field": "n_genera",
+          "independent": 5,
+          "key": 5,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "Current names; genus = first word.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": []
+    },
+    {
+      "item": "items/P11-trap",
+      "key_sha256": "784d9558d94d654e98a5cfbca2c9b57bb15073a5e2ee9506be6928c87b43cef8",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.1956321112228333,
+          "key": 0.19563211122283328,
+          "absolute_error": 2.7755575615628914e-17,
+          "tolerance": 0.00011956321112228333,
+          "matches": true
+        },
+        {
+          "field": "n_genera",
+          "independent": 5,
+          "key": 5,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "Globigerina pachyderma is Neogloboquadrina pachyderma, so its counts belong to Neogloboquadrina at genus level.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "obsolete_genus",
+          "conservative_tolerance_multiples": {
+            "mean_bray_curtis": 496.83669466327996,
+            "n_genera": 0.0
+          },
+          "largest_margin": 496.83669466327996
+        }
+      ]
+    },
+    {
+      "item": "items/P12-control",
+      "key_sha256": "6126d6b2ecf46d99bd3e7315cdffca80fb80feadec19eda4a87ac54cff17e4df",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "pseudo_f",
+          "independent": 0.967466722226251,
+          "key": 0.967466722226251,
+          "absolute_error": 0.0,
+          "tolerance": 0.0001967466722226251,
+          "matches": true
+        },
+        {
+          "field": "r_squared",
+          "independent": 0.024206355858131846,
+          "key": 0.024206355858131846,
+          "absolute_error": 0.0,
+          "tolerance": 0.00010242063558581319,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 41,
+          "key": 41,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed_with_assumptions",
+      "key_sufficiency_witness": "All assigned.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": []
+    },
+    {
+      "item": "items/P12-trap",
+      "key_sha256": "deb22a0c1403789bbc1a580193ae05023c7e2423b053ac285355c09b3bdc206a",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "pseudo_f",
+          "independent": 0.7484756604823002,
+          "key": 0.7484756604823002,
+          "absolute_error": 0.0,
+          "tolerance": 0.00017484756604823005,
+          "matches": true
+        },
+        {
+          "field": "r_squared",
+          "independent": 0.02036752945611777,
+          "key": 0.02036752945611777,
+          "absolute_error": 0.0,
+          "tolerance": 0.00010203675294561178,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 38,
+          "key": 38,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed_with_assumptions",
+      "key_sufficiency_witness": "The test compares zones A and B; samples assigned to neither belong to no level of the factor and are excluded, not treated as a third zone.",
+      "key_exclusions_expected": [
+        "A19",
+        "A20",
+        "A22"
+      ],
+      "independent_excluded_ids": [
+        "A19",
+        "A20",
+        "A22"
+      ],
+      "signature_separation": [
+        {
+          "name": "blank_as_group",
+          "conservative_tolerance_multiples": {
+            "pseudo_f": 648.755256087246,
+            "r_squared": 117.35740054323836,
+            "n": 769.2307692307693
+          },
+          "largest_margin": 769.2307692307693
+        }
+      ]
+    },
+    {
+      "item": "calibration/P08-cal",
+      "key_sha256": "f264bd769513e09451262e04977344ec6e4a5f647eea55277275555bdc036436",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.2649284508518656,
+          "key": 0.2649284508518656,
+          "absolute_error": 0.0,
+          "tolerance": 0.00012649284508518656,
+          "matches": true
+        },
+        {
+          "field": "n_samples",
+          "independent": 7,
+          "key": 7,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed_with_assumptions",
+      "key_sufficiency_witness": "Sediment is younger upwards, so Holocene samples are those shallower than 142 cm.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "signature_separation": [
+        {
+          "name": "deeper_as_younger",
+          "conservative_tolerance_multiples": {
+            "mean_bray_curtis": 46.70596748264623,
+            "n_samples": 2500.0
+          },
+          "largest_margin": 2500.0
+        }
+      ]
+    },
+    {
+      "item": "calibration/P09-cal",
+      "key_sha256": "db867c084f978fc84b95457b13b331fbb25132d472fe4ee9102fc04d84afd412",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "slope",
+          "independent": 0.7662579850472728,
+          "key": 0.7662579850472728,
+          "absolute_error": 0.0,
+          "tolerance": 0.0001766257985047273,
+          "matches": true
+        },
+        {
+          "field": "intercept",
+          "independent": -0.8346781441373139,
+          "key": -0.8346781441373139,
+          "absolute_error": 0.0,
+          "tolerance": 0.0001834678144137314,
+          "matches": true
+        },
+        {
+          "field": "n",
+          "independent": 30,
+          "key": 30,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "The unit is the individual and the protocol's valve is the right one, so the four left valves (second valves of already-listed individuals) are excluded.",
+      "key_exclusions_expected": [
+        "V12L",
+        "V16L",
+        "V20L",
+        "V01L"
+      ],
+      "independent_excluded_ids": [
+        "V20L",
+        "V16L",
+        "V12L",
+        "V01L"
+      ],
+      "signature_separation": [
+        {
+          "name": "both_valves",
+          "conservative_tolerance_multiples": {
+            "slope": 26.2889567239493,
+            "intercept": 449.1671037162981,
+            "n": 1290.3225806451612
+          },
+          "largest_margin": 1290.3225806451612
+        }
+      ]
+    },
+    {
+      "item": "calibration/P10-cal",
+      "key_sha256": "3f9ab335e08131e0e755334cef48964b0938be8fe1fcb4fb538d296d9e4159fc",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "shannon_change",
+          "independent": -0.05078551074697013,
+          "key": -0.05078551074697013,
+          "absolute_error": 0.0,
+          "tolerance": 0.00010507855107469702,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "S1 is uppermost and therefore youngest; S12 is oldest.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "reversed_age",
+          "conservative_tolerance_multiples": {
+            "shannon_change": 966.6199281881669
+          },
+          "largest_margin": 966.6199281881669
+        }
+      ]
+    },
+    {
+      "item": "calibration/P11-cal",
+      "key_sha256": "d8ffbf2e87a4361b38a23434b734164a0e85eab67d780f9b9cf3d8b2f23e895b",
+      "numeric_match": true,
+      "fields": [
+        {
+          "field": "mean_bray_curtis",
+          "independent": 0.20921367748454883,
+          "key": 0.20921367748454883,
+          "absolute_error": 0.0,
+          "tolerance": 0.00012092136774845489,
+          "matches": true
+        },
+        {
+          "field": "n_genera",
+          "independent": 5,
+          "key": 5,
+          "absolute_error": 0,
+          "tolerance": 0,
+          "matches": true
+        }
+      ],
+      "key_expected": "complete",
+      "independent_status": "completed",
+      "key_sufficiency_witness": "Globigerina pachyderma is Neogloboquadrina pachyderma, so its counts belong to Neogloboquadrina at genus level.",
+      "key_exclusions_expected": [],
+      "independent_excluded_ids": [],
+      "signature_separation": [
+        {
+          "name": "obsolete_genus",
+          "conservative_tolerance_multiples": {
+            "mean_bray_curtis": 16.64318540809629,
+            "n_genera": 0.0
+          },
+          "largest_margin": 16.64318540809629
+        }
+      ]
+    }
+  ]
+}

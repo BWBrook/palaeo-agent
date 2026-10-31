@@ -1,0 +1,10 @@
+WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir "/private/tmp/palaeo-codex-scripted-1" (codex_home: AbsolutePathBuf("/private/tmp/palaeo-codex-scripted-1/home"))
+Reading additional input from stdin...
+2026-10-31T11:56:54.530304Z ERROR codex_core::tools::router: error=unsupported call: mcp__worker__worker_execute
+2026-10-31T11:56:54.534279Z ERROR codex_core::tools::router: error=unsupported call: apply_patch
+2026-10-31T11:56:54.535948Z ERROR codex_core::tools::router: error=unsupported call: exec_command
+2026-10-31T11:56:54.537321Z ERROR codex_core::tools::router: error=unsupported call: shell
+2026-10-31T11:56:54.538709Z ERROR codex_core::tools::router: error=unsupported call: spawn_agent
+2026-10-31T11:56:54.540618Z ERROR codex_core::tools::router: error=unknown MCP server 'outside'
+2026-10-31T11:56:54.554611Z ERROR codex_core::tools::router: error=unsupported call: mcp__worker__worker_execute
+2026-10-31T11:56:54.555952Z ERROR codex_core::tools::router: error=unsupported call: mcp__worker__worker_execute

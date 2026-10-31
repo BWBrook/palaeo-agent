@@ -1,0 +1,410 @@
+{
+  "baseline_commit": "71f29d1",
+  "bank_commit": "4bf28f8",
+  "method": "Independent stdlib formulas, exact Fraction pair distances and PERMANOVA sums, no toolkit/key imports",
+  "materials_sha256": {
+    "evaluation/pilot/items/P07-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P07-control/materials/dictionary.md": "0a53bf037e4e68c40333344320f9d74e9bcccc28c32fe733143bd514a99f1364",
+    "evaluation/pilot/items/P07-control/materials/shells.csv": "cd1e4b1a75257a90d1ee9b6f028f0685fb240202a8e9124ef34ff688e4305bdb",
+    "evaluation/pilot/items/P07-control/materials/task.md": "7e3f4ee427b73c49698c6a82788c2b69a6b0bf8757f91ac991e6ad5c2cd90ff5",
+    "evaluation/pilot/items/P07-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P07-trap/materials/dictionary.md": "9baf6783bc874ab4c5ace8622f748c66a9764f70e469ef4f23fce7bed82fd15c",
+    "evaluation/pilot/items/P07-trap/materials/shells.csv": "7f8d969f0a7891a9b4cd2f23cf4a6c835a3d2bccae3123c5a7affba91cbfd2d9",
+    "evaluation/pilot/items/P07-trap/materials/task.md": "7e3f4ee427b73c49698c6a82788c2b69a6b0bf8757f91ac991e6ad5c2cd90ff5",
+    "evaluation/pilot/items/P08-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P08-control/materials/counts.tsv": "dfce6c71f5e162153cc32adaffbcf4fa8c74cd9f7d634954c7bfd3db83f8a37d",
+    "evaluation/pilot/items/P08-control/materials/dictionary.md": "c188f745f3b847ed6f2ceb218ae7c687da462937c2747faa06349b6cfa602fdd",
+    "evaluation/pilot/items/P08-control/materials/samples.csv": "43741859e115cc74603e0cd18b5b1920bcf19998e7b3c46293f6d3ab33960f5a",
+    "evaluation/pilot/items/P08-control/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/items/P08-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P08-trap/materials/counts.tsv": "dfce6c71f5e162153cc32adaffbcf4fa8c74cd9f7d634954c7bfd3db83f8a37d",
+    "evaluation/pilot/items/P08-trap/materials/dictionary.md": "e7c099ed0dde4da3f5ad6ccf14ba7e4c29f020c109debd18e7ee73b901e6d288",
+    "evaluation/pilot/items/P08-trap/materials/samples.csv": "5144f931a8fbe8495348cd561a6feb7a1d21ad98993590f520809c4e2f2ffa01",
+    "evaluation/pilot/items/P08-trap/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/items/P09-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P09-control/materials/dictionary.md": "e8e13a5c680ff97be8a0c1c29d1ae70307e325c8332ef8c179aa71f6e83a2e52",
+    "evaluation/pilot/items/P09-control/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/items/P09-control/materials/valves.csv": "03f170c104b74e2e3c78fabe49c0befee5fa2eeba875a14257be9e8a1ab36629",
+    "evaluation/pilot/items/P09-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P09-trap/materials/dictionary.md": "22b16b0347cd259b3a0a5383e804d2e88e16e5a0934d113684f3b6879310a00b",
+    "evaluation/pilot/items/P09-trap/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/items/P09-trap/materials/valves.csv": "a37f07b63fc93a0c7634bc348d063be74356abf0fbdefe8c39cbf3e9992abde5",
+    "evaluation/pilot/items/P10-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P10-control/materials/counts.tsv": "345e428fdd28f14837de0df42a5f528893eec686fc3b4c735cb12684cc4c86d3",
+    "evaluation/pilot/items/P10-control/materials/dictionary.md": "985015c98ad5c98e43ae25175e95d4877f86b41b1d61cf1da5b2fb3eae506f0f",
+    "evaluation/pilot/items/P10-control/materials/task.md": "816256992f6fb48a2a10e75e7c8fddd6785ca9227038b34632933f124fa6767c",
+    "evaluation/pilot/items/P10-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P10-trap/materials/counts.tsv": "345e428fdd28f14837de0df42a5f528893eec686fc3b4c735cb12684cc4c86d3",
+    "evaluation/pilot/items/P10-trap/materials/dictionary.md": "e5ae419488b4d141dfce5839cfe18981a1e8ce8b1d97241506a7465904dbc91f",
+    "evaluation/pilot/items/P10-trap/materials/task.md": "816256992f6fb48a2a10e75e7c8fddd6785ca9227038b34632933f124fa6767c",
+    "evaluation/pilot/items/P11-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P11-control/materials/dictionary.md": "3aa3ce3aab0a05d03eea9ec5ba154f121a98f5447cc3112b827ebb1f3ab42b49",
+    "evaluation/pilot/items/P11-control/materials/species.txt": "86550e357e87589532a05cd5b0187459c69d0822842b7de5ccf021e60148cb58",
+    "evaluation/pilot/items/P11-control/materials/task.md": "66bd1f9411239882c44eedba60fbe3a33374c8ad86e9a5d50393b6fea555bdaf",
+    "evaluation/pilot/items/P11-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P11-trap/materials/dictionary.md": "16ad0dcd0dc156fa847359a86a04ba146960db9f21d0d7e8c4ca7126e173bdc2",
+    "evaluation/pilot/items/P11-trap/materials/species.txt": "ef11bdadaf116d86c52e46bd93467101135df373bf672d98b7b624fc014ae1a3",
+    "evaluation/pilot/items/P11-trap/materials/task.md": "66bd1f9411239882c44eedba60fbe3a33374c8ad86e9a5d50393b6fea555bdaf",
+    "evaluation/pilot/items/P12-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P12-control/materials/counts.tsv": "90080578634cff0e1718bb776f947642b6f2e0d21660f56c9853e81b2b07a7c7",
+    "evaluation/pilot/items/P12-control/materials/dictionary.md": "157177758bbf2bdb37f7f6eb4f4786d07ad820466651843bc7af835c1e041395",
+    "evaluation/pilot/items/P12-control/materials/task.md": "64da39cc95ebec0d9d07a480e4a3f09a3d15513d0ace6fd90794d5fa5f07b708",
+    "evaluation/pilot/items/P12-control/materials/zones.csv": "d995eab8be0028a970b648a53f951c9da2314bb8308f8e1d6802ea6a62d4528f",
+    "evaluation/pilot/items/P12-trap/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P12-trap/materials/counts.tsv": "90080578634cff0e1718bb776f947642b6f2e0d21660f56c9853e81b2b07a7c7",
+    "evaluation/pilot/items/P12-trap/materials/dictionary.md": "a6d9dd74a7d388022d1878272595a0e428b31cf524dbe823e0943856a066a448",
+    "evaluation/pilot/items/P12-trap/materials/task.md": "64da39cc95ebec0d9d07a480e4a3f09a3d15513d0ace6fd90794d5fa5f07b708",
+    "evaluation/pilot/items/P12-trap/materials/zones.csv": "b06cd11a928c6ddf4e6a5139a811301688b1e39a97bb57df5accfbb73d3ccda6",
+    "evaluation/pilot/calibration/P08-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P08-cal/materials/counts.tsv": "cd794bfe7e3fb9750fb24bac255e190483017466087f20fce24d02d2eb7296fb",
+    "evaluation/pilot/calibration/P08-cal/materials/dictionary.md": "e7c099ed0dde4da3f5ad6ccf14ba7e4c29f020c109debd18e7ee73b901e6d288",
+    "evaluation/pilot/calibration/P08-cal/materials/samples.csv": "fe9fbea9d31591427bd6438edb0fe3fe08b91a3e918fda7765217fbfc20b0967",
+    "evaluation/pilot/calibration/P08-cal/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/calibration/P09-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P09-cal/materials/dictionary.md": "22b16b0347cd259b3a0a5383e804d2e88e16e5a0934d113684f3b6879310a00b",
+    "evaluation/pilot/calibration/P09-cal/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/calibration/P09-cal/materials/valves.csv": "ceb37f5fb41305dfd9b7e82defd1227a96677815344886c4102aefe05e1a366e",
+    "evaluation/pilot/calibration/P10-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P10-cal/materials/counts.tsv": "b8711b28e31d1ad181aba1088dc50af546344829b2d1711d8e3abb4d23455c96",
+    "evaluation/pilot/calibration/P10-cal/materials/dictionary.md": "e5ae419488b4d141dfce5839cfe18981a1e8ce8b1d97241506a7465904dbc91f",
+    "evaluation/pilot/calibration/P10-cal/materials/task.md": "816256992f6fb48a2a10e75e7c8fddd6785ca9227038b34632933f124fa6767c",
+    "evaluation/pilot/calibration/P11-cal/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/calibration/P11-cal/materials/dictionary.md": "16ad0dcd0dc156fa847359a86a04ba146960db9f21d0d7e8c4ca7126e173bdc2",
+    "evaluation/pilot/calibration/P11-cal/materials/species.txt": "d0f10fb504b6af219fad255c6ae4af3d057a6f73920dd51c3d4384c34a125f68",
+    "evaluation/pilot/calibration/P11-cal/materials/task.md": "66bd1f9411239882c44eedba60fbe3a33374c8ad86e9a5d50393b6fea555bdaf"
+  },
+  "items": [
+    {
+      "item": "items/P07-control",
+      "status": "completed",
+      "results": {
+        "slope": 0.8408787551903663,
+        "intercept": -0.057088687732889554,
+        "n": 217,
+        "mean_length_mm": 12.419354838709678
+      },
+      "excluded_ids": [],
+      "handling_witness": "The task requires millimetres and the dictionary identifies L3 centimetres: multiply both L3 coordinates by10. All217 rows are fully observed.",
+      "difficulty": "Low: explicit units; mean_length_mm makes unit error measurable although slope is nearly invariant.",
+      "alternatives": {
+        "ignore_unit_conversion": {
+          "slope": 0.8408787551903663,
+          "intercept": -0.057088687732889554,
+          "n": 217,
+          "mean_length_mm": 12.419354838709678
+        }
+      }
+    },
+    {
+      "item": "items/P07-trap",
+      "status": "completed",
+      "results": {
+        "slope": 0.8408787551903663,
+        "intercept": -0.057088687732889554,
+        "n": 217,
+        "mean_length_mm": 12.419354838709678
+      },
+      "excluded_ids": [],
+      "handling_witness": "The task requires millimetres and the dictionary identifies L3 centimetres: multiply both L3 coordinates by10. All217 rows are fully observed.",
+      "difficulty": "Low: explicit units; mean_length_mm makes unit error measurable although slope is nearly invariant.",
+      "alternatives": {
+        "ignore_unit_conversion": {
+          "slope": 0.8365334536394251,
+          "intercept": 0.0323380699343101,
+          "n": 217,
+          "mean_length_mm": 11.242096774193548
+        }
+      }
+    },
+    {
+      "item": "items/P08-control",
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.23432878815158759,
+        "n_samples": 9
+      },
+      "excluded_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "handling_witness": "Epoch labels directly identify Holocene samples; join by sample ID.",
+      "difficulty": "Low to moderate ID join and filtering; exact-boundary ambiguity is validity trouble rather than desirable difficulty.",
+      "alternatives": {
+        "use_all_samples": {
+          "mean_bray_curtis": 0.31356627365854595,
+          "n_samples": 16
+        }
+      }
+    },
+    {
+      "item": "items/P08-trap",
+      "status": "completed_with_assumptions",
+      "results": {
+        "mean_bray_curtis": 0.23432878815158759,
+        "n_samples": 9
+      },
+      "excluded_ids": [
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "handling_witness": "Shallower than142cm is the natural younger subset, but a sample exactly142cm is unclassified without an interval or boundary convention. Primary calculation assumes it excluded; an inclusive convention is also reported.",
+      "difficulty": "Low to moderate ID join and filtering; exact-boundary ambiguity is validity trouble rather than desirable difficulty.",
+      "alternatives": {
+        "include_exact_boundary": {
+          "mean_bray_curtis": 0.26759937714050164,
+          "n_samples": 10
+        },
+        "use_all_samples": {
+          "mean_bray_curtis": 0.31356627365854595,
+          "n_samples": 16
+        }
+      }
+    },
+    {
+      "item": "items/P09-control",
+      "status": "completed",
+      "results": {
+        "slope": 0.7602003259773435,
+        "intercept": -0.9999018522079091,
+        "n": 30
+      },
+      "excluded_ids": [],
+      "handling_witness": "Dictionary specifies one right valve per individual; left-valve rows also identify their paired individuals in curatorial notes. Exclude left valves rather than average or double-count.",
+      "difficulty": "Low: the right-valve choice is explicitly dictated, so this resembles a policy-following control rather than an uncoached scientific trap.",
+      "alternatives": {
+        "all_catalogued_valves": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        }
+      }
+    },
+    {
+      "item": "items/P09-trap",
+      "status": "completed",
+      "results": {
+        "slope": 0.7602003259773435,
+        "intercept": -0.9999018522079091,
+        "n": 30
+      },
+      "excluded_ids": [
+        "V30L",
+        "V10L",
+        "V14L",
+        "V27L"
+      ],
+      "handling_witness": "Dictionary specifies one right valve per individual; left-valve rows also identify their paired individuals in curatorial notes. Exclude left valves rather than average or double-count.",
+      "difficulty": "Low: the right-valve choice is explicitly dictated, so this resembles a policy-following control rather than an uncoached scientific trap.",
+      "alternatives": {
+        "all_catalogued_valves": {
+          "slope": 0.750369720676358,
+          "intercept": -0.8227762623951911,
+          "n": 34
+        }
+      }
+    },
+    {
+      "item": "items/P10-control",
+      "status": "completed",
+      "results": {
+        "shannon_change": 0.24585556544429088
+      },
+      "excluded_ids": [],
+      "handling_witness": "Dictionary gives numbering direction. Numerically sort IDs (not lexical); youngest=S12, oldest=S1; difference is youngest minus oldest.",
+      "difficulty": "Low: one stated direction plus sign; no multistep inferential challenge.",
+      "alternatives": {
+        "reverse_age_order": {
+          "shannon_change": -0.24585556544429088
+        }
+      }
+    },
+    {
+      "item": "items/P10-trap",
+      "status": "completed",
+      "results": {
+        "shannon_change": -0.24585556544429088
+      },
+      "excluded_ids": [],
+      "handling_witness": "Dictionary gives numbering direction. Numerically sort IDs (not lexical); youngest=S1, oldest=S12; difference is youngest minus oldest.",
+      "difficulty": "Low: one stated direction plus sign; no multistep inferential challenge.",
+      "alternatives": {
+        "reverse_age_order": {
+          "shannon_change": 0.24585556544429088
+        }
+      }
+    },
+    {
+      "item": "items/P11-control",
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.1956321112228333,
+        "n_genera": 5
+      },
+      "excluded_ids": [],
+      "handling_witness": "Use the stated current combination for pachyderma, then sum all species counts by current genus. This is a supplied taxonomic mapping, not an external taxonomic judgement.",
+      "difficulty": "Low to moderate string mapping and aggregation; dictionary supplies the exact mapping.",
+      "alternatives": {
+        "as_written_genus": {
+          "mean_bray_curtis": 0.1956321112228333,
+          "n_genera": 5
+        }
+      }
+    },
+    {
+      "item": "items/P11-trap",
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.1956321112228333,
+        "n_genera": 5
+      },
+      "excluded_ids": [],
+      "handling_witness": "Use the stated current combination for pachyderma, then sum all species counts by current genus. This is a supplied taxonomic mapping, not an external taxonomic judgement.",
+      "difficulty": "Low to moderate string mapping and aggregation; dictionary supplies the exact mapping.",
+      "alternatives": {
+        "as_written_genus": {
+          "mean_bray_curtis": 0.2550355018401564,
+          "n_genera": 5
+        }
+      }
+    },
+    {
+      "item": "items/P12-control",
+      "status": "completed_with_assumptions",
+      "results": {
+        "pseudo_f": 0.967466722226251,
+        "r_squared": 0.024206355858131846,
+        "n": 41
+      },
+      "excluded_ids": [],
+      "handling_witness": "Requested comparison is A versusB, so samples with blank zone are not assigned a third group. Row-normalise counts before Bray-Curtis. F andR2 are algebraically identified; valid free-label permutation inference is not entailed for samples ordered within one stratigraphic section.",
+      "difficulty": "Moderate pipeline; inference-design ambiguity affects both arms and both item variants. Task asks a test but requested results omit its p-value.",
+      "alternatives": {
+        "include_blank_as_third_group": {
+          "pseudo_f": 0.967466722226251,
+          "r_squared": 0.024206355858131846,
+          "n": 41
+        }
+      }
+    },
+    {
+      "item": "items/P12-trap",
+      "status": "completed_with_assumptions",
+      "results": {
+        "pseudo_f": 0.7484756604823002,
+        "r_squared": 0.02036752945611777,
+        "n": 38
+      },
+      "excluded_ids": [
+        "A19",
+        "A20",
+        "A22"
+      ],
+      "handling_witness": "Requested comparison is A versusB, so samples with blank zone are not assigned a third group. Row-normalise counts before Bray-Curtis. F andR2 are algebraically identified; valid free-label permutation inference is not entailed for samples ordered within one stratigraphic section.",
+      "difficulty": "Moderate pipeline; inference-design ambiguity affects both arms and both item variants. Task asks a test but requested results omit its p-value.",
+      "alternatives": {
+        "include_blank_as_third_group": {
+          "pseudo_f": 0.635042382994449,
+          "r_squared": 0.03234229754168739,
+          "n": 41
+        }
+      }
+    },
+    {
+      "item": "calibration/P08-cal",
+      "status": "completed_with_assumptions",
+      "results": {
+        "mean_bray_curtis": 0.2649284508518656,
+        "n_samples": 7
+      },
+      "excluded_ids": [
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "handling_witness": "Shallower than142cm is the natural younger subset, but a sample exactly142cm is unclassified without an interval or boundary convention. Primary calculation assumes it excluded; an inclusive convention is also reported.",
+      "difficulty": "Low to moderate ID join and filtering; exact-boundary ambiguity is validity trouble rather than desirable difficulty.",
+      "alternatives": {
+        "include_exact_boundary": {
+          "mean_bray_curtis": 0.2940823193377051,
+          "n_samples": 8
+        },
+        "use_all_samples": {
+          "mean_bray_curtis": 0.33790507307735074,
+          "n_samples": 16
+        }
+      }
+    },
+    {
+      "item": "calibration/P09-cal",
+      "status": "completed",
+      "results": {
+        "slope": 0.7662579850472728,
+        "intercept": -0.8346781441373139,
+        "n": 30
+      },
+      "excluded_ids": [
+        "V20L",
+        "V16L",
+        "V12L",
+        "V01L"
+      ],
+      "handling_witness": "Dictionary specifies one right valve per individual; left-valve rows also identify their paired individuals in curatorial notes. Exclude left valves rather than average or double-count.",
+      "difficulty": "Low: the right-valve choice is explicitly dictated, so this resembles a policy-following control rather than an uncoached scientific trap.",
+      "alternatives": {
+        "all_catalogued_valves": {
+          "slope": 0.7616146770740491,
+          "intercept": -0.7522704373119389,
+          "n": 34
+        }
+      }
+    },
+    {
+      "item": "calibration/P10-cal",
+      "status": "completed",
+      "results": {
+        "shannon_change": -0.05078551074697013
+      },
+      "excluded_ids": [],
+      "handling_witness": "Dictionary gives numbering direction. Numerically sort IDs (not lexical); youngest=S1, oldest=S12; difference is youngest minus oldest.",
+      "difficulty": "Low: one stated direction plus sign; no multistep inferential challenge.",
+      "alternatives": {
+        "reverse_age_order": {
+          "shannon_change": 0.05078551074697013
+        }
+      }
+    },
+    {
+      "item": "calibration/P11-cal",
+      "status": "completed",
+      "results": {
+        "mean_bray_curtis": 0.20921367748454883,
+        "n_genera": 5
+      },
+      "excluded_ids": [],
+      "handling_witness": "Use the stated current combination for pachyderma, then sum all species counts by current genus. This is a supplied taxonomic mapping, not an external taxonomic judgement.",
+      "difficulty": "Low to moderate string mapping and aggregation; dictionary supplies the exact mapping.",
+      "alternatives": {
+        "as_written_genus": {
+          "mean_bray_curtis": 0.211226194227787,
+          "n_genera": 5
+        }
+      }
+    }
+  ]
+}

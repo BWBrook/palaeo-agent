@@ -1,0 +1,121 @@
+[
+  {
+    "case": "complete_manifest_without_steps_or_runs",
+    "result": {
+      "status": "verified",
+      "study_status": "complete",
+      "study_dir": "/private/tmp/palaeo-study-interim-20261031/missing-runs",
+      "steps": [],
+      "runs": {},
+      "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"
+    }
+  },
+  {
+    "case": "mcp_inspection_follows_outside_runs_symlink",
+    "session_root": "/private/tmp/palaeo-study-interim-20261031/session",
+    "outside": "/private/tmp/palaeo-study-interim-20261031/outside-runs",
+    "result": {
+      "status": "verified",
+      "study_status": "complete",
+      "study_dir": "study",
+      "steps": [
+        {
+          "id": "dataset:d",
+          "status": "complete"
+        },
+        {
+          "id": "analysis:r",
+          "status": "complete"
+        }
+      ],
+      "runs": {
+        "r": {
+          "run_dir": "runs/r/7bfd1417269944f8aac3ab6abcdf3cc0",
+          "summary": {
+            "method": "rma",
+            "n": 3,
+            "n_input": 3,
+            "excluded": [],
+            "warnings": [],
+            "slope": 1.7320508075688776,
+            "intercept": -0.04145188432738145,
+            "correlation": 0.9897433186107871
+          }
+        }
+      },
+      "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"
+    }
+  },
+  {
+    "case": "method_retransposes_canonical_dataset",
+    "input_samples": 4,
+    "outcome": {
+      "status": "complete",
+      "study_dir": "/private/tmp/palaeo-study-interim-20261031/orientation",
+      "steps": [
+        {
+          "id": "dataset:d",
+          "status": "complete"
+        },
+        {
+          "id": "analysis:a",
+          "status": "complete"
+        }
+      ]
+    },
+    "result": {
+      "a": {
+        "run_dir": "runs/a/0bc21b8a2eae45b1821fb690ee58288a",
+        "summary": {
+          "method": "community",
+          "n": 3,
+          "n_input": 3,
+          "excluded": [],
+          "warnings": [],
+          "n_taxa": 4,
+          "transform": "none",
+          "distance": "braycurtis",
+          "negative_inertia_magnitude": -0.0
+        }
+      }
+    }
+  },
+  {
+    "case": "later_dataset_not_recorded_as_not_run",
+    "result": {
+      "status": "partial",
+      "study_dir": "/private/tmp/palaeo-study-interim-20261031/partial",
+      "steps": [
+        {
+          "id": "dataset:bad",
+          "status": "failed",
+          "error": {
+            "status": "error",
+            "code": "unknown_sample",
+            "message": "Declared samples do not exist",
+            "details": {
+              "samples": [
+                "unknown"
+              ]
+            }
+          }
+        },
+        {
+          "id": "analysis:r",
+          "status": "not_run"
+        }
+      ],
+      "failed_step": "dataset:bad",
+      "error": {
+        "status": "error",
+        "code": "unknown_sample",
+        "message": "Declared samples do not exist",
+        "details": {
+          "samples": [
+            "unknown"
+          ]
+        }
+      }
+    }
+  }
+]

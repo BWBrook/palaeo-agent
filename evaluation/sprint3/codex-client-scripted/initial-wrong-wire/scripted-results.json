@@ -1,0 +1,12 @@
+{
+  "call_0": "unsupported call: mcp__worker__worker_execute",
+  "call_1": "unsupported call: apply_patch",
+  "call_2": "unsupported call: exec_command",
+  "call_3": "unsupported call: shell",
+  "call_4": "unsupported call: spawn_agent",
+  "call_5": "unknown MCP server 'outside'",
+  "call_6": "{\"resources\":[]}",
+  "call_7": "{\"resourceTemplates\":[]}",
+  "call_8": "unsupported call: mcp__worker__worker_execute",
+  "call_9": "unsupported call: mcp__worker__worker_execute"
+}

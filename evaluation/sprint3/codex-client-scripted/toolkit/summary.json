@@ -1,0 +1,140 @@
+{
+  "arm": "toolkit",
+  "catalogue": true,
+  "exit_code": 0,
+  "timed_out": false,
+  "requests": 15,
+  "inference_calls": 0,
+  "authorization_present": false,
+  "canary_files": [
+    "secret.txt"
+  ],
+  "secret_unchanged": true,
+  "request_tool_names": [
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ]
+  ],
+  "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+  "label": "toolkit",
+  "checks": {
+    "expected_inventory": true,
+    "stable_inventory": true,
+    "no_auth": true,
+    "client_exit_zero": true,
+    "positive_controls": true,
+    "outside_read_denied": true,
+    "canary_unchanged": true,
+    "hidden_calls_refused": true,
+    "known_server_file_uri_refused": true,
+    "unknown_server_refused": true,
+    "resource_lists_empty": true,
+    "toolkit_discovery": true
+  },
+  "offline_candidate_passed": true,
+  "inventory": [
+    "list_mcp_resources",
+    "list_mcp_resource_templates",
+    "read_mcp_resource",
+    "mcp__worker.palaeo_compare",
+    "mcp__worker.palaeo_discover",
+    "mcp__worker.palaeo_inspect",
+    "mcp__worker.palaeo_inspect_comparison",
+    "mcp__worker.palaeo_reproduce",
+    "mcp__worker.palaeo_result",
+    "mcp__worker.palaeo_run",
+    "mcp__worker.palaeo_validate",
+    "mcp__worker.worker_execute",
+    "mcp__worker.worker_read",
+    "mcp__worker.worker_write"
+  ],
+  "init_has_complete_inventory": false,
+  "live_launch_gate_implemented": false
+}

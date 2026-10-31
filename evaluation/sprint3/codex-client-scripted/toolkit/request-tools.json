@@ -1,0 +1,862 @@
+[
+  {
+    "type": "function",
+    "name": "list_mcp_resources",
+    "description": "Lists resources provided by MCP servers. Resources allow servers to share data that provides context to language models, such as files, database schemas, or application-specific information. Prefer resources over web search when possible.",
+    "strict": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string",
+          "description": "Opaque cursor from a previous list_mcp_resources call; omit for the first page."
+        },
+        "server": {
+          "type": "string",
+          "description": "MCP server name. Omit to list resources from every configured server."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "type": "function",
+    "name": "list_mcp_resource_templates",
+    "description": "Lists resource templates provided by MCP servers. Parameterized resource templates allow servers to share data that takes parameters and provides context to language models, such as files, database schemas, or application-specific information. Prefer resource templates over web search when possible.",
+    "strict": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "string",
+          "description": "Opaque cursor from a previous list_mcp_resource_templates call; omit for the first page."
+        },
+        "server": {
+          "type": "string",
+          "description": "MCP server name. Omit to list resource templates from every configured server."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "type": "function",
+    "name": "read_mcp_resource",
+    "description": "Read a specific resource from an MCP server given the server name and resource URI.",
+    "strict": false,
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "server": {
+          "type": "string",
+          "description": "MCP server name exactly as configured. Must match the 'server' field returned by list_mcp_resources."
+        },
+        "uri": {
+          "type": "string",
+          "description": "Resource URI to read. Must be one of the URIs returned by list_mcp_resources."
+        }
+      },
+      "required": [
+        "server",
+        "uri"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "type": "namespace",
+    "name": "mcp__worker",
+    "description": "Tools in the mcp__worker namespace.",
+    "tools": [
+      {
+        "type": "function",
+        "name": "palaeo_compare",
+        "description": "Compare community runs descriptively under the existing provenance and one-factor rules.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "baseline": {
+              "type": "string"
+            },
+            "output": {
+              "type": "string"
+            },
+            "sensitivity": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "baseline",
+            "sensitivity"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_discover",
+        "description": "List method summaries, or request one method's complete typed schemas.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "rma",
+                    "community",
+                    "permanova"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_inspect",
+        "description": "Verify a run's integrity and return a compact summary, field names and artifact references.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "bundle": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bundle"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_inspect_comparison",
+        "description": "Verify a descriptive comparison and both embedded run bundles.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "bundle": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bundle"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_reproduce",
+        "description": "Recompute a saved bundle and compare its numerical outputs.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "bundle": {
+              "type": "string"
+            },
+            "output": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bundle"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_result",
+        "description": "Read one verified run-result field, with bounded rows and matrix columns.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "bundle": {
+              "type": "string"
+            },
+            "column_limit": {
+              "type": "integer"
+            },
+            "column_offset": {
+              "type": "integer"
+            },
+            "field": {
+              "type": "string",
+              "description": "Dot-separated result-field path; discover fields with inspect"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "offset": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "bundle",
+            "field"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_run",
+        "description": "Run a declared analysis and save a self-contained evidence bundle.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "output": {
+              "type": "string"
+            },
+            "spec": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/RmaSpec"
+                },
+                {
+                  "$ref": "#/$defs/CommunitySpec"
+                },
+                {
+                  "$ref": "#/$defs/PermanovaSpec"
+                }
+              ]
+            }
+          },
+          "required": [
+            "spec"
+          ],
+          "additionalProperties": false,
+          "$defs": {
+            "CommunitySpec": {
+              "type": "object",
+              "properties": {
+                "baseline_run": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "dimensions": {
+                  "type": "integer"
+                },
+                "distance": {
+                  "type": "string",
+                  "enum": [
+                    "braycurtis",
+                    "jaccard"
+                  ]
+                },
+                "empty_samples": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "drop"
+                  ]
+                },
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "input": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "community"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "orientation": {
+                  "type": "string",
+                  "enum": [
+                    "samples_by_taxa",
+                    "taxa_by_samples"
+                  ]
+                },
+                "purpose": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "relative_abundance"
+                  ]
+                },
+                "value_type": {
+                  "type": "string",
+                  "enum": [
+                    "count"
+                  ]
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "format",
+                "orientation",
+                "value_type",
+                "transform",
+                "distance",
+                "dimensions",
+                "missing",
+                "empty_samples"
+              ],
+              "additionalProperties": false
+            },
+            "PermanovaSpec": {
+              "type": "object",
+              "properties": {
+                "design": {
+                  "type": "string",
+                  "enum": [
+                    "independent"
+                  ]
+                },
+                "distance": {
+                  "type": "string",
+                  "enum": [
+                    "braycurtis",
+                    "jaccard"
+                  ]
+                },
+                "empty_samples": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "group_column": {
+                  "type": "string"
+                },
+                "input": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "string"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "permanova"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "orientation": {
+                  "type": "string",
+                  "enum": [
+                    "samples_by_taxa",
+                    "taxa_by_samples"
+                  ]
+                },
+                "permutation_scheme": {
+                  "type": "string",
+                  "enum": [
+                    "free"
+                  ]
+                },
+                "permutations": {
+                  "type": "integer"
+                },
+                "seed": {
+                  "type": "integer"
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "relative_abundance"
+                  ]
+                },
+                "value_type": {
+                  "type": "string",
+                  "enum": [
+                    "count"
+                  ]
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "metadata",
+                "group_column",
+                "format",
+                "orientation",
+                "value_type",
+                "distance",
+                "transform",
+                "missing",
+                "empty_samples",
+                "design",
+                "permutation_scheme",
+                "seed"
+              ],
+              "additionalProperties": false
+            },
+            "RmaSpec": {
+              "type": "object",
+              "properties": {
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "input": {
+                  "type": "string",
+                  "description": "Classic PAST table; relative to the specification file in the CLI"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "rma"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "drop_pairs"
+                  ]
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "log10"
+                  ]
+                },
+                "x": {
+                  "type": "string",
+                  "description": "Exact predictor column label"
+                },
+                "y": {
+                  "type": "string",
+                  "description": "Exact response column label"
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "format",
+                "x",
+                "y",
+                "transform",
+                "missing"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "name": "palaeo_validate",
+        "description": "Validate declared data and numerical requirements; sampling assumptions are not established.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "spec": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/RmaSpec"
+                },
+                {
+                  "$ref": "#/$defs/CommunitySpec"
+                },
+                {
+                  "$ref": "#/$defs/PermanovaSpec"
+                }
+              ]
+            }
+          },
+          "required": [
+            "spec"
+          ],
+          "additionalProperties": false,
+          "$defs": {
+            "CommunitySpec": {
+              "type": "object",
+              "properties": {
+                "baseline_run": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "dimensions": {
+                  "type": "integer"
+                },
+                "distance": {
+                  "type": "string",
+                  "enum": [
+                    "braycurtis",
+                    "jaccard"
+                  ]
+                },
+                "empty_samples": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "drop"
+                  ]
+                },
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "input": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "community"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "orientation": {
+                  "type": "string",
+                  "enum": [
+                    "samples_by_taxa",
+                    "taxa_by_samples"
+                  ]
+                },
+                "purpose": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "relative_abundance"
+                  ]
+                },
+                "value_type": {
+                  "type": "string",
+                  "enum": [
+                    "count"
+                  ]
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "format",
+                "orientation",
+                "value_type",
+                "transform",
+                "distance",
+                "dimensions",
+                "missing",
+                "empty_samples"
+              ],
+              "additionalProperties": false
+            },
+            "PermanovaSpec": {
+              "type": "object",
+              "properties": {
+                "design": {
+                  "type": "string",
+                  "enum": [
+                    "independent"
+                  ]
+                },
+                "distance": {
+                  "type": "string",
+                  "enum": [
+                    "braycurtis",
+                    "jaccard"
+                  ]
+                },
+                "empty_samples": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "group_column": {
+                  "type": "string"
+                },
+                "input": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "string"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "permanova"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error"
+                  ]
+                },
+                "orientation": {
+                  "type": "string",
+                  "enum": [
+                    "samples_by_taxa",
+                    "taxa_by_samples"
+                  ]
+                },
+                "permutation_scheme": {
+                  "type": "string",
+                  "enum": [
+                    "free"
+                  ]
+                },
+                "permutations": {
+                  "type": "integer"
+                },
+                "seed": {
+                  "type": "integer"
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "relative_abundance"
+                  ]
+                },
+                "value_type": {
+                  "type": "string",
+                  "enum": [
+                    "count"
+                  ]
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "metadata",
+                "group_column",
+                "format",
+                "orientation",
+                "value_type",
+                "distance",
+                "transform",
+                "missing",
+                "empty_samples",
+                "design",
+                "permutation_scheme",
+                "seed"
+              ],
+              "additionalProperties": false
+            },
+            "RmaSpec": {
+              "type": "object",
+              "properties": {
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "past"
+                  ]
+                },
+                "input": {
+                  "type": "string",
+                  "description": "Classic PAST table; relative to the specification file in the CLI"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "rma"
+                  ]
+                },
+                "missing": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "drop_pairs"
+                  ]
+                },
+                "transform": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "log10"
+                  ]
+                },
+                "x": {
+                  "type": "string",
+                  "description": "Exact predictor column label"
+                },
+                "y": {
+                  "type": "string",
+                  "description": "Exact response column label"
+                }
+              },
+              "required": [
+                "method",
+                "input",
+                "format",
+                "x",
+                "y",
+                "transform",
+                "missing"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "name": "worker_execute",
+        "description": "Execute Python in the trial. No network, subprocesses, credentials or outside files. Installed scientific packages are available.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "worker_read",
+        "description": "Read a UTF-8 trial file in a bounded page; paths are relative to the trial root.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer"
+            },
+            "offset": {
+              "type": "integer"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "type": "function",
+        "name": "worker_write",
+        "description": "Write a UTF-8 trial file; paths are relative to the trial root.",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "content"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ]
+  }
+]

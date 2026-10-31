@@ -1,0 +1,6 @@
+{
+  "prediction_sha256": "13548922b74011ba681882a9b5dde3a7728011456fe19c21f7b5e7967e289938",
+  "script_sha256": "a427c6df31b8b674fa07c2d5cc3609823f7b5e3ad53303afac44a485aaa9db7d",
+  "keys_read_before_seal": false,
+  "n_items": 16
+}

@@ -1,0 +1,103 @@
+{
+  "arm": "direct",
+  "catalogue": true,
+  "exit_code": 0,
+  "timed_out": false,
+  "requests": 11,
+  "inference_calls": 0,
+  "authorization_present": false,
+  "canary_files": [
+    "secret.txt"
+  ],
+  "secret_unchanged": true,
+  "request_tool_names": [
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "mcp__worker"
+    ]
+  ],
+  "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+  "label": "initial-wrong-wire",
+  "checks": {
+    "expected_inventory": true,
+    "stable_inventory": true,
+    "no_auth": true,
+    "client_exit_zero": true,
+    "positive_controls": false,
+    "outside_read_denied": false,
+    "canary_unchanged": true
+  },
+  "offline_candidate_passed": false,
+  "inventory": [
+    "list_mcp_resources",
+    "list_mcp_resource_templates",
+    "read_mcp_resource",
+    "mcp__worker.worker_execute",
+    "mcp__worker.worker_read",
+    "mcp__worker.worker_write"
+  ],
+  "init_has_complete_inventory": false,
+  "live_launch_gate_implemented": false
+}

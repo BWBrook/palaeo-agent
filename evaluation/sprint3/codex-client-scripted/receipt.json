@@ -1,0 +1,623 @@
+{
+  "decision": "Offline custom-catalogue route passes in both arms; live supervisor qualification remains incomplete",
+  "model_calls": 0,
+  "client_version": "0.166.0",
+  "cases": [
+    {
+      "arm": "direct",
+      "catalogue": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "requests": 11,
+      "inference_calls": 0,
+      "authorization_present": false,
+      "canary_files": [
+        "secret.txt"
+      ],
+      "secret_unchanged": true,
+      "request_tool_names": [
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ]
+      ],
+      "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+      "label": "initial-wrong-wire",
+      "checks": {
+        "expected_inventory": true,
+        "stable_inventory": true,
+        "no_auth": true,
+        "client_exit_zero": true,
+        "positive_controls": false,
+        "outside_read_denied": false,
+        "canary_unchanged": true
+      },
+      "offline_candidate_passed": false,
+      "inventory": [
+        "list_mcp_resources",
+        "list_mcp_resource_templates",
+        "read_mcp_resource",
+        "mcp__worker.worker_execute",
+        "mcp__worker.worker_read",
+        "mcp__worker.worker_write"
+      ],
+      "init_has_complete_inventory": false,
+      "live_launch_gate_implemented": false
+    },
+    {
+      "arm": "direct",
+      "catalogue": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "requests": 14,
+      "inference_calls": 0,
+      "authorization_present": false,
+      "canary_files": [
+        "secret.txt"
+      ],
+      "secret_unchanged": true,
+      "request_tool_names": [
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ]
+      ],
+      "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+      "label": "initial-approval-required",
+      "checks": {
+        "expected_inventory": true,
+        "stable_inventory": true,
+        "no_auth": true,
+        "client_exit_zero": true,
+        "positive_controls": false,
+        "outside_read_denied": false,
+        "canary_unchanged": true,
+        "hidden_calls_refused": true,
+        "known_server_file_uri_refused": true,
+        "unknown_server_refused": true,
+        "resource_lists_empty": true
+      },
+      "offline_candidate_passed": false,
+      "inventory": [
+        "list_mcp_resources",
+        "list_mcp_resource_templates",
+        "read_mcp_resource",
+        "mcp__worker.worker_execute",
+        "mcp__worker.worker_read",
+        "mcp__worker.worker_write"
+      ],
+      "init_has_complete_inventory": false,
+      "live_launch_gate_implemented": false
+    },
+    {
+      "arm": "direct",
+      "catalogue": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "requests": 14,
+      "inference_calls": 0,
+      "authorization_present": false,
+      "canary_files": [
+        "secret.txt"
+      ],
+      "secret_unchanged": true,
+      "request_tool_names": [
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ]
+      ],
+      "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+      "label": "direct",
+      "checks": {
+        "expected_inventory": true,
+        "stable_inventory": true,
+        "no_auth": true,
+        "client_exit_zero": true,
+        "positive_controls": true,
+        "outside_read_denied": true,
+        "canary_unchanged": true,
+        "hidden_calls_refused": true,
+        "known_server_file_uri_refused": true,
+        "unknown_server_refused": true,
+        "resource_lists_empty": true
+      },
+      "offline_candidate_passed": true,
+      "inventory": [
+        "list_mcp_resources",
+        "list_mcp_resource_templates",
+        "read_mcp_resource",
+        "mcp__worker.worker_execute",
+        "mcp__worker.worker_read",
+        "mcp__worker.worker_write"
+      ],
+      "init_has_complete_inventory": false,
+      "live_launch_gate_implemented": false
+    },
+    {
+      "arm": "toolkit",
+      "catalogue": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "requests": 15,
+      "inference_calls": 0,
+      "authorization_present": false,
+      "canary_files": [
+        "secret.txt"
+      ],
+      "secret_unchanged": true,
+      "request_tool_names": [
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ],
+        [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "read_mcp_resource",
+          "mcp__worker"
+        ]
+      ],
+      "client_sha256": "39acf979729dd290f9a24ee38b2914e036c91b65952872e28ae2a6b88a7db7c1",
+      "label": "toolkit",
+      "checks": {
+        "expected_inventory": true,
+        "stable_inventory": true,
+        "no_auth": true,
+        "client_exit_zero": true,
+        "positive_controls": true,
+        "outside_read_denied": true,
+        "canary_unchanged": true,
+        "hidden_calls_refused": true,
+        "known_server_file_uri_refused": true,
+        "unknown_server_refused": true,
+        "resource_lists_empty": true,
+        "toolkit_discovery": true
+      },
+      "offline_candidate_passed": true,
+      "inventory": [
+        "list_mcp_resources",
+        "list_mcp_resource_templates",
+        "read_mcp_resource",
+        "mcp__worker.palaeo_compare",
+        "mcp__worker.palaeo_discover",
+        "mcp__worker.palaeo_inspect",
+        "mcp__worker.palaeo_inspect_comparison",
+        "mcp__worker.palaeo_reproduce",
+        "mcp__worker.palaeo_result",
+        "mcp__worker.palaeo_run",
+        "mcp__worker.palaeo_validate",
+        "mcp__worker.worker_execute",
+        "mcp__worker.worker_read",
+        "mcp__worker.worker_write"
+      ],
+      "init_has_complete_inventory": false,
+      "live_launch_gate_implemented": false
+    }
+  ],
+  "runtime_root": "/Users/bwbrook/palaeo-eval/sprint3-runtime-20261031-v2",
+  "limitations": [
+    "JSONL init has no complete tool inventory",
+    "No live request gate or launcher implemented",
+    "Authenticated provider path not exercised",
+    "Toolkit wheel is sprint3 wheel; study methods require fresh runtime/inventory",
+    "Worker native boundary and failure limitations remain those of sprint3"
+  ],
+  "sha256": {
+    "bundled-model.json": "78b5a32cd36c2ea07a28ea0d0ba90b4ae6f6837931861a22c1b9d20af3e57294",
+    "catalogue.json": "f465ff9a07636846a4898936cc56b4efc4fbe1ba2b7a186fdd696d03437c32e7",
+    "direct/command.json": "a4c344170713c5dcd320bc3ff47fe1a3babdb6f9d6eb8bf76ff4afdbbb892e3e",
+    "direct/receipt.json": "241faeda8d68ac6e32f0829cb7793b78cd2a346a779332427516b9955b3a66b7",
+    "direct/request-00.json": "7024e89ad06ae8a04297389cb823feac63a7ec997bc506be431abe1a239e10a7",
+    "direct/request-01.json": "2938135ca95531950fbd04e13d055fa070548c408de0a129715364f128b51781",
+    "direct/request-02.json": "87aa1a1af98c93e0ba215b04dc8b5adf4f336ab903ae5ad7ec5945c47534792a",
+    "direct/request-03.json": "07252c65725f0c423bbe64c7878e00e93c21444ad7ac98e352dc0fbeb89dbcc5",
+    "direct/request-04.json": "98fa536fd1ee7983556c6f593dc0f88afc1a88f7f4b8e302709ca9e60faceb3a",
+    "direct/request-05.json": "6b8675bd6dd6004dd60c5c7f2f15df7678c9b7d845cda59a7a2206814b14a345",
+    "direct/request-06.json": "702b52bc03af50960a404522625d70c0d9a409c8ed28300c16e29f4fc60de262",
+    "direct/request-07.json": "92debd39cca636fcfe7db10166206af318ca2d96ccd05aec78a07e1dab5e9254",
+    "direct/request-08.json": "645f0bdf55801c9ab739dd87fb1931d698da97a457f839f45ee8f1d3e40c3bcf",
+    "direct/request-09.json": "e3b4c2bc66a98aaee3bfd99ea75f6441a3ae66fbfe0ed4b43a92cd00c3c81eeb",
+    "direct/request-10.json": "ec78c17a6eb1c2ddd5a7554127b6122ab57f28dcceec03e91103a8dfd46d9375",
+    "direct/request-11.json": "2da5ba4dfe7f91cfdf9660a89711540b3af519e30decf467d347e4feb60f6199",
+    "direct/request-12.json": "4a49123bd816e6f71b7e8bbf7a0d76644eda1f12e58c1f3ab7582dd304f4da28",
+    "direct/request-13.json": "df91ea76d181a1dd4c2a607824c06e778f36a1e9de50fba7e8ccce29e2e61504",
+    "direct/request-tools.json": "e8a2837ef66d36edb135b58dd45061c30ee1550e1e112c03b5df3a9f6112787c",
+    "direct/scripted-results.json": "5cfceb9a6e834ffb244fb01152b78799c99e25029ac560df1b465156c6b0f1ae",
+    "direct/stderr.txt": "e2ffeeaa91bda89903c062d238e0aae7c26c916b6695b37837603607c6d09232",
+    "direct/stdout.jsonl": "9f2545f981e2581cdf264dc9aa3cae86958e09983af0ca3fbe619b1f10342b89",
+    "direct/summary.json": "b2e6c41225061179bcceff6bdf22daa10245ab6694d8a7285119ec9c27907e91",
+    "direct/worker-audit/calls.jsonl": "f808a30f4768fc69ca3bf99cabd8237e0509047ef2961b9a513831b7a65e14db",
+    "direct/worker-audit/startup.json": "2aab01b68e60c32215ea1b4423942b2a90914f7a31c13d00d2c674d375344d7f",
+    "direct/worker-audit/tools.json": "18f6a620ba81d6a1e21c1c59d77b67f359fb044ba544e5f184c50dcb932f4beb",
+    "direct/worker-audit/worker.sb": "ea4f61414bdb52cc43bddb66a148724bf9c352370bb441e181536092a7d79318",
+    "direct/worker.json": "1c7dfbbc2b5d254e09121f8267eee3967b63a2a0cbc95e3dbf2b313fc1418e69",
+    "initial-approval-required/command.json": "da843640073d9c4e7b2b21caf57f685c5bc25ec0e7471dedeafa70e1355ab8e5",
+    "initial-approval-required/receipt.json": "241faeda8d68ac6e32f0829cb7793b78cd2a346a779332427516b9955b3a66b7",
+    "initial-approval-required/request-00.json": "2f92c4c0a9cbceb76ab84ea78836737a068004608e4d7b42fb232507b7e01d89",
+    "initial-approval-required/request-01.json": "bf3c41235b2b6e06051d86208c5768be39e0b70d1b4cb6222bf5fc67b894e383",
+    "initial-approval-required/request-02.json": "548aed1c208ae46284c97644796e2e66501c412bebecc9cb30769071c6d85e13",
+    "initial-approval-required/request-03.json": "a0939ae2846100e5941ee2de3585891c4644a2b8afcf6a427ab16fb93bdab5d1",
+    "initial-approval-required/request-04.json": "81e23ad9435b2a6dad5d01de4d4ec4ab62ca07cd5dc6d042fd0016ed4209b4e3",
+    "initial-approval-required/request-05.json": "61b93050e96107dd49614f267e914f5c58cf31c9244509cf8a36b66ffd3dfbdd",
+    "initial-approval-required/request-06.json": "5a36fac8fbeb16efcaa07ab480aab414a3adfe3c66b8b328cdfc07e7d0024b8d",
+    "initial-approval-required/request-07.json": "96f15934e81406ec45b51ac31592abcb3aa3b15ff66d46631fca4eb6a65b3d64",
+    "initial-approval-required/request-08.json": "acbb061364b272d9ade5c2bf42941a30264fcea9d23c3c38e6a04d3537d1a8e9",
+    "initial-approval-required/request-09.json": "8616db914520314c2531db1150b92f1e13c1ece4d158e44b031d928b61ae617a",
+    "initial-approval-required/request-10.json": "c094782faad55c79f69ba66f05134cf9695a2d25904168b53c52f3daad82373b",
+    "initial-approval-required/request-11.json": "ce2ea9e002ef89664480536ba0a08937e0b673dc5f666476c4d2d3ae660cb907",
+    "initial-approval-required/request-12.json": "7c7a02e8c9298a7d0a0d4704faf4c1b4c0a61975b17222fd0ed7ab62e1b69805",
+    "initial-approval-required/request-13.json": "49de4395e0a8037560ae1ec5d3c9a448b3d7042afb6e7401c822510c41986c63",
+    "initial-approval-required/request-tools.json": "e8a2837ef66d36edb135b58dd45061c30ee1550e1e112c03b5df3a9f6112787c",
+    "initial-approval-required/scripted-results.json": "6009341677132740ee558846830c3b2706ff10ef87bc9575b36e1bd4aa1e3483",
+    "initial-approval-required/stderr.txt": "db15a6e03d565b95ff5df8329c6f6b438fe87e78325980f53ed0cd646920a4f3",
+    "initial-approval-required/stdout.jsonl": "e4ad3cb0090c4d47fe31aedc999618bfc68353c6f10d2f7baf44fd7038a53307",
+    "initial-approval-required/summary.json": "3affa6007097ac4e67791b784db214dcb69202eb14de5cdb1846c8128156e277",
+    "initial-approval-required/worker-audit/startup.json": "812f3b63f8108253e2060e97cc36b8dc9aaefa032edc5f1f63580d36b1b4475e",
+    "initial-approval-required/worker-audit/tools.json": "18f6a620ba81d6a1e21c1c59d77b67f359fb044ba544e5f184c50dcb932f4beb",
+    "initial-approval-required/worker-audit/worker.sb": "635f29ec1f72a9c150fff582f429bb1cd3897be416f57d2a8a66a03400ed5683",
+    "initial-approval-required/worker.json": "8f7910c25d2fc3ab308ce81a05e231b66549fe64b2333a12eb1312f951ea52d4",
+    "initial-wrong-wire/command.json": "d229cf61345f0277e01038f8cb883b60356ae4cf0917b3855d2c6657aa787af7",
+    "initial-wrong-wire/receipt.json": "33b27a26872c6699b8aba17bc186c7d36740da4784bdba234c1b8583bc2ef638",
+    "initial-wrong-wire/request-00.json": "b018a90712d61ab9513047acdcac6fd2e519f46d49e9d48a856625ff30837892",
+    "initial-wrong-wire/request-01.json": "be596106b5575423b481607e3f0ccc7335d3f44727da276d0d9038e199405104",
+    "initial-wrong-wire/request-02.json": "1dee0ab176bf1dc01a1963675c9b0cf29071dcd15239bf6247c53ce55a3e3d05",
+    "initial-wrong-wire/request-03.json": "98113166075ea401f89fb3227066ebb00a3bef212ea3a1a9a3e2332302e43b29",
+    "initial-wrong-wire/request-04.json": "a581d844d06828234583d75396c30ac20630c9e23718a26fa4a5e161f89203c6",
+    "initial-wrong-wire/request-05.json": "1eceba6450b98cf9262089f3be04a49da4d161d2064f25d5a3e92c05ab9b040f",
+    "initial-wrong-wire/request-06.json": "f7d9a46b52809d707dd68fe68fc088a03ca4a7178549d15f0219b1c4438930fd",
+    "initial-wrong-wire/request-07.json": "b87815e895926029674be22e76fbfa0d1839a86b89167edbc38f2aba617f2d49",
+    "initial-wrong-wire/request-08.json": "c9eb91a00922c0d84be21940d3419b53de5cfade439923bad77286e5c40d34e2",
+    "initial-wrong-wire/request-09.json": "2160ba6388a7dd5b0a4a4423ccd38e3607b88845f8757bd7b3ba8519a2a0ae57",
+    "initial-wrong-wire/request-10.json": "2401ae549bcf6337f2f008715ddad2e976d3ea74cd21396b3d2303836b85d917",
+    "initial-wrong-wire/request-tools.json": "e8a2837ef66d36edb135b58dd45061c30ee1550e1e112c03b5df3a9f6112787c",
+    "initial-wrong-wire/scripted-results.json": "1fbd3720ba8961f5de4cc1cb8ff1cfeaff119601f340968fe27659b18e3d27ed",
+    "initial-wrong-wire/stderr.txt": "9d9e21ff7f441b4f9fbf27cb5e80bf50299679a5e790d8340bf452e0b44555f8",
+    "initial-wrong-wire/stdout.jsonl": "bd08938fcaf6f4f94f5ee796dd64bed3aaf10a952b3954bf2c4beef2d4e43714",
+    "initial-wrong-wire/summary.json": "23f9368d1bd2ecbc53d94fa871f05d7ed369dd45cdee60c48d2fbbd795630373",
+    "initial-wrong-wire/worker-audit/startup.json": "5c799e5b272916731b22f32cda2c643cbfcb705ada027175d3bd53f19bbddaf3",
+    "initial-wrong-wire/worker-audit/tools.json": "18f6a620ba81d6a1e21c1c59d77b67f359fb044ba544e5f184c50dcb932f4beb",
+    "initial-wrong-wire/worker-audit/worker.sb": "323add1211fceea52e94eec08bf527a1ce08212d6425aad2119c13c45925e3fc",
+    "initial-wrong-wire/worker.json": "41f44b1997395e6dc879b8056479fe4a31616d93481e1e24a6c7f89c1bd708fa",
+    "overrides.json": "ac441271f272a6b290ff1f9243ce053471f5b1a72e339ce6b5a9b305350a2404",
+    "probe.py": "6044e2c6e0485f9a7da51b8aef3df0c545f99eed5daa515e600f4b5f1a601270",
+    "toolkit/command.json": "372b02b764990ef0eff6653ef09d0ef3bef763cc64d1b31a5d3f3937b2337bff",
+    "toolkit/receipt.json": "1f85278ea62b3a8a3c48fef87ce652a389856e6b984445b805e0d0b44d302306",
+    "toolkit/request-00.json": "508861a0830d11d7ca59580faad88528074bdd2a2ab45ca2b9d86a693d5a2a1a",
+    "toolkit/request-01.json": "64ed6cd3c7ce27a163e0446db75da024216982085a51b75cf49ff363a1c6a796",
+    "toolkit/request-02.json": "eed7784f099ca2f43b7133636b8d59508a8c74928b322a6d1f0d55a61ab37bb8",
+    "toolkit/request-03.json": "273b32994bab37d8d11f5ac159798c5444a759cbe3ab1cf451813d19941fa4e2",
+    "toolkit/request-04.json": "fda9fa85dfd82add1e4848914878b24e1059c21a4fc3316540cdf640148e0360",
+    "toolkit/request-05.json": "d82431ab436f74935104439cdfa5cc17dbfb35fa2f620df221cf79f71e4bb01c",
+    "toolkit/request-06.json": "cc471e60f48897563811978c81d734b89bf747e38da8b51c8dc84347852b9698",
+    "toolkit/request-07.json": "749adf8337ba8f6a5dc5bd2abfa7209672e865a02a4741b3293827067cab4dd9",
+    "toolkit/request-08.json": "c8f814b56caf27a6816f003a45f8ba6dfa11ac74f3e54f3bab13f05dc009fcaf",
+    "toolkit/request-09.json": "e9e5ede32f3413c430c65ee757eae95f98f739870f83b98795e418227f76424e",
+    "toolkit/request-10.json": "bb0c8663cce7aa608eb8aa34d43a317d38552320ccdfd0ab8171dc7dd9bb1045",
+    "toolkit/request-11.json": "d2595cc8b809ca4cb3b87a0fe31a9db82ffd68449887b57bc527b23a5afbc31e",
+    "toolkit/request-12.json": "e62d0877c78e615ae087b162b0297b48badb07b272f72372f7c88b3300b7a6d9",
+    "toolkit/request-13.json": "a51221c38c1361af5ec07d5751989ecc92f63333c91ea0a4d948e9b675b31f6a",
+    "toolkit/request-14.json": "f22a6dee6b7f24d665cfe48c5d498417f2e1be194ee8980c058fadc98b9562aa",
+    "toolkit/request-tools.json": "f2a5c96d04c858bb3666d9b3bbeca13efe8c7db59b3f40bfaadfe9455ab5e3b8",
+    "toolkit/scripted-results.json": "b0f0775ba640e8e2f475bc0c4b8d8ffad11209e035f3f4717474083dac748bfd",
+    "toolkit/stderr.txt": "23ff7a78bbaf9d6f1a026cd75e8a9ab5ce12fd8fff3982bf301fe34d18ac5e2d",
+    "toolkit/stdout.jsonl": "3fbd0b010f7f1b876ce6ff805e9d914dc719b9f4c30441ca23e92fe28683ada3",
+    "toolkit/summary.json": "62f5d3ebbbc55b5f6a32f947ae929e304494494df9e619f5f2e0dfcc76043da1",
+    "toolkit/worker-audit/calls.jsonl": "552c3dc0da9a5ce4dfe9327ed217fe5f69bc8cddbdc541687d3c3c1e980c58aa",
+    "toolkit/worker-audit/startup.json": "29e76575eceaa08e2a8f4beba50bc8af1bc73e28d093a10e732fe29ca277ee6e",
+    "toolkit/worker-audit/tools.json": "51b202e3cdc8010b809b0f45c82b2d8267a6747f9baad1ceb5e6da34c5fb36f1",
+    "toolkit/worker-audit/worker.sb": "246d7bdedac0a6897f75ffebe0929ee3f9c2ab00dfc537ac8aa4f7331d09d4c0",
+    "toolkit/worker.json": "2bfdfeb9604a7748bb362b840c6c1ce3088f2a1e81727faed3a7c2268114c700"
+  },
+  "runtime_manifest_sha256": "3d249d3502222977729e97ba1782a3f67960b4633e7fe79b86faae94c3464ae1",
+  "supervisor_source_sha256": {
+    "evaluation/execution/worker.py": "73f49a3c3b6a4ffeef2607f43419308cafdc6b74ad2c0963fa54a3196139677f",
+    "evaluation/execution/server.py": "b29a5c2dac34ddffb4d54083b935cecb20960fd2d73a395c0cf2b77ca367fad7",
+    "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
+    "evaluation/execution/runtime.py": "31f39633e116a2dc02ad022ede480055b313cfe131dbfee80a1d4bec0f26d432",
+    "evaluation/execution/probes.py": "3422c14755a51391aa2860e4fdf84c42802f6d8daa0868032459e8865e8bba7a"
+  },
+  "source_reference": "Codex public rust-v0.166.0; exact pinned URLs and line ranges in docs/codex-client-scripted-review.md"
+}

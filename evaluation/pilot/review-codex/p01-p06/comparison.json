@@ -1,0 +1,620 @@
+{
+  "sealed_predictions_sha256": "13548922b74011ba681882a9b5dde3a7728011456fe19c21f7b5e7967e289938",
+  "key_sha256": {
+    "items/P01-control/key.json": "2bd3ae32d0207c50584d3b70cf3bf7c2d1817c62caf565a688634cf2f9456f10",
+    "items/P01-trap/key.json": "1ab1eb46d81d5c8405029aca9b5fad694d1f51b44ff0be9b9a14cb71686e32d9",
+    "items/P02-control/key.json": "43799887146e0d368a12a5c0ad4ae9989dd011894c975e295e5ebd39fb523322",
+    "items/P02-trap/key.json": "d64665fc958b61e4216f2c1a8db324592d8abe70cb4de743b854bf35817ecdfc",
+    "items/P03-control/key.json": "1023298e1180b9cb03c49f0f10c1fac31cdf7035fc4a9ebe76f4a01b8193341b",
+    "items/P03-trap/key.json": "ab3ddd7d728ee11a207ec1782276c343401617cf72aabb8fdce5e935aa5f69f1",
+    "items/P04-control/key.json": "c9507bbd530767cdfb61a74e04d7e34a2806b59b12d8486c5252dfa4be1f8058",
+    "items/P04-trap/key.json": "f0fd6d8dd9ffafb76be8d678f979e49705583e7c729ec215fa6bc8b881dbb586",
+    "items/P05-control/key.json": "b288e21f4b2c535431855fb1ba096423c5b6a8cee998e9595b3a14e2ad8ead9b",
+    "items/P05-trap/key.json": "8c3089b3415b5f09b7c638fead95f7ad78de4aa8aa446593e1382d3a8bfd9781",
+    "items/P06-control/key.json": "25a520e2b9ef826d60797abc2a12c3cbe0b1cd13f679711744d3a333d3814bba",
+    "items/P06-trap/key.json": "fa74245fbf58963955779e6915e05a76c30ffbf563a72b54ca56df1f4ded155b",
+    "calibration/P03-cal/key.json": "37a62fc27bebe34025a02c5e8ead7ce70305cb298cd442687b382f237a85efbc",
+    "calibration/P04-cal/key.json": "9e74774d00f2d9675e208abc7806192c5f94b2fc1fda34ba2c94cc87f5b3f675",
+    "calibration/P05-cal/key.json": "c819679137276a7b14849e39750c28fcda08a2fae10f1abe177ffca587ca9c9e",
+    "calibration/P06-cal/key.json": "c66c65f0fe0d0694f22a0a39ca3c634326bede1e0644f67a06478487ea242e7b"
+  },
+  "comparisons": [
+    {
+      "item": "items/P01-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "mean_bray_curtis": {
+          "independent": 0.7401269601332332,
+          "key": 0.7401269601332332,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "n_cores": {
+          "independent": 13,
+          "key": 13,
+          "difference": 0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Transpose taxa-by-core counts; retain all counted cores.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Every core was counted; zeros are true absences.",
+      "failure_signatures": []
+    },
+    {
+      "item": "items/P01-trap",
+      "numeric_comparison_uses": "conditional changed-target calculation",
+      "all_numbers_agree": true,
+      "statistics": {
+        "mean_bray_curtis": {
+          "independent": 0.6981803468241241,
+          "key": 0.6981803468241241,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "n_cores": {
+          "independent": 12,
+          "key": 12,
+          "difference": 0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": true,
+      "independent_handling": "Core 3 is unobserved, not an observed ecological zero.",
+      "independent_sufficiency": "all-core estimand not identifiable; exclusion changes target",
+      "key_witness": "The dictionary states that core 3 was never counted and that zeros are an export convention for uncounted cores. Its row records no observation, so it is excluded; 'all cores' means all cores with counts.",
+      "failure_signatures": [
+        {
+          "name": "zeros_as_sample",
+          "statistics": {
+            "mean_bray_curtis": {
+              "independent": 0.7446141396204127,
+              "key": 0.7401269601332332,
+              "difference": 0.004487179487179471,
+              "within_tolerance": false
+            },
+            "n_cores": {
+              "independent": 13,
+              "key": 13,
+              "difference": 0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P02-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "pseudo_f": {
+          "independent": 0.4622020545177857,
+          "key": 0.4622020545177857,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "r_squared": {
+          "independent": 0.05461959564898666,
+          "key": 0.05461959564898666,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Exact unique match after explicitly stated numeric-code zero-padding normalisation.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Codes match exactly; the join is by code, not by order.",
+      "failure_signatures": [
+        {
+          "name": "join_by_position",
+          "statistics": {
+            "pseudo_f": {
+              "independent": 4.718258110547586,
+              "key": 4.718258110547586,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "r_squared": {
+              "independent": 0.3709830441823327,
+              "key": 0.3709830441823327,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P02-trap",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "pseudo_f": {
+          "independent": 0.4622020545177857,
+          "key": 0.4622020545177857,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "r_squared": {
+          "independent": 0.05461959564898666,
+          "key": 0.05461959564898666,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Exact unique match after explicitly stated numeric-code zero-padding normalisation.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Each log code is the count-file code without its leading zero (LV7 = LV07); matching on the core number is the only join consistent with the stated convention.",
+      "failure_signatures": [
+        {
+          "name": "join_by_position",
+          "statistics": {
+            "pseudo_f": {
+              "independent": 4.718258110547586,
+              "key": 4.718258110547586,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "r_squared": {
+              "independent": 0.3709830441823327,
+              "key": 0.3709830441823327,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P03-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "mean_bray_curtis": {
+          "independent": 0.4544046737213404,
+          "key": 0.4544046737213404,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Use raw counts as declared; check row totals against picking.csv.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Values are counts.",
+      "failure_signatures": []
+    },
+    {
+      "item": "items/P03-trap",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "mean_bray_curtis": {
+          "independent": 0.4544046737213404,
+          "key": 0.4544046737213404,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Reconstruct counts as percentage times known n_picked / 100; all reconstructed counts are integers.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "count = percentage \u00d7 n_picked / 100, an exact integer for every cell, so raw counts are identified and Bray\u2013Curtis on them is defined.",
+      "failure_signatures": [
+        {
+          "name": "percentages_as_counts",
+          "statistics": {
+            "mean_bray_curtis": {
+              "independent": 0.26672222222222225,
+              "key": 0.26672222222222225,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P04-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "shannon_mean_2017": {
+          "independent": 2.2291404640439483,
+          "key": 2.2291404640439483,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "shannon_mean_2021": {
+          "independent": 2.241201197900627,
+          "key": 2.241201197900627,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Compute each core Shannon using all11 observed taxa, then equally average core indices by campaign.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Identical protocols; all taxa enter.",
+      "failure_signatures": []
+    },
+    {
+      "item": "items/P04-trap",
+      "numeric_comparison_uses": "conditional changed-target calculation",
+      "all_numbers_agree": true,
+      "statistics": {
+        "shannon_mean_2017": {
+          "independent": 1.8987194094241986,
+          "key": 1.8987194094241986,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "shannon_mean_2021": {
+          "independent": 1.9448626201299495,
+          "key": 1.9448626201299495,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": true,
+      "independent_handling": "Unpicked fractions are unknown, not zeros.",
+      "independent_sufficiency": "Full-community 2017 Shannon and common-fraction campaign contrast are not identified.",
+      "key_witness": "A comparison of diversity between campaigns is meaningful only on the taxa both campaigns assessed; T09\u2013T11 were not assessed in 2017, so they are dropped from both, and '.' is not 0.",
+      "failure_signatures": [
+        {
+          "name": "different_taxon_basis",
+          "statistics": {
+            "shannon_mean_2017": {
+              "independent": 1.8987194094241986,
+              "key": 1.8987194094241986,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "shannon_mean_2021": {
+              "independent": 2.241201197900627,
+              "key": 2.241201197900627,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P05-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "richness": {
+          "independent": 8,
+          "key": 8,
+          "difference": 0,
+          "within_tolerance": true
+        },
+        "mean_bray_curtis": {
+          "independent": 0.21565511419588368,
+          "key": 0.21565511419588368,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Standardised distinct species.",
+      "failure_signatures": []
+    },
+    {
+      "item": "items/P05-trap",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "richness": {
+          "independent": 8,
+          "key": 8,
+          "difference": 0,
+          "within_tolerance": true
+        },
+        "mean_bray_curtis": {
+          "independent": 0.21565511419588368,
+          "key": 0.21565511419588368,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Binomials are case-insensitive in this sense and spacing carries no meaning, so columns whose names differ only in case or spacing are one species; their counts sum.",
+      "failure_signatures": [
+        {
+          "name": "variants_as_species",
+          "statistics": {
+            "richness": {
+              "independent": 11,
+              "key": 11,
+              "difference": 0,
+              "within_tolerance": true
+            },
+            "mean_bray_curtis": {
+              "independent": 0.33137747893974484,
+              "key": 0.33137747893974484,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "items/P06-control",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "pseudo_f": {
+          "independent": 46.99131369212859,
+          "key": 46.99131369212859,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "r_squared": {
+          "independent": 0.7459967245928487,
+          "key": 0.7459967245928487,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "n": {
+          "independent": 18,
+          "key": 18,
+          "difference": 0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Each row is a separate randomly located core; use its relative abundance.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "18 independent cores.",
+      "failure_signatures": []
+    },
+    {
+      "item": "items/P06-trap",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "pseudo_f": {
+          "independent": 24.68047164295459,
+          "key": 24.68047164295459,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "r_squared": {
+          "independent": 0.8605322796013849,
+          "key": 0.8605322796013849,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "n": {
+          "independent": 6,
+          "key": 6,
+          "difference": 0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Pool equal-picked aliquots by core (sum then relative abundance); cores are replication units.",
+      "independent_sufficiency": "Core unit is entailed. Pooling all equal-size aliquots is a natural lossless summary; literal 999 distinct permutations impossible for six cores, but repeated Monte Carlo draws are possible.",
+      "key_witness": "Cores are the randomised units; aliquots are subsamples of one core, so they are pooled (counts summed; equal aliquot sizes make this identical to averaging proportions) and the test uses 6 units.",
+      "failure_signatures": [
+        {
+          "name": "aliquots_as_units",
+          "statistics": {
+            "pseudo_f": {
+              "independent": 80.35221930034265,
+              "key": 80.35221930034265,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "r_squared": {
+              "independent": 0.8339425898419021,
+              "key": 0.8339425898419021,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "n": {
+              "independent": 18,
+              "key": 18,
+              "difference": 0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "calibration/P03-cal",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "mean_bray_curtis": {
+          "independent": 0.43860185185185185,
+          "key": 0.43860185185185185,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Reconstruct counts as percentage times known n_picked / 100; all reconstructed counts are integers.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "count = percentage \u00d7 n_picked / 100, an exact integer for every cell, so raw counts are identified and Bray\u2013Curtis on them is defined.",
+      "failure_signatures": [
+        {
+          "name": "percentages_as_counts",
+          "statistics": {
+            "mean_bray_curtis": {
+              "independent": 0.3321388888888889,
+              "key": 0.33213888888888893,
+              "difference": -5.551115123125783e-17,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "calibration/P04-cal",
+      "numeric_comparison_uses": "conditional changed-target calculation",
+      "all_numbers_agree": true,
+      "statistics": {
+        "shannon_mean_2017": {
+          "independent": 1.9574135736608804,
+          "key": 1.9574135736608804,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "shannon_mean_2021": {
+          "independent": 1.9395207219402053,
+          "key": 1.9395207219402053,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": true,
+      "independent_handling": "Unpicked fractions are unknown, not zeros.",
+      "independent_sufficiency": "Full-community 2017 Shannon and common-fraction campaign contrast are not identified.",
+      "key_witness": "A comparison of diversity between campaigns is meaningful only on the taxa both campaigns assessed; T09\u2013T11 were not assessed in 2017, so they are dropped from both, and '.' is not 0.",
+      "failure_signatures": [
+        {
+          "name": "different_taxon_basis",
+          "statistics": {
+            "shannon_mean_2017": {
+              "independent": 1.9574135736608804,
+              "key": 1.9574135736608804,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "shannon_mean_2021": {
+              "independent": 2.2500925859474994,
+              "key": 2.2500925859474994,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "calibration/P05-cal",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "richness": {
+          "independent": 8,
+          "key": 8,
+          "difference": 0,
+          "within_tolerance": true
+        },
+        "mean_bray_curtis": {
+          "independent": 0.2689575406354573,
+          "key": 0.2689575406354573,
+          "difference": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Normalise capitalization/whitespace only, merge identical binomial count columns by sum.",
+      "independent_sufficiency": "entailed for requested descriptive statistics",
+      "key_witness": "Binomials are case-insensitive in this sense and spacing carries no meaning, so columns whose names differ only in case or spacing are one species; their counts sum.",
+      "failure_signatures": [
+        {
+          "name": "variants_as_species",
+          "statistics": {
+            "richness": {
+              "independent": 11,
+              "key": 11,
+              "difference": 0,
+              "within_tolerance": true
+            },
+            "mean_bray_curtis": {
+              "independent": 0.32464962718697826,
+              "key": 0.32464962718697826,
+              "difference": 0.0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "item": "calibration/P06-cal",
+      "numeric_comparison_uses": "primary",
+      "all_numbers_agree": true,
+      "statistics": {
+        "pseudo_f": {
+          "independent": 2.54181551260093,
+          "key": 2.54181551260093,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "r_squared": {
+          "independent": 0.3885489445101061,
+          "key": 0.3885489445101061,
+          "difference": 0.0,
+          "within_tolerance": true
+        },
+        "n": {
+          "independent": 6,
+          "key": 6,
+          "difference": 0,
+          "within_tolerance": true
+        }
+      },
+      "status_conflict": false,
+      "independent_handling": "Pool equal-picked aliquots by core (sum then relative abundance); cores are replication units.",
+      "independent_sufficiency": "Core unit is entailed. Pooling all equal-size aliquots is a natural lossless summary; literal 999 distinct permutations impossible for six cores, but repeated Monte Carlo draws are possible.",
+      "key_witness": "Cores are the randomised units; aliquots are subsamples of one core, so they are pooled (counts summed; equal aliquot sizes make this identical to averaging proportions) and the test uses 6 units.",
+      "failure_signatures": [
+        {
+          "name": "aliquots_as_units",
+          "statistics": {
+            "pseudo_f": {
+              "independent": 8.033776906548045,
+              "key": 8.033776906548045,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "r_squared": {
+              "independent": 0.3342702621309274,
+              "key": 0.3342702621309274,
+              "difference": 0.0,
+              "within_tolerance": true
+            },
+            "n": {
+              "independent": 18,
+              "key": 18,
+              "difference": 0,
+              "within_tolerance": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "items": 16,
+    "numeric_agreements": 16,
+    "unconditional_status_conflicts": [
+      "items/P01-trap",
+      "items/P04-trap",
+      "calibration/P04-cal"
+    ],
+    "incorrect_failure_signatures": [
+      {
+        "item": "items/P01-trap",
+        "signature": "zeros_as_sample"
+      }
+    ]
+  }
+}

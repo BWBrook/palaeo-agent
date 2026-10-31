@@ -1,0 +1,37 @@
+{
+  "apply_patch_tool_type": {
+    "before": "freeform",
+    "after": null
+  },
+  "shell_type": {
+    "before": "unified_exec",
+    "after": "disabled"
+  },
+  "tool_mode": {
+    "before": "code_mode_only",
+    "after": "direct"
+  },
+  "multi_agent_version": {
+    "before": "v2",
+    "after": null
+  },
+  "experimental_supported_tools": {
+    "before": [
+      "send_user_message_async",
+      "clock"
+    ],
+    "after": []
+  },
+  "node_repl_disabled": {
+    "before": false,
+    "after": true
+  },
+  "supports_search_tool": {
+    "before": true,
+    "after": false
+  },
+  "use_responses_lite": {
+    "before": true,
+    "after": false
+  }
+}

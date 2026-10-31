@@ -1,0 +1,15 @@
+{
+  "call_0": "Wall time: 0.0305 seconds\nOutput:\n{\"status\":\"ok\",\"exit_code\":0,\"stdout\":\"42\\n\",\"stderr\":\"\",\"output_bytes\":{\"stdout\":3,\"stderr\":0},\"truncated\":{\"stdout\":false,\"stderr\":false},\"duration_seconds\":0.024486207999871112}",
+  "call_1": "unsupported call: apply_patch",
+  "call_2": "unsupported custom tool call: apply_patch",
+  "call_3": "unsupported call: exec_command",
+  "call_4": "unsupported call: shell",
+  "call_5": "unsupported call: spawn_agent",
+  "call_6": "unsupported call: collaborationspawn_agent",
+  "call_7": "resources/read failed: resources/read failed for `worker` (file:///private/tmp/palaeo-codex-scripted-3/canary/secret.txt): Mcp error: -32601: Method not found(\"resources/read\")",
+  "call_8": "unknown MCP server 'outside'",
+  "call_9": "{\"resources\":[]}",
+  "call_10": "{\"resourceTemplates\":[]}",
+  "call_11": "Wall time: 0.0191 seconds\nOutput:\n{\"status\":\"error\",\"exit_code\":1,\"stdout\":\"\",\"stderr\":\"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 1, in <module>\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/palaeo-codex-scripted-3/canary/secret.txt'\\n\",\"output_bytes\":{\"stdout\":0,\"stderr\":183},\"truncated\":{\"stdout\":false,\"stderr\":false},\"duration_seconds\":0.01740412499930244}",
+  "call_12": "Wall time: 0.0183 seconds\nOutput:\n{\"status\":\"ok\",\"exit_code\":0,\"stdout\":\"42\\n\",\"stderr\":\"\",\"output_bytes\":{\"stdout\":3,\"stderr\":0},\"truncated\":{\"stdout\":false,\"stderr\":false},\"duration_seconds\":0.016668084001139505}"
+}
