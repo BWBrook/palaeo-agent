@@ -1,0 +1,6 @@
+Wrote [answer.json](answer.json) with the computed means:
+
+- Reef: 1.8340837643039034
+- Lagoon: 1.1399738231893213
+
+All eight samples were included; no exclusions or ambiguities were found.

@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "results": {
+    "mean_shannon_reef": 1.8340837643039034,
+    "mean_shannon_lagoon": 1.1399738231893213
+  },
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [],
+  "summary": "Matched all eight samples to facies by sample_id. Calculated each sample Shannon diversity as -sum(p * ln(p)) using genus specimen-count proportions, with zero counts contributing zero, then computed the arithmetic mean across the four samples in each facies."
+}

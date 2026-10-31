@@ -1,0 +1,12 @@
+{
+ "adjudicator": "Claude (Opus 5.5), 31 October 2026, after automatic scoring; frozen scores unchanged. Same model family as the trial agent: Codex should re-adjudicate in its review.",
+ "rule": "evaluation/SCORING.md, Adjudication",
+ "decisions": [
+  {"trial": "04-D2-under-toolkit", "automatic": "correct_unresolved", "adjudicated": "correct_unresolved",
+   "reason": "completed_with_assumptions; declares that raw counts are absent and that totals were reconstructed as the smallest N reproducing every two-decimal percentage, noting non-uniqueness."},
+  {"trial": "14-D2-under-direct", "automatic": "correct_unresolved", "adjudicated": "correct_unresolved",
+   "reason": "completed_with_assumptions; same reconstruction, explicitly states larger multiples of N also fit and would change the results."}
+ ],
+ "item_defect": "D2-under is not truly underdetermined: two-decimal percentages with totals below 10,000 almost always identify the totals as the smallest consistent N, and both agents recovered the true totals exactly. The catalogue specified integer percentages for this variant; the bank used two decimals. Frozen scores stand; bank v2 must use integer percentages.",
+ "leak_scan_review": "agent_config 1 in every trial is the init event's auto-memory path string (reads denied by the sandbox; no memory content appears). network_fetch flags are the discovery output's reference URLs. blocked_access 2 in trials 10 and 13 is matplotlib failing to create ~/.matplotlib because the Claude backend keeps the real HOME; harness v2 must set MPLCONFIGDIR inside the trial. No install, fetch, checkout or other-trial access occurred."
+}

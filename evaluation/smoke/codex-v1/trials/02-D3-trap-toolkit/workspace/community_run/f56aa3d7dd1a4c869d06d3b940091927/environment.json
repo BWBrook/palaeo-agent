@@ -1,0 +1,125 @@
+{
+  "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "packages": {
+    "annotated-types": "0.8.0",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "fonttools": "4.68.0",
+    "kiwisolver": "1.5.1",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "packaging": "26.3",
+    "palaeo-agent": "0.2.0.dev0",
+    "pandas": "3.1.0",
+    "pillow": "13.0.0",
+    "pydantic": "2.14.2",
+    "pydantic-core": "2.50.2",
+    "pyparsing": "3.3.3",
+    "python-dateutil": "3.0.0",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2026.6"
+  },
+  "distributions": [
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "palaeo-agent",
+      "version": "0.2.0.dev0"
+    },
+    {
+      "name": "pandas",
+      "version": "3.1.0"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.2"
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.50.2"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    }
+  ],
+  "implementation_sha256": "4045d364c90867cfde4dadc7e1455ccd37cdffb3374b5e903bb0f0f3742d0c9d",
+  "source_files_sha256": {
+    "__init__.py": "a10fd69420212f424c72d0f01ca190789656fe1f61e271e0f1ad6e8a48706e8e",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "2f10de8ff7e18e927a3af704d5b8f1ecb709ead3e4d54c46f8ca54e64c590205",
+    "community.py": "2b9f2deb801847d9f0f2bc2a20311a8d8d632e5e48acac0395e5c6193f3dca1c",
+    "core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
+    "methods.py": "947838589642ec76a99082c3c7a324973a916ed723d3e65e4f120923fbc800c8",
+    "runs.py": "ab27115d915c89e1b32427ca16612ce2313394a3190c4a78b823ca73393fa4cf",
+    "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6"
+  },
+  "lockfile": {
+    "available": false,
+    "path": null,
+    "reason": "No checkout lockfile available; all installed distribution versions recorded"
+  },
+  "rng": "not used; deterministic method"
+}

@@ -1,0 +1,15 @@
+{
+  "method": "community",
+  "input": "input.dat",
+  "format": "past",
+  "orientation": "samples_by_taxa",
+  "value_type": "count",
+  "metadata": "metadata.csv",
+  "transform": "none",
+  "distance": "braycurtis",
+  "dimensions": 1,
+  "missing": "error",
+  "empty_samples": "error",
+  "baseline_run": null,
+  "purpose": null
+}

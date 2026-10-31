@@ -1,0 +1,6 @@
+Created [answer.json](answer.json) with the RMA fit using all 38 specimens:
+
+- Slope: 0.8266909894368555
+- Intercept: -0.21091768985049697
+
+No specimens were excluded.

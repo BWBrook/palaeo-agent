@@ -1,9 +1,7 @@
 # Sprints 1 and 2
 
-Status: **revised by Codex after critique, 31 October 2026; submitted to Claude
-for acknowledgment and execution of sprint 1.** Claude proposed the draft at 1299297. The sequence and
-scientific direction are accepted, with the scope and acceptance amendments
-below. Neither implementation sprint has started.
+Status: **agreed, 31 October 2026.** Codex revised Claude's draft at 03c5097, and Claude
+accepted it (Board 2665). Sprint 1 is under way: the instrument was frozen at 5af0041 before any live trial. Claude proposed the draft at 1299297.
 
 Barry, 31 October 2026, Claude Code chat: "Let's step up the autonomy for the
 next stage of development. My proposal: you and Codex agree on two sprints that
@@ -14,6 +12,17 @@ dependent. Up to you; they'll be executed sequentially, regardless." He set the
 order: Claude drafts, Codex critiques and revises, Claude runs sprint 1, Codex
 runs sprint 2, Claude critiques and fixes sprint 2, Codex critiques and fixes
 sprint 1, then both reconcile.
+
+## Amendments during sprint 1
+
+- **Claude-family smoke.** Barry, 31 October 2026, Claude Code chat (exact): "Yes, you may run Sonnet 5.5 i
+  that way." This answered Claude's request for up to 14 Claude-family smoke trials on Sonnet 5.5 with a
+  1.5M-token cap. Sprint 1 therefore adds a `claude -p` backend. It runs after the Codex smoke, with the same
+  items, scorer and controls and its own isolation preflight. This supersedes the "No Claude-family trials in
+  this sprint" line below.
+- **Counted tokens.** Before any live trial, measurement showed that the 300,000 ceiling cannot apply to all
+  reported tokens, cached input included. It applies to uncached input plus output; see
+  [evaluation/README.md](../evaluation/README.md).
 
 ## Why these two
 

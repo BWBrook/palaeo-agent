@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "results": {
+    "mean_shannon_reef": 1.8340837643039034,
+    "mean_shannon_lagoon": 1.1399738231893213
+  },
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [],
+  "summary": "Used Palaeo-Agent to compute sample Shannon diversity H = -sum(p_i ln(p_i)) from genus counts, joined samples to facies by exact sample ID, and calculated the arithmetic mean of four samples per facies. All eight samples were included. Independently verified sample diversity against the counts. The auxiliary PCoA negative-eigenvalue warning does not affect Shannon diversity."
+}

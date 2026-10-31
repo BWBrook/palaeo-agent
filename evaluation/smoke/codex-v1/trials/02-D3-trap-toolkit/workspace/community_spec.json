@@ -1,0 +1,13 @@
+{
+  "method": "community",
+  "input": "counts.tsv",
+  "format": "past",
+  "orientation": "samples_by_taxa",
+  "value_type": "count",
+  "metadata": "samples.csv",
+  "transform": "none",
+  "distance": "braycurtis",
+  "dimensions": 1,
+  "missing": "error",
+  "empty_samples": "error"
+}

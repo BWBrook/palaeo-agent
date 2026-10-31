@@ -1,0 +1,7 @@
+Created `answer.json` conforming to the schema using Palaeo-Agent’s RMA regression:
+
+- Slope: 0.8266909894368555
+- Intercept: -0.21091768985049342
+- Specimens: 38
+
+All measurements were used without transformation or exclusions.

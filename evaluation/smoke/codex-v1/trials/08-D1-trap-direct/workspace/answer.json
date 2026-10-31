@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "results": {
+    "slope": 0.8266909894368556,
+    "intercept": -0.21091768985049697,
+    "n": 38
+  },
+  "assumptions": [],
+  "exclusions": [
+    {
+      "id": "L1 row 5",
+      "reason": "Missing L1/width; a complete length-width pair is required."
+    },
+    {
+      "id": "L1 row 22",
+      "reason": "Missing L1/width; a complete length-width pair is required."
+    }
+  ],
+  "issues": [],
+  "summary": "Fitted reduced major axis regression of untransformed L1 width on length using complete pairs. Slope = sign(covariance) * SD(width)/SD(length); intercept = mean(width) - slope * mean(length). Only locality L1 was analyzed."
+}

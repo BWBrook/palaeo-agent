@@ -1,0 +1,1 @@
+Created and validated [answer.json](answer.json) with richness for all six samples and all 15 pairwise Bray–Curtis dissimilarities on raw counts, without rounding.

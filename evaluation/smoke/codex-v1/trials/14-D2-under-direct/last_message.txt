@@ -1,0 +1,1 @@
+Wrote and checked [answer.json](answer.json) with status `stopped`. The supplied rounded percentages cannot determine raw-count Bray–Curtis dissimilarities; original specimen counts are required.

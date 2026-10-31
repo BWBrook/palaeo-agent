@@ -1,0 +1,11 @@
+{
+  "status": "stopped",
+  "results": {},
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [
+    "The task requests Bray–Curtis dissimilarities from raw specimen counts without standardisation, but assemblages.tsv contains only percentages rounded to two decimal places, as documented in dictionary.md.",
+    "Neither sample specimen totals nor original genus counts are provided. Rounded percentages do not uniquely determine raw counts, and Bray–Curtis dissimilarities on raw counts depend on the relative sample totals. Computing dissimilarities from the percentages would not satisfy the requested analysis. Raw specimen counts for all six samples are needed."
+  ],
+  "summary": "Read the task, dictionary, schema and assemblage table. The 15 requested pairwise raw-count Bray–Curtis dissimilarities cannot be determined from the supplied rounded percentages; no dissimilarities were reported."
+}

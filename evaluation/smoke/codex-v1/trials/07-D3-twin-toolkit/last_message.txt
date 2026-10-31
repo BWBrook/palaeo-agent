@@ -1,0 +1,6 @@
+Created [answer.json](answer.json) and checked it against the schema.
+
+- Reef mean Shannon H: 1.8340837643039034
+- Lagoon mean Shannon H: 1.1399738231893213
+
+Used Palaeo-Agent; all eight samples were included.

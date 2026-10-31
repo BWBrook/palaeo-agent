@@ -1,0 +1,11 @@
+{
+  "status": "stopped",
+  "results": {},
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [
+    "The task requires Bray–Curtis dissimilarities from raw specimen counts without standardisation, but assemblages.tsv contains only percentages rounded to two decimal places, as stated in dictionary.md. No raw counts or sample specimen totals are supplied. Raw counts cannot be uniquely recovered from these percentages; assuming equal totals or treating percentages as counts would change the requested analysis.",
+    "Palaeo-Agent community validation of the requested count analysis rejected assemblages.tsv with code invalid_count: Invalid count token; proportions are unsupported and must not be rescaled or rounded into counts (line 2)."
+  ],
+  "summary": "No dissimilarities were computed because the required raw specimen counts are unavailable. Supply the original sample-by-genus specimen counts to calculate all 15 requested pairs."
+}

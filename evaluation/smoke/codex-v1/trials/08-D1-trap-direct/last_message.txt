@@ -1,0 +1,1 @@
+Wrote [answer.json](/Users/bwbrook/palaeo-eval/t/9231e7ee5304/ws/answer.json) with slope `0.8266909894368556`, intercept `-0.21091768985049697`, and `n = 38`. Excluded two specimens with missing widths. Schema validation passed.

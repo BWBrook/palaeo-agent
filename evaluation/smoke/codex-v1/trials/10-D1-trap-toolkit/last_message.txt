@@ -1,0 +1,3 @@
+Created [answer.json](answer.json) and checked it against the schema.
+
+Palaeo-Agent RMA fit: slope `0.8266909894368555`, intercept `-0.21091768985049342`, n = `38`. Rows 5 and 22 were excluded because width was missing.

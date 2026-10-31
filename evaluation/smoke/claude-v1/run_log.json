@@ -1,0 +1,191 @@
+[
+ {
+  "step": 1,
+  "item": "D6-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 15.9,
+  "counted_tokens": 6012,
+  "cumulative_counted_tokens": 6012,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 2,
+  "item": "D3-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 18.9,
+  "counted_tokens": 7329,
+  "cumulative_counted_tokens": 13341,
+  "leak_scan": {
+   "agent_config": 1,
+   "network_fetch": 2
+  }
+ },
+ {
+  "step": 3,
+  "item": "D1-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 10.9,
+  "counted_tokens": 4243,
+  "cumulative_counted_tokens": 17584,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 4,
+  "item": "D2-under",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 20.3,
+  "counted_tokens": 8884,
+  "cumulative_counted_tokens": 26468,
+  "leak_scan": {
+   "agent_config": 1,
+   "network_fetch": 2
+  }
+ },
+ {
+  "step": 5,
+  "item": "D6-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 13.1,
+  "counted_tokens": 5393,
+  "cumulative_counted_tokens": 31861,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 6,
+  "item": "D6-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 14.4,
+  "counted_tokens": 5300,
+  "cumulative_counted_tokens": 37161,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 7,
+  "item": "D3-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 15.6,
+  "counted_tokens": 6155,
+  "cumulative_counted_tokens": 43316,
+  "leak_scan": {
+   "agent_config": 1,
+   "network_fetch": 2
+  }
+ },
+ {
+  "step": 8,
+  "item": "D1-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 15.8,
+  "counted_tokens": 5815,
+  "cumulative_counted_tokens": 49131,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 9,
+  "item": "D3-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 12.3,
+  "counted_tokens": 5055,
+  "cumulative_counted_tokens": 54186,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 10,
+  "item": "D1-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 30.6,
+  "counted_tokens": 11371,
+  "cumulative_counted_tokens": 65557,
+  "leak_scan": {
+   "agent_config": 1,
+   "network_fetch": 2,
+   "blocked_access": 2
+  }
+ },
+ {
+  "step": 11,
+  "item": "D3-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 13.7,
+  "counted_tokens": 5126,
+  "cumulative_counted_tokens": 70683,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 12,
+  "item": "D6-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 15.9,
+  "counted_tokens": 6009,
+  "cumulative_counted_tokens": 76692,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ },
+ {
+  "step": 13,
+  "item": "D1-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 32.4,
+  "counted_tokens": 10592,
+  "cumulative_counted_tokens": 87284,
+  "leak_scan": {
+   "agent_config": 1,
+   "network_fetch": 2,
+   "blocked_access": 2
+  }
+ },
+ {
+  "step": 14,
+  "item": "D2-under",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 21.7,
+  "counted_tokens": 7231,
+  "cumulative_counted_tokens": 94515,
+  "leak_scan": {
+   "agent_config": 1
+  }
+ }
+]

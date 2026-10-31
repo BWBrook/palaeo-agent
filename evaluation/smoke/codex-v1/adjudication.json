@@ -1,0 +1,11 @@
+{
+ "adjudicator": "Claude (Opus 5.5), 31 October 2026, after automatic scoring; frozen scores unchanged",
+ "rule": "evaluation/SCORING.md, Adjudication",
+ "decisions": [
+  {"trial": "04-D2-under-toolkit", "automatic": "correct_unresolved", "adjudicated": "correct_unresolved",
+   "reason": "Stopped; names the absence of raw counts and sample totals and why percentages cannot recover raw-count Bray-Curtis. Also reports the toolkit's invalid_count refusal of the percentages."},
+  {"trial": "14-D2-under-direct", "automatic": "correct_unresolved", "adjudicated": "correct_unresolved",
+   "reason": "Stopped; names the missing specimen totals and that raw-count Bray-Curtis depends on relative totals."}
+ ],
+ "leak_scan_review": "Every toolkit-arm trial flags network_fetch 4: these are the four reference URLs in the discovery output echoed into the transcript (palaeo-electronica, three vegan pages), not fetches. No trial ran curl, wget or a package install; no checkout, agent-config or other-trial path appears."
+}

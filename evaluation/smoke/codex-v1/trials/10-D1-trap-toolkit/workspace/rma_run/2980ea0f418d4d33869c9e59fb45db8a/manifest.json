@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "run_id": "2980ea0f418d4d33869c9e59fb45db8a",
+  "method": "rma",
+  "method_version": 1,
+  "inputs": {
+    "measurements": {
+      "path": "input.dat",
+      "sha256": "bcc6f7585cf057f142b5d8a7f90b303a24406608a52b580e34f791776a56780f",
+      "bytes": 1271
+    }
+  },
+  "steps": [
+    {
+      "id": "snapshot_inputs",
+      "inputs": [],
+      "outputs": [
+        "input.dat"
+      ]
+    },
+    {
+      "id": "resolve_specification",
+      "inputs": [],
+      "outputs": [
+        "spec.json"
+      ]
+    },
+    {
+      "id": "record_environment",
+      "inputs": [],
+      "outputs": [
+        "environment.json"
+      ]
+    },
+    {
+      "id": "descriptive_rma",
+      "inputs": [
+        "input.dat"
+      ],
+      "outputs": [
+        "used-pairs.csv"
+      ]
+    },
+    {
+      "id": "collect_results",
+      "inputs": [
+        "input.dat",
+        "spec.json"
+      ],
+      "outputs": [
+        "results.json"
+      ]
+    },
+    {
+      "id": "plot_diagnostics",
+      "inputs": [
+        "results.json"
+      ],
+      "outputs": [
+        "diagnostics.svg",
+        "diagnostics.png"
+      ]
+    }
+  ],
+  "files": {
+    "diagnostics.png": {
+      "sha256": "8177c0c6c03e47faefdfd1140068ac22fc7f0f68be16013e28d90dbada9721a0",
+      "bytes": 56130,
+      "media_type": "image/png",
+      "produced_by": "plot_diagnostics"
+    },
+    "diagnostics.svg": {
+      "sha256": "958bcca7390669dfeafab8f7b564805a6fde84f52acd8b988dc2ebfde5be8d39",
+      "bytes": 45175,
+      "media_type": "image/svg+xml",
+      "produced_by": "plot_diagnostics"
+    },
+    "environment.json": {
+      "sha256": "0e60c925d84b9d67f77847c502fe45dfdfac38e53d0e0d87d6b5864a6d7a9074",
+      "bytes": 3042,
+      "media_type": "application/json",
+      "produced_by": "record_environment"
+    },
+    "input.dat": {
+      "sha256": "bcc6f7585cf057f142b5d8a7f90b303a24406608a52b580e34f791776a56780f",
+      "bytes": 1271,
+      "media_type": "text/plain",
+      "produced_by": "snapshot_inputs"
+    },
+    "results.json": {
+      "sha256": "db262890286e7d154720d5823e436e837c594347b3466306245e3d16a05a2cc7",
+      "bytes": 6957,
+      "media_type": "application/json",
+      "produced_by": "collect_results"
+    },
+    "spec.json": {
+      "sha256": "e7462cf205a1a1978a958f1dab824be3ca39e0fb71da599784460e9680551e81",
+      "bytes": 155,
+      "media_type": "application/json",
+      "produced_by": "resolve_specification"
+    },
+    "used-pairs.csv": {
+      "sha256": "6437ff4ab234a3e54266225b4a63a318716c32e2bbaa2cb37805252b26b69dbf",
+      "bytes": 1775,
+      "media_type": "text/csv",
+      "produced_by": "descriptive_rma"
+    }
+  }
+}

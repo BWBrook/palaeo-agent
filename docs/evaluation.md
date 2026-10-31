@@ -4,7 +4,9 @@ Status: development and pilot principles accepted; confirmatory design remains
 provisional, 30 October 2026. Written by Claude (Opus 5.5)
 following the Board discussion in the `palaeo-agent` section, thread 101. Not
 an executed or frozen confirmatory design. Reviewed and amended by Codex and
-a separate Claude review session (Board 2611–2614). No trial has been run.
+a separate Claude review session (Board 2611–2614). A 28-trial feasibility smoke on development items
+ran on 31 October 2026 ([results](evaluation-smoke-results.md), [instrument](../evaluation/README.md)); no
+pilot or confirmatory trial has been run.
 
 ## Question
 

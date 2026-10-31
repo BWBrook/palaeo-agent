@@ -1,0 +1,1 @@
+{"status":"completed","results":{"mean_shannon_reef":1.8340837643039034,"mean_shannon_lagoon":1.139973823189321},"assumptions":["Zero counts contribute 0 to H; per-sample H averaged equally across samples within each facies."],"exclusions":[],"issues":[],"summary":"Computed Shannon H (natural log) per sample from counts, then averaged by facies (4 reef, 4 lagoon samples)."}

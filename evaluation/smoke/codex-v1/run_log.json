@@ -1,0 +1,170 @@
+[
+ {
+  "step": 1,
+  "item": "D6-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 50.1,
+  "counted_tokens": 19315,
+  "cumulative_counted_tokens": 19315,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 2,
+  "item": "D3-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 48.5,
+  "counted_tokens": 21250,
+  "cumulative_counted_tokens": 40565,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 3,
+  "item": "D1-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 24.9,
+  "counted_tokens": 15108,
+  "cumulative_counted_tokens": 55673,
+  "leak_scan": {}
+ },
+ {
+  "step": 4,
+  "item": "D2-under",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 33.9,
+  "counted_tokens": 10060,
+  "cumulative_counted_tokens": 65733,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 5,
+  "item": "D6-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 27.5,
+  "counted_tokens": 7783,
+  "cumulative_counted_tokens": 73516,
+  "leak_scan": {}
+ },
+ {
+  "step": 6,
+  "item": "D6-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 38.4,
+  "counted_tokens": 9463,
+  "cumulative_counted_tokens": 82979,
+  "leak_scan": {}
+ },
+ {
+  "step": 7,
+  "item": "D3-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 48.8,
+  "counted_tokens": 18942,
+  "cumulative_counted_tokens": 101921,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 8,
+  "item": "D1-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 30.4,
+  "counted_tokens": 6503,
+  "cumulative_counted_tokens": 108424,
+  "leak_scan": {}
+ },
+ {
+  "step": 9,
+  "item": "D3-twin",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 31.2,
+  "counted_tokens": 6576,
+  "cumulative_counted_tokens": 115000,
+  "leak_scan": {}
+ },
+ {
+  "step": 10,
+  "item": "D1-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 42.4,
+  "counted_tokens": 19800,
+  "cumulative_counted_tokens": 134800,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 11,
+  "item": "D3-trap",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 24.4,
+  "counted_tokens": 8267,
+  "cumulative_counted_tokens": 143067,
+  "leak_scan": {}
+ },
+ {
+  "step": 12,
+  "item": "D6-trap",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 48.2,
+  "counted_tokens": 30979,
+  "cumulative_counted_tokens": 174046,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 13,
+  "item": "D1-twin",
+  "arm": "toolkit",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 38.7,
+  "counted_tokens": 20644,
+  "cumulative_counted_tokens": 194690,
+  "leak_scan": {
+   "network_fetch": 4
+  }
+ },
+ {
+  "step": 14,
+  "item": "D2-under",
+  "arm": "direct",
+  "status": "run",
+  "termination": "exited",
+  "elapsed_seconds": 27.6,
+  "counted_tokens": 9599,
+  "cumulative_counted_tokens": 204289,
+  "leak_scan": {}
+ }
+]

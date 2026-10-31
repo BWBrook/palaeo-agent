@@ -1,0 +1,184 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "run_id": "1a9d9780bb2b4c31b9fff8617932e2fe",
+  "method": "community",
+  "method_version": 1,
+  "inputs": {
+    "matrix": {
+      "path": "input.dat",
+      "sha256": "2ad65ab5a7c1bd48ccc5f0e19aa507c06fae6d1521de830702714483aa254e55",
+      "bytes": 224
+    }
+  },
+  "steps": [
+    {
+      "id": "snapshot_inputs",
+      "inputs": [],
+      "outputs": [
+        "input.dat"
+      ]
+    },
+    {
+      "id": "resolve_specification",
+      "inputs": [],
+      "outputs": [
+        "spec.json"
+      ]
+    },
+    {
+      "id": "record_environment",
+      "inputs": [],
+      "outputs": [
+        "environment.json"
+      ]
+    },
+    {
+      "id": "orient_validate_exclude",
+      "inputs": [
+        "input.dat"
+      ],
+      "outputs": [
+        "retained_counts.csv"
+      ]
+    },
+    {
+      "id": "raw_count_diversity",
+      "inputs": [
+        "retained_counts.csv"
+      ],
+      "outputs": [
+        "diversity.csv"
+      ]
+    },
+    {
+      "id": "transform_for_distance",
+      "inputs": [
+        "retained_counts.csv"
+      ],
+      "outputs": [
+        "transformed_matrix.csv"
+      ]
+    },
+    {
+      "id": "dissimilarity",
+      "inputs": [
+        "transformed_matrix.csv"
+      ],
+      "outputs": [
+        "distances.csv"
+      ]
+    },
+    {
+      "id": "uncorrected_pcoa",
+      "inputs": [
+        "distances.csv"
+      ],
+      "outputs": [
+        "ordination.csv",
+        "eigenvalues.csv",
+        "positive_gram.csv"
+      ]
+    },
+    {
+      "id": "collect_results",
+      "inputs": [
+        "input.dat",
+        "spec.json"
+      ],
+      "outputs": [
+        "results.json"
+      ]
+    },
+    {
+      "id": "plot_diagnostics",
+      "inputs": [
+        "results.json"
+      ],
+      "outputs": [
+        "diagnostics.svg",
+        "diagnostics.png"
+      ]
+    }
+  ],
+  "files": {
+    "diagnostics.png": {
+      "sha256": "133a207052974bbf79bfb6d0d1bc4b080c3376286e514e7060b14ba8b5ab2c2d",
+      "bytes": 65986,
+      "media_type": "image/png",
+      "produced_by": "plot_diagnostics"
+    },
+    "diagnostics.svg": {
+      "sha256": "eba61a027a7151b37fdf69279e38de0143882393506db8497feff2fd3c2c122a",
+      "bytes": 59741,
+      "media_type": "image/svg+xml",
+      "produced_by": "plot_diagnostics"
+    },
+    "distances.csv": {
+      "sha256": "bfd9e267d8287dec56ec74965f23bb3befe8682592a850e7a34cd529db5b956b",
+      "bytes": 614,
+      "media_type": "text/csv",
+      "produced_by": "dissimilarity"
+    },
+    "diversity.csv": {
+      "sha256": "a24497501652955ecbaa9e7a3ed04487af1467776229eb458902fce327e99af1",
+      "bytes": 326,
+      "media_type": "text/csv",
+      "produced_by": "raw_count_diversity"
+    },
+    "eigenvalues.csv": {
+      "sha256": "283ee54c95c754363eed7b79bb7164edb0f870d3493585238460be3c9ca8c705",
+      "bytes": 151,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "environment.json": {
+      "sha256": "0e60c925d84b9d67f77847c502fe45dfdfac38e53d0e0d87d6b5864a6d7a9074",
+      "bytes": 3042,
+      "media_type": "application/json",
+      "produced_by": "record_environment"
+    },
+    "input.dat": {
+      "sha256": "2ad65ab5a7c1bd48ccc5f0e19aa507c06fae6d1521de830702714483aa254e55",
+      "bytes": 224,
+      "media_type": "text/plain",
+      "produced_by": "snapshot_inputs"
+    },
+    "ordination.csv": {
+      "sha256": "e664d564de5c613f00866e8b6a8d8c3cbcb18e741e1660b23f46c396f31e40a6",
+      "bytes": 154,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "positive_gram.csv": {
+      "sha256": "b5df6521d65450e761f50dc7779eee922d3cbccb7c8d17fec7b1e7c7accd5d71",
+      "bytes": 801,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "results.json": {
+      "sha256": "ce31310cc0e665e79d7dfa7142b925bc0c9f6f0498af91c019489dbd913a9b01",
+      "bytes": 6674,
+      "media_type": "application/json",
+      "produced_by": "collect_results"
+    },
+    "retained_counts.csv": {
+      "sha256": "7684d202af70a51ec39b3f8a8f7aeaa8aa3e4a8282d2130b8aae45c14ed62944",
+      "bytes": 328,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_exclude"
+    },
+    "spec.json": {
+      "sha256": "65af744d429f6f0e71bd240684097f71a13d0f3e50cc7ba414dc249c387a36c5",
+      "bytes": 316,
+      "media_type": "application/json",
+      "produced_by": "resolve_specification"
+    },
+    "transformed_matrix.csv": {
+      "sha256": "7684d202af70a51ec39b3f8a8f7aeaa8aa3e4a8282d2130b8aae45c14ed62944",
+      "bytes": 328,
+      "media_type": "text/csv",
+      "produced_by": "transform_for_distance"
+    }
+  }
+}

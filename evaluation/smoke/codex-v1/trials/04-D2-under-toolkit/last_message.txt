@@ -1,0 +1,3 @@
+Wrote [answer.json](answer.json) with status `stopped`.
+
+The supplied values are rounded percentages, not raw counts. Palaeo-Agent rejected them as count input. The requested dissimilarities require the original specimen counts.

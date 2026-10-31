@@ -1,0 +1,9 @@
+{
+  "method": "rma",
+  "input": "shells.tsv",
+  "format": "past",
+  "x": "L1/length",
+  "y": "L1/width",
+  "transform": "none",
+  "missing": "error"
+}

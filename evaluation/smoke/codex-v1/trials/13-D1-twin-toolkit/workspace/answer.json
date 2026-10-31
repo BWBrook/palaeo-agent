@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "results": {
+    "slope": 0.8266909894368555,
+    "intercept": -0.21091768985049342,
+    "n": 38
+  },
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [],
+  "summary": "Fit reduced major axis regression of L1 width on length using all 38 specimens and untransformed millimetre measurements with Palaeo-Agent."
+}

@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "results": {
+    "slope": 0.8266909894368555,
+    "intercept": -0.21091768985049697,
+    "n": 38
+  },
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [],
+  "summary": "Fitted reduced major axis regression of untransformed L1 width on length using all 38 specimens. Slope = sign(covariance) times SD(width)/SD(length); intercept = mean(width) minus slope times mean(length)."
+}

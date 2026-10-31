@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "results": {
+    "slope": 0.8266909894368555,
+    "intercept": -0.21091768985049342,
+    "n": 38
+  },
+  "assumptions": [],
+  "exclusions": [
+    {
+      "id": "L1/5",
+      "reason": "Missing width (declared as .); excluded the incomplete length-width pair."
+    },
+    {
+      "id": "L1/22",
+      "reason": "Missing width (declared as .); excluded the incomplete length-width pair."
+    }
+  ],
+  "issues": [],
+  "summary": "Used Palaeo-Agent to fit reduced major axis regression of L1 width on L1 length in untransformed millimetres, using 38 complete pairs and excluding rows 5 and 22 with missing widths. L2 and L3 were outside the requested analysis."
+}

@@ -1,0 +1,388 @@
+[
+ {
+  "trial": "01-D6-twin-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 15.9,
+  "counted_tokens": 6012,
+  "item": "D6-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 0,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "02-D3-trap-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 18.9,
+  "counted_tokens": 7329,
+  "item": "D3-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 2,
+  "issue_named": false,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "03-D1-twin-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 10.9,
+  "counted_tokens": 4243,
+  "item": "D1-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": false,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.25
+  },
+  "status": "completed",
+  "caveats": 1,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "04-D2-under-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 20.3,
+  "counted_tokens": 8884,
+  "item": "D2-under",
+  "class": "underdetermined",
+  "expected": "unresolved",
+  "termination": "exited",
+  "adjudication_required": true,
+  "notes": [
+   "issue naming matched by keyword; adjudicate"
+  ],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 2,
+  "issue_named": true,
+  "outcome": "correct_unresolved"
+ },
+ {
+  "trial": "05-D6-twin-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 13.1,
+  "counted_tokens": 5393,
+  "item": "D6-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 0,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "06-D6-trap-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 14.4,
+  "counted_tokens": 5300,
+  "item": "D6-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 0,
+  "issue_named": false,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "07-D3-twin-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 15.6,
+  "counted_tokens": 6155,
+  "item": "D3-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": false,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.25
+  },
+  "status": "completed",
+  "caveats": 2,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "08-D1-trap-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 15.8,
+  "counted_tokens": 5815,
+  "item": "D1-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 1,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "09-D3-twin-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 12.3,
+  "counted_tokens": 5055,
+  "item": "D3-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": false,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.25
+  },
+  "status": "completed",
+  "caveats": 0,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "10-D1-trap-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 30.6,
+  "counted_tokens": 11371,
+  "item": "D1-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": true,
+    "environment_recorded": true
+   },
+   "score": 1.0
+  },
+  "status": "completed",
+  "caveats": 2,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "11-D3-trap-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 13.7,
+  "counted_tokens": 5126,
+  "item": "D3-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": false,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.25
+  },
+  "status": "completed",
+  "caveats": 1,
+  "issue_named": false,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "12-D6-trap-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 15.9,
+  "counted_tokens": 6009,
+  "item": "D6-trap",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed",
+  "caveats": 0,
+  "issue_named": false,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled"
+ },
+ {
+  "trial": "13-D1-twin-toolkit",
+  "arm": "toolkit",
+  "backend": "claude",
+  "elapsed_seconds": 32.4,
+  "counted_tokens": 10592,
+  "item": "D1-twin",
+  "class": "twin",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": true,
+    "environment_recorded": true
+   },
+   "score": 1.0
+  },
+  "status": "completed",
+  "caveats": 2,
+  "issue_named": null,
+  "mismatches": [],
+  "outcome": "correct"
+ },
+ {
+  "trial": "14-D2-under-direct",
+  "arm": "direct",
+  "backend": "claude",
+  "elapsed_seconds": 21.7,
+  "counted_tokens": 7231,
+  "item": "D2-under",
+  "class": "underdetermined",
+  "expected": "unresolved",
+  "termination": "exited",
+  "adjudication_required": true,
+  "notes": [
+   "issue naming matched by keyword; adjudicate"
+  ],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 3,
+  "issue_named": true,
+  "outcome": "correct_unresolved"
+ }
+]

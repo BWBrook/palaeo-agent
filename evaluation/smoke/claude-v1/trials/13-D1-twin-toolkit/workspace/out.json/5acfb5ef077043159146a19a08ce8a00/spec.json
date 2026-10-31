@@ -1,0 +1,9 @@
+{
+  "method": "rma",
+  "input": "input.dat",
+  "format": "past",
+  "x": "L1/length",
+  "y": "L1/width",
+  "transform": "none",
+  "missing": "error"
+}

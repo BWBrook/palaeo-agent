@@ -1,0 +1,8 @@
+Wrote and schema-checked [answer.json](/Users/bwbrook/palaeo-eval/t/ea188f6e9f5a/ws/answer.json).
+
+Mean Shannon diversity:
+
+- Reef: 1.8340837643039034
+- Lagoon: 1.1399738231893213
+
+Used Palaeo-Agent; all eight samples were included.

@@ -1,0 +1,1 @@
+Created [answer.json](answer.json) with richness for all six samples and all 15 Bray–Curtis dissimilarities. Used Palaeo-Agent, independently checked the calculations, and verified schema conformity. No rounding or exclusions.

@@ -1,0 +1,205 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "run_id": "f56aa3d7dd1a4c869d06d3b940091927",
+  "method": "community",
+  "method_version": 1,
+  "inputs": {
+    "matrix": {
+      "path": "input.dat",
+      "sha256": "e769f2555cd94c8299c576904dcff514dcc234526df852d9e473742565eefebe",
+      "bytes": 265
+    },
+    "metadata": {
+      "path": "metadata.csv",
+      "sha256": "a7411364fd26aed749f91af0ccf7b1fb383752123a627a82c84456cfb6b28768",
+      "bytes": 140
+    }
+  },
+  "steps": [
+    {
+      "id": "snapshot_inputs",
+      "inputs": [],
+      "outputs": [
+        "input.dat",
+        "metadata.csv"
+      ]
+    },
+    {
+      "id": "resolve_specification",
+      "inputs": [],
+      "outputs": [
+        "spec.json"
+      ]
+    },
+    {
+      "id": "record_environment",
+      "inputs": [],
+      "outputs": [
+        "environment.json"
+      ]
+    },
+    {
+      "id": "orient_validate_exclude",
+      "inputs": [
+        "input.dat",
+        "metadata.csv"
+      ],
+      "outputs": [
+        "retained_counts.csv",
+        "aligned_metadata.csv"
+      ]
+    },
+    {
+      "id": "raw_count_diversity",
+      "inputs": [
+        "retained_counts.csv"
+      ],
+      "outputs": [
+        "diversity.csv"
+      ]
+    },
+    {
+      "id": "transform_for_distance",
+      "inputs": [
+        "retained_counts.csv"
+      ],
+      "outputs": [
+        "transformed_matrix.csv"
+      ]
+    },
+    {
+      "id": "dissimilarity",
+      "inputs": [
+        "transformed_matrix.csv"
+      ],
+      "outputs": [
+        "distances.csv"
+      ]
+    },
+    {
+      "id": "uncorrected_pcoa",
+      "inputs": [
+        "distances.csv"
+      ],
+      "outputs": [
+        "ordination.csv",
+        "eigenvalues.csv",
+        "positive_gram.csv"
+      ]
+    },
+    {
+      "id": "collect_results",
+      "inputs": [
+        "input.dat",
+        "metadata.csv",
+        "spec.json"
+      ],
+      "outputs": [
+        "results.json"
+      ]
+    },
+    {
+      "id": "plot_diagnostics",
+      "inputs": [
+        "results.json"
+      ],
+      "outputs": [
+        "diagnostics.svg",
+        "diagnostics.png"
+      ]
+    }
+  ],
+  "files": {
+    "aligned_metadata.csv": {
+      "sha256": "107785ec357b474063429ab9750e4ccfc59ffb32f5a50609e1388b5d6a0e7a5b",
+      "bytes": 140,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_exclude"
+    },
+    "diagnostics.png": {
+      "sha256": "a2bf2eab9117cc661d94acb73aeefb5d1df98202434a9efffabd93447353bbed",
+      "bytes": 73039,
+      "media_type": "image/png",
+      "produced_by": "plot_diagnostics"
+    },
+    "diagnostics.svg": {
+      "sha256": "2937fe2d12288d72efcc13727d58d673c876218ef5b1bc24556a83b05b6a77e0",
+      "bytes": 62296,
+      "media_type": "image/svg+xml",
+      "produced_by": "plot_diagnostics"
+    },
+    "distances.csv": {
+      "sha256": "6599a89ff6ef7a0c73ab61e4fa41951aa00d0552018c7a58e624b0c9136610d5",
+      "bytes": 1154,
+      "media_type": "text/csv",
+      "produced_by": "dissimilarity"
+    },
+    "diversity.csv": {
+      "sha256": "fb45a50037c17efd37aa2d0f2269602d32dbf689a25eb2f5dac120097840a3ef",
+      "bytes": 440,
+      "media_type": "text/csv",
+      "produced_by": "raw_count_diversity"
+    },
+    "eigenvalues.csv": {
+      "sha256": "f09aa3e5e9e97c70e70f28cfea26c171270a7d6a0458c47e20c1c52ccb77f4d8",
+      "bytes": 196,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "environment.json": {
+      "sha256": "0e60c925d84b9d67f77847c502fe45dfdfac38e53d0e0d87d6b5864a6d7a9074",
+      "bytes": 3042,
+      "media_type": "application/json",
+      "produced_by": "record_environment"
+    },
+    "input.dat": {
+      "sha256": "e769f2555cd94c8299c576904dcff514dcc234526df852d9e473742565eefebe",
+      "bytes": 265,
+      "media_type": "text/plain",
+      "produced_by": "snapshot_inputs"
+    },
+    "metadata.csv": {
+      "sha256": "a7411364fd26aed749f91af0ccf7b1fb383752123a627a82c84456cfb6b28768",
+      "bytes": 140,
+      "media_type": "text/csv",
+      "produced_by": "snapshot_inputs"
+    },
+    "ordination.csv": {
+      "sha256": "3db0cab948c04e238affd3300dc618ea03e1dd4cd9a3deb59b0e17001e3cafdf",
+      "bytes": 213,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "positive_gram.csv": {
+      "sha256": "736a309fb379505d96202ac88c48e82fc5bd549ccefc3b92657d7e34c562b142",
+      "bytes": 1420,
+      "media_type": "text/csv",
+      "produced_by": "uncorrected_pcoa"
+    },
+    "results.json": {
+      "sha256": "7a65fff7628caf919e803704e5723401c21798665ca9732a60aa957b39ac50fd",
+      "bytes": 9685,
+      "media_type": "application/json",
+      "produced_by": "collect_results"
+    },
+    "retained_counts.csv": {
+      "sha256": "4391a5c60cd5ac0e07b3966c7621d12918f6607271b52691092fd1f3b0e9fa42",
+      "bytes": 385,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_exclude"
+    },
+    "spec.json": {
+      "sha256": "9ad7f166f8576f7b829b5788450b6a1b5ba8826365ecbc65aa6dbdee876c722f",
+      "bytes": 326,
+      "media_type": "application/json",
+      "produced_by": "resolve_specification"
+    },
+    "transformed_matrix.csv": {
+      "sha256": "4391a5c60cd5ac0e07b3966c7621d12918f6607271b52691092fd1f3b0e9fa42",
+      "bytes": 385,
+      "media_type": "text/csv",
+      "produced_by": "transform_for_distance"
+    }
+  }
+}

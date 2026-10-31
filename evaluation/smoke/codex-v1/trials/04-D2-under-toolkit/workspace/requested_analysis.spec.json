@@ -1,0 +1,12 @@
+{
+  "method": "community",
+  "input": "assemblages.tsv",
+  "format": "past",
+  "orientation": "samples_by_taxa",
+  "value_type": "count",
+  "transform": "none",
+  "distance": "braycurtis",
+  "dimensions": 2,
+  "missing": "error",
+  "empty_samples": "error"
+}

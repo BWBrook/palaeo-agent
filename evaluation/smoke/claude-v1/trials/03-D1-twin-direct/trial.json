@@ -1,0 +1,60 @@
+{
+ "trial_id": "3b5822b7eeb9",
+ "materials": "evaluation/items/D1-twin/materials",
+ "arm": "direct",
+ "backend": "claude",
+ "model": "claude-sonnet-5-5",
+ "effort": null,
+ "cli_version": "2.1.308 (Claude Code)",
+ "argv": [
+  "/opt/homebrew/bin/claude",
+  "-p",
+  "<prompt>",
+  "--model",
+  "claude-sonnet-5-5",
+  "--strict-mcp-config",
+  "--setting-sources",
+  "",
+  "--no-session-persistence",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--exclude-dynamic-system-prompt-sections",
+  "--permission-mode",
+  "bypassPermissions",
+  "--tools",
+  "Bash,Read,Edit,Write"
+ ],
+ "env_keys": [
+  "HOME",
+  "LANG",
+  "LOGNAME",
+  "PATH",
+  "TMPDIR",
+  "USER",
+  "VIRTUAL_ENV"
+ ],
+ "prompt_sha256": "6f310ea861819f7aba4627d687028baf596e239269ca54fb99b1d501e406c6c9",
+ "runtime": {
+  "python": "3.12.13",
+  "requirements_sha256": "05eb5543a1a91c89091a9e739f08eb604b25d61054eed512d1dab521e808f34f",
+  "wheel": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+  "wheel_sha256": "0a30195bd884ae24df5eaf682e4eb8ba1df31f337d6efbfb57fba45396009026",
+  "arms": null,
+  "discover_sha256": "8ac9fbaba42ae3de05de88a7ceaf69281af5e9767be2a08d94acf12c12ea338d"
+ },
+ "started_utc": "2026-10-31T03:59:57.115747+00:00",
+ "elapsed_seconds": 10.9,
+ "wall_limit_seconds": 300,
+ "termination": "exited",
+ "returncode": 0,
+ "usage": {
+  "input_tokens": 8,
+  "cache_creation_input_tokens": 3493,
+  "cache_read_input_tokens": 23669,
+  "output_tokens": 742,
+  "total_cost_usd": 0.0237749,
+  "num_turns": 4
+ },
+ "counted_tokens": 4243
+}
