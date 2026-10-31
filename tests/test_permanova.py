@@ -1,6 +1,6 @@
 from copy import deepcopy
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, permutations
 from pathlib import Path
 
 import numpy as np
@@ -253,3 +253,23 @@ def test_saved_result_rejects_scientific_and_schedule_tampering(mutate):
     mutate(result)
     with pytest.raises(ValidationError):
         PermanovaResult.model_validate(result)
+
+
+HIGH_F_COUNTS = [[1999988, 17999992], [2000008, 17999972],
+                 [9999979, 10000001], [10000001, 9999979],
+                 [17999970, 2000010], [17999994, 1999986]]
+HIGH_F_GROUPS = ["A", "A", "B", "B", "C", "C"]
+HIGH_F_ORDERS = [tuple(index for block in order for index in (2 * block, 2 * block + 1))
+                 for order in permutations(range(3))] + [(0, 2, 4, 1, 3, 5), (5, 0, 3, 2, 1, 4)]
+
+
+@pytest.mark.parametrize("order", HIGH_F_ORDERS)
+def test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order(order):
+    matrix = [HIGH_F_COUNTS[index] for index in order]
+    groups = [HIGH_F_GROUPS[index] for index in order]
+    result = calculate(matrix, groups, permutations=89)
+    assert result["pseudo_f"] == pytest.approx(float(Fraction(191999616000192, 365)), rel=1e-14)
+    assert result["permutation"]["mode"] == "exact"
+    assert result["permutation"]["draws"] == result["permutation"]["space_size"] == 90
+    assert result["permutation"]["count_extreme"] == 6
+    assert result["p_value"] == float(Fraction(1, 15))

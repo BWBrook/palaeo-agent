@@ -1,0 +1,162 @@
+{
+  "bank_version": "sprint2-group-bank-v1",
+  "passed": true,
+  "python": "3.12.13",
+  "python_executable": "/Users/bwbrook/work/palaeo-agent/.venv/bin/python",
+  "package_origin": "/Users/bwbrook/work/palaeo-agent/src/palaeo_agent",
+  "installed_source_sha256": {
+    "__init__.py": "1d0ec0cb0615de2fcb51a3c0b5cca10be006299f93735e1945a7897a2c7452ab",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "1cbaf3c1a712d37a65e560fa22408a1d66a8658eb7959c38f96c319a4ef079f0",
+    "community.py": "1e6467669c0855c3269d0bfb4301cf55d0e6083377fbdb66f443baa35ff76345",
+    "core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
+    "methods.py": "827bef8b5a5e54e55a95c8e9903cb5f72742cc8fd78f756bca61b9e60347fea3",
+    "permanova.py": "b4a1247ebf47472401844e830a25b225c67ce7cc7c3213d0d1b0c72305372eea",
+    "runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
+    "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6"
+  },
+  "source_sha256": {
+    "src/palaeo_agent/__init__.py": "1d0ec0cb0615de2fcb51a3c0b5cca10be006299f93735e1945a7897a2c7452ab",
+    "src/palaeo_agent/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/palaeo_agent/cli.py": "1cbaf3c1a712d37a65e560fa22408a1d66a8658eb7959c38f96c319a4ef079f0",
+    "src/palaeo_agent/community.py": "1e6467669c0855c3269d0bfb4301cf55d0e6083377fbdb66f443baa35ff76345",
+    "src/palaeo_agent/core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
+    "src/palaeo_agent/methods.py": "827bef8b5a5e54e55a95c8e9903cb5f72742cc8fd78f756bca61b9e60347fea3",
+    "src/palaeo_agent/permanova.py": "b4a1247ebf47472401844e830a25b225c67ce7cc7c3213d0d1b0c72305372eea",
+    "src/palaeo_agent/runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
+    "src/palaeo_agent/sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6"
+  },
+  "generator_sha256": "7e6ca35e58402d1fdd59d7e9b28aee42beb38aa7eeeeb921b4cadb32548fb95a",
+  "key_sha256": {
+    "items/G1-trap/key.json": "4a15578feb4000015400def8144e3a0ee9c6e98b8989af73833b1e7bd8bfa185",
+    "items/G1-twin/key.json": "2cbf1fb2308830c81555415cbbbfb3eb8f4d4d6e8f15ab1be7819cb453a29074",
+    "items/G2-trap/key.json": "1411744536036bc763937f8298618a26bde659514b917f99ff943dbbbf8a1f15",
+    "items/G2-twin/key.json": "a19121cbeaf1a6a2265f06e574abd4d1332fee3d44a2f0c40f27b08796047aa2",
+    "items/G3-trap/key.json": "ab09e0019617e38f8af5bb8081744cd572816806aad5d095f4d1c275be6a1052",
+    "items/G3-twin/key.json": "aeabc81c6e5910a662e4ce8f8f39de163673a1831c6c29b20934fa41dd7854b2"
+  },
+  "items": [
+    {
+      "item": "G1-trap",
+      "status": "agrees",
+      "results": {
+        "n": 8,
+        "pseudo_f": 1470.0,
+        "r_squared": 0.9959349593495935,
+        "p_value": 0.02857142857142857,
+        "ss_total": 0.984,
+        "ss_within": 0.004,
+        "ss_between": 0.98,
+        "df_between": 1,
+        "df_within": 6,
+        "group_mean_centroid_distance": {
+          "reef": 0.01999999999999999,
+          "lagoon": 0.019999999999999976
+        }
+      },
+      "mode": "exact",
+      "allocations": 70,
+      "scope": "Numerics checked against standalone rational keys; supplied-claim judgment uses declared method scope."
+    },
+    {
+      "item": "G1-twin",
+      "status": "agrees",
+      "results": {
+        "n": 8,
+        "pseudo_f": 1470.0,
+        "r_squared": 0.9959349593495935,
+        "p_value": 0.02857142857142857,
+        "ss_total": 0.984,
+        "ss_within": 0.004,
+        "ss_between": 0.98,
+        "df_between": 1,
+        "df_within": 6,
+        "group_mean_centroid_distance": {
+          "reef": 0.01999999999999999,
+          "lagoon": 0.019999999999999976
+        }
+      },
+      "mode": "exact",
+      "allocations": 70,
+      "scope": "Numerics checked against standalone rational keys; supplied-claim judgment uses declared method scope."
+    },
+    {
+      "item": "G2-trap",
+      "status": "supported_stop",
+      "error_code": "invalid_specification",
+      "shared_site_ids": [
+        "site_lagoon_01",
+        "site_reef_01"
+      ],
+      "scope": "Sampling description supplies dependence; the toolkit cannot infer independence from labels."
+    },
+    {
+      "item": "G2-twin",
+      "status": "agrees",
+      "results": {
+        "n": 8,
+        "pseudo_f": 1470.0,
+        "r_squared": 0.9959349593495935,
+        "p_value": 0.02857142857142857,
+        "ss_total": 0.984,
+        "ss_within": 0.004,
+        "ss_between": 0.98,
+        "df_between": 1,
+        "df_within": 6,
+        "group_mean_centroid_distance": {
+          "reef": 0.01999999999999999,
+          "lagoon": 0.019999999999999976
+        }
+      },
+      "mode": "exact",
+      "allocations": 70,
+      "scope": "Numerics checked against standalone rational keys; supplied-claim judgment uses declared method scope."
+    },
+    {
+      "item": "G3-trap",
+      "status": "agrees",
+      "results": {
+        "n": 10,
+        "pseudo_f": 8.256479400749063,
+        "r_squared": 0.5078885284576821,
+        "p_value": 0.0380952380952381,
+        "ss_total": 0.8138400000000001,
+        "ss_within": 0.4005000000000001,
+        "ss_between": 0.41334000000000004,
+        "df_between": 1,
+        "df_within": 8,
+        "group_mean_centroid_distance": {
+          "reef": 0.010000000000000016,
+          "lagoon": 0.19999999999999996
+        },
+        "claim_supported": 0
+      },
+      "mode": "exact",
+      "allocations": 210,
+      "scope": "Numerics checked against standalone rational keys; supplied-claim judgment uses declared method scope."
+    },
+    {
+      "item": "G3-twin",
+      "status": "agrees",
+      "results": {
+        "n": 10,
+        "pseudo_f": 873.8133333333333,
+        "r_squared": 0.9909277851699528,
+        "p_value": 0.004761904761904762,
+        "ss_total": 0.99204,
+        "ss_within": 0.009000000000000001,
+        "ss_between": 0.98304,
+        "df_between": 1,
+        "df_within": 8,
+        "group_mean_centroid_distance": {
+          "reef": 0.020000000000000046,
+          "lagoon": 0.03000000000000001
+        },
+        "claim_supported": 1
+      },
+      "mode": "exact",
+      "allocations": 210,
+      "scope": "Numerics checked against standalone rational keys; supplied-claim judgment uses declared method scope."
+    }
+  ]
+}

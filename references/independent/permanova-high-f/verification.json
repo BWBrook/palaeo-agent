@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-31",
+  "source_before_repair": "1093bb0c4a4d7ef556658418210fae3bcac79881",
+  "source_file_after_sha256": "b4a1247ebf47472401844e830a25b225c67ce7cc7c3213d0d1b0c72305372eea",
+  "patch_sha256": "d3c82cc25f1706564f9b6668af23349906e76b056380c91e764c88de6ada4c57",
+  "checks": [
+    {
+      "command": "uv run pytest -q",
+      "exit_code": 0,
+      "passed": 282,
+      "elapsed_seconds": 21.04
+    },
+    {
+      "command": "uv run python scripts/compare_past_permanova.py",
+      "exit_code": 0,
+      "status": "matched",
+      "compared_values": 3
+    },
+    {
+      "command": "uv run python evaluation/sprint2/check_solvable.py --output /private/tmp/palaeo-sprint2-solvability-repaired.json",
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "scope": "Repair validated after the frozen 12-trial smoke; no extra live trials. Original smoke wheel and records remain unchanged."
+}

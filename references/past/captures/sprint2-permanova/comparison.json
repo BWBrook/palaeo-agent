@@ -13,11 +13,11 @@
       "community.py": "1e6467669c0855c3269d0bfb4301cf55d0e6083377fbdb66f443baa35ff76345",
       "core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
       "methods.py": "827bef8b5a5e54e55a95c8e9903cb5f72742cc8fd78f756bca61b9e60347fea3",
-      "permanova.py": "10f288505fec51816be13689351576b0a0bba12c3895d01a07e2644afd98fc63",
+      "permanova.py": "b4a1247ebf47472401844e830a25b225c67ce7cc7c3213d0d1b0c72305372eea",
       "runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
       "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6"
     },
-    "implementation_sha256": "21949f876c63cec7489fb9319181136c0c9bc0df6f928c44bf5b0095f0706ddb",
+    "implementation_sha256": "d06b5a325b9a4a62066f369ef270a4f16e63d6066d3e46f7ce9ff4737d2bfa05",
     "comparison_script_sha256": "a165330931433b73bd9468f7cf1d97fae2200585ecfa44113a01a636c250a12c",
     "uv_lock_sha256": "c7b7b11059a3566b80bc754bd3215da5ce282616c5b767fab64b215f38c00d27"
   },

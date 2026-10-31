@@ -1,0 +1,38 @@
+...F.F..                                                                 [100%]
+=================================== FAILURES ===================================
+_ test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order[order3] _
+
+order = (2, 3, 4, 5, 0, 1)
+
+    @pytest.mark.parametrize("order", HIGH_F_ORDERS)
+    def test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order(order):
+        matrix = [HIGH_F_COUNTS[index] for index in order]
+        groups = [HIGH_F_GROUPS[index] for index in order]
+        result = calculate(matrix, groups, permutations=89)
+        assert result["pseudo_f"] == pytest.approx(float(Fraction(191999616000192, 365)), rel=1e-14)
+        assert result["permutation"]["mode"] == "exact"
+        assert result["permutation"]["draws"] == result["permutation"]["space_size"] == 90
+>       assert result["permutation"]["count_extreme"] == 6
+E       assert 2 == 6
+
+tests/test_permanova.py:274: AssertionError
+_ test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order[order5] _
+
+order = (4, 5, 2, 3, 0, 1)
+
+    @pytest.mark.parametrize("order", HIGH_F_ORDERS)
+    def test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order(order):
+        matrix = [HIGH_F_COUNTS[index] for index in order]
+        groups = [HIGH_F_GROUPS[index] for index in order]
+        result = calculate(matrix, groups, permutations=89)
+        assert result["pseudo_f"] == pytest.approx(float(Fraction(191999616000192, 365)), rel=1e-14)
+        assert result["permutation"]["mode"] == "exact"
+        assert result["permutation"]["draws"] == result["permutation"]["space_size"] == 90
+>       assert result["permutation"]["count_extreme"] == 6
+E       assert 2 == 6
+
+tests/test_permanova.py:274: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_permanova.py::test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order[order3]
+FAILED tests/test_permanova.py::test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order[order5]
+2 failed, 6 passed, 41 deselected in 0.19s

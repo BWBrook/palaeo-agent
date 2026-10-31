@@ -205,11 +205,13 @@ def _schedule(groups, labels, requested, seed):
 
 def _sums_of_squares(squared, group_positions, indices=None):
     n = len(squared)
-    total = float(np.triu(squared, 1).sum() / n)
-    within = 0.0
+    total = math.fsum(float(squared[i, j]) for i, j in combinations(range(n), 2)) / n
+    schedule = None if indices is None else np.asarray(indices)
+    group_parts = []
     for positions in group_positions:
-        selected = positions if indices is None else np.asarray(indices)[positions]
-        within += float(np.triu(squared[np.ix_(selected, selected)], 1).sum() / len(positions))
+        selected = positions if schedule is None else schedule[positions]
+        group_parts.append(math.fsum(float(squared[i, j]) for i, j in combinations(selected, 2)) / len(positions))
+    within = math.fsum(group_parts)
     return total, within, total - within
 
 
