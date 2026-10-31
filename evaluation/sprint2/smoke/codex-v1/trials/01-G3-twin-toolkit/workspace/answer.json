@@ -1,0 +1,33 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "n": 10,
+    "pseudo_f": 873.8133333333333,
+    "r_squared": 0.9909277851699528,
+    "p_value": 0.004761904761904762,
+    "ss_total": 0.99204,
+    "ss_within": 0.009000000000000001,
+    "ss_between": 0.98304,
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "reef": 0.020000000000000046,
+      "lagoon": 0.03000000000000001
+    },
+    "claim_supported": 1
+  },
+  "assumptions": [
+    "Each sample is a distinct site sampled once; the ten sites are independent sampling units, as declared in dictionary.md.",
+    "Facies labels are freely exchangeable among sites under the null, preserving the observed group sizes (reef 4, lagoon 6); there are no blocks, covariates, repeated measures or nested subsamples.",
+    "The supplied nonnegative integer counts measure comparable community composition; they are used without transformation, normalization or aggregation."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No count or metadata problems were found: sample IDs are unique and match exactly, site IDs are unique, all counts are finite nonnegative integers, and no sample is empty. Metadata were aligned by sample ID.",
+    "Group sizes are unequal (reef 4, lagoon 6). PERMANOVA association can reflect location and dispersion; this analysis does not isolate a pure location effect or establish causation.",
+    "Centroid distances are descriptive, without bias adjustment, square-root distance transformation, additive correction or dispersion significance testing. One positive eigenaxis is retained; nine numerical near-zero eigenmodes are discarded at the package threshold, with no substantive negative eigenvalues and no truncated negative squared centroid distances.",
+    "Although 999 permutations were requested with seed 20261031, all 210 distinct size-preserving allocations were feasible and enumerated. The exact p-value is 1/210, including the observed allocation; no Monte Carlo plus-one correction is applied.",
+    "Rerun with python -m palaeo_agent run analysis_spec.json --output permanova_run, then python finalize_analysis.py. The specification and full run directory preserve inputs, environment, manifest, distances, eigenvalues, permutations and results; finalize_analysis.py independently checks the distances, pseudo-F, exact p-value and centroid means."
+  ],
+  "summary": "The full draft claim is supported (claim_supported=1): exact one-way PERMANOVA on untransformed Bray-Curtis dissimilarities provides evidence of a facies-associated community difference under the stated independence and exchangeability assumptions (pseudo-F=873.8133333333333, R-squared=0.9909277851699528, p=0.004761904761904762). Group mean centroid distances describe within-facies spread separately and do not isolate a pure location effect. All ten sites were retained. Numerical results are copied at computed precision from Palaeo-Agent, without rounding."
+}

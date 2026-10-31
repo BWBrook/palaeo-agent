@@ -1,0 +1,176 @@
+[
+  {
+    "trial": "01-G3-twin-toolkit",
+    "arm": "toolkit",
+    "answer_status": "completed_with_assumptions",
+    "toolkit_numeric_run_observed": true,
+    "numeric_run_evidence": [
+      {
+        "transcript_line": 13,
+        "command": "/bin/zsh -lc \"python -c 'import json; spec=dict(method=\\\"permanova\\\",input=\\\"counts.tsv\\\",metadata=\\\"samples.csv\\\",group_column=\\\"facies\\\",format=\\\"past\\\",orientation=\\\"samples_by_taxa\\\",value_type=\\\"count\\\",distance=\\\"braycurtis\\\",transform=\\\"none\\\",missing=\\\"error\\\",empty_samples=\\\"error\\\",design=\\\"independent\\\",permutation_scheme=\\\"free\\\",permutations=999,seed=20261031); open(\\\"analysis_spec.json\\\",\\\"w\\\").write(json.dumps(spec,indent=2))'\npython -m palaeo_agent run analysis_spec.json --output permanova_run\"",
+        "exit_code": 0
+      }
+    ],
+    "toolkit_role": "CLI numerical execution plus saved bundle",
+    "nonzero_command_exits": 2,
+    "command_count": 9,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "02-G2-twin-toolkit",
+    "arm": "toolkit",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": true,
+    "numeric_run_evidence": [
+      {
+        "transcript_line": 17,
+        "command": "/bin/zsh -lc \"python -c 'import json; spec = dict(method=\\\"permanova\\\", input=\\\"counts.tsv\\\", metadata=\\\"samples.csv\\\", group_column=\\\"facies\\\", format=\\\"past\\\", orientation=\\\"samples_by_taxa\\\", value_type=\\\"count\\\", distance=\\\"braycurtis\\\", transform=\\\"none\\\", missing=\\\"error\\\", empty_samples=\\\"error\\\", design=\\\"independent\\\", permutation_scheme=\\\"free\\\", permutations=999, seed=20261031); open(\\\"permanova.spec.json\\\",\\\"w\\\").write(json.dumps(spec,indent=2)+\\\"\\\\n\\\")'\npython -m palaeo_agent validate permanova.spec.json\npython -m palaeo_agent run permanova.spec.json --output permanova_run\"",
+        "exit_code": 0
+      }
+    ],
+    "toolkit_role": "CLI numerical execution plus saved bundle",
+    "nonzero_command_exits": 3,
+    "command_count": 11,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "03-G1-twin-direct",
+    "arm": "direct",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 2,
+    "command_count": 7,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "04-G2-trap-toolkit",
+    "arm": "toolkit",
+    "answer_status": "stopped",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "discovery/help only; reasoned stop before inference",
+    "nonzero_command_exits": 1,
+    "command_count": 7,
+    "reasoned_design_stop": true,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "05-G3-twin-direct",
+    "arm": "direct",
+    "answer_status": "completed_with_assumptions",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 2,
+    "command_count": 8,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "06-G3-trap-toolkit",
+    "arm": "toolkit",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": true,
+    "numeric_run_evidence": [
+      {
+        "transcript_line": 21,
+        "command": "/bin/zsh -lc 'python -m palaeo_agent run permanova_spec.json --output permanova_run'",
+        "exit_code": 0
+      }
+    ],
+    "toolkit_role": "CLI numerical execution plus saved bundle",
+    "nonzero_command_exits": 2,
+    "command_count": 13,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "07-G3-trap-direct",
+    "arm": "direct",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 1,
+    "command_count": 7,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "08-G1-trap-direct",
+    "arm": "direct",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 1,
+    "command_count": 7,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "09-G1-trap-toolkit",
+    "arm": "toolkit",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": true,
+    "numeric_run_evidence": [
+      {
+        "transcript_line": 15,
+        "command": "/bin/zsh -lc \"python -c 'import json; spec=dict(method=\\\"permanova\\\", input=\\\"counts.tsv\\\", metadata=\\\"samples.csv\\\", group_column=\\\"facies\\\", format=\\\"past\\\", orientation=\\\"samples_by_taxa\\\", value_type=\\\"count\\\", distance=\\\"braycurtis\\\", transform=\\\"none\\\", missing=\\\"error\\\", empty_samples=\\\"error\\\", design=\\\"independent\\\", permutation_scheme=\\\"free\\\", permutations=999, seed=20261031); open(\\\"analysis.spec.json\\\",\\\"w\\\").write(json.dumps(spec,indent=2))'\npython -m palaeo_agent run analysis.spec.json --output analysis_run\"",
+        "exit_code": 0
+      }
+    ],
+    "toolkit_role": "CLI numerical execution plus saved bundle",
+    "nonzero_command_exits": 2,
+    "command_count": 10,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "10-G2-twin-direct",
+    "arm": "direct",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 0,
+    "command_count": 7,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "11-G1-twin-toolkit",
+    "arm": "toolkit",
+    "answer_status": "completed",
+    "toolkit_numeric_run_observed": true,
+    "numeric_run_evidence": [
+      {
+        "transcript_line": 15,
+        "command": "/bin/zsh -lc \"python -c 'import json; spec=dict(method=\\\"permanova\\\",input=\\\"counts.tsv\\\",metadata=\\\"samples.csv\\\",group_column=\\\"facies\\\",format=\\\"past\\\",orientation=\\\"samples_by_taxa\\\",value_type=\\\"count\\\",distance=\\\"braycurtis\\\",transform=\\\"none\\\",missing=\\\"error\\\",empty_samples=\\\"error\\\",design=\\\"independent\\\",permutation_scheme=\\\"free\\\",permutations=999,seed=20261031); open(\\\"analysis.spec.json\\\",\\\"w\\\").write(json.dumps(spec,indent=2))' && python -m palaeo_agent run analysis.spec.json --output analysis_run\"",
+        "exit_code": 0
+      }
+    ],
+    "toolkit_role": "CLI numerical execution plus saved bundle",
+    "nonzero_command_exits": 2,
+    "command_count": 10,
+    "reasoned_design_stop": false,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  },
+  {
+    "trial": "12-G2-trap-direct",
+    "arm": "direct",
+    "answer_status": "stopped",
+    "toolkit_numeric_run_observed": false,
+    "numeric_run_evidence": [],
+    "toolkit_role": "not available under runtime preflight; direct local script",
+    "nonzero_command_exits": 1,
+    "command_count": 5,
+    "reasoned_design_stop": true,
+    "scope": "Successful command execution and saved files distinguish invocation from availability. Shell corrections inside a trial are not controller/model trial retries."
+  }
+]

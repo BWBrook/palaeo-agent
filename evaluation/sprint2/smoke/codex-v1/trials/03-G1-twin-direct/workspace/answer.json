@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1469.9999999999998,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.9839999999999999,
+    "ss_within": 0.004,
+    "ss_between": 0.9799999999999999,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "reef": 0.02,
+      "lagoon": 0.02
+    }
+  },
+  "assumptions": [
+    "As stated in dictionary.md, each count row represents a distinct independent site sampled once; facies labels are freely exchangeable under the null, with no blocks, covariates, repeated measures or nested subsamples.",
+    "Bray-Curtis dissimilarities use untransformed, unnormalised specimen counts. The test assesses facies association and does not establish causation."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems identified: all eight unique sample IDs match one-to-one across files, each has a unique site ID, and all counts are nonnegative integers with no missing values or empty samples.",
+    "All 70 distinct allocations preserving the 4:4 group sizes were enumerated instead of sampling 999 permutations. The exact upper-tail p-value includes the observed allocation and its label-swapped equivalent; no Monte Carlo plus-one adjustment is applied.",
+    "Centroid distances are descriptive and use uncorrected Bray-Curtis geometry without bias adjustment. These distances are Euclidean to numerical precision. No dispersion significance test was performed; PERMANOVA alone cannot generally distinguish location from dispersion effects.",
+    "The small sample size limits inference and exact permutation p-value resolution. Seed 20261031 is recorded; exhaustive enumeration does not consume random numbers."
+  ],
+  "summary": "One-way PERMANOVA of eight independent sites (four reef, four lagoon), using untransformed counts and Bray-Curtis dissimilarities, found a facies-associated difference in composition. All 70 allocations were enumerated, with 2 at least as extreme as observed. No samples were aggregated or excluded. Rerun with python analysis.py; provenance.json records input hashes, versions and permutation details."
+}

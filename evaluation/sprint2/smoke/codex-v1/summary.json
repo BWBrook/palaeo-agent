@@ -1,0 +1,120 @@
+{
+  "version": "sprint2-group-smoke-v1",
+  "live_source_commit": "1093bb0c4a4d7ef556658418210fae3bcac79881",
+  "freeze_commit": "b670270",
+  "subsequent_numerically_validated_repair_commit": "1943c30",
+  "freeze_sha256": "79a7bdf443571f76a1dafbbb43c5d247c05fabd8e18b3502ae48a4f23a1b6a95",
+  "postrun_frozen_files_verified_before_source_repair": 69,
+  "trials_completed": 12,
+  "trials_planned": 12,
+  "controller_retries": 0,
+  "timeouts": 0,
+  "primary_correct": 12,
+  "completed_numerical_cases": 10,
+  "reasoned_design_stops": 2,
+  "counted_tokens": 230839,
+  "token_ceiling": 300000,
+  "counted_definition": "input_tokens - cached_input_tokens + output_tokens, summed over turn.completed events",
+  "reported_usage": {
+    "input_tokens": 1742126,
+    "cached_input_tokens": 1553920,
+    "output_tokens": 42633,
+    "reasoning_output_tokens": 1971
+  },
+  "elapsed_seconds_sum": 822.5,
+  "distinct_thread_ids": 12,
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "medium",
+  "model_attestation_limit": "The command and frozen configuration request this model/effort. Stream events do not independently attest an internal model build.",
+  "cli_versions": [
+    "codex-cli 0.166.0"
+  ],
+  "arms": {
+    "direct": {
+      "trials": 6,
+      "correct_primary": 6,
+      "completed_numerical_cases": 5,
+      "reasoned_design_stops": 1,
+      "counted_tokens": 95613,
+      "mean_counted_tokens": 15935.5,
+      "elapsed_seconds_sum": 404.1,
+      "mean_elapsed_seconds": 67.35,
+      "numerical_cases_mean_counted_tokens": 17705.2,
+      "numerical_cases_mean_elapsed_seconds": 71.94,
+      "evidence_scores": [
+        1.0,
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "mean_evidence_score": 0.7916666666666666,
+      "evidence_environment_check_failures": [
+        "05-G3-twin-direct",
+        "07-G3-trap-direct",
+        "08-G1-trap-direct",
+        "10-G2-twin-direct",
+        "12-G2-trap-direct"
+      ],
+      "caveat_counts": [
+        6,
+        6,
+        5,
+        7,
+        6,
+        5
+      ],
+      "caveat_note": "Counts include required independence/exchangeability assumptions and legitimate limitations; they are not automatically spurious warnings."
+    },
+    "toolkit": {
+      "trials": 6,
+      "correct_primary": 6,
+      "completed_numerical_cases": 5,
+      "reasoned_design_stops": 1,
+      "counted_tokens": 135226,
+      "mean_counted_tokens": 22537.666666666668,
+      "elapsed_seconds_sum": 418.4,
+      "mean_elapsed_seconds": 69.73333333333333,
+      "numerical_cases_mean_counted_tokens": 23970,
+      "numerical_cases_mean_elapsed_seconds": 71.78,
+      "evidence_scores": [
+        1.0,
+        1.0,
+        0.75,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mean_evidence_score": 0.9583333333333334,
+      "evidence_environment_check_failures": [
+        "04-G2-trap-toolkit"
+      ],
+      "caveat_counts": [
+        8,
+        5,
+        6,
+        7,
+        5,
+        6
+      ],
+      "caveat_note": "Counts include required independence/exchangeability assumptions and legitimate limitations; they are not automatically spurious warnings."
+    }
+  },
+  "toolkit_numerical_invocation_trials": 5,
+  "toolkit_discovery_only_design_stops": 1,
+  "remaining_temporary_trial_directories": 0,
+  "scanner_flagged_trials": 6,
+  "scanner_network_url_matches": 42,
+  "confirmed_observed_key_or_source_leaks": 0,
+  "limitations": [
+    "Development smoke: six synthetic low-dimensional items, one trial per item-arm, one requested model/effort; no efficacy estimate.",
+    "All numerical items use two taxa and two groups, exact enumeration and F no larger than 1470; no broad numerical coverage is implied.",
+    "G3 measures response to a supplied interpretation claim, not independent spontaneous scientific interpretation.",
+    "Design independence is supplied by the task description, not statistically verified by the package.",
+    "The outer sandbox preflight passed protected-read/write and arm-import checks, but network isolation and absence of every possible leak were not established.",
+    "A later independent stress test found a high-F three-group tie-accumulation defect in the live source. A subsequent stable-summation repair is outside these live trials; no claim is made that the repaired wheel received this smoke.",
+    "Token totals are observed usage under existing Codex authentication; no dollar-cost estimate is inferred.",
+    "The frozen evidence checklist requires a recorded NumPy version even for standard-library-only arithmetic or a reasoned design stop; its environment check must be interpreted separately from reproducibility of the executed code."
+  ]
+}

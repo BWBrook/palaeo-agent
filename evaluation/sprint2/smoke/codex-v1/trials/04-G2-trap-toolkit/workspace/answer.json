@@ -1,0 +1,16 @@
+{
+  "status": "stopped",
+  "results": {},
+  "assumptions": [
+    "The sampling description in dictionary.md is authoritative: sites are the independent sampling units for the facies comparison, and rows are dependent subsamples within sites."
+  ],
+  "exclusions": [],
+  "issues": [
+    "S1-S4 are subsamples of site_reef_01 (reef); S5-S8 are subsamples of site_lagoon_01 (lagoon). The independent sampling units are the two sites, with only one site per facies.",
+    "The requested one-way free-label PERMANOVA on the eight rows is unsupported: within-site subsamples share exposure and are not independent facies replicates. Freely exchanging their facies labels would create pseudoreplication.",
+    "Facies is completely confounded with site. At the independent site level there is no within-facies replication and no residual degrees of freedom for the requested test. No aggregation or alternative experimental design was substituted.",
+    "Palaeo-Agent discovery confirms that its PERMANOVA requires independent units, freely exchangeable labels, and at least two samples per group. These requirements are unmet, so no PERMANOVA, permutation enumeration, or centroid-distance analysis was run. Requested seed 20261031 and 999 permutations were recorded but not applied.",
+    "Input checks found unique matching sample IDs, unique taxon names, nonnegative integer counts, and no missing values or empty samples. No samples or counts were excluded, transformed, or normalized."
+  ],
+  "summary": "Stopped before statistical analysis because the documented subsampling contradicts the requested independent, freely exchangeable design. No facies inference is supported. Rerun with python analysis.py; analysis_provenance.json records input hashes, design, and package requirements, and analysis_discover.json preserves installed Palaeo-Agent discovery."
+}

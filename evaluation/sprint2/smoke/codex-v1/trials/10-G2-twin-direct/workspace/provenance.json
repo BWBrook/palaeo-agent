@@ -1,0 +1,56 @@
+{
+  "command": "python analysis.py",
+  "python_version": "3.12.13",
+  "seed": 20261031,
+  "requested_permutations": 999,
+  "allocations_including_observed": 70,
+  "upper_tail_allocations_including_ties": 2,
+  "sample_order": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8"
+  ],
+  "taxa": [
+    "Dalmanella",
+    "Sowerbyella"
+  ],
+  "group_sizes": {
+    "reef": 4,
+    "lagoon": 4
+  },
+  "exact_results": {
+    "ss_total": "123/125",
+    "ss_within": "1/250",
+    "ss_between": "49/50",
+    "pseudo_f": "1470",
+    "r_squared": "245/246",
+    "p_value": "1/35"
+  },
+  "centroid_distances": {
+    "reef": {
+      "S1": 0.03,
+      "S2": 0.01,
+      "S3": 0.01,
+      "S4": 0.03
+    },
+    "lagoon": {
+      "S5": 0.03,
+      "S6": 0.01,
+      "S7": 0.01,
+      "S8": 0.03
+    }
+  },
+  "sha256": {
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "5c6901759628a32365bd8c10ebe436e6d800cfb43270b1d4d6c43fa41c90390b",
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "analysis.py": "82a9187c40ac37fb0a6d701420898928e6ea4a007508bb23a29d149a8323f958"
+  }
+}

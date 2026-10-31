@@ -1,0 +1,146 @@
+[
+  {
+    "step": 1,
+    "item": "G3-twin",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 72.3,
+    "counted_tokens": 18772,
+    "cumulative_counted_tokens": 18772,
+    "leak_scan": {
+      "network_fetch": 6
+    }
+  },
+  {
+    "step": 2,
+    "item": "G2-twin",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 69.4,
+    "counted_tokens": 19349,
+    "cumulative_counted_tokens": 38121,
+    "leak_scan": {
+      "network_fetch": 8
+    }
+  },
+  {
+    "step": 3,
+    "item": "G1-twin",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 74.8,
+    "counted_tokens": 17423,
+    "cumulative_counted_tokens": 55544,
+    "leak_scan": {}
+  },
+  {
+    "step": 4,
+    "item": "G2-trap",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 59.5,
+    "counted_tokens": 15376,
+    "cumulative_counted_tokens": 70920,
+    "leak_scan": {
+      "network_fetch": 6
+    }
+  },
+  {
+    "step": 5,
+    "item": "G3-twin",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 70.4,
+    "counted_tokens": 25498,
+    "cumulative_counted_tokens": 96418,
+    "leak_scan": {}
+  },
+  {
+    "step": 6,
+    "item": "G3-trap",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 76.5,
+    "counted_tokens": 19187,
+    "cumulative_counted_tokens": 115605,
+    "leak_scan": {
+      "network_fetch": 8
+    }
+  },
+  {
+    "step": 7,
+    "item": "G3-trap",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 63.6,
+    "counted_tokens": 11889,
+    "cumulative_counted_tokens": 127494,
+    "leak_scan": {}
+  },
+  {
+    "step": 8,
+    "item": "G1-trap",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 73.6,
+    "counted_tokens": 24497,
+    "cumulative_counted_tokens": 151991,
+    "leak_scan": {}
+  },
+  {
+    "step": 9,
+    "item": "G1-trap",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 70.1,
+    "counted_tokens": 40283,
+    "cumulative_counted_tokens": 192274,
+    "leak_scan": {
+      "network_fetch": 8
+    }
+  },
+  {
+    "step": 10,
+    "item": "G2-twin",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 77.3,
+    "counted_tokens": 9219,
+    "cumulative_counted_tokens": 201493,
+    "leak_scan": {}
+  },
+  {
+    "step": 11,
+    "item": "G1-twin",
+    "arm": "toolkit",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 70.6,
+    "counted_tokens": 22259,
+    "cumulative_counted_tokens": 223752,
+    "leak_scan": {
+      "network_fetch": 6
+    }
+  },
+  {
+    "step": 12,
+    "item": "G2-trap",
+    "arm": "direct",
+    "status": "run",
+    "termination": "exited",
+    "elapsed_seconds": 44.4,
+    "counted_tokens": 7087,
+    "cumulative_counted_tokens": 230839,
+    "leak_scan": {}
+  }
+]

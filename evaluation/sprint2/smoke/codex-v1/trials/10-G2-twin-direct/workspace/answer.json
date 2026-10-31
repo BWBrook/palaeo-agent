@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1470.0,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.984,
+    "ss_within": 0.004,
+    "ss_between": 0.98,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "reef": 0.02,
+      "lagoon": 0.02
+    }
+  },
+  "assumptions": [
+    "As specified in dictionary.md, each row is a distinct site sampled once. Sites are independent and facies labels are freely exchangeable under the null; there are no blocks, covariates, repeated observations or nested subsamples.",
+    "The analysis uses untransformed specimen counts and Bray-Curtis dissimilarities without aggregation, normalization, bias adjustment or distance correction."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems identified: sample IDs match one-to-one, all eight site IDs are distinct, and counts are nonnegative integers with no missing values or empty samples.",
+    "Only 70 distinct allocations preserve four reef and four lagoon sites. All 70 were enumerated instead of drawing 999 random permutations. The exact upper-tail p-value includes ties and the observed allocation: 2/70. No Monte Carlo plus-one correction applies. Seed 20261031 is recorded but does not affect exhaustive enumeration.",
+    "There are only four sites per facies. PERMANOVA can respond to both location and dispersion differences and does not establish a causal facies effect. Centroid distances are descriptive; no dispersion significance test was performed.",
+    "For these two-taxon samples, all totals are 100 and Bray-Curtis distances lie on a Euclidean line, so uncorrected centroid distances have no negative-eigenvalue ambiguity."
+  ],
+  "summary": "One-way Bray-Curtis PERMANOVA on eight independent sites found a facies-associated composition difference using all 70 allocations. All samples and taxa were retained. Run python analysis.py to reproduce answer.json and provenance.json. Provenance includes input hashes, exact rational results and per-sample centroid distances. Numbers are serialized without explicit rounding."
+}

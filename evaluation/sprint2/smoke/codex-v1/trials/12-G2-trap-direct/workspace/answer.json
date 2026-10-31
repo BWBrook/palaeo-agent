@@ -1,0 +1,15 @@
+{
+  "status": "stopped",
+  "results": {},
+  "assumptions": [
+    "The sampling description in dictionary.md is authoritative: facies is a site-level attribute and subsamples within a site are not independent facies replicates."
+  ],
+  "exclusions": [],
+  "issues": [
+    "The independent sampling units for the facies comparison are sites. S1-S4 are subsamples of site_reef_01, and S5-S8 are subsamples of site_lagoon_01. There is one site per facies.",
+    "The requested freely exchangeable sample-level one-way PERMANOVA is unsupported. Exchanging subsample labels would treat dependent subsamples as independent replicates (pseudoreplication). Facies and site are completely confounded, preventing separation of a facies effect from a site effect.",
+    "No samples were aggregated and no alternative experimental design was substituted. A site-level comparison would have no within-group replication or residual degrees of freedom. No statistics, centroid-distance summaries or permutations were computed; results is empty as required for an unsupported design.",
+    "Input validation found unique matching sample IDs, the documented count-table row order, nonnegative integer counts, and no missing values or empty samples. No corrections, transformations, normalisation or exclusions were made."
+  ],
+  "summary": "Stopped before statistical computation because the sampling design lacks independent replication within facies. All eight count rows and their metadata were validated. analysis.py preserves the validation and decision specification; provenance.json records input hashes and requested permutation settings."
+}

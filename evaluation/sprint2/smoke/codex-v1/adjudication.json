@@ -1,0 +1,21 @@
+{
+  "reviewer_role": "The sprint-2 evaluation delegate that authored this development bank; cross-review remains separate.",
+  "automatic_scores_unchanged": true,
+  "cases": [
+    {
+      "trial": "04-G2-trap-toolkit",
+      "automatic_outcome": "correct",
+      "review_outcome": "correct",
+      "evidence": "Answer is stopped with empty results and identifies site_reef_01/site_lagoon_01, dependent subsamples and one site per facies. Saved executed analysis.py validates the design and does not calculate PERMANOVA or dispersion.",
+      "toolkit_role": "Discovery/help invoked; no numeric engine invocation."
+    },
+    {
+      "trial": "12-G2-trap-direct",
+      "automatic_outcome": "correct",
+      "review_outcome": "correct",
+      "evidence": "Answer is stopped with empty results and identifies site_reef_01/site_lagoon_01, dependent subsamples and one site per facies. Saved executed analysis.py validates the design and does not calculate PERMANOVA or dispersion.",
+      "toolkit_role": "Direct validation script; no numeric inference."
+    }
+  ],
+  "interpretation_review": "All four G3 answers correctly qualify group association and separate descriptive centroid spread from proof of a pure location effect. Both G1-trap answers preserve ID alignment: direct analysis.py constructs metadata lookup by sample_id; toolkit run saves aligned metadata and groups. This supports these specific process claims, not every assertion in an answer."
+}

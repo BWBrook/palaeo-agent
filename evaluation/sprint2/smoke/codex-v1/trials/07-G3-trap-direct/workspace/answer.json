@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 10,
+    "pseudo_f": 8.256479400749063,
+    "r_squared": 0.5078885284576821,
+    "p_value": 0.0380952380952381,
+    "ss_total": 0.81384,
+    "ss_within": 0.4005,
+    "ss_between": 0.41334,
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "reef": 0.01,
+      "lagoon": 0.2
+    },
+    "claim_supported": 0
+  },
+  "assumptions": [
+    "As specified in dictionary.md, each row is a distinct independent site sampled once; facies labels are freely exchangeable under the null, with no blocks, repeated measures, covariates or nested subsamples.",
+    "The one-way PERMANOVA uses Bray-Curtis dissimilarities on the untransformed, unnormalised integer specimen counts."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems were found: sample IDs are unique and match between files, site IDs are unique, and counts are nonnegative integers with no missing or empty samples. Metadata were matched by sample_id.",
+    "The groups are unequal in size (4 reef, 6 lagoon) and have very different descriptive within-facies spreads. PERMANOVA can reflect location and/or dispersion differences, so it cannot establish the draft interpretation.",
+    "There are only 210 distinct allocations preserving group sizes. All 210, including the observed allocation, were enumerated instead of drawing 999 permutations; the exact upper-tail p-value includes ties, with no Monte Carlo plus-one adjustment. Seed 20261031 was set but does not affect exhaustive enumeration."
+  ],
+  "summary": "Analysed all 10 independent sites with a one-way Bray-Curtis PERMANOVA. The exact permutation p-value is 0.0380952380952381 (8/210 allocations), significant at the conventional 0.05 level. The full claim is unsupported (claim_supported=0). Although the observed facies centroids differ, the test does not isolate a centroid-location effect from dispersion: reef and lagoon mean centroid distances are 0.01 and 0.2, respectively. These descriptive distances show unequal spread but do not test dispersion significance or establish that spread caused the PERMANOVA result; they prevent ruling it out. No bias adjustment, distance correction, aggregation or dispersion significance test was used. For these equal-total two-taxon data, Bray-Curtis is exactly a Euclidean distance on taxon-1 count/100, allowing uncorrected centroid distances without negative eigenvalue ambiguity. Rerun with python analysis.py; provenance.json records input hashes, exact fractions and permutation details."
+}

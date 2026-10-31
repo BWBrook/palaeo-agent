@@ -1,0 +1,14 @@
+{
+  "command": "python analyse.py",
+  "run_directory": "permanova_run/6d2d3026d62f44b3979e21fcc80347c6",
+  "python_version": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "sha256": {
+    "task.md": "eff89057ebec6bd4070448e9ac7289e56575eb30ee3e21b88d73cba476fa1d39",
+    "dictionary.md": "ecf676077fe18a2d8a5c2526b760cdb38d6d16fad4a2117263906d849b514094",
+    "counts.tsv": "e0a83400e831e78c54e4f1ff315dedb586faedd1dc559f04784fc568cfa64b41",
+    "samples.csv": "aaa3db3cf4cba9bca3dec22be77d4d03f4b72266bbe87c87edec0603f50b51de",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "permanova_spec.json": "371a8a4e1b90fac2b740d32098104f1ec0cdf678f3f77dc6d4bea48b291bf2fe",
+    "analyse.py": "b9f9dccf7362cf0d3dd1f77c31e8464524adcf1cf14237b10148acf69d86c08d"
+  }
+}

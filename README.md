@@ -32,6 +32,7 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [Agent evaluation protocol](docs/evaluation.md)
 - [PERMANOVA statistical contract](docs/permanova-contract.md)
 - [Sprint plan and counter-review sequence](docs/sprints-1-2.md)
+- [PERMANOVA validation and sprint-2 smoke results](docs/sprint-2-results.md)
 - [Third-party reference material](THIRD_PARTY.md)
 
 ## Run the first workflow

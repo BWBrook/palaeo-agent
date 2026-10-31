@@ -1,0 +1,17 @@
+{
+  "method": "permanova",
+  "input": "input.dat",
+  "metadata": "metadata.csv",
+  "group_column": "facies",
+  "format": "past",
+  "orientation": "samples_by_taxa",
+  "value_type": "count",
+  "distance": "braycurtis",
+  "transform": "none",
+  "missing": "error",
+  "empty_samples": "error",
+  "design": "independent",
+  "permutation_scheme": "free",
+  "permutations": 999,
+  "seed": 20261031
+}

@@ -1,0 +1,3 @@
+Created and validated `answer.json`. Preserved `analysis.py` and `provenance.json` for rerunning.
+
+Exact PERMANOVA p-value: 0.0380952380952381. The full draft claim is unsupported (`claim_supported: 0`): within-facies spread differs substantially, and its contribution cannot be ruled out.

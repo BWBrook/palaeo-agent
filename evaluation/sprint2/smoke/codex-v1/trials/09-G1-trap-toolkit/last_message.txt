@@ -1,0 +1,1 @@
+Created [answer.json](answer.json) and validated it against the supplied schema. Exact PERMANOVA enumerated all 70 allocations, yielding p = 0.02857142857142857. Analysis specification, verification code and provenance are preserved in the directory.

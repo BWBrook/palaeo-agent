@@ -1,0 +1,3 @@
+Created `answer.json` with `status: "stopped"` and empty results, as required: one site per facies leaves no independent replication for the requested PERMANOVA.
+
+Input and schema-contract checks passed. Saved reproducible validation code in `analysis.py` and provenance in `provenance.json`.

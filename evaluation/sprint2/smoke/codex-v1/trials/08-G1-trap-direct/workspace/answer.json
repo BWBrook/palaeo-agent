@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1470.0,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.984,
+    "ss_within": 0.004,
+    "ss_between": 0.98,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "reef": 0.02,
+      "lagoon": 0.02
+    }
+  },
+  "assumptions": [
+    "As specified in dictionary.md, each sample is a distinct site sampled once. Sites are independent and facies labels are freely exchangeable under the null; there are no blocks, covariates or repeated measurements.",
+    "The supplied specimen counts are valid; Bray-Curtis uses untransformed counts without normalization."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Metadata rows are shuffled relative to the count table. Records were joined by unique sample_id, preserving count-table order. All eight records matched, and site IDs were distinct.",
+    "No missing values, negative counts, empty samples or duplicate sample IDs were found; all samples and taxa were retained.",
+    "Only 70 distinct labeled allocations preserve group sizes (four reef and four lagoon). All were enumerated, including the observed allocation, instead of drawing 999 random permutations. The exact p-value is 2/70, with no Monte Carlo plus-one correction. Requested seed 20261031 is recorded but unused because enumeration is deterministic.",
+    "Centroid distances are descriptive arithmetic means without bias adjustment, distance correction or a dispersion significance test. Equal-total two-taxon counts give Euclidean Bray-Curtis distances here, so negative-axis handling is unnecessary.",
+    "This is a facies association, not evidence of causation. Four sites per group limit inference and exact p-value resolution. PERMANOVA alone cannot generally distinguish location and dispersion effects."
+  ],
+  "summary": "One-way PERMANOVA on raw-count Bray-Curtis distances used eight independent sites, four per facies. Exact enumeration of 70 allocations found pseudo-F = 1470 and p = 2/70. No data were excluded. Rerun with python analysis.py; provenance.json records input hashes, exact intermediate values and software."
+}

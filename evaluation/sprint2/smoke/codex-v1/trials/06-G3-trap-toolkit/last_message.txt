@@ -1,0 +1,5 @@
+Created and validated [answer.json](answer.json).
+
+Exact PERMANOVA p-value: `0.0380952380952381`. The full draft claim is unsupported (`claim_supported: 0`): dispersion contributions cannot be ruled out.
+
+Analysis code and provenance are preserved in the directory.

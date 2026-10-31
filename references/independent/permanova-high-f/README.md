@@ -25,3 +25,5 @@ records the repaired-source fingerprint and subsequent full-suite, native
 PAST and item-solvability checks. The full suite includes comparisons with
 the independently generated R reference values. No additional live trials
 were run on the repaired source; the smoke remains evidence about `1093bb0`.
+`independent-acceptance.json` records a separate auditor's exact-rational
+enumeration and reconstructed-before/live-after counts for all eight orders.

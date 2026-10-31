@@ -1,0 +1,49 @@
+{
+  "command": "python analysis.py",
+  "python_version": "3.12.13",
+  "seed_requested": 20261031,
+  "permutations_requested": 999,
+  "allocations_enumerated": 70,
+  "extreme_allocations": 2,
+  "sample_order": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8"
+  ],
+  "facies_in_sample_order": [
+    "reef",
+    "reef",
+    "reef",
+    "reef",
+    "lagoon",
+    "lagoon",
+    "lagoon",
+    "lagoon"
+  ],
+  "taxa": [
+    "Dalmanella",
+    "Sowerbyella"
+  ],
+  "exact_values": {
+    "ss_total": "123/125",
+    "ss_within": "1/250",
+    "ss_between": "49/50",
+    "pseudo_f": "1470",
+    "r_squared": "245/246",
+    "p_value": "1/35"
+  },
+  "sha256": {
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "5c6901759628a32365bd8c10ebe436e6d800cfb43270b1d4d6c43fa41c90390b",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "0795e5f866ca3b235082132264f5c788605008e617886856661fd311f0601e71",
+    "analysis.py": "f7b09715f1a98be1c0f77c3a0812fc6d97c29eff3db74d4c5a4e6a93b49a8312"
+  },
+  "method": "SS_total=sum(i<j)d_ij^2/n; SS_within=sum_g sum(i<j in g)d_ij^2/n_g; SS_between=SS_total-SS_within; F=(SS_between/1)/(SS_within/6). Exact Fraction arithmetic determines permutation ties. Squared centroid distances use mean_j d_ij^2 minus sum(j<k)d_jk^2/n_g^2. All reported numbers use Python float serialization without rounding."
+}

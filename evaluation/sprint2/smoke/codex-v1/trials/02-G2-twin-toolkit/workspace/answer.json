@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1469.9999999999998,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.9839999999999999,
+    "ss_within": 0.004,
+    "ss_between": 0.9799999999999999,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "reef": 0.01999999999999999,
+      "lagoon": 0.019999999999999976
+    }
+  },
+  "assumptions": [
+    "As explicitly stated in dictionary.md, each row is one distinct site sampled once; the eight sites are independent sampling units and facies labels are freely exchangeable under the null.",
+    "The analysis uses one facies factor with four reef and four lagoon sites, without blocks, covariates, repeated measurements or nested subsamples. Counts are used without transformation, normalisation or aggregation."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems identified: sample and taxon IDs are unique, metadata match count rows by exact sample_id, site IDs are distinct, and all counts are finite nonnegative integers with no empty samples. Palaeo-Agent reported no warnings.",
+    "Independence and null exchangeability are supported by the supplied sampling description but cannot be verified from the count matrix. PERMANOVA tests facies-associated composition and is not exclusively a centroid-location test or evidence of causation.",
+    "Centroid distances are descriptive, with no bias adjustment, square-root transformation, additive distance correction or dispersion significance test. Palaeo-Agent discarded numerical eigenmodes below its recorded tolerance; no sample distances required truncation."
+  ],
+  "summary": "One-way PERMANOVA on untransformed specimen counts using Bray-Curtis dissimilarity, performed with Palaeo-Agent. All 70 distinct label allocations preserving group sizes were enumerated, including the observed allocation; 2 were at least as extreme, so the exact p-value is 2/70. The requested permutation count was 999 and seed was 20261031; enumeration makes the result independent of random draws. Facies is associated with composition at the conventional 0.05 level. Rerun with python analysis.py; permanova.spec.json preserves the specification. The permanova_run directory preserves complete results, permutation allocations, statistics, dispersion diagnostics, input copies, manifest and environment. provenance.json records input hashes. Numbers are copied without rounding."
+}

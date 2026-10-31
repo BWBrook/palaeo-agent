@@ -1,0 +1,41 @@
+{
+  "command": "python analysis.py",
+  "python_version": "3.12.13",
+  "input_sha256": {
+    "task.md": "eff89057ebec6bd4070448e9ac7289e56575eb30ee3e21b88d73cba476fa1d39",
+    "dictionary.md": "ecf676077fe18a2d8a5c2526b760cdb38d6d16fad4a2117263906d849b514094",
+    "counts.tsv": "e0a83400e831e78c54e4f1ff315dedb586faedd1dc559f04784fc568cfa64b41",
+    "samples.csv": "aaa3db3cf4cba9bca3dec22be77d4d03f4b72266bbe87c87edec0603f50b51de",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "analysis.py": "9290bcc94b2b9295cf20eb9303cc33b9bb02d6928fc3296db1989dddd7120f7f"
+  },
+  "seed": 20261031,
+  "requested_permutations": 999,
+  "enumerated_allocations_including_observed": 210,
+  "allocations_at_least_as_extreme": 8,
+  "exact_results": {
+    "pseudo_f": "55112/6675",
+    "r_squared": "6889/13564",
+    "p_value": "4/105",
+    "ss_total": "10173/12500",
+    "ss_within": "801/2000",
+    "ss_between": "20667/50000"
+  },
+  "centroid_distances_exact": {
+    "reef": {
+      "S1": "3/200",
+      "S2": "1/200",
+      "S3": "1/200",
+      "S4": "3/200"
+    },
+    "lagoon": {
+      "S5": "3/10",
+      "S6": "1/5",
+      "S7": "1/10",
+      "S8": "0",
+      "S9": "1/10",
+      "S10": "1/2"
+    }
+  },
+  "schema_validation": "All supplied schema constraints checked using standard-library assertions."
+}

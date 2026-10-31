@@ -1,0 +1,5 @@
+Created `answer.json` and checked it against the schema.
+
+Status is `stopped`, with empty results: there is only one independent site per facies, so treating subsamples as independent would invalidate the requested PERMANOVA.
+
+Saved rerunnable checks in `analysis.py` and provenance in `analysis_provenance.json`.

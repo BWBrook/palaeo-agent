@@ -1,0 +1,18 @@
+{
+  "rerun_command": "python analysis.py",
+  "input_sha256": {
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "c7eeb3b0dbd2c856bd81b6d3466504d2d80fe6dd836b2ac52bd483d1b560f440",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "d30471ec330ca51ba34152d7f6a41ba7e25623e2e475392b70c56ba29a51c89b"
+  },
+  "analysis_sha256": "b1c1085d8f2502e41992047169cb6ca6cecb53a0788d118a00821d70c077cc01",
+  "requested_method": "One-way PERMANOVA; Bray-Curtis; untransformed specimen counts",
+  "requested_seed": 20261031,
+  "requested_permutations": 999,
+  "permutations_run": 0,
+  "reason": "Unsupported independence design; stopped before statistical computation.",
+  "validated_sample_count": 8,
+  "independent_site_count": 2
+}

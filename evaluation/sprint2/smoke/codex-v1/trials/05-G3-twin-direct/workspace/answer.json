@@ -1,0 +1,31 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "n": 10,
+    "pseudo_f": 873.8133333333334,
+    "r_squared": 0.9909277851699528,
+    "p_value": 0.004761904761904762,
+    "ss_total": 0.99204,
+    "ss_within": 0.009,
+    "ss_between": 0.98304,
+    "df_between": 1,
+    "df_within": 8,
+    "group_mean_centroid_distance": {
+      "reef": 0.02,
+      "lagoon": 0.03
+    },
+    "claim_supported": 1
+  },
+  "assumptions": [
+    "As stated in dictionary.md, each row is a distinct site sampled once; the 10 sites are independent sampling units and facies labels are freely exchangeable under the null, with no blocks, covariates, repeated measurements or nested subsamples.",
+    "Evidence for the community difference is assessed at conventional alpha=0.05; inference is conditional on the stated exchangeability assumption and does not establish causation."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems were found: sample IDs match one-to-one, site IDs are unique, and all values are nonnegative integer counts with no missing values or empty samples. All 10 samples and both taxa were retained in count-table order.",
+    "Only 210 distinct allocations preserve the 4 reef and 6 lagoon group sizes. All were enumerated, including the observed allocation, instead of drawing 999 permutations. The exact upper-tail p-value is 1/210, with no extra plus-one adjustment. Seed 20261031 was set but is immaterial to enumeration.",
+    "Counts were used without transformation, normalisation or aggregation. All row totals are 100; with two taxa, Bray-Curtis is Euclidean here. Centroid distances use uncorrected geometry without bias adjustment or distance correction; no dispersion significance test was performed.",
+    "PERMANOVA can respond to differences in location and dispersion. Descriptive centroid distances do not isolate a pure location effect. The small sample and assumed independence and exchangeability limit inference."
+  ],
+  "summary": "The exact draft claim is supported (claim_supported=1): one-way PERMANOVA using Bray-Curtis on raw counts finds a facies-associated community difference under the stated exchangeability assumption (exact p=1/210). Distances to group centroids describe within-facies spread separately and do not isolate a pure location effect. All 210 group-size-preserving allocations were evaluated. Rerun with python analysis.py; provenance.json records input hashes, exact statistics, permutation details and individual centroid distances."
+}

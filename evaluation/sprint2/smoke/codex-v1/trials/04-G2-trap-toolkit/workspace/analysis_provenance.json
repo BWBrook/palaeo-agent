@@ -1,0 +1,55 @@
+{
+  "rerun": "python analysis.py",
+  "python_version": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "input_sha256": {
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "c7eeb3b0dbd2c856bd81b6d3466504d2d80fe6dd836b2ac52bd483d1b560f440",
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "d30471ec330ca51ba34152d7f6a41ba7e25623e2e475392b70c56ba29a51c89b",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "analysis.py": "d08b8a772384e8d8711c4877f1a18c41ff73e9e2fc707fd03f4721872c022884"
+  },
+  "package_command": [
+    "/Users/bwbrook/palaeo-eval/sprint2-runtime/toolkit/bin/python",
+    "-m",
+    "palaeo_agent",
+    "discover"
+  ],
+  "package_method": "permanova",
+  "package_method_version": 1,
+  "package_requirements": [
+    "Independent sampling units and freely exchangeable labels explicitly declared",
+    "Exactly one categorical group factor, two or more samples per group",
+    "Metadata joined by exact sample ID; finite observed pseudo-F"
+  ],
+  "requested_analysis": {
+    "distance": "braycurtis",
+    "transform": "none",
+    "seed": 20261031,
+    "permutations": 999
+  },
+  "site_samples": {
+    "site_reef_01": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "site_lagoon_01": [
+      "S5",
+      "S6",
+      "S7",
+      "S8"
+    ]
+  },
+  "site_facies": {
+    "site_reef_01": [
+      "reef"
+    ],
+    "site_lagoon_01": [
+      "lagoon"
+    ]
+  },
+  "decision": "stopped: unsupported independent free-label design",
+  "schema_validation": "passed"
+}

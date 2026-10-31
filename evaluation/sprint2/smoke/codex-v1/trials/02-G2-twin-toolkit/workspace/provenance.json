@@ -1,0 +1,13 @@
+{
+  "command": "python analysis.py",
+  "result_file": "permanova_run/fe4a38c9d1c9462e83839248f0d48351/results.json",
+  "sha256": {
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "5c6901759628a32365bd8c10ebe436e6d800cfb43270b1d4d6c43fa41c90390b",
+    "permanova.spec.json": "371a8a4e1b90fac2b740d32098104f1ec0cdf678f3f77dc6d4bea48b291bf2fe",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78"
+  },
+  "validation": "Schema and data-integrity checks passed; Bray-Curtis distances and sums of squares independently checked."
+}

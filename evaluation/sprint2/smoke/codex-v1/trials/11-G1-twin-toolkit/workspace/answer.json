@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "results": {
+    "n": 8,
+    "pseudo_f": 1469.9999999999998,
+    "r_squared": 0.9959349593495935,
+    "p_value": 0.02857142857142857,
+    "ss_total": 0.9839999999999999,
+    "ss_within": 0.004,
+    "ss_between": 0.9799999999999999,
+    "df_between": 1,
+    "df_within": 6,
+    "group_mean_centroid_distance": {
+      "reef": 0.01999999999999999,
+      "lagoon": 0.019999999999999976
+    }
+  },
+  "assumptions": [
+    "As explicitly stated in dictionary.md, each sample is one distinct site sampled once; the eight sites are independent sampling units and facies labels are freely exchangeable under the null. There are no blocks, covariates, repeated measurements or nested subsamples.",
+    "Counts are untransformed nonnegative integer specimen counts, with samples in rows and taxa in columns; no normalisation or aggregation was applied."
+  ],
+  "exclusions": [],
+  "issues": [
+    "No data problems identified: sample IDs match exactly between the count table and metadata, all eight site IDs are distinct, all counts are valid, and no samples are missing or empty. Metadata were aligned by exact sample ID.",
+    "All 70 distinct allocations preserving four reef and four lagoon sites were enumerated instead of Monte Carlo sampling the requested 999 permutations. Two allocations were at least as extreme as observed, including the observed allocation; the exact p-value is 2/70. Seed 20261031 was recorded but exhaustive enumeration does not depend on it.",
+    "PERMANOVA measures community association with facies and can reflect both location and dispersion; it does not establish a causal effect or isolate a pure centroid-location effect. Only four sites per group were sampled, and the exact permutation p-value has limited resolution.",
+    "Centroid distances are descriptive with no bias adjustment, square-root distance transformation, additive distance correction or dispersion significance test. Palaeo-Agent retained one positive eigenaxis and discarded seven numerical-zero eigenmodes below its recorded threshold of 1.4901161193847656e-08; no negative squared distances were truncated."
+  ],
+  "summary": "One-way Bray-Curtis PERMANOVA on all eight untransformed count samples supports a facies-associated community difference under the declared independent-site, freely exchangeable-label design. Numerical results are copied without rounding from Palaeo-Agent. Rerun using python -m palaeo_agent run analysis.spec.json --output analysis_run, then python finalize_analysis.py. The full run, input snapshots, aligned metadata, exact allocation statistics, environment and manifest are preserved under analysis_run/. Independent distance, pseudo-F, exhaustive p-value and centroid checks and answer-schema validation are in finalize_analysis.py."
+}

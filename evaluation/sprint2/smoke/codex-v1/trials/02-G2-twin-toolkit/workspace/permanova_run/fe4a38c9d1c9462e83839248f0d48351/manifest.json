@@ -1,0 +1,221 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "run_id": "fe4a38c9d1c9462e83839248f0d48351",
+  "method": "permanova",
+  "method_version": 1,
+  "inputs": {
+    "matrix": {
+      "path": "input.dat",
+      "sha256": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+      "bytes": 97
+    },
+    "metadata": {
+      "path": "metadata.csv",
+      "sha256": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+      "bytes": 161
+    }
+  },
+  "steps": [
+    {
+      "id": "snapshot_inputs",
+      "inputs": [],
+      "outputs": [
+        "input.dat",
+        "metadata.csv"
+      ]
+    },
+    {
+      "id": "resolve_specification",
+      "inputs": [],
+      "outputs": [
+        "spec.json"
+      ]
+    },
+    {
+      "id": "record_environment",
+      "inputs": [],
+      "outputs": [
+        "environment.json"
+      ]
+    },
+    {
+      "id": "orient_validate_align_groups",
+      "inputs": [
+        "input.dat",
+        "metadata.csv"
+      ],
+      "outputs": [
+        "retained_counts.csv",
+        "aligned_metadata.csv",
+        "groups.csv"
+      ]
+    },
+    {
+      "id": "transform_for_distance",
+      "inputs": [
+        "retained_counts.csv"
+      ],
+      "outputs": [
+        "transformed_matrix.csv"
+      ]
+    },
+    {
+      "id": "dissimilarity",
+      "inputs": [
+        "transformed_matrix.csv"
+      ],
+      "outputs": [
+        "distances.csv"
+      ]
+    },
+    {
+      "id": "permutation_association",
+      "inputs": [
+        "distances.csv",
+        "groups.csv"
+      ],
+      "outputs": [
+        "permanova.csv",
+        "permutations.json"
+      ]
+    },
+    {
+      "id": "descriptive_centroid_dispersion",
+      "inputs": [
+        "distances.csv",
+        "groups.csv"
+      ],
+      "outputs": [
+        "dispersion.csv",
+        "group_dispersion.csv",
+        "eigenvalues.csv"
+      ]
+    },
+    {
+      "id": "collect_results",
+      "inputs": [
+        "input.dat",
+        "metadata.csv",
+        "spec.json"
+      ],
+      "outputs": [
+        "results.json"
+      ]
+    },
+    {
+      "id": "plot_diagnostics",
+      "inputs": [
+        "results.json"
+      ],
+      "outputs": [
+        "diagnostics.svg",
+        "diagnostics.png"
+      ]
+    }
+  ],
+  "files": {
+    "aligned_metadata.csv": {
+      "sha256": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+      "bytes": 161,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_align_groups"
+    },
+    "diagnostics.png": {
+      "sha256": "cf715181efe3863d53915fc4725f8b3e46bdb9d9bee9a6e2c0632233d8e8a117",
+      "bytes": 55106,
+      "media_type": "image/png",
+      "produced_by": "plot_diagnostics"
+    },
+    "diagnostics.svg": {
+      "sha256": "92732978238501eb16e65077fe5c73beb0e5f8266b03413353d210aa552ee845",
+      "bytes": 54657,
+      "media_type": "image/svg+xml",
+      "produced_by": "plot_diagnostics"
+    },
+    "dispersion.csv": {
+      "sha256": "559212f933bd8cfcc735b1ac617fc73c769690e4663ad6fa00490d5126cfc70f",
+      "bytes": 473,
+      "media_type": "text/csv",
+      "produced_by": "descriptive_centroid_dispersion"
+    },
+    "distances.csv": {
+      "sha256": "b36d8863a2c1bf967bd652bc0670a6f80df1ae4cb2e1647ffd69b4f0a64e252f",
+      "bytes": 362,
+      "media_type": "text/csv",
+      "produced_by": "dissimilarity"
+    },
+    "eigenvalues.csv": {
+      "sha256": "a3929eb308f2c07080fdabdac92880a97be4baae9d5842b0257b9ff1730c0de0",
+      "bytes": 221,
+      "media_type": "text/csv",
+      "produced_by": "descriptive_centroid_dispersion"
+    },
+    "environment.json": {
+      "sha256": "84cadf8b52e5961452a6cd416be502ea6b5f4c199a89e08edc635163ddfb3e1d",
+      "bytes": 3151,
+      "media_type": "application/json",
+      "produced_by": "record_environment"
+    },
+    "group_dispersion.csv": {
+      "sha256": "79ee0992bf728350224da49414a766e9f4950565a604a8ebea2410bab363a4e2",
+      "bytes": 88,
+      "media_type": "text/csv",
+      "produced_by": "descriptive_centroid_dispersion"
+    },
+    "groups.csv": {
+      "sha256": "df3d804409a6d27630113fc7279d698c9853a386e4efca5b9e621f1a4ade2e9f",
+      "bytes": 89,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_align_groups"
+    },
+    "input.dat": {
+      "sha256": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+      "bytes": 97,
+      "media_type": "text/plain",
+      "produced_by": "snapshot_inputs"
+    },
+    "metadata.csv": {
+      "sha256": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+      "bytes": 161,
+      "media_type": "text/csv",
+      "produced_by": "snapshot_inputs"
+    },
+    "permanova.csv": {
+      "sha256": "1aa82305d5b614d939be2c758cf27ad94c82df16b7df657ddbd0222925cb3d07",
+      "bytes": 184,
+      "media_type": "text/csv",
+      "produced_by": "permutation_association"
+    },
+    "permutations.json": {
+      "sha256": "6bcbf51c10823096f4aea8d9397185e7dc7e25c77154216325475975ace72bb4",
+      "bytes": 9019,
+      "media_type": "application/json",
+      "produced_by": "permutation_association"
+    },
+    "results.json": {
+      "sha256": "420fe3164974790fce97518e38face6644974078faacedd62c270314f2d31263",
+      "bytes": 16400,
+      "media_type": "application/json",
+      "produced_by": "collect_results"
+    },
+    "retained_counts.csv": {
+      "sha256": "3c358ca048e79decd31d92a2f09f01adbff0daa742757955d166ee2d73f76514",
+      "bytes": 137,
+      "media_type": "text/csv",
+      "produced_by": "orient_validate_align_groups"
+    },
+    "spec.json": {
+      "sha256": "0992f3050899d76c883e2edf687d865eb4b527c5acac1e5daa229238250d284b",
+      "bytes": 394,
+      "media_type": "application/json",
+      "produced_by": "resolve_specification"
+    },
+    "transformed_matrix.csv": {
+      "sha256": "3c358ca048e79decd31d92a2f09f01adbff0daa742757955d166ee2d73f76514",
+      "bytes": 137,
+      "media_type": "text/csv",
+      "produced_by": "transform_for_distance"
+    }
+  }
+}

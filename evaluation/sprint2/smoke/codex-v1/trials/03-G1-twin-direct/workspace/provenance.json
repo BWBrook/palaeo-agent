@@ -1,0 +1,43 @@
+{
+  "command": "python analysis.py",
+  "python_version": "3.12.13",
+  "numpy_version": "2.5.4",
+  "seed": 20261031,
+  "requested_permutations": 999,
+  "method": "exhaustive allocations preserving group sizes",
+  "allocations_evaluated": 70,
+  "upper_tail_count": 2,
+  "tie_tolerance": 1.4699999999999997e-09,
+  "sample_order": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8"
+  ],
+  "taxa": [
+    "Dalmanella",
+    "Sowerbyella"
+  ],
+  "distance_gram_eigenvalues": [
+    -1.0109441023564772e-16,
+    -7.450042366860007e-17,
+    -5.5070907913267875e-17,
+    2.957081940287399e-17,
+    3.82516634392418e-17,
+    6.691984834636484e-17,
+    1.6006683808395666e-16,
+    0.9840000000000003
+  ],
+  "sha256": {
+    "task.md": "5f50d1b4134db683f3ef1522852f6f3b77e8ce52937152ee1e1e4957cfa2bf7b",
+    "dictionary.md": "5c6901759628a32365bd8c10ebe436e6d800cfb43270b1d4d6c43fa41c90390b",
+    "counts.tsv": "57d25c37c737f5a301938f4f99e9ddbd90bba865adf11f2ad486d35b8ab1156f",
+    "samples.csv": "73a7a6bd1e438c8539c68b9310f1478188a7bbe12e33af3ec084cd3c1c4e2860",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "analysis.py": "991cf115b5b1c5ffec7b8487f3535c0c6c84ab4a542b38005262ffc391944492"
+  }
+}

@@ -1,0 +1,5 @@
+Created and validated [answer.json](answer.json).
+
+PERMANOVA: pseudo-F = 1470.0, R² = 0.9959349593495935, exact p = 0.02857142857142857 across all 70 allocations.
+
+Reproducible code and provenance are saved in `analysis.py` and `provenance.json`.

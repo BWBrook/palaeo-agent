@@ -1,0 +1,35 @@
+{
+  "command": "python analysis.py",
+  "seed": 20261031,
+  "requested_permutations": 999,
+  "allocations_enumerated_including_observed": 210,
+  "allocations_at_least_as_extreme": 1,
+  "exact_rational_statistics": {
+    "ss_total": "24801/25000",
+    "ss_within": "9/1000",
+    "ss_between": "3072/3125",
+    "pseudo_f": "65536/75",
+    "r_squared": "8192/8267",
+    "p_value": "1/210"
+  },
+  "individual_centroid_distances": {
+    "S1": 0.03,
+    "S2": 0.01,
+    "S3": 0.01,
+    "S4": 0.03,
+    "S5": 0.05,
+    "S6": 0.03,
+    "S7": 0.01,
+    "S8": 0.01,
+    "S9": 0.03,
+    "S10": 0.05
+  },
+  "sha256": {
+    "task.md": "8de1ec49e7f770228b909268839b151c9be3415dd91d3e74e0d7a89521697537",
+    "dictionary.md": "ecf676077fe18a2d8a5c2526b760cdb38d6d16fad4a2117263906d849b514094",
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "counts.tsv": "3f26687a07de2dd2c2a67d4a0377dbcedad422dd313328edadc0f482d50e5ceb",
+    "samples.csv": "aaa3db3cf4cba9bca3dec22be77d4d03f4b72266bbe87c87edec0603f50b51de",
+    "analysis.py": "763a91b39a2286e05cffe8f65560af55180a0128914607559414e537a16f45b9"
+  }
+}

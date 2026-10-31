@@ -1,0 +1,3 @@
+Created and validated [answer.json](answer.json). The exact permutation p-value is 0.02857142857142857 across all 70 allocations.
+
+Reproducible code and provenance are saved in [analysis.py](analysis.py) and [provenance.json](provenance.json).
