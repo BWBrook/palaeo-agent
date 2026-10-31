@@ -1,0 +1,2267 @@
+{
+ "palaeo_agent_file": "/Users/bwbrook/work/palaeo-agent/src/palaeo_agent/__init__.py",
+ "counts": {
+  "objective:correct": 24,
+  "judgment:correct": 1
+ },
+ "records": [
+  {
+   "id": "P01",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.334042204095186,
+     "expected": 0.3340422040951859
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.1385687016501258,
+     "expected": 0.13856870165012583
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.19547350244506018,
+     "expected": 0.19547350244506012
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 5.642645131758949,
+     "expected": 5.642645131758948
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.5851760647267182,
+     "expected": 0.5851760647267181
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      4
+     ],
+     "expected": [
+      1,
+      4
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.1,
+     "expected": 0.1
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.1615636373210449,
+      "s02": 0.17531490820925152,
+      "s03": 0.19823240552541538,
+      "s04": 0.0969185840558783,
+      "s05": 0.10973530863238938,
+      "s06": 0.14491183253574055
+     },
+     "expected": {
+      "s01": 0.161563637321045,
+      "s02": 0.175314908209252,
+      "s03": 0.198232405525415,
+      "s04": 0.0969185840558781,
+      "s05": 0.109735308632389,
+      "s06": 0.144911832535741
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.17837031701857056,
+      "g2": 0.1171885750746694
+     },
+     "expected": {
+      "g1": 0.178370317018571,
+      "g2": 0.117188575074669
+     }
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P11",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.334042204095186,
+     "expected": 0.3340422040951859
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.1385687016501258,
+     "expected": 0.13856870165012583
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.19547350244506018,
+     "expected": 0.19547350244506012
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 5.642645131758949,
+     "expected": 5.642645131758948
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.5851760647267182,
+     "expected": 0.5851760647267181
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      4
+     ],
+     "expected": [
+      1,
+      4
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.1,
+     "expected": 0.1
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s05": 0.10973530863238945,
+      "s01": 0.16156363732104495,
+      "s06": 0.14491183253574055,
+      "s03": 0.19823240552541554,
+      "s02": 0.17531490820925166,
+      "s04": 0.09691858405587832
+     },
+     "expected": {
+      "s05": 0.109735308632389,
+      "s01": 0.161563637321045,
+      "s06": 0.144911832535741,
+      "s03": 0.198232405525415,
+      "s02": 0.175314908209252,
+      "s04": 0.0969185840558782
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g2": 0.11718857507466945,
+      "g1": 0.17837031701857073
+     },
+     "expected": {
+      "g1": 0.178370317018571,
+      "g2": 0.117188575074669
+     }
+    },
+    {
+     "check": "same_statistics_as_P01",
+     "ok": true,
+     "actual": [
+      5.642645131758949,
+      0.1
+     ],
+     "expected": [
+      5.642645131758949,
+      0.1
+     ]
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P02",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.9047162859824758,
+     "expected": 0.9047162859824758
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.27622492974090834,
+     "expected": 0.2762249297409084
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.6284913562415675,
+     "expected": 0.6284913562415674
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 6.825864959014479,
+     "expected": 6.825864959014477
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.694683367569821,
+     "expected": 0.6946833675698209
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      2,
+      6
+     ],
+     "expected": [
+      2,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 1260,
+     "expected": 1260
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.0007936507936507937,
+     "expected": 0.0007936507936507937
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 1260,
+     "expected": 1260
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.1264591439688718,
+      "s02": 0.1264591439688718,
+      "s03": 0.1783247192108634,
+      "s04": 0.18493158304181326,
+      "s05": 0.16820511323499956,
+      "s06": 0.22587391997720996,
+      "s07": 0.08967752420975911,
+      "s08": 0.2338849651702541,
+      "s09": 0.1902248157861938
+     },
+     "expected": {
+      "s01": 0.126459143968872,
+      "s02": 0.126459143968872,
+      "s03": 0.178324719210863,
+      "s04": 0.184931583041813,
+      "s05": 0.168205113234999,
+      "s06": 0.22587391997721,
+      "s07": 0.0896775242097594,
+      "s08": 0.233884965170254,
+      "s09": 0.190224815786194
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.1264591439688718,
+      "g2": 0.17715380516255874,
+      "g3": 0.18491530628585423
+     },
+     "expected": {
+      "g1": 0.126459143968872,
+      "g2": 0.177153805162559,
+      "g3": 0.184915306285854
+     }
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P02b",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.9047162859824758,
+     "expected": 0.9047162859824758
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.27622492974090834,
+     "expected": 0.2762249297409084
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.6284913562415675,
+     "expected": 0.6284913562415674
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 6.825864959014479,
+     "expected": 6.825864959014477
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.694683367569821,
+     "expected": 0.6946833675698209
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      2,
+      6
+     ],
+     "expected": [
+      2,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 1260,
+     "expected": 1260
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "monte_carlo",
+     "expected": "monte_carlo"
+    },
+    {
+     "check": "mc_denominator",
+     "ok": true,
+     "actual": 1000,
+     "expected": 1000
+    },
+    {
+     "check": "mc_p_grid",
+     "ok": true,
+     "actual": 0.001,
+     "expected": "k/1000, k>=1"
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.1264591439688718,
+      "s02": 0.1264591439688718,
+      "s03": 0.1783247192108634,
+      "s04": 0.18493158304181326,
+      "s05": 0.16820511323499956,
+      "s06": 0.22587391997720996,
+      "s07": 0.08967752420975911,
+      "s08": 0.2338849651702541,
+      "s09": 0.1902248157861938
+     },
+     "expected": {
+      "s01": 0.126459143968872,
+      "s02": 0.126459143968872,
+      "s03": 0.178324719210863,
+      "s04": 0.184931583041813,
+      "s05": 0.168205113234999,
+      "s06": 0.22587391997721,
+      "s07": 0.0896775242097594,
+      "s08": 0.233884965170254,
+      "s09": 0.190224815786194
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.1264591439688718,
+      "g2": 0.17715380516255874,
+      "g3": 0.18491530628585423
+     },
+     "expected": {
+      "g1": 0.126459143968872,
+      "g2": 0.177153805162559,
+      "g3": 0.184915306285854
+     }
+    },
+    {
+     "check": "same_seed_reproduces",
+     "ok": true,
+     "actual": "result",
+     "expected": "identical"
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": {
+    "p_mc": 0.001,
+    "p_exact": 0.0007936507936507937,
+    "within_4se_plus_grid": true
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P13",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.9047162859824758,
+     "expected": 0.9047162859824758
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.27622492974090834,
+     "expected": 0.2762249297409084
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.6284913562415675,
+     "expected": 0.6284913562415674
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 6.825864959014479,
+     "expected": 6.825864959014477
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.694683367569821,
+     "expected": 0.6946833675698209
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      2,
+      6
+     ],
+     "expected": [
+      2,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 1260,
+     "expected": 1260
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.0007936507936507937,
+     "expected": 0.0007936507936507937
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 1260,
+     "expected": 1260
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.1264591439688718,
+      "s02": 0.1264591439688718,
+      "s03": 0.1783247192108634,
+      "s04": 0.18493158304181326,
+      "s05": 0.16820511323499956,
+      "s06": 0.22587391997720996,
+      "s07": 0.08967752420975911,
+      "s08": 0.2338849651702541,
+      "s09": 0.1902248157861938
+     },
+     "expected": {
+      "s01": 0.126459143968872,
+      "s02": 0.126459143968872,
+      "s03": 0.178324719210863,
+      "s04": 0.184931583041813,
+      "s05": 0.168205113234999,
+      "s06": 0.22587391997721,
+      "s07": 0.0896775242097594,
+      "s08": 0.233884965170254,
+      "s09": 0.190224815786194
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "zeta": 0.1264591439688718,
+      "alpha": 0.17715380516255874,
+      "mid": 0.18491530628585423
+     },
+     "expected": {
+      "alpha": 0.177153805162559,
+      "mid": 0.184915306285854,
+      "zeta": 0.126459143968872
+     }
+    },
+    {
+     "check": "same_statistics_as_P02",
+     "ok": true,
+     "actual": [
+      6.825864959014479,
+      0.0007936507936507937
+     ],
+     "expected": [
+      6.825864959014479,
+      0.0007936507936507937
+     ]
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P03",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.6804231317049133,
+     "expected": 0.6804231317049132
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.2393689031413541,
+     "expected": 0.23936890314135406
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.44105422856355925,
+     "expected": 0.4410542285635591
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 11.055426735270728,
+     "expected": 11.055426735270725
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.6482058119606025,
+     "expected": 0.6482058119606023
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      6
+     ],
+     "expected": [
+      1,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.02857142857142857,
+     "expected": 0.02857142857142857
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.121202355335986,
+      "s02": 0.20408144304761067,
+      "s03": 0.1928567973443469,
+      "s04": 0.1979177603311524,
+      "s05": 0.16864375363160256,
+      "s06": 0.14038334785898152,
+      "s07": 0.16258128785244372,
+      "s08": 0.17911894795006708
+     },
+     "expected": {
+      "s01": 0.121202355335986,
+      "s02": 0.20408144304761,
+      "s03": 0.192856797344347,
+      "s04": 0.197917760331152,
+      "s05": 0.168643753631603,
+      "s06": 0.140383347858982,
+      "s07": 0.162581287852444,
+      "s08": 0.179118947950067
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.179014589014774,
+      "g2": 0.16268183432327374
+     },
+     "expected": {
+      "g1": 0.179014589014774,
+      "g2": 0.162681834323274
+     }
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P12",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.6804231317049133,
+     "expected": 0.6804231317049132
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.2393689031413541,
+     "expected": 0.23936890314135406
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.44105422856355925,
+     "expected": 0.4410542285635591
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 11.055426735270728,
+     "expected": 11.055426735270725
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.6482058119606025,
+     "expected": 0.6482058119606023
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      6
+     ],
+     "expected": [
+      1,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.02857142857142857,
+     "expected": 0.02857142857142857
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.121202355335986,
+      "s02": 0.20408144304761067,
+      "s03": 0.1928567973443469,
+      "s04": 0.1979177603311524,
+      "s05": 0.16864375363160256,
+      "s06": 0.14038334785898152,
+      "s07": 0.16258128785244372,
+      "s08": 0.17911894795006708
+     },
+     "expected": {
+      "s01": 0.121202355335986,
+      "s02": 0.20408144304761,
+      "s03": 0.192856797344347,
+      "s04": 0.197917760331152,
+      "s05": 0.168643753631603,
+      "s06": 0.140383347858982,
+      "s07": 0.162581287852444,
+      "s08": 0.179118947950067
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.179014589014774,
+      "g2": 0.16268183432327374
+     },
+     "expected": {
+      "g1": 0.179014589014774,
+      "g2": 0.162681834323274
+     }
+    },
+    {
+     "check": "same_statistics_as_P03",
+     "ok": true,
+     "actual": [
+      11.055426735270728,
+      0.02857142857142857
+     ],
+     "expected": [
+      11.055426735270728,
+      0.02857142857142857
+     ]
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P04",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.05555555555555554,
+     "expected": 0.05555555555555555
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.04166666666666665,
+     "expected": 0.041666666666666664
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.013888888888888888,
+     "expected": 0.013888888888888888
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 2.000000000000001,
+     "expected": 2.0
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.25000000000000006,
+     "expected": 0.25
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      6
+     ],
+     "expected": [
+      1,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.5714285714285714,
+     "expected": 0.5714285714285714
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.0416666666666667,
+      "s02": 0.04166666666666659,
+      "s03": 0.125,
+      "s04": 0.0416666666666667,
+      "s05": 0.125,
+      "s06": 0.04166666666666666,
+      "s07": 0.04166666666666666,
+      "s08": 0.04166666666666666
+     },
+     "expected": {
+      "s01": 0.0416666666666667,
+      "s02": 0.0416666666666667,
+      "s03": 0.125,
+      "s04": 0.0416666666666667,
+      "s05": 0.125,
+      "s06": 0.0416666666666667,
+      "s07": 0.0416666666666667,
+      "s08": 0.0416666666666667
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.0625,
+      "g2": 0.06249999999999999
+     },
+     "expected": {
+      "g1": 0.0625000000000001,
+      "g2": 0.0625
+     }
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P05",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 2.5,
+     "expected": 2.5
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 2.0,
+     "expected": 2.0
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.5,
+     "expected": 0.5
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 1.0,
+     "expected": 1.0
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.2,
+     "expected": 0.2
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      4
+     ],
+     "expected": [
+      1,
+      4
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 1.0,
+     "expected": 1.0
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.5773502691896258,
+      "s02": 0.5773502691896257,
+      "s03": 0.5773502691896258,
+      "s04": 0.5773502691896255,
+      "s05": 0.5773502691896256,
+      "s06": 0.5773502691896258
+     },
+     "expected": {
+      "s01": 0.577350269189626,
+      "s02": 0.577350269189626,
+      "s03": 0.577350269189626,
+      "s04": 0.577350269189626,
+      "s05": 0.577350269189626,
+      "s06": 0.577350269189626
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "a": 0.5773502691896257,
+      "b": 0.5773502691896256
+     },
+     "expected": {
+      "a": 0.577350269189626,
+      "b": 0.577350269189626
+     }
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P06",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 1.7871031600136293,
+     "expected": 1.7871031600136293
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.008251807850654365,
+     "expected": 0.008251807850654365
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 1.778851352162975,
+     "expected": 1.778851352162975
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 1293.4266413064233,
+     "expected": 1293.426641306423
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.9953825788934358,
+     "expected": 0.9953825788934358
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      6
+     ],
+     "expected": [
+      1,
+      6
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.02857142857142857,
+     "expected": 0.02857142857142857
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 70,
+     "expected": 70
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.02234941514053361,
+      "s02": 0.03475792193398926,
+      "s03": 0.04145560072340766,
+      "s04": 0.02300822622329092,
+      "s05": 0.008686395426955972,
+      "s06": 0.037371539394673525,
+      "s07": 0.04537091067444825,
+      "s08": 0.027670346824903626
+     },
+     "expected": {
+      "s01": 0.0223494151405328,
+      "s02": 0.0347579219339875,
+      "s03": 0.041455600723407,
+      "s04": 0.0230082262232909,
+      "s05": 0.00868639542695702,
+      "s06": 0.0373715393946728,
+      "s07": 0.0453709106744483,
+      "s08": 0.0276703468249041
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "x": 0.030392791005305363,
+      "y": 0.029774798080245343
+     },
+     "expected": {
+      "x": 0.0303927910053046,
+      "y": 0.0297747980802456
+     }
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P07",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.523267932348055,
+     "expected": 0.523267932348055
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.32907621433921486,
+     "expected": 0.3290762143392149
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.19419171800884016,
+     "expected": 0.19419171800884016
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 5.9011168096356394,
+     "expected": 5.9011168096356394
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.37111335513614524,
+     "expected": 0.37111335513614524
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      10
+     ],
+     "expected": [
+      1,
+      10
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 924,
+     "expected": 924
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.008658008658008658,
+     "expected": 0.008658008658008658
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 924,
+     "expected": 924
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.12995814201895964,
+      "s02": 0.14115581611119207,
+      "s03": 0.2973512099195673,
+      "s04": 0.12465731041002918,
+      "s05": 0.13210505429775063,
+      "s06": 0.13408148277902318,
+      "s07": 0.1788756937311273,
+      "s08": 0.13855692446333245,
+      "s09": 0.13802845339214037,
+      "s10": 0.18793639621884675,
+      "s11": 0.1803555642987882,
+      "s12": 0.12157609591541552
+     },
+     "expected": {
+      "s01": 0.12995814201896,
+      "s02": 0.141155816111192,
+      "s03": 0.297351209919567,
+      "s04": 0.12465731041003,
+      "s05": 0.132105054297751,
+      "s06": 0.134081482779023,
+      "s07": 0.178875693731127,
+      "s08": 0.138556924463333,
+      "s09": 0.13802845339214,
+      "s10": 0.187936396218847,
+      "s11": 0.180355564298788,
+      "s12": 0.121576095915415
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.15988483592275368,
+      "g2": 0.15755485466994176
+     },
+     "expected": {
+      "g1": 0.159884835922754,
+      "g2": 0.157554854669942
+     }
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P08",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.6944608478788645,
+     "expected": 0.6944608478788645
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.36750764710331285,
+     "expected": 0.36750764710331285
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.3269532007755517,
+     "expected": 0.3269532007755517
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 9.78615067435599,
+     "expected": 9.78615067435599
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.4708014883404664,
+     "expected": 0.4708014883404664
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      11
+     ],
+     "expected": [
+      1,
+      11
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 1716,
+     "expected": 1716
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "monte_carlo",
+     "expected": "monte_carlo"
+    },
+    {
+     "check": "mc_denominator",
+     "ok": true,
+     "actual": 1000,
+     "expected": 1000
+    },
+    {
+     "check": "mc_p_grid",
+     "ok": true,
+     "actual": 0.002,
+     "expected": "k/1000, k>=1"
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.13651248406381083,
+      "s02": 0.06332513737677016,
+      "s03": 0.22081116978040985,
+      "s04": 0.21102572499680367,
+      "s05": 0.16567318717106141,
+      "s06": 0.12170692485747363,
+      "s07": 0.18783745627513745,
+      "s08": 0.1876518498810444,
+      "s09": 0.22222147875786405,
+      "s10": 0.20500281560677577,
+      "s11": 0.14883823803589427,
+      "s12": 0.09653941775545972,
+      "s13": 0.12623374709019558
+     },
+     "expected": {
+      "s01": 0.136512484063811,
+      "s02": 0.0633251373767698,
+      "s03": 0.22081116978041,
+      "s04": 0.211025724996804,
+      "s05": 0.165673187171061,
+      "s06": 0.121706924857474,
+      "s07": 0.187837456275137,
+      "s08": 0.187651849881044,
+      "s09": 0.222221478757864,
+      "s10": 0.205002815606776,
+      "s11": 0.148838238035894,
+      "s12": 0.0965394177554595,
+      "s13": 0.126233747090196
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.15812744064592385,
+      "g2": 0.1644145911878723
+     },
+     "expected": {
+      "g1": 0.158127440645924,
+      "g2": 0.164414591187872
+     }
+    },
+    {
+     "check": "same_seed_reproduces",
+     "ok": true,
+     "actual": "result",
+     "expected": "identical"
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": {
+    "p_mc": 0.002,
+    "p_exact": 0.0005827505827505828,
+    "within_4se_plus_grid": true
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P09",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.6944608478788645,
+     "expected": 0.6944608478788645
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.36750764710331285,
+     "expected": 0.36750764710331285
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.3269532007755517,
+     "expected": 0.3269532007755517
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 9.78615067435599,
+     "expected": 9.78615067435599
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.4708014883404664,
+     "expected": 0.4708014883404664
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      11
+     ],
+     "expected": [
+      1,
+      11
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 1716,
+     "expected": 1716
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.0005827505827505828,
+     "expected": 0.0005827505827505828
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 1716,
+     "expected": 1716
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.13651248406381083,
+      "s02": 0.06332513737677016,
+      "s03": 0.22081116978040985,
+      "s04": 0.21102572499680367,
+      "s05": 0.16567318717106141,
+      "s06": 0.12170692485747363,
+      "s07": 0.18783745627513745,
+      "s08": 0.1876518498810444,
+      "s09": 0.22222147875786405,
+      "s10": 0.20500281560677577,
+      "s11": 0.14883823803589427,
+      "s12": 0.09653941775545972,
+      "s13": 0.12623374709019558
+     },
+     "expected": {
+      "s01": 0.136512484063811,
+      "s02": 0.0633251373767698,
+      "s03": 0.22081116978041,
+      "s04": 0.211025724996804,
+      "s05": 0.165673187171061,
+      "s06": 0.121706924857474,
+      "s07": 0.187837456275137,
+      "s08": 0.187651849881044,
+      "s09": 0.222221478757864,
+      "s10": 0.205002815606776,
+      "s11": 0.148838238035894,
+      "s12": 0.0965394177554595,
+      "s13": 0.126233747090196
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.15812744064592385,
+      "g2": 0.1644145911878723
+     },
+     "expected": {
+      "g1": 0.158127440645924,
+      "g2": 0.164414591187872
+     }
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P10",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.7844602469233801,
+     "expected": 0.7844602469233801
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.6202243316824789,
+     "expected": 0.6202243316824789
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.1642359152409012,
+     "expected": 0.16423591524090114
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 4.766414865274358,
+     "expected": 4.766414865274356
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.20936168006604222,
+     "expected": 0.20936168006604217
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      18
+     ],
+     "expected": [
+      1,
+      18
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 184756,
+     "expected": 184756
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "monte_carlo",
+     "expected": "monte_carlo"
+    },
+    {
+     "check": "mc_denominator",
+     "ok": true,
+     "actual": 1000,
+     "expected": 1000
+    },
+    {
+     "check": "mc_p_grid",
+     "ok": true,
+     "actual": 0.001,
+     "expected": "k/1000, k>=1"
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.09111774725125965,
+      "s02": 0.16972254797352102,
+      "s03": 0.1462081340114525,
+      "s04": 0.14373884072758183,
+      "s05": 0.2656515602806171,
+      "s06": 0.14840583520837997,
+      "s07": 0.19854923275890604,
+      "s08": 0.1945399462599044,
+      "s09": 0.09693769888554743,
+      "s10": 0.1545221085118804,
+      "s11": 0.24277702280527957,
+      "s12": 0.13639079530016024,
+      "s13": 0.11989557954519056,
+      "s14": 0.19030920797278505,
+      "s15": 0.13602963106066837,
+      "s16": 0.1982455913881229,
+      "s17": 0.148243521163111,
+      "s18": 0.17983096570034177,
+      "s19": 0.26749881215448795,
+      "s20": 0.16164732144353988
+     },
+     "expected": {
+      "s01": 0.0911177472512594,
+      "s02": 0.169722547973521,
+      "s03": 0.146208134011452,
+      "s04": 0.143738840727582,
+      "s05": 0.265651560280617,
+      "s06": 0.14840583520838,
+      "s07": 0.198549232758906,
+      "s08": 0.194539946259905,
+      "s09": 0.0969376988855473,
+      "s10": 0.15452210851188,
+      "s11": 0.24277702280528,
+      "s12": 0.13639079530016,
+      "s13": 0.119895579545191,
+      "s14": 0.190309207972785,
+      "s15": 0.136029631060668,
+      "s16": 0.198245591388123,
+      "s17": 0.148243521163111,
+      "s18": 0.179830965700342,
+      "s19": 0.267498812154488,
+      "s20": 0.16164732144354
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "g1": 0.16093936518690505,
+      "g2": 0.17808684485336873
+     },
+     "expected": {
+      "g1": 0.160939365186905,
+      "g2": 0.178086844853369
+     }
+    },
+    {
+     "check": "same_seed_reproduces",
+     "ok": true,
+     "actual": "result",
+     "expected": "identical"
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P14",
+   "class": "objective",
+   "expected": "refusal_or_undefined",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "undefined_observed_statistic",
+    "message": "Residual variation does not support a finite pseudo-F"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P15",
+   "class": "judgment",
+   "expected": "judgment_result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.8891219800061654,
+     "expected": 0.8891219800061655
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.666841485004624,
+     "expected": 0.6668414850046241
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.22228049500154134,
+     "expected": 0.22228049500154137
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 0.5,
+     "expected": 0.5
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.25,
+     "expected": 0.25
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      2,
+      3
+     ],
+     "expected": [
+      2,
+      3
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 90,
+     "expected": 90
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.8666666666666667,
+     "expected": 0.8666666666666667
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 90,
+     "expected": 90
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.29310344827586204,
+      "s02": 0.4199999999999998,
+      "s03": 0.2666666666666666,
+      "s04": 0.4199999999999998,
+      "s05": 0.2666666666666666,
+      "s06": 0.29310344827586204
+     },
+     "expected": {
+      "s01": 0.293103448275862,
+      "s02": 0.42,
+      "s03": 0.266666666666667,
+      "s04": 0.42,
+      "s05": 0.266666666666667,
+      "s06": 0.293103448275862
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "p": 0.29310344827586204,
+      "q": 0.4199999999999998,
+      "r": 0.2666666666666666
+     },
+     "expected": {
+      "p": 0.293103448275862,
+      "q": 0.42,
+      "r": 0.266666666666667
+     }
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P16",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "insufficient_groups",
+    "message": "At least two groups are required"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P17",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "small_groups",
+    "message": "Each group requires at least two samples"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P18",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "missing_group_label",
+    "message": "Every sample needs a nonblank grouping label"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P19",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "metadata_alignment",
+    "message": "Metadata and input sample ID sets must match exactly"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P20",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "ValidationError",
+    "code": "spec_validation",
+    "message": "Input should be 'independent'"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P21",
+   "class": "objective",
+   "expected": "refusal",
+   "status": "refusal",
+   "refusal": {
+    "type": "AnalysisError",
+    "code": "empty_samples",
+    "message": "Empty samples require an explicit drop policy"
+   },
+   "outcome": "correct"
+  },
+  {
+   "id": "P22",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.22616499863754178,
+     "expected": 0.22616499863754178
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.08267470759027612,
+     "expected": 0.08267470759027612
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.14349029104726566,
+     "expected": 0.14349029104726566
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 6.942403316786206,
+     "expected": 6.942403316786206
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.6344495917214278,
+     "expected": 0.6344495917214278
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      4
+     ],
+     "expected": [
+      1,
+      4
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.1,
+     "expected": 0.1
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 20,
+     "expected": 20
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.09230795505608404,
+      "s02": 0.12690326817786432,
+      "s03": 0.1250571268285295,
+      "s04": 0.1386751858071701,
+      "s05": 0.08221311082854547,
+      "s06": 0.12814219378506955
+     },
+     "expected": {
+      "s01": 0.0923079550560842,
+      "s02": 0.126903268177864,
+      "s03": 0.125057126828529,
+      "s04": 0.13867518580717,
+      "s05": 0.0822131108285455,
+      "s06": 0.128142193785069
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "1": 0.11475611668749264,
+      "2": 0.11634349680692839
+     },
+     "expected": {
+      "1": 0.114756116687493,
+      "2": 0.116343496806928
+     }
+    }
+   ],
+   "warnings": [],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P23",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 1.4477353661285906,
+     "expected": 1.4477353661285906
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 1.29438723939307,
+     "expected": 1.29438723939307
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.15334812673552056,
+     "expected": 0.15334812673552056
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 0.5923579979335416,
+     "expected": 0.5923579979335416
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.10592276069458118,
+     "expected": 0.10592276069458118
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      5
+     ],
+     "expected": [
+      1,
+      5
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 35,
+     "expected": 35
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.5142857142857142,
+     "expected": 0.5142857142857142
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 35,
+     "expected": 35
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.5121940665328005,
+      "s02": 0.18841353879796247,
+      "s03": 0.5053781445707544,
+      "s04": 0.3813519882719673,
+      "s05": 0.3229120431278439,
+      "s06": 0.6418650524903492,
+      "s07": 0.2818607365794212
+     },
+     "expected": {
+      "s01": 0.5121940665328,
+      "s02": 0.188413538797961,
+      "s03": 0.505378144570754,
+      "s04": 0.381351988271967,
+      "s05": 0.322912043127843,
+      "s06": 0.641865052490348,
+      "s07": 0.28186073657942
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "a": 0.40199524996717245,
+      "b": 0.40699745511739543
+     },
+     "expected": {
+      "a": 0.401995249967172,
+      "b": 0.406997455117395
+     }
+    }
+   ],
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  },
+  {
+   "id": "P24",
+   "class": "objective",
+   "expected": "result",
+   "status": "result",
+   "checks": [
+    {
+     "check": "ss_total",
+     "ok": true,
+     "actual": 0.2207466666666667,
+     "expected": 0.22074666666666667
+    },
+    {
+     "check": "ss_within",
+     "ok": true,
+     "actual": 0.17530666666666667,
+     "expected": 0.17530666666666667
+    },
+    {
+     "check": "ss_between",
+     "ok": true,
+     "actual": 0.045440000000000036,
+     "expected": 0.04544
+    },
+    {
+     "check": "F",
+     "ok": true,
+     "actual": 2.073623364770309,
+     "expected": 2.0736233647703073
+    },
+    {
+     "check": "R2",
+     "ok": true,
+     "actual": 0.20584682290408324,
+     "expected": 0.2058468229040831
+    },
+    {
+     "check": "df",
+     "ok": true,
+     "actual": [
+      1,
+      8
+     ],
+     "expected": [
+      1,
+      8
+     ]
+    },
+    {
+     "check": "space_size",
+     "ok": true,
+     "actual": 252,
+     "expected": 252
+    },
+    {
+     "check": "mode",
+     "ok": true,
+     "actual": "exact",
+     "expected": "exact"
+    },
+    {
+     "check": "p_exact",
+     "ok": true,
+     "actual": 0.11904761904761904,
+     "expected": 0.11904761904761904
+    },
+    {
+     "check": "denominator",
+     "ok": true,
+     "actual": 252,
+     "expected": 252
+    },
+    {
+     "check": "dispersion_distances",
+     "ok": true,
+     "actual": {
+      "s01": 0.08227865930955461,
+      "s02": 0.06099908924638868,
+      "s03": 0.07433258594542054,
+      "s04": 0.09845924142619732,
+      "s05": 0.016220700080795233,
+      "s06": 0.18381149764545926,
+      "s07": 0.14406788523316194,
+      "s08": 0.14587666023048373,
+      "s09": 0.1510261198895373,
+      "s10": 0.22517153954756855
+     },
+     "expected": {
+      "s01": 0.0822786593095547,
+      "s02": 0.0609990892463887,
+      "s03": 0.0743325859454207,
+      "s04": 0.0984592414261973,
+      "s05": 0.0162207000807951,
+      "s06": 0.183811497645459,
+      "s07": 0.144067885233162,
+      "s08": 0.145876660230484,
+      "s09": 0.151026119889537,
+      "s10": 0.225171539547568
+     }
+    },
+    {
+     "check": "dispersion_group_means",
+     "ok": true,
+     "actual": {
+      "tight": 0.06645805520167128,
+      "loose": 0.16999074050924215
+     },
+     "expected": {
+      "loose": 0.169990740509242,
+      "tight": 0.0664580552016713
+     }
+    }
+   ],
+   "warnings": [
+    "negative_eigenvalues"
+   ],
+   "stochastic": null,
+   "outcome": "correct"
+  }
+ ]
+}

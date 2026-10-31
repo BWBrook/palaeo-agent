@@ -235,6 +235,19 @@ def test_negative_signed_centroid_square_is_reported_and_truncated():
     assert any(warning["code"] == "negative_squared_dispersion" for warning in result["warnings"])
 
 
+def test_truncated_centroid_distances_match_vegan_betadisper():
+    # vegan 2.7.6: betadisper(vegdist(x, "bray"), g, type="centroid", bias.adjust=FALSE), whose
+    # Re(sqrt(as.complex(dist.pos - dist.neg))) also truncates the negative signed square to zero.
+    matrix = [[1, 1, 2, 0], [3, 3, 2, 1], [2, 0, 2, 0],
+              [2, 1, 0, 1], [3, 0, 0, 2], [3, 1, 0, 1]]
+    vegan = [0.17414202188725808, 0.24249077332535579, 0.17414202188725797,
+             0.15162584807747195, 0.17946728058645497, 0.0]
+    dispersion = calculate(matrix, GROUPS)["dispersion"]
+    assert dispersion["distances"] == pytest.approx(vegan, rel=1e-12, abs=1e-15)
+    assert dispersion["group_mean_distances"] == pytest.approx({"A": 0.19692493903329061, "B": 0.11036437622130897},
+                                                              rel=1e-12)
+
+
 @pytest.mark.parametrize("mutate", [
     lambda r: r.update(p_value=r["p_value"] / 2),
     lambda r: r["permutation"]["indices"][0].__setitem__(0, 99),
