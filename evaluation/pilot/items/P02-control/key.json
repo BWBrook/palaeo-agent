@@ -1,6 +1,6 @@
 {
  "item": "P02-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P02",
  "class": "control",
  "stratum": "toolkit",
@@ -26,6 +26,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Codes match exactly; the join is by code, not by order.",
  "analysis": "one-way PERMANOVA, Bray\u2013Curtis raw"
 }

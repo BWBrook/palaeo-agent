@@ -1,6 +1,6 @@
 {
  "item": "P08-cal",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P08",
  "class": "trap",
  "stratum": "other",
@@ -35,6 +35,18 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [
+  "S08",
+  "S09",
+  "S10",
+  "S11",
+  "S12",
+  "S13",
+  "S14",
+  "S15",
+  "S16"
+ ],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Sediment is younger upwards, so Holocene samples are those shallower than 142 cm.",
  "analysis": "subset; mean pairwise Bray\u2013Curtis, raw counts"
 }

@@ -1,6 +1,6 @@
 {
  "item": "P12-trap",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P12",
  "class": "trap",
  "stratum": "toolkit",
@@ -41,6 +41,8 @@
   "A20",
   "A22"
  ],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "The test compares zones A and B; samples assigned to neither belong to no level of the factor and are excluded, not treated as a third zone.",
  "analysis": "one-way PERMANOVA, relative abundance"
 }

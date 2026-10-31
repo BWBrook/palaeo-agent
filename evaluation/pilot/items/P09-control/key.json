@@ -1,6 +1,6 @@
 {
  "item": "P09-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P09",
  "class": "control",
  "stratum": "other",
@@ -21,6 +21,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "One valve per individual.",
  "analysis": "RMA, untransformed"
 }

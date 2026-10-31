@@ -1,6 +1,6 @@
 {
  "item": "P07-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P07",
  "class": "control",
  "stratum": "other",
@@ -22,6 +22,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "All in mm.",
  "analysis": "RMA, untransformed, mm"
 }

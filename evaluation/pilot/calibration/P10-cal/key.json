@@ -1,6 +1,6 @@
 {
  "item": "P10-cal",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P10",
  "class": "trap",
  "stratum": "other",
@@ -31,6 +31,8 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "S1 is uppermost and therefore youngest; S12 is oldest.",
  "analysis": "Shannon difference"
 }

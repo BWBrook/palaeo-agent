@@ -1,6 +1,6 @@
 {
  "item": "P03-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P03",
  "class": "control",
  "stratum": "toolkit",
@@ -17,6 +17,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Values are counts.",
  "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
 }

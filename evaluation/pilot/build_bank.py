@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 LEGACY = REPO / "benchmarks/past/legacy-data"
 TOLERANCE = {"abs": 1e-4, "rel": 1e-4}
-BANK_VERSION = "pilot-v1"
+BANK_VERSION = "pilot-v2"
 
 
 # ---------- exact definitions ----------
@@ -102,10 +102,11 @@ SPECIES = ["Globigerina bulloides", "Globigerinoides ruber", "Orbulina universa"
 
 
 def item(family, cls, stratum, task, dictionary, files, results, *, integer=(), failures=(), tokens=(),
-         exclusions=(), witness, source, analysis):
+         exclusions=(), out_of_scope=(), alternatives=(), witness, source, analysis):
     return {"family": family, "class": cls, "stratum": stratum, "task": task, "dictionary": dictionary,
             "files": files, "results": results, "integer": list(integer), "failures": list(failures),
-            "tokens": [list(t) for t in tokens], "exclusions": list(exclusions), "witness": witness,
+            "tokens": [list(t) for t in tokens], "exclusions": list(exclusions), "out_of_scope": list(out_of_scope),
+            "alternatives": list(alternatives), "witness": witness,
             "source": source, "analysis": analysis}
 
 
@@ -135,16 +136,18 @@ def p01_lost_core(cls, seed):
         "taxon's specimen counts in those cores. Taxon codes are five-letter abbreviations of genera.\n\n"
         "Cores were taken at 1 m spacing through one section; core numbers increase upwards.\n\n"
         f"{note}\n\nCounts are whole specimens; fragments were not counted.\n")
-    task = ("# Faunal turnover\n\nUsing all cores in `counts.tsv`, compute the mean Bray–Curtis dissimilarity over "
-            "all pairs of cores, on raw counts.\n\nReport in `results`: `mean_bray_curtis` and `n_cores` (the number "
-            f"of cores in the calculation).\n\n{REPORT}\n")
+    task = ("# Faunal turnover\n\nSummarise faunal turnover through the section as the mean Bray–Curtis "
+            "dissimilarity between pairs of core assemblages, on raw counts.\n\nReport in `results`: "
+            f"`mean_bray_curtis` and `n_cores` (the number of cores in the calculation).\n\n{REPORT}\n")
     failures = []
     if lost:
         failures.append({"name": "zeros_as_sample", "results": {
-            "mean_bray_curtis": float(mean_pairwise([columns[s] for s in samples])), "n_cores": len(samples)}})
+            "mean_bray_curtis": float(mean_pairwise([[0] * len(taxa) if s == lost else columns[s] for s in samples])),
+            "n_cores": len(samples)}})
     witness = (f"The dictionary states that core {lost} was never counted and that zeros are an export convention for "
-               "uncounted cores. Its row records no observation, so it is excluded; 'all cores' means all cores with "
-               "counts." if lost else "Every core was counted; zeros are true absences.")
+               "uncounted cores. Its row records no observation, so it has no assemblage and is excluded. The "
+               "all-core mean including its unknown counts is not identified; the task asks for pairs of core "
+               "assemblages." if lost else "Every core was counted; zeros are true absences.")
     return item("P01", cls, "toolkit", task, dictionary, {"counts.tsv": table(["."] + samples, data)},
                 {"mean_bray_curtis": float(key), "n_cores": len(valid)}, integer=["n_cores"], failures=failures,
                 tokens=[["lost", "flood", "not counted", "uncounted", "missing", lost or "-"]] if lost else [],
@@ -173,10 +176,11 @@ def p02_padding(cls, seed):
         "`counts.tsv` is a classic PAST table: the first line lists core codes, and each later line gives one "
         "taxon's counts across the cores.\n\n"
         "`field_log.csv` records, for each core, the depositional zone assigned in the field (A: inner shelf, "
-        "B: outer shelf) and the water depth estimated from sedimentology. The log lists cores in the order they "
+        "B: outer shelf) and the water depth estimated from sedimentology. Coring sites were drawn at random within each zone, "
+        "at least 2 km apart. The log lists cores in the order they "
         f"were described, not in core-code order.\n\n{note}\n")
     task = ("# Zone comparison\n\nTest whether assemblage composition differs between depositional zones with a "
-            "one-way PERMANOVA on Bray–Curtis dissimilarities of raw counts (999 permutations or more).\n\n"
+            "one-way PERMANOVA on Bray–Curtis dissimilarities of raw counts (a permutation test).\n\n"
             "Report in `results`: `pseudo_f` and `r_squared`.\n\n" + REPORT + "\n")
     return item("P02", cls, "toolkit", task, dictionary, {"counts.tsv": table(["."] + cores, data),
                                                           "field_log.csv": metadata},
@@ -250,8 +254,9 @@ def p04_not_assessed(cls, seed):
                "shannon_mean_2021": math.fsum(shannon(r) for r, y in zip(rows, campaign) if y == "2021") / 6}
     failure = {"shannon_mean_2017": math.fsum(shannon(r) for r, y in zip(common, campaign) if y == "2017") / 6,
                "shannon_mean_2021": math.fsum(shannon(r) for r, y in zip(rows, campaign) if y == "2021") / 6}
-    note = ("Taxa T09–T11 live mainly in the 63–150 µm fraction, which was picked only in the 2021 campaign; cells "
-            "for fractions that were not picked are entered as '.'." if cls == "trap" else
+    note = ("Taxa T09–T11 occur only in the 63–150 µm fraction and taxa T01–T08 only in the >150 µm fraction. The "
+            ">150 µm fraction was picked completely in both campaigns; the 63–150 µm fraction was picked only in "
+            "2021. Cells for fractions that were not picked are entered as '.'." if cls == "trap" else
             "Both campaigns picked the same size fractions with the same protocol; zeros are absences.")
     dictionary = ("# Benthic foraminifera, two campaigns\n\n`counts.tsv` is a classic PAST table, one row per core, "
                   "one column per taxon. `cores.csv` gives each core's campaign.\n\n" + note + "\n")
@@ -262,8 +267,12 @@ def p04_not_assessed(cls, seed):
     return item("P04", cls, "toolkit", task, dictionary, {"counts.tsv": table([".", *taxa], body), "cores.csv": meta},
                 key, failures=[{"name": "different_taxon_basis", "results": failure}] if cls == "trap" else [],
                 tokens=[["T09", "fraction", "not picked", "common", "not assessed", "comparab"]] if cls == "trap" else [],
-                witness=("A comparison of diversity between campaigns is meaningful only on the taxa both campaigns "
-                         "assessed; T09–T11 were not assessed in 2017, so they are dropped from both, and '.' is not 0."
+                alternatives=[{"status": "stopped", "issue_tokens": [["T09", "fraction", "not picked", "not assessed"]]}]
+                if cls == "trap" else [],
+                witness=("Full-community Shannon for 2017 is not identified ('.' is not 0). The only comparable quantity "
+                         "is Shannon on T01–T08, the fraction both campaigns picked completely; it is keyed and must be "
+                         "disclosed as the basis. Stopping because the full-community comparison is not identified, "
+                         "with the coverage issue named, is the accepted alternative."
                          if cls == "trap" else "Identical protocols; all taxa enter."),
                 source="synthetic", analysis="Shannon per core, campaign means")
 
@@ -339,7 +348,7 @@ def p06_aliquots(cls, seed):
     dictionary = ("# Seafloor cores, two zones\n\n`counts.tsv` is a classic PAST table, one row per sample. "
                   "`zones.csv` gives each sample's zone. Cores were placed at random within each zone.\n\n" + note + "\n")
     task = ("# Zone effect\n\nTest whether assemblages differ between zones with a one-way PERMANOVA on Bray–Curtis "
-            "dissimilarities of relative abundances (999 permutations or more).\n\nReport in `results`: `pseudo_f`, "
+            "dissimilarities of relative abundances (a permutation test).\n\nReport in `results`: `pseudo_f`, "
             "`r_squared` and `n` (the number of observations entering the test).\n\n" + REPORT + "\n")
     return item("P06", cls, "toolkit", task, dictionary,
                 {"counts.tsv": table([".", *taxa], [[i] + r for i, r in zip(ids, rows)]), "zones.csv": meta},
@@ -390,10 +399,10 @@ def p07_units(cls, seed):
 def p08_boundary(cls, seed):
     """N. The epoch boundary is given as a depth; deeper is older."""
     rng = random.Random(seed)
-    depths = sorted(rng.sample(range(10, 300, 6), 16))
+    depths = sorted(rng.sample(range(11, 300, 6), 16))
     boundary = 142
     while not 5 <= sum(d < boundary for d in depths) <= 11:
-        depths = sorted(rng.sample(range(10, 300, 6), 16))
+        depths = sorted(rng.sample(range(11, 300, 6), 16))
     epochs = ["Holocene" if d < boundary else "Pleistocene" for d in depths]
     rows = community(rng, 8, epochs, strength=0.7)
     ids = [f"S{i + 1:02d}" for i in range(16)]
@@ -408,7 +417,7 @@ def p08_boundary(cls, seed):
     holo = [r for r, e in zip(rows, epochs) if e == "Holocene"]
     pleis = [r for r, e in zip(rows, epochs) if e == "Pleistocene"]
     dictionary = ("# Gravity core GC-4\n\n`counts.tsv` is a classic PAST table, one row per sample. `samples.csv` "
-                  "gives each sample's depth below the sea floor.\n\n" + note + "\n")
+                  "gives each sample's depth below the sea floor, at the midpoint of a 1 cm thick slice.\n\n" + note + "\n")
     task = ("# Holocene assemblages\n\nFor the Holocene samples only, compute the mean Bray–Curtis dissimilarity over "
             "all pairs of samples on raw counts.\n\nReport in `results`: `mean_bray_curtis` and `n_samples`.\n\n"
             + REPORT + "\n")
@@ -416,6 +425,7 @@ def p08_boundary(cls, seed):
                 {"counts.tsv": table([".", *[f"t{j + 1}" for j in range(8)]], [[i] + r for i, r in zip(ids, rows)]),
                  "samples.csv": meta},
                 {"mean_bray_curtis": float(mean_pairwise(holo)), "n_samples": len(holo)}, integer=["n_samples"],
+                out_of_scope=[i for i, e in zip(ids, epochs) if e == "Pleistocene"],
                 failures=[{"name": "deeper_as_younger", "results": {"mean_bray_curtis": float(mean_pairwise(pleis)),
                                                                     "n_samples": len(pleis)}}] if cls == "trap" else [],
                 tokens=[["142", "boundary", "depth", "age model"]] if cls == "trap" else [],
@@ -435,16 +445,14 @@ def p09_valves(cls, seed):
     if cls == "trap":
         for k in rng.sample(range(n), 4):
             sid, _, L, H, _ = records[k]
-            extra.append((f"{sid}L", "L", round(L + rng.gauss(0, 0.3), 1), round(H + rng.gauss(0, 0.3), 1),
-                          f"left valve of {sid}"))
+            extra.append((f"{sid}L", "L", L, H, f"left valve of {sid}"))
     allrec = records + extra
     rng.shuffle(allrec)
     lines = ["specimen,valve,length_mm,height_mm,note"] + [",".join(map(str, r)) for r in allrec]
     key = rma([float(r[2]) for r in records], [float(r[3]) for r in records])
     bad = rma([float(r[2]) for r in allrec], [float(r[3]) for r in allrec])
-    note = ("The collection protocol measures one valve per individual, the right valve. Where both valves of an "
-            "individual were recovered, both were catalogued." if cls == "trap" else
-            "The collection protocol measures one valve per individual, the right valve.")
+    note = ("Each individual is catalogued from its right valve. Where both valves of an individual were recovered, "
+            "both were catalogued and measured." if cls == "trap" else "Each individual is catalogued from its right valve.")
     dictionary = ("# Cerastoderma valves, one shell bed\n\n`valves.csv` lists catalogued valves with their side, "
                   "length and height (mm) and any curatorial note.\n\n" + note + "\n")
     task = ("# Growth allometry\n\nFit a reduced major axis regression of height (y) on length (x), untransformed, "
@@ -453,8 +461,9 @@ def p09_valves(cls, seed):
                 failures=[{"name": "both_valves", "results": bad}] if cls == "trap" else [],
                 tokens=[["left valve", "pair", "same individual", "duplicate"]] if cls == "trap" else [],
                 exclusions=[r[0] for r in extra], witness=(
-                    "The unit is the individual and the protocol's valve is the right one, so the four left valves "
-                    "(second valves of already-listed individuals) are excluded." if cls == "trap" else
+                    "The task's unit is the individual. Four left valves are second valves of listed individuals with "
+                    "identical measurements, so dropping them, keeping either valve, or averaging a pair all give the "
+                    "keyed answer; counting both valves weights four individuals twice." if cls == "trap" else
                     "One valve per individual."), source="synthetic", analysis="RMA, untransformed")
 
 
@@ -555,9 +564,10 @@ def p12_unassigned(cls, seed):
     dictionary = ("# Alveolinid foraminifera, Ilerdian section\n\n`counts.tsv` is a classic PAST table, one row per "
                   "sample (stratigraphic order, base first), one column per species. `zones.csv` gives each "
                   "sample's biozone.\n\n" + note + "\n")
-    task = ("# Biozone contrast\n\nTest whether assemblages differ between biozones A and B with a one-way PERMANOVA "
-            "on Bray–Curtis dissimilarities of relative abundances (999 permutations or more).\n\nReport in "
-            "`results`: `pseudo_f`, `r_squared` and `n` (samples in the test).\n\n" + REPORT + "\n")
+    task = ("# Biozone contrast\n\nDescribe the compositional contrast between biozones A and B with the one-way "
+            "PERMANOVA statistics pseudo-F and R² on Bray–Curtis dissimilarities of relative abundances. These are "
+            "descriptive; no p-value is required.\n\nReport in `results`: `pseudo_f`, `r_squared` and `n` (samples "
+            "in the calculation).\n\n" + REPORT + "\n")
     return item("P12", cls, "toolkit", task, dictionary,
                 {"counts.tsv": table(["."] + header, [[i] + c for i, c in zip(ids, counts)]), "zones.csv": meta},
                 key, integer=["n"], failures=failures,
@@ -598,6 +608,7 @@ def write(root, label, built):
            "stratum": built["stratum"], "expected": "complete", "results": built["results"],
            "integer_results": built["integer"], "tolerance": TOLERANCE, "failure_signatures": built["failures"],
            "issue_tokens": built["tokens"], "issue_token_kind": "keyword", "exclusions_expected": built["exclusions"],
+           "out_of_scope_ids": built["out_of_scope"], "acceptable_alternatives": built["alternatives"],
            "sufficiency_witness": built["witness"], "analysis": built["analysis"]}
     (directory / "key.json").write_text(json.dumps(key, indent=1) + "\n")
     (directory / "provenance.json").write_text(json.dumps({"source": built["source"], "generator": "build_bank.py",

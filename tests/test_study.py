@@ -204,3 +204,46 @@ def test_study_cannot_override_input_paths(tmp_path):
     with pytest.raises(AnalysisError) as error:
         run_study(path, tmp_path / "out")
     assert error.value.code == "invalid_study"
+
+
+def test_manifest_must_cover_every_declared_step(tmp_path):
+    directory = Path(run_study(community_study(tmp_path), tmp_path / "out")["study_dir"])
+    import shutil
+    shutil.rmtree(directory / "runs")
+    manifest = json.loads((directory / "manifest.json").read_text())
+    manifest.update(steps=[], runs={})
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+    with pytest.raises(AnalysisError, match="verified"):
+        inspect_study(directory)
+
+
+def test_linked_directories_are_rejected(tmp_path):
+    directory = Path(run_study(community_study(tmp_path), tmp_path / "out")["study_dir"])
+    outside = tmp_path / "elsewhere"
+    (directory / "runs").rename(outside)
+    (directory / "runs").symlink_to(outside, target_is_directory=True)
+    with pytest.raises(AnalysisError) as error:
+        inspect_study(directory)
+    assert "link" in error.value.details["reason"]
+
+
+def test_derived_data_cannot_be_reoriented(tmp_path):
+    path = community_study(tmp_path)
+    study = json.loads(path.read_text())
+    study["analyses"][0]["spec"] = dict(COMMUNITY, orientation="taxa_by_samples")
+    path.write_text(json.dumps(study))
+    with pytest.raises(AnalysisError) as error:
+        run_study(path, tmp_path / "out")
+    assert "samples by taxa" in json.dumps(error.value.details)
+
+
+def test_failed_dataset_marks_every_later_step(tmp_path):
+    path = community_study(tmp_path)
+    study = json.loads(path.read_text())
+    study["datasets"] = {"bad": dict(study["datasets"]["clean"], operations=[{"op": "exclude", "samples": ["K99"], "reason": "x"}]),
+                         "clean": study["datasets"]["clean"]}
+    path.write_text(json.dumps(study))
+    outcome = run_study(path, tmp_path / "out")
+    assert [(s["id"], s["status"]) for s in outcome["steps"]] == [
+        ("dataset:bad", "failed"), ("dataset:clean", "not_run"), ("analysis:describe", "not_run"), ("analysis:zones", "not_run")]
+    assert inspect_study(outcome["study_dir"])["study_status"] == "partial"

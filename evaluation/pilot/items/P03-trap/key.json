@@ -1,6 +1,6 @@
 {
  "item": "P03-trap",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P03",
  "class": "trap",
  "stratum": "toolkit",
@@ -31,6 +31,8 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "count = percentage \u00d7 n_picked / 100, an exact integer for every cell, so raw counts are identified and Bray\u2013Curtis on them is defined.",
  "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
 }

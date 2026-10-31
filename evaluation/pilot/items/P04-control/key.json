@@ -1,6 +1,6 @@
 {
  "item": "P04-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P04",
  "class": "control",
  "stratum": "toolkit",
@@ -18,6 +18,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Identical protocols; all taxa enter.",
  "analysis": "Shannon per core, campaign means"
 }

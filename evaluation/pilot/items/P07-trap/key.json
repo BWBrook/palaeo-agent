@@ -1,6 +1,6 @@
 {
  "item": "P07-trap",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P07",
  "class": "trap",
  "stratum": "other",
@@ -40,6 +40,8 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "L3 values are in cm; the task asks for mm, so L3 lengths and widths are multiplied by 10.",
  "analysis": "RMA, untransformed, mm"
 }

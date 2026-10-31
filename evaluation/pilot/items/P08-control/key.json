@@ -1,6 +1,6 @@
 {
  "item": "P08-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P08",
  "class": "control",
  "stratum": "other",
@@ -20,6 +20,16 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [
+  "S10",
+  "S11",
+  "S12",
+  "S13",
+  "S14",
+  "S15",
+  "S16"
+ ],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Epoch given.",
  "analysis": "subset; mean pairwise Bray\u2013Curtis, raw counts"
 }

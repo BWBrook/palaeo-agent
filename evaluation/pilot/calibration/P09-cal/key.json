@@ -1,6 +1,6 @@
 {
  "item": "P09-cal",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P09",
  "class": "trap",
  "stratum": "other",
@@ -21,8 +21,8 @@
   {
    "name": "both_valves",
    "results": {
-    "slope": 0.7616146770740491,
-    "intercept": -0.7522704373119389,
+    "slope": 0.7600554043221578,
+    "intercept": -0.7427166994465892,
     "n": 34
    }
   }
@@ -42,6 +42,8 @@
   "V20L",
   "V01L"
  ],
- "sufficiency_witness": "The unit is the individual and the protocol's valve is the right one, so the four left valves (second valves of already-listed individuals) are excluded.",
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "sufficiency_witness": "The task's unit is the individual. Four left valves are second valves of listed individuals with identical measurements, so dropping them, keeping either valve, or averaging a pair all give the keyed answer; counting both valves weights four individuals twice.",
  "analysis": "RMA, untransformed"
 }

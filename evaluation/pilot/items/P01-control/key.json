@@ -1,6 +1,6 @@
 {
  "item": "P01-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P01",
  "class": "control",
  "stratum": "toolkit",
@@ -20,6 +20,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Every core was counted; zeros are true absences.",
  "analysis": "mean pairwise Bray\u2013Curtis, raw counts"
 }

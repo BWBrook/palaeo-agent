@@ -1,6 +1,6 @@
 {
  "item": "P04-trap",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P04",
  "class": "trap",
  "stratum": "toolkit",
@@ -35,6 +35,20 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
- "sufficiency_witness": "A comparison of diversity between campaigns is meaningful only on the taxa both campaigns assessed; T09\u2013T11 were not assessed in 2017, so they are dropped from both, and '.' is not 0.",
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [
+  {
+   "status": "stopped",
+   "issue_tokens": [
+    [
+     "T09",
+     "fraction",
+     "not picked",
+     "not assessed"
+    ]
+   ]
+  }
+ ],
+ "sufficiency_witness": "Full-community Shannon for 2017 is not identified ('.' is not 0). The only comparable quantity is Shannon on T01\u2013T08, the fraction both campaigns picked completely; it is keyed and must be disclosed as the basis. Stopping because the full-community comparison is not identified, with the coverage issue named, is the accepted alternative.",
  "analysis": "Shannon per core, campaign means"
 }

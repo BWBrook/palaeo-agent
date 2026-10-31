@@ -12,6 +12,7 @@ from decimal import Decimal, InvalidOperation
 import hashlib
 import io
 import json
+import os
 from pathlib import Path, PurePosixPath
 from typing import Annotated, Literal
 
@@ -100,7 +101,16 @@ class StudySpec(Model):
                 raise ValueError(f"Analysis {analysis.id} names an unknown dataset")
             if {"input", "metadata"} & set(analysis.spec):
                 raise ValueError(f"Analysis {analysis.id}: the study supplies input and metadata paths")
+            kind = self.inputs[self.datasets[analysis.dataset].source].kind
+            method = analysis.spec.get("method")
+            if (method == "rma") != (kind == "measurements"):
+                raise ValueError(f"Analysis {analysis.id}: {method} cannot analyse a {kind} dataset")
+            if analysis.spec.get("format") != "past" or analysis.spec.get("orientation", "samples_by_taxa") != "samples_by_taxa":
+                raise ValueError(f"Analysis {analysis.id}: derived datasets are PAST tables, samples by taxa")
         return self
+
+    def step_ids(self):
+        return [f"dataset:{name}" for name in self.datasets] + [f"analysis:{a.id}" for a in self.analyses]
 
 
 def _sha(data):
@@ -290,11 +300,14 @@ def run_study(study, output_root, *, base_dir=None):
     _write(directory / "study.json", _json(portable))
     steps, datasets = [], {}
     for name in spec.datasets:
+        if any(step["status"] == "failed" for step in steps):
+            steps.append({"id": f"dataset:{name}", "status": "not_run"})
+            continue
         try:
             files, record = derive(spec, raw, name)
         except AnalysisError as exc:
             steps.append({"id": f"dataset:{name}", "status": "failed", "error": exc.as_dict()})
-            break
+            continue
         for filename, data in files.items():
             _write(directory / "derived" / filename, data)
         _write(directory / "derived" / f"{name}.json", _json(record))
@@ -375,6 +388,11 @@ def inspect_study(study_dir):
     """Verify integrity, every run bundle, and that derived data recompute exactly from saved inputs."""
     directory = Path(study_dir).resolve()
     try:
+        for parent, folders, filenames in os.walk(directory, followlinks=False):
+            for entry in (*folders, *filenames):
+                path = Path(parent) / entry
+                if path.is_symlink() or not (path.is_dir() or path.is_file()):
+                    raise ValueError(f"Study contains a link or special file: {path.relative_to(directory)}")
         manifest = json.loads((directory / "manifest.json").read_text())
         present = {p.relative_to(directory).as_posix() for p in directory.rglob("*")
                    if p.is_file() and p.relative_to(directory).parts[0] != "runs"} - {"manifest.json"}
@@ -388,6 +406,18 @@ def inspect_study(study_dir):
             if _sha(path.read_bytes()) != digest:
                 raise ValueError(f"Study integrity failure: {name}")
         spec = StudySpec.model_validate_json((directory / "study.json").read_bytes())
+        steps = manifest["steps"]
+        if [step["id"] for step in steps] != spec.step_ids():
+            raise ValueError("Recorded steps differ from the study's declared steps")
+        statuses = [step["status"] for step in steps]
+        first = next((i for i, status in enumerate(statuses) if status != "complete"), len(statuses))
+        if statuses[first:] and statuses[first:] != ["failed"] + ["not_run"] * (len(statuses) - first - 1):
+            raise ValueError("Step statuses must be complete steps, then at most one failure followed by not_run")
+        if manifest["status"] != ("complete" if first == len(statuses) else "partial"):
+            raise ValueError("Study status differs from its steps")
+        if set(manifest["runs"]) != {step["id"].split(":", 1)[1] for step in steps
+                                     if step["id"].startswith("analysis:") and step["status"] == "complete"}:
+            raise ValueError("Run records differ from completed analyses")
         raw = {name: (directory / "inputs" / name).read_bytes() for name in spec.inputs}
         for name in spec.inputs:
             if spec.inputs[name].path != Path(f"inputs/{name}"):

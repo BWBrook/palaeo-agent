@@ -2,4 +2,4 @@
 
 `valves.csv` lists catalogued valves with their side, length and height (mm) and any curatorial note.
 
-The collection protocol measures one valve per individual, the right valve.
+Each individual is catalogued from its right valve.

@@ -1,6 +1,6 @@
 {
  "item": "P12-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P12",
  "class": "control",
  "stratum": "toolkit",
@@ -21,6 +21,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "All assigned.",
  "analysis": "one-way PERMANOVA, relative abundance"
 }

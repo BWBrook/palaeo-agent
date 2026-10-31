@@ -1,6 +1,6 @@
 {
  "item": "P06-control",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P06",
  "class": "control",
  "stratum": "toolkit",
@@ -21,6 +21,8 @@
  "issue_tokens": [],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "18 independent cores.",
  "analysis": "one-way PERMANOVA, Bray\u2013Curtis on relative abundance"
 }

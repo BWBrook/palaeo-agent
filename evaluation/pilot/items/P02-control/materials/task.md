@@ -1,6 +1,6 @@
 # Zone comparison
 
-Test whether assemblage composition differs between depositional zones with a one-way PERMANOVA on Bray–Curtis dissimilarities of raw counts (999 permutations or more).
+Test whether assemblage composition differs between depositional zones with a one-way PERMANOVA on Bray–Curtis dissimilarities of raw counts (a permutation test).
 
 Report in `results`: `pseudo_f` and `r_squared`.
 

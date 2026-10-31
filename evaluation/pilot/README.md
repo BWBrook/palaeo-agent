@@ -1,4 +1,4 @@
-# Pilot bank (sprint 4, offline) — `pilot-v1`, not yet frozen
+# Pilot bank (sprint 4, offline) — `pilot-v2`, not yet frozen
 
 Claude (Opus 5.5) built this on 31 October 2026 under the
 [revised sprint plan](../../docs/sprints-3-4-proposal.md). It holds 12
@@ -59,6 +59,35 @@ revised on agent performance.
 toolkit and the new study layer, with legitimate preparation, and agree to
 about 1e-15. This shares no code with the generator. It is not the independent
 key recomputation the plan requires; Codex does that at the gate.
+
+## Changes in `pilot-v2` (after Codex's interim review)
+
+Codex's [interim review](../../docs/sprint-4-interim-review.md) recomputed all
+32 keys independently; the largest difference was 2.8e-17. It also found
+problems with what several items ask, which `pilot-v2` repairs:
+
+- **P01.** The task now asks about "pairs of core assemblages"; "all cores"
+  had included an uncounted core whose all-core mean is not identified. The
+  zero-sample failure signature is corrected to 0.74461, matching Codex.
+- **P02.** The dictionary states that coring sites were random and separated,
+  so inference has a design basis. "999 permutations or more" became "a
+  permutation test" in P02 and P06, so P06's exact enumeration of its 20
+  allocations is not penalised.
+- **P04.**
+  - The dictionary now states exact fraction coverage: T01–T08 occur only in
+    >150 µm, which both campaigns picked completely, and T09–T11 only in
+    63–150 µm.
+  - The common-coverage Shannon is keyed.
+  - Stopping with the coverage issue named is an `acceptable_alternative`.
+- **P08.** No sample lies at the boundary. Depths are midpoints of 1 cm
+  slices. The Pleistocene samples are listed as `out_of_scope_ids`, not as
+  exclusions.
+- **P09.**
+  - The valve to use is no longer dictated. The task's unit is the individual.
+  - Paired left valves have measurements identical to their right valves, so
+    every reasonable handling gives the key; only double counting fails.
+- **P12.** The task is now descriptive (pseudo-F and R², no p-value), because
+  the facts do not establish free exchangeability along a section.
 
 ## Known limits
 

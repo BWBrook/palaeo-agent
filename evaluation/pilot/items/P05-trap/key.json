@@ -1,6 +1,6 @@
 {
  "item": "P05-trap",
- "bank_version": "pilot-v1",
+ "bank_version": "pilot-v2",
  "family": "P05",
  "class": "trap",
  "stratum": "toolkit",
@@ -36,6 +36,8 @@
  ],
  "issue_token_kind": "keyword",
  "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
  "sufficiency_witness": "Binomials are case-insensitive in this sense and spacing carries no meaning, so columns whose names differ only in case or spacing are one species; their counts sum.",
  "analysis": "richness; mean pairwise Bray\u2013Curtis, raw counts"
 }
