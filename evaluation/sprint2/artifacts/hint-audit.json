@@ -1,0 +1,11 @@
+{
+  "discovery_sha256": "91f38cf699fd6d06cf84ab885993db1a44330d8a840360d74079d1a70806f009",
+  "discovery_bytes": 22531,
+  "method_ids": [
+    "rma",
+    "community",
+    "permanova"
+  ],
+  "task_specific_identifier_hits": [],
+  "scope": "Generic method requirements/limitations are allowed scientific documentation. No item-specific identifiers, count matrices, keys or expected results observed. This is a development hint audit, not evidence of no possible inference."
+}

@@ -1,0 +1,59 @@
+{
+  "python": "3.12.13",
+  "requirements_sha256": "05eb5543a1a91c89091a9e739f08eb604b25d61054eed512d1dab521e808f34f",
+  "wheel": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+  "wheel_sha256": "c3aef21b0a0dfffd995248b44e45c0631d73c1922e45bb97b8552eac87810f1f",
+  "arms": {
+    "direct": {
+      "freeze": [
+        "annotated-types==0.8.0",
+        "contourpy==1.4.0",
+        "cycler==0.12.1",
+        "fonttools==4.68.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.11.2",
+        "numpy==2.5.4",
+        "packaging==26.3",
+        "pandas==3.1.0",
+        "pillow==13.0.0",
+        "pydantic==2.14.2",
+        "pydantic-core==2.50.2",
+        "pyparsing==3.3.3",
+        "python-dateutil==3.0.0",
+        "scipy==1.18.1",
+        "six==1.17.0",
+        "typing-extensions==4.16.0",
+        "typing-inspection==0.4.4",
+        "tzdata==2026.6"
+      ],
+      "palaeo_agent_importable": false
+    },
+    "toolkit": {
+      "freeze": [
+        "annotated-types==0.8.0",
+        "contourpy==1.4.0",
+        "cycler==0.12.1",
+        "fonttools==4.68.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.11.2",
+        "numpy==2.5.4",
+        "packaging==26.3",
+        "palaeo-agent @ file:///Users/bwbrook/palaeo-eval/sprint2-runtime/wheel/palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+        "pandas==3.1.0",
+        "pillow==13.0.0",
+        "pydantic==2.14.2",
+        "pydantic-core==2.50.2",
+        "pyparsing==3.3.3",
+        "python-dateutil==3.0.0",
+        "scipy==1.18.1",
+        "six==1.17.0",
+        "typing-extensions==4.16.0",
+        "typing-inspection==0.4.4",
+        "tzdata==2026.6"
+      ],
+      "palaeo_agent_importable": true
+    }
+  },
+  "discover_sha256": "91f38cf699fd6d06cf84ab885993db1a44330d8a840360d74079d1a70806f009",
+  "source_commit": "1093bb0c4a4d7ef556658418210fae3bcac79881"
+}

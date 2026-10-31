@@ -68,7 +68,8 @@ def verify_runtime():
     if record["arms"]["direct"]["palaeo_agent_importable"] or not record["arms"]["toolkit"]["palaeo_agent_importable"]:
         raise RuntimeError("runtime arm imports do not match the design")
     direct = record["arms"]["direct"]["freeze"]
-    toolkit = [line for line in record["arms"]["toolkit"]["freeze"] if not line.startswith("palaeo-agent==")]
+    toolkit = [line for line in record["arms"]["toolkit"]["freeze"]
+               if line.split(" @ ", 1)[0].split("==", 1)[0].lower().replace("_", "-") != "palaeo-agent"]
     if direct != toolkit:
         raise RuntimeError("non-toolkit dependencies differ between arms")
     wheel = RUNTIME / "wheel" / record["wheel"]

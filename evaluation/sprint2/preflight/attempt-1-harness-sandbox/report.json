@@ -1,0 +1,20 @@
+{
+  "source_commit": "1093bb0c4a4d7ef556658418210fae3bcac79881",
+  "freeze_sha256": "79a7bdf443571f76a1dafbbb43c5d247c05fabd8e18b3502ae48a4f23a1b6a95",
+  "passed": false,
+  "arms": {
+    "direct": {
+      "passed": false,
+      "returncode": 71,
+      "error": "probe did not return JSON",
+      "sandbox_sha256": "6beff1e53ae14c26d98a0d3a6117f5ccab395e985f63fb1363d0729570a92ca9"
+    },
+    "toolkit": {
+      "passed": false,
+      "returncode": 71,
+      "error": "probe did not return JSON",
+      "sandbox_sha256": "d3e9a3b6f05d5891937f4230ce9e54c89efafd7af62a2551ab5c8224fc6ffc2f"
+    }
+  },
+  "scope": "Controller sandbox syscall checks, not live model trials; network isolation not established."
+}

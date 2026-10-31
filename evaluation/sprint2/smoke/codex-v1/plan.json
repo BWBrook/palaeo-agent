@@ -1,0 +1,65 @@
+{
+  "version": "sprint2-group-smoke-v1",
+  "bank_version": "sprint2-group-bank-v1",
+  "scorer_version": "sprint2-group-score-v1",
+  "source_commit": "1093bb0c4a4d7ef556658418210fae3bcac79881",
+  "freeze_sha256": "79a7bdf443571f76a1dafbbb43c5d247c05fabd8e18b3502ae48a4f23a1b6a95",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "medium",
+  "wall_seconds": 300,
+  "token_ceiling": 300000,
+  "counted_tokens": "input_tokens - cached_input_tokens + output_tokens, summed over turn.completed events",
+  "seed": 20261031,
+  "retries": 0,
+  "order": [
+    {
+      "item": "G3-twin",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G2-twin",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G1-twin",
+      "arm": "direct"
+    },
+    {
+      "item": "G2-trap",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G3-twin",
+      "arm": "direct"
+    },
+    {
+      "item": "G3-trap",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G3-trap",
+      "arm": "direct"
+    },
+    {
+      "item": "G1-trap",
+      "arm": "direct"
+    },
+    {
+      "item": "G1-trap",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G2-twin",
+      "arm": "direct"
+    },
+    {
+      "item": "G1-twin",
+      "arm": "toolkit"
+    },
+    {
+      "item": "G2-trap",
+      "arm": "direct"
+    }
+  ]
+}

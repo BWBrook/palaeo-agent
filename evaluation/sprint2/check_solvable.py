@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 
+import palaeo_agent
 from palaeo_agent import PermanovaSpec, calculate_permanova, validate
 
 HERE = Path(__file__).resolve().parent
@@ -48,7 +49,7 @@ def check_item(item_dir):
         with tempfile.TemporaryDirectory(prefix="palaeo-sprint2-design-") as temp:
             path = Path(temp) / "spec.json"
             path.write_text(json.dumps(spec))
-            result = subprocess.run([sys.executable, "-m", "palaeo_agent", "validate", str(path)],
+            result = subprocess.run([sys.executable, "-I", "-m", "palaeo_agent", "validate", str(path)],
                                     cwd="/", capture_output=True, text=True, check=False)
         error = json.loads(result.stderr)
         if result.returncode != 2 or error.get("code") != "invalid_specification":
@@ -75,8 +76,12 @@ def check_item(item_dir):
 
 def check():
     rows = [check_item(path) for path in sorted((HERE / "items").iterdir()) if path.is_dir()]
+    package_dir = Path(palaeo_agent.__file__).resolve().parent
     return {"bank_version": "sprint2-group-bank-v1", "passed": len(rows) == 6,
             "python": sys.version.split()[0], "python_executable": sys.executable,
+            "package_origin": str(package_dir),
+            "installed_source_sha256": {str(path.relative_to(package_dir)): hashlib.sha256(path.read_bytes()).hexdigest()
+                                        for path in sorted(package_dir.rglob("*.py"))},
             "source_sha256": {str(path.relative_to(REPO)): hashlib.sha256(path.read_bytes()).hexdigest()
                               for path in sorted((REPO / "src").rglob("*.py"))},
             "generator_sha256": hashlib.sha256((HERE / "build_items.py").read_bytes()).hexdigest(),

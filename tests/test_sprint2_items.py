@@ -223,3 +223,21 @@ def test_controller_failure_is_preserved_and_temporary_home_removed(monkeypatch,
     with pytest.raises(RuntimeError, match="no retry"):
         controller.run()
     assert len(calls) == 1
+
+
+@pytest.mark.parametrize("distribution", ["palaeo-agent==0.2.0.dev0", "palaeo-agent @ file:///runtime/wheel.whl"])
+def test_runtime_arm_equivalence_accepts_actual_uv_wheel_freeze_form(monkeypatch, tmp_path, distribution):
+    monkeypatch.setattr(controller, "RUNTIME", tmp_path)
+    (tmp_path / "wheel").mkdir()
+    (tmp_path / "wheel/toolkit.whl").write_bytes(b"synthetic wheel")
+    (tmp_path / "palaeo_agent_discover.json").write_text("{}")
+    value = {"wheel": "toolkit.whl", "wheel_sha256": controller.sha(tmp_path / "wheel/toolkit.whl"),
+             "discover_sha256": controller.sha(tmp_path / "palaeo_agent_discover.json"),
+             "arms": {"direct": {"palaeo_agent_importable": False, "freeze": ["numpy==2.5.4"]},
+                      "toolkit": {"palaeo_agent_importable": True, "freeze": ["numpy==2.5.4", distribution]}}}
+    (tmp_path / "runtime.json").write_text(json.dumps(value))
+    assert controller.verify_runtime() == value
+    value["arms"]["toolkit"]["freeze"].append("unexpected-package==1.0")
+    (tmp_path / "runtime.json").write_text(json.dumps(value))
+    with pytest.raises(RuntimeError, match="dependencies differ"):
+        controller.verify_runtime()

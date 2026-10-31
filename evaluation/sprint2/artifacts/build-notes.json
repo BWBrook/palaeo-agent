@@ -1,0 +1,9 @@
+{
+  "source_commit": "1093bb0c4a4d7ef556658418210fae3bcac79881",
+  "partial_build_archive": "/Users/bwbrook/palaeo-eval/sprint2-runtime-build-attempt-1",
+  "initial_failure": "uv build attempted PyPI build-requirement resolution; sandbox DNS unavailable. Offline build used cached requirements.",
+  "completed_build_environment": {
+    "UV_OFFLINE": "1"
+  },
+  "controller_fix_before_freeze": "Arm-equivalence check accepts uv freeze direct-URL wheel form as well as == version form. Dependencies are otherwise identical. No source-package or original evaluation changes."
+}
