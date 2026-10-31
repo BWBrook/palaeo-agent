@@ -347,7 +347,8 @@ towards whichever arm the selection favoured. If the direct arm gets at least
 | Calibration | at most 16 | 10 min | 600,000 |
 | Analysts | 96 | 10 min | set at freeze (below) |
 | Reviewers | 48 | 5 min | set at freeze (below) |
-| **Total** | **at most 160** | | analysts + reviewers capped at **6,000,000** |
+| **Codex total** | **at most 160** | | analysts + reviewers capped at **6,000,000** |
+| Sonnet 5.5 reviewer replicate | 48 | 5 min | 1,500,000 Claude counted (separate) |
 
 - **Why not Codex's 4,000,000.** Sprint-1 and sprint-2 Codex trials used about
   9,000–22,000 counted tokens on toy items. Harder multi-step items in 10
