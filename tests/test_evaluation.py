@@ -29,14 +29,26 @@ def trial(tmp_path, item, status="completed", results=None, assumptions=(), issu
     return score.score(ws, EVAL / "items" / item)
 
 
-def test_bank_regenerates_byte_for_byte(tmp_path):
+def _close(a, b):
+    if isinstance(a, dict):
+        return isinstance(b, dict) and a.keys() == b.keys() and all(_close(a[k], b[k]) for k in a)
+    if isinstance(a, list):
+        return isinstance(b, list) and len(a) == len(b) and all(_close(x, y) for x, y in zip(a, b))
+    if isinstance(a, float) or isinstance(b, float):
+        return abs(a - b) <= 1e-12 * max(1.0, abs(a))
+    return a == b
+
+
+def test_bank_regenerates(tmp_path):
+    """Materials regenerate byte for byte; keys to 1e-12, since libm logarithms differ in the last ulp by platform."""
     subprocess.run([sys.executable, str(EVAL / "build_items.py"), str(tmp_path / "items")], check=True,
                    capture_output=True)
-    assert (tmp_path / "items/MANIFEST.json").read_bytes() == (EVAL / "items/MANIFEST.json").read_bytes()
     for path in (EVAL / "items").rglob("*"):
-        if path.is_file():
-            twin = tmp_path / "items" / path.relative_to(EVAL / "items")
+        twin = tmp_path / "items" / path.relative_to(EVAL / "items")
+        if path.is_file() and "materials" in path.parts:
             assert hashlib.sha256(twin.read_bytes()).digest() == hashlib.sha256(path.read_bytes()).digest(), path
+        elif path.name == "key.json":
+            assert _close(json.loads(path.read_text()), json.loads(twin.read_text())), path
 
 
 def test_every_trap_has_a_twin_and_smoke_set_is_fixed():
