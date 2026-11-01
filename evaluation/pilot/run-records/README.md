@@ -24,7 +24,7 @@ deviations, recorded here, not described as strict adherence.
 
 | Stage | Agreed | Configured | Observed |
 | --- | --- | --- | --- |
-| Integration, per-trial wall clock | 300 s | 600 s | All exited normally; the longest well under 300 s (see `trial.json` timestamps). |
+| Integration, per-trial wall clock | 300 s | 600 s | All exited normally; the longest took 62.48 s including preflight. |
 | Integration, counted-token ceiling | 200,000 | 400,000 per plan | 48,884 counted in total. |
 | Calibration, counted-token ceiling | 600,000 | 1,000,000 | 124,840 counted in total. |
 

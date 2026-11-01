@@ -60,8 +60,8 @@ in [run-records](../evaluation/pilot/run-records/README.md), with summaries in
 - **Limits configured above the agreed values.** Integration plans set 600 s
   and 400,000 counted tokens, against the agreed 300 s and 200,000.
   Calibration set 1,000,000 against 600,000. Observed use stayed below every
-  agreed limit: 48,884 and 124,840 counted tokens, and no integration trial
-  passed 62 s including preflight.
+  agreed limit: 48,884 and 124,840 counted tokens, and every integration
+  trial finished in under 63 s including preflight (maximum 62.48 s).
 - **Launches before Codex's closure review** of `b69fd10`.
 - **Fixes between runs.** The organisation-managed file gate and the exact
   tool names in the prompts both changed between runs, and both are recorded.
