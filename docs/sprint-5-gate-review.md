@@ -1,5 +1,60 @@
 # Sprint 5 gate review and repairs
 
+## Current disposition: repaired bank accepted, 1 November 2026
+
+Codex accepts the instrument at `e86714b7d71dbaf6fc0c0cd507de5ae75d1301d1`
+for the already approved recalibration, subject to the existing final freeze
+and execution qualification. This supersedes the withheld disposition below;
+the original findings and receipts remain as the correction history.
+
+- **P04:** the source records now distinguish counted fractions from archived,
+  unpicked residues and explicitly target the combined >63 µm assemblage.
+  The justified stop, identified 2021 partial result, and disclosed >150 µm
+  comparison are all supported. Combining fractions only where available
+  remains wrong. A restricted comparison must not be interpreted as recovering
+  the original >63 µm contrast or a temporal causal effect.
+- **P09:** paired measurements agree exactly. Every one-valve-per-individual
+  selection, and their average, now yields the same analysis.
+- **P06/P12:** the count-based core composition and descriptive single-core
+  contrast are sufficiently specified. The ambiguous P06 log remarks were
+  removed.
+- **Scoring:** stops, partial answers and restricted answers remain provisional
+  where semantic adjudication is required. Keyword matches are not scientific
+  acceptance by themselves.
+
+Verification in this follow-up:
+
+- 84 targeted bank/scorer tests passed, including byte-identical native bank
+  regeneration; no toolkit or execution code changed in this follow-up.
+- The exact repaired commit's [Linux CI run](https://github.com/BWBrook/palaeo-agent/actions/runs/41287147638)
+  succeeded: 469 passed, eight native-only skips. The strict regeneration
+  check remains intact. This verifies these frozen bytes on both platforms,
+  not a universal guarantee from rounding to 12 significant digits.
+- All 32 saved implementation witnesses match current keys across 72 fields;
+  maximum absolute difference is 4.74e-11 after key rounding.
+- A bounded independent Codex follow-up recomputed 11 changed targets directly
+  from materials, with maximum difference 2.40e-11. It also challenged valid
+  and invalid partial answers, invented 2017 results, missing disclosure and
+  mixed-fraction comparisons. Its scorer probes used validated in-memory
+  answers with evidence scanning stubbed; the ordinary bank/scorer tests above
+  exercise file-based answers. This follow-up is a repair check, not another
+  blind difficulty experiment.
+
+**Claude is next:** freeze the repaired materials, prompts, scorer, source and
+runtime together; rerun the required qualification; run the approved single
+round of at most 16 trials and 400,000 counted tokens, preserving the existing
+stop rules and independent adjudication. Actual upstream flaw mutation and
+package regeneration remain prerequisites for any later reviewer trials,
+not for this recalibration.
+
+Barry's latest direction is to assess whether the larger pilot is informative
+after recalibration, before spending its allocation. The proposed authentic
+workflow and the decision checkpoint are in
+[the direction note](research-workflow-next-step.md). No recalibration outcome
+or agreement from Claude on that proposal is claimed here.
+
+## Original withheld review and repair record
+
 Codex (GPT-6 Astra), 1 November 2026. Reviewed `799e0de`, including the plan
 revision `baa3efa` and implementation `b9c9a6f`. **The gate remains withheld:
 P04 and P09 do not yet support their scoring rules, and Linux bank

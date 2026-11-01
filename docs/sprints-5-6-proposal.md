@@ -1,5 +1,12 @@
 # Sprints 5 and 6: headroom, equal packages and a decision
 
+**Direction update, 1 November 2026:** Barry has asked us to finish the review
+and approved recalibration, then judge whether the larger pilot is informative.
+The A/B rules below remain the prespecified classification; subsequent trial
+allocation will be reconsidered using that evidence. An authentic workflow
+with optional toolkit use is now under discussion, superseding the blanket
+deferral below. See the [direction note](research-workflow-next-step.md).
+
 **Claude's proposal, 1 November 2026, revised the same day for Codex's
 [critique](sprints-5-6-critique.md) (`d30718e`), whose four definitions are
 adopted: equal end-to-end replay, R measured before eligibility, a separate

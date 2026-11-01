@@ -1,0 +1,52 @@
+{
+  "reviewed_commit": "e86714b7d71dbaf6fc0c0cd507de5ae75d1301d1",
+  "date": "2026-11-01",
+  "disposition": "accepted for approved recalibration after final freeze and qualification",
+  "targeted_tests": {
+    "command": "uv run pytest -q tests/test_pilot_bank_v4.py tests/test_pilot_score.py",
+    "passed": 84,
+    "seconds": 0.77
+  },
+  "linux_ci": {
+    "url": "https://github.com/BWBrook/palaeo-agent/actions/runs/41287147638",
+    "headSha": "e86714b7d71dbaf6fc0c0cd507de5ae75d1301d1",
+    "conclusion": "success",
+    "passed": 469,
+    "skipped": 8,
+    "seconds": 110.88,
+    "verified_via": "gh run view metadata and log"
+  },
+  "saved_witnesses_rechecked": {
+    "items": 32,
+    "fields": 72,
+    "max_absolute_difference": 4.736833147944708e-11,
+    "relative_absolute_tolerance": 1e-09
+  },
+  "independent_repair_check": {
+    "agent": "bank_reverify",
+    "targets": 11,
+    "reported_max_absolute_difference": 2.4e-11,
+    "disposition": "no material blocker",
+    "scope": "P04/P06/P09/P12 materials, numerical targets, partial/disclosure score challenges",
+    "limitations": "Repair check, not blind difficulty test. Scorer probes used validated in-memory answers with evidence scanning stubbed; 84 file-based tests separately passed."
+  },
+  "remaining": [
+    "Final source/material/runtime freeze and execution qualification before recalibration",
+    "Semantic and provenance adjudication of trial outputs",
+    "Actual upstream planted-error mutation and downstream regeneration before any reviewer trials",
+    "Reconsider larger pilot after recalibration under Barry latest direction"
+  ],
+  "live_trials_launched_by_this_review": 0,
+  "files_sha256": {
+    "evaluation/pilot/items-v4/MANIFEST.json": "087c2bdc87380cdaf26474a38f1bdfba5e92a5e429e4b92739a509f99bcdc148",
+    "evaluation/pilot/calibration-v4/MANIFEST.json": "f0f21af74a783312261adfe264721e6af91ced12c8e68236dda701d45786b0ba",
+    "evaluation/pilot/build_bank_v4.py": "e4bae9eb05de496a63378d32874f8de1f723f283af4b256d63826fb5f6f2e216",
+    "evaluation/pilot/score.py": "91d41f4a940a97bb40c4d4c79a9f9391e83db429893fa1119b1f3d921f8d6d33",
+    "evaluation/pilot/witness-v4/out-a.json": "028eed553c1273411d1a509d87dbd08911b9857a1106ce940365d02b141e1c94",
+    "evaluation/pilot/witness-v4/out-b.json": "1faff89ce3bafb122644abae20c10fcdd51c3726f9fed5bdeb0b703e92403b51",
+    "evaluation/pilot/witness-v4/receipt.json": "0cf8f8b88ac489ee417d5b12ad1283e2d74eb9135d254f9d91638c6813acf20a",
+    "docs/sprint-5-gate-review.md": "3756b3cb3468b4b2e62541d9d5610989d40c801d634975d442287477a1459039",
+    "docs/research-workflow-next-step.md": "39ac2a56477b0aaaa8138c8ddb49426c030d16f980cd6283247c7be8999ad61e",
+    "docs/sprints-5-6-proposal.md": "e25470ad473edfa8856a7891338f62e7d0cd00fb0031222fe1fbf7507905534c"
+  }
+}
