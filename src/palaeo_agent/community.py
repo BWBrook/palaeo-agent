@@ -12,7 +12,7 @@ import unicodedata
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 
-from .core import AnalysisError, ResultItem
+from .core import AnalysisError, ResultItem, repeated_warnings
 
 
 MAX_EXACT_COUNT = 2**53 - 1
@@ -120,7 +120,7 @@ class CommunityExclusion(ResultItem):
 
 
 class CommunityWarning(ResultItem):
-    code: Literal["near_duplicate_labels", "negative_eigenvalues"]
+    code: Literal["near_duplicate_labels", "negative_eigenvalues", "identical_samples", "repeated_block"]
     message: str = Field(min_length=1)
     details: dict = Field(default_factory=dict)
 
@@ -313,7 +313,8 @@ def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metada
     return {"counts": counts[keep], "input_sample_ids": samples, "sample_ids": retained_ids,
             "taxon_ids": taxa, "excluded": excluded,
             "metadata": None if aligned is None else [row for row, flag in zip(aligned, keep) if flag],
-            "warnings": _near_duplicates(samples, "sample") + _near_duplicates(taxa, "taxon")}
+            "warnings": _near_duplicates(samples, "sample") + _near_duplicates(taxa, "taxon")
+            + repeated_warnings([tuple(row) for row in counts[keep].tolist()], retained_ids, "samples")}
 
 
 def _read_inputs(spec, data, metadata):

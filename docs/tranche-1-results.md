@@ -35,6 +35,25 @@ standard-library results within the prespecified `rtol=atol=1e-12`.
 | L2 | 79 | 0.8191670400279810 | 0.9817911055076792 |
 | L3 | 35 | 0.9054241567685909 | 1.1071123900450557 |
 
+**Data defect found later (1 November 2026).** The archived L2 columns hold a
+repeated block. Specimens 57–63 recur exactly as 64–70, seven consecutive
+length/width pairs. An analyst session found it in the authentic-workflow
+study ([authentic-sessions-20261101.md](authentic-sessions-20261101.md)), and
+the RMA input diagnostics now warn on it (`repeated_block`). The archived bytes
+and the fits above are unchanged. The L2 values above include the block;
+without it, they become:
+
+| L2 input | Retained pairs | Raw RMA slope | Log10 RMA slope |
+| --- | ---: | ---: | ---: |
+| As archived | 79 | 0.8191670400279810 | 0.9817911055076792 |
+| Specimens 64–70 removed | 72 | 0.8155490421432005 | 0.9764206000434580 |
+| Each distinct pair kept once | 71 | 0.8155133648572809 | 0.9765259484987477 |
+
+These are the toolkit's own RMA results, computed in that session's follow-up.
+The change does not alter any rounded published value (0.82). L3 also repeats
+three pairs, but in no consecutive block, consistent with coincidences of
+rounding.
+
 Only the raw slopes are comparable with the published two-decimal values
 0.84, 0.82 and 0.91. Rounded published answers are distinct from the independent
 full-precision calculation; neither is a new run of PAST 5.

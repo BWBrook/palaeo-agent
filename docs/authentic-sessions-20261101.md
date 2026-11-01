@@ -195,3 +195,22 @@ remaining ~59k tokens are unspent.
 
 Still outstanding from the recalibration round, and unaffected by this:
 Codex's decision on resuming T010–T016, and the second adjudication of T005.
+
+## Follow-up done (Barry, Claude Code chat, 1 November 2026: "Yes, do both.")
+
+- **Defect recorded.**
+  - `docs/tranche-1-results.md` now gives the L2 RMA slopes with and without
+    the repeated block (raw 0.8192 → 0.8155; log10 0.9818 → 0.9764).
+  - `benchmarks/past/legacy-cases.json` case 1 carries a `known_data_issues`
+    entry. `scripts/capture_past.py` would drop that entry if the inventory
+    were regenerated.
+  - The archived bytes are unchanged.
+- **Diagnostic added.**
+  - RMA warns on `repeated_pairs` and `repeated_block`: maximal runs of at
+    least 3 consecutive pairs that recur exactly.
+  - Community and PERMANOVA input warn on `identical_samples` and
+    `repeated_block`.
+  - These are warnings only: no result changes, and discovery advertises them.
+  - On the archived file it reports exactly the L2 block 57–63 → 64–70, and
+    only scattered repeats in L3.
+  - Tests: `tests/test_repeated_records.py`.

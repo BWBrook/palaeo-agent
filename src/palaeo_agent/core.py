@@ -1,6 +1,6 @@
 """The first supported operation: descriptive reduced-major-axis regression."""
 
-from collections import Counter
+from collections import Counter, defaultdict
 from numbers import Real
 from pathlib import Path
 from typing import Literal
@@ -58,8 +58,9 @@ class RmaExclusion(ResultItem):
 
 
 class RmaWarning(ResultItem):
-    code: Literal["small_computed_correlation", "two_pairs", "padded_column_label"]
+    code: Literal["small_computed_correlation", "two_pairs", "padded_column_label", "repeated_pairs", "repeated_block"]
     message: str = Field(min_length=1)
+    details: dict = Field(default_factory=dict)
 
 
 class RmaResult(ResultItem):
@@ -118,6 +119,50 @@ def discover():
         "references": [REFERENCE], "input_schema": RmaSpec.model_json_schema(),
         "output_schema": RmaResult.model_json_schema(),
     }]}
+
+
+MIN_REPEATED_BLOCK = 3
+
+
+def repeated_records(records, ids):
+    """Exact repeated records, and maximal runs of at least MIN_REPEATED_BLOCK consecutive records that recur.
+
+    Diagnostics only: repeats can be coincidences of rounding, but a recurring run is the signature of a
+    duplicated data-entry block."""
+    positions = defaultdict(list)
+    for index, record in enumerate(records):
+        positions[record].append(index)
+    groups = [[ids[i] for i in where] for where in positions.values() if len(where) > 1]
+    blocks = []
+    for where in positions.values():
+        for a, i in enumerate(where):
+            for j in where[a + 1:]:
+                if i > 0 and records[i - 1] == records[j - 1]:
+                    continue
+                length = 0
+                while j + length < len(records) and i + length < j and records[i + length] == records[j + length]:
+                    length += 1
+                if length >= MIN_REPEATED_BLOCK:
+                    blocks.append({"first": ids[i:i + length], "repeat": ids[j:j + length]})
+    return groups, blocks
+
+
+def repeated_warnings(records, ids, what):
+    groups, blocks = repeated_records(records, ids)
+    warnings = []
+    if groups:
+        warnings.append({"code": "repeated_pairs" if what == "pairs" else "identical_samples",
+                         "message": f"{len(groups)} distinct {'measurement pairs' if what == 'pairs' else 'count profiles'} "
+                                    f"occur in more than one record ({sum(map(len, groups))} records); check for duplicated "
+                                    "entries (repeats can also be coincidences of rounding or of small counts)",
+                         "details": {"groups": groups}})
+    for block in blocks:
+        warnings.append({"code": "repeated_block",
+                         "message": f"{len(block['first'])} consecutive records {block['first'][0]}..{block['first'][-1]} "
+                                    f"recur exactly as {block['repeat'][0]}..{block['repeat'][-1]}; "
+                                    "check the source for a duplicated data-entry block",
+                         "details": block})
+    return warnings
 
 
 def rma_regression(x, y, *, sample_ids=None, transform, missing):
@@ -190,6 +235,8 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
                  "message": "Computed |r| is below 1e-8; this numerical diagnostic is not a statistical test of association"}] if abs(r) < 1e-8 else []
     if len(used) == 2:
         warnings.append({"code": "two_pairs", "message": "Two pairs determine a line; residual diagnostics cannot assess its adequacy"})
+    warnings += repeated_warnings([(row["x_raw"], row["y_raw"]) for row in used], [row["sample_id"] for row in used],
+                                  "pairs")
     return RmaResult.model_validate({"method": "rma", "method_version": 1, "transform": transform,
             "missing": missing, "n_input": len(ids), "n": len(used),
             "excluded": excluded, "mean_x": mean_x, "mean_y": mean_y,

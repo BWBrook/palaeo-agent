@@ -51,7 +51,7 @@ class PermanovaSpec(BaseModel):
 
 
 class PermanovaWarning(ResultItem):
-    code: Literal["near_duplicate_labels", "negative_eigenvalues", "negative_squared_dispersion", "unequal_group_sizes"]
+    code: Literal["near_duplicate_labels", "negative_eigenvalues", "negative_squared_dispersion", "unequal_group_sizes", "identical_samples", "repeated_block"]
     message: str = Field(min_length=1)
     details: dict = Field(default_factory=dict)
 

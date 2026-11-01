@@ -31,7 +31,16 @@
         "url": "https://palaeo-electronica.org/2001_1/past/pastprog/study1tips.html",
         "status": "captured"
       },
-      "reference_status": "published_procedures_only_no_new_past_run"
+      "reference_status": "published_procedures_only_no_new_past_run",
+      "known_data_issues": [
+        {
+          "file": "dielasma.dat",
+          "found": "2026-11-01",
+          "issue": "L2/X1 and L2/X2 rows 57-63 recur exactly as rows 64-70 (seven consecutive pairs), a probable duplicated data-entry block",
+          "handling": "archived bytes unchanged; report L2 results with and without rows 64-70",
+          "record": "docs/tranche-1-results.md; docs/authentic-sessions-20261101.md"
+        }
+      ]
     },
     {
       "case_id": 2,
