@@ -1,0 +1,504 @@
+{
+  "client": "2.1.308 (Claude Code)",
+  "client_sha256": "ca923c86ac84b30574a82331a05b6e066c27477a926ceaffe46a845a33e4dd37",
+  "model_calls": 0,
+  "cases": [
+    {
+      "mode": "bare",
+      "arm": "direct",
+      "flags": [
+        "--bare",
+        "-p",
+        "Offline boundary probe. No actual inference.",
+        "--tools=",
+        "--strict-mcp-config",
+        "--mcp-config",
+        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/bare-direct/mcp.json",
+        "--setting-sources=",
+        "--no-session-persistence",
+        "--permission-mode",
+        "bypassPermissions",
+        "--allowedTools",
+        "mcp__worker__*",
+        "--model",
+        "claude-sonnet-5-5",
+        "--max-turns",
+        "20",
+        "--output-format",
+        "stream-json",
+        "--verbose"
+      ],
+      "requests": 12,
+      "request_inventories": [
+        [
+          "mcp__worker__worker_execute",
+          "mcp__worker__worker_read",
+          "mcp__worker__worker_write"
+        ]
+      ],
+      "init_inventory": [
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_read",
+        "mcp__worker__worker_write"
+      ],
+      "system_chars": [
+        453
+      ],
+      "scripted_calls": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "WebFetch",
+        "Agent",
+        "Task",
+        "ToolSearch",
+        "DeferredToolPlaceholder",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_execute"
+      ],
+      "tool_results": {
+        "toolu_00": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Bash. Bash is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_01": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Read. Read is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_02": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Write. Write is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_03": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Edit. Edit is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_04": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: WebFetch. WebFetch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_05": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Agent. Agent is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_06": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Task. Task is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_07": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: ToolSearch. ToolSearch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_08": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: DeferredToolPlaceholder</tool_use_error>\""
+        },
+        "toolu_09": {
+          "is_error": true,
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+        },
+        "toolu_10": {
+          "is_error": false,
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.02414712500103633}\""
+        }
+      },
+      "checks": {
+        "every_request_inventory_is_worker_only": true,
+        "init_inventory_matches_requests": true,
+        "no_credential_sent": true,
+        "forbidden_builtins_refused": true,
+        "worker_outside_read_denied": true,
+        "secret_not_returned": true,
+        "no_canary_writes": true,
+        "positive_control": true,
+        "client_exit_zero": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "bare",
+      "arm": "toolkit",
+      "flags": [
+        "--bare",
+        "-p",
+        "Offline boundary probe. No actual inference.",
+        "--tools=",
+        "--strict-mcp-config",
+        "--mcp-config",
+        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/bare-toolkit/mcp.json",
+        "--setting-sources=",
+        "--no-session-persistence",
+        "--permission-mode",
+        "bypassPermissions",
+        "--allowedTools",
+        "mcp__worker__*",
+        "--model",
+        "claude-sonnet-5-5",
+        "--max-turns",
+        "20",
+        "--output-format",
+        "stream-json",
+        "--verbose"
+      ],
+      "requests": 12,
+      "request_inventories": [
+        [
+          "mcp__worker__palaeo_compare",
+          "mcp__worker__palaeo_discover",
+          "mcp__worker__palaeo_inspect",
+          "mcp__worker__palaeo_inspect_comparison",
+          "mcp__worker__palaeo_reproduce",
+          "mcp__worker__palaeo_result",
+          "mcp__worker__palaeo_run",
+          "mcp__worker__palaeo_study_inspect",
+          "mcp__worker__palaeo_study_reproduce",
+          "mcp__worker__palaeo_study_run",
+          "mcp__worker__palaeo_validate",
+          "mcp__worker__worker_execute",
+          "mcp__worker__worker_read",
+          "mcp__worker__worker_write"
+        ]
+      ],
+      "init_inventory": [
+        "mcp__worker__palaeo_compare",
+        "mcp__worker__palaeo_discover",
+        "mcp__worker__palaeo_inspect",
+        "mcp__worker__palaeo_inspect_comparison",
+        "mcp__worker__palaeo_reproduce",
+        "mcp__worker__palaeo_result",
+        "mcp__worker__palaeo_run",
+        "mcp__worker__palaeo_study_inspect",
+        "mcp__worker__palaeo_study_reproduce",
+        "mcp__worker__palaeo_study_run",
+        "mcp__worker__palaeo_validate",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_read",
+        "mcp__worker__worker_write"
+      ],
+      "system_chars": [
+        454
+      ],
+      "scripted_calls": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "WebFetch",
+        "Agent",
+        "Task",
+        "ToolSearch",
+        "DeferredToolPlaceholder",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_execute"
+      ],
+      "tool_results": {
+        "toolu_00": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Bash. Bash is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_01": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Read. Read is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_02": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Write. Write is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_03": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Edit. Edit is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_04": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: WebFetch. WebFetch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_05": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Agent. Agent is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_06": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Task. Task is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_07": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: ToolSearch. ToolSearch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_08": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: DeferredToolPlaceholder</tool_use_error>\""
+        },
+        "toolu_09": {
+          "is_error": true,
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+        },
+        "toolu_10": {
+          "is_error": false,
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.023045124999043765}\""
+        }
+      },
+      "checks": {
+        "every_request_inventory_is_worker_only": true,
+        "init_inventory_matches_requests": true,
+        "no_credential_sent": true,
+        "forbidden_builtins_refused": true,
+        "worker_outside_read_denied": true,
+        "secret_not_returned": true,
+        "no_canary_writes": true,
+        "positive_control": true,
+        "client_exit_zero": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "full",
+      "arm": "direct",
+      "flags": [
+        "-p",
+        "Offline boundary probe. No actual inference.",
+        "--tools=",
+        "--strict-mcp-config",
+        "--mcp-config",
+        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/full-direct/mcp.json",
+        "--setting-sources=",
+        "--no-session-persistence",
+        "--permission-mode",
+        "bypassPermissions",
+        "--allowedTools",
+        "mcp__worker__*",
+        "--model",
+        "claude-sonnet-5-5",
+        "--max-turns",
+        "20",
+        "--output-format",
+        "stream-json",
+        "--verbose"
+      ],
+      "requests": 12,
+      "request_inventories": [
+        [
+          "DeferredToolPlaceholder",
+          "mcp__worker__worker_execute",
+          "mcp__worker__worker_read",
+          "mcp__worker__worker_write"
+        ]
+      ],
+      "init_inventory": [
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_read",
+        "mcp__worker__worker_write"
+      ],
+      "system_chars": [
+        6094
+      ],
+      "scripted_calls": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "WebFetch",
+        "Agent",
+        "Task",
+        "ToolSearch",
+        "DeferredToolPlaceholder",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_execute"
+      ],
+      "tool_results": {
+        "toolu_00": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Bash. Bash is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_01": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Read. Read is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_02": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Write. Write is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_03": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Edit. Edit is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_04": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: WebFetch. WebFetch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_05": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Agent. Agent is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_06": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Task. Task is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_07": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: ToolSearch. ToolSearch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_08": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: DeferredToolPlaceholder</tool_use_error>\""
+        },
+        "toolu_09": {
+          "is_error": true,
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+        },
+        "toolu_10": {
+          "is_error": false,
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.021781833998829825}\""
+        }
+      },
+      "checks": {
+        "every_request_inventory_is_worker_only": true,
+        "init_inventory_matches_requests": true,
+        "no_credential_sent": true,
+        "forbidden_builtins_refused": true,
+        "worker_outside_read_denied": true,
+        "secret_not_returned": true,
+        "no_canary_writes": true,
+        "positive_control": true,
+        "client_exit_zero": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "full",
+      "arm": "toolkit",
+      "flags": [
+        "-p",
+        "Offline boundary probe. No actual inference.",
+        "--tools=",
+        "--strict-mcp-config",
+        "--mcp-config",
+        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/full-toolkit/mcp.json",
+        "--setting-sources=",
+        "--no-session-persistence",
+        "--permission-mode",
+        "bypassPermissions",
+        "--allowedTools",
+        "mcp__worker__*",
+        "--model",
+        "claude-sonnet-5-5",
+        "--max-turns",
+        "20",
+        "--output-format",
+        "stream-json",
+        "--verbose"
+      ],
+      "requests": 12,
+      "request_inventories": [
+        [
+          "DeferredToolPlaceholder",
+          "mcp__worker__palaeo_compare",
+          "mcp__worker__palaeo_discover",
+          "mcp__worker__palaeo_inspect",
+          "mcp__worker__palaeo_inspect_comparison",
+          "mcp__worker__palaeo_reproduce",
+          "mcp__worker__palaeo_result",
+          "mcp__worker__palaeo_run",
+          "mcp__worker__palaeo_study_inspect",
+          "mcp__worker__palaeo_study_reproduce",
+          "mcp__worker__palaeo_study_run",
+          "mcp__worker__palaeo_validate",
+          "mcp__worker__worker_execute",
+          "mcp__worker__worker_read",
+          "mcp__worker__worker_write"
+        ]
+      ],
+      "init_inventory": [
+        "mcp__worker__palaeo_compare",
+        "mcp__worker__palaeo_discover",
+        "mcp__worker__palaeo_inspect",
+        "mcp__worker__palaeo_inspect_comparison",
+        "mcp__worker__palaeo_reproduce",
+        "mcp__worker__palaeo_result",
+        "mcp__worker__palaeo_run",
+        "mcp__worker__palaeo_study_inspect",
+        "mcp__worker__palaeo_study_reproduce",
+        "mcp__worker__palaeo_study_run",
+        "mcp__worker__palaeo_validate",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_read",
+        "mcp__worker__worker_write"
+      ],
+      "system_chars": [
+        6096
+      ],
+      "scripted_calls": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "WebFetch",
+        "Agent",
+        "Task",
+        "ToolSearch",
+        "DeferredToolPlaceholder",
+        "mcp__worker__worker_execute",
+        "mcp__worker__worker_execute"
+      ],
+      "tool_results": {
+        "toolu_00": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Bash. Bash is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_01": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Read. Read is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_02": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Write. Write is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_03": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Edit. Edit is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_04": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: WebFetch. WebFetch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_05": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Agent. Agent is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_06": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: Task. Task is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_07": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: ToolSearch. ToolSearch is disabled for this session, in subagents as well as here.</tool_use_error>\""
+        },
+        "toolu_08": {
+          "is_error": true,
+          "content": "\"<tool_use_error>Error: No such tool available: DeferredToolPlaceholder</tool_use_error>\""
+        },
+        "toolu_09": {
+          "is_error": true,
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+        },
+        "toolu_10": {
+          "is_error": false,
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.02166616700196755}\""
+        }
+      },
+      "checks": {
+        "every_request_inventory_is_worker_only": true,
+        "init_inventory_matches_requests": true,
+        "no_credential_sent": true,
+        "forbidden_builtins_refused": true,
+        "worker_outside_read_denied": true,
+        "secret_not_returned": true,
+        "no_canary_writes": true,
+        "positive_control": true,
+        "client_exit_zero": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

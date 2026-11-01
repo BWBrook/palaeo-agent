@@ -1,0 +1,2 @@
+
+The Palaeo-Agent toolkit is also available, as the `palaeo_*` tools (start with `palaeo_discover`). It runs supported analyses and multi-step studies (declared exclusions, sample selections, taxon mappings and metadata joins) and saves verifiable evidence bundles in the task directory. Use it for every numerical operation it supports; do any preparation it does not support yourself, and document it.
