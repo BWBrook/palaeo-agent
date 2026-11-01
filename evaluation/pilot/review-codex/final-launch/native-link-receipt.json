@@ -1,0 +1,39 @@
+{
+  "worker_created_link": {
+    "status": "ok",
+    "exit_code": 0,
+    "stdout": "link created\n",
+    "stderr": "",
+    "output_bytes": {
+      "stdout": 13,
+      "stderr": 0
+    },
+    "truncated": {
+      "stdout": false,
+      "stderr": false
+    },
+    "duration_seconds": 0.055648082998231985
+  },
+  "worker_read_denied": {
+    "status": "error",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nPermissionError: [Errno 1] Operation not permitted: 'export-me.txt'\n",
+    "output_bytes": {
+      "stdout": 0,
+      "stderr": 142
+    },
+    "truncated": {
+      "stdout": false,
+      "stderr": false
+    },
+    "duration_seconds": 0.02251116700062994
+  },
+  "supervisor_exported_external_canary": true,
+  "saved_path_is_regular_file": true,
+  "provider_calls": 0,
+  "credentials_accessed": false,
+  "runtime": "/Users/bwbrook/palaeo-eval/pilot-runtime-20261101/direct",
+  "runtime_manifest_sha256": "a682e1fb5da38ffbcecbef37e603144b219857992baee99e8945d059fd279d29",
+  "script_sha256": "e83a05d027ecf6a245d9f2d12280be1518714f4fe7c97486f08729f54d3d91cf"
+}

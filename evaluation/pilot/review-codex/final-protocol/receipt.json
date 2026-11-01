@@ -1,0 +1,46 @@
+{
+  "kind": "logical_counterexamples_to_documented_rules_not_live_trials",
+  "protocol_sha256": "fcb0ec376ea7e4d8ef68b894fa097791bc1c8e012984135b3bf39f43fc3ec750",
+  "shared_analyst_endpoints": {
+    "I": 0,
+    "D": 0.5,
+    "delta_T": 0.5,
+    "delta_T_interval": [
+      0.5,
+      0.5
+    ],
+    "delta_T_toolkit": 0.5,
+    "delta_T_other": 0.5,
+    "delta_C": 0,
+    "K": 1
+  },
+  "no_acceptable_paired_packages": {
+    "E_star": 0,
+    "reviewer_endpoints": "undefined",
+    "rule4_expand": true
+  },
+  "all_reviewer_trials_failed": {
+    "E_star": 12,
+    "valid_verdicts": 0,
+    "direct_sensitivity": 0,
+    "toolkit_sensitivity": 0,
+    "direct_accusations": 0,
+    "toolkit_accusations": 0,
+    "rule4_expand": true
+  },
+  "unrelated_rejection_same_class": {
+    "planted": {
+      "class": "preparation",
+      "error": "L3 divided by 10",
+      "field": "L3 measurements"
+    },
+    "reviewer": {
+      "verdict": "reject",
+      "class": "preparation",
+      "field": "excluded specimen I01",
+      "justification": "Specimen I01 was excluded without evidence."
+    },
+    "class_or_step_rule_counts_detection": true,
+    "planted_error_identified": false
+  }
+}

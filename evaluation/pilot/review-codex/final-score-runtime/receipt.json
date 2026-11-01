@@ -1,0 +1,551 @@
+{
+  "reviewed_commit": "aedc1585a239abddea825f813d30c7fdfb91de17",
+  "script_sha256": "6b514d9326a336916338f43ac36c4e462c8d70f5a1a52789db5d7e14fc07a75e",
+  "scorer_sha256": "9556fbdb53893ee4f9084eca747bc6f5558fb9919079333cfef5d81c9ea39213",
+  "scoring_cases": {
+    "P04_silent_basis": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "shannon_mean_2017": 1.8987194094241986,
+          "shannon_mean_2021": 1.9448626201299495
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [],
+        "summary": "Done."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P04-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "restricted basis not disclosed"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": false,
+        "mismatches": [],
+        "outcome": "undisclosed",
+        "pitfall": "handled",
+        "family": "P04",
+        "stratum": "toolkit",
+        "acceptable": false
+      }
+    },
+    "P04_valid_stop": {
+      "answer": {
+        "status": "stopped",
+        "results": {},
+        "assumptions": [],
+        "issues": [
+          "The small fraction was not picked in 2017; full-community Shannon is unidentified."
+        ],
+        "exclusions": [],
+        "summary": "Done."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P04-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "accepted alternative: stopped with the issue named (keyword match)"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "stopped",
+        "caveats": 1,
+        "issue_named": true,
+        "outcome": "correct_unresolved",
+        "mismatches": null,
+        "pitfall": "handled",
+        "family": "P04",
+        "stratum": "toolkit",
+        "acceptable": true
+      }
+    },
+    "P04_valid_common_fraction": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "shannon_mean_2017": 1.8987194094241986,
+          "shannon_mean_2021": 1.9448626201299495
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [],
+        "summary": "Means for the common T01\u2013T08 fraction only; this is not a full-community comparison."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P04-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P04",
+        "stratum": "toolkit",
+        "acceptable": true
+      }
+    },
+    "P04_false_full_community_claim": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "shannon_mean_2017": 1.8987194094241986,
+          "shannon_mean_2021": 1.9448626201299495
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [],
+        "summary": "All fractions were counted in both campaigns; these are full-community Shannon means."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P04-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P04",
+        "stratum": "toolkit",
+        "acceptable": true
+      }
+    },
+    "P09_left": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [
+          {
+            "id": "V14L",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V10L",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V27L",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V30L",
+            "reason": "Retain the other valve of this individual."
+          }
+        ],
+        "summary": "One measurement per individual; paired valves averaged when retained."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false,
+            "one_member_per_pair": true
+          },
+          "score": 0.4
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": true
+      }
+    },
+    "P09_right": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [
+          {
+            "id": "V14",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V10",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V27",
+            "reason": "Retain the other valve of this individual."
+          },
+          {
+            "id": "V30",
+            "reason": "Retain the other valve of this individual."
+          }
+        ],
+        "summary": "One measurement per individual; paired valves averaged when retained."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false,
+            "one_member_per_pair": true
+          },
+          "score": 0.4
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": true
+      }
+    },
+    "P09_average": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [],
+        "summary": "One measurement per individual; paired valves averaged when retained."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false,
+            "one_member_per_pair": true
+          },
+          "score": 0.4
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": true
+      }
+    },
+    "P09_both_members_flagged": {
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 0.7602003259773435,
+          "intercept": -0.9999018522079091,
+          "n": 30
+        },
+        "assumptions": [],
+        "issues": [],
+        "exclusions": [
+          {
+            "id": "V14L",
+            "reason": "Excluded."
+          },
+          {
+            "id": "V14",
+            "reason": "Excluded."
+          }
+        ],
+        "summary": "Done."
+      },
+      "result": {
+        "version": "pilot-v3",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false,
+            "one_member_per_pair": false
+          },
+          "score": 0.2
+        },
+        "status": "completed",
+        "caveats": 0,
+        "issue_named": false,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": true
+      }
+    }
+  },
+  "wheel_sha256": "9693a5d6a74996560d25284cadc3c562c2f34a976abb4993c731cf621ee2d936",
+  "installed_module_hashes": {
+    "palaeo_agent/__init__.py": "79b4181b9dccbb24940a766bc1217bd0e32a2f5949959f23f92c2380a30d9d8c",
+    "palaeo_agent/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "palaeo_agent/cli.py": "88074405753e310ee4c60c33d79dd8aed55bc147c7ea4fc54d4cf7b3f2da62e2",
+    "palaeo_agent/community.py": "1e6467669c0855c3269d0bfb4301cf55d0e6083377fbdb66f443baa35ff76345",
+    "palaeo_agent/core.py": "3d3964fd566da3fed62ff87da23e53cb96cf5b1bd425a8779e97e8269c9601ed",
+    "palaeo_agent/mcp_server.py": "357a564dbfe224e702918206cc4a1cd83d4bbdf21cde85e300fa57f67ef949fe",
+    "palaeo_agent/methods.py": "827bef8b5a5e54e55a95c8e9903cb5f72742cc8fd78f756bca61b9e60347fea3",
+    "palaeo_agent/permanova.py": "b4a1247ebf47472401844e830a25b225c67ce7cc7c3213d0d1b0c72305372eea",
+    "palaeo_agent/runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
+    "palaeo_agent/sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6",
+    "palaeo_agent/study.py": "48d6279310d0998b8256bf4487b78376033e06d8d10641548e6529cac9a66444"
+  },
+  "unchanged_materials": [
+    "evaluation/pilot/items/P01-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P01-control/materials/counts.tsv",
+    "evaluation/pilot/items/P01-control/materials/dictionary.md",
+    "evaluation/pilot/items/P01-control/materials/task.md",
+    "evaluation/pilot/items/P01-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P01-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P01-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P01-trap/materials/task.md",
+    "evaluation/pilot/items/P02-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P02-control/materials/counts.tsv",
+    "evaluation/pilot/items/P02-control/materials/dictionary.md",
+    "evaluation/pilot/items/P02-control/materials/field_log.csv",
+    "evaluation/pilot/items/P02-control/materials/task.md",
+    "evaluation/pilot/items/P02-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P02-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P02-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P02-trap/materials/field_log.csv",
+    "evaluation/pilot/items/P02-trap/materials/task.md",
+    "evaluation/pilot/items/P03-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P03-control/materials/assemblage.tsv",
+    "evaluation/pilot/items/P03-control/materials/dictionary.md",
+    "evaluation/pilot/items/P03-control/materials/picking.csv",
+    "evaluation/pilot/items/P03-control/materials/task.md",
+    "evaluation/pilot/items/P03-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P03-trap/materials/assemblage.tsv",
+    "evaluation/pilot/items/P03-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P03-trap/materials/picking.csv",
+    "evaluation/pilot/items/P03-trap/materials/task.md",
+    "evaluation/pilot/items/P04-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P04-control/materials/cores.csv",
+    "evaluation/pilot/items/P04-control/materials/counts.tsv",
+    "evaluation/pilot/items/P04-control/materials/dictionary.md",
+    "evaluation/pilot/items/P04-control/materials/task.md",
+    "evaluation/pilot/items/P04-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P04-trap/materials/cores.csv",
+    "evaluation/pilot/items/P04-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P04-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P04-trap/materials/task.md",
+    "evaluation/pilot/items/P05-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P05-control/materials/counts.txt",
+    "evaluation/pilot/items/P05-control/materials/dictionary.md",
+    "evaluation/pilot/items/P05-control/materials/task.md",
+    "evaluation/pilot/items/P05-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P05-trap/materials/counts.txt",
+    "evaluation/pilot/items/P05-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P05-trap/materials/task.md",
+    "evaluation/pilot/items/P06-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P06-control/materials/counts.tsv",
+    "evaluation/pilot/items/P06-control/materials/dictionary.md",
+    "evaluation/pilot/items/P06-control/materials/task.md",
+    "evaluation/pilot/items/P06-control/materials/zones.csv",
+    "evaluation/pilot/items/P06-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P06-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P06-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P06-trap/materials/task.md",
+    "evaluation/pilot/items/P06-trap/materials/zones.csv",
+    "evaluation/pilot/items/P07-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P07-control/materials/dictionary.md",
+    "evaluation/pilot/items/P07-control/materials/shells.csv",
+    "evaluation/pilot/items/P07-control/materials/task.md",
+    "evaluation/pilot/items/P07-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P07-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P07-trap/materials/shells.csv",
+    "evaluation/pilot/items/P07-trap/materials/task.md",
+    "evaluation/pilot/items/P08-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P08-control/materials/counts.tsv",
+    "evaluation/pilot/items/P08-control/materials/dictionary.md",
+    "evaluation/pilot/items/P08-control/materials/samples.csv",
+    "evaluation/pilot/items/P08-control/materials/task.md",
+    "evaluation/pilot/items/P08-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P08-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P08-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P08-trap/materials/samples.csv",
+    "evaluation/pilot/items/P08-trap/materials/task.md",
+    "evaluation/pilot/items/P09-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P09-control/materials/dictionary.md",
+    "evaluation/pilot/items/P09-control/materials/task.md",
+    "evaluation/pilot/items/P09-control/materials/valves.csv",
+    "evaluation/pilot/items/P09-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P09-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P09-trap/materials/task.md",
+    "evaluation/pilot/items/P09-trap/materials/valves.csv",
+    "evaluation/pilot/items/P10-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P10-control/materials/counts.tsv",
+    "evaluation/pilot/items/P10-control/materials/dictionary.md",
+    "evaluation/pilot/items/P10-control/materials/task.md",
+    "evaluation/pilot/items/P10-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P10-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P10-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P10-trap/materials/task.md",
+    "evaluation/pilot/items/P11-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P11-control/materials/dictionary.md",
+    "evaluation/pilot/items/P11-control/materials/species.txt",
+    "evaluation/pilot/items/P11-control/materials/task.md",
+    "evaluation/pilot/items/P11-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P11-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P11-trap/materials/species.txt",
+    "evaluation/pilot/items/P11-trap/materials/task.md",
+    "evaluation/pilot/items/P12-control/materials/answer.schema.json",
+    "evaluation/pilot/items/P12-control/materials/counts.tsv",
+    "evaluation/pilot/items/P12-control/materials/dictionary.md",
+    "evaluation/pilot/items/P12-control/materials/task.md",
+    "evaluation/pilot/items/P12-control/materials/zones.csv",
+    "evaluation/pilot/items/P12-trap/materials/answer.schema.json",
+    "evaluation/pilot/items/P12-trap/materials/counts.tsv",
+    "evaluation/pilot/items/P12-trap/materials/dictionary.md",
+    "evaluation/pilot/items/P12-trap/materials/task.md",
+    "evaluation/pilot/items/P12-trap/materials/zones.csv",
+    "evaluation/pilot/calibration/P03-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P03-cal/materials/assemblage.tsv",
+    "evaluation/pilot/calibration/P03-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P03-cal/materials/picking.csv",
+    "evaluation/pilot/calibration/P03-cal/materials/task.md",
+    "evaluation/pilot/calibration/P04-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P04-cal/materials/cores.csv",
+    "evaluation/pilot/calibration/P04-cal/materials/counts.tsv",
+    "evaluation/pilot/calibration/P04-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P04-cal/materials/task.md",
+    "evaluation/pilot/calibration/P05-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P05-cal/materials/counts.txt",
+    "evaluation/pilot/calibration/P05-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P05-cal/materials/task.md",
+    "evaluation/pilot/calibration/P06-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P06-cal/materials/counts.tsv",
+    "evaluation/pilot/calibration/P06-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P06-cal/materials/task.md",
+    "evaluation/pilot/calibration/P06-cal/materials/zones.csv",
+    "evaluation/pilot/calibration/P08-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P08-cal/materials/counts.tsv",
+    "evaluation/pilot/calibration/P08-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P08-cal/materials/samples.csv",
+    "evaluation/pilot/calibration/P08-cal/materials/task.md",
+    "evaluation/pilot/calibration/P09-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P09-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P09-cal/materials/task.md",
+    "evaluation/pilot/calibration/P09-cal/materials/valves.csv",
+    "evaluation/pilot/calibration/P10-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P10-cal/materials/counts.tsv",
+    "evaluation/pilot/calibration/P10-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P10-cal/materials/task.md",
+    "evaluation/pilot/calibration/P11-cal/materials/answer.schema.json",
+    "evaluation/pilot/calibration/P11-cal/materials/dictionary.md",
+    "evaluation/pilot/calibration/P11-cal/materials/species.txt",
+    "evaluation/pilot/calibration/P11-cal/materials/task.md"
+  ],
+  "all_32_numeric_targets_and_signatures_unchanged": true,
+  "inference_calls": 0
+}

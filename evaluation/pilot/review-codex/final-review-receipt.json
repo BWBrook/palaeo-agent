@@ -1,0 +1,37 @@
+{
+  "reviewed_commit": "aedc1585a239abddea825f813d30c7fdfb91de17",
+  "review_date": "2026-11-01",
+  "decision": "review complete; pre-freeze approval withheld",
+  "suite": {
+    "passed": 354,
+    "skipped": 2,
+    "seconds": 51.52
+  },
+  "native_offline_launcher": {
+    "command": "PALAEONATIVE_BOUNDARY_TESTS=1 uv run pytest -q tests/test_pilot_launch.py",
+    "passed": 1,
+    "seconds": 16.67,
+    "scripted_trials": 4
+  },
+  "installed_study_checks": 29,
+  "flaw_references_recomputed": 12,
+  "live_inference_calls": 0,
+  "files_sha256": {
+    "docs/sprint-4-prefreeze-final-review.md": "b6dc4c8081b4ce1ec0f48c11fe8bc00d258cfc5f3a28f8ccc5a1001cdf156197",
+    "evaluation/pilot/review-codex/final-flaws/check.py": "39ed6a4cd24b7b6fa1de19722244c9346eac49a78376fe2bb50fa132affc2bd1",
+    "evaluation/pilot/review-codex/final-flaws/receipt.json": "9767d2b239956d5fc36e0634fff40e5fe75de7f35af223a1219f1369178e2d53",
+    "evaluation/pilot/review-codex/final-flaws/report.md": "cdf3e384c6dd936aaa1dad5d70c02443f4d53086dd6413f7c2bf5f37bdca85ba",
+    "evaluation/pilot/review-codex/final-launch/check.py": "4318f0d52aaab1c7b2ddef9be5f8c7ddce98c6760b2c9241ceee0f02e290cdda",
+    "evaluation/pilot/review-codex/final-launch/native-link-receipt.json": "f73c9862a48f479e2a543f6e7c315e51f523c12a0fcabdb2fa1f68401cdac2cf",
+    "evaluation/pilot/review-codex/final-launch/native_link.py": "e83a05d027ecf6a245d9f2d12280be1518714f4fe7c97486f08729f54d3d91cf",
+    "evaluation/pilot/review-codex/final-launch/receipt.json": "b3103d2412fd69d4d91ee555aa263f8b16b3538e0551ab712e642fddec36ecf3",
+    "evaluation/pilot/review-codex/final-launch/report.md": "b903bc55857feeab93cbadf39f9adbd1b6ab319e9333c777abc62ed2f6b6c583",
+    "evaluation/pilot/review-codex/final-protocol/counterexamples.py": "48720c83bad03888c1800848a184e8f1e62f23a27b044fc3873431dd1966a976",
+    "evaluation/pilot/review-codex/final-protocol/receipt.json": "5d89dc43bca636a4419f02b46cc4166ee37bf814cb73eee84f6fb8985f7f8a06",
+    "evaluation/pilot/review-codex/final-protocol/report.md": "57df7e23a4cb5f3a784659c29e3d6eed6ae47473f4d8ad9b295e72ec40f516a4",
+    "evaluation/pilot/review-codex/final-score-runtime/check.py": "6b514d9326a336916338f43ac36c4e462c8d70f5a1a52789db5d7e14fc07a75e",
+    "evaluation/pilot/review-codex/final-score-runtime/installed-study-receipt.json": "ef1f8597d9ab519fe1ba5defd4f6121b01701c343e7a62cfec1f67b6c43697e2",
+    "evaluation/pilot/review-codex/final-score-runtime/receipt.json": "514f295d97ee0e8813dae4beaa95f7f1b8c16bf179672a9e322dac7fe04c957a",
+    "evaluation/pilot/review-codex/final-score-runtime/report.md": "e47dbd496266c8e9b415c99f79b7f0921f378a91c255691ac5300553f911df06"
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "baseline": "aedc158",
+  "checks": {
+    "P01-control": {
+      "independent_results": {
+        "mean_bray_curtis": 0.7041988653426426,
+        "n_cores": 12
+      },
+      "absolute_errors": {
+        "mean_bray_curtis": 0.0,
+        "n_cores": 0
+      },
+      "separation_in_key_tolerances": {
+        "mean_bray_curtis": 359.2809479059056,
+        "n_cores": 769.2307692307692
+      }
+    },
+    "P02-control": {
+      "independent_results": {
+        "pseudo_f": 4.718258110547586,
+        "r_squared": 0.3709830441823327
+      },
+      "absolute_errors": {
+        "pseudo_f": 0.0,
+        "r_squared": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "pseudo_f": 42560.560560298,
+        "r_squared": 3163.63448533346
+      }
+    },
+    "P03-control": {
+      "independent_results": {
+        "mean_bray_curtis": 0.26672222222222225
+      },
+      "absolute_errors": {
+        "mean_bray_curtis": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "mean_bray_curtis": 1876.8245149911816
+      }
+    },
+    "P04-control": {
+      "independent_results": {
+        "shannon_mean_2017": 2.2291404640439483,
+        "shannon_mean_2021": 2.241201197900627
+      },
+      "absolute_errors": {
+        "shannon_mean_2017": 0.0,
+        "shannon_mean_2021": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "shannon_mean_2017": 0.0,
+        "shannon_mean_2021": 0.0
+      }
+    },
+    "P05-control": {
+      "independent_results": {
+        "richness": 7,
+        "mean_bray_curtis": 0.20710366940522923
+      },
+      "absolute_errors": {
+        "richness": 0,
+        "mean_bray_curtis": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "richness": 1250.0,
+        "mean_bray_curtis": 85.51444790654449
+      }
+    },
+    "P06-control": {
+      "independent_results": {
+        "pseudo_f": 64.00666666666666,
+        "r_squared": 0.9411822370355848,
+        "n": 6
+      },
+      "absolute_errors": {
+        "pseudo_f": 0.0,
+        "r_squared": 0.0,
+        "n": 0
+      },
+      "separation_in_key_tolerances": {
+        "pseudo_f": 3620.9570743259023,
+        "r_squared": 1951.8551244273606,
+        "n": 6666.666666666666
+      }
+    },
+    "P07-control": {
+      "independent_results": {
+        "slope": 0.8365334536394251,
+        "intercept": 0.0323380699343101,
+        "n": 217,
+        "mean_length_mm": 11.242096774193548
+      },
+      "absolute_errors": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "n": 0,
+        "mean_length_mm": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "slope": 43.45301550941149,
+        "intercept": 894.2675766719965,
+        "n": 0.0,
+        "mean_length_mm": 947.9220779220782
+      }
+    },
+    "P08-control": {
+      "independent_results": {
+        "mean_bray_curtis": 0.2343287881515876,
+        "n_samples": 9
+      },
+      "absolute_errors": {
+        "mean_bray_curtis": 0.0,
+        "n_samples": 0
+      },
+      "separation_in_key_tolerances": {
+        "mean_bray_curtis": 0.0,
+        "n_samples": 0.0
+      }
+    },
+    "P09-control": {
+      "independent_results": {
+        "slope": 0.7736270551051414,
+        "intercept": -1.511083546347713,
+        "n": 26
+      },
+      "absolute_errors": {
+        "slope": 0.0,
+        "intercept": 0.0,
+        "n": 0
+      },
+      "separation_in_key_tolerances": {
+        "slope": 134.26729127797853,
+        "intercept": 5111.8169413980395,
+        "n": 1333.3333333333333
+      }
+    },
+    "P10-control": {
+      "independent_results": {
+        "shannon_change": 0.24585556544429088
+      },
+      "absolute_errors": {
+        "shannon_change": 0.0
+      },
+      "separation_in_key_tolerances": {
+        "shannon_change": 0.0
+      }
+    },
+    "P11-control": {
+      "independent_results": {
+        "mean_bray_curtis": 0.18372114252373536,
+        "n_genera": 4
+      },
+      "absolute_errors": {
+        "mean_bray_curtis": 0.0,
+        "n_genera": 0
+      },
+      "separation_in_key_tolerances": {
+        "mean_bray_curtis": 119.10968699097911,
+        "n_genera": 2000.0
+      }
+    },
+    "P12-control": {
+      "independent_results": {
+        "pseudo_f": 0.8740259041750019,
+        "r_squared": 0.021919680402361558,
+        "n": 41
+      },
+      "absolute_errors": {
+        "pseudo_f": 0.0,
+        "r_squared": 0.0,
+        "n": 0
+      },
+      "separation_in_key_tolerances": {
+        "pseudo_f": 934.4081805124904,
+        "r_squared": 22.86675455770288,
+        "n": 0.0
+      }
+    }
+  },
+  "p07_declared_cm_to_mm_results": {
+    "slope": 0.8107159087179305,
+    "intercept": 0.26684437695353225,
+    "n": 217,
+    "mean_length_mm": 24.191935483870967
+  },
+  "p07_declared_vs_frozen_mean_length_delta": 12.949838709677419,
+  "source_sha256": {
+    "evaluation/pilot/review-codex/final-flaws/check.py": "39ed6a4cd24b7b6fa1de19722244c9346eac49a78376fe2bb50fa132affc2bd1",
+    "evaluation/pilot/flaws.py": "799032c2794ea125baecae638b9dad52dfdaa5f9970470882dfe5a0b5791361e",
+    "evaluation/pilot/flaws.json": "998fdff1082412e2366dd91885f629aef719a579288fdb09a3507aaf95bdb924",
+    "tests/test_pilot_flaws.py": "a52ac1202710eb6620f05a5660ecbbccec5b2d6c824d09a2c7bf47b890e739fc",
+    "evaluation/pilot/items/P01-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P01-control/materials/counts.tsv": "1a1ce9684e3f5c19cb3be61ec5946619b404b21d2faaeeeec354718ab28d97c9",
+    "evaluation/pilot/items/P01-control/materials/dictionary.md": "3a08411f3323e88f957910fc198181536bc4ec7578f19b6f51a12874892cc3a4",
+    "evaluation/pilot/items/P01-control/materials/task.md": "70631d2ee6290bb14dfae32012c0afa8271b8fa4d8846753d6ad3ae463f74b63",
+    "evaluation/pilot/items/P02-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P02-control/materials/counts.tsv": "b087b6070d1682b4e65f06c0fb3b373d22b7dee669fb7a494c64407a554d8ee8",
+    "evaluation/pilot/items/P02-control/materials/dictionary.md": "9ce1ced454211b66fb2122d10795aa8c01aade9ad964f977dea6515e13a771c8",
+    "evaluation/pilot/items/P02-control/materials/field_log.csv": "9fcfd7399bb08daf561d387a213de12a503832d3ef17d42ef4e4a4628eae31e3",
+    "evaluation/pilot/items/P02-control/materials/task.md": "f28bc55493532f712bfd4f935ca5a472a7c94a5df2ba57c54f3b07ec99960f6a",
+    "evaluation/pilot/items/P03-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P03-control/materials/assemblage.tsv": "4479279ab1167c0061d88f098ec8aefcfb8a1af43c7e93de75b2b13a0f30cddc",
+    "evaluation/pilot/items/P03-control/materials/dictionary.md": "8bdd01944e758c6784f0b99c77aeb8957a66afe7079b5c8dc0de6eff7601b5a0",
+    "evaluation/pilot/items/P03-control/materials/picking.csv": "b6b19a3b33e54a8f37cd6d5f76eb263d7eea54133e916543063fe13d9c861c3e",
+    "evaluation/pilot/items/P03-control/materials/task.md": "b634b9b01567ac8db5ad8e79e1af98afa896d0a3df4263df4f2d76d84f3d47bb",
+    "evaluation/pilot/items/P04-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P04-control/materials/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "evaluation/pilot/items/P04-control/materials/counts.tsv": "f8c04e0b4414aacd902b0a079b56d2aee444c40f4367d7b8ef45fd22d31e9ade",
+    "evaluation/pilot/items/P04-control/materials/dictionary.md": "299f2379e0c7bda9b212d65c5fd8ce7443117bec2b27c42e706d7ebbc3d58447",
+    "evaluation/pilot/items/P04-control/materials/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "evaluation/pilot/items/P05-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P05-control/materials/counts.txt": "55ef3a5903acdca2debf358e5facbb17ae18ea40fa22c79c5d9d0d56bca77e6e",
+    "evaluation/pilot/items/P05-control/materials/dictionary.md": "e6c56dbbc5b9fac86883e854caa7df796e439a69ad284fabc88468e18d3999a5",
+    "evaluation/pilot/items/P05-control/materials/task.md": "78c368f834a9ac88dbf059640f99f507bec54043ecf02a7b225ec5c0cf0973aa",
+    "evaluation/pilot/items/P06-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P06-control/materials/counts.tsv": "4367790d4fc382364826a459d26b9c09b1f8a092935e7748fdb00a7ca96ed507",
+    "evaluation/pilot/items/P06-control/materials/dictionary.md": "66c2fb9579c4cfcb6981d6759934a5c760fd55efbdb1fe9f1e0933955d0c05de",
+    "evaluation/pilot/items/P06-control/materials/task.md": "fb1ceda5fc05458472be07357c4c482673d97ad4bc36545db57401dbb27f0737",
+    "evaluation/pilot/items/P06-control/materials/zones.csv": "8200f57dffc3c1f21889c17056619f6aff238864b5e43531515caeb7bc5f25b4",
+    "evaluation/pilot/items/P07-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P07-control/materials/dictionary.md": "0a53bf037e4e68c40333344320f9d74e9bcccc28c32fe733143bd514a99f1364",
+    "evaluation/pilot/items/P07-control/materials/shells.csv": "cd1e4b1a75257a90d1ee9b6f028f0685fb240202a8e9124ef34ff688e4305bdb",
+    "evaluation/pilot/items/P07-control/materials/task.md": "7e3f4ee427b73c49698c6a82788c2b69a6b0bf8757f91ac991e6ad5c2cd90ff5",
+    "evaluation/pilot/items/P08-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P08-control/materials/counts.tsv": "dfce6c71f5e162153cc32adaffbcf4fa8c74cd9f7d634954c7bfd3db83f8a37d",
+    "evaluation/pilot/items/P08-control/materials/dictionary.md": "bd9f61b2e9aedaa6f96eb790993067399041283ae23842ec7bf27cd24bf312e5",
+    "evaluation/pilot/items/P08-control/materials/samples.csv": "2eec54ef4808d7b6669b1e6b5700495694c6e15fb78e09bc2d7338ac2d26cbd5",
+    "evaluation/pilot/items/P08-control/materials/task.md": "39ade513cfa472fd4a3883719cc21111bb0138a2510bfd138a4edb10fff079d2",
+    "evaluation/pilot/items/P09-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P09-control/materials/dictionary.md": "d5931db231d945150b608e9d43cf47ef91fa7bfb9eaeeb5759d8bf40d32de206",
+    "evaluation/pilot/items/P09-control/materials/task.md": "22d6c5a3140d51f6988f7f8c877c7d5bed4827fa0a67d3c7ea67bff89327d02c",
+    "evaluation/pilot/items/P09-control/materials/valves.csv": "03f170c104b74e2e3c78fabe49c0befee5fa2eeba875a14257be9e8a1ab36629",
+    "evaluation/pilot/items/P10-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P10-control/materials/counts.tsv": "345e428fdd28f14837de0df42a5f528893eec686fc3b4c735cb12684cc4c86d3",
+    "evaluation/pilot/items/P10-control/materials/dictionary.md": "985015c98ad5c98e43ae25175e95d4877f86b41b1d61cf1da5b2fb3eae506f0f",
+    "evaluation/pilot/items/P10-control/materials/task.md": "816256992f6fb48a2a10e75e7c8fddd6785ca9227038b34632933f124fa6767c",
+    "evaluation/pilot/items/P11-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P11-control/materials/dictionary.md": "3aa3ce3aab0a05d03eea9ec5ba154f121a98f5447cc3112b827ebb1f3ab42b49",
+    "evaluation/pilot/items/P11-control/materials/species.txt": "86550e357e87589532a05cd5b0187459c69d0822842b7de5ccf021e60148cb58",
+    "evaluation/pilot/items/P11-control/materials/task.md": "66bd1f9411239882c44eedba60fbe3a33374c8ad86e9a5d50393b6fea555bdaf",
+    "evaluation/pilot/items/P12-control/materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "evaluation/pilot/items/P12-control/materials/counts.tsv": "90080578634cff0e1718bb776f947642b6f2e0d21660f56c9853e81b2b07a7c7",
+    "evaluation/pilot/items/P12-control/materials/dictionary.md": "157177758bbf2bdb37f7f6eb4f4786d07ad820466651843bc7af835c1e041395",
+    "evaluation/pilot/items/P12-control/materials/task.md": "dc2e8c04f7063b1b2d6aa1186013c9f5d83cc89d5d1e1e487a3fabbce2336128",
+    "evaluation/pilot/items/P12-control/materials/zones.csv": "d995eab8be0028a970b648a53f951c9da2314bb8308f8e1d6802ea6a62d4528f"
+  },
+  "inference_calls": 0
+}

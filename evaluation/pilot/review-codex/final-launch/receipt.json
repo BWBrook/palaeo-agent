@@ -1,0 +1,151 @@
+{
+  "baseline": "aedc1585a239abddea825f813d30c7fdfb91de17",
+  "live_clients": 0,
+  "provider_calls": 0,
+  "credentials_accessed": false,
+  "method": "Direct production functions with mocked client/inventory/score; bounded owned process for argv-cleanup counterexample.",
+  "source_sha256": {
+    "evaluation/pilot/launch.py": "2dcbb1ebdd64f0f0418f5083eec47447d75a6ef72257193276e2784e932bd49c",
+    "evaluation/execution/worker.py": "73f49a3c3b6a4ffeef2607f43419308cafdc6b74ad2c0963fa54a3196139677f",
+    "evaluation/pilot/review-codex/final-launch/check.py": "4318f0d52aaab1c7b2ddef9be5f8c7ddce98c6760b2c9241ceee0f02e290cdda"
+  },
+  "observations": {
+    "wrong_audit_and_missing_result_accepted": {
+      "worker": 1,
+      "client_refusal": 0,
+      "other": [],
+      "worker_audit_calls": 1,
+      "consistent": true
+    },
+    "unadvertised_success_rejected_positive_control": {
+      "worker": 0,
+      "client_refusal": 0,
+      "other": [
+        {
+          "id": "bad",
+          "name": "Bash"
+        }
+      ],
+      "worker_audit_calls": 0,
+      "consistent": false
+    },
+    "resume_started_only": {
+      "launched": [
+        "T002"
+      ],
+      "log": [
+        {
+          "trial": "T002",
+          "outcome": "correct",
+          "counted": 1
+        }
+      ]
+    },
+    "resume_unknown_usage": {
+      "launched": [
+        "T002"
+      ],
+      "log": [
+        {
+          "trial": "T002",
+          "outcome": "correct",
+          "counted": 1
+        }
+      ]
+    },
+    "resume_prior_boundary_breach": {
+      "launched": [
+        "T002"
+      ],
+      "log": [
+        {
+          "trial": "T002",
+          "outcome": "correct",
+          "counted": 1
+        }
+      ]
+    },
+    "stale_pins": {
+      "breach": [],
+      "counted_tokens": 5,
+      "reconciliation": {
+        "worker": 0,
+        "client_refusal": 0,
+        "other": [],
+        "worker_audit_calls": 0,
+        "consistent": true
+      },
+      "exported_external_canary": false,
+      "copied_link_is_regular_file": false
+    },
+    "missing_init": {
+      "breach": [],
+      "counted_tokens": 5,
+      "reconciliation": {
+        "worker": 0,
+        "client_refusal": 0,
+        "other": [],
+        "worker_audit_calls": 0,
+        "consistent": true
+      },
+      "exported_external_canary": false,
+      "copied_link_is_regular_file": false
+    },
+    "incomplete_usage": {
+      "breach": [],
+      "counted_tokens": 0,
+      "reconciliation": {
+        "worker": 0,
+        "client_refusal": 0,
+        "other": [],
+        "worker_audit_calls": 0,
+        "consistent": true
+      },
+      "exported_external_canary": false,
+      "copied_link_is_regular_file": false
+    },
+    "export_symlink": {
+      "breach": [],
+      "counted_tokens": 5,
+      "reconciliation": {
+        "worker": 0,
+        "client_refusal": 0,
+        "other": [],
+        "worker_audit_calls": 0,
+        "consistent": true
+      },
+      "exported_external_canary": true,
+      "copied_link_is_regular_file": true
+    },
+    "cleanup_failure_evidence": {
+      "halt": "synthetic cleanup failure",
+      "record_files": [
+        "started.json"
+      ]
+    },
+    "cleanup_argv_marker": {
+      "child_survived": true,
+      "pgrep_status": 1,
+      "pgrep_stderr": "",
+      "child_command_contains_marker": false,
+      "kind": "finite synthetic process, not sandboxed worker"
+    },
+    "partial_balanced_block": {
+      "launched": [
+        "T001"
+      ],
+      "log": [
+        {
+          "trial": "T001",
+          "outcome": "correct",
+          "counted": 6
+        },
+        {
+          "stop": "ceiling",
+          "spent": 6
+        }
+      ],
+      "completed_block": false
+    }
+  }
+}

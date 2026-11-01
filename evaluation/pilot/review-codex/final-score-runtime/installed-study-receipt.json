@@ -1,0 +1,533 @@
+{
+  "commit": "aedc1585a239abddea825f813d30c7fdfb91de17",
+  "script_sha256": "01ed933d109cd71a1e7fbd44361197596e676b1b8905ba0af7576962e6ec9a46",
+  "checks": 29,
+  "passed": 29,
+  "observations": [
+    {
+      "case": "complete_positive_control",
+      "passed": true,
+      "observed": {
+        "status": "verified",
+        "study_status": "complete",
+        "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/template",
+        "steps": [
+          {
+            "id": "dataset:d",
+            "status": "complete"
+          },
+          {
+            "id": "analysis:r",
+            "status": "complete"
+          }
+        ],
+        "runs": {
+          "r": {
+            "run_dir": "runs/r/e7af098f80444ebe8212fe1e6901c92c",
+            "summary": {
+              "method": "rma",
+              "n": 3,
+              "n_input": 3,
+              "excluded": [],
+              "warnings": [],
+              "slope": 1.7320508075688776,
+              "intercept": -0.04145188432738145,
+              "correlation": 0.9897433186107871
+            }
+          }
+        },
+        "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"
+      }
+    },
+    {
+      "case": "complete_reproduction",
+      "passed": true,
+      "observed": {
+        "status": "reproduced",
+        "original": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/template",
+        "new": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      }
+    },
+    {
+      "case": "S1_empty_steps_and_deleted_runs",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/empty-steps",
+          "reason": "Recorded steps differ from the study's declared steps"
+        }
+      }
+    },
+    {
+      "case": "S1_missing_step",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/missing_step",
+          "reason": "Recorded steps differ from the study's declared steps"
+        }
+      }
+    },
+    {
+      "case": "S1_reordered_steps",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/reordered_steps",
+          "reason": "Recorded steps differ from the study's declared steps"
+        }
+      }
+    },
+    {
+      "case": "S1_duplicate_step",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/duplicate_step",
+          "reason": "Recorded steps differ from the study's declared steps"
+        }
+      }
+    },
+    {
+      "case": "S1_unknown_step",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/unknown_step",
+          "reason": "Recorded steps differ from the study's declared steps"
+        }
+      }
+    },
+    {
+      "case": "S1_missing_run",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/missing_run",
+          "reason": "Run records differ from completed analyses"
+        }
+      }
+    },
+    {
+      "case": "S1_wrong_overall_status",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/wrong_overall_status",
+          "reason": "Study status differs from its steps"
+        }
+      }
+    },
+    {
+      "case": "S1_unknown_step_status",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/unknown_step_status",
+          "reason": "Step statuses must be complete steps, then at most one failure followed by not_run"
+        }
+      }
+    },
+    {
+      "case": "S1_not_run_without_failure",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/not_run_without_failure",
+          "reason": "Step statuses must be complete steps, then at most one failure followed by not_run"
+        }
+      }
+    },
+    {
+      "case": "S1_complete_after_failure",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/complete_after_failure",
+          "reason": "Step statuses must be complete steps, then at most one failure followed by not_run"
+        }
+      }
+    },
+    {
+      "case": "S1_two_failures",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/two_failures",
+          "reason": "Step statuses must be complete steps, then at most one failure followed by not_run"
+        }
+      }
+    },
+    {
+      "case": "S2_MCP_outside_runs",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/link-runs/study",
+          "reason": "Study contains a link or special file: runs"
+        }
+      }
+    },
+    {
+      "case": "S2_MCP_outside_derived",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/link-derived/study",
+          "reason": "Study contains a link or special file: derived"
+        }
+      }
+    },
+    {
+      "case": "S2_MCP_outside_inputs",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/link-inputs/study",
+          "reason": "Study contains a link or special file: inputs"
+        }
+      }
+    },
+    {
+      "case": "S2_nested_run_directory_link",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/nested-link",
+          "reason": "Study contains a link or special file: runs/r/e7af098f80444ebe8212fe1e6901c92c"
+        }
+      }
+    },
+    {
+      "case": "S2_special_file",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/fifo",
+          "reason": "Study contains a link or special file: unexpected-pipe"
+        }
+      }
+    },
+    {
+      "case": "S2_dangling_link",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study could not be verified",
+        "details": {
+          "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/dangling-link",
+          "reason": "Study contains a link or special file: unexpected-link"
+        }
+      }
+    },
+    {
+      "case": "S3_retranspose",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study does not match the schema",
+        "details": {
+          "details": [
+            {
+              "type": "value_error",
+              "loc": [],
+              "msg": "Value error, Analysis r: derived datasets are PAST tables, samples by taxa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "S3_wrong_format",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study does not match the schema",
+        "details": {
+          "details": [
+            {
+              "type": "value_error",
+              "loc": [],
+              "msg": "Value error, Analysis r: derived datasets are PAST tables, samples by taxa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "S3_missing_format",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study does not match the schema",
+        "details": {
+          "details": [
+            {
+              "type": "value_error",
+              "loc": [],
+              "msg": "Value error, Analysis r: derived datasets are PAST tables, samples by taxa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "S3_rma_on_counts",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study does not match the schema",
+        "details": {
+          "details": [
+            {
+              "type": "value_error",
+              "loc": [],
+              "msg": "Value error, Analysis r: rma cannot analyse a counts dataset"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "S3_community_on_measurements",
+      "passed": true,
+      "observed": {
+        "status": "error",
+        "code": "invalid_study",
+        "message": "Study does not match the schema",
+        "details": {
+          "details": [
+            {
+              "type": "value_error",
+              "loc": [],
+              "msg": "Value error, Analysis r: community cannot analyse a measurements dataset"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "S4_dataset_failure_preserves_full_order",
+      "passed": true,
+      "observed": {
+        "status": "partial",
+        "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-dataset",
+        "steps": [
+          {
+            "id": "dataset:before",
+            "status": "complete"
+          },
+          {
+            "id": "dataset:bad",
+            "status": "failed",
+            "error": {
+              "status": "error",
+              "code": "unknown_sample",
+              "message": "Declared samples do not exist",
+              "details": {
+                "samples": [
+                  "absent"
+                ]
+              }
+            }
+          },
+          {
+            "id": "dataset:later",
+            "status": "not_run"
+          },
+          {
+            "id": "analysis:r",
+            "status": "not_run"
+          }
+        ],
+        "failed_step": "dataset:bad",
+        "error": {
+          "status": "error",
+          "code": "unknown_sample",
+          "message": "Declared samples do not exist",
+          "details": {
+            "samples": [
+              "absent"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "case": "S4_valid_partial_dataset_verifies",
+      "passed": true,
+      "observed": {
+        "status": "verified",
+        "study_status": "partial",
+        "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-dataset",
+        "steps": [
+          {
+            "id": "dataset:before",
+            "status": "complete"
+          },
+          {
+            "id": "dataset:bad",
+            "status": "failed",
+            "error": {
+              "status": "error",
+              "code": "unknown_sample",
+              "message": "Declared samples do not exist",
+              "details": {
+                "samples": [
+                  "absent"
+                ]
+              }
+            }
+          },
+          {
+            "id": "dataset:later",
+            "status": "not_run"
+          },
+          {
+            "id": "analysis:r",
+            "status": "not_run"
+          }
+        ],
+        "runs": {},
+        "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"
+      }
+    },
+    {
+      "case": "S4_valid_partial_dataset_reproduces",
+      "passed": true,
+      "observed": {
+        "status": "reproduced",
+        "original": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-dataset",
+        "new": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-dataset-again",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      }
+    },
+    {
+      "case": "S1_valid_partial_analysis_verifies",
+      "passed": true,
+      "observed": {
+        "status": "verified",
+        "study_status": "partial",
+        "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-analysis",
+        "steps": [
+          {
+            "id": "dataset:d",
+            "status": "complete"
+          },
+          {
+            "id": "analysis:r",
+            "status": "complete"
+          },
+          {
+            "id": "analysis:bad",
+            "status": "failed",
+            "error": {
+              "status": "error",
+              "code": "unknown_column",
+              "message": "Selected columns do not exist",
+              "details": {
+                "columns": [
+                  "absent"
+                ],
+                "available": [
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          },
+          {
+            "id": "analysis:later",
+            "status": "not_run"
+          }
+        ],
+        "runs": {
+          "r": {
+            "run_dir": "runs/r/77d067589c53475eb999df0794df08fc",
+            "summary": {
+              "method": "rma",
+              "n": 3,
+              "n_input": 3,
+              "excluded": [],
+              "warnings": [],
+              "slope": 1.7320508075688776,
+              "intercept": -0.04145188432738145,
+              "correlation": 0.9897433186107871
+            }
+          }
+        },
+        "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"
+      }
+    },
+    {
+      "case": "S1_valid_partial_analysis_reproduces",
+      "passed": true,
+      "observed": {
+        "status": "reproduced",
+        "original": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-analysis",
+        "new": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/study-recheck-eik4fl8m/partial-analysis-again",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      }
+    }
+  ]
+}
