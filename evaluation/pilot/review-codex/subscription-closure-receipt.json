@@ -1,0 +1,29 @@
+{
+  "reviewed_commit": "2cbe7185d16093b0793e82ccb8f740a4b8df6354",
+  "review_date": "2026-11-01",
+  "suite": {
+    "command": "PALAEONATIVE_BOUNDARY_TESTS=1 uv run pytest -q",
+    "passed": 367,
+    "skipped": 0,
+    "seconds": 77.92
+  },
+  "subscription_login_complete": true,
+  "fresh_home_authentication_working": false,
+  "live_inference_calls": 0,
+  "files_sha256": {
+    "docs/sprint-4-subscription-closure-review.md": "3b8e29d40d2c75aba312e4efde8bcb7693de2f2d5e36d963320c80142872e94c",
+    "evaluation/pilot/review-codex/closure-auth/check.py": "62b0bb0326d8c9ea9d4ec94641281248927324b138d39045c22fb4d4993dde8c",
+    "evaluation/pilot/review-codex/closure-auth/receipt.json": "b6dc879f9e8ff6b789f0fcab917b4b27932abd8fe99daf5da021dce7bd6cef38",
+    "evaluation/pilot/review-codex/closure-flaws/check.py": "3e85604876bf489fffb5f1dde9448c68233c053ec755b3ef2338a79efb39dce5",
+    "evaluation/pilot/review-codex/closure-flaws/receipt.json": "8cbef3908d39866c329ac1178430b513bc62745f7736caecfa9c50efa7d5eb83",
+    "evaluation/pilot/review-codex/closure-flaws/report.md": "6e6e0638267d7718ce04ea37d2bf6291813686f3f7e4f5688004c108843b4984",
+    "evaluation/pilot/review-codex/closure-launch/check.py": "1a339c7aec20ab79fd6bb9e28d27ffbfcae5e40cf74fce3a8c5866f8551ec939",
+    "evaluation/pilot/review-codex/closure-launch/native-receipt.json": "857debca967e243e98c6e814bedac54f83424afb4dba4874d66e59f963d5ee5a",
+    "evaluation/pilot/review-codex/closure-launch/native_check.py": "d5928bd1fd50f50df40af0c8457a165161454ed1c332d5aaa1838bee833ff9b9",
+    "evaluation/pilot/review-codex/closure-launch/receipt.json": "8aad70c0e7a3275e466f96de691cd63b6f2d615ea257fc2d8974b3fd75660363",
+    "evaluation/pilot/review-codex/closure-launch/report.md": "d19d908bd6568bad33780ffe91d4887a7033d1cd698b41be9d05c0e7a012166c",
+    "evaluation/pilot/review-codex/closure-protocol/check.py": "b52a7f8192b58d988905558c95612caad04f19c7dba780829636381936a561f9",
+    "evaluation/pilot/review-codex/closure-protocol/receipt.json": "f68f3c7b68733596ad3955cd969b3c9f00db04ba182f9c4c8f378b71815e59e3",
+    "evaluation/pilot/review-codex/closure-protocol/report.md": "77168b45d4c7c09365236e1c32ba8fb29236474fb76ded48a239780644e53cf3"
+  }
+}

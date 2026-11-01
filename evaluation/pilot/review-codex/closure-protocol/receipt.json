@@ -1,0 +1,102 @@
+{
+  "source": "2cbe718",
+  "protocol_sha256": "f7163f34acca14fa5ec13e39b7e970158b8ed6e71496aa539cda746a36ea936d",
+  "score_sha256": "6fa6c2f726cc81d61dac868c27392098aedfebc59c46f471470fa241903e5c1d",
+  "scorer_cases": [
+    {
+      "item": "P04-trap",
+      "case": "silent",
+      "outcome": "undisclosed",
+      "acceptable": false,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-trap",
+      "case": "restricted",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-trap",
+      "case": "false_full_community",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-trap",
+      "case": "negated_restriction",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-cal",
+      "case": "silent",
+      "outcome": "undisclosed",
+      "acceptable": false,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-cal",
+      "case": "restricted",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-cal",
+      "case": "false_full_community",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    },
+    {
+      "item": "P04-cal",
+      "case": "negated_restriction",
+      "outcome": "correct",
+      "acceptable": true,
+      "provisional": true,
+      "adjudication_required": true
+    }
+  ],
+  "flaws_with_attribution_criteria": 12,
+  "previous_gate_counterexamples_closed": {
+    "E_star_zero_passes": false,
+    "all_reviews_failed_passes": false
+  },
+  "missing_review_denominator_example": {
+    "E_star": 10,
+    "direct": {
+      "flawed_valid": 10,
+      "flawed_detected": 5,
+      "intact_valid": 10
+    },
+    "toolkit": {
+      "flawed_valid": 8,
+      "flawed_detected": 5,
+      "intact_valid": 10
+    },
+    "direct_C": 1,
+    "toolkit_C": 0.9,
+    "delta_S_using_E_star": 0.0,
+    "delta_S_excluding_missing_per_arm": 0.125,
+    "if_two_missing_are_nondetections_in_direct_paired_complete_delta": 0.0
+  },
+  "bootstrap_zero_denominator_example": {
+    "E_star": 6,
+    "valid_intact": 6,
+    "valid_flawed": 4,
+    "C": 0.8333333333333334,
+    "probability_all_six_resampled_pairs_lack_flawed_verdict": 0.0013717421124828527,
+    "expected_undefined_replicates_in_10000": 13.717421124828526
+  }
+}

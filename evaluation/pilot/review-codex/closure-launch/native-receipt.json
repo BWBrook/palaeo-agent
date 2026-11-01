@@ -1,0 +1,26 @@
+{
+  "baseline": "2cbe718",
+  "worker_created_external_link": true,
+  "worker_external_read_denied": true,
+  "export_refused_link": true,
+  "ordinary_exported": true,
+  "refused_exports": [
+    {
+      "path": "export-me.txt",
+      "kind": "link",
+      "target": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/closure-native-k306_0jh/outside-canary.txt"
+    }
+  ],
+  "worker_pid_records": 2,
+  "normal_worker_groups_gone": true,
+  "registered_separate_group_killed": true,
+  "provider_calls": 0,
+  "client_launches": 0,
+  "credentials_accessed": false,
+  "runtime_manifest_sha256": "a682e1fb5da38ffbcecbef37e603144b219857992baee99e8945d059fd279d29",
+  "source_sha256": {
+    "evaluation/pilot/review-codex/closure-launch/native_check.py": "d5928bd1fd50f50df40af0c8457a165161454ed1c332d5aaa1838bee833ff9b9",
+    "evaluation/pilot/launch.py": "78e219fcacfb68da3d36a0c6dbb8ce11763335ce843012fccbaee8eec605279d",
+    "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954"
+  }
+}

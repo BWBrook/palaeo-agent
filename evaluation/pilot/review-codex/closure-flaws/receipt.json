@@ -1,0 +1,66 @@
+{
+  "baseline": "2cbe718",
+  "P07_independent": {
+    "slope": 0.8107159087179305,
+    "intercept": 0.26684437695353225,
+    "n": 217,
+    "mean_length_mm": 24.191935483870967
+  },
+  "P07_absolute_errors": {
+    "slope": 0.0,
+    "intercept": 0.0,
+    "n": 0,
+    "mean_length_mm": 0.0
+  },
+  "other_11_reference_values_unchanged": true,
+  "attribution_criteria_count": 12,
+  "observations": [
+    {
+      "case": "direct_P12-control",
+      "byte_identical_rerun": true,
+      "results": {
+        "pseudo_f": 0.8740259041750073,
+        "r_squared": 0.02191968040236169,
+        "n": 41
+      },
+      "summary": "Descriptive PERMANOVA statistics.",
+      "analysis_sha256": "3dd4b87846a7f66abdd4bf2171f35e9cf419be2fb07c22f2d106b8ca955057f1"
+    },
+    {
+      "case": "direct_P10-control",
+      "byte_identical_rerun": true,
+      "results": {
+        "shannon_change": 0.24585556544429088
+      },
+      "summary": "S1 is the lowest, oldest sample. Shannon diversity declined from the oldest to the youngest sample.",
+      "analysis_sha256": "fbd31ac175f702545d0af5b47dc4c2a7c03fa626e54fb4b494d969f7eca2b0c9"
+    },
+    {
+      "case": "toolkit_P10-control",
+      "inspect": "verified",
+      "reproduce": "reproduced",
+      "answer_unchanged": true,
+      "answer": {
+        "status": "completed",
+        "results": {
+          "shannon_change": 0.24585556544429132
+        },
+        "assumptions": [],
+        "exclusions": [],
+        "issues": [],
+        "summary": "Toolkit community run; S1 is oldest. Shannon diversity declined from the oldest to the youngest sample."
+      },
+      "integrity_scope": "Study numerical bundle. External answer prose remains a scientific adjudication, not something inspect certifies."
+    }
+  ],
+  "inference_calls": 0,
+  "source_sha256": {
+    "evaluation/pilot/review-codex/closure-flaws/check.py": "3e85604876bf489fffb5f1dde9448c68233c053ec755b3ef2338a79efb39dce5",
+    "evaluation/pilot/flaws.py": "8bfc956488ba02ce34c89824deb4c2dfa3770ba762dd1c474a079409cbf1fc77",
+    "evaluation/pilot/flaws.json": "b76e03cfac01c8cb7dda8410d3b6731f08d5babac69de1ede11f4f340a857ef0",
+    "tests/test_pilot_flaws.py": "432b1cd206a8689adc5639b1f341c8e98a9482bfbd8bd5392e37376ca96e940a",
+    "evaluation/pilot/items/P07-control/materials/shells.csv": "cd1e4b1a75257a90d1ee9b6f028f0685fb240202a8e9124ef34ff688e4305bdb",
+    "evaluation/pilot/items/P07-control/materials/dictionary.md": "0a53bf037e4e68c40333344320f9d74e9bcccc28c32fe733143bd514a99f1364",
+    "evaluation/pilot/items/P07-control/materials/task.md": "7e3f4ee427b73c49698c6a82788c2b69a6b0bf8757f91ac991e6ad5c2cd90ff5"
+  }
+}

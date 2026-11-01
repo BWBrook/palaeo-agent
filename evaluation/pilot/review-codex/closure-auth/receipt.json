@@ -1,0 +1,27 @@
+{
+  "reviewed_commit": "2cbe7185d16093b0793e82ccb8f740a4b8df6354",
+  "execution": "Native local process outside the nested tool sandbox, allowing Keychain access.",
+  "config_dir": "/Users/bwbrook/palaeo-eval/claude-pilot-config",
+  "configuration_hygiene": "passed",
+  "observations": [
+    {
+      "mode": "normal_home",
+      "exit_code": 0,
+      "loggedIn": true,
+      "authMethod": "claude.ai",
+      "subscriptionType": "team",
+      "apiProvider": "firstParty"
+    },
+    {
+      "mode": "fresh_home",
+      "exit_code": 1,
+      "loggedIn": false,
+      "authMethod": "none",
+      "subscriptionType": null,
+      "apiProvider": "firstParty"
+    }
+  ],
+  "inference_calls": 0,
+  "secrets_or_identity_retained": false,
+  "script_sha256": "62b0bb0326d8c9ea9d4ec94641281248927324b138d39045c22fb4d4993dde8c"
+}

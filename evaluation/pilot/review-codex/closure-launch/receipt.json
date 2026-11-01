@@ -1,0 +1,204 @@
+{
+  "baseline": "2cbe718",
+  "method": "Synthetic fixtures and direct production function calls; clients/auth/inventory captured functions mocked; no credentials opened.",
+  "provider_calls": 0,
+  "client_launches": 0,
+  "observations": {
+    "changed_dependency_undetected": true,
+    "changed_prompt_detected": true,
+    "unlisted_material_staged": true,
+    "changed_listed_material_rejected": true,
+    "different_write_content_and_output_accepted": {
+      "worker": 1,
+      "client_refusal": 0,
+      "bootstrap": 0,
+      "problems": [],
+      "consistent": true
+    },
+    "missing_result_rejected": true,
+    "different_read_range_accepted": {
+      "worker": 1,
+      "client_refusal": 0,
+      "bootstrap": 0,
+      "problems": [],
+      "consistent": true
+    },
+    "orphan_result_accepted": {
+      "worker": 0,
+      "client_refusal": 0,
+      "bootstrap": 0,
+      "problems": [],
+      "consistent": true
+    },
+    "ledger_started_only": {
+      "rejected": true,
+      "reason": "earlier trial did not complete cleanly: T001"
+    },
+    "ledger_incomplete": {
+      "rejected": true,
+      "reason": "earlier trial did not complete cleanly: T001"
+    },
+    "ledger_halted": {
+      "rejected": true,
+      "reason": "run is halted; see HALTED.json"
+    },
+    "ledger_wrong_plan": {
+      "rejected": true,
+      "reason": "output directory belongs to a different plan"
+    },
+    "positive_complete": {
+      "returned": true,
+      "complete": true,
+      "record_files": [
+        "started.json",
+        "stderr.txt",
+        "transcript.jsonl",
+        "trial.json",
+        "workspace"
+      ],
+      "saved_summary": {
+        "trial": {
+          "trial_id": "T001",
+          "item": "X",
+          "arm": "direct"
+        },
+        "complete": true,
+        "termination": "exited",
+        "terminated_groups": [],
+        "exit_code": 0,
+        "breach": [],
+        "result_subtype": "success",
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 3,
+          "cache_read_input_tokens": 0
+        },
+        "refused_exports": [],
+        "reconciliation": {
+          "worker": 0,
+          "client_refusal": 0,
+          "bootstrap": 0,
+          "problems": [],
+          "consistent": true
+        },
+        "counted_tokens": 5,
+        "cache_read_tokens": 0,
+        "score": {
+          "outcome": "correct",
+          "acceptable": true
+        },
+        "finished_unix": 1793503259.1412852
+      }
+    },
+    "missing_init": {
+      "halt": "T001: breach ['no_init_record'], reconciliation [], usage complete True",
+      "record_files": [
+        "started.json",
+        "stderr.txt",
+        "transcript.jsonl",
+        "trial.json",
+        "workspace"
+      ],
+      "saved_summary": {
+        "trial": {
+          "trial_id": "T001",
+          "item": "X",
+          "arm": "direct"
+        },
+        "complete": false,
+        "termination": "exited",
+        "terminated_groups": [],
+        "exit_code": 0,
+        "breach": [
+          "no_init_record"
+        ],
+        "result_subtype": "success",
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 3,
+          "cache_read_input_tokens": 0
+        },
+        "refused_exports": [],
+        "reconciliation": {
+          "worker": 0,
+          "client_refusal": 0,
+          "bootstrap": 0,
+          "problems": [],
+          "consistent": true
+        },
+        "counted_tokens": 5,
+        "cache_read_tokens": 0,
+        "score": {
+          "outcome": "correct",
+          "acceptable": true
+        },
+        "finished_unix": 1793503259.1504152
+      }
+    },
+    "incomplete_usage": {
+      "halt": "T001: breach [], reconciliation [], usage complete False",
+      "record_files": [
+        "started.json",
+        "stderr.txt",
+        "transcript.jsonl",
+        "trial.json",
+        "workspace"
+      ],
+      "saved_summary": {
+        "trial": {
+          "trial_id": "T001",
+          "item": "X",
+          "arm": "direct"
+        },
+        "complete": false,
+        "termination": "exited",
+        "terminated_groups": [],
+        "exit_code": 0,
+        "breach": [],
+        "result_subtype": "success",
+        "usage": {
+          "cache_read_input_tokens": 5
+        },
+        "refused_exports": [],
+        "reconciliation": {
+          "worker": 0,
+          "client_refusal": 0,
+          "bootstrap": 0,
+          "problems": [],
+          "consistent": true
+        },
+        "score": {
+          "outcome": "correct",
+          "acceptable": true
+        },
+        "finished_unix": 1793503259.1622632
+      }
+    },
+    "cleanup_failure": {
+      "halt": "synthetic cleanup failure",
+      "record_files": [
+        "started.json",
+        "stderr.txt",
+        "transcript.jsonl",
+        "trial.json"
+      ],
+      "saved_summary": {
+        "trial": {
+          "trial_id": "T001",
+          "item": "X",
+          "arm": "direct"
+        },
+        "complete": false,
+        "termination": "exited"
+      }
+    }
+  },
+  "source_sha256": {
+    "evaluation/pilot/review-codex/closure-launch/check.py": "1a339c7aec20ab79fd6bb9e28d27ffbfcae5e40cf74fce3a8c5866f8551ec939",
+    "evaluation/pilot/launch.py": "78e219fcacfb68da3d36a0c6dbb8ce11763335ce843012fccbaee8eec605279d",
+    "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
+    "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974"
+  }
+}
