@@ -106,8 +106,9 @@ reviewer trial runs:
   adjudicated acceptable in *both* arms. **E\*** is the number of such pairs.
 - E and E\* are both reported, along with each ineligible or unacceptable
   pair and its reason.
-- If E\* < 6, the reviewer endpoints are not interpreted. Rule 1 then applies
-  to the reviewer part only.
+- If E\* < 6, or either common valid set (below) has fewer than 6 pairs, the
+  reviewer endpoints are not interpreted. Rules 4a, 8 and 9 then govern the
+  reviewer part.
 - Restricting to packages that are correct in both arms is a selection, and
   it is reported as one.
 
@@ -161,15 +162,30 @@ detection only if it identifies the actual mistaken operation or conclusion,
 with a justification that fits that criterion. Naming the right broad class
 for an unrelated reason does not count.
 
-**Reviewer metrics, each over E\* (F4).**
+**Common valid sets (closure R1).** Missing verdicts are handled by pairing,
+so both arms of every contrast are computed over the same packages.
 
-- **Sensitivity:** flawed variants rejected *with attribution*, meaning the
-  rejection names the planted class, or the planted step or field. A
-  rejection for another reason is counted separately as non-attributed.
-- **False accusation:** intact variants rejected.
+- The **flawed set** is the pairs in E\* whose flawed variant has a valid
+  verdict in *both* arms; **n_S** is its size.
+- The **intact set** is the pairs in E\* whose intact variant has a valid
+  verdict in both arms; **n_A** is its size.
+- A pair missing a verdict in either arm drops out of that endpoint for both
+  arms. The surviving arm's verdict is reported descriptively and never
+  enters a contrast.
+- Arm-specific rates over each arm's own valid verdicts are reported as
+  secondary, conditional descriptions. Their selected populations are stated,
+  and no decision uses them.
+
+**Reviewer metrics (F4).**
+
+- **Sensitivity:** in the flawed set, the share of flawed variants rejected
+  *with attribution*, as adjudicated against the frozen criterion (above). A
+  rejection that fails attribution is counted separately as non-attributed.
+- **False accusation:** in the intact set, the share of intact variants
+  rejected.
 - **Missing reviews:** a reviewer trial that failed or returned no valid
-  verdict is excluded from both numerator and denominator and reported. It is
-  never counted as a non-accusation.
+  verdict is never counted as a non-accusation or a non-detection. It removes
+  its pair from that endpoint's common valid set, and it is reported.
 - **Completion (C):** the share of reviewer trials with a valid verdict,
   per arm.
 - **Cost:** tokens and time.
@@ -182,15 +198,27 @@ for an unrelated reason does not count.
 | D | Direct-arm acceptability on traps | item |
 | ΔT | Toolkit minus direct trap acceptability, item-paired and averaged over sessions | item |
 | ΔC | Toolkit minus direct control harm | item |
-| ΔS | Toolkit minus direct attributed reviewer sensitivity, over E\* | pair in E\* |
-| ΔA | Toolkit minus direct false-accusation rate, over E\* | pair in E\* |
+| ΔS | Toolkit minus direct attributed reviewer sensitivity, over the flawed set (n_S pairs) | pair in the flawed set |
+| ΔA | Toolkit minus direct false-accusation rate, over the intact set (n_A pairs) | pair in the intact set |
 | ΔT_tk, ΔT_other | ΔT within the `toolkit` (7 families) and `other` (5 families) strata | item |
 | K | Median counted tokens per analyst trial, toolkit / direct | item (family clusters, F6) |
 | I | Share of analyst trials that are infrastructure failures | item (family clusters, F6) |
 
 Intervals are 80% percentile bootstraps (10,000 resamples, seed fixed at
-freeze), resampling items or eligible pairs, never trials. Sessions and
-variants stay clustered.
+freeze), resampling items or pairs, never trials. Sessions stay clustered
+within items. For ΔS and ΔA, each draw resamples that endpoint's common valid
+set, and every resampled pair carries a valid verdict in both arms. No draw
+can therefore have a zero denominator. An empty set (n = 0) leaves the
+endpoint undefined, and it is reported as undefined, never as zero.
+
+**Reviewer margins.** The margins are counts of packages on the common valid
+set: one package for ±1/n and two for 2/n. Written as rates, ΔS ≥ −1/n_S
+means the toolkit arm detects at most one fewer flawed package than the
+direct arm on the same n_S pairs. With no missing verdicts, n_S = n_A = E\*,
+and these are the margins prespecified as 1/E\* and 2/E\*. The E\* ≥ 6 gate
+applies to the sets actually analysed, so rules 4 and 7 need n_S ≥ 6 and
+n_A ≥ 6. This is the existing threshold applied to the real denominators, not
+a new one.
 
 ## Decision table (revised for F5 and F6)
 
@@ -212,12 +240,12 @@ that matches decides. **Confined** means ΔT_tk ≥ 0.15 and ΔT_other < 0.05.
 | 1 | I > 0.20 | **Repair the instrument.** No efficacy verdict. Part A still applies. |
 | 2 | D ≥ 0.90 | **Stop this design**, because it cannot discriminate. Part A still applies. |
 | 3 | Part A flagged harm | **Adverse.** Stop expansion. |
-| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, K ≤ 2.0, not confined, E\* ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ −1/E\* and ΔA ≤ 1/E\* | **Expand.** |
-| 4a | Rule 4's analyst conditions hold, but E\* < 6 or C < 0.8 in either arm | **Incomplete: analyst signal, reviewer instrument repair.** Report the analyst findings; no expansion verdict. |
-| 5 | Rule 4's conditions hold except that the gain is confined | **Repair:** enforcement works but does not generalise. |
+| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, K ≤ 2.0, not confined, n_S ≥ 6, n_A ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ −1/n_S and ΔA ≤ 1/n_A | **Expand.** |
+| 4a | Rule 4's analyst conditions hold, but n_S < 6, n_A < 6 or C < 0.8 in either arm | **Incomplete: analyst signal, reviewer instrument repair.** Report the analyst findings; no expansion verdict. |
+| 5 | Rule 4's conditions hold except that the gain is confined | **Repair:** the gain is confined to toolkit-related families. The design does not identify which mechanism produced it. |
 | 6 | ΔT ≥ 0.15 with lower bound > 0, but ΔC, K, ΔS or ΔA fails rule 4 | **Repair** the failing axis. |
-| 7 | E\* ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ 2/E\*, ΔA ≤ 1/E\*, \|ΔT\| < 0.15, ΔC ≤ 0.05 | **Development signal for auditability.** No claim of established review gain or of correctness equivalence. |
-| 8 | \|ΔT\| < 0.15, ΔC ≤ 0.05, and (E\* < 6 or \|ΔS\| ≤ 1/E\*) | **Null: stop this efficacy line** at this power. |
+| 7 | n_S ≥ 6, n_A ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ 2/n_S, ΔA ≤ 1/n_A, \|ΔT\| < 0.15, ΔC ≤ 0.05 | **Development signal for auditability.** No claim of established review gain or of correctness equivalence. |
+| 8 | \|ΔT\| < 0.15, ΔC ≤ 0.05, and (n_S < 6 or \|ΔS\| ≤ 1/n_S) | **Null: stop this efficacy line** at this power. |
 | 9 | Anything else | **Inconclusive.** No claim. |
 
 Reviewer clauses never drop out of rules 4 and 7. Inadequate reviewer
@@ -233,14 +261,22 @@ is below 0.05.
   includes the study tools. The worker probes and the client's inventory and
   scripted-refusal probes are rerun against them, and the inventories are
   frozen in the plan.
-- **Fingerprints, enforced at every launch.** The client binary, the runtime
-  manifest, the installed toolkit files, both `pyvenv.cfg` files, the worker,
-  server, launcher and scorer source, the prompts, and the item manifest,
-  including the trial's own materials. Any difference halts launches.
+- **Fingerprints, enforced at every launch.** The client binary; every byte,
+  link and directory of both arm runtimes (all installed dependencies) and of
+  their base interpreter; the worker, server, launcher and scorer source; the
+  prompts; and the item manifest. The trial's item directory must hold
+  exactly the manifest's files, unchanged, with no links or special files,
+  and only the listed materials are staged. Any difference halts launches.
 - **Configuration directory.** It may hold no CLAUDE.md, agents, commands,
   skills, plugins, hooks, settings or memory content, and it must be logged in
-  to a subscription. The client's working directory has no instruction files
-  above it.
+  to a subscription. The login is checked in the client's own launch
+  environment: a fresh HOME whose only content is a link to the login keychain,
+  through which macOS finds the stored subscription login. The client's
+  working directory has no instruction files above it. The launch passes an
+  empty `--setting-sources`, which loads no CLAUDE.md, and disables auto-memory.
+  `qualify_supervisor.py` verified this environment against a fake endpoint:
+  no user instruction, memory or preamble appears in the request, while a
+  positive control with a planted CLAUDE.md is detected.
 - **Inventory capture.** The identical command is run against a fake endpoint
   with a dummy key, using a separate configuration directory that is not
   logged in, so no real credential can be sent. Each capture is saved with the
@@ -249,11 +285,15 @@ is below 0.05.
   the scripted probes show. Its init record must equal the frozen inventory,
   or the trial is killed. A missing init record is a breach.
 - **Reconciliation by identity.**
-  - Each worker tool event is matched, in order, to its audit record by tool
-    and primary arguments, and its success or error must agree.
+  - Each worker tool use has exactly one result, and each result has exactly
+    one use.
+  - Each use is paired with one unused audit record. The pair must match on
+    the full normalised request (code; path, offset and limit; path and
+    content; or the toolkit arguments). It must also match on the exact value
+    the fixed adapter returns for that record, and on its error flag.
   - Each unadvertised name must show a client refusal and have no audit row.
-  - An event without a result, an audit row without an event, or anything
-    else halts launches.
+  - An event without a result, an orphan or duplicate result, an audit row
+    without an event, or any mismatch halts launches.
 - **Abort cleanup.** The launcher kills the client's process group, the worker
   server and every worker process group the worker recorded. It then verifies
   from a full process listing that none survive. A failed listing halts

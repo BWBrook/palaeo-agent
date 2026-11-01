@@ -67,11 +67,18 @@ def audit(tmp_path, *rows):
 INVENTORY = ["mcp__worker__worker_execute", "mcp__worker__worker_read", "mcp__worker__worker_write"]
 
 
+OK = {"status": "ok", "exit_code": 0, "stdout": "1\n", "stderr": "", "duration_seconds": 0.01}
+
+
+def result_for(use_id, value, **extra):
+    return {"type": "tool_result", "tool_use_id": use_id, "content": json.dumps(value, separators=(",", ":")), **extra}
+
+
 def test_reconciliation_matches_identity_not_counts(tmp_path):
     use = {"type": "tool_use", "id": "a", "name": "mcp__worker__worker_execute", "input": {"code": "print(1)"}}
-    ok = {"type": "tool_result", "tool_use_id": "a", "content": "1"}
-    right = {"request": {"tool": "worker_execute", "code": "print(1)"}, "result": {"status": "ok"}}
-    wrong = {"request": {"tool": "worker_write", "path": "x"}, "result": {"status": "ok"}}
+    ok = result_for("a", OK)
+    right = {"request": {"tool": "worker_execute", "code": "print(1)"}, "result": OK}
+    wrong = {"request": {"tool": "worker_write", "path": "x", "content": "print(1)"}, "result": OK}
     assert launch.reconcile(events(use, ok), audit(tmp_path, right), INVENTORY)["consistent"]
     assert not launch.reconcile(events(use, ok), audit(tmp_path, wrong), INVENTORY)["consistent"]
     assert not launch.reconcile(events(use), audit(tmp_path, right), INVENTORY)["consistent"]
@@ -82,6 +89,79 @@ def test_reconciliation_matches_identity_not_counts(tmp_path):
     assert out["consistent"] and out["client_refusal"] == 1
     executed = dict(refusal, is_error=False, content="ran")
     assert not launch.reconcile(events(hidden, executed), audit(tmp_path), INVENTORY)["consistent"]
+
+
+def test_reconciliation_compares_full_arguments_and_returned_values(tmp_path):
+    write = {"type": "tool_use", "id": "w", "name": "mcp__worker__worker_write",
+             "input": {"path": "answer.json", "content": "EXPECTED"}}
+    audited = {"request": {"tool": "worker_write", "path": "answer.json", "content": "DIFFERENT"}, "result": OK}
+    assert not launch.reconcile(events(write, result_for("w", OK)), audit(tmp_path, audited), INVENTORY)["consistent"]
+    read = {"type": "tool_use", "id": "r", "name": "mcp__worker__worker_read", "input": {"path": "x", "offset": 20, "limit": 10}}
+    default_read = {"request": {"tool": "worker_read", "path": "x", "offset": 0, "limit": 32768}, "result": OK}
+    assert not launch.reconcile(events(read, result_for("r", OK)), audit(tmp_path, default_read), INVENTORY)["consistent"]
+    plain = dict(read, input={"path": "x"})
+    assert launch.reconcile(events(plain, result_for("r", OK)), audit(tmp_path, default_read), INVENTORY)["consistent"]
+    fabricated = result_for("r", dict(OK, stdout="FABRICATED\n"))
+    assert not launch.reconcile(events(plain, fabricated), audit(tmp_path, default_read), INVENTORY)["consistent"]
+    flipped = result_for("r", OK, is_error=True)
+    assert not launch.reconcile(events(plain, flipped), audit(tmp_path, default_read), INVENTORY)["consistent"]
+    orphan = result_for("unknown", OK)
+    assert not launch.reconcile(events(orphan), audit(tmp_path), INVENTORY)["consistent"]
+    duplicate = launch.reconcile(events(plain, result_for("r", OK), result_for("r", OK)), audit(tmp_path, default_read),
+                                 INVENTORY)
+    assert not duplicate["consistent"]
+
+
+def test_reconciliation_applies_the_toolkit_adapter(tmp_path):
+    value = {"status": "ok", "methods": ["rma"]}
+    raw = {"status": "ok", "exit_code": 0, "stdout": json.dumps(value) + "\n", "stderr": "", "truncated": {"stdout": False}}
+    use = {"type": "tool_use", "id": "p", "name": "mcp__worker__palaeo_discover", "input": {}}
+    row = {"request": {"tool": "discover", "arguments": {}}, "result": raw}
+    inventory = INVENTORY + ["mcp__worker__palaeo_discover"]
+    assert launch.reconcile(events(use, result_for("p", value)), audit(tmp_path, row), inventory)["consistent"]
+    assert not launch.reconcile(events(use, result_for("p", raw)), audit(tmp_path, row), inventory)["consistent"]
+    failed = dict(raw, stdout="not json", status="error", exit_code=1)
+    expected = {"status": "error", "code": "worker_failed", "execution": failed}
+    out = launch.reconcile(events(use, result_for("p", expected, is_error=True)), audit(tmp_path, dict(row, result=failed)),
+                           inventory)
+    assert out["consistent"]
+
+
+def synthetic_runtime(base):
+    for arm in ("direct", "toolkit"):
+        site = base / arm / "lib/python3.12/site-packages/numpy"
+        site.mkdir(parents=True)
+        (site / "core.py").write_text("x = 1\n")
+        (base / arm / "pyvenv.cfg").write_text("home = x\n")
+    (base / "runtime.json").write_text("{}")
+    return base
+
+
+def test_fingerprints_cover_installed_dependency_bytes(tmp_path, monkeypatch):
+    monkeypatch.setattr(launch, "client_path", lambda: Path(sys.executable))
+    runtime = synthetic_runtime(tmp_path / "runtime")
+    before = launch.fingerprints(runtime, ROOT / "evaluation/pilot/items")
+    (runtime / "direct/lib/python3.12/site-packages/numpy/core.py").write_text("x = 2\n")
+    after = launch.fingerprints(runtime, ROOT / "evaluation/pilot/items")
+    assert before["runtime_tree"] != after["runtime_tree"]
+    (runtime / "toolkit/lib/python3.12/site-packages/numpy/extra.py").symlink_to("/etc/hosts")
+    assert launch.fingerprints(runtime, ROOT / "evaluation/pilot/items")["runtime_tree"] != after["runtime_tree"]
+
+
+def test_staged_materials_equal_the_manifest(tmp_path):
+    materials = tmp_path / "items/X/materials"
+    materials.mkdir(parents=True)
+    (materials / "task.md").write_text("task")
+    (tmp_path / "items/MANIFEST.json").write_text(json.dumps({"X/materials/task.md": launch.sha(materials / "task.md")}))
+    staged = launch.verify_materials(tmp_path / "items", "X")
+    assert [p.name for p in staged] == ["task.md"]
+    (materials / "extra-reference.csv").write_text("new")
+    with pytest.raises(launch.Halt, match="extra"):
+        launch.verify_materials(tmp_path / "items", "X")
+    (materials / "extra-reference.csv").unlink()
+    (materials / "link.csv").symlink_to(materials / "task.md")
+    with pytest.raises(launch.Halt, match="link"):
+        launch.verify_materials(tmp_path / "items", "X")
 
 
 def test_terminate_kills_separate_session_workers(tmp_path):
@@ -104,7 +184,8 @@ def test_launcher_offline_end_to_end(tmp_path):
     steps = [("mcp__worker__worker_read", {"path": "task.md"}),
              ("Bash", {"command": "cat ~/.ssh/id_ed25519", "description": "probe"}),
              ("mcp__worker__worker_execute", {"code": "import os; os.symlink('/etc/hosts', 'leak.txt')"}),
-             ("mcp__worker__worker_write", {"path": "answer.json", "content": json.dumps(answer)})]
+             ("mcp__worker__worker_write", {"path": "answer.json", "content": json.dumps(answer)}),
+             ("mcp__worker__palaeo_discover", {})]
     log = []
     server = launch.endpoint(steps, log)
     config, capture = tmp_path / "config", tmp_path / "capture"
@@ -122,8 +203,9 @@ def test_launcher_offline_end_to_end(tmp_path):
     assert [r.get("halt") for r in results] == [None] * 4, results
     for trial in (tmp_path / "out/trials").glob("*/trial.json"):
         record = json.loads(trial.read_text())
-        assert record["complete"] and record["reconciliation"]["worker"] == 3
-        assert record["reconciliation"]["client_refusal"] == 1
+        toolkit = record["trial"]["arm"] == "toolkit"
+        assert record["complete"] and record["reconciliation"]["worker"] == 3 + toolkit
+        assert record["reconciliation"]["client_refusal"] == 2 - toolkit
         assert [r["path"] for r in record["refused_exports"]] == ["leak.txt"]
         assert record["score"]["acceptable"] is (record["trial"]["item"] == "P10-control")
         assert (trial.parent / "inventory-capture.json").exists()

@@ -1,0 +1,105 @@
+{
+ "fingerprints": {
+  "client_sha256": "ca923c86ac84b30574a82331a05b6e066c27477a926ceaffe46a845a33e4dd37",
+  "runtime_tree": "5616e7d1fb60a7f55965e1c2ade7dccb144a4a322cea676625a53673e9781226",
+  "base_interpreter_tree": "0b25aeacc097ed3381492dde3fdea9736f669f51d673c0f16ebc8d301493858e",
+  "direct_has_toolkit": false,
+  "source": {
+   "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
+   "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974",
+   "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
+   "evaluation/pilot/launch.py": "fcf2566dc1280b95d32ee6e90d9c90fac93e436adc98c1218d069082c3ebff28",
+   "evaluation/pilot/score.py": "6fa6c2f726cc81d61dac868c27392098aedfebc59c46f471470fa241903e5c1d",
+   "evaluation/revised/score.py": "d66e0d1e2dfe60f48ea4f06b554364f1d7c613e581432d44423ba0017fc0b9e7",
+   "evaluation/sprint3/claude-client-boundary/probe.py": "52c867f23e7f6d041732212b1e877d7176dc288b6218611bb9fd9b495f0f9da4"
+  },
+  "prompts": {
+   "analyst-toolkit.md": "4defe6496dfd8e8665ab389afd8c89eaa6bba6d8acc58342c64e72c819a6f8bb",
+   "analyst.md": "bb4b8c2b6507649ca4d046b99d6e7129bb03b8a70253ba607007ef20f3773479",
+   "reviewer.md": "65a44db25de38a9df9631a669737657fbbe3353021e6610144419827b6b6a5da"
+  },
+  "items_manifest_sha256": "48fe555dc3c8abfec4f2f7089f3ba3b1a48d2c9363080b94aad3f59056daf7ef"
+ },
+ "script_sha256": "7fd305ebad904cfa1198048c12795f7b3d262679da5ef6e3e8227e322e312cf0",
+ "config_dir": "/Users/bwbrook/palaeo-eval/claude-pilot-config",
+ "cases": [
+  {
+   "case": "capture",
+   "requests": 1,
+   "body_sha256": [
+    "c16f24afd985b5a06a1fc3f8a4c7a98a96f08a77ef59580a9baabc36bdfe3be4"
+   ],
+   "body_chars": [
+    23419
+   ],
+   "dummy_api_key": [
+    true
+   ],
+   "authorization_header": [
+    false
+   ],
+   "canary_config": false,
+   "memory_section": false,
+   "contents_preamble": false,
+   "user_markers_found": 0,
+   "user_markers_checked": 98
+  },
+  {
+   "case": "positive_control",
+   "requests": 1,
+   "body_sha256": [
+    "1e020c6b601977315c057eec4f265cd1e61badc5bc703c05567c853e61b57ff1"
+   ],
+   "body_chars": [
+    23905
+   ],
+   "dummy_api_key": [
+    true
+   ],
+   "authorization_header": [
+    false
+   ],
+   "canary_config": true,
+   "memory_section": false,
+   "contents_preamble": true,
+   "user_markers_found": 0,
+   "user_markers_checked": 98
+  },
+  {
+   "case": "supervisor",
+   "auth": {
+    "loggedIn": true,
+    "authMethod": "claude.ai",
+    "subscriptionType": "team",
+    "apiProvider": "firstParty"
+   },
+   "requests": 1,
+   "body_sha256": [
+    "97af7b1dddc49fddb47917a298593806e61eee03a7df7720ed748800b5521e4d"
+   ],
+   "body_chars": [
+    23422
+   ],
+   "dummy_api_key": [
+    true
+   ],
+   "authorization_header": [
+    false
+   ],
+   "canary_config": false,
+   "memory_section": false,
+   "contents_preamble": false,
+   "user_markers_found": 0,
+   "user_markers_checked": 98
+  }
+ ],
+ "verdict": {
+  "capture_clean": true,
+  "supervisor_clean": true,
+  "positive_control_detected": true,
+  "supervisor_logged_in": true,
+  "no_credential_header_to_fake_endpoint": true
+ },
+ "inference_calls": 0,
+ "secrets_or_identity_retained": false
+}

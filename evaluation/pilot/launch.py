@@ -4,12 +4,17 @@ The supervisor is Claude Code in its normal mode, authenticated by Barry's
 subscription through a dedicated configuration directory that holds no
 instructions, memory, skills or plugins. Every trial:
 
-- verifies the frozen fingerprints (client, runtimes, worker and launcher
-  source, prompts, item materials) and the configuration directory's contents;
+- verifies the frozen fingerprints (client, the full bytes of both runtimes and
+  their base interpreter, worker and launcher source, prompts, item materials)
+  and the configuration directory's contents;
+- stages exactly the item's manifest-listed materials;
+- checks the subscription login in the supervisor's own launch environment (a
+  fresh HOME whose only content is a link to the login keychain);
 - captures the identical command's request against a fake local endpoint and
   requires the frozen tool inventory (the capture is saved);
 - requires the client's init record to match that inventory;
-- reconciles every tool event with the worker audit by identity;
+- reconciles every tool event with the worker audit by its full arguments and
+  the exact value the adapter returned, one use to one result to one record;
 - kills the client group, then the worker server and every recorded worker
   process group, and verifies they are gone;
 - exports only regular files, never following links;
@@ -26,6 +31,7 @@ import argparse
 import hashlib
 import json
 import os
+import pwd
 from pathlib import Path
 import random
 import shutil
@@ -74,29 +80,60 @@ def prompt(arm):
 
 
 def tree_digest(root):
-    root = Path(root)
-    return {p.relative_to(root).as_posix(): sha(p) for p in sorted(root.rglob("*"))
-            if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts}
+    """One digest over every entry under root: file bytes, link targets and directories, never following links."""
+    root, digest = Path(root), hashlib.sha256()
+    for parent, folders, files in os.walk(root, followlinks=False):
+        folders.sort()
+        for name in sorted(folders + files):
+            path = Path(parent) / name
+            info = path.lstat()
+            if stat.S_ISLNK(info.st_mode):
+                entry = f"l {os.readlink(path)}"
+            elif stat.S_ISREG(info.st_mode):
+                entry = f"f {sha(path)}"
+            elif stat.S_ISDIR(info.st_mode):
+                entry = "d"
+            else:
+                entry = f"s {stat.S_IFMT(info.st_mode)}"
+            digest.update(f"{path.relative_to(root).as_posix()}\0{entry}\n".encode())
+    return digest.hexdigest()
 
 
 def fingerprints(runtime_root, items_dir):
     runtime_root = Path(runtime_root)
     site = lambda arm: next((runtime_root / arm / "lib").glob("python3.*/site-packages"))
     return {"client_sha256": sha(client_path()),
-            "runtime_manifest_sha256": sha(runtime_root / "runtime.json"),
-            "toolkit_package": tree_digest(site("toolkit") / "palaeo_agent"),
+            "runtime_tree": tree_digest(runtime_root),
+            "base_interpreter_tree": tree_digest(UV_PYTHON),
             "direct_has_toolkit": (site("direct") / "palaeo_agent").exists(),
-            "pyvenv": {arm: sha(runtime_root / arm / "pyvenv.cfg") for arm in ("direct", "toolkit")},
             "source": {name: sha(REPO / name) for name in PINNED_SOURCE},
             "prompts": {p.name: sha(p) for p in sorted(PROMPTS.glob("*.md"))},
             "items_manifest_sha256": sha(Path(items_dir) / "MANIFEST.json")}
 
 
 def verify_materials(items_dir, item):
-    manifest = json.loads((Path(items_dir) / "MANIFEST.json").read_text())
+    """The item's files must equal the manifest exactly; return the materials to stage."""
+    items_dir = Path(items_dir)
+    manifest = {k: v for k, v in json.loads((items_dir / "MANIFEST.json").read_text()).items()
+                if k.startswith(f"{item}/")}
+    present = {}
+    for parent, folders, files in os.walk(items_dir / item, followlinks=False):
+        for name in folders + files:
+            path = Path(parent) / name
+            if path.is_symlink() or not (path.is_dir() or stat.S_ISREG(path.lstat().st_mode)):
+                raise Halt(f"item holds a link or special file: {path}")
+            if path.is_file():
+                present[path.relative_to(items_dir).as_posix()] = path
+    if set(present) != set(manifest):
+        raise Halt(f"item files differ from manifest: extra {sorted(set(present) - set(manifest))}, "
+                   f"missing {sorted(set(manifest) - set(present))}")
     for name, digest in manifest.items():
-        if name.startswith(f"{item}/") and sha(Path(items_dir) / name) != digest:
+        if sha(present[name]) != digest:
             raise Halt(f"item file differs from manifest: {name}")
+    materials = [present[n] for n in sorted(present) if n.startswith(f"{item}/materials/")]
+    if any(p.parent != items_dir / item / "materials" for p in materials):
+        raise Halt("item materials must be a flat directory")
+    return materials
 
 
 def verify_config_dir(config_dir):
@@ -110,10 +147,20 @@ def verify_config_dir(config_dir):
         raise Halt("configuration directory holds project memory")
 
 
-def subscription_status(config_dir):
+def supervisor_home(home, keychain=True):
+    """A fresh HOME for the client. Its only content is a link to the user's login keychain, which macOS
+    locates through HOME and which holds the subscription login; the capture home omits even that."""
+    home = Path(home)
+    (home / "Library").mkdir(parents=True)
+    if keychain:
+        (home / "Library/Keychains").symlink_to(Path(pwd.getpwuid(os.getuid()).pw_dir) / "Library/Keychains")
+    return home
+
+
+def subscription_status(home, config_dir):
+    """Login state in the exact environment the client will be launched with."""
     completed = subprocess.run([str(client_path()), "auth", "status", "--json"], capture_output=True, text=True,
-                               env={"PATH": "/usr/bin:/bin:/opt/homebrew/bin", "HOME": os.environ["HOME"],
-                                    "USER": os.environ["USER"], "CLAUDE_CONFIG_DIR": str(config_dir)}, timeout=60)
+                               cwd=home, env=environment(home, config_dir), timeout=60)
     status = json.loads(completed.stdout or "{}")
     kept = {k: status.get(k) for k in ("loggedIn", "authMethod", "subscriptionType", "apiProvider")}
     if not kept["loggedIn"] or "api" in str(kept.get("authMethod", "")).lower():
@@ -130,7 +177,7 @@ def no_instruction_ancestors(path):
 
 def stage(trial_root, materials, runtime_root, arm, audit_dir):
     trial_root.mkdir(parents=True)
-    for source in sorted(Path(materials).iterdir()):
+    for source in materials:
         shutil.copyfile(source, trial_root / source.name)
     runtime = Path(runtime_root) / arm
     worker = {"trial_root": str(trial_root), "runtime": str(runtime), "python": str(runtime / "bin/python"),
@@ -156,7 +203,8 @@ def command(text, mcp, max_turns, model):
 def environment(home, config_dir, api_key=None, base_url=None):
     env = {"PATH": "/usr/bin:/bin:/opt/homebrew/bin", "HOME": str(home), "USER": os.environ["USER"],
            "LOGNAME": os.environ["USER"], "CLAUDE_CONFIG_DIR": str(config_dir), "DISABLE_TELEMETRY": "1",
-           "DISABLE_ERROR_REPORTING": "1", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"}
+           "DISABLE_ERROR_REPORTING": "1", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+           "MAX_MCP_OUTPUT_TOKENS": "200000", "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"}
     if api_key:
         env["ANTHROPIC_API_KEY"] = api_key
     if base_url:
@@ -212,11 +260,10 @@ def capture_inventory(runtime_root, arm, model, config_dir, record=None):
     """Offline: the request the identical command builds, from a fake endpoint with a dummy key."""
     with tempfile.TemporaryDirectory() as scratch:
         scratch = Path(scratch)
-        (scratch / "materials").mkdir()
-        (scratch / "materials/task.md").write_text("inventory capture\n")
+        (scratch / "task.md").write_text("inventory capture\n")
         audit = scratch / "audit"
-        mcp = stage(scratch / "work/trial", scratch / "materials", runtime_root, arm, audit)
-        (scratch / "home").mkdir()
+        mcp = stage(scratch / "work/trial", [scratch / "task.md"], runtime_root, arm, audit)
+        supervisor_home(scratch / "home", keychain=False)
         log = []
         server = endpoint([], log)
         proc = subprocess.Popen(command(prompt(arm), mcp, 2, model), cwd=scratch / "home",
@@ -267,35 +314,75 @@ def export(trial_root, destination):
     return refused
 
 
-def worker_request(name, arguments):
+def worker_requests(name, arguments, result):
+    """The audit requests the fixed adapter can record for this call (server.ExecutionTransport, Worker)."""
     tool = name.removeprefix("mcp__worker__")
     if tool == "worker_execute":
-        return {"tool": tool, "code": arguments.get("code")}
-    if tool in ("worker_read", "worker_write"):
-        return {"tool": tool, "path": arguments.get("path")}
-    return {"tool": tool.removeprefix("palaeo_"), "arguments": arguments}
+        forms = [{"tool": tool, "code": arguments.get("code")}]
+    elif tool == "worker_read":
+        forms = [{"tool": tool, "path": arguments.get("path"), "offset": arguments.get("offset", 0),
+                  "limit": arguments.get("limit", 32768)}]
+    elif tool == "worker_write":
+        forms = [{"tool": tool, "path": arguments.get("path"), "content": arguments.get("content")}]
+    else:
+        forms = [{"tool": tool.removeprefix("palaeo_"), "arguments": arguments}]
+    if result.get("code") == "invalid_arguments":
+        forms += [{"tool": tool, "arguments": arguments}, {"tool": tool},
+                  {"tool": tool, "path": arguments.get("path")}]
+    return forms
+
+
+def adapter_value(name, result):
+    """The value the adapter returns to the client for an audited worker result (server.ExecutionTransport)."""
+    if name.startswith("mcp__worker__worker_") or result.get("code") == "invalid_arguments":
+        return result
+    if result.get("truncated", {}).get("stdout"):
+        return {"status": "error", "code": "output_limit", "execution": result}
+    try:
+        value = json.loads(result["stdout"])
+    except (ValueError, KeyError, TypeError):
+        return {"status": "error", "code": "worker_failed", "execution": result}
+    if result["status"] not in ("ok", "error") or result.get("exit_code") not in (0, 2):
+        return {"status": "error", "code": "worker_failed", "execution": result}
+    return value
+
+
+def result_value(result):
+    content = result.get("content")
+    if isinstance(content, list):
+        content = "".join(b.get("text", "") for b in content if isinstance(b, dict) and b.get("type") == "text")
+    try:
+        return json.loads(content)
+    except (TypeError, ValueError):
+        return None
 
 
 def reconcile(events, audit_dir, inventory):
-    """Match every tool event to its worker audit record, or to a client refusal, by identity."""
-    uses, results = [], {}
+    """Pair every tool use with exactly one result and either one worker audit record (same full request,
+    same returned value and error flag) or a client refusal; anything unpaired is a problem."""
+    uses, results, problems = [], {}, []
     for event in events:
         message = event.get("message")
         for block in message.get("content", []) if isinstance(message, dict) and isinstance(message.get("content"), list) else []:
             if isinstance(block, dict) and block.get("type") == "tool_use":
                 uses.append(block)
             elif isinstance(block, dict) and block.get("type") == "tool_result":
-                results[block["tool_use_id"]] = block
+                if block.get("tool_use_id") in results:
+                    problems.append({"id": block.get("tool_use_id"), "problem": "duplicate result"})
+                results[block.get("tool_use_id")] = block
+    ids = [u.get("id") for u in uses]
+    problems += [{"id": i, "problem": "duplicate tool use id"} for i in sorted({i for i in ids if ids.count(i) > 1})]
+    problems += [{"id": i, "problem": "result without tool use"} for i in results if i not in ids]
     path = Path(audit_dir) / "calls.jsonl"
     calls = [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
     audit = [c for c in calls if c["request"].get("tool") != "supervisor_load_tool_definitions"]
     bootstrap = len(calls) - len(audit)
-    matched, refused, problems = 0, 0, []
-    queue = list(audit)
+    matched, refused = 0, 0
+    unmatched = list(range(len(audit)))
     for use in uses:
-        result = results.get(use["id"])
+        result = results.get(use.get("id"))
         if result is None:
-            problems.append({"id": use["id"], "problem": "no result"})
+            problems.append({"id": use.get("id"), "problem": "no result"})
             continue
         text = json.dumps(result.get("content"))
         if use["name"] not in inventory:
@@ -307,21 +394,24 @@ def reconcile(events, audit_dir, inventory):
         if not use["name"].startswith("mcp__worker__"):
             problems.append({"id": use["id"], "problem": "advertised non-worker tool", "name": use["name"]})
             continue
-        if not queue:
-            problems.append({"id": use["id"], "problem": "no audit record"})
+        arguments = use.get("input") if isinstance(use.get("input"), dict) else {}
+        candidates = [i for i in unmatched if audit[i]["request"] in worker_requests(use["name"], arguments,
+                                                                                     audit[i]["result"])]
+        if not candidates:
+            problems.append({"id": use["id"], "problem": "no audit record with this request", "name": use["name"]})
             continue
-        call = queue.pop(0)
-        expected = worker_request(use["name"], use.get("input", {}))
-        recorded = {k: call["request"].get(k) for k in expected}
-        failed = call["result"].get("status") in ("error", "timed_out")
-        if recorded != expected:
-            problems.append({"id": use["id"], "problem": "audit record differs", "expected": expected["tool"],
-                             "recorded": call["request"].get("tool")})
-        elif bool(result.get("is_error")) != failed and use["name"].startswith("mcp__worker__worker_"):
-            problems.append({"id": use["id"], "problem": "outcome differs from audit"})
+        observed = result_value(result)
+        for i in candidates:
+            value = adapter_value(use["name"], audit[i]["result"])
+            flagged = isinstance(value, dict) and value.get("status") in ("error", "timed_out", "different")
+            if observed == value and bool(result.get("is_error")) == flagged:
+                unmatched.remove(i)
+                matched += 1
+                break
         else:
-            matched += 1
-    problems += [{"problem": "audit record without tool event", "tool": c["request"].get("tool")} for c in queue]
+            problems.append({"id": use["id"], "problem": "returned value differs from audit", "name": use["name"]})
+    problems += [{"problem": "audit record without tool event", "tool": audit[i]["request"].get("tool")}
+                 for i in unmatched]
     return {"worker": matched, "client_refusal": refused, "bootstrap": bootstrap, "problems": problems,
             "consistent": not problems}
 
@@ -333,27 +423,27 @@ def complete_usage(usage):
 def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
     record = Path(out_dir) / "trials" / trial["trial_id"]
     record.mkdir(parents=True, exist_ok=False)
-    (record / "started.json").write_text(json.dumps({"trial": trial, "started_unix": time.time()}) + "\n")
-    summary = {"trial": trial, "complete": False}
-    events, breach, proc, work = [], [], None, None
+    work = Path(tempfile.mkdtemp(prefix="pilot-", dir=plan["work_root"]))
+    trial_root = work / "trial"
+    (record / "started.json").write_text(json.dumps({"trial": trial, "scratch": str(work),
+                                                     "started_unix": time.time()}) + "\n")
+    summary = {"trial": trial, "scratch": str(work), "complete": False}
+    events, breach, proc = [], [], None
     try:
         if fingerprints(plan["runtime_root"], plan["items_dir"]) != plan["fingerprints"]:
             raise Halt("frozen fingerprints differ")
-        verify_materials(plan["items_dir"], trial["item"])
+        materials = verify_materials(plan["items_dir"], trial["item"])
         verify_config_dir(plan["config_dir"])
-        if not base_url:
-            summary["auth"] = subscription_status(plan["config_dir"])
         inventory = capture_inventory(plan["runtime_root"], trial["arm"], plan["model"],
                                       plan["capture_config_dir"], record / "inventory-capture.json")
         if inventory != plan["inventory"][trial["arm"]]:
             raise Halt(f"captured inventory differs: {inventory}")
-        work = Path(tempfile.mkdtemp(prefix="pilot-", dir=plan["work_root"]))
-        trial_root = work / "trial"
         audit = record / "worker-audit"
-        mcp = stage(trial_root, Path(plan["items_dir"]) / trial["item"] / "materials", plan["runtime_root"],
-                    trial["arm"], audit)
-        (work / "home").mkdir()
+        mcp = stage(trial_root, materials, plan["runtime_root"], trial["arm"], audit)
+        supervisor_home(work / "home", keychain=not base_url)
         no_instruction_ancestors(work / "home")
+        if not base_url:
+            summary["auth"] = subscription_status(work / "home", plan["config_dir"])
         proc = subprocess.Popen(command(prompt(trial["arm"]), mcp, plan["max_turns"], plan["model"]),
                                 cwd=work / "home", env=environment(work / "home", plan["config_dir"], api_key, base_url),
                                 stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -403,8 +493,9 @@ def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
     summary["complete"] = not breach and summary["reconciliation"]["consistent"] and complete_usage(usage)
     summary["finished_unix"] = time.time()
     (record / "trial.json").write_text(json.dumps(summary, indent=1) + "\n")
-    shutil.rmtree(work)
-    if not summary["complete"]:
+    if summary["complete"]:
+        shutil.rmtree(work)
+    else:
         raise Halt(f"{trial['trial_id']}: breach {breach}, reconciliation {summary['reconciliation']['problems']}, "
                    f"usage complete {complete_usage(usage)}")
     return summary
@@ -498,6 +589,7 @@ def main():
         p.add_argument(name, required=True)
     p.add_argument("--ceiling", type=int, required=True)
     p.add_argument("--sessions", type=int, default=2)
+    p.add_argument("--families", nargs="*")
     r = commands.add_parser("run")
     r.add_argument("plan")
     r.add_argument("out_dir")
@@ -505,7 +597,7 @@ def main():
     if args.command == "plan":
         plan = make_plan(args.items_dir, args.plan, runtime_root=args.runtime, work_root=args.work_root,
                          config_dir=args.config_dir, capture_config_dir=args.capture_config_dir,
-                         ceiling=args.ceiling, sessions=args.sessions)
+                         ceiling=args.ceiling, sessions=args.sessions, families=args.families)
         print(json.dumps({"trials": len(plan["trials"]), "inventory": plan["inventory"]}))
     else:
         print(json.dumps(run(args.plan, args.out_dir)))

@@ -13,14 +13,33 @@ live trial:
 - **Authentication.** Barry's subscription only, through a dedicated
   configuration directory that holds no instructions or memory. It is checked
   before every trial: allowed entries only, no memory content, and
-  `claude auth status` reporting a subscription login. The client runs in
-  normal mode, with no `--bare`, from a fresh `HOME` and a working directory
-  with no instruction files above it.
-- **Fingerprints, inventory and admission.** Frozen fingerprints are enforced.
+  `claude auth status` reporting a subscription login *in the launch
+  environment itself*. The client runs in normal mode, with no `--bare`, from a
+  fresh `HOME` whose only content is a link to the login keychain (macOS finds
+  the stored login through `HOME`), and from a working directory with no
+  instruction files above it. CLAUDE.md loading is off (empty
+  `--setting-sources`) and so is auto-memory.
+- **Supervisor qualification.** `qualify_supervisor.py` runs the exact command
+  and environment against a fake endpoint that records request bodies.
+  [`supervisor-qualification.json`](launch-evidence/supervisor-qualification.json)
+  shows:
+  - the capture and supervisor environments carry none of 98 distinctive
+    lines from Barry's global instructions, policy and memory, no instruction
+    preamble and no memory section;
+  - a planted CLAUDE.md is detected when the user setting source is switched
+    on, so the scan works;
+  - the supervisor environment is logged in with a subscription;
+  - no credential header reached the fake endpoint.
+- **Fingerprints, inventory and admission.** Frozen fingerprints are enforced,
+  including every byte of both runtimes and their base interpreter. The item
+  directory must equal its manifest exactly, and only listed materials are
+  staged.
   A dummy-key fake-endpoint inventory capture, made with a separate
   configuration directory that is not logged in, is saved with each trial. The
   client's init record is checked.
-- **Reconciliation** by identity, with explicit refusal categories.
+- **Reconciliation** pairs one use, one result and one audit record. They must
+  match on the full request and on the exact value the adapter returned; client
+  refusals are a separate category.
 - **Cleanup.** The client group, the worker server and every recorded worker
   group are killed, then verified gone from a full process listing.
 - **Export** copies regular files only, never following links.
@@ -47,15 +66,16 @@ scripted fake endpoint. It includes a hidden Bash call (refused and
 reconciled) and a worker-created symlink (refused at export), and checks that
 a rerun launches nothing.
 
-## Before live use
+## Status
 
-1. **Barry logs in a dedicated configuration directory once, with his
-   subscription:**
-   `CLAUDE_CONFIG_DIR=~/palaeo-eval/claude-pilot-config claude auth login --claudeai`.
-   The agents cannot do this for him.
-2. **Codex verifies** the changed paths and the native abort and export
-   behaviour.
-3. **Host.** On the MacBook, the machine must stay awake during runs; `mini`
-   would need the same runtime build and probe rerun. Integration (≤ 8) and
-   calibration (≤ 16) trials are short enough for the MacBook.
+1. Barry logged in the dedicated configuration directory with his
+   subscription (1 November 2026).
+2. Codex verified the L1–L8 repairs (7800ad9). The remaining items it raised
+   (dependency bytes, exact material set, full-value reconciliation, the
+   launch-environment login) are fixed with tests, and the qualification above
+   is complete.
+3. **Host.** The MacBook, kept awake, for integration (≤ 8) and calibration
+   (≤ 16). The client's working directories live under
+   `/Users/Shared/palaeo-pilot-work`, because `~/.claude` would sit above any
+   directory under the home folder.
 4. **Reviewer launcher.** Built after the analyst run, using the same gates.
