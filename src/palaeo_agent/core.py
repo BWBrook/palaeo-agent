@@ -58,7 +58,7 @@ class RmaExclusion(ResultItem):
 
 
 class RmaWarning(ResultItem):
-    code: Literal["small_computed_correlation", "two_pairs"]
+    code: Literal["small_computed_correlation", "two_pairs", "padded_column_label"]
     message: str = Field(min_length=1)
 
 
@@ -205,19 +205,36 @@ def load_past(data: bytes, spec: RmaSpec):
     if spec.x == spec.y:
         raise AnalysisError("same_column", "x and y must select different columns")
     try:
-        rows = [line.split() for line in data.decode("utf-8-sig").splitlines() if line.strip()]
+        lines = [line for line in data.decode("utf-8-sig").splitlines() if line.strip()]
     except UnicodeDecodeError as exc:
         raise AnalysisError("invalid_encoding", "The supported PAST table must be UTF-8 text") from exc
+    tabbed = bool(lines) and "\t" in lines[0]
+    rows = [line.split("\t") if tabbed else line.split() for line in lines]
     if len(rows) < 2 or rows[0][0] != ".":
         raise AnalysisError("invalid_past_header", "Expected classic PAST header beginning with '.'")
     names = rows[0][1:]
     if len(names) != len(set(names)):
         raise AnalysisError("duplicate_column_id", "Column labels must be unique")
-    absent = [name for name in (spec.x, spec.y) if name not in names]
+    selected = []
+    absent = []
+    for name in (spec.x, spec.y):
+        matches = [i for i, label in enumerate(names) if label == name]
+        if not matches and name == name.strip():
+            matches = [i for i, label in enumerate(names) if label.strip() == name]
+        if len(matches) > 1:
+            raise AnalysisError("ambiguous_column", "Selected column matches multiple whitespace-padded labels", column=name)
+        if not matches:
+            absent.append(name)
+        else:
+            selected.append(matches[0])
     if absent:
         raise AnalysisError("unknown_column", "Selected columns do not exist", columns=absent, available=names)
+    if selected[0] == selected[1]:
+        raise AnalysisError("same_column", "x and y must select different columns")
     ids, x, y = [], [], []
     for line_number, row in enumerate(rows[1:], 2):
+        if len(row) > len(names) + 1 and all(not cell.strip() for cell in row[len(names) + 1:]):
+            row = row[:len(names) + 1]
         if len(row) != len(names) + 1:
             raise AnalysisError("row_width", "Row width differs from the header", line=line_number)
         ids.append(row[0])
@@ -230,14 +247,22 @@ def load_past(data: bytes, spec: RmaSpec):
             if value is not None and not np.isfinite(value):
                 raise AnalysisError("invalid_numeric", "Nonfinite measurement token", sample_id=row[0], column=column)
             parsed.append(value)
-        x.append(parsed[names.index(spec.x)])
-        y.append(parsed[names.index(spec.y)])
-    return x, y, ids
+        x.append(parsed[selected[0]])
+        y.append(parsed[selected[1]])
+    selection_warnings = [
+        {"code": "padded_column_label",
+         "message": f"{axis} selector {name!r} uses PAST header label {names[index]!r} at data column {index + 1}"}
+        for axis, name, index in zip(("x", "y"), (spec.x, spec.y), selected, strict=True)
+        if name != names[index]
+    ]
+    return x, y, ids, selection_warnings
 
 
 def calculate(spec: RmaSpec, data: bytes):
-    x, y, ids = load_past(data, spec)
-    return rma_regression(x, y, sample_ids=ids, transform=spec.transform, missing=spec.missing)
+    x, y, ids, selection_warnings = load_past(data, spec)
+    result = rma_regression(x, y, sample_ids=ids, transform=spec.transform, missing=spec.missing)
+    result["warnings"].extend(selection_warnings)
+    return result
 
 
 def validate(spec: RmaSpec | dict):

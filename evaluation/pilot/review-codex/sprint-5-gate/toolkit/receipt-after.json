@@ -1,0 +1,259 @@
+{
+  "literal_NA_id": {
+    "status": "accepted",
+    "sample_ids": [
+      "NA",
+      "S2",
+      "S3"
+    ],
+    "taxon_ids": [
+      "A",
+      "B"
+    ],
+    "counts": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        3.0,
+        5.0
+      ],
+      [
+        6.0,
+        1.0
+      ]
+    ]
+  },
+  "blank_row_id": {
+    "status": "error",
+    "type": "AnalysisError",
+    "code": "invalid_id",
+    "message": "Row labels must be nonblank strings"
+  },
+  "blank_taxon_id": {
+    "status": "error",
+    "type": "AnalysisError",
+    "code": "invalid_id",
+    "message": "Column labels must be nonblank strings"
+  },
+  "literal_NA_taxon": {
+    "status": "accepted",
+    "sample_ids": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "taxon_ids": [
+      "NA",
+      "B"
+    ],
+    "counts": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        3.0,
+        5.0
+      ],
+      [
+        6.0,
+        1.0
+      ]
+    ]
+  },
+  "unclosed_numeric_quote": {
+    "status": "error",
+    "type": "AnalysisError",
+    "code": "invalid_delimited",
+    "message": "Malformed delimited table"
+  },
+  "explicit_all_missing_row": {
+    "status": "error",
+    "type": "AnalysisError",
+    "code": "invalid_id",
+    "message": "Row labels must be nonblank strings"
+  },
+  "spaced_sample_id": {
+    "status": "accepted",
+    "sample_ids": [
+      " S1 ",
+      "S2",
+      "S3"
+    ],
+    "taxon_ids": [
+      "A",
+      "B"
+    ],
+    "counts": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        3.0,
+        5.0
+      ],
+      [
+        6.0,
+        1.0
+      ]
+    ]
+  },
+  "quoted_comma_study": {
+    "status": "complete",
+    "reproduction": "reproduced",
+    "derived": ".\tTaxon, alpha\tTaxon beta\nS1\t1\t2\nS2\t3\t5\nS3\t6\t1\n"
+  },
+  "spaced_measurement_study": {
+    "status": "complete",
+    "study_dir": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/s5-toolkit-afmv39u1/measure",
+    "steps": [
+      {
+        "id": "dataset:d",
+        "status": "complete"
+      },
+      {
+        "id": "analysis:a",
+        "status": "complete"
+      }
+    ]
+  },
+  "schema": {
+    "unresolved_refs": [],
+    "invalid_request": {
+      "status": "error",
+      "code": "invalid_request",
+      "message": "Request does not match the tool schema",
+      "details": [
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "format"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "orientation"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "value_type"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "transform"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "distance"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "dimensions"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "missing"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "spec",
+            "community",
+            "empty_samples"
+          ],
+          "msg": "Field required"
+        }
+      ]
+    },
+    "capabilities": {
+      "method_index": [
+        {
+          "id": "rma",
+          "description": "Descriptive reduced-major-axis regression",
+          "scope": "Paired measurements; no inferential uncertainty",
+          "refuses": [
+            "constant variables",
+            "undefined covariance"
+          ],
+          "provides": [
+            "slope",
+            "intercept",
+            "correlation",
+            "means and SDs",
+            "residual RMSE",
+            "raw or log10 scale"
+          ]
+        },
+        {
+          "id": "community",
+          "description": "Count diversity, dissimilarities and uncorrected PCoA",
+          "scope": "Declared counts and orientation",
+          "refuses": [
+            "missing counts",
+            "unresolved positive eigenvalue cutoff"
+          ],
+          "provides": [
+            "per-sample total, richness, Shannon (natural log) and Simpson (1 - sum p^2)",
+            "Bray-Curtis or binary Jaccard distance matrix",
+            "raw or relative-abundance input",
+            "PCoA coordinates and eigenvalues"
+          ]
+        },
+        {
+          "id": "permanova",
+          "description": "One-factor free-label PERMANOVA with descriptive dispersion",
+          "scope": "Independent units; exchangeable labels; two or more samples per group",
+          "refuses": [
+            "restricted or repeated designs",
+            "empty samples",
+            "undefined observed finite F"
+          ],
+          "provides": [
+            "pseudo-F",
+            "R-squared",
+            "permutation p-value",
+            "group dispersions"
+          ]
+        }
+      ],
+      "input_formats": "Count tables: format 'past' (first header cell '.', tab-separated) or 'delimited' with delimiter 'tab' or 'comma' (first header cell names the ID column). Metadata: UTF-8 CSV joined by exact ID.",
+      "path_policy": "All paths resolve inside the configured session root; relative paths start there"
+    }
+  }
+}

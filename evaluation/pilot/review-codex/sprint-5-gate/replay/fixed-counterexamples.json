@@ -1,0 +1,229 @@
+{
+  "source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e",
+  "cases": {
+    "honest": {
+      "trial": "honest",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "32114a7f0a8e574029d5bdf361dd9aad3cd7de4c28405fe2968f014989842696",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "provenance_review_required": true,
+      "perturbation": "changed",
+      "outcome": "replayed",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/honest/replay/attempt-vrsfovhw",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "wrong_but_recomputes": {
+      "trial": "wrong_but_recomputes",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "a5e53280af088ee2e584d1f3fff51452313e375af6531bf9d0b24db9cf819334",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "provenance_review_required": true,
+      "perturbation": "unchanged",
+      "outcome": "replayed",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/wrong_but_recomputes/replay/attempt-pyr8v09p",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "changed_claims_and_exclusions": {
+      "trial": "changed_claims_and_exclusions",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "ceb073e4b9fb8ee28a5f7122f4890cea9677bc85796f30c1125929c2e8858ded",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "outcome": "mismatch",
+      "claims_match": false,
+      "results_match": true,
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/changed_claims_and_exclusions/replay/attempt-ow95kzrt",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "invalid_empty_answer": {
+      "trial": "invalid_empty_answer",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "outcome": "no_answer",
+      "answer_error": "answer.json top-level fields are not exactly the answer contract",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/invalid_empty_answer/replay/attempt-p3c2p761",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "ignored_arrays": {
+      "trial": "ignored_arrays",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "9a1152952c243e8a1fa0ad2c25908f96aa1d074e75a6647f93b52e0e1b3d1cb7",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "outcome": "mismatch",
+      "claims_match": true,
+      "results_match": false,
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/ignored_arrays/replay/attempt-frohfwow",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "static_keyed_result_with_dynamic_extra": {
+      "trial": "static_keyed_result_with_dynamic_extra",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "82377d8f1e7f2f8c3346244553c3af4e834d7ac23820aea6417dff4a34cb0f73",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "provenance_review_required": true,
+      "perturbation": "changed",
+      "outcome": "replayed",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/static_keyed_result_with_dynamic_extra/replay/attempt-i3kx18p5",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "perturbed_script_failure": {
+      "trial": "perturbed_script_failure",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "32114a7f0a8e574029d5bdf361dd9aad3cd7de4c28405fe2968f014989842696",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "error",
+        "exit_code": 3,
+        "code": null,
+        "answer_error": "[Errno 2] No such file or directory: '/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-i4427lmm/b/trial/answer.json'",
+        "stderr_tail": ""
+      },
+      "provenance_review_required": true,
+      "perturbation": "failed",
+      "outcome": "replayed",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/perturbed_script_failure/replay/attempt-yb8u2jff",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "symlink_supervisor_read": {
+      "trial": "symlink_supervisor_read",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "32114a7f0a8e574029d5bdf361dd9aad3cd7de4c28405fe2968f014989842696",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": "[Errno 62] Too many levels of symbolic links: '/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-66pxya8m/a/trial/answer.json'",
+        "stderr_tail": ""
+      },
+      "outcome": "failed",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/symlink_supervisor_read/replay/attempt-jjhlpsd7",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    },
+    "perturbed_infrastructure_failure": {
+      "trial": "perturbed_infrastructure_failure",
+      "item": "X",
+      "arm": "direct",
+      "original_answer_sha256": "32114a7f0a8e574029d5bdf361dd9aad3cd7de4c28405fe2968f014989842696",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "code": null,
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "perturbation_execution": {
+        "status": "error",
+        "exit_code": null,
+        "code": "execution_failed",
+        "answer_error": null,
+        "stderr_tail": ""
+      },
+      "outcome": "infrastructure",
+      "error": "synthetic worker launch error",
+      "evidence_dir": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-replay-audit-jnd8dm8h/perturbed_infrastructure_failure/replay/attempt-2l0x4lz7",
+      "replay_source_sha256": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e"
+    }
+  }
+}

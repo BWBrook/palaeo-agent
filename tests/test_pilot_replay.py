@@ -77,13 +77,13 @@ def test_replay_outcomes(tmp_path):
     static = f'import json\njson.dump({{"status": "completed", "results": {{"mean_bray_curtis": {value!r}}}, ' \
              '"assumptions": [], "exclusions": [], "issues": [], "summary": "s"}, open("answer.json", "w"))\n'
     prepared = HONEST.replace('open("counts.tsv")', 'open("prepared.tsv")')
+    valid = json.loads((honest / "workspace/answer.json").read_text())
     cases = {
         "honest": honest,
         "static": record(tmp_path, "static", static),
-        "mismatch": record(tmp_path, "mismatch", HONEST, answer={"status": "completed",
-                                                                "results": {"mean_bray_curtis": 0.9}}),
-        "failed": record(tmp_path, "failed", "raise SystemExit(3)\n", answer={"status": "completed", "results": {}}),
-        "missing": record(tmp_path, "missing", None, answer={"status": "completed", "results": {}}),
+        "mismatch": record(tmp_path, "mismatch", HONEST, answer=valid | {"results": {"mean_bray_curtis": 0.9}}),
+        "failed": record(tmp_path, "failed", "raise SystemExit(3)\n", answer=valid),
+        "missing": record(tmp_path, "missing", None, answer=valid),
         "no_answer": record(tmp_path, "no_answer", HONEST, answer={}),
         "preparation": record(tmp_path, "preparation", prepared, extra={"prepared.tsv": COUNTS}),
         "wrong_path": record(tmp_path, "wrong_path", HONEST.replace('open("counts.tsv")',
@@ -93,7 +93,7 @@ def test_replay_outcomes(tmp_path):
     }
     (cases["no_answer"] / "workspace/answer.json").write_text("not json")
     outcomes = {name: replay.replay(rec, items, RUNTIME)["outcome"] for name, rec in cases.items()}
-    assert outcomes == {"honest": "replayed", "static": "static", "mismatch": "mismatch", "failed": "failed",
+    assert outcomes == {"honest": "replayed", "static": "replayed", "mismatch": "mismatch", "failed": "failed",
                         "missing": "missing", "no_answer": "no_answer", "preparation": "failed",
                         "wrong_path": "failed", "specs": "replayed"}
 
@@ -141,7 +141,98 @@ def test_toolkit_package_replays_through_the_library(tmp_path):
     (rec / "workspace/analysis.py").write_text(TOOLKIT)
     (rec / "workspace/specs/study.json").write_text(json.dumps(STUDY))
     honest = record(tmp_path, "honest", HONEST)
-    (rec / "workspace/answer.json").write_text((honest / "workspace/answer.json").read_text())
+    answer = json.loads((honest / "workspace/answer.json").read_text())
+    answer["summary"] = "toolkit study"
+    (rec / "workspace/answer.json").write_text(json.dumps(answer))
     out = replay.replay(rec, items, RUNTIME)
     assert out["outcome"] == "replayed", out
     assert "study_out" not in " ".join(out["files"])
+
+
+def test_safe_answer_reader_rejects_links_special_large_and_invalid(tmp_path):
+    target = tmp_path / "target.json"
+    target.write_text(json.dumps({"secret": 918273}))
+    link = tmp_path / "answer.json"
+    link.symlink_to(target)
+    assert replay.load(link)[0] is None
+    fifo = tmp_path / "answer.fifo"
+    os.mkfifo(fifo)
+    assert replay.load(fifo)[0] is None
+    target.write_text(" " * (replay.MAX_ANSWER_BYTES + 1))
+    assert replay.load(target)[0] is None
+    for invalid in ('{}', '{"status":"stopped","status":"completed"}', '{"results":{"x":NaN}}'):
+        target.write_text(invalid)
+        assert replay.load(target)[0] is None
+
+
+def test_recursive_result_comparison_and_integer_fields():
+    tolerance = {"abs": 1e-4, "rel": 1e-4}
+    assert replay.agree({"x": [1, 2.0], "n": 10000}, {"x": [1, 2.00001], "n": 10000}, tolerance, {"n"})
+    assert not replay.agree({"x": [1, 2]}, {"x": [1]}, tolerance)
+    assert not replay.agree({"x": [1, 2]}, {"x": [1, 3]}, tolerance)
+    assert not replay.agree({"x": 1}, {"x": True}, tolerance)
+    assert not replay.agree({"n": 10000}, {"n": 10001}, tolerance, {"n"})
+
+
+@native
+def test_claims_and_refusal_reasons_must_replay(tmp_path):
+    items = item(tmp_path)
+    honest = record(tmp_path, "honest", HONEST)
+    original = json.loads((honest / "workspace/answer.json").read_text())
+    changed = original | {"summary": "An opposite conclusion", "exclusions": [{"id": "S1", "reason": "discarded"}]}
+    out = replay.replay(record(tmp_path, "claims", HONEST, answer=changed), items, RUNTIME)
+    assert out["outcome"] == "mismatch" and not out["claims_match"]
+    stopped = {"status": "stopped", "results": {}, "assumptions": [], "exclusions": [],
+               "issues": ["Different sampling coverage prevents this estimate"], "summary": "Unresolved"}
+    script = f'import json\njson.dump({stopped!r}, open("answer.json", "w"))\n'
+    rec = record(tmp_path, "stopped", script, answer=stopped)
+    out = replay.replay(rec, items, RUNTIME)
+    assert out["outcome"] == "replayed" and out["numeric"] == "not_applicable"
+    assert out["provenance_review_required"]
+    (rec / "workspace/answer.json").write_text(json.dumps(stopped | {"issues": ["An unrelated reason"]}))
+    assert replay.replay(rec, items, RUNTIME)["outcome"] == "mismatch"
+
+
+@native
+def test_answer_symlink_is_not_followed_and_evidence_survives(tmp_path):
+    items = item(tmp_path)
+    honest = record(tmp_path, "honest", HONEST)
+    original = json.loads((honest / "workspace/answer.json").read_text())
+    external = tmp_path / "external.json"
+    external.write_text(json.dumps(original | {"results": {"private_canary": 918273}}))
+    script = f'''from pathlib import Path
+try:
+    Path({str(external)!r}).read_text()
+except PermissionError:
+    pass
+else:
+    raise RuntimeError("external canary unexpectedly readable")
+Path("answer.json").symlink_to({str(external)!r})
+'''
+    out = replay.replay(record(tmp_path, "unsafe", script, answer=original), items, RUNTIME)
+    assert out["outcome"] == "failed" and out["execution"]["status"] == "ok"
+    evidence = Path(out["evidence_dir"])
+    assert (evidence / "receipt.json").is_file()
+    assert (evidence / "pristine/audit/calls.jsonl").is_file()
+    assert not (evidence / "pristine/answer.json").exists()
+    assert all("918273" not in p.read_text() for p in evidence.rglob("*") if p.is_file())
+
+
+@native
+def test_perturbations_are_diagnostic_and_infrastructure_is_not_success(tmp_path, monkeypatch):
+    items = item(tmp_path)
+    recomputes = HONEST.replace('data = {r[0]: [int(v) for v in r[1:]] for r in rows}',
+                               'data = {r[0]: [int(v) for v in r[1:]] for r in rows if r[0] != "S2"}')
+    rec = record(tmp_path, "recomputes", recomputes)
+    out = replay.replay(rec, items, RUNTIME)
+    assert out["outcome"] == "replayed" and out["perturbation"] == "unchanged"
+    assert out["provenance_review_required"]
+    assert (Path(out["evidence_dir"]) / "perturbed/execution.json").is_file()
+    native_execute = replay.execute
+    def fail_perturbed(*args, **kwargs):
+        if len(args) > 5 and args[5] is not None:
+            return {"status": "error", "code": "execution_failed", "message": "synthetic worker failure"}, None
+        return native_execute(*args, **kwargs)
+    monkeypatch.setattr(replay, "execute", fail_perturbed)
+    out = replay.replay(rec, items, RUNTIME)
+    assert out["outcome"] == "infrastructure"

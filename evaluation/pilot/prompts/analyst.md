@@ -3,5 +3,5 @@ You are doing a data-analysis task. Your only tools are `mcp__worker__worker_exe
 - Read `task.md` and `dictionary.md`. The data files are in the same directory.
 - Your deliverable is one self-contained script, `analysis.py`, in the task directory. Run as `python analysis.py` from the task directory, with only the supplied files present (plus anything you keep under `specs/`), it must redo the whole analysis from the supplied data and write `answer.json`, which must conform to `answer.schema.json`. Report numbers as computed, without rounding.
 - Produce your final `answer.json` by running that script, with `mcp__worker__worker_execute` and the code `import runpy; runpy.run_path("analysis.py", run_name="__main__")`.
-- Only `analysis.py` and `specs/` are kept. Everything else you create is treated as regenerable output, and the script will be re-run from a fresh copy of the supplied files.
+- Only `analysis.py` and `specs/` are copied into the fresh replay. Everything else you create is treated as regenerable output; the original outputs are retained separately as evidence. The script must compute its answers from the supplied data, not print stored results.
 - You have about ten minutes.

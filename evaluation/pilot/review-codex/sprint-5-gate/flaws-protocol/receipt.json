@@ -1,0 +1,620 @@
+{
+  "independent_flaw_checks": [
+    {
+      "item": "P01-control",
+      "observed": {
+        "mean_bray_curtis": 0.2933403705274871,
+        "n_samples": 22
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P02-control",
+      "observed": {
+        "pseudo_f": 1.200340780730962,
+        "r_squared": 0.05661893802301303,
+        "n": 22
+      },
+      "max_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "item": "P03-control",
+      "observed": {
+        "mean_bray_curtis": 0.25425052207038173
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P04-control",
+      "observed": {
+        "shannon_mean_2017": 2.916609778115085,
+        "shannon_mean_2021": 2.981489030003899
+      },
+      "max_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "item": "P05-control",
+      "observed": {
+        "richness": 26,
+        "mean_bray_curtis": 0.3104287068111107
+      },
+      "max_absolute_error": 0
+    },
+    {
+      "item": "P06-control",
+      "observed": {
+        "pseudo_f": 13.405541838977044,
+        "r_squared": 0.5276621110442263,
+        "n": 14
+      },
+      "max_absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "item": "P07-control",
+      "observed": {
+        "slope": 0.9913769872299124,
+        "intercept": -0.2859004486755019,
+        "n": 95,
+        "mean_length_mm": 100.7241052631579
+      },
+      "max_absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "item": "P08-control",
+      "observed": {
+        "mean_bray_curtis": 0.24988904121629033,
+        "n_holocene": 18
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P09-control",
+      "observed": {
+        "slope": 1.1066552538060128,
+        "intercept": -0.23319725045085415,
+        "n": 48
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P10-control",
+      "observed": {
+        "shannon_change": -0.108628477660762
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P11-control",
+      "observed": {
+        "n_genera": 15,
+        "mean_bray_curtis": 0.2961022180890511
+      },
+      "max_absolute_error": 0.0
+    },
+    {
+      "item": "P12-control",
+      "observed": {
+        "pseudo_f": 13.724008442899569,
+        "r_squared": 0.4069506881465953,
+        "n": 22
+      },
+      "max_absolute_error": 1.7763568394002505e-15
+    }
+  ],
+  "p09_defensible_choices": [
+    {
+      "item": "P09-trap",
+      "rule": "first_in_measurements",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0287744701466837,
+          "intercept": -0.13566720110416375,
+          "n": 52
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting first_in_measurements."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-trap",
+      "rule": "lowest_specimen_id",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0284893334555247,
+          "intercept": -0.1353073509524616,
+          "n": 52
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting lowest_specimen_id."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-trap",
+      "rule": "seeded_0",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0277544834977987,
+          "intercept": -0.13436297250328555,
+          "n": 52
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_0."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-trap",
+      "rule": "seeded_1",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0287799723686877,
+          "intercept": -0.13569239517968867,
+          "n": 52
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_1."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-trap",
+      "rule": "seeded_2",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0277424711300303,
+          "intercept": -0.1343344756532343,
+          "n": 52
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_2."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-trap",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-cal",
+      "rule": "first_in_measurements",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.033514519203255,
+          "intercept": -0.13720125062653632,
+          "n": 49
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting first_in_measurements."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-cal",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-cal",
+      "rule": "lowest_specimen_id",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0328524191722277,
+          "intercept": -0.1363653676644503,
+          "n": 49
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting lowest_specimen_id."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-cal",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [
+          "accepted alternative result: mean_of_valves"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "alternative": "mean_of_valves",
+        "acceptable": true
+      }
+    },
+    {
+      "item": "P09-cal",
+      "rule": "seeded_0",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0327685336736878,
+          "intercept": -0.13628362907527491,
+          "n": 49
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_0."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-cal",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-cal",
+      "rule": "seeded_1",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.0323541582197295,
+          "intercept": -0.13574695982319307,
+          "n": 49
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_1."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-cal",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": true,
+        "provisional": true,
+        "notes": [
+          "keyword issue match requires adjudication"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [
+          "slope",
+          "intercept"
+        ],
+        "outcome": "wrong",
+        "signature": null,
+        "pitfall": "detected_mishandled",
+        "family": "P09",
+        "stratum": "other",
+        "acceptable": false
+      }
+    },
+    {
+      "item": "P09-cal",
+      "rule": "seeded_2",
+      "answer": {
+        "status": "completed",
+        "results": {
+          "slope": 1.032912128591841,
+          "intercept": -0.13646033634975097,
+          "n": 49
+        },
+        "assumptions": [
+          "Use one valve per individual, selecting seeded_2."
+        ],
+        "issues": [],
+        "exclusions": [],
+        "summary": "RMA across individuals, not valves."
+      },
+      "score": {
+        "version": "pilot-v4",
+        "item": "P09-cal",
+        "class": "trap",
+        "expected": "complete",
+        "termination": "exited",
+        "adjudication_required": false,
+        "provisional": false,
+        "notes": [
+          "accepted alternative result: mean_of_valves"
+        ],
+        "evidence": {
+          "checks": {
+            "answer_valid": true,
+            "analysis_code_saved": false,
+            "input_hashes_recorded": false,
+            "environment_recorded": false
+          },
+          "score": 0.25
+        },
+        "status": "completed",
+        "caveats": 1,
+        "issue_named": true,
+        "mismatches": [],
+        "outcome": "correct",
+        "pitfall": "handled",
+        "family": "P09",
+        "stratum": "other",
+        "alternative": "mean_of_valves",
+        "acceptable": true
+      }
+    }
+  ]
+}

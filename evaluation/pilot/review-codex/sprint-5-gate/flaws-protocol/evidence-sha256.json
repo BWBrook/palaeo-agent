@@ -1,0 +1,9 @@
+{
+  "reviewed_commit": "799e0de",
+  "new_live_trials": 0,
+  "file_hashes": {
+    "check.py": "c4abb1c6cbbab263a6cd29ddfaf10c999bb388d2d1187551da9a031501091c03",
+    "report.md": "7afaaeb1521fbecc1d9180b64b51282e6f2075d34312dbc298c26f55aef458da",
+    "receipt.json": "4f0f9fb2e87a91d4f8a484079634ba6f35345c245584ffa3748d7a4e0e981ebb"
+  }
+}

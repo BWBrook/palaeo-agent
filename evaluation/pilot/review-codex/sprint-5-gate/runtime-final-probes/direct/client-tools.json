@@ -1,0 +1,85 @@
+[
+  {
+    "name": "worker_execute",
+    "title": null,
+    "description": "Execute Python in the trial. No network, subprocesses, credentials or outside files. Installed scientific packages are available.",
+    "inputSchema": {
+      "properties": {
+        "code": {
+          "type": "string",
+          "maxLength": 262144
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object",
+      "additionalProperties": false
+    },
+    "execution": null,
+    "outputSchema": null,
+    "icons": null,
+    "annotations": null,
+    "_meta": null
+  },
+  {
+    "name": "worker_read",
+    "title": null,
+    "description": "Read a UTF-8 trial file in a bounded page; paths are relative to the trial root.",
+    "inputSchema": {
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32768,
+          "default": 32768
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "type": "object",
+      "additionalProperties": false
+    },
+    "execution": null,
+    "outputSchema": null,
+    "icons": null,
+    "annotations": null,
+    "_meta": null
+  },
+  {
+    "name": "worker_write",
+    "title": null,
+    "description": "Write a UTF-8 trial file; paths are relative to the trial root.",
+    "inputSchema": {
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "maxLength": 262144
+        }
+      },
+      "required": [
+        "path",
+        "content"
+      ],
+      "type": "object",
+      "additionalProperties": false
+    },
+    "execution": null,
+    "outputSchema": null,
+    "icons": null,
+    "annotations": null,
+    "_meta": null
+  }
+]

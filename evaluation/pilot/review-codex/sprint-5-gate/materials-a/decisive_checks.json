@@ -1,0 +1,306 @@
+{
+  "079f3c855c": {
+    "rounding_assumption": "nearest 0.01 percentage point, denominator n_counted",
+    "rows": [
+      {
+        "sample": "SR264",
+        "n": 240,
+        "all_cells_unique": true,
+        "reconstructed_sum": 240,
+        "max_count_rounding_error": 0.008000000000002672
+      },
+      {
+        "sample": "SR106",
+        "n": 362,
+        "all_cells_unique": true,
+        "reconstructed_sum": 362,
+        "max_count_rounding_error": 0.01799999999999935
+      },
+      {
+        "sample": "SR333",
+        "n": 395,
+        "all_cells_unique": true,
+        "reconstructed_sum": 395,
+        "max_count_rounding_error": 0.018499999999999517
+      },
+      {
+        "sample": "SR324",
+        "n": 395,
+        "all_cells_unique": true,
+        "reconstructed_sum": 395,
+        "max_count_rounding_error": 0.017499999999998295
+      },
+      {
+        "sample": "SR125",
+        "n": 206,
+        "all_cells_unique": true,
+        "reconstructed_sum": 206,
+        "max_count_rounding_error": 0.010200000000001097
+      },
+      {
+        "sample": "SR286",
+        "n": 245,
+        "all_cells_unique": true,
+        "reconstructed_sum": 245,
+        "max_count_rounding_error": 0.012000000000000455
+      },
+      {
+        "sample": "SR219",
+        "n": 259,
+        "all_cells_unique": true,
+        "reconstructed_sum": 259,
+        "max_count_rounding_error": 0.0127000000000006
+      }
+    ],
+    "mean_bray_curtis_reconstructed": 0.3185829537850918,
+    "mean_bray_curtis_mixed_units_invalid": 0.41247470810470865
+  },
+  "1719318835": {
+    "rounding_assumption": "nearest 0.01 percentage point, denominator n_counted",
+    "rows": [
+      {
+        "sample": "SR198",
+        "n": 194,
+        "all_cells_unique": true,
+        "reconstructed_sum": 194,
+        "max_count_rounding_error": 0.009199999999999875
+      },
+      {
+        "sample": "SR209",
+        "n": 260,
+        "all_cells_unique": true,
+        "reconstructed_sum": 260,
+        "max_count_rounding_error": 0.012000000000000455
+      },
+      {
+        "sample": "SR219",
+        "n": 383,
+        "all_cells_unique": true,
+        "reconstructed_sum": 383,
+        "max_count_rounding_error": 0.017799999999999372
+      },
+      {
+        "sample": "SR142",
+        "n": 229,
+        "all_cells_unique": true,
+        "reconstructed_sum": 229,
+        "max_count_rounding_error": 0.007899999999999352
+      },
+      {
+        "sample": "SR236",
+        "n": 366,
+        "all_cells_unique": true,
+        "reconstructed_sum": 366,
+        "max_count_rounding_error": 0.017799999999999372
+      },
+      {
+        "sample": "SR328",
+        "n": 414,
+        "all_cells_unique": true,
+        "reconstructed_sum": 414,
+        "max_count_rounding_error": 0.019200000000000106
+      },
+      {
+        "sample": "SR366",
+        "n": 356,
+        "all_cells_unique": true,
+        "reconstructed_sum": 356,
+        "max_count_rounding_error": 0.016799999999999926
+      },
+      {
+        "sample": "SR295",
+        "n": 370,
+        "all_cells_unique": true,
+        "reconstructed_sum": 370,
+        "max_count_rounding_error": 0.01699999999999946
+      }
+    ],
+    "mean_bray_curtis_reconstructed": 0.31285204992933463,
+    "mean_bray_curtis_mixed_units_invalid": 0.40560152354662143
+  },
+  "3a906284d4": {
+    "2017": {
+      "n_cores": 12,
+      "all_taxa_shannon_mean": 2.513702941670762,
+      "large_adult_taxa_shannon_mean": 2.513702941670762
+    },
+    "2021": {
+      "n_cores": 12,
+      "all_taxa_shannon_mean": 2.9814890300038996,
+      "large_adult_taxa_shannon_mean": 2.5685220808024063
+    },
+    "taxa_excluded_by_adult_label": [
+      "Trilobatus sacculifer",
+      "Candeina nitida",
+      "Globigerinella calida",
+      "Sphaeroidinella dehiscens",
+      "Globigerinoides ruber",
+      "Neogloboquadrina dutertrei",
+      "Berggrenia pumilio",
+      "Globorotalia menardii"
+    ]
+  },
+  "8090a86fb2": {
+    "2017": {
+      "n_cores": 10,
+      "all_taxa_shannon_mean": 2.6594344579688505,
+      "large_adult_taxa_shannon_mean": 2.6594344579688505
+    },
+    "2021": {
+      "n_cores": 9,
+      "all_taxa_shannon_mean": 2.983864801266112,
+      "large_adult_taxa_shannon_mean": 2.6027434752171104
+    },
+    "taxa_excluded_by_adult_label": [
+      "Globorotalia truncatulinoides",
+      "Globigerina bulloides",
+      "Pulleniatina obliquiloculata",
+      "Orbulina universa",
+      "Sphaeroidinella dehiscens",
+      "Turborotalita quinqueloba",
+      "Globigerinoides conglobatus",
+      "Berggrenia pumilio"
+    ]
+  },
+  "fddedcbd00": {
+    "2017": {
+      "n_cores": 12,
+      "all_taxa_shannon_mean": 2.916609778115085,
+      "large_adult_taxa_shannon_mean": 2.513702941670762
+    },
+    "2021": {
+      "n_cores": 12,
+      "all_taxa_shannon_mean": 2.9814890300038996,
+      "large_adult_taxa_shannon_mean": 2.5685220808024063
+    },
+    "taxa_excluded_by_adult_label": [
+      "Trilobatus sacculifer",
+      "Candeina nitida",
+      "Globigerinella calida",
+      "Sphaeroidinella dehiscens",
+      "Globigerinoides ruber",
+      "Neogloboquadrina dutertrei",
+      "Berggrenia pumilio",
+      "Globorotalia menardii"
+    ]
+  },
+  "1f805672ac": {
+    "split_rows": 31,
+    "pooled_counts_then_normalized": {
+      "pseudo_f": 16.077416143583,
+      "r_squared": 0.5726102452364529,
+      "n": 14
+    },
+    "equal_split_proportions_then_averaged_alternative": {
+      "pseudo_f": 11.823715400445048,
+      "r_squared": 0.49630022864629125,
+      "n": 14
+    }
+  },
+  "79409ec5de": {
+    "split_rows": 28,
+    "pooled_counts_then_normalized": {
+      "pseudo_f": 19.462827886712645,
+      "r_squared": 0.6185975385554002,
+      "n": 14
+    },
+    "equal_split_proportions_then_averaged_alternative": {
+      "pseudo_f": 17.691623553256875,
+      "r_squared": 0.5958456101776988,
+      "n": 14
+    }
+  },
+  "395082bc8f": {
+    "matched_counted_samples": 22,
+    "uncounted_stations": [
+      "PB23",
+      "PB24"
+    ],
+    "zone_counts": {
+      "A": 9,
+      "B": 13
+    }
+  },
+  "424e0eca5e": {
+    "matched_counted_samples": 22,
+    "uncounted_stations": [
+      "PB23",
+      "PB24"
+    ],
+    "zone_counts": {
+      "A": 9,
+      "B": 13
+    }
+  },
+  "3748d8955d": {
+    "recorded_columns": 27,
+    "accepted_species_observed": 27,
+    "n_samples": 23
+  },
+  "4f39decb70": {
+    "recorded_columns": 26,
+    "accepted_species_observed": 24,
+    "n_samples": 24
+  },
+  "a1323f1f11": {
+    "recorded_columns": 27,
+    "accepted_species_observed": 25,
+    "n_samples": 23
+  },
+  "67e1610024": {
+    "sample_totals": {
+      "KC01": 228.0,
+      "KC02": 195.0,
+      "KC03": 412.0,
+      "KC04": 51.0,
+      "KC05": 0.0,
+      "KC06": 411.0,
+      "KC07": 201.0,
+      "KC08": 406.0,
+      "KC09": 345.0,
+      "KC10": 407.0,
+      "KC11": 219.0,
+      "KC12": 183.0,
+      "KC13": 316.0,
+      "KC14": 245.0,
+      "KC15": 355.0,
+      "KC16": 222.0,
+      "KC17": 330.0,
+      "KC18": 234.0,
+      "KC19": 396.0,
+      "KC20": 195.0,
+      "KC21": 183.0,
+      "KC22": 212.0,
+      "KC23": 341.0
+    },
+    "n_samples": 23
+  },
+  "9d0c6f6d53": {
+    "sample_totals": {
+      "KC01": 228.0,
+      "KC02": 195.0,
+      "KC03": 412.0,
+      "KC04": 51.0,
+      "KC05": 205.0,
+      "KC06": 411.0,
+      "KC07": 201.0,
+      "KC08": 406.0,
+      "KC09": 345.0,
+      "KC10": 407.0,
+      "KC11": 219.0,
+      "KC12": 183.0,
+      "KC13": 316.0,
+      "KC14": 245.0,
+      "KC15": 355.0,
+      "KC16": 222.0,
+      "KC17": 330.0,
+      "KC18": 234.0,
+      "KC19": 396.0,
+      "KC20": 195.0,
+      "KC21": 183.0,
+      "KC22": 212.0,
+      "KC23": 341.0
+    },
+    "n_samples": 23
+  }
+}

@@ -177,7 +177,13 @@ def test_usage_must_be_complete():
 
 
 @native
-def test_launcher_offline_end_to_end(tmp_path):
+@pytest.mark.parametrize("replay_failure", [False, True])
+def test_launcher_offline_end_to_end(tmp_path, monkeypatch, replay_failure):
+    if replay_failure:
+        from evaluation.pilot import replay
+        def fail_replay(*args):
+            raise ValueError("synthetic replay-instrument failure")
+        monkeypatch.setattr(replay, "replay", fail_replay)
     key = json.loads((ROOT / "evaluation/pilot/items/P10-control/key.json").read_text())
     answer = {"status": "completed", "results": key["results"], "assumptions": [], "exclusions": [], "issues": [],
               "summary": "Youngest minus oldest Shannon."}
@@ -200,6 +206,15 @@ def test_launcher_offline_end_to_end(tmp_path):
                              f"http://127.0.0.1:{server.server_address[1]}")
     finally:
         server.shutdown()
+    if replay_failure:
+        assert len(results) == 1 and "replay_infrastructure" in results[0]["halt"]
+        records = list((tmp_path / "out/trials").glob("*/trial.json"))
+        assert len(records) == 1
+        failed = json.loads(records[0].read_text())
+        assert not failed["complete"] and failed["replay"]["outcome"] == "infrastructure"
+        assert failed["counted_tokens"] > 0 and launch.complete_usage(failed["usage"])
+        assert (tmp_path / "out/HALTED.json").exists()
+        return
     assert [r.get("halt") for r in results] == [None] * 4, results
     for trial in (tmp_path / "out/trials").glob("*/trial.json"):
         record = json.loads(trial.read_text())

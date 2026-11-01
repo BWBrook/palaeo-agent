@@ -4,15 +4,17 @@ A fresh confined worker on the arm's runtime starts from the item's pristine,
 manifest-verified materials plus only the package's `analysis.py` and regular
 files under `specs/`. It runs `python analysis.py`. The old answer and every
 generated output stay outside; the comparison target never enters the worker.
-A second replay runs on materials with the item's frozen perturbation applied;
-a package whose numbers do not move is `static`.
+A second replay on perturbed materials is diagnostic only. Matching outputs
+require a separate source/provenance review before they count toward R; a
+single insensitive perturbation does not establish that an answer was static.
 
-Outcomes, one per launched trial: replayed, static, mismatch, failed, missing,
+Mechanical outcomes, one per launched trial: replayed, mismatch, failed, missing,
 no_answer, infrastructure.
 
     python evaluation/pilot/replay.py RECORD_DIR ITEMS_DIR RUNTIME_ROOT
 """
 
+import hashlib
 import json
 import math
 import os
@@ -26,16 +28,48 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 from evaluation.execution.worker import BoundaryError, Worker  # noqa: E402
 from evaluation.pilot.launch import UV_PYTHON, verify_materials  # noqa: E402
+from evaluation.revised.score import _reject_constant, validate_answer  # noqa: E402
 
 TIMEOUT = 120
+MAX_ANSWER_BYTES = 1_048_576
+MAX_PACKAGE_FILE_BYTES = 5_000_000
+
+
+class InvalidPackage(ValueError):
+    pass
+
+
+def read_regular(path, limit):
+    descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(descriptor, "rb") as stream:
+        info = os.fstat(stream.fileno())
+        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+            raise ValueError("Artifact must be a regular file without shared hardlinks")
+        if info.st_size > limit:
+            raise ValueError("Artifact exceeds the byte limit")
+        data = stream.read(limit + 1)
+    if len(data) > limit:
+        raise ValueError("Artifact exceeds the byte limit")
+    return data
+
+
+def unique_object(pairs):
+    value = {}
+    for key, item in pairs:
+        if key in value:
+            raise ValueError("Duplicate JSON object key")
+        value[key] = item
+    return value
 
 
 def load(path):
     try:
-        value = json.loads(Path(path).read_text())
-    except (OSError, ValueError):
-        return None
-    return value if isinstance(value, dict) else None
+        data = read_regular(path, MAX_ANSWER_BYTES)
+        value = json.loads(data, parse_constant=_reject_constant, object_pairs_hook=unique_object)
+        answer, error = validate_answer(value)
+    except (OSError, UnicodeDecodeError, ValueError, RecursionError) as exc:
+        return None, str(exc), None
+    return answer, error, hashlib.sha256(data).hexdigest()
 
 
 def package_files(workspace):
@@ -87,7 +121,7 @@ def perturb(path, perturbation):
         raise ValueError(f"unknown perturbation {kind}")
 
 
-def execute(materials, workspace, files, runtime, scratch, perturbation=None):
+def execute(materials, workspace, files, runtime, scratch, perturbation=None, evidence=None):
     trial = scratch / "trial"
     trial.mkdir(parents=True)
     for source in materials:
@@ -96,36 +130,64 @@ def execute(materials, workspace, files, runtime, scratch, perturbation=None):
         perturb(trial / perturbation["file"], perturbation)
     for relative in files:
         (trial / relative).parent.mkdir(parents=True, exist_ok=True)
-        descriptor = os.open(workspace / relative, os.O_RDONLY | os.O_NOFOLLOW)
-        with os.fdopen(descriptor, "rb") as stream:
-            (trial / relative).write_bytes(stream.read())
-    worker = Worker(trial, runtime, runtime / "bin/python", scratch / "audit", trusted_read_roots=[UV_PYTHON],
+        try:
+            data = read_regular(workspace / relative, MAX_PACKAGE_FILE_BYTES)
+        except (OSError, ValueError) as exc:
+            raise InvalidPackage(str(exc)) from exc
+        (trial / relative).write_bytes(data)
+    evidence = evidence or scratch / "evidence"
+    evidence.mkdir(parents=True, exist_ok=False)
+    hashes = {p.relative_to(trial).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+              for p in sorted(trial.rglob("*")) if p.is_file()}
+    (evidence / "staged-sha256.json").write_text(json.dumps(hashes, indent=2) + "\n")
+    worker = Worker(trial, runtime, runtime / "bin/python", evidence / "audit", trusted_read_roots=[UV_PYTHON],
                     timeout_seconds=TIMEOUT, max_output_bytes=65536)
     result = worker.run_python(["analysis.py"], request={"tool": "replay"})
-    return result, load(trial / "answer.json")
+    answer, error, digest = load(trial / "answer.json")
+    result = result | {"answer_error": error, "answer_sha256": digest}
+    (evidence / "execution.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+    if answer is not None:
+        (evidence / "answer.json").write_text(json.dumps(answer, indent=2, allow_nan=False) + "\n")
+    return result, answer
 
 
-def numbers(answer):
-    return {k: v for k, v in (answer.get("results") or {}).items()
-            if isinstance(v, (int, float)) and not isinstance(v, bool)}
+def has_numbers(value):
+    if isinstance(value, dict):
+        return any(has_numbers(v) for v in value.values())
+    if isinstance(value, list):
+        return any(has_numbers(v) for v in value)
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-def agree(a, b, tolerance):
-    if a.keys() != b.keys():
-        return False
-    return all(math.isclose(a[k], b[k], rel_tol=tolerance["rel"], abs_tol=tolerance["abs"]) for k in a)
+def agree(a, b, tolerance, integers=(), path=""):
+    if isinstance(a, dict):
+        return isinstance(b, dict) and a.keys() == b.keys() and all(
+            agree(a[k], b[k], tolerance, integers, f"{path}.{k}" if path else k) for k in a)
+    if isinstance(a, list):
+        return isinstance(b, list) and len(a) == len(b) and all(
+            agree(x, y, tolerance, integers, f"{path}[{i}]") for i, (x, y) in enumerate(zip(a, b)))
+    if isinstance(a, (int, float)) and not isinstance(a, bool):
+        return isinstance(b, (int, float)) and not isinstance(b, bool) and (
+            a == b if path in integers else math.isclose(a, b, rel_tol=tolerance["rel"], abs_tol=tolerance["abs"]))
+    return type(a) is type(b) and a == b
 
 
-def replay(record, items_dir, runtime_root):
+def execution_summary(result):
+    return {k: result.get(k) for k in ("status", "exit_code", "code", "answer_error")} | {
+        "stderr_tail": (result.get("stderr") or "")[-800:]}
+
+
+def evaluate(record, items_dir, runtime_root, evidence):
     record = Path(record)
     trial = json.loads((record / "trial.json").read_text())["trial"]
     item_dir = Path(items_dir) / trial["item"]
     key = json.loads((item_dir / "key.json").read_text())
     workspace = record / "workspace"
     out = {"trial": trial["trial_id"], "item": trial["item"], "arm": trial["arm"]}
-    original = load(workspace / "answer.json")
+    original, error, digest = load(workspace / "answer.json")
+    out["original_answer_sha256"] = digest
     if original is None:
-        return out | {"outcome": "no_answer"}
+        return out | {"outcome": "no_answer", "answer_error": error}
     files = package_files(workspace)
     if files is None:
         return out | {"outcome": "missing"}
@@ -134,28 +196,55 @@ def replay(record, items_dir, runtime_root):
     try:
         materials = verify_materials(items_dir, trial["item"])
         with tempfile.TemporaryDirectory(prefix="replay-") as scratch:
-            result, regenerated = execute(materials, workspace, files, runtime, Path(scratch) / "a")
+            result, regenerated = execute(materials, workspace, files, runtime, Path(scratch) / "a",
+                                          evidence=evidence / "pristine")
             perturbed = None
-            if result.get("status") == "ok" and regenerated is not None and numbers(regenerated):
+            perturbed_result = None
+            if result.get("status") == "ok" and regenerated is not None and has_numbers(regenerated["results"]) and key.get("replay_perturbation"):
                 perturbed_result, perturbed = execute(materials, workspace, files, runtime, Path(scratch) / "b",
-                                                      key["replay_perturbation"])
-    except (BoundaryError, OSError) as exc:
+                                                      key["replay_perturbation"], evidence=evidence / "perturbed")
+    except InvalidPackage as exc:
+        return out | {"outcome": "failed", "package_error": str(exc)}
+    except (BoundaryError, OSError, ValueError) as exc:
         return out | {"outcome": "infrastructure", "error": f"{type(exc).__name__}: {exc}"}
     if result.get("code") == "execution_failed":
         return out | {"outcome": "infrastructure", "error": result.get("message")}
-    out["execution"] = {k: result.get(k) for k in ("status", "exit_code")} | {"stderr_tail": (result.get("stderr") or "")[-800:]}
+    out["execution"] = execution_summary(result)
+    if perturbed_result is not None:
+        out["perturbation_execution"] = execution_summary(perturbed_result)
+        if perturbed_result.get("code") == "execution_failed":
+            return out | {"outcome": "infrastructure", "error": perturbed_result.get("message")}
     if result.get("status") != "ok" or regenerated is None:
         return out | {"outcome": "failed"}
     tolerance = key["tolerance"]
-    if regenerated.get("status") != original.get("status") or not agree(numbers(original), numbers(regenerated), tolerance):
-        return out | {"outcome": "mismatch", "original": numbers(original), "regenerated": numbers(regenerated)}
-    if not numbers(original):
-        return out | {"outcome": "replayed", "numeric": "not_applicable"}
-    if perturbed is not None and numbers(perturbed) == numbers(regenerated):
-        return out | {"outcome": "static"}
-    if perturbed is None:
-        out["perturbation"] = "perturbed replay produced no answer"
+    claims_match = {k: v for k, v in original.items() if k != "results"} == {
+        k: v for k, v in regenerated.items() if k != "results"}
+    results_match = agree(original["results"], regenerated["results"], tolerance, key.get("integer_results", ()))
+    if not claims_match or not results_match:
+        return out | {"outcome": "mismatch", "claims_match": claims_match, "results_match": results_match}
+    out["provenance_review_required"] = True
+    if not has_numbers(original["results"]):
+        return out | {"outcome": "replayed", "numeric": "not_applicable", "perturbation": "not_applicable"}
+    if perturbed_result is None:
+        out["perturbation"] = "not_configured"
+    elif perturbed_result.get("status") != "ok" or perturbed is None:
+        out["perturbation"] = "failed"
+    else:
+        out["perturbation"] = "unchanged" if agree(regenerated["results"], perturbed["results"], tolerance,
+                                                  key.get("integer_results", ())) else "changed"
     return out | {"outcome": "replayed"}
+
+
+def replay(record, items_dir, runtime_root):
+    record = Path(record)
+    evidence_root = record / "replay"
+    evidence_root.mkdir(exist_ok=True)
+    evidence = Path(tempfile.mkdtemp(prefix="attempt-", dir=evidence_root))
+    result = evaluate(record, items_dir, runtime_root, evidence)
+    result["evidence_dir"] = str(evidence)
+    result["replay_source_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    (evidence / "receipt.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+    return result
 
 
 if __name__ == "__main__":

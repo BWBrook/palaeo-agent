@@ -1,0 +1,30 @@
+{
+  "reviewed_commit": "799e0de",
+  "new_live_model_calls": 0,
+  "before_tests": {
+    "passed": 11,
+    "seconds": 17.12
+  },
+  "after_tests": {
+    "passed": 59,
+    "seconds": 18.43,
+    "command": "uv run pytest -q tests/test_delimited_input.py tests/test_mcp.py tests/test_rma.py tests/test_study.py"
+  },
+  "runtime_rebuilt": false,
+  "files_sha256": {
+    "src/palaeo_agent/community.py": "7cc6ec4fd672f4810bbee028a820f6913e5be896869164292870924cfbb2d39d",
+    "src/palaeo_agent/core.py": "ec5cc1cb55074ebffee5487cd4042bc78869ca55d7d87b15318d1964ef5a8473",
+    "tests/test_delimited_input.py": "e07e7c4986052f4fa8e879fef8c963d60c9228aae4706ba8df9c46bc9b2b4ea2",
+    "evaluation/pilot/review-codex/sprint-5-gate/toolkit/check.py": "7d36c905c56e4b27fa80bb8c7710113b54fb12faec646125a3168c348b5485b3",
+    "evaluation/pilot/review-codex/sprint-5-gate/toolkit/receipt-before.json": "2f8a6b75e83523eadfde52346195677b2d8b6902a3a3e852557dbe4e9b825b95",
+    "evaluation/pilot/review-codex/sprint-5-gate/toolkit/receipt-after.json": "b1b7df97a8ab0b9721b7f4cbce6a7f54a677d675c7b1cdb0d7327efa1e9ede9b",
+    "evaluation/pilot/review-codex/sprint-5-gate/toolkit/report.md": "18ef39473d4f779a6569060d5ce50dcd243119493a906e57ab19c8c324ca1bcf"
+  },
+  "followup_tests": {
+    "passed": 57,
+    "seconds": 16.67,
+    "command": "uv run pytest -q tests/test_blind_fixtures.py tests/test_rma.py tests/test_delimited_input.py tests/test_study.py",
+    "objective_blind_fixtures": "60/60 pass",
+    "frozen_blind_fixture_modified": false
+  }
+}

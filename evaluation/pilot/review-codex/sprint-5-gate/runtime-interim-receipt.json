@@ -1,0 +1,450 @@
+{
+  "requirements_sha256": "bbca59552ace1aa44b373604518f68b73ab9b17e77e03a36e5f25cce95b5581d",
+  "wheel_sha256": "1deaaf278c211a8b4fcace55fce043f28dac7f06b59810910dd2d0777b3a7f1f",
+  "wheel": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+  "arms": {
+    "direct": {
+      "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+      "executable": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-review-20261101b/direct/bin/python",
+      "base_prefix": "/Users/bwbrook/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none",
+      "packages": [
+        {
+          "name": "annotated-types",
+          "version": "0.8.0",
+          "record_sha256": "8191d3aa1ac93480688819b4db2385606219a3f7a453b85e086646134ded4f96"
+        },
+        {
+          "name": "anyio",
+          "version": "4.15.1",
+          "record_sha256": "61566393fe741ef449f387182a94956cc11dda629cdea4a5823b89f6eb9dc6b3"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0",
+          "record_sha256": "6b0b326d4b4ee0fac27909ac7cbb066fc4bdf8e93d87031e27e770db059e5a04"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1",
+          "record_sha256": "43fb0e5b47f751e12090a8c947bfde0f2d84a76518fa37d68be0a8356e51c014"
+        },
+        {
+          "name": "click",
+          "version": "8.5.0",
+          "record_sha256": "924078ec3a47b97192425dbc0c3693085af7a7b863afcf6b4e110cf0bd97dea4"
+        },
+        {
+          "name": "contourpy",
+          "version": "1.4.0",
+          "record_sha256": "1237b876596ef221ae4a5e23c1f8d3e526505e52a15f480ad4f4760f0a729791"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2",
+          "record_sha256": "3829e37bc5bfbf83f1444339772939c9d5572951adde5d5646f81c9980d1ad48"
+        },
+        {
+          "name": "cycler",
+          "version": "0.12.1",
+          "record_sha256": "cbcbee5f18d75bd4935199b135aa33c3ed62df14991110a35c428883798d7979"
+        },
+        {
+          "name": "fonttools",
+          "version": "4.68.0",
+          "record_sha256": "c5dee9048c1b69c1e948e9a9b223bb9c73da3823e9767d2f08320791306f69f5"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0",
+          "record_sha256": "3779e13c17d8e21c769ed9ee8780af123cc3f8656185f5f8d3af258ff5639b3e"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0",
+          "record_sha256": "706dd723a543ee91e72708b8e2d972ee07527e758582e6b00e8182b0bbd9c67d"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0",
+          "record_sha256": "76507c96936f3e550bfae5509e9daa6c81078c76c13a1753f15b69997a71f430"
+        },
+        {
+          "name": "idna",
+          "version": "3.20",
+          "record_sha256": "d544104ceafd6ce39ae4e48353752eea410d6b29b62eed2535bf520096d894df"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0",
+          "record_sha256": "2c9d2bea2eb413a5cc97a2b1110f2343ac9d15af0d27f8e58a585784a0dba898"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1",
+          "record_sha256": "0b1047ee6c7d5d7c242b642d689820f4572860ecf7886b2074f821ed85cbe7b6"
+        },
+        {
+          "name": "kiwisolver",
+          "version": "1.5.1",
+          "record_sha256": "0bc366d714ba47dafd947d80576cbc7ea8007dab54e7e1500c75cf4f8efd1b03"
+        },
+        {
+          "name": "matplotlib",
+          "version": "3.11.2",
+          "record_sha256": "3c4ede6ad4ccbdbb55955c225c771432e24462f5c0b73c4ebfaaf2a4506859d2"
+        },
+        {
+          "name": "mcp",
+          "version": "2.3.0",
+          "record_sha256": "793be524562fe2a4261424a1b6f88ec0b7a1cc2819d9460db3d1fad3b4bea22e"
+        },
+        {
+          "name": "mcp-types",
+          "version": "2.3.0",
+          "record_sha256": "98b5875cdd0b10d9c1ec2c0bba5e29a525c6535fe34e224c5384afb1cda5a759"
+        },
+        {
+          "name": "numpy",
+          "version": "2.5.4",
+          "record_sha256": "786f30ebf1bbac5c3280c25613f7276bc2f3ed7fde60e187309aa95c57fac94a"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2",
+          "record_sha256": "6adca085a9757e269d4763e8b900935c14a7ba328a6f9c031bdbae0d1845c6d0"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3",
+          "record_sha256": "1b8655965b0d83e9a067fd7f84b977bd1e117e0fb9f2874b2572781bdc9e2147"
+        },
+        {
+          "name": "pandas",
+          "version": "3.1.0",
+          "record_sha256": "ae13532e2875c558494069c6e9186ea5ee5a8450de9bab2dd939e4e8dfdf0d55"
+        },
+        {
+          "name": "pillow",
+          "version": "13.0.0",
+          "record_sha256": "f96700e5abcbfc2390cc52bb036e33ebd9cd5f19483b8199bfee0c325786e239"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12",
+          "record_sha256": "82e22bb4a55fcfb3e999c69dcbf31cadd864bfdb818b530dbef6e4d9528bb1f7"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.14.2",
+          "record_sha256": "76bb90c5a95514139c1d08f5e2cdf829406e91cb34151d844b5962b131d21e6e"
+        },
+        {
+          "name": "pydantic_core",
+          "version": "2.50.2",
+          "record_sha256": "5214ff0424ea4857cd12909291848ebb99e5617b98d23a1909af6914b69aeb6c"
+        },
+        {
+          "name": "PyJWT",
+          "version": "2.15.1",
+          "record_sha256": "c38214546c80b4d215bee801e57689a2a8b1f1e6afdbbb8d57b6c43db557f17e"
+        },
+        {
+          "name": "pyparsing",
+          "version": "3.3.3",
+          "record_sha256": "dbc82867d6a4a3b935f9a9f3f2c876e3056dfffb104e1c8b3a3117d90aa21ad3"
+        },
+        {
+          "name": "python-dateutil",
+          "version": "3.0.0",
+          "record_sha256": "a17d86766c46a890c3d8b1c4ccfa5bb1c6014919f3a3a9da4b8c597f47bf5b33"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.32",
+          "record_sha256": "5c11c391e44fdc2dbec56603265b8af273dae504ee2e6143d3b9d3bab2bc12df"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0",
+          "record_sha256": "d7ecf9906a4a4ea4837d16e324e344f9f00b328570cf695a96a8de46b8766982"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1",
+          "record_sha256": "c06b8d1ff0eba37090b797ca5c8cec0c4e94c6849641417ed32a358775b55678"
+        },
+        {
+          "name": "scipy",
+          "version": "1.18.1",
+          "record_sha256": "d95b7aa2c03940de0bec301021a5753ff3577b5b7ce28e6342d59f9d8556258a"
+        },
+        {
+          "name": "six",
+          "version": "1.17.0",
+          "record_sha256": "d16e50f347969b1e1919fb0c88bac4b9c644f5305bcfcfb00f72b646dbd4065d"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.6.0",
+          "record_sha256": "bf750d7215b4c2caedfa32636090e9183820acf15d3cf71b5c7baf8ee481c60c"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0",
+          "record_sha256": "fa6d54e7815751037f984e8968733d3739d344ad7ecc30104d90d6650fc67ff7"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5",
+          "record_sha256": "df0d4a94db9cbfa77b6659d958093e75f9b139d3eec5c73f55b91541e5de0a5f"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.4",
+          "record_sha256": "83fc23669db31500d06056b13ecebe4f088f56a81c1ea86e3b68f1de3b8c7d95"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0",
+          "record_sha256": "9e07fea845cac76293d927afa7157a14ecba39b318bc8af236b8de530b7656c1"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6",
+          "record_sha256": "7264b3a15cf0a62ca4fe8429e35ae78fe380d58878647cefc95c42f19210ad1e"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0",
+          "record_sha256": "72cc996ef3def0c5796a9610000d4bb7e5f91524532ac6677664444e4b7c58ad"
+        }
+      ],
+      "toolkit_importable": false
+    },
+    "toolkit": {
+      "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+      "executable": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-review-20261101b/toolkit/bin/python",
+      "base_prefix": "/Users/bwbrook/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none",
+      "packages": [
+        {
+          "name": "annotated-types",
+          "version": "0.8.0",
+          "record_sha256": "8191d3aa1ac93480688819b4db2385606219a3f7a453b85e086646134ded4f96"
+        },
+        {
+          "name": "anyio",
+          "version": "4.15.1",
+          "record_sha256": "61566393fe741ef449f387182a94956cc11dda629cdea4a5823b89f6eb9dc6b3"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0",
+          "record_sha256": "6b0b326d4b4ee0fac27909ac7cbb066fc4bdf8e93d87031e27e770db059e5a04"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1",
+          "record_sha256": "a461213f324e22f00a9ee69f88ff057d566bc85f4f7e4bc59107354ccfe14f6e"
+        },
+        {
+          "name": "click",
+          "version": "8.5.0",
+          "record_sha256": "924078ec3a47b97192425dbc0c3693085af7a7b863afcf6b4e110cf0bd97dea4"
+        },
+        {
+          "name": "contourpy",
+          "version": "1.4.0",
+          "record_sha256": "1237b876596ef221ae4a5e23c1f8d3e526505e52a15f480ad4f4760f0a729791"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2",
+          "record_sha256": "3829e37bc5bfbf83f1444339772939c9d5572951adde5d5646f81c9980d1ad48"
+        },
+        {
+          "name": "cycler",
+          "version": "0.12.1",
+          "record_sha256": "cbcbee5f18d75bd4935199b135aa33c3ed62df14991110a35c428883798d7979"
+        },
+        {
+          "name": "fonttools",
+          "version": "4.68.0",
+          "record_sha256": "a0ddd6d577d298421209e972d4810316217bebc5ff05e48616fbc6eb1e7e568e"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0",
+          "record_sha256": "3779e13c17d8e21c769ed9ee8780af123cc3f8656185f5f8d3af258ff5639b3e"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0",
+          "record_sha256": "706dd723a543ee91e72708b8e2d972ee07527e758582e6b00e8182b0bbd9c67d"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0",
+          "record_sha256": "a6f335da9c6d5e601aceff5ea633ccb2a1447c6cc923d6945ae0572e995f1746"
+        },
+        {
+          "name": "idna",
+          "version": "3.20",
+          "record_sha256": "5f7ea992a1427637f8c460662c1e493fa8a16c2114854401996c5f47c9bb65f4"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0",
+          "record_sha256": "5074aed5193871c9eaa04dc085a49f86adc5f0c09f8b8615fe3628c488f061a9"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1",
+          "record_sha256": "0b1047ee6c7d5d7c242b642d689820f4572860ecf7886b2074f821ed85cbe7b6"
+        },
+        {
+          "name": "kiwisolver",
+          "version": "1.5.1",
+          "record_sha256": "0bc366d714ba47dafd947d80576cbc7ea8007dab54e7e1500c75cf4f8efd1b03"
+        },
+        {
+          "name": "matplotlib",
+          "version": "3.11.2",
+          "record_sha256": "3c4ede6ad4ccbdbb55955c225c771432e24462f5c0b73c4ebfaaf2a4506859d2"
+        },
+        {
+          "name": "mcp",
+          "version": "2.3.0",
+          "record_sha256": "e6e38734c7f7ed696a95c86b698a21f126842caca1fc20a3026749ea8a46eb6b"
+        },
+        {
+          "name": "mcp-types",
+          "version": "2.3.0",
+          "record_sha256": "98b5875cdd0b10d9c1ec2c0bba5e29a525c6535fe34e224c5384afb1cda5a759"
+        },
+        {
+          "name": "numpy",
+          "version": "2.5.4",
+          "record_sha256": "0e97880ec41b41569b953bc81b30ea695ffdbb260f053449b67073c760375102"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2",
+          "record_sha256": "6adca085a9757e269d4763e8b900935c14a7ba328a6f9c031bdbae0d1845c6d0"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3",
+          "record_sha256": "1b8655965b0d83e9a067fd7f84b977bd1e117e0fb9f2874b2572781bdc9e2147"
+        },
+        {
+          "name": "palaeo-agent",
+          "version": "0.2.0.dev0",
+          "record_sha256": "a59a673b0323b5c82d6dd9d6951e90f5b804aac3d47531e35365984089e342d2"
+        },
+        {
+          "name": "pandas",
+          "version": "3.1.0",
+          "record_sha256": "ae13532e2875c558494069c6e9186ea5ee5a8450de9bab2dd939e4e8dfdf0d55"
+        },
+        {
+          "name": "pillow",
+          "version": "13.0.0",
+          "record_sha256": "f96700e5abcbfc2390cc52bb036e33ebd9cd5f19483b8199bfee0c325786e239"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12",
+          "record_sha256": "82e22bb4a55fcfb3e999c69dcbf31cadd864bfdb818b530dbef6e4d9528bb1f7"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.14.2",
+          "record_sha256": "76bb90c5a95514139c1d08f5e2cdf829406e91cb34151d844b5962b131d21e6e"
+        },
+        {
+          "name": "pydantic_core",
+          "version": "2.50.2",
+          "record_sha256": "5214ff0424ea4857cd12909291848ebb99e5617b98d23a1909af6914b69aeb6c"
+        },
+        {
+          "name": "PyJWT",
+          "version": "2.15.1",
+          "record_sha256": "c38214546c80b4d215bee801e57689a2a8b1f1e6afdbbb8d57b6c43db557f17e"
+        },
+        {
+          "name": "pyparsing",
+          "version": "3.3.3",
+          "record_sha256": "dbc82867d6a4a3b935f9a9f3f2c876e3056dfffb104e1c8b3a3117d90aa21ad3"
+        },
+        {
+          "name": "python-dateutil",
+          "version": "3.0.0",
+          "record_sha256": "a17d86766c46a890c3d8b1c4ccfa5bb1c6014919f3a3a9da4b8c597f47bf5b33"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.32",
+          "record_sha256": "5c11c391e44fdc2dbec56603265b8af273dae504ee2e6143d3b9d3bab2bc12df"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0",
+          "record_sha256": "d7ecf9906a4a4ea4837d16e324e344f9f00b328570cf695a96a8de46b8766982"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1",
+          "record_sha256": "c06b8d1ff0eba37090b797ca5c8cec0c4e94c6849641417ed32a358775b55678"
+        },
+        {
+          "name": "scipy",
+          "version": "1.18.1",
+          "record_sha256": "d95b7aa2c03940de0bec301021a5753ff3577b5b7ce28e6342d59f9d8556258a"
+        },
+        {
+          "name": "six",
+          "version": "1.17.0",
+          "record_sha256": "d16e50f347969b1e1919fb0c88bac4b9c644f5305bcfcfb00f72b646dbd4065d"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.6.0",
+          "record_sha256": "bf750d7215b4c2caedfa32636090e9183820acf15d3cf71b5c7baf8ee481c60c"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0",
+          "record_sha256": "fa6d54e7815751037f984e8968733d3739d344ad7ecc30104d90d6650fc67ff7"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5",
+          "record_sha256": "df0d4a94db9cbfa77b6659d958093e75f9b139d3eec5c73f55b91541e5de0a5f"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.4",
+          "record_sha256": "83fc23669db31500d06056b13ecebe4f088f56a81c1ea86e3b68f1de3b8c7d95"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0",
+          "record_sha256": "9e07fea845cac76293d927afa7157a14ecba39b318bc8af236b8de530b7656c1"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6",
+          "record_sha256": "7264b3a15cf0a62ca4fe8429e35ae78fe380d58878647cefc95c42f19210ad1e"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0",
+          "record_sha256": "5ae009b4d51ee38ee34a06010c6c2c21a1ede1605734f80dab23088c83afd419"
+        }
+      ],
+      "toolkit_importable": true
+    }
+  },
+  "status": "complete",
+  "record_hash_note": "Installed RECORD hashes include entry-point shebangs, which differ between arm prefixes; package identities and hash-locked distributions are matched."
+}

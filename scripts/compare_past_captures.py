@@ -489,7 +489,7 @@ def compare_captures(input_path, capture_root):
     statistics_path, pairs_path = folder / "statistics.txt", folder / "residuals.tsv"
     statistics_raw, pairs_raw = statistics_path.read_bytes(), pairs_path.read_bytes()
     statistics = compare_rma_statistics(statistics_raw, raw_results[1], x="L1/X1", y="L1/X2", transform="none")
-    _, _, source_ids = load_past(dielasma, spec)
+    _, _, source_ids, _ = load_past(dielasma, spec)
     pairs = compare_all_pairs(pairs_raw, raw_results, source_ids)
     cases.append({"case_id": "c3-all6-l1-raw", "input_id": "dielasma",
                   **combine_summaries([statistics, pairs]),

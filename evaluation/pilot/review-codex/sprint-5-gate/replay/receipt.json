@@ -1,0 +1,18 @@
+{
+  "reviewed_commit": "799e0de",
+  "new_live_model_calls": 0,
+  "focused_native_tests": {
+    "passed": 25,
+    "seconds": 3.81,
+    "command": "PALAEONATIVE_BOUNDARY_TESTS=1 uv run --offline pytest -q tests/test_pilot_replay.py tests/test_evaluation_revised.py tests/test_pilot_score.py"
+  },
+  "files_sha256": {
+    "evaluation/pilot/replay.py": "babeb63d060fe88c493195981c5cad559371029395ad1f1a46c492d36258843e",
+    "evaluation/revised/score.py": "990173f2bff82d3e3f1141d5f47fd5d2bc735a2b673b4154d31204d84ad02918",
+    "tests/test_pilot_replay.py": "ef6281891394a0c254cc96763901ef1d53a82ef461cf9794dcf0c02936ef8e09",
+    "evaluation/pilot/review-codex/sprint-5-gate/replay/counterexamples.py": "162274add3d681d18ae67abca994dbbc0009e4e33269e80998f6dc1437bc4bcf",
+    "evaluation/pilot/review-codex/sprint-5-gate/replay/fixed-counterexamples.json": "a84437a3ecc177541a837be99123c32ce458b401550febfe496e536cab9ad9e2",
+    "evaluation/pilot/review-codex/sprint-5-gate/replay/original-counterexamples.json": "c7cdea26f840335a0bc57d634f46a6ab1765b02b3f1f88690616f008dc47ec1f",
+    "evaluation/pilot/review-codex/sprint-5-gate/replay/report.md": "71003aac48352461a7d272f13321d33754d3da1c52645f22009bab093c2c3838"
+  }
+}

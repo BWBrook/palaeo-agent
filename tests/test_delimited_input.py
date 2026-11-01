@@ -5,7 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from palaeo_agent import AnalysisError, calculate_permanova, run, run_study
+from palaeo_agent import AnalysisError, calculate_permanova, inspect_study, reproduce_study, run, run_study
+from palaeo_agent.community import calculate_community
+from palaeo_agent.core import RmaSpec, calculate
 
 TAXA = ["Globigerina bulloides", "Orbulina universa", "Neogloboquadrina incompta"]
 ROWS = {"S1": [12, 3, 5], "S2": [4, 9, 1], "S3": [7, 7, 7], "S4": [1, 2, 15]}
@@ -79,3 +81,67 @@ def test_study_reads_delimited_input_and_maps_spaced_names(tmp_path):
     del spec["analyses"][0]["spec"]["input"]
     outcome = run_study(spec, tmp_path / "study", base_dir=tmp_path)
     assert outcome["status"] == "complete", outcome
+
+
+@pytest.mark.parametrize("text,code", [
+    ("sample,A,B\n,1,2\nS2,3,5\nS3,6,1\n", "invalid_id"),
+    ("sample,,B\nS1,1,2\nS2,3,5\nS3,6,1\n", "invalid_id"),
+    ("sample,A,B\nS1,1,2\n,,\nS2,3,5\nS3,6,1\n", "invalid_id"),
+    ('sample,A,B\nS1,1,2\nS2,3,5\nS3,6,"1', "invalid_delimited"),
+    ("sample,A,B\nS1,1,2\nS2,3,NA\nS3,6,1\n", "missing_counts"),
+    ("sample,A,B\nS1,1,2\nS2,3,\nS3,6,1\n", "missing_counts"),
+])
+def test_delimited_rejects_missing_labels_records_and_malformed_quotes(text, code):
+    with pytest.raises(AnalysisError) as error:
+        calculate_community(community("x", format="delimited", delimiter="comma"), text.encode())
+    assert error.value.code == code
+
+
+def test_delimited_missing_tokens_do_not_rename_labels():
+    text = 'sample,NA," Taxon B "\nNA,1,2\n" S2 ",3,5\nS3,6,1\n'
+    result = calculate_community(community("x", format="delimited", delimiter="comma"), text.encode())
+    assert result["sample_ids"] == ["NA", " S2 ", "S3"]
+    assert result["taxon_ids"] == ["NA", " Taxon B "]
+
+
+def test_delimited_measurement_study_preserves_spaced_labels_and_reproduces(tmp_path):
+    (tmp_path / "shells.csv").write_text(
+        'sample,Shell length," Shell width "\nNA,10,5\n" Shell 2 ",20,12\nShell 3,30,20\n')
+    spec = {"study_version": 1,
+            "inputs": {"c": {"kind": "measurements", "path": "shells.csv", "format": "delimited",
+                             "delimiter": "comma", "orientation": "samples_by_taxa"}},
+            "datasets": {"d": {"source": "c"}},
+            "analyses": [{"id": "a", "dataset": "d", "spec": {
+                "method": "rma", "format": "past", "x": "Shell length", "y": " Shell width ",
+                "transform": "none", "missing": "error"}}]}
+    outcome = run_study(spec, tmp_path / "study", base_dir=tmp_path)
+    assert outcome["status"] == "complete", outcome
+    verified = inspect_study(outcome["study_dir"])
+    result = json.loads((Path(outcome["study_dir"]) / verified["runs"]["a"]["run_dir"] / "results.json").read_text())
+    assert [pair["sample_id"] for pair in result["pairs"]] == ["NA", " Shell 2 ", "Shell 3"]
+    assert reproduce_study(outcome["study_dir"], tmp_path / "again")["status"] == "reproduced"
+
+
+def test_past_rma_header_padding_and_exact_spaced_labels():
+    spec = {"method": "rma", "input": "x", "format": "past", "x": "X", "y": "Y",
+            "transform": "none", "missing": "error"}
+    data = b".\tX\tY  \nS1\t10\t5\t \nS2\t20\t12\t \nS3\t30\t20\t \n"
+    padded = calculate(RmaSpec.model_validate(spec), data)
+    exact = calculate(RmaSpec.model_validate(spec | {"y": "Y  "}), data)
+    plain = calculate(RmaSpec.model_validate(spec), data.replace(b"Y  ", b"Y").replace(b"\t \n", b"\n"))
+    assert exact == plain
+    assert {key: value for key, value in padded.items() if key != "warnings"} == {
+        key: value for key, value in plain.items() if key != "warnings"}
+    assert padded["warnings"] == [{"code": "padded_column_label",
+                                   "message": "y selector 'Y' uses PAST header label 'Y  ' at data column 2"}]
+
+
+@pytest.mark.parametrize("header,x,y,code", [
+    (".\t X\tX \tY", "X", "Y", "ambiguous_column"),
+    (".\t X \tY\tZ", " X ", "X", "same_column"),
+])
+def test_past_padding_never_chooses_ambiguous_or_duplicate_columns(header, x, y, code):
+    spec = RmaSpec(method="rma", input="x", format="past", x=x, y=y, transform="none", missing="error")
+    with pytest.raises(AnalysisError) as error:
+        calculate(spec, (header + "\nS1\t1\t2\t3\nS2\t4\t5\t6\n").encode())
+    assert error.value.code == code

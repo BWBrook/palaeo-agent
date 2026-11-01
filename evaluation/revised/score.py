@@ -44,6 +44,10 @@ def load_answer(workspace: Path) -> tuple[dict[str, Any] | None, str | None]:
         answer = json.loads(path.read_text(), parse_constant=_reject_constant)
     except (OSError, UnicodeDecodeError, ValueError) as exc:
         return None, f"answer.json is not strict finite JSON: {exc}"
+    return validate_answer(answer)
+
+
+def validate_answer(answer: Any) -> tuple[dict[str, Any] | None, str | None]:
     if not isinstance(answer, dict) or set(answer) != FIELDS:
         return None, "answer.json top-level fields are not exactly the answer contract"
     if not isinstance(answer.get("status"), str) or answer["status"] not in STATUSES:

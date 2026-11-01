@@ -89,25 +89,32 @@ boundary.
   - For a justified non-numerical outcome (a structured stop or unresolved
     decision), the regenerated decision must match, and numeric agreement is
     not applicable.
-- **Static-answer check.** A second replay runs on materials with one frozen,
-  analysis-relevant cell perturbed. The builder chooses that cell and verifies
-  that it changes the key. If no keyed number changes, the package is
-  `static`: it reproduces only because it prints stored values.
+- **Data-dependence diagnostic.** A second replay runs on materials with the
+  frozen perturbation. Its sensitivity is diagnostic, not an R criterion:
+  wrong-but-computed analyses may ignore the affected observation, and one
+  changing value cannot establish provenance for every reported quantity.
+  Source/specification and bundle-provenance adjudication must confirm actual
+  computation from supplied materials before a mechanical replay pass enters
+  final R. Confirmed stored-answer scripts are classified `static` there.
 - **Outcome per launched trial**, in this order:
   - `replayed`;
-  - `static`;
   - `mismatch`;
   - `failed` (error or timeout);
   - `missing` (no `analysis.py`);
   - `no_answer`;
   - `infrastructure`.
-- **R** is the share of *all launched analyst trials* that are `replayed`,
+- **R** is the share of *all launched analyst trials* that are `replayed` and
+  confirmed to compute from the supplied materials by provenance adjudication,
   per arm, with every other outcome kept in the denominator and reported by
   reason. The paired contrast uses items with both arms launched, and
   unpaired outcomes stay visible. A wrong answer that replays still counts as
-  replayed: reproducibility and correctness are separate endpoints.
-- **Reviewer eligibility** follows R. A pair is eligible when both arms'
-  packages are `replayed` and adjudicated scientifically acceptable. The
+  replayed: reproducibility and correctness are separate endpoints. Preserve
+  the mechanical outcome and attributed provenance verdict separately; final
+  R awaits resolution of pending adjudications.
+- **Reviewer eligibility** follows R. E counts pairs whose two packages pass
+  final R; E\* restricts these to scientifically acceptable packages in both
+  arms with consistently plantable and regenerated flaws. Record each
+  exclusion stage separately. The
   reviewer estimand is therefore checkability conditional on both arms
   delivering replayable, acceptable packages. The full flow, from launched
   trials to R, E, E\*, n_S and n_A, is reported with losses by arm.

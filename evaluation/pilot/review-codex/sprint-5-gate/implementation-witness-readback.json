@@ -1,0 +1,231 @@
+{
+  "count": 32,
+  "all_agree": true,
+  "rows": [
+    {
+      "item": "items-v4/P01-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P01-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P02-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P02-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P03-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P03-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P04-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P04-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P05-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P05-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P06-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 7.105427357601002e-15,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P06-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 7.105427357601002e-15,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P07-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P07-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P08-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P08-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P09-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 6.661338147750939e-16,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P09-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 4.440892098500626e-16,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P10-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P10-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P11-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P11-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P12-control",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 0.0,
+      "notes": ""
+    },
+    {
+      "item": "items-v4/P12-trap",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 3.552713678800501e-15,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P03-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P04-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 4.440892098500626e-16,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P05-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 4.996003610813204e-16,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P06-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 1.0658141036401503e-14,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P08-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 5.551115123125783e-17,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P09-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 4.440892098500626e-16,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P10-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 8.881784197001252e-16,
+      "notes": ""
+    },
+    {
+      "item": "calibration-v4/P11-cal",
+      "fields_match": true,
+      "agree": true,
+      "max_abs_difference": 2.220446049250313e-16,
+      "notes": ""
+    }
+  ],
+  "scope": "Reconciliation of recorded independent implementation outputs with current keys; not a new independent numerical witness."
+}

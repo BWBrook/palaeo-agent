@@ -512,8 +512,11 @@ def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
         summary["cache_read_tokens"] = usage["cache_read_input_tokens"]
     summary["score"] = score(record / "workspace", Path(plan["items_dir"]) / trial["item"],
                              "wall_limit" if summary["termination"] == "wall_limit" else "exited")
-    from evaluation.pilot.replay import replay
-    summary["replay"] = replay(record, plan["items_dir"], plan["runtime_root"])
+    try:
+        from evaluation.pilot.replay import replay
+        summary["replay"] = replay(record, plan["items_dir"], plan["runtime_root"])
+    except Exception as exc:
+        summary["replay"] = {"outcome": "infrastructure", "error": f"{type(exc).__name__}: {exc}"}
     if summary["replay"]["outcome"] == "infrastructure":
         breach.append("replay_infrastructure")
     summary["complete"] = not breach and summary["reconciliation"]["consistent"] and complete_usage(usage)

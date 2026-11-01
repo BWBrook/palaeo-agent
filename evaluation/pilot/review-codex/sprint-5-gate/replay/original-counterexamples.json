@@ -1,0 +1,141 @@
+{
+  "source_sha256": "c3aafc200d689056febca29b94955ad267ea5375d8b4b42f81bc7daddb3fe68e",
+  "cases": {
+    "honest": {
+      "trial": "honest",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "replayed"
+    },
+    "wrong_but_recomputes": {
+      "trial": "wrong_but_recomputes",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "static"
+    },
+    "changed_claims_and_exclusions": {
+      "trial": "changed_claims_and_exclusions",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "replayed"
+    },
+    "invalid_empty_answer": {
+      "trial": "invalid_empty_answer",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "replayed",
+      "numeric": "not_applicable"
+    },
+    "ignored_arrays": {
+      "trial": "ignored_arrays",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "replayed",
+      "numeric": "not_applicable"
+    },
+    "static_keyed_result_with_dynamic_extra": {
+      "trial": "static_keyed_result_with_dynamic_extra",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "replayed"
+    },
+    "perturbed_script_failure": {
+      "trial": "perturbed_script_failure",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "perturbation": "perturbed replay produced no answer",
+      "outcome": "replayed"
+    },
+    "symlink_supervisor_read": {
+      "trial": "symlink_supervisor_read",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "outcome": "mismatch",
+      "original": {
+        "sum": 27
+      },
+      "regenerated": {
+        "sum": 918273
+      }
+    },
+    "perturbed_infrastructure_failure": {
+      "trial": "perturbed_infrastructure_failure",
+      "item": "X",
+      "arm": "direct",
+      "files": [
+        "analysis.py"
+      ],
+      "execution": {
+        "status": "ok",
+        "exit_code": 0,
+        "stderr_tail": ""
+      },
+      "perturbation": "perturbed replay produced no answer",
+      "outcome": "replayed"
+    }
+  }
+}

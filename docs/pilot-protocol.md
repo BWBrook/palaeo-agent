@@ -38,17 +38,35 @@ otherwise, these rules govern. They are fixed before recalibration.
     worker on its arm's runtime. The worker gets the pristine materials plus
     only `analysis.py` and `specs/`; the old answer and outputs never enter
     it.
-  - A second run, with the key's frozen perturbation, detects static answers.
-  - Outcomes: `replayed`, `static`, `mismatch`, `failed`, `missing`,
-    `no_answer`, `infrastructure`.
-  - **R** is the share of all launched analyst trials that are `replayed`, per
-    arm and paired by item, with every other outcome kept in the denominator
-    and reported by reason. A wrong answer can be replayed.
+  - The pristine replay must return a valid finite answer contract, preserve
+    its structured claims and exclusions, and reproduce every result within
+    the frozen tolerance (integer fields exactly). Reads of generated answers
+    are bounded and reject links and non-regular files. Replay receipts,
+    validated answers and worker audits are retained outside the worker.
+  - A second run with the key's frozen perturbation is diagnostic only. An
+    unchanged result does not establish a static answer: a genuinely computed
+    but wrong analysis may exclude the perturbed observation. A changed result
+    does not establish that every requested number was computed.
+  - Mechanical outcomes: `replayed`, `mismatch`, `failed`, `missing`,
+    `no_answer`, `infrastructure`. Every `replayed` candidate requires source
+    and provenance adjudication before entering final R. The adjudication
+    records whether the saved script/specifications actually compute from the
+    supplied materials; confirmed stored-answer scripts are `static`.
+    Preserve the mechanical outcome and the attributed adjudication separately.
+  - **R** is the share of all launched analyst trials whose pristine replay
+    passes and whose computation is confirmed by that adjudication, per arm
+    and paired by item. All other outcomes remain in the denominator, reported
+    by reason; pending adjudications remain explicit and R is not final until
+    they are resolved. A wrong answer that genuinely recomputes can pass R.
   - Replay infrastructure failure halts launches.
-- **Reviewer eligibility.** Both arms' packages must be `replayed` and
-  adjudicated acceptable. Report the flow from launched trials to R, E, E\*,
-  n_S and n_A, with losses by arm. The reviewer estimand is checkability
-  conditional on replayable, acceptable packages in both arms.
+- **Reviewer eligibility.** E counts control-item session-1 pairs whose two
+  packages pass final R. E\* is the subset adjudicated scientifically
+  acceptable in both arms and for which the same upstream flaw can be applied
+  consistently, with downstream artefacts regenerated and integrity checked.
+  Report the flow from launched trials to R, E, E\*, n_S and n_A, separating
+  scientific exclusions from unplantable flaws and recording losses by arm.
+  The reviewer estimand is conditional on these replayable, acceptable,
+  consistently perturbable paired packages. No excluded pair is replaced.
 - **Recalibration routing** (one round, at most 16 trials, at most 400,000
   counted tokens):
   - **Branch A** needs all 8 direct outcomes adjudicated, every paired attempt
@@ -108,8 +126,12 @@ implements F1 and F2.
   - The toolkit arm adds the palaeo MCP tools, including the `study_*` tools,
     and the prompt paragraph that requires toolkit use for supported numerical
     operations.
-  - Adherence comes from the worker's own call logs: each trial records whether
-    any `palaeo_run` or `palaeo_study_run` produced a keyed quantity.
+  - Adherence is adjudicated from the saved script/specifications, bundle
+    provenance and the mapping to reported quantities, together with worker
+    logs. Supported operations may be called through the Python API inside
+    `worker_execute`; absence of a `palaeo_run` or `palaeo_study_run` MCP call
+    is not non-use. Record this adjudication separately from numerical
+    correctness and replay success; do not infer adherence from a bare import.
 - **Trials.** 24 items × 2 arms × 2 sessions = 96. They run in balanced blocks
   (one family × both classes × both arms × one session), in a seeded order
   fixed at freeze.

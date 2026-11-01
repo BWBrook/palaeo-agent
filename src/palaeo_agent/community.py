@@ -57,16 +57,22 @@ def check_delimiter(spec):
 def parse_table(text, format, delimiter=None):
     """Header and rows of a count or measurement table. Nothing is inferred from file names or repaired."""
     if format == "delimited":
-        rows = [row for row in csv.reader(io.StringIO(text), delimiter="\t" if delimiter == "tab" else ",")
-                if any(cell.strip() for cell in row)]
-        rows = [[cell.strip() for cell in row] for row in rows]
-        if len(rows) < 2 or not rows[0][0]:
+        try:
+            rows = [row for row in csv.reader(io.StringIO(text), delimiter="\t" if delimiter == "tab" else ",",
+                                             strict=True) if row]
+        except csv.Error as exc:
+            raise AnalysisError("invalid_delimited", "Malformed delimited table", reason=str(exc)) from exc
+        if len(rows) < 2 or not rows[0][0].strip():
             raise AnalysisError("invalid_header", "A delimited table needs a header whose first cell names the ID column")
-        rows = [[cell if cell not in ("", "NA") else "." for cell in row] for row in rows]
-        return rows
+        if any(not cell.strip() for cell in rows[0][1:]):
+            raise AnalysisError("invalid_id", "Column labels must be nonblank strings", role="column")
+        if any(not row[0].strip() for row in rows[1:]):
+            raise AnalysisError("invalid_id", "Row labels must be nonblank strings", role="row")
+        return [rows[0]] + [[row[0]] + ["." if cell.strip() in ("", "NA") else cell.strip() for cell in row[1:]]
+                            for row in rows[1:]]
     lines = [line for line in text.splitlines() if line.strip()]
     tabbed = bool(lines) and "\t" in lines[0]
-    rows = [[cell.strip() for cell in line.split("\t")] if tabbed else line.split() for line in lines]
+    rows = [line.split("\t") if tabbed else line.split() for line in lines]
     if len(rows) < 2 or not rows[0] or rows[0][0] != ".":
         raise AnalysisError("invalid_past_header", "Expected a classic PAST header beginning with '.'")
     return rows

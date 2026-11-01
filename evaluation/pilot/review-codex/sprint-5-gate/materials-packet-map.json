@@ -1,0 +1,391 @@
+{
+  "packet_root": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-s5-materials-r2f5bkxz",
+  "items": {
+    "9d0c6f6d53": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P01-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "f9f9effe015219deb500ad66cf7747faef60a9785e514b152109b35723fe4cfe",
+        "dictionary.md": "2926cbb96299ae83cd82fd6982d43855dff2dbbd609c2f252b8a766602fa8ad0",
+        "lab_log.csv": "d832a987b4d789320b1f1cf5946658646d87336e61935e453f75254d5baca9de",
+        "task.md": "454d77ec86b3a2fff6b8b540d9179aa661e645bd5ace92a620b5a0345f50c680"
+      }
+    },
+    "e4bcfe8f7c": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P11-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "fafec995d4ed97a9fceb04ca5352d3b9a43e3110f71ce57cec26ad5e28239b8d",
+        "dictionary.md": "2c0ffa46bb39d99d165b71b0029419c7146db4aa454f0fcc4d6ba67e2140a196",
+        "lab_log.csv": "c31ebf1d1d9a31e06c340d533805c20f686b13b760bde19798ecbcb5c95dc36c",
+        "task.md": "3016f3f2108b2820199013c7592532b25894cbb0d5cc87d11be3612f990c79d8",
+        "taxonomy.csv": "96bed3c8483a9f196a615c90b3dbc870eaf3b1d9605f07b04a11b235ca8610ef"
+      }
+    },
+    "dd5fa79d7f": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P12-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "5967ef8179defbdae181a5dcf0effdf01ddc6fa825f6bcb80589ff4ffc882962",
+        "dictionary.md": "465c99100f5436ed2f8b2355d90f8e30ca609d07f6db80321cdadcb3158cb96d",
+        "samples.csv": "9c42fc0f41cb71e1309b0f9ed4e31fef616a211a141cf7602fc62cc431ff84c7",
+        "task.md": "a343c4dc53f009b6e7f8ef826fd9c31a712e93edf8b9b227a152b10873610dcb",
+        "zonation.csv": "487fe6888d69bd073754fd37ae556d371f846584c75ddb8e3316e99ef1380bf5"
+      }
+    },
+    "3748d8955d": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P05-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "946892367a91effdead11862e42c4f2da9fc061805c4d109d07a09f79b2be0c2",
+        "dictionary.md": "07d8934b744f4995249a7f33b7f39726690413cfece14f47b68035be084b17f3",
+        "lab_log.csv": "a615cfd44aa782aa7b321176045ab101a49a841518abfe6c5a4ced23ee61c69f",
+        "samples.csv": "f7b1ed0292a29f9e5a1f88e989ffef962d1368eca0169257857388aa6d2e004c",
+        "task.md": "101e6ecba4ff3660aee6810b3193c21d1e249e852476c6c1889865b0e400d40b",
+        "taxonomy.csv": "7d57755e36e5ec8628cca448e0e0f194ac4ab58e377378d12e50097002a25970"
+      }
+    },
+    "1719318835": {
+      "group": "a",
+      "source": "evaluation/pilot/calibration-v4/P03-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "be2a0d9c5b95020b910befb7b6efe19d91c85fe963d531de7082b9b0f3eb7b2c",
+        "dictionary.md": "ea32ce0b767ebe44c85e25b124151f5d0d2060fccd71fc165e0fcb9294a33ada",
+        "lab_log.csv": "9772d153fd931691dc8952f0bd3465bd12310595dee48a0ca8582781f9e7d992",
+        "samples.csv": "9dd1c0d158985780f1736fcdf48e58a003ab3443c91867a5c9b2bdf34f7e934b",
+        "task.md": "e3b614cd2302a55af37777f56c7f9795740031ef230baca311dcb8c13dcca477"
+      }
+    },
+    "a1323f1f11": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P05-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "f2635b0d3f715fc34e29974376652c5e97e0977c1d242622442a00d3374500f8",
+        "dictionary.md": "07d8934b744f4995249a7f33b7f39726690413cfece14f47b68035be084b17f3",
+        "lab_log.csv": "1054c800a8e3492a1b479646419dc74f4667cf4c38ad6531af4d4b16ce7da2f7",
+        "samples.csv": "e99a48b12a60cf218b83092d915a8fc66c871108bbe034b44f80d238e7cde9c5",
+        "task.md": "101e6ecba4ff3660aee6810b3193c21d1e249e852476c6c1889865b0e400d40b",
+        "taxonomy.csv": "703db5b200924106019cd7ea907b3d20766bcd9fce525bdbbee0957043627766"
+      }
+    },
+    "1ba615b8e4": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P03-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "ca063290f5951ab85b86e05f59e98009a12e15a2d990fb0907e52c0917451c85",
+        "dictionary.md": "ea32ce0b767ebe44c85e25b124151f5d0d2060fccd71fc165e0fcb9294a33ada",
+        "lab_log.csv": "a95f4b79cdf60566e1389e2dda649240ce4a15c20e30df25d87c0e859f6c764e",
+        "samples.csv": "7b57c842d640dbb8128bc1ce074f90145bda43e868b96040be031d90523e24f8",
+        "task.md": "e3b614cd2302a55af37777f56c7f9795740031ef230baca311dcb8c13dcca477"
+      }
+    },
+    "67e1610024": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P01-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "648548665a3266a4372165cc29487f45f023a25ed229bb6c290f5bc17ec60c09",
+        "dictionary.md": "2926cbb96299ae83cd82fd6982d43855dff2dbbd609c2f252b8a766602fa8ad0",
+        "lab_log.csv": "9c7181eee6c0d1b7163876cc34d5ad27884ff830d5434b1882897e3f944f9134",
+        "task.md": "454d77ec86b3a2fff6b8b540d9179aa661e645bd5ace92a620b5a0345f50c680"
+      }
+    },
+    "79409ec5de": {
+      "group": "a",
+      "source": "evaluation/pilot/calibration-v4/P06-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "cores.csv": "feb95ec5f7d98bd00eddfcf4725ae6c3e84ffa521f6c0d42fd96de03518aaac5",
+        "counts.tsv": "09177cc56b6dea13cd403cfb18f339694a13225b9d86f0c15083c549cb14d1e2",
+        "dictionary.md": "7db6bbbe86bb4c8f097d4fab9ed0b2f2777bb55af7afde2c97fc3dd3fc60ee73",
+        "lab_log.csv": "d2bc89490da1c6f476b1039f877e3e8702d266790a1dcc599395d0871dc6de0a",
+        "register.csv": "131478023dfc3fdece84c601404497b0f263aec80311ac02bc502034bdd877f5",
+        "task.md": "ab3697cdf59defc91630d080236970ee63a9778b5f929d5b3f92738068b95ec7"
+      }
+    },
+    "5745229928": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P12-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "5967ef8179defbdae181a5dcf0effdf01ddc6fa825f6bcb80589ff4ffc882962",
+        "dictionary.md": "465c99100f5436ed2f8b2355d90f8e30ca609d07f6db80321cdadcb3158cb96d",
+        "samples.csv": "9c42fc0f41cb71e1309b0f9ed4e31fef616a211a141cf7602fc62cc431ff84c7",
+        "task.md": "a343c4dc53f009b6e7f8ef826fd9c31a712e93edf8b9b227a152b10873610dcb",
+        "zonation.csv": "bcf01fbfd5f1da394c255ec43c1652f9d61eeaf3317d690b307c716129614238"
+      }
+    },
+    "079f3c855c": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P03-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "717e907dceb01bd895936ab532576dbdcc2dd2167909badaadbe150dd325cdc8",
+        "dictionary.md": "ea32ce0b767ebe44c85e25b124151f5d0d2060fccd71fc165e0fcb9294a33ada",
+        "lab_log.csv": "d52bd8aa416aa8b76d4779aaa0e478b5c045d4f3c7bcec42fb318fb9f238b95b",
+        "samples.csv": "d3d55de1417e0a8323afafbda1fcbbfbb51b207433c69ff301e4014e8733e33d",
+        "task.md": "e3b614cd2302a55af37777f56c7f9795740031ef230baca311dcb8c13dcca477"
+      }
+    },
+    "1894169314": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P06-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "cores.csv": "41e450e0160a29ae6cf5ab1f5b98dd375fa2db9f6d159b1c3ad4c5425f82cef9",
+        "counts.tsv": "4bc23e2851599a6fb3fe501b2a2ad6ed24c459db4695c79091ed1d706b49cf66",
+        "dictionary.md": "7db6bbbe86bb4c8f097d4fab9ed0b2f2777bb55af7afde2c97fc3dd3fc60ee73",
+        "lab_log.csv": "f5415ee48f43017d9364a8359687d4a7306f07131c8f5f9d3e78082501892df9",
+        "register.csv": "9da1e30e7efaf7d3981a1800cb92bbedb93948a403b40018f51f3ab206124a61",
+        "task.md": "ab3697cdf59defc91630d080236970ee63a9778b5f929d5b3f92738068b95ec7"
+      }
+    },
+    "217b2001e5": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P07-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "dictionary.md": "324979f37561a22da8a1e2f47cacf8e06f7020c7dd2b56ad027e8f17f5258706",
+        "observers.csv": "efb5820575c3ee70e590dd26d15d97aa0d72c7d0ceec95eca085277d990543be",
+        "shells.csv": "522a56697dfadca9085d58c612663a067d7459a8c66860172029c35bf7a759c9",
+        "task.md": "3082eb3e55e60d6f633bfec7befb5257b1576f0f3e0485ebfb66d65f8654d104"
+      }
+    },
+    "999b14b7e2": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P11-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "5500248dea83d4723873d22346d97947295e12202edc9e2840c6930870156549",
+        "dictionary.md": "2c0ffa46bb39d99d165b71b0029419c7146db4aa454f0fcc4d6ba67e2140a196",
+        "lab_log.csv": "c31ebf1d1d9a31e06c340d533805c20f686b13b760bde19798ecbcb5c95dc36c",
+        "task.md": "3016f3f2108b2820199013c7592532b25894cbb0d5cc87d11be3612f990c79d8",
+        "taxonomy.csv": "b818bceda8997be930c8210c0b5ab01dcfb54b9ea561d7d76b334e7859d54136"
+      }
+    },
+    "7e1dd826bb": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P08-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "becd61ec260ae2fb1b9d8727bd6719d26e659618c6f8a0bfcc7aececa9f6a233",
+        "dates.csv": "6eb5c75016aff87943714428ffe2ddc12682fb021ec5993883af88b9311c8141",
+        "dictionary.md": "0b549ecaa4feadb1fe532b025dd7a0ee74d5d3a8c05a3b134f2ad07df466b1a7",
+        "samples.csv": "7a3116a6c6ec1d89c22476fb6823d3acf6f693274be4e4badb6f638380350f63",
+        "task.md": "f9f5b7858c5d9d41dfd493c0de916693261df656d7b2b75b213865a1120eb2f9"
+      }
+    },
+    "e5fac005db": {
+      "group": "b",
+      "source": "evaluation/pilot/calibration-v4/P11-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "e0a75e1d2a63cee60048e1ec2cfcde2a330a7ad62e83898ee33dca8dfd00bd37",
+        "dictionary.md": "2c0ffa46bb39d99d165b71b0029419c7146db4aa454f0fcc4d6ba67e2140a196",
+        "lab_log.csv": "6fa4e7fa19a92d5d0ede8269571b7fc944c325ac23d14874dd7fc3e5c88ae756",
+        "task.md": "3016f3f2108b2820199013c7592532b25894cbb0d5cc87d11be3612f990c79d8",
+        "taxonomy.csv": "e500eab5112b1dcb931b2bf97f13b1a9803452d4d5730c7e80878bab008084b6"
+      }
+    },
+    "4f39decb70": {
+      "group": "a",
+      "source": "evaluation/pilot/calibration-v4/P05-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "c465f897dbd37bd3dce32871eee0bef38a695e934ba8f4b2e9600fefba53cff9",
+        "dictionary.md": "07d8934b744f4995249a7f33b7f39726690413cfece14f47b68035be084b17f3",
+        "lab_log.csv": "0cd72459ed8d9df07148a6c3945b981154ed98535b2b1a4c03398060a5c99c3c",
+        "samples.csv": "d6b9721bbccbbdbc3aef6e2a3d2d2228a50ccd5d0a6b3c8f83e09c7a99639db3",
+        "task.md": "101e6ecba4ff3660aee6810b3193c21d1e249e852476c6c1889865b0e400d40b",
+        "taxonomy.csv": "9700f7ffaeee0f199121dbf8a9fa3c4606d06e723a2b832cce9fcdc241b6c537"
+      }
+    },
+    "6bf64e135a": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P08-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "becd61ec260ae2fb1b9d8727bd6719d26e659618c6f8a0bfcc7aececa9f6a233",
+        "dates.csv": "029eb99fbdd1acce0e5efcefd42386a8dc751020e79cd6c315c0081c171de0e6",
+        "dictionary.md": "0b549ecaa4feadb1fe532b025dd7a0ee74d5d3a8c05a3b134f2ad07df466b1a7",
+        "samples.csv": "7a3116a6c6ec1d89c22476fb6823d3acf6f693274be4e4badb6f638380350f63",
+        "task.md": "f9f5b7858c5d9d41dfd493c0de916693261df656d7b2b75b213865a1120eb2f9"
+      }
+    },
+    "e212f56966": {
+      "group": "b",
+      "source": "evaluation/pilot/calibration-v4/P08-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "0cae323d14e1bd81015447f1853d2a7f0491bdfaaa33c20ccc284274e9811d21",
+        "dates.csv": "0809336bc8f2d8bb6948f3709f1c038d709139690bad158ca18f708ee8f05a90",
+        "dictionary.md": "0b549ecaa4feadb1fe532b025dd7a0ee74d5d3a8c05a3b134f2ad07df466b1a7",
+        "samples.csv": "9bfe717d24bacf704e566edf6341dce217086d6ead5eb9d31bb6f24a2bb003ca",
+        "task.md": "f9f5b7858c5d9d41dfd493c0de916693261df656d7b2b75b213865a1120eb2f9"
+      }
+    },
+    "7fec1108ad": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P10-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "625bab9320d422edef0c3790c4ee11ed77b8941e219eed91b637b395c20ff432",
+        "dictionary.md": "8c219ef6e197550990118cb8ee91ad4c6d9f8c7a0739af59f837c5ae52759079",
+        "lab_log.csv": "1ac6d228fc93697ec92162d69c6b28aa421a02c422a4430a659c580bf61dd495",
+        "samples.csv": "6a53fe305773e0a84204dc3228157b5ccc85e5dbcb8f7c3e3c678704cba62825",
+        "task.md": "7d42824f8aacb695a30b539d61fd71307259b3ce5c2df7b6c8e0db15ac44d225"
+      }
+    },
+    "3a906284d4": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P04-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "campaigns.csv": "f51bce5ecce20fc98876203f037206c82c247cc7f383ff45559a405ac394e2f8",
+        "cores.csv": "304c9f093fa739c3e8276bdfa176f0cd6332ce067e8180a8d97fc4b24871f402",
+        "counts.tsv": "f11b62e45395729564f12901984436556368ba096a7a2a10d13ee65fa870e5e9",
+        "dictionary.md": "81702c536bd80432d3d07920dc518b1cc9a6511542172f82dd62b2469c434fc7",
+        "task.md": "9fa476e5c1e89915e35d7fa7b1411aea70ec2c5a4af512110eb3a266539ed8c0",
+        "taxa.csv": "858490c9e2db06d041e30cdaa8b1cc4f967821860cefb966d3cca31e855d5740"
+      }
+    },
+    "395082bc8f": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P02-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "71b75272a57c490c3b1e02e749fc1a0c516d984ece14ed118eaedbc579a3426f",
+        "dictionary.md": "0275820e6307903f33db1083c992ea41237b5bab09774bc3a86051cbb880501e",
+        "lab_log.csv": "e0f40a52df684a7ba11f4dd49d42f931cfae9f93e46ad963ca6144bf8e5874c4",
+        "stations.csv": "b34d0abdd22f8913387954e8b6e7ed3d098addfbb88f688b640ca6135c696654",
+        "task.md": "993d0582ee97b063fecdb7d35843a7861b2ff2fefc41f6bb76329f174febb8e3"
+      }
+    },
+    "8090a86fb2": {
+      "group": "a",
+      "source": "evaluation/pilot/calibration-v4/P04-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "campaigns.csv": "f51bce5ecce20fc98876203f037206c82c247cc7f383ff45559a405ac394e2f8",
+        "cores.csv": "bebd2d640d7737f10c0da978ebd58d6022926157bae547f230d8b5834c28174f",
+        "counts.tsv": "d3d4efd0b6757c417a9deffaa2aedc5a5080a9a8dbc1f1d1437d7d75ebc16944",
+        "dictionary.md": "81702c536bd80432d3d07920dc518b1cc9a6511542172f82dd62b2469c434fc7",
+        "task.md": "9fa476e5c1e89915e35d7fa7b1411aea70ec2c5a4af512110eb3a266539ed8c0",
+        "taxa.csv": "68197fb01a8f897835f42369e0a9e51f68dd9ffd94fc00680786687b69e5673d"
+      }
+    },
+    "b3501ee399": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P07-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "dictionary.md": "324979f37561a22da8a1e2f47cacf8e06f7020c7dd2b56ad027e8f17f5258706",
+        "observers.csv": "2c6418dde37d72a4a882027eebeaa8bb16fc83dbf5e2e60e0f93a2e3e04f735b",
+        "shells.csv": "317dac9a44115a639bc440a0316c442cce9fbd56617079ed90f9459f65d71759",
+        "task.md": "3082eb3e55e60d6f633bfec7befb5257b1576f0f3e0485ebfb66d65f8654d104"
+      }
+    },
+    "fddedcbd00": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P04-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "campaigns.csv": "0df447eed5c391584fe63c9aef9b46bde3bc55504ec7b92a9503774eb22cd62d",
+        "cores.csv": "304c9f093fa739c3e8276bdfa176f0cd6332ce067e8180a8d97fc4b24871f402",
+        "counts.tsv": "2898e2a5ed8dcea3814465c77d817a8f2745dfb7eee449ee2e2983fc66117086",
+        "dictionary.md": "81702c536bd80432d3d07920dc518b1cc9a6511542172f82dd62b2469c434fc7",
+        "task.md": "9fa476e5c1e89915e35d7fa7b1411aea70ec2c5a4af512110eb3a266539ed8c0",
+        "taxa.csv": "858490c9e2db06d041e30cdaa8b1cc4f967821860cefb966d3cca31e855d5740"
+      }
+    },
+    "74d46da548": {
+      "group": "b",
+      "source": "evaluation/pilot/calibration-v4/P10-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "dce88bda8d7fa5c57b573c1c31968687655ab08b3e5b62387e7df0ed5e6af6f8",
+        "dictionary.md": "8c219ef6e197550990118cb8ee91ad4c6d9f8c7a0739af59f837c5ae52759079",
+        "lab_log.csv": "820b1d3f4acae78f6ae8c6bc229a132ce259872441d04c364a52b51754f96e52",
+        "samples.csv": "e45c9277c50b258ec2b20327a60a1a167bf70eb8ce22866ba0fe91146a6d2f6e",
+        "task.md": "7d42824f8aacb695a30b539d61fd71307259b3ce5c2df7b6c8e0db15ac44d225"
+      }
+    },
+    "4d932ec7d3": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P09-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "catalogue.csv": "31ed8e8231102d038854379bcb181f8def86afd53b2f263bc62df00b09af2881",
+        "dictionary.md": "d4fa2ec8df428914164be7d36b7c6066135104932ff147547dca799daa785f91",
+        "measurements.csv": "93dee3697fb4a17aaa6e1bb63c27f54ec003adb7811ff3f04f2c4ad39d8e448a",
+        "task.md": "6e34baf994801b2c2bf004ca7752fef9ede524da112e6a15f15768012d77ca01"
+      }
+    },
+    "424e0eca5e": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P02-control/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "71b75272a57c490c3b1e02e749fc1a0c516d984ece14ed118eaedbc579a3426f",
+        "dictionary.md": "0275820e6307903f33db1083c992ea41237b5bab09774bc3a86051cbb880501e",
+        "lab_log.csv": "e0f40a52df684a7ba11f4dd49d42f931cfae9f93e46ad963ca6144bf8e5874c4",
+        "stations.csv": "9ef838b1da7a83bab621adb561a39e8400b493d80efb7e2505671f53bb4ebddf",
+        "task.md": "993d0582ee97b063fecdb7d35843a7861b2ff2fefc41f6bb76329f174febb8e3"
+      }
+    },
+    "b9e74ecc8a": {
+      "group": "b",
+      "source": "evaluation/pilot/calibration-v4/P09-cal/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "catalogue.csv": "134c6c320035abd76110a3dcd648ac07b33e438dbff52c255b111a2bd2317c29",
+        "dictionary.md": "d4fa2ec8df428914164be7d36b7c6066135104932ff147547dca799daa785f91",
+        "measurements.csv": "a3dbc945656d4db42c3abeb2cf6fb294a59719522c840fc11114713f8b546576",
+        "task.md": "6e34baf994801b2c2bf004ca7752fef9ede524da112e6a15f15768012d77ca01"
+      }
+    },
+    "cc7c4015f9": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P09-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "catalogue.csv": "3930f9ffdaa1ee68f4bf406d713d8728b5702945a4d00dbeca31ba42660d2feb",
+        "dictionary.md": "d4fa2ec8df428914164be7d36b7c6066135104932ff147547dca799daa785f91",
+        "measurements.csv": "cae041bc4a96491f168b9328744e12e35377a572e581c648a4a4f4166807f26a",
+        "task.md": "6e34baf994801b2c2bf004ca7752fef9ede524da112e6a15f15768012d77ca01"
+      }
+    },
+    "4c7865607f": {
+      "group": "b",
+      "source": "evaluation/pilot/items-v4/P10-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "counts.tsv": "cf88e41d7d3f8d8d6affdd00ab4bd4c6fb6fb7d87f092355cd32f4700fd0e35f",
+        "dictionary.md": "8c219ef6e197550990118cb8ee91ad4c6d9f8c7a0739af59f837c5ae52759079",
+        "lab_log.csv": "472d3dd99cf73d57514265b7ce53afb28ae257264180e1954d54017fd3d542b8",
+        "samples.csv": "1a976ec0c4511cbf3440a89405beb13a374c61ef7960731a4d677001166b84d8",
+        "task.md": "7d42824f8aacb695a30b539d61fd71307259b3ce5c2df7b6c8e0db15ac44d225"
+      }
+    },
+    "1f805672ac": {
+      "group": "a",
+      "source": "evaluation/pilot/items-v4/P06-trap/materials",
+      "files_sha256": {
+        "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+        "cores.csv": "ab662bc4352a392bbbd7fccdebf539864be805f58a5a10dc1f5272b36ae4e5c2",
+        "counts.tsv": "53037293ce937feaebca9ea6801ab680cd24df1e5aab29735fa196a588bca843",
+        "dictionary.md": "7db6bbbe86bb4c8f097d4fab9ed0b2f2777bb55af7afde2c97fc3dd3fc60ee73",
+        "lab_log.csv": "8bac71980d0e979e4bf61ddbc4fb973348bd7aafbf564e5a6a5188509eb1d8f8",
+        "register.csv": "1aaf0abdd209c8dc38eb04f25d54d7b68b4277d4c4878f2237d1e95ed11e4ec7",
+        "task.md": "ab3697cdf59defc91630d080236970ee63a9778b5f929d5b3f92738068b95ec7"
+      }
+    }
+  }
+}
