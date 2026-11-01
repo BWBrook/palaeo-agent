@@ -1,0 +1,22 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "shannon_mean_2017": 1.9574135736608802,
+  "shannon_mean_2021": 1.9395207219402053
+ },
+ "assumptions": [
+  "Shannon computed (natural log) on T01-T08 only (>150 \u00b5m fraction), the only fraction picked in both campaigns, so the campaigns are comparable.",
+  "Computed directly in Python; toolkit has no Shannon method."
+ ],
+ "exclusions": [
+  {
+   "id": "T09-T11",
+   "reason": "63-150 \u00b5m taxa picked only in 2021; including them would bias the comparison (2017 entries '.' = not picked, not zero)."
+  }
+ ],
+ "issues": [
+  "'.' cells mean not picked, not zero; handled by restricting to the commonly picked fraction.",
+  "Including T09-T11 for 2021 would inflate 2021 diversity artificially."
+ ],
+ "summary": "Mean per-core Shannon index (ln) for 2017 and 2021 cores using taxa T01-T08 only."
+}

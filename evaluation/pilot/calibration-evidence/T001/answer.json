@@ -1,0 +1,16 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "mean_bray_curtis": 0.20921367748454883,
+  "n_genera": 5
+ },
+ "assumptions": [
+  "Genus = first word of name, except 'Globigerina pachyderma' reassigned to Neogloboquadrina (merged into genus, per task note).",
+  "Other names taken as written."
+ ],
+ "exclusions": [],
+ "issues": [
+  "Column 'Globigerina pachyderma' is an obsolete synonym; without remapping it would be counted under Globigerina instead of Neogloboquadrina."
+ ],
+ "summary": "Aggregated counts to 5 genera after remapping the obsolete Globigerina pachyderma to Neogloboquadrina, then averaged Bray-Curtis over all 45 sample pairs on raw counts."
+}

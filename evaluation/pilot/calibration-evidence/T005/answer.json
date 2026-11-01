@@ -1,0 +1,16 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "mean_bray_curtis": 0.43860185185185185
+ },
+ "assumptions": [
+  "assemblage.tsv holds percentages; raw counts reconstructed as percent x n_picked/100 (all values were integer-valued to rounding, max deviation 0 after rounding), saved as counts.tsv",
+  "Mean taken over all 36 unordered sample pairs"
+ ],
+ "exclusions": [],
+ "issues": [
+  "Task asks for raw counts but supplied table is percentages; Bray-Curtis on percentages would differ because sample totals differ (250-1000), so counts were reconstructed from picking.csv",
+  "Toolkit warned of one negative PCoA eigenvalue (Bray-Curtis non-Euclidean); irrelevant to the mean dissimilarity"
+ ],
+ "summary": "Reconstructed integer counts from percentages and n_picked, ran palaeo community (Bray-Curtis, no transform; bundle runs/27047c69993041a6b89bf3ea45c74493), and averaged the 36 upper-triangle pairwise distances."
+}

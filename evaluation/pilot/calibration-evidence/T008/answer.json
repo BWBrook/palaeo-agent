@@ -1,0 +1,53 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "mean_bray_curtis": 0.2649284508518656,
+  "n_samples": 7
+ },
+ "assumptions": [
+  "Holocene = depth < 142 cm (shallower than boundary); slice midpoints used, so S08 (143 cm, slice 142.5-143.5) is entirely below the boundary."
+ ],
+ "exclusions": [
+  {
+   "id": "S08",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S11",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S12",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S16",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S14",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S13",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S15",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S09",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  },
+  {
+   "id": "S10",
+   "reason": "Pleistocene (depth >= 143 cm)"
+  }
+ ],
+ "issues": [
+  "samples.csv is not in the same order as counts.tsv; matched by sample ID.",
+  "S08 at 143 cm is just 1 cm below the boundary; classified as Pleistocene."
+ ],
+ "summary": "Selected samples above 142 cm (S01-S07), computed mean pairwise Bray-Curtis on raw counts."
+}

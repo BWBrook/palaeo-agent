@@ -1,0 +1,33 @@
+{
+ "status": "completed",
+ "results": {
+  "slope": 0.7662579850472728,
+  "intercept": -0.8346781441373174,
+  "n": 30
+ },
+ "assumptions": [
+  "Left valves are duplicates of the same individuals as their right valves; individuals = right valves."
+ ],
+ "exclusions": [
+  {
+   "id": "V16L",
+   "reason": "left valve of an individual already represented by its right valve (duplicate measurement)"
+  },
+  {
+   "id": "V12L",
+   "reason": "left valve of an individual already represented by its right valve (duplicate measurement)"
+  },
+  {
+   "id": "V20L",
+   "reason": "left valve of an individual already represented by its right valve (duplicate measurement)"
+  },
+  {
+   "id": "V01L",
+   "reason": "left valve of an individual already represented by its right valve (duplicate measurement)"
+  }
+ ],
+ "issues": [
+  "4 individuals were catalogued twice (R and L valves with identical measurements), which would pseudo-replicate the fit."
+ ],
+ "summary": "RMA regression (slope = sign(r)*sd_y/sd_x, intercept = mean_y - slope*mean_x) of height on length using the 30 right valves, one per individual."
+}

@@ -1,0 +1,18 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "richness": 8,
+  "mean_bray_curtis": 0.26895754063545735
+ },
+ "assumptions": [
+  "Taxon labels differing only in capitalisation/extra spacing (Globigerinoides ruber, Neogloboquadrina incompta, Globorotalia inflata) are the same species and their counts were summed.",
+  "Mean is over the 45 unordered sample pairs, Bray-Curtis on raw counts."
+ ],
+ "exclusions": [],
+ "issues": [
+  "11 columns-labels gave only 8 species after merging 3 variant pairs.",
+  "counts.txt is not in PAST header format and PAST parsing split on spaces; I wrote counts_past.txt with '.' corner cell and underscores in names (preparation only; values unchanged).",
+  "Negative PCoA eigenvalues warning (irrelevant to the distances)."
+ ],
+ "summary": "Merged 3 duplicate-spelling taxon pairs via palaeo_study_run map_taxa (11 columns -> 8 species), computed Bray-Curtis on raw counts with the toolkit (bundle study_out4), and averaged the 45 pairwise values."
+}
