@@ -1,0 +1,13 @@
+{
+ "E431": "items-v4/P04-trap",
+ "E254": "items-v4/P04-control",
+ "E504": "calibration-v4/P04-cal",
+ "E766": "items-v4/P06-trap",
+ "E149": "items-v4/P06-control",
+ "E174": "calibration-v4/P06-cal",
+ "E940": "items-v4/P09-trap",
+ "E648": "items-v4/P09-control",
+ "E196": "calibration-v4/P09-cal",
+ "E474": "items-v4/P12-trap",
+ "E696": "items-v4/P12-control"
+}

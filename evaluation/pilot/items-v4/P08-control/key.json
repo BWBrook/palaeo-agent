@@ -6,7 +6,7 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.24988904121629033,
+  "mean_bray_curtis": 0.249889041216,
   "n_holocene": 18
  },
  "integer_results": [
@@ -36,7 +36,7 @@
  "reviewer_flaw": {
   "class": "interpretation",
   "results": {
-   "mean_bray_curtis": 0.24988904121629033,
+   "mean_bray_curtis": 0.249889041216,
    "n_holocene": 18
   },
   "answer_edits": {

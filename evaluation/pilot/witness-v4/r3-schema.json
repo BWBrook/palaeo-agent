@@ -1,0 +1,54 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "items"
+ ],
+ "properties": {
+  "items": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "dossier",
+     "determined",
+     "handling",
+     "defensible_alternatives",
+     "act_on",
+     "notes"
+    ],
+    "properties": {
+     "dossier": {
+      "type": "string"
+     },
+     "determined": {
+      "enum": [
+       "yes",
+       "no",
+       "uncertain"
+      ]
+     },
+     "handling": {
+      "type": "string"
+     },
+     "defensible_alternatives": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "act_on": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "notes": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

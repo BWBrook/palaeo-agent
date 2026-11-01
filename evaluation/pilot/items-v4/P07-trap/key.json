@@ -6,10 +6,10 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "slope": 0.9411802461135124,
-  "intercept": -0.21871858543114975,
+  "slope": 0.941180246114,
+  "intercept": -0.218718585431,
   "n": 95,
-  "mean_length_mm": 25.954631578947367
+  "mean_length_mm": 25.9546315789
  },
  "integer_results": [
   "n"
@@ -22,10 +22,10 @@
   {
    "name": "cm_as_mm",
    "results": {
-    "slope": 0.9863727973510591,
-    "intercept": -0.28442863133582064,
+    "slope": 0.986372797351,
+    "intercept": -0.284428631336,
     "n": 95,
-    "mean_length_mm": 20.45042105263158
+    "mean_length_mm": 20.4504210526
    }
   }
  ],

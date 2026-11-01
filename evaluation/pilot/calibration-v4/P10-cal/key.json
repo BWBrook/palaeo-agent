@@ -6,7 +6,7 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "shannon_change": -0.11845579229390868
+  "shannon_change": -0.118455792294
  },
  "integer_results": [],
  "tolerance": {
@@ -17,13 +17,13 @@
   {
    "name": "ids_as_order",
    "results": {
-    "shannon_change": -0.038950245853416554
+    "shannon_change": -0.0389502458534
    }
   },
   {
    "name": "sign_reversed",
    "results": {
-    "shannon_change": 0.11845579229390868
+    "shannon_change": 0.118455792294
    }
   }
  ],

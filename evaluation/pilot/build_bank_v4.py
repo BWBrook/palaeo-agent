@@ -50,10 +50,10 @@ BENTHIC = ["Cibicidoides wuellerstorfi", "Cibicidoides pachyderma", "Uvigerina p
            "Nonionella turgida", "Bolivina spathulata", "Bolivina robusta", "Cassidulina laevigata",
            "Cassidulina crassa", "Elphidium excavatum", "Ammonia beccarii", "Quinqueloculina seminula",
            "Textularia agglutinans"]
-BENIGN = ["counted in full", "counted in full", "counted in full", "split 1/1; counted in full",
+BENIGN = ["counted in full", "counted in full", "counted in full", "counted in full",
           "picked by second analyst; cross-checked", "slide re-labelled after drying; counted in full",
           "sieved twice (clay); counted in full", "photographed before picking", "residue archived (store A)",
-          "counted in full; two broken tests not identifiable", "re-counted after audit; counts unchanged"]
+          "counted in full; slide stored in cabinet 3", "re-counted after audit; counts unchanged"]
 
 
 # ---------- exact definitions ----------
@@ -336,73 +336,87 @@ def p03_percent_rows(cls, seed, n_taxa=None, n_samples=None):
                          if cls == "trap" else "All rows are counts from this study."))
 
 
-SMALL = 0.3
-
-
-def p04_mesh(cls, seed, n_taxa=None, n_cores=None):
+def p04_fractions(cls, seed, n_taxa=None, n_cores=None):
     rng = random.Random(seed)
     n_taxa, n_cores = n_taxa or rng.randint(24, 28), n_cores or rng.randint(18, 24)
     names = taxa(rng, n_taxa, PLANKTIC)
-    small = set(rng.sample(names[:-2], round(SMALL * n_taxa)))
     cores = [f"GB{i:02d}" for i in range(1, n_cores + 1)]
     campaign = ["2017" if i % 2 == 0 else "2021" for i in range(n_cores)]
-    rows = community(rng, n_taxa, campaign, strength=0.25)
-    if cls == "trap":
-        for r, c in zip(rows, campaign):
-            if c == "2017":
-                for i, name in enumerate(names):
-                    if name in small:
-                        r[i] = 0
-    data = [[name] + [rows[j][i] for j in range(n_cores)] for i, name in enumerate(names)]
-    mesh = {"2017": "150" if cls == "trap" else "63", "2021": "63"}
-    files = {"counts.tsv": tsv(["taxon"] + cores, data),
+    rows = community(rng, n_taxa, campaign, totals=(300, 600), strength=0.25)
+    share = [rng.choice([rng.uniform(0.05, 0.3), rng.uniform(0.6, 0.95)]) for _ in names]
+    large, small = [], []
+    for row in rows:
+        s_row = [sum(rng.random() < q for _ in range(c)) for c, q in zip(row, share)]
+        small.append(s_row)
+        large.append([c - k for c, k in zip(row, s_row)])
+    picked = {c: not (cls == "trap" and k == "2017") for c, k in zip(cores, campaign)}
+    with_small = [c for c in cores if picked[c]]
+    files = {"counts_gt150.tsv": tsv(["taxon"] + cores, [[n] + [large[j][i] for j in range(n_cores)]
+                                                         for i, n in enumerate(names)]),
+             "counts_63_150.tsv": tsv(["taxon"] + with_small, [[n] + [small[cores.index(c)][i] for c in with_small]
+                                                               for i, n in enumerate(names)]),
+             "picking.csv": csv_text(["core_id", "fraction_um", "status", "picker"],
+                                     sorted([[c, ">150", "picked in full", rng.choice(["AK", "JM"])] for c in cores] +
+                                            [[c, "63-150", "picked in full" if picked[c] else
+                                              "residue archived, not picked", rng.choice(["AK", "JM"]) if picked[c] else ""]
+                                             for c in cores])),
              "cores.csv": csv_text(["core_id", "campaign", "latitude", "longitude"],
                                    [[c, k, f"-{rng.uniform(40, 42):.3f}", f"{rng.uniform(146, 148):.3f}"]
                                     for c, k in zip(cores, campaign)]),
-             "campaigns.csv": csv_text(["campaign", "vessel", "sieve_mesh_um", "picking"],
-                                       [["2017", "RV Aurora", mesh["2017"], "all specimens retained on the sieve"],
-                                        ["2021", "RV Investigator", mesh["2021"], "all specimens retained on the sieve"]]),
-             "taxa.csv": csv_text(["taxon", "adult_test_size"],
-                                  [[n, "63–150 µm" if n in small else ">150 µm"] for n in names])}
+             "campaigns.csv": csv_text(["campaign", "vessel", "sieve_mesh_um"],
+                                       [["2017", "RV Aurora", "63"], ["2021", "RV Investigator", "63"]])}
 
-    def reference(m, restrict=True):
-        smp, tx, vals = read_counts(m / "counts.tsv", "taxa_by_samples")
+    def reference(m, mode="warranted"):
+        cores_l, tx, big = read_counts(m / "counts_gt150.tsv", "taxa_by_samples")
+        small_ids, _, little = read_counts(m / "counts_63_150.tsv", "taxa_by_samples")
+        status = {(r["core_id"], r["fraction_um"]): r["status"] for r in read_csv(m / "picking.csv")}
         camp = {r["core_id"]: r["campaign"] for r in read_csv(m / "cores.csv")}
-        meshes = {r["campaign"]: int(r["sieve_mesh_um"]) for r in read_csv(m / "campaigns.csv")}
-        sizes = {r["taxon"]: r["adult_test_size"] for r in read_csv(m / "taxa.csv")}
-        coarse = max(meshes.values())
-        keep = [i for i, t in enumerate(tx) if not restrict or coarse <= 63 or sizes[t] == ">150 µm"]
+        complete = all(status[(c, "63-150")] == "picked in full" for c in cores_l)
+        combine = mode == "available" or (mode == "warranted" and complete)
         out = {}
         for year in ("2017", "2021"):
-            values = [shannon([v[i] for i in keep]) for s, v in zip(smp, vals) if camp[s] == year]
+            values = []
+            for c, row in zip(cores_l, big):
+                if camp[c] != year:
+                    continue
+                if combine and c in small_ids:
+                    row = [a + b for a, b in zip(row, little[small_ids.index(c)])]
+                values.append(shannon(row))
             out[f"shannon_mean_{year}"] = math.fsum(values) / len(values)
         return out
 
-    failures = [("all_taxa_both_campaigns", lambda m: reference(m, restrict=False))] if cls == "trap" else []
+    failures = ([("fractions_combined_where_available", lambda m: reference(m, mode="available"))] if cls == "trap"
+                else [("large_fraction_only", lambda m: reference(m, mode="large"))])
     return item(family="P04", cls=cls, stratum="toolkit", files=files, reference=reference, failures=failures,
-                perturbation={"file": "counts.tsv", "kind": "add_row",
-                              "match": next(n for n in names if n not in small), "value": 6},
-                tokens=[["150", "mesh", "sieve", "size fraction", "63"]] if cls == "trap" else [],
-                disclosure=[[">150", "150 µm", "coarse", "large", "comparable"]] if cls == "trap" else [],
-                alternatives=[{"status": "stopped", "issue_tokens": [["mesh", "sieve", "150", "size fraction"]]}]
-                if cls == "trap" else [],
-                task=("# Diversity change on the Tasman slope\n\nCompare planktonic foraminiferal diversity between "
-                      "the 2017 and 2021 coring campaigns: the mean, over cores, of each core's Shannon diversity "
-                      "(natural logarithm).\n\nReport in `results`: `shannon_mean_2017` and `shannon_mean_2021`.\n\n"
-                      f"{REPORT}\n"),
+                perturbation={"file": "counts_gt150.tsv", "kind": "add_row", "match": names[0], "value": 6},
+                tokens=[["not picked", "unpicked", "archived", "63-150", "63–150", "fraction"]] if cls == "trap" else [],
+                disclosure=[[">150", "150 µm", "larger fraction", "coarse fraction"]] if cls == "trap" else [],
+                alternatives=[{"status": "stopped", "issue_tokens": [["not picked", "unpicked", "archived", "63-150",
+                                                                      "63–150", "small fraction"]],
+                               "partial_results": "identified_2021"}] if cls == "trap" else [],
+                task=("# Diversity change on the Tasman slope\n\nCompare the diversity of the >63 µm planktonic "
+                      "foraminiferal assemblage between the 2017 and 2021 coring campaigns: for each campaign, the "
+                      "mean over cores of each core's Shannon diversity (natural logarithm) of its >63 µm assemblage "
+                      "(the >150 µm and 63–150 µm fractions together).\n\nReport in `results`: `shannon_mean_2017` "
+                      f"and `shannon_mean_2021`.\n\n{REPORT}\n"),
                 dictionary=("# Tasman slope core-top foraminifera\n\n"
-                            "- `counts.tsv`: tab-separated; taxa as rows, cores as columns; specimen counts.\n"
+                            "Sediment was washed on a 63 µm sieve and the residue dry-sieved at 150 µm into two "
+                            "fractions, picked separately.\n\n"
+                            "- `counts_gt150.tsv`: tab-separated; taxa as rows, cores as columns; specimens picked "
+                            "from the >150 µm fraction.\n"
+                            "- `counts_63_150.tsv`: the same layout for the 63–150 µm fraction.\n"
+                            "- `picking.csv`: one row per core and fraction: `status` and `picker`.\n"
                             "- `cores.csv`: `core_id`, `campaign`, position.\n"
-                            "- `campaigns.csv`: per campaign, `vessel`, `sieve_mesh_um` (mesh used to wash the "
-                            "sediment) and `picking`.\n"
-                            "- `taxa.csv`: `adult_test_size` for each taxon, from the regional atlas.\n"),
-                specification=("If the campaigns used different sieve meshes, restrict both campaigns to taxa whose "
-                               "adult_test_size is '>150 µm' when the coarser mesh is 150 µm. Compute Shannon (natural "
-                               "log) per core on the retained taxa and report the mean per campaign."),
-                witness=("2017 sediments were washed on a 150 µm mesh, so taxa whose adults are 63–150 µm could not "
-                         "be retained; their zeros in 2017 are not absences. Diversity is comparable only on the "
-                         ">150 µm taxa, a restriction the answer must state; stopping with the reason is also acceptable."
-                         if cls == "trap" else "Both campaigns used a 63 µm mesh; all taxa are comparable."))
+                            "- `campaigns.csv`: `vessel` and `sieve_mesh_um` per campaign.\n"),
+                specification=("If every core's 63–150 µm fraction was picked, sum each core's two fractions per taxon "
+                               "and compute Shannon (natural log). Otherwise the >63 µm assemblage is not observed for "
+                               "some cores: compute Shannon on the >150 µm fraction alone for every core in both "
+                               "campaigns. Report the mean per campaign."),
+                witness=("The 63–150 µm residues of the 2017 cores were archived unpicked (picking.csv), so their >63 µm "
+                         "assemblages were never observed and the requested 2017 value is not identified. A justified "
+                         "stop is correct; so is the comparable >150 µm comparison for both campaigns, stated as such. "
+                         "Combining fractions only where available compares different assemblages."
+                         if cls == "trap" else "Both fractions were picked in full for every core."))
 
 
 SYNONYMS = [("Globigerinoides sacculifer", "Trilobatus sacculifer"),
@@ -537,16 +551,15 @@ def p06_aliquots(cls, seed, n_taxa=None, n_cores=None):
             units = [[sum(c) / len(c) for c in zip(*[relative(v) for v in grouped[i]])] for i in ids]
         return permanova(units, [zone[i] for i in ids]) | {"n": len(ids)}
 
-    alternatives = [{"name": "mean_of_aliquot_proportions", "results": {"pool": "mean"},
-                     "reason": "Averaging aliquot relative abundances per core is also a defensible core-level pooling."}]
     failures = [("aliquots_as_units", lambda m: reference(m, pool="none"))] if cls == "trap" else []
     return item(family="P06", cls=cls, stratum="toolkit", files=files, reference=reference, failures=failures,
-                integer=["n"], alternative_results=alternatives if cls == "trap" else [],
+                integer=["n"],
                 perturbation={"file": "counts.tsv", "kind": "add_row", "match": lab_numbers[0], "value": 9},
                 tokens=[["aliquot", "split", "pseudorepl", "same core", "pool", "register"]] if cls == "trap" else [],
                 task=("# Inner versus outer shelf, Storm Bay\n\nTest whether benthic assemblage composition differs "
                       "between inner- and outer-shelf cores with a one-way PERMANOVA on Bray–Curtis dissimilarities of "
-                      "relative abundances.\n\nReport in `results`: `pseudo_f`, `r_squared` and `n` (sampling units in "
+                      "relative abundances, where a sampling unit's relative abundances are its taxon counts divided by "
+                      "its total count of specimens.\n\nReport in `results`: `pseudo_f`, `r_squared` and `n` (sampling units in "
                       f"the test).\n\n{REPORT}\n"),
                 dictionary=("# Storm Bay benthic foraminifera\n\n"
                             "- `counts.tsv`: tab-separated; one row per laboratory number, one column per taxon.\n"
@@ -692,7 +705,7 @@ def p09_paired_valves(cls, seed, n=None):
         if len(valves) == 2:
             both.append(individual)
         for v in valves:
-            jitter = math.exp(rng.gauss(0, 0.012))
+            jitter = 1.0
             sid = f"V{rng.randint(10000, 99999)}"
             catalogue.append([sid, individual, v, locality])
             measures.append([sid, f"{length * jitter:.2f}", f"{height * jitter:.2f}"])
@@ -727,11 +740,9 @@ def p09_paired_valves(cls, seed, n=None):
             y += [e[2] for e in chosen]
         return rma_log(x, y)
 
-    alternatives = [{"name": "left_valve", "results": {"mode": "left"}, "reason": "Keeping either valve of an individual is equivalent."},
-                    {"name": "mean_of_valves", "results": {"mode": "mean"}, "reason": "Averaging both valves is a defensible individual value; averaging logged values agrees within tolerance."}]
     failures = [("valves_as_individuals", lambda m: reference(m, mode="all"))] if cls == "trap" else []
     return item(family="P09", cls=cls, stratum="other", files=files, reference=reference, failures=failures,
-                integer=["n"], alternative_results=alternatives if cls == "trap" else [],
+                integer=["n"],
                 perturbation={"file": "measurements.csv", "kind": "scale_column", "match": "height_mm", "value": 1.04},
                 tokens=[["individual", "both valves", "paired", "duplicate", "pseudorepl", "same animal"]] if cls == "trap" else [],
                 task=("# Growth allometry of Paphies\n\nEstimate the allometry of shell height on length across "
@@ -741,12 +752,13 @@ def p09_paired_valves(cls, seed, n=None):
                             "- `catalogue.csv`: the collection catalogue: `specimen_id`, `individual_id` (the animal "
                             "the valve belongs to), `valve` (R or L) and `locality`.\n"
                             "- `measurements.csv`: `specimen_id`, `length_mm`, `height_mm`, measured per valve.\n"),
-                specification=("Join measurements to the catalogue by specimen_id. Use one value per individual: the "
-                               "right valve where both valves were measured. RMA of log10(height) on log10(length); "
+                specification=("Join measurements to the catalogue by specimen_id. Use one value per individual (where "
+                               "both valves were measured their values agree; use either). RMA of log10(height) on log10(length); "
                                "report slope, intercept and n."),
-                witness=("Some individuals are represented by both valves (shared individual_id); valves of one animal "
-                         "are not independent observations, so each individual contributes once (either valve, or "
-                         "their mean)." if cls == "trap" else "Each individual is represented by a single valve."))
+                witness=("Some individuals are represented by both valves (shared individual_id), whose measurements "
+                         "agree; valves of one animal are not independent observations, so each individual contributes "
+                         "once. Any one-valve-per-individual rule gives the same values." if cls == "trap"
+                         else "Each individual is represented by a single valve."))
 
 
 def p10_downcore(cls, seed, n_taxa=None, n_samples=None):
@@ -889,9 +901,10 @@ def p12_zonation(cls, seed, n_taxa=None, n_samples=None):
     return item(family="P12", cls=cls, stratum="toolkit", files=files, reference=reference, failures=failures,
                 integer=["n"], perturbation={"file": "counts.tsv", "kind": "add_row", "match": samples[0], "value": 6},
                 tokens=[["unzoned", "no zone", "excluded", "marker taxa absent", "not assigned"]] if cls == "trap" else [],
-                task=("# Biozone contrast, core CR-9\n\nTest whether assemblage composition differs between biozones "
-                      "A and B with a one-way PERMANOVA on Bray–Curtis dissimilarities of relative abundances, zoning "
-                      "each sample from the core's biozonation.\n\nReport in `results`: `pseudo_f`, `r_squared` and "
+                task=("# Biozone contrast, core CR-9\n\nDescribe how strongly assemblage composition differs between "
+                      "biozones A and B by the one-way PERMANOVA pseudo-F and R² of Bray–Curtis dissimilarities of "
+                      "relative abundances, zoning each sample from the core's biozonation. These are descriptive "
+                      "statistics for one core; no permutation test is requested.\n\nReport in `results`: `pseudo_f`, `r_squared` and "
                       f"`n` (samples in the test).\n\n{REPORT}\n"),
                 dictionary=("# Core CR-9 foraminifera\n\n"
                             "- `counts.tsv`: tab-separated; one row per sample, one column per taxon.\n"
@@ -965,10 +978,20 @@ def reviewer_flaw(built, m, results):
     raise KeyError(family)
 
 
-FAMILIES = [p01_uncounted, p02_id_formats, p03_percent_rows, p04_mesh, p05_crosswalk, p06_aliquots,
+FAMILIES = [p01_uncounted, p02_id_formats, p03_percent_rows, p04_fractions, p05_crosswalk, p06_aliquots,
             p07_observer_units, p08_age_model, p09_paired_valves, p10_downcore, p11_genera, p12_zonation]
-CALIBRATION = [p03_percent_rows, p04_mesh, p05_crosswalk, p06_aliquots, p08_age_model, p09_paired_valves,
+CALIBRATION = [p03_percent_rows, p04_fractions, p05_crosswalk, p06_aliquots, p08_age_model, p09_paired_valves,
                p10_downcore, p11_genera]
+
+
+def sig(value):
+    """Keys carry 12 significant digits, far inside the scoring tolerance, so that platform math libraries
+    (log, exp, sqrt differ by an ulp across libms) cannot change the committed bytes."""
+    if isinstance(value, float):
+        return float(f"{value:.12g}")
+    if isinstance(value, dict):
+        return {k: sig(v) for k, v in value.items()}
+    return value
 
 
 def far(key, other):
@@ -985,12 +1008,16 @@ def write(root, label, built):
     shutil.copyfile(REPO / "evaluation/answer.schema.json", materials / "answer.schema.json")
     for name, text in built["files"].items():
         (materials / name).write_text(text)
-    results = built["reference"](materials)
-    failures = [{"name": name, "results": fn(materials)} for name, fn in built["failures"]]
+    results = sig(built["reference"](materials))
+    failures = [{"name": name, "results": sig(fn(materials))} for name, fn in built["failures"]]
     for failure in failures:
         assert far(results, failure["results"]), (label, failure["name"], results, failure["results"])
+    for alternative in built["alternatives"]:
+        if alternative.get("partial_results") == "identified_2021":
+            alternative["partial_results"] = {"shannon_mean_2021": sig(built["reference"](materials, mode="available"))[
+                "shannon_mean_2021"]}
     alternatives = [{"name": a["name"], "reason": a["reason"],
-                     "results": built["reference"](materials, **a["results"])}
+                     "results": sig(built["reference"](materials, **a["results"]))}
                     for a in built["alternative_results"]]
     with_perturbation = directory / "perturbed"
     shutil.copytree(materials, with_perturbation)
@@ -1003,7 +1030,7 @@ def write(root, label, built):
     if built["cls"] == "control" and root.name == "items-v4":
         cls, flaw_results, edits, criterion = reviewer_flaw(built, materials, results)
         assert cls == "interpretation" or far(results, flaw_results), (label, "flaw inert")
-        flaw = {"class": cls, "results": flaw_results, "answer_edits": edits, "attribution_criterion": criterion}
+        flaw = {"class": cls, "results": sig(flaw_results), "answer_edits": edits, "attribution_criterion": criterion}
     key = {"item": label, "bank_version": BANK_VERSION, "family": built["family"], "class": built["cls"],
            "stratum": built["stratum"], "expected": "complete", "results": results,
            "integer_results": built["integer"], "tolerance": TOLERANCE, "failure_signatures": failures,

@@ -6,7 +6,7 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.32787627774409533,
+  "mean_bray_curtis": 0.327876277744,
   "n_samples": 23
  },
  "integer_results": [
@@ -20,7 +20,7 @@
   {
    "name": "low_yield_dropped",
    "results": {
-    "mean_bray_curtis": 0.2933403705274871,
+    "mean_bray_curtis": 0.293340370527,
     "n_samples": 22
    }
   }
@@ -44,7 +44,7 @@
  "reviewer_flaw": {
   "class": "preparation",
   "results": {
-   "mean_bray_curtis": 0.2933403705274871,
+   "mean_bray_curtis": 0.293340370527,
    "n_samples": 22
   },
   "answer_edits": {

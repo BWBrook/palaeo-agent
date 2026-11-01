@@ -6,8 +6,8 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "slope": 1.1096280843275212,
-  "intercept": -0.2370918039832124,
+  "slope": 1.07247026315,
+  "intercept": -0.192551689876,
   "n": 52
  },
  "integer_results": [
@@ -27,7 +27,7 @@
  "disclosure_tokens": [],
  "equivalent_exclusions": [],
  "sufficiency_witness": "Each individual is represented by a single valve.",
- "analysis_specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+ "analysis_specification": "Join measurements to the catalogue by specimen_id. Use one value per individual (where both valves were measured their values agree; use either). RMA of log10(height) on log10(length); report slope, intercept and n.",
  "replay_perturbation": {
   "file": "measurements.csv",
   "kind": "scale_column",
@@ -37,8 +37,8 @@
  "reviewer_flaw": {
   "class": "preparation",
   "results": {
-   "slope": 1.1066552538060128,
-   "intercept": -0.23319725045085415,
+   "slope": 1.07132990734,
+   "intercept": -0.191079193531,
    "n": 48
   },
   "answer_edits": {

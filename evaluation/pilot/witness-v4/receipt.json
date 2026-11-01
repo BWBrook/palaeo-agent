@@ -14,6 +14,13 @@
     "of": 32,
     "tolerance": "1e-9 relative/absolute",
     "note": "after fixes; P11 lab-log dates and P09 reason text changed afterwards without touching any analysed value"
+   },
+   {
+    "round": 3,
+    "agree": 32,
+    "of": 32,
+    "tolerance": "1e-9",
+    "note": "after the gate repairs (P04 fraction redesign, P09 equal valves, P06/P12 wording, 12-significant-digit keys); later lab-log remark edits leave all keys unchanged"
    }
   ]
  },
@@ -41,5 +48,28 @@
    ]
   }
  },
- "diagnostic_only": "A strong reviewer finding every deciding fact is not evidence of difficulty for the analyst model."
+ "diagnostic_only": "A strong reviewer finding every deciding fact is not evidence of difficulty for the analyst model.",
+ "identifiability_review": {
+  "model": "gpt-6.1-sol",
+  "dossiers": 11,
+  "blinded": true,
+  "mapping": "r3-mapping.json",
+  "determined": {
+   "P04-control": "yes",
+   "P09-trap": "yes",
+   "P09-control": "yes",
+   "P09-cal": "yes",
+   "P12-trap": "yes",
+   "P12-control": "yes",
+   "P04-trap": "no (2017 >63 \u00b5m unobserved; designed)",
+   "P04-cal": "no (designed)",
+   "P06-trap": "uncertain",
+   "P06-control": "uncertain",
+   "P06-cal": "uncertain"
+  },
+  "resolutions": [
+   "P04: the identified-partial answer (2021 value, 2017 unavailable) is now accepted alongside the justified stop and the disclosed >150 \u00b5m comparison",
+   "P06: the uncertainty came from a benign log remark ('two broken tests not identifiable') and a 'split 1/1' remark; both removed from the remark pool"
+  ]
+ }
 }

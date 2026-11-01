@@ -6,7 +6,7 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.33005918450144617,
+  "mean_bray_curtis": 0.330059184501,
   "n_samples": 22
  },
  "integer_results": [
@@ -20,14 +20,14 @@
   {
    "name": "low_yield_dropped",
    "results": {
-    "mean_bray_curtis": 0.2939260663925118,
+    "mean_bray_curtis": 0.293926066393,
     "n_samples": 21
    }
   },
   {
    "name": "zeros_as_sample",
    "results": {
-    "mean_bray_curtis": 0.38831490758827697,
+    "mean_bray_curtis": 0.388314907588,
     "n_samples": 23
    }
   }

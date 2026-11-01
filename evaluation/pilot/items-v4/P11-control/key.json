@@ -6,7 +6,7 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.29982092011311645,
+  "mean_bray_curtis": 0.299820920113,
   "n_genera": 16
  },
  "integer_results": [
@@ -36,7 +36,7 @@
  "reviewer_flaw": {
   "class": "preparation",
   "results": {
-   "mean_bray_curtis": 0.2961022180890511,
+   "mean_bray_curtis": 0.296102218089,
    "n_genera": 15
   },
   "answer_edits": {

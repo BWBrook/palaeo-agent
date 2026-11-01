@@ -7,7 +7,7 @@
  "expected": "complete",
  "results": {
   "richness": 24,
-  "mean_bray_curtis": 0.32385682180916114
+  "mean_bray_curtis": 0.323856821809
  },
  "integer_results": [
   "richness"
@@ -21,14 +21,14 @@
    "name": "variants_merged",
    "results": {
     "richness": 23,
-    "mean_bray_curtis": 0.3199038480907188
+    "mean_bray_curtis": 0.319903848091
    }
   },
   {
    "name": "synonyms_unmerged",
    "results": {
     "richness": 26,
-    "mean_bray_curtis": 0.35997596084917877
+    "mean_bray_curtis": 0.359975960849
    }
   }
  ],

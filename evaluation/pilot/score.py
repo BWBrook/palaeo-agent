@@ -1,7 +1,8 @@
 """Pilot scorer: the revised scorer plus the pilot-v3 key fields.
 
 - acceptable_alternatives: a stopped answer that names the listed issue is
-  correct_unresolved (P04-trap).
+  correct_unresolved (P04-trap); so is an unresolved answer that reports only
+  the alternative's identified `partial_results`.
 - disclosure_tokens: a numerically correct answer that does not disclose its
   restricted basis is `undisclosed`, which is not acceptable (P04-trap).
 - equivalent_exclusions: either member of a pair may be excluded, or neither if
@@ -32,13 +33,20 @@ def score(workspace, item_dir, termination="exited"):
     answer, _ = load_answer(Path(workspace))
     if answer is not None:
         text = corpus(answer)
-        if answer["status"] == "stopped":
+        if answer["status"] in ("stopped", "completed_with_assumptions") and output["outcome"] not in ACCEPTABLE:
             for alternative in key.get("acceptable_alternatives", []):
-                if alternative["status"] == "stopped" and not answer["results"] and named(alternative["issue_tokens"], text):
+                partial = alternative.get("partial_results", {})
+                reported = answer["results"] or {}
+                fits = (not reported and answer["status"] == "stopped") or (
+                    reported and set(reported) <= set(partial) and
+                    not compare({k: partial[k] for k in reported}, reported, key["tolerance"], set(key["integer_results"])))
+                if fits and named(alternative["issue_tokens"], text):
                     output.update(outcome="correct_unresolved", pitfall="handled", adjudication_required=True,
-                                  provisional=True)
-                    output["notes"].append("accepted alternative: stopped with the issue named (keyword match)")
-        elif output["outcome"] == "correct" and key.get("disclosure_tokens"):
+                                  provisional=True, mismatches=[])
+                    output["notes"].append("accepted alternative: unresolved with the issue named, reporting only "
+                                           "identified quantities (keyword match)")
+                    break
+        if output["outcome"] == "correct" and key.get("disclosure_tokens"):
             output.update(adjudication_required=True, provisional=True)
             if not named(key["disclosure_tokens"], corpus(answer, ("assumptions", "issues", "summary"))):
                 output["outcome"] = "undisclosed"

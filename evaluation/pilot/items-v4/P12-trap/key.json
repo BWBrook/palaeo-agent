@@ -6,8 +6,8 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "pseudo_f": 18.413762679114836,
-  "r_squared": 0.4921654856541278,
+  "pseudo_f": 18.4137626791,
+  "r_squared": 0.492165485654,
   "n": 21
  },
  "integer_results": [
@@ -21,8 +21,8 @@
   {
    "name": "unzoned_as_group",
    "results": {
-    "pseudo_f": 10.47636110200174,
-    "r_squared": 0.5244379118152781,
+    "pseudo_f": 10.476361102,
+    "r_squared": 0.524437911815,
     "n": 22
    }
   }

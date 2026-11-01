@@ -6,8 +6,8 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "shannon_mean_2017": 2.6594344579688505,
-  "shannon_mean_2021": 2.602743475217111
+  "shannon_mean_2017": 2.77903083616,
+  "shannon_mean_2021": 2.76682939804
  },
  "integer_results": [],
  "tolerance": {
@@ -16,20 +16,21 @@
  },
  "failure_signatures": [
   {
-   "name": "all_taxa_both_campaigns",
+   "name": "fractions_combined_where_available",
    "results": {
-    "shannon_mean_2017": 2.6594344579688505,
-    "shannon_mean_2021": 2.983864801266112
+    "shannon_mean_2017": 2.77903083616,
+    "shannon_mean_2021": 3.04366040584
    }
   }
  ],
  "issue_tokens": [
   [
-   "150",
-   "mesh",
-   "sieve",
-   "size fraction",
-   "63"
+   "not picked",
+   "unpicked",
+   "archived",
+   "63-150",
+   "63\u2013150",
+   "fraction"
   ]
  ],
  "issue_token_kind": "keyword",
@@ -40,12 +41,17 @@
    "status": "stopped",
    "issue_tokens": [
     [
-     "mesh",
-     "sieve",
-     "150",
-     "size fraction"
+     "not picked",
+     "unpicked",
+     "archived",
+     "63-150",
+     "63\u2013150",
+     "small fraction"
     ]
-   ]
+   ],
+   "partial_results": {
+    "shannon_mean_2021": 3.04366040584
+   }
   }
  ],
  "alternative_results": [],
@@ -53,18 +59,17 @@
   [
    ">150",
    "150 \u00b5m",
-   "coarse",
-   "large",
-   "comparable"
+   "larger fraction",
+   "coarse fraction"
   ]
  ],
  "equivalent_exclusions": [],
- "sufficiency_witness": "2017 sediments were washed on a 150 \u00b5m mesh, so taxa whose adults are 63\u2013150 \u00b5m could not be retained; their zeros in 2017 are not absences. Diversity is comparable only on the >150 \u00b5m taxa, a restriction the answer must state; stopping with the reason is also acceptable.",
- "analysis_specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+ "sufficiency_witness": "The 63\u2013150 \u00b5m residues of the 2017 cores were archived unpicked (picking.csv), so their >63 \u00b5m assemblages were never observed and the requested 2017 value is not identified. A justified stop is correct; so is the comparable >150 \u00b5m comparison for both campaigns, stated as such. Combining fractions only where available compares different assemblages.",
+ "analysis_specification": "If every core's 63\u2013150 \u00b5m fraction was picked, sum each core's two fractions per taxon and compute Shannon (natural log). Otherwise the >63 \u00b5m assemblage is not observed for some cores: compute Shannon on the >150 \u00b5m fraction alone for every core in both campaigns. Report the mean per campaign.",
  "replay_perturbation": {
-  "file": "counts.tsv",
+  "file": "counts_gt150.tsv",
   "kind": "add_row",
-  "match": "Tenuitella iota",
+  "match": "Globorotalia truncatulinoides",
   "value": 6
  },
  "reviewer_flaw": null

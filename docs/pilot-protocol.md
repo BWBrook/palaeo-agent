@@ -25,10 +25,13 @@ otherwise, these rules govern. They are fixed before recalibration.
   - Each control key carries its reviewer flaw (`reviewer_flaw`): class,
     frozen reference results, answer edits and specific attribution
     criterion. These replace `flaws.json` for v4.
-- **Scoring.** As before, plus `alternative_results`: another defensible
-  handling scores correct, and is not provisional. Pilot-v4 uses this for P06
-  (mean of aliquot proportions per core) and P09 (left valve, or the mean of
-  both valves).
+- **Scoring.** As before, plus:
+  - `alternative_results`: another defensible handling scores correct and is
+    not provisional. After the gate repairs no v4 item needs it: P06's
+    estimand is defined in its task, and P09's paired valves agree.
+  - `partial_results` in an acceptable alternative: an unresolved answer that
+    names the issue and reports only identified quantities is
+    `correct_unresolved` (P04 trap and calibration).
 - **Package contract.** One self-contained `analysis.py` per package, in both
   arms, regenerates `answer.json` from the supplied materials. Only
   `analysis.py` and `specs/` are kept. The toolkit arm calls the library's own

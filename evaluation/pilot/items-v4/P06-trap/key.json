@@ -6,8 +6,8 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "pseudo_f": 16.077416143583005,
-  "r_squared": 0.5726102452364529,
+  "pseudo_f": 16.0774161436,
+  "r_squared": 0.572610245236,
   "n": 14
  },
  "integer_results": [
@@ -21,8 +21,8 @@
   {
    "name": "aliquots_as_units",
    "results": {
-    "pseudo_f": 15.810740245849088,
-    "r_squared": 0.35283372153874804,
+    "pseudo_f": 15.8107402458,
+    "r_squared": 0.352833721539,
     "n": 31
    }
   }
@@ -41,17 +41,7 @@
  "exclusions_expected": [],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
- "alternative_results": [
-  {
-   "name": "mean_of_aliquot_proportions",
-   "reason": "Averaging aliquot relative abundances per core is also a defensible core-level pooling.",
-   "results": {
-    "pseudo_f": 11.823715400445039,
-    "r_squared": 0.4963002286462911,
-    "n": 14
-   }
-  }
- ],
+ "alternative_results": [],
  "disclosure_tokens": [],
  "equivalent_exclusions": [],
  "sufficiency_witness": "Several cores were split and processed under two or three laboratory numbers; the splits are subsamples of one core at one site, so the core is the sampling unit and its splits are pooled. Treating splits as units inflates n.",

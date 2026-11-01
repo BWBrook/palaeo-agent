@@ -7,7 +7,7 @@
  "expected": "complete",
  "results": {
   "richness": 27,
-  "mean_bray_curtis": 0.3139517156972499
+  "mean_bray_curtis": 0.313951715697
  },
  "integer_results": [
   "richness"
@@ -21,7 +21,7 @@
    "name": "variants_merged",
    "results": {
     "richness": 26,
-    "mean_bray_curtis": 0.3104287068111107
+    "mean_bray_curtis": 0.310428706811
    }
   }
  ],
@@ -45,7 +45,7 @@
   "class": "preparation",
   "results": {
    "richness": 26,
-   "mean_bray_curtis": 0.3104287068111107
+   "mean_bray_curtis": 0.310428706811
   },
   "answer_edits": {
    "assumptions": [

@@ -6,8 +6,8 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "pseudo_f": 16.077416143583005,
-  "r_squared": 0.5726102452364529,
+  "pseudo_f": 16.0774161436,
+  "r_squared": 0.572610245236,
   "n": 14
  },
  "integer_results": [
@@ -37,8 +37,8 @@
  "reviewer_flaw": {
   "class": "design",
   "results": {
-   "pseudo_f": 13.405541838977042,
-   "r_squared": 0.5276621110442263,
+   "pseudo_f": 13.405541839,
+   "r_squared": 0.527662111044,
    "n": 14
   },
   "answer_edits": {},

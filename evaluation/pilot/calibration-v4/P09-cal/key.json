@@ -6,8 +6,8 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "slope": 1.0326099154237833,
-  "intercept": -0.13608925913396996,
+  "slope": 1.04549131629,
+  "intercept": -0.153718541944,
   "n": 49
  },
  "integer_results": [
@@ -21,9 +21,9 @@
   {
    "name": "valves_as_individuals",
    "results": {
-    "slope": 1.0330795276234555,
-    "intercept": -0.13584868222034374,
-    "n": 64
+    "slope": 1.0607074299,
+    "intercept": -0.172520886903,
+    "n": 60
    }
   }
  ],
@@ -41,30 +41,11 @@
  "exclusions_expected": [],
  "out_of_scope_ids": [],
  "acceptable_alternatives": [],
- "alternative_results": [
-  {
-   "name": "left_valve",
-   "reason": "Keeping either valve of an individual is equivalent.",
-   "results": {
-    "slope": 1.033159605268915,
-    "intercept": -0.13674451577703528,
-    "n": 49
-   }
-  },
-  {
-   "name": "mean_of_valves",
-   "reason": "Averaging both valves is a defensible individual value; averaging logged values agrees within tolerance.",
-   "results": {
-    "slope": 1.032883818073126,
-    "intercept": -0.13641591662573838,
-    "n": 49
-   }
-  }
- ],
+ "alternative_results": [],
  "disclosure_tokens": [],
  "equivalent_exclusions": [],
- "sufficiency_witness": "Some individuals are represented by both valves (shared individual_id); valves of one animal are not independent observations, so each individual contributes once (either valve, or their mean).",
- "analysis_specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+ "sufficiency_witness": "Some individuals are represented by both valves (shared individual_id), whose measurements agree; valves of one animal are not independent observations, so each individual contributes once. Any one-valve-per-individual rule gives the same values.",
+ "analysis_specification": "Join measurements to the catalogue by specimen_id. Use one value per individual (where both valves were measured their values agree; use either). RMA of log10(height) on log10(length); report slope, intercept and n.",
  "replay_perturbation": {
   "file": "measurements.csv",
   "kind": "scale_column",

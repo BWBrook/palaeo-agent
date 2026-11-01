@@ -1,13 +1,13 @@
 sample_id,processed,analyst,remark
 PB20,2025-11-03,AK,counted in full
 PB10,2025-07-21,RT,picked by second analyst; cross-checked
-PB13,2025-03-24,JM,split 1/1; counted in full
+PB13,2025-03-24,JM,counted in full
 PB08,2025-07-19,JM,counted in full
-PB11,2025-12-14,AK,counted in full; two broken tests not identifiable
+PB11,2025-12-14,AK,counted in full; slide stored in cabinet 3
 PB19,2025-10-18,JM,counted in full
 PB01,2025-03-22,RT,photographed before picking
 PB21,2025-08-17,RT,counted in full
-PB04,2025-09-17,AK,split 1/1; counted in full
+PB04,2025-09-17,AK,counted in full
 PB02,2025-02-16,RT,counted in full
 PB15,2025-08-17,RT,counted in full
 PB22,2025-03-04,JM,residue archived (store A)

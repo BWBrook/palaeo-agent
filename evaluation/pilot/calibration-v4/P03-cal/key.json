@@ -6,7 +6,7 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.31285204992933446
+  "mean_bray_curtis": 0.312852049929
  },
  "integer_results": [],
  "tolerance": {
@@ -17,13 +17,13 @@
   {
    "name": "percent_as_counts",
    "results": {
-    "mean_bray_curtis": 0.4056015235466214
+    "mean_bray_curtis": 0.405601523547
    }
   },
   {
    "name": "percent_rows_dropped",
    "results": {
-    "mean_bray_curtis": 0.33268331383345795
+    "mean_bray_curtis": 0.332683313833
    }
   }
  ],

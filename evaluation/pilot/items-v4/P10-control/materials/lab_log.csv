@@ -1,11 +1,11 @@
 sample_id,processed,analyst,remark
 S12,2025-05-23,JM,counted in full
-S02,2025-01-01,RT,split 1/1; counted in full
+S02,2025-01-01,RT,counted in full
 S01,2025-05-10,RT,sieved twice (clay); counted in full
 S05,2025-06-06,JM,sieved twice (clay); counted in full
 S15,2025-02-13,RT,photographed before picking
 S07,2025-02-18,AK,counted in full
-S13,2025-09-08,AK,split 1/1; counted in full
+S13,2025-09-08,AK,counted in full
 S03,2025-02-26,AK,counted in full
 S17,2025-12-20,RT,photographed before picking
 S10,2025-02-06,RT,photographed before picking
@@ -14,5 +14,5 @@ S16,2025-09-28,JM,counted in full
 S04,2025-06-20,RT,picked by second analyst; cross-checked
 S09,2025-05-16,AK,photographed before picking
 S06,2025-08-19,RT,photographed before picking
-S08,2025-09-02,JM,split 1/1; counted in full
+S08,2025-09-02,JM,counted in full
 S11,2025-06-14,AK,photographed before picking

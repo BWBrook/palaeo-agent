@@ -68,3 +68,20 @@ def test_perturbation_applies_to_a_material_file(path, tmp_path):
     target.write_text(source.read_text())
     perturb(target, key["replay_perturbation"])
     assert target.read_text() != source.read_text()
+
+
+@pytest.mark.parametrize("item", ["items-v4/P04-trap", "calibration-v4/P04-cal"])
+def test_p04_accepts_justified_stop_and_identified_partial(item, tmp_path):
+    key = json.loads((PILOT / item / "key.json").read_text())
+    partial = key["acceptable_alternatives"][0]["partial_results"]
+    reason = "The 2017 63-150 µm residues were archived, not picked, so the 2017 >63 µm assemblage is unobserved."
+    for status, results in (("stopped", {}), ("completed_with_assumptions", partial)):
+        (tmp_path / "answer.json").write_text(json.dumps(dict(answer(results), status=status, issues=[reason],
+                                                             assumptions=[reason] if results else [])))
+        assert score(tmp_path, PILOT / item)["outcome"] == "correct_unresolved"
+    disclosed = dict(answer(key["results"]), status="completed_with_assumptions",
+                     assumptions=["Both campaigns compared on the >150 µm fraction only."])
+    (tmp_path / "answer.json").write_text(json.dumps(disclosed))
+    assert score(tmp_path, PILOT / item)["outcome"] == "correct"
+    (tmp_path / "answer.json").write_text(json.dumps(answer(key["failure_signatures"][0]["results"])))
+    assert score(tmp_path, PILOT / item)["outcome"] == "wrong"

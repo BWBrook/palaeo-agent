@@ -6,7 +6,7 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.3185829537850918
+  "mean_bray_curtis": 0.318582953785
  },
  "integer_results": [],
  "tolerance": {
@@ -33,7 +33,7 @@
  "reviewer_flaw": {
   "class": "design",
   "results": {
-   "mean_bray_curtis": 0.25425052207038173
+   "mean_bray_curtis": 0.25425052207
   },
   "answer_edits": {},
   "attribution_criterion": "names the use of relative abundances where raw counts were requested"

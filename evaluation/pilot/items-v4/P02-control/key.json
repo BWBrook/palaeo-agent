@@ -6,8 +6,8 @@
  "stratum": "toolkit",
  "expected": "complete",
  "results": {
-  "pseudo_f": 8.110347966120594,
-  "r_squared": 0.2885182344912777,
+  "pseudo_f": 8.11034796612,
+  "r_squared": 0.288518234491,
   "n": 22
  },
  "integer_results": [
@@ -21,8 +21,8 @@
   {
    "name": "join_by_position",
    "results": {
-    "pseudo_f": 1.2003407807309616,
-    "r_squared": 0.05661893802301301,
+    "pseudo_f": 1.20034078073,
+    "r_squared": 0.056618938023,
     "n": 22
    }
   }
@@ -46,8 +46,8 @@
  "reviewer_flaw": {
   "class": "preparation",
   "results": {
-   "pseudo_f": 1.2003407807309616,
-   "r_squared": 0.05661893802301301,
+   "pseudo_f": 1.20034078073,
+   "r_squared": 0.056618938023,
    "n": 22
   },
   "answer_edits": {

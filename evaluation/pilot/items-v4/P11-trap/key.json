@@ -6,7 +6,7 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.29982092011311645,
+  "mean_bray_curtis": 0.299820920113,
   "n_genera": 16
  },
  "integer_results": [
@@ -20,7 +20,7 @@
   {
    "name": "recorded_genus",
    "results": {
-    "mean_bray_curtis": 0.29242318970429637,
+    "mean_bray_curtis": 0.292423189704,
     "n_genera": 14
    }
   }

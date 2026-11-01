@@ -1,0 +1,139 @@
+{
+  "items": [
+    {
+      "dossier": "E254",
+      "determined": "yes",
+      "handling": "Match taxa and core IDs, add the two fractions' counts, calculate each core's H = -sum(p ln p), and take the unweighted campaign mean. Results: 2017 = 3.032661551; 2021 = 3.030860357.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "Combine counts before calculating diversity; both fractions were picked in full.",
+        "Zero-count taxa contribute zero."
+      ],
+      "notes": "All 11 dossiers reference an answer.schema.json that is absent from their directories. This prevents checking that output contract, but does not itself affect numerical identifiability."
+    },
+    {
+      "dossier": "E504",
+      "determined": "no",
+      "handling": "The 2017 >63 µm mean cannot be computed: all ten cores lack fine-fraction counts. Report it as unavailable. The complete 2021 assemblages give shannon_mean_2021 = 3.043660406 across nine cores.",
+      "defensible_alternatives": [
+        "Report a clearly labelled >150 µm comparison instead: campaign means are 2.779030836 for 2017 and 2.766829398 for 2021. These describe a different size fraction."
+      ],
+      "act_on": [
+        "The 2017 fine residues were archived, not picked; missing columns must not become zeros.",
+        "Do not compare 2017 coarse-fraction diversity directly against 2021 combined-fraction diversity as the requested contrast."
+      ],
+      "notes": "Recovering the requested 2017 quantity requires counting the archived residues. Numerical imputation would require additional, unestablished assumptions."
+    },
+    {
+      "dossier": "E149",
+      "determined": "uncertain",
+      "handling": "Join laboratory numbers to cores and zones. With totals defined as sums of tabulated taxon counts, normalize each row and calculate ordinary one-way PERMANOVA from squared Bray–Curtis distances: pseudo_f = 16.077416144, r_squared = 0.572610245, n = 14. The treatment of unidentifiable tests needs an explicit convention.",
+      "defensible_alternatives": [
+        "Include L4192's two unidentifiable broken tests in its specimen denominator while retaining only identified taxon columns: pseudo_f = 16.075529348, r_squared = 0.572581523, n = 14.",
+        "Represent those two tests as an explicit unidentified category and normalize the augmented counts: pseudo_f = 16.054123290, r_squared = 0.572255391, n = 14."
+      ],
+      "act_on": [
+        "Join by identifiers rather than row order; all 14 laboratory samples map to distinct cores.",
+        "State whether the two unidentifiable tests enter the specimen total or an unidentified category."
+      ],
+      "notes": "The numerical ambiguity is narrow: 'total count of specimens' does not explicitly resolve the broken tests. Under the usual identified-count row-sum convention, the requested statistics are determined. No permutation p-value is requested; reporting F and R² alone does not establish significance."
+    },
+    {
+      "dossier": "E940",
+      "determined": "yes",
+      "handling": "Join measurements to the catalogue and retain one observation per individual. Calculate x = log10(length), y = log10(height), slope = sign(cov(x,y)) SD(y)/SD(x), and intercept = mean(y) - slope mean(x). Results: slope = 1.104057049, intercept = -0.230126239, n = 52.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "The 74 valves represent 52 individuals; 22 individuals have paired valves.",
+        "Paired valves have identical recorded dimensions, so selecting either valve or averaging within an individual gives identical results."
+      ],
+      "notes": "Treating every valve as an independent observation would overweight paired individuals and contradict the requested individual-level regression."
+    },
+    {
+      "dossier": "E174",
+      "determined": "uncertain",
+      "handling": "Pool laboratory-split counts within each core before normalization, then compare the seven inner and seven outer cores. Using tabulated count totals gives pseudo_f = 19.462827887, r_squared = 0.618597539, n = 14. Explicitly resolve the unidentifiable-test denominator convention.",
+      "defensible_alternatives": [
+        "Include L4262's two unidentifiable tests in MC14's denominator while retaining identified columns: pseudo_f = 19.470315687, r_squared = 0.618688286, n = 14.",
+        "Include an unidentified category for those tests: pseudo_f = 19.436098399, r_squared = 0.618273240, n = 14."
+      ],
+      "act_on": [
+        "The 28 laboratory rows represent 14 cores; residue splits are not independent sampling units.",
+        "Sum counts before division by the core total; averaging normalized splits uses different weighting.",
+        "Declare the treatment of L4262's two unidentifiable tests."
+      ],
+      "notes": "Under identified-count row sums, aggregation and statistics are determined. L4148 is split c in the register but has a 'split 1/1' log remark; this could describe processing of that aliquot and supplies no justified correction factor. No permutation p-value is requested."
+    },
+    {
+      "dossier": "E474",
+      "determined": "yes",
+      "handling": "Join samples to depths, apply top-inclusive/base-exclusive zone intervals, retain A and B, normalize counts, and calculate descriptive PERMANOVA. Results: pseudo_f = 18.413762679, r_squared = 0.492165486, n = 21.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "Exclude Z08 at 156 cm: it falls in the explicitly unzoned 140–185 cm interval.",
+        "The comparison contains seven A samples and fourteen B samples."
+      ],
+      "notes": "Assigning Z08 to a neighbouring zone or testing unzoned samples as a third group would contradict the specified A-versus-B comparison. Serial dependence does not prevent computing the explicitly descriptive statistics."
+    },
+    {
+      "dossier": "E648",
+      "determined": "yes",
+      "handling": "Join catalogue and measurements by specimen_id. Each valve represents a distinct individual. Fit the specified log10 reduced-major-axis regression: slope = 1.072470263, intercept = -0.192551690, n = 52.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "Join by specimen_id because catalogue and measurement rows have different orders."
+      ],
+      "notes": "All 52 individuals have one measured valve. The task specifies a pooled regression across individuals; locality-specific fits would answer another question."
+    },
+    {
+      "dossier": "E696",
+      "determined": "yes",
+      "handling": "Join samples to depths and assign A for 0 <= depth < 160 cm and B for 160 <= depth < 360 cm. Normalize counts and calculate descriptive PERMANOVA: pseudo_f = 18.754653888, r_squared = 0.483932948, n = 22.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "Use depth-based assignments rather than sample order: eight samples belong to A and fourteen to B.",
+        "Retain Z08 at 156 cm in A."
+      ],
+      "notes": "Every sample has an unambiguous zone assignment. No permutation test is requested."
+    },
+    {
+      "dossier": "E766",
+      "determined": "uncertain",
+      "handling": "Pool all registered residue-split counts within each core, normalize the 14 core totals, and perform the one-way comparison. Using identified-count row sums gives pseudo_f = 16.077416144, r_squared = 0.572610245, n = 14. State how unidentifiable tests affect the denominator.",
+      "defensible_alternatives": [
+        "Include two unidentifiable tests from each of L4196, L4205, L4226 and L4256 in their respective core denominators, retaining identified columns: pseudo_f = 16.068459296, r_squared = 0.572473862, n = 14.",
+        "Include those eight tests in an unidentified category before normalization: pseudo_f = 15.972369144, r_squared = 0.571005232, n = 14."
+      ],
+      "act_on": [
+        "The 31 laboratory rows represent 14 cores; splits must be combined rather than treated as independent cores.",
+        "Pool counts before normalization; equal weighting of normalized split compositions changes the specified count-based weighting.",
+        "Resolve and document the four broken-test remarks."
+      ],
+      "notes": "The conventional count-matrix result is determined; the uncertainty concerns what constitutes the specimen denominator. L4202 and L4228 have lettered splits in the register but 'split 1/1' log remarks; these do not establish numerical expansion factors. No permutation p-value is requested."
+    },
+    {
+      "dossier": "E196",
+      "determined": "yes",
+      "handling": "Join by specimen_id, reduce to one measurement pair per individual, and fit log10 reduced-major-axis regression. Results: slope = 1.045491316, intercept = -0.153718542, n = 49.",
+      "defensible_alternatives": [],
+      "act_on": [
+        "The 60 valves represent 49 individuals, including eleven paired individuals.",
+        "Both valves of every paired individual have identical recorded dimensions; either selection or within-individual averaging gives the same regression."
+      ],
+      "notes": "An analysis of all 60 valves would apply unequal individual weights and would not satisfy the requested sampling unit."
+    },
+    {
+      "dossier": "E431",
+      "determined": "no",
+      "handling": "The twelve 2017 cores have no fine-fraction counts, so their >63 µm mean is unavailable. Combining both fully picked fractions for the twelve 2021 cores gives shannon_mean_2021 = 3.030860357.",
+      "defensible_alternatives": [
+        "Report a clearly labelled common >150 µm comparison instead: campaign means are 2.898926742 for 2017 and 2.857825517 for 2021. This changes the target assemblage."
+      ],
+      "act_on": [
+        "All 2017 fine fractions are explicitly archived and unpicked; missing counts are not observed absences.",
+        "Do not silently substitute coarse-fraction diversity for the requested combined-fraction diversity."
+      ],
+      "notes": "The complete 2021 fractions cannot determine the unobserved 2017 fractions without additional assumptions. Counting the archived material would resolve the missing quantity."
+    }
+  ]
+}

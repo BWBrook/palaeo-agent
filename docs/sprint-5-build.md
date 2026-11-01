@@ -57,12 +57,12 @@ metadata, a processing log and the records a real project keeps.
 | P01 | Exclude, then raw Bray–Curtis | `lab_log.csv` remark and an all-zero column | zeros kept as an assemblage; low-yield sample dropped |
 | P02 | ID join, then PERMANOVA | Leg-2 station IDs written `PB-07` | exact join silently loses leg 2; join by row position |
 | P03 | Convert rows, then raw Bray–Curtis | `samples.csv` `value_type` and `n_counted` | percentages read as counts; percentage rows dropped |
-| P04 | Size-class restriction, then Shannon by campaign | `campaigns.csv` mesh and `taxa.csv` sizes | all taxa compared across meshes (a stop is also acceptable; restriction must be disclosed) |
+| P04 | Combine fractions, then Shannon by campaign | `picking.csv`: 2017 63–150 µm residues archived, not picked | fractions combined only where available (accepted: stop, identified 2021 partial, or a disclosed >150 µm comparison) |
 | P05 | Crosswalk merge, then richness and Bray–Curtis | `taxonomy.csv` accepted names | synonyms left separate; sinistral and dextral pachyderma merged (distinct accepted species) |
-| P06 | Register join, pooling to cores, PERMANOVA | `register.csv` splits per core | splits as units (mean-of-proportions pooling accepted as an alternative) |
+| P06 | Register join, pooling to cores, PERMANOVA | `register.csv` splits per core | splits as units |
 | P07 | Unit conversion, then log RMA | `observers.csv` `unit_recorded` | centimetres read as millimetres |
 | P08 | Age model, Holocene subset, Bray–Curtis | `dates.csv` status `rejected` | rejected date used in the age model |
-| P09 | Catalogue join, one value per individual, log RMA | `catalogue.csv` `individual_id` | valves as individuals (left valve or mean of valves accepted) |
+| P09 | Catalogue join, one value per individual, log RMA | `catalogue.csv` `individual_id` (paired valves measure equal) | valves as individuals |
 | P10 | Depth order, then Shannon change | `samples.csv` `depth_cm` | sample IDs taken as stratigraphic order; sign reversed |
 | P11 | Current taxonomy, genus aggregation, Bray–Curtis | `taxonomy.csv` `current_name` | genus taken from the recorded name |
 | P12 | Interval zoning, exclusion, PERMANOVA | `zonation.csv` unzoned interval | unzoned samples as a third group |
@@ -137,6 +137,54 @@ Measured by the client-visible payloads of the old and new runtimes' toolkit:
   600 s per trial and the approved token ceiling.
 - **Routing.** As in the protocol amendments: A, B or halt, with no retry.
 - **Supervisor qualification** is rerun on the frozen tree first.
+
+## Gate repairs (after Codex's review, `d2bbefe`)
+
+Codex withheld the gate on P04 and P09 and on Linux bank regeneration. It also
+asked for clearer estimands in P06 and P12, and repaired replay and parsing
+itself. Repairs:
+
+- **P04, redesigned.** The size fractions are now counted separately:
+  - `counts_gt150.tsv` and `counts_63_150.tsv`, plus a per-core `picking.csv`;
+  - the task names the target, the >63 µm assemblage.
+  - In the trap, the 2017 63–150 µm residues were "archived, not picked", so
+    the 2017 target is not identified. Accepted answers:
+    - a justified stop;
+    - the identified partial: the 2021 value, with 2017 declared unavailable;
+    - a disclosed >150 µm comparison for both campaigns.
+  - In the control, both fractions were picked for every core, and the target
+    is the combined assemblage.
+  - No inference from adult size remains, and the v3 identifiability point
+    survives.
+- **P09.** Paired valves now carry equal measurements, so every
+  one-valve-per-individual rule gives the same values. The enumerated
+  alternatives are removed.
+- **P06.** The task defines a unit's relative abundances as its taxon counts
+  divided by its total count, which is the pooled counted assemblage. The
+  mean-of-proportions alternative is removed. Two benign log remarks made the
+  specimen denominator or the splits ambiguous ("two broken tests not
+  identifiable", "split 1/1"); both are gone from the remark pool.
+- **P12.** The task is explicitly descriptive (pseudo-F and R² for one core,
+  with no permutation test).
+- **Cross-platform keys.** Key values are stored to 12 significant digits,
+  which is far inside the 1e-4 tolerance. Platform maths libraries differ by
+  an ulp in log, exp and sqrt, which changed the committed P09 key bytes on
+  Linux. The rebuild check is kept as strict as before.
+- **Scorer.** An unresolved answer that names the issue and reports only the
+  alternative's identified `partial_results` is `correct_unresolved` and
+  provisional.
+- **Fresh witnesses.**
+  - The implementation witness agrees with all 32 rebuilt keys (round 3).
+  - A blinded materials-only identifiability review of the 11 changed
+    dossiers found:
+    - P09 and P12 uniquely determined;
+    - P04-control determined, while the P04 trap and calibration item are
+      undetermined as designed, with the alternatives above;
+    - P06 "uncertain" only through the two remarks now removed.
+- **Codex's code repairs are kept, and the suite passes:** 475 native tests
+  pass. These repairs cover bounded no-follow replay reads, strict structured
+  comparison, provenance review of mechanical replay passes, and delimited
+  parsing.
 
 ## What Codex's gate is asked to judge
 

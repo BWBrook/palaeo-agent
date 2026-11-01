@@ -6,7 +6,7 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "mean_bray_curtis": 0.24988904121629033,
+  "mean_bray_curtis": 0.249889041216,
   "n_holocene": 18
  },
  "integer_results": [
@@ -20,7 +20,7 @@
   {
    "name": "rejected_date_used",
    "results": {
-    "mean_bray_curtis": 0.24552735375576706,
+    "mean_bray_curtis": 0.245527353756,
     "n_holocene": 13
    }
   }

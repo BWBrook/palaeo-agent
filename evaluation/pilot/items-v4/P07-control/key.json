@@ -6,10 +6,10 @@
  "stratum": "other",
  "expected": "complete",
  "results": {
-  "slope": 0.9503018691655961,
-  "intercept": -0.23181756475730309,
+  "slope": 0.950301869166,
+  "intercept": -0.231817564757,
   "n": 95,
-  "mean_length_mm": 25.948315789473686
+  "mean_length_mm": 25.9483157895
  },
  "integer_results": [
   "n"
@@ -38,10 +38,10 @@
  "reviewer_flaw": {
   "class": "preparation",
   "results": {
-   "slope": 0.9913769872299123,
-   "intercept": -0.2859004486755019,
+   "slope": 0.99137698723,
+   "intercept": -0.285900448676,
    "n": 95,
-   "mean_length_mm": 100.72410526315791
+   "mean_length_mm": 100.724105263
   },
   "answer_edits": {
    "assumptions": [

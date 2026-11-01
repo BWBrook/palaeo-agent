@@ -56,7 +56,7 @@
  {
   "item": "items-v4/P04-control",
   "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P04-control/materials",
-  "specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+  "specification": "If every core's 63\u2013150 \u00b5m fraction was picked, sum each core's two fractions per taxon and compute Shannon (natural log). Otherwise the >63 \u00b5m assemblage is not observed for some cores: compute Shannon on the >150 \u00b5m fraction alone for every core in both campaigns. Report the mean per campaign.",
   "report_fields": [
    "shannon_mean_2017",
    "shannon_mean_2021"
@@ -65,7 +65,7 @@
  {
   "item": "items-v4/P04-trap",
   "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P04-trap/materials",
-  "specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+  "specification": "If every core's 63\u2013150 \u00b5m fraction was picked, sum each core's two fractions per taxon and compute Shannon (natural log). Otherwise the >63 \u00b5m assemblage is not observed for some cores: compute Shannon on the >150 \u00b5m fraction alone for every core in both campaigns. Report the mean per campaign.",
   "report_fields": [
    "shannon_mean_2017",
    "shannon_mean_2021"
