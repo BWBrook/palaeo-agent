@@ -1,0 +1,33 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "slope": 0.7662579850472728,
+  "intercept": -0.8346781441373174,
+  "n": 30
+ },
+ "assumptions": [
+  "Individuals are the unit; each is represented by its right valve only, as the catalogue convention states."
+ ],
+ "exclusions": [
+  {
+   "id": "V16L",
+   "reason": "left valve duplicate of an individual already represented by its right valve (pseudoreplication)"
+  },
+  {
+   "id": "V12L",
+   "reason": "left valve duplicate of an individual already represented by its right valve (pseudoreplication)"
+  },
+  {
+   "id": "V20L",
+   "reason": "left valve duplicate of an individual already represented by its right valve (pseudoreplication)"
+  },
+  {
+   "id": "V01L",
+   "reason": "left valve duplicate of an individual already represented by its right valve (pseudoreplication)"
+  }
+ ],
+ "issues": [
+  "Four left valves duplicate measurements of individuals already catalogued by right valve; including them would inflate n to 34."
+ ],
+ "summary": "Filtered to right valves (n=30), converted to PAST format (right.tsv), ran toolkit RMA of height on length, untransformed. Bundle in runs/1a42d81abb174497808effd68fde8923."
+}

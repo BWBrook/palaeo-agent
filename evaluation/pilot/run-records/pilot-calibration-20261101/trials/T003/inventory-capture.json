@@ -1,0 +1,18 @@
+{
+ "requests": [
+  {
+   "path": "/v1/messages?beta=true",
+   "dummy_api_key": true,
+   "authorization_header": false,
+   "tools": [
+    "mcp__worker__worker_execute",
+    "mcp__worker__worker_read",
+    "DeferredToolPlaceholder",
+    "mcp__worker__worker_write"
+   ],
+   "system_chars": 3763,
+   "tool_results": []
+  }
+ ],
+ "arm": "direct"
+}

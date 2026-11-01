@@ -1,0 +1,56 @@
+{
+  "dataset": "holo",
+  "kind": "counts",
+  "samples": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07"
+  ],
+  "columns": [
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "t5",
+    "t6",
+    "t7",
+    "t8"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "c",
+      "orientation": "samples_by_taxa",
+      "samples": 16,
+      "columns": 8
+    },
+    {
+      "op": "select",
+      "reason": "Holocene: slice midpoint depth < 142 cm boundary (S07 at 137 cm is deepest; S08 at 143 cm, slice 142.5-143.5, is Pleistocene)",
+      "kept": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "removed": [
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ]
+    }
+  ]
+}

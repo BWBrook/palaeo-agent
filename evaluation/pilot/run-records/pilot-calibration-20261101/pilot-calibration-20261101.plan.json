@@ -1,0 +1,188 @@
+{
+ "model": "claude-sonnet-5-5",
+ "runtime_root": "/Users/bwbrook/palaeo-eval/pilot-runtime-20261101",
+ "items_dir": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration",
+ "config_dir": "/Users/bwbrook/palaeo-eval/claude-pilot-config",
+ "capture_config_dir": "/Users/bwbrook/palaeo-eval/claude-capture-config",
+ "fingerprints": {
+  "client_sha256": "ca923c86ac84b30574a82331a05b6e066c27477a926ceaffe46a845a33e4dd37",
+  "runtime_tree": "5616e7d1fb60a7f55965e1c2ade7dccb144a4a322cea676625a53673e9781226",
+  "base_interpreter_tree": "0b25aeacc097ed3381492dde3fdea9736f669f51d673c0f16ebc8d301493858e",
+  "direct_has_toolkit": false,
+  "source": {
+   "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
+   "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974",
+   "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
+   "evaluation/pilot/launch.py": "e0604e2484854a8bee704e14ebe69ab1e65dbdc5b3fdec61dbfa019c8e52f20a",
+   "evaluation/pilot/score.py": "6fa6c2f726cc81d61dac868c27392098aedfebc59c46f471470fa241903e5c1d",
+   "evaluation/revised/score.py": "d66e0d1e2dfe60f48ea4f06b554364f1d7c613e581432d44423ba0017fc0b9e7",
+   "evaluation/sprint3/claude-client-boundary/probe.py": "52c867f23e7f6d041732212b1e877d7176dc288b6218611bb9fd9b495f0f9da4"
+  },
+  "prompts": {
+   "analyst-toolkit.md": "0dc1f0d9e5b104d74342b559bdbd8ede2154aa8184503e61de2c0a3999a2516b",
+   "analyst.md": "1c2bef1367c314a73aa1c0ee0084b12b53811fe276eed1f24cdf46c6a83aa3de",
+   "reviewer.md": "0161b466aa53679f20ae29a56ce693b6b303f6caf9ed142a5755cdfae08cb9ea"
+  },
+  "items_manifest_sha256": "79fb5b7f1499c5dc84087df19d8be32e1510767cfe8b1da3b8de1128ff1d7ff8"
+ },
+ "inventory": {
+  "direct": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ],
+  "toolkit": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__palaeo_compare",
+   "mcp__worker__palaeo_discover",
+   "mcp__worker__palaeo_inspect",
+   "mcp__worker__palaeo_inspect_comparison",
+   "mcp__worker__palaeo_reproduce",
+   "mcp__worker__palaeo_result",
+   "mcp__worker__palaeo_run",
+   "mcp__worker__palaeo_study_inspect",
+   "mcp__worker__palaeo_study_reproduce",
+   "mcp__worker__palaeo_study_run",
+   "mcp__worker__palaeo_validate",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ]
+ },
+ "work_root": "/Users/Shared/palaeo-pilot-work",
+ "max_turns": 60,
+ "wall_seconds": 600,
+ "counted_token_ceiling": 1000000,
+ "seed": 20261101,
+ "trials": [
+  {
+   "item": "P11-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P11",
+   "trial_id": "T001",
+   "block": 1
+  },
+  {
+   "item": "P11-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P11",
+   "trial_id": "T002",
+   "block": 1
+  },
+  {
+   "item": "P05-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P05",
+   "trial_id": "T003",
+   "block": 2
+  },
+  {
+   "item": "P05-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P05",
+   "trial_id": "T004",
+   "block": 2
+  },
+  {
+   "item": "P03-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P03",
+   "trial_id": "T005",
+   "block": 3
+  },
+  {
+   "item": "P03-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P03",
+   "trial_id": "T006",
+   "block": 3
+  },
+  {
+   "item": "P08-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P08",
+   "trial_id": "T007",
+   "block": 4
+  },
+  {
+   "item": "P08-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P08",
+   "trial_id": "T008",
+   "block": 4
+  },
+  {
+   "item": "P06-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P06",
+   "trial_id": "T009",
+   "block": 5
+  },
+  {
+   "item": "P06-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P06",
+   "trial_id": "T010",
+   "block": 5
+  },
+  {
+   "item": "P10-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P10",
+   "trial_id": "T011",
+   "block": 6
+  },
+  {
+   "item": "P10-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P10",
+   "trial_id": "T012",
+   "block": 6
+  },
+  {
+   "item": "P04-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P04",
+   "trial_id": "T013",
+   "block": 7
+  },
+  {
+   "item": "P04-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P04",
+   "trial_id": "T014",
+   "block": 7
+  },
+  {
+   "item": "P09-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P09",
+   "trial_id": "T015",
+   "block": 8
+  },
+  {
+   "item": "P09-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P09",
+   "trial_id": "T016",
+   "block": 8
+  }
+ ]
+}

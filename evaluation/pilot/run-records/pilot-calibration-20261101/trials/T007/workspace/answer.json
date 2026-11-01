@@ -1,0 +1,52 @@
+{
+ "status": "completed",
+ "results": {
+  "mean_bray_curtis": 0.26492845085186567,
+  "n_samples": 7
+ },
+ "assumptions": [
+  "Holocene = samples shallower than the 142 cm boundary; slice midpoints used (S07 at 137 cm is Holocene; S08 at 143 cm, slice 142.5-143.5 cm, lies wholly below the boundary)."
+ ],
+ "exclusions": [
+  {
+   "id": "S08",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S09",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S10",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S11",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S12",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S13",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S14",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S15",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  },
+  {
+   "id": "S16",
+   "reason": "Pleistocene (depth >= 143 cm, below 142 cm boundary)"
+  }
+ ],
+ "issues": [
+  "Mean over the 21 pairwise distances computed by the toolkit (community, braycurtis, no transform), averaged by me."
+ ],
+ "summary": "Selected S01-S07 via palaeo study (select op), computed Bray-Curtis on raw counts with the toolkit (bundle study_holo), then averaged the 21 upper-triangle pairs."
+}

@@ -1,0 +1,2 @@
+{"trial": "T001", "outcome": "correct", "counted": 28813}
+{"halt": "configuration directory holds unexpected entries: ['policy-limits.json', 'policy-limits.json.signature.json', 'policy-limits.json.stamp.json', 'remote-settings.json', 'remote-settings.json.signature.json', 'remote-settings.json.synced-at']"}

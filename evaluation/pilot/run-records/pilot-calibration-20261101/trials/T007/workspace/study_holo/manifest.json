@@ -1,0 +1,27 @@
+{
+  "study_version": 1,
+  "status": "complete",
+  "steps": [
+    {
+      "id": "dataset:holo",
+      "status": "complete"
+    },
+    {
+      "id": "analysis:bc",
+      "status": "complete"
+    }
+  ],
+  "runs": {
+    "bc": {
+      "run_dir": "runs/bc/400b543a8f55483f882e34a25f345a89",
+      "manifest_sha256": "2f93541a81009a07eb545fff35a4b222830b9afffdc26d12523cd9a93e6b74d3"
+    }
+  },
+  "files": {
+    "derived/holo.dat": "2ec11fd6affcd9d3cfded3f993d9be03c7068396f13e7891a91c468ee1afdcdb",
+    "derived/holo.json": "8cd2471057974ef8990d4d13e3e01ed31d2542e211b79f8e753c349fd8723251",
+    "inputs/c": "cd794bfe7e3fb9750fb24bac255e190483017466087f20fce24d02d2eb7296fb",
+    "report.md": "f6f9363bbd1e323fa0b9f092ad00638e589276456630992efc1d617eb812db70",
+    "study.json": "caf131d841eeafd1f0ad4dc77fd0152e7085ced3dce31f433298a16599ae0e27"
+  }
+}

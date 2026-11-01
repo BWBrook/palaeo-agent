@@ -1,0 +1,27 @@
+{
+  "study_version": 1,
+  "status": "complete",
+  "steps": [
+    {
+      "id": "dataset:g",
+      "status": "complete"
+    },
+    {
+      "id": "analysis:bc",
+      "status": "complete"
+    }
+  ],
+  "runs": {
+    "bc": {
+      "run_dir": "runs/bc/ed96aef4fcfb414a8ab7e14b279e5e48",
+      "manifest_sha256": "dfb37600278506494ab96d4587a34f16e4c75a6c9bc6c7e85b5f5336b615ae9b"
+    }
+  },
+  "files": {
+    "derived/g.dat": "2253ad798461ef0ef253916c31241110fb8e8805ef38033800ee39aae30dc10d",
+    "derived/g.json": "7e464373a717a96f5967d62d8a61b6051b160dae7902343293b392e13ea9f017",
+    "inputs/sp": "df8cb362378f8bb7fbc37b9d84e477cbd51101ebdb99dd85884878f15e924cde",
+    "report.md": "d234551e1f2b7fbd7501fa57d2e25fb6b7eb7091da4e83aa8d0a6e3626e45ea2",
+    "study.json": "99d5bfe1715564fd9a994d3a1ea24b3e1890ac1ea2bb3fcf7437fab5982a6bc9"
+  }
+}

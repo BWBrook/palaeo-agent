@@ -1,0 +1,16 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "richness": 8,
+  "mean_bray_curtis": 0.26895754063545735
+ },
+ "assumptions": [
+  "Header variants differing only in capitalisation/spacing (globigerinoides ruber, Neogloboquadrina  incompta, Globorotalia Inflata) are the same species and their counts were summed."
+ ],
+ "exclusions": [],
+ "issues": [
+  "Raw file has 11 columns but only 8 distinct species due to transcription variants; merged via study map_taxa.",
+  "The toolkit PAST reader splits on whitespace and needs a '.' header, so I wrote counts_past.txt (header '.', spaces in names replaced with underscores); counts unchanged."
+ ],
+ "summary": "Merged 3 duplicate taxon columns (8 species), ran Bray-Curtis on raw counts via palaeo study (study3), and averaged the 45 pairwise distances over 10 samples."
+}

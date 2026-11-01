@@ -1,0 +1,68 @@
+{
+  "dataset": "d",
+  "kind": "counts",
+  "samples": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B9",
+    "B10"
+  ],
+  "columns": [
+    "Globigerina_bulloides",
+    "Globigerinoides_ruber",
+    "Orbulina_universa",
+    "Neogloboquadrina_incompta",
+    "Globorotalia_inflata",
+    "Globigerinita_glutinata",
+    "Turborotalita_quinqueloba",
+    "Globorotalia_truncatulinoides"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "c",
+      "orientation": "samples_by_taxa",
+      "samples": 10,
+      "columns": 11
+    },
+    {
+      "op": "map_taxa",
+      "reason": "Merge capitalisation/spacing variants of same species",
+      "mapping": {
+        "globigerinoides_ruber": "Globigerinoides_ruber",
+        "Neogloboquadrina__incompta": "Neogloboquadrina_incompta",
+        "Globorotalia_Inflata": "Globorotalia_inflata"
+      },
+      "merged": {
+        "Globigerinoides_ruber": [
+          "Globigerinoides_ruber",
+          "globigerinoides_ruber"
+        ],
+        "Neogloboquadrina_incompta": [
+          "Neogloboquadrina_incompta",
+          "Neogloboquadrina__incompta"
+        ],
+        "Globorotalia_inflata": [
+          "Globorotalia_inflata",
+          "Globorotalia_Inflata"
+        ]
+      },
+      "columns": [
+        "Globigerina_bulloides",
+        "Globigerinoides_ruber",
+        "Orbulina_universa",
+        "Neogloboquadrina_incompta",
+        "Globorotalia_inflata",
+        "Globigerinita_glutinata",
+        "Turborotalita_quinqueloba",
+        "Globorotalia_truncatulinoides"
+      ]
+    }
+  ]
+}

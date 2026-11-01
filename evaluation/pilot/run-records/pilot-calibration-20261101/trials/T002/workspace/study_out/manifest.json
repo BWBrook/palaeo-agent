@@ -1,0 +1,26 @@
+{
+  "study_version": 1,
+  "status": "partial",
+  "steps": [
+    {
+      "id": "dataset:g",
+      "status": "failed",
+      "error": {
+        "status": "error",
+        "code": "invalid_past_header",
+        "message": "Expected a classic PAST header beginning with '.'",
+        "details": {}
+      }
+    },
+    {
+      "id": "analysis:bc",
+      "status": "not_run"
+    }
+  ],
+  "runs": {},
+  "files": {
+    "inputs/sp": "d0f10fb504b6af219fad255c6ae4af3d057a6f73920dd51c3d4384c34a125f68",
+    "report.md": "d65418b422053335a13c6f857108dc4e6b0db09b0d438ddf73bad70d66268eb6",
+    "study.json": "e971adc2a98958de1cd2ff675baffd6ba232c12a3a54a291f84fb94b6449a617"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "sp": {
+      "kind": "counts",
+      "path": "inputs/sp",
+      "orientation": "samples_by_taxa"
+    }
+  },
+  "datasets": {
+    "g": {
+      "source": "sp",
+      "metadata": null,
+      "drop_unmatched_metadata": false,
+      "operations": [
+        {
+          "op": "map_taxa",
+          "mapping": {
+            "Globigerina_bulloides": "Globigerina",
+            "Globigerina_falconensis": "Globigerina",
+            "Globigerinoides_ruber": "Globigerinoides",
+            "Globigerinoides_conglobatus": "Globigerinoides",
+            "Neogloboquadrina_pachyderma": "Neogloboquadrina",
+            "Neogloboquadrina_incompta": "Neogloboquadrina",
+            "Globigerina_pachyderma": "Neogloboquadrina",
+            "Globorotalia_inflata": "Globorotalia",
+            "Orbulina_universa": "Orbulina"
+          },
+          "reason": "aggregate to genus; G. pachyderma is obsolete combination of N. pachyderma"
+        }
+      ]
+    }
+  },
+  "analyses": [
+    {
+      "id": "bc",
+      "dataset": "g",
+      "spec": {
+        "method": "community",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "transform": "none",
+        "distance": "braycurtis",
+        "dimensions": 2,
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    }
+  ]
+}

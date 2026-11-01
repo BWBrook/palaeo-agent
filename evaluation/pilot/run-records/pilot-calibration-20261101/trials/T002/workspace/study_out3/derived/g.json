@@ -1,0 +1,69 @@
+{
+  "dataset": "g",
+  "kind": "counts",
+  "samples": [
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10"
+  ],
+  "columns": [
+    "Globigerina",
+    "Globigerinoides",
+    "Neogloboquadrina",
+    "Globorotalia",
+    "Orbulina"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "sp",
+      "orientation": "samples_by_taxa",
+      "samples": 10,
+      "columns": 9
+    },
+    {
+      "op": "map_taxa",
+      "reason": "aggregate to genus; G. pachyderma is obsolete combination of N. pachyderma",
+      "mapping": {
+        "Globigerina_bulloides": "Globigerina",
+        "Globigerina_falconensis": "Globigerina",
+        "Globigerinoides_ruber": "Globigerinoides",
+        "Globigerinoides_conglobatus": "Globigerinoides",
+        "Neogloboquadrina_pachyderma": "Neogloboquadrina",
+        "Neogloboquadrina_incompta": "Neogloboquadrina",
+        "Globigerina_pachyderma": "Neogloboquadrina",
+        "Globorotalia_inflata": "Globorotalia",
+        "Orbulina_universa": "Orbulina"
+      },
+      "merged": {
+        "Globigerina": [
+          "Globigerina_bulloides",
+          "Globigerina_falconensis"
+        ],
+        "Globigerinoides": [
+          "Globigerinoides_ruber",
+          "Globigerinoides_conglobatus"
+        ],
+        "Neogloboquadrina": [
+          "Neogloboquadrina_pachyderma",
+          "Neogloboquadrina_incompta",
+          "Globigerina_pachyderma"
+        ]
+      },
+      "columns": [
+        "Globigerina",
+        "Globigerinoides",
+        "Neogloboquadrina",
+        "Globorotalia",
+        "Orbulina"
+      ]
+    }
+  ]
+}

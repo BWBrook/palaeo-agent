@@ -8,15 +8,15 @@
    "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
    "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974",
    "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
-   "evaluation/pilot/launch.py": "30a1a4fe4aa5ab56221e0708615efc21cc383a0c77d5ec87455d6e0eb54d3852",
+   "evaluation/pilot/launch.py": "e0604e2484854a8bee704e14ebe69ab1e65dbdc5b3fdec61dbfa019c8e52f20a",
    "evaluation/pilot/score.py": "6fa6c2f726cc81d61dac868c27392098aedfebc59c46f471470fa241903e5c1d",
    "evaluation/revised/score.py": "d66e0d1e2dfe60f48ea4f06b554364f1d7c613e581432d44423ba0017fc0b9e7",
    "evaluation/sprint3/claude-client-boundary/probe.py": "52c867f23e7f6d041732212b1e877d7176dc288b6218611bb9fd9b495f0f9da4"
   },
   "prompts": {
-   "analyst-toolkit.md": "4defe6496dfd8e8665ab389afd8c89eaa6bba6d8acc58342c64e72c819a6f8bb",
-   "analyst.md": "bb4b8c2b6507649ca4d046b99d6e7129bb03b8a70253ba607007ef20f3773479",
-   "reviewer.md": "65a44db25de38a9df9631a669737657fbbe3353021e6610144419827b6b6a5da"
+   "analyst-toolkit.md": "0dc1f0d9e5b104d74342b559bdbd8ede2154aa8184503e61de2c0a3999a2516b",
+   "analyst.md": "1c2bef1367c314a73aa1c0ee0084b12b53811fe276eed1f24cdf46c6a83aa3de",
+   "reviewer.md": "0161b466aa53679f20ae29a56ce693b6b303f6caf9ed142a5755cdfae08cb9ea"
   },
   "items_manifest_sha256": "48fe555dc3c8abfec4f2f7089f3ba3b1a48d2c9363080b94aad3f59056daf7ef"
  },
@@ -27,10 +27,10 @@
    "case": "capture",
    "requests": 1,
    "body_sha256": [
-    "eb67f1d6b9eeb0760dcc8999079229d046202535006c76a449d3935b59cbb748"
+    "9938d196b83a18da9ee2d16ca433dfa21f2f3e4e89d68407db63e1c74401d868"
    ],
    "body_chars": [
-    23419
+    23484
    ],
    "dummy_api_key": [
     true
@@ -48,10 +48,10 @@
    "case": "positive_control",
    "requests": 1,
    "body_sha256": [
-    "6d41ef4344f189bf7e591ae1987215239b4a870aa075fb232c45d6f7809ec461"
+    "99f2a20eb03809e73d2208ddf910c958dad79fe9842fc298a1dae4b921f47f3f"
    ],
    "body_chars": [
-    23905
+    23970
    ],
    "dummy_api_key": [
     true
@@ -75,10 +75,10 @@
    },
    "requests": 1,
    "body_sha256": [
-    "6176ea82c9a27dd1460f881ff608fcdc1205397cb9761b34a606688eb8a66c9a"
+    "02592b27d3972304ab3bcf418508c979848f868e6a19df89379cdbe221c2cffc"
    ],
    "body_chars": [
-    23422
+    23487
    ],
    "dummy_api_key": [
     true

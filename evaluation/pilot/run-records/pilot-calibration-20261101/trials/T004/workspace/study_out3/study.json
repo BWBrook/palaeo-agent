@@ -1,0 +1,45 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "c": {
+      "kind": "counts",
+      "path": "inputs/c",
+      "orientation": "samples_by_taxa"
+    }
+  },
+  "datasets": {
+    "d": {
+      "source": "c",
+      "metadata": null,
+      "drop_unmatched_metadata": false,
+      "operations": [
+        {
+          "op": "map_taxa",
+          "mapping": {
+            "globigerinoides ruber": "Globigerinoides ruber",
+            "Neogloboquadrina  incompta": "Neogloboquadrina incompta",
+            "Globorotalia Inflata": "Globorotalia inflata"
+          },
+          "reason": "Merge capitalisation/spacing variants of same species"
+        }
+      ]
+    }
+  },
+  "analyses": [
+    {
+      "id": "a",
+      "dataset": "d",
+      "spec": {
+        "method": "community",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "transform": "none",
+        "distance": "braycurtis",
+        "dimensions": 2,
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    }
+  ]
+}

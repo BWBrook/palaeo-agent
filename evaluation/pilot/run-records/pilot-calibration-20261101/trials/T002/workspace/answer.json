@@ -1,0 +1,17 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "mean_bray_curtis": 0.20921367748454883,
+  "n_genera": 5
+ },
+ "assumptions": [
+  "Globigerina pachyderma (2009 bench-sheet obsolete name) was treated as Neogloboquadrina pachyderma, so it is counted in Neogloboquadrina rather than Globigerina.",
+  "Genus taken as the first word of each name; counts summed within genus; Bray-Curtis on raw counts, mean over all 45 sample pairs."
+ ],
+ "exclusions": [],
+ "issues": [
+  "species.txt was not in classic PAST format; I made species_past.txt with a '.' corner cell and underscores in place of spaces in taxon names so the toolkit could read it.",
+  "Dissimilarities show 2 material negative PCoA eigenvalues; this does not affect the mean dissimilarity."
+ ],
+ "summary": "Aggregated 9 species columns to 5 genera (Globigerina, Globigerinoides, Neogloboquadrina, Globorotalia, Orbulina), merging the obsolete G. pachyderma into Neogloboquadrina. Ran the toolkit's Bray-Curtis community analysis on raw counts (study_out3) and averaged the 45 pairwise distances."
+}

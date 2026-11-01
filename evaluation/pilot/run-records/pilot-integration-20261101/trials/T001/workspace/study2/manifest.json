@@ -1,0 +1,28 @@
+{
+  "study_version": 1,
+  "status": "partial",
+  "steps": [
+    {
+      "id": "dataset:d",
+      "status": "failed",
+      "error": {
+        "status": "error",
+        "code": "row_width",
+        "message": "Row width differs from the header",
+        "details": {
+          "line": 2
+        }
+      }
+    },
+    {
+      "id": "analysis:a",
+      "status": "not_run"
+    }
+  ],
+  "runs": {},
+  "files": {
+    "inputs/c": "aa3af385e9681bcccf15d435ea1075e63d80b60449785109de4787e005a8da69",
+    "report.md": "797361148c015704504910e8ffcf037937049cb680fef6e540c0476066f7c7fd",
+    "study.json": "785b84e686d83d572c1355a2ef50074bda23186dddbe48ebd64a311d5c41ae9c"
+  }
+}

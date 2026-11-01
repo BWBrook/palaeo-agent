@@ -1,0 +1,268 @@
+{
+  "method": "rma",
+  "method_version": 1,
+  "transform": "none",
+  "missing": "error",
+  "n_input": 30,
+  "n": 30,
+  "excluded": [],
+  "mean_x": 23.35333333333334,
+  "mean_y": 17.06,
+  "sd_x": 7.323544145465002,
+  "sd_y": 5.611724180308764,
+  "correlation": 0.9786215260320554,
+  "slope": 0.7662579850472728,
+  "intercept": -0.8346781441373174,
+  "vertical_residual_rmse": 1.1408749305737007,
+  "warnings": [],
+  "pairs": [
+    {
+      "sample_id": "V27",
+      "x_raw": 36.5,
+      "y_raw": 27.6,
+      "x": 36.5,
+      "y": 27.6,
+      "residual": 0.46626168991186034
+    },
+    {
+      "sample_id": "V24",
+      "x_raw": 13.4,
+      "y_raw": 8.8,
+      "x": 13.4,
+      "y": 8.8,
+      "residual": -0.6331788554961388
+    },
+    {
+      "sample_id": "V08",
+      "x_raw": 27.7,
+      "y_raw": 19.2,
+      "x": 27.7,
+      "y": 19.2,
+      "residual": -1.19066804167214
+    },
+    {
+      "sample_id": "V06",
+      "x_raw": 28.6,
+      "y_raw": 22.6,
+      "x": 28.6,
+      "y": 22.6,
+      "residual": 1.5196997717853158
+    },
+    {
+      "sample_id": "V03",
+      "x_raw": 20.2,
+      "y_raw": 14.6,
+      "x": 20.2,
+      "y": 14.6,
+      "residual": -0.04373315381759291
+    },
+    {
+      "sample_id": "V12",
+      "x_raw": 34.3,
+      "y_raw": 25.1,
+      "x": 34.3,
+      "y": 25.1,
+      "residual": -0.3479707429841383
+    },
+    {
+      "sample_id": "V29",
+      "x_raw": 27.7,
+      "y_raw": 20.0,
+      "x": 27.7,
+      "y": 20.0,
+      "residual": -0.3906680416721393
+    },
+    {
+      "sample_id": "V04",
+      "x_raw": 33.2,
+      "y_raw": 25.9,
+      "x": 33.2,
+      "y": 25.9,
+      "residual": 1.294913040567856
+    },
+    {
+      "sample_id": "V17",
+      "x_raw": 34.5,
+      "y_raw": 25.1,
+      "x": 34.5,
+      "y": 25.1,
+      "residual": -0.5012223399935927
+    },
+    {
+      "sample_id": "V16",
+      "x_raw": 21.3,
+      "y_raw": 14.9,
+      "x": 21.3,
+      "y": 14.9,
+      "residual": -0.5866169373695929
+    },
+    {
+      "sample_id": "V01",
+      "x_raw": 12.3,
+      "y_raw": 8.7,
+      "x": 12.3,
+      "y": 8.7,
+      "residual": 0.1097049280558604
+    },
+    {
+      "sample_id": "V26",
+      "x_raw": 29.4,
+      "y_raw": 20.3,
+      "x": 29.4,
+      "y": 20.3,
+      "residual": -1.3933066162525023
+    },
+    {
+      "sample_id": "V11",
+      "x_raw": 27.6,
+      "y_raw": 21.3,
+      "x": 27.6,
+      "y": 21.3,
+      "residual": 0.9859577568325868
+    },
+    {
+      "sample_id": "V25",
+      "x_raw": 12.4,
+      "y_raw": 6.8,
+      "x": 12.4,
+      "y": 6.8,
+      "residual": -1.8669208704488662
+    },
+    {
+      "sample_id": "V23",
+      "x_raw": 17.9,
+      "y_raw": 13.6,
+      "x": 17.9,
+      "y": 13.6,
+      "residual": 0.7186602117911338
+    },
+    {
+      "sample_id": "V13",
+      "x_raw": 24.1,
+      "y_raw": 16.4,
+      "x": 24.1,
+      "y": 16.4,
+      "residual": -1.232139295501959
+    },
+    {
+      "sample_id": "V05",
+      "x_raw": 20.9,
+      "y_raw": 16.4,
+      "x": 20.9,
+      "y": 16.4,
+      "residual": 1.219886256649314
+    },
+    {
+      "sample_id": "V22",
+      "x_raw": 16.3,
+      "y_raw": 12.3,
+      "x": 16.3,
+      "y": 12.3,
+      "residual": 0.6446729878667714
+    },
+    {
+      "sample_id": "V20",
+      "x_raw": 32.3,
+      "y_raw": 22.9,
+      "x": 32.3,
+      "y": 22.9,
+      "residual": -1.0154547728895942
+    },
+    {
+      "sample_id": "V30",
+      "x_raw": 22.3,
+      "y_raw": 14.9,
+      "x": 22.3,
+      "y": 14.9,
+      "residual": -1.3528749224168681
+    },
+    {
+      "sample_id": "V15",
+      "x_raw": 15.9,
+      "y_raw": 10.9,
+      "x": 15.9,
+      "y": 10.9,
+      "residual": -0.44882381811432026
+    },
+    {
+      "sample_id": "V21",
+      "x_raw": 22.1,
+      "y_raw": 14.9,
+      "x": 22.1,
+      "y": 14.9,
+      "residual": -1.1996233254074138
+    },
+    {
+      "sample_id": "V19",
+      "x_raw": 19.4,
+      "y_raw": 16.7,
+      "x": 19.4,
+      "y": 16.7,
+      "residual": 2.669273234220224
+    },
+    {
+      "sample_id": "V10",
+      "x_raw": 21.4,
+      "y_raw": 14.4,
+      "x": 21.4,
+      "y": 14.4,
+      "residual": -1.1632427358743183
+    },
+    {
+      "sample_id": "V07",
+      "x_raw": 29.6,
+      "y_raw": 23.1,
+      "x": 29.6,
+      "y": 23.1,
+      "residual": 1.2534417867380405
+    },
+    {
+      "sample_id": "V28",
+      "x_raw": 16.9,
+      "y_raw": 13.5,
+      "x": 16.9,
+      "y": 13.5,
+      "residual": 1.3849181968384077
+    },
+    {
+      "sample_id": "V02",
+      "x_raw": 16.4,
+      "y_raw": 12.4,
+      "x": 16.4,
+      "y": 12.4,
+      "residual": 0.6680471893620439
+    },
+    {
+      "sample_id": "V18",
+      "x_raw": 15.2,
+      "y_raw": 11.6,
+      "x": 15.2,
+      "y": 11.6,
+      "residual": 0.787556771418771
+    },
+    {
+      "sample_id": "V09",
+      "x_raw": 33.1,
+      "y_raw": 22.9,
+      "x": 33.1,
+      "y": 22.9,
+      "residual": -1.628461160927415
+    },
+    {
+      "sample_id": "V14",
+      "x_raw": 17.7,
+      "y_raw": 14.0,
+      "x": 17.7,
+      "y": 14.0,
+      "residual": 1.2719118088005885
+    }
+  ],
+  "references": [
+    "https://palaeo-electronica.org/2001_1/past/pastprog/study1.html"
+  ],
+  "limitations": [
+    "Descriptive fit only; no inferential uncertainty or hypothesis test",
+    "RMA slope magnitude is sd(y)/sd(x), independent of correlation strength; a fitted line does not establish association",
+    "Vertical residuals are diagnostics, not an OLS fitting objective"
+  ]
+}

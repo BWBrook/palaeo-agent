@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task answer",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "results", "assumptions", "exclusions", "issues", "summary"],
+  "properties": {
+    "status": {
+      "enum": ["completed", "completed_with_assumptions", "stopped"],
+      "description": "completed: a definite answer. completed_with_assumptions: an answer that depends on assumptions listed under assumptions. stopped: no answer; explain why under issues."
+    },
+    "results": {
+      "type": "object",
+      "description": "The quantities requested in task.md, under exactly the keys it names. Empty if stopped."
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}, "description": "Assumptions the answer depends on."},
+    "exclusions": {
+      "type": "array",
+      "description": "Samples, specimens or values left out of the analysis, each with its reason.",
+      "items": {"type": "object", "additionalProperties": false, "required": ["id", "reason"],
+                "properties": {"id": {"type": "string"}, "reason": {"type": "string"}}}
+    },
+    "issues": {"type": "array", "items": {"type": "string"}, "description": "Problems or ambiguities found in the materials, and how each was handled."},
+    "summary": {"type": "string", "description": "A short account of what was done."}
+  }
+}
