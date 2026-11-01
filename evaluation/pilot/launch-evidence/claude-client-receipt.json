@@ -13,7 +13,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-direct/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/bare-direct/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -42,7 +42,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        396
+        394
       ],
       "scripted_calls": [
         "Bash",
@@ -96,11 +96,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-direct/canary/secret.txt'\\\\n\\\","
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/bare-direct/canary/secret.txt'\\\\n\\\", \\"
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.029237542003102135}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.019533832994056866}\""
         }
       },
       "checks": {
@@ -126,7 +126,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-toolkit/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/bare-toolkit/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -177,7 +177,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        397
+        395
       ],
       "scripted_calls": [
         "Bash",
@@ -231,11 +231,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-toolkit/canary/secret.txt'\\\\n\\\""
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/bare-toolkit/canary/secret.txt'\\\\n\\\", "
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.03604450000420911}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.017559040999913123}\""
         }
       },
       "checks": {
@@ -260,7 +260,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-direct/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/full-direct/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -290,7 +290,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        5980
+        5976
       ],
       "scripted_calls": [
         "Bash",
@@ -344,11 +344,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-direct/canary/secret.txt'\\\\n\\\","
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/full-direct/canary/secret.txt'\\\\n\\\", \\"
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.027259832997515332}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.020181833002425265}\""
         }
       },
       "checks": {
@@ -373,7 +373,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-toolkit/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/full-toolkit/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -425,7 +425,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        5982
+        5978
       ],
       "scripted_calls": [
         "Bash",
@@ -479,11 +479,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-toolkit/canary/secret.txt'\\\\n\\\""
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-freeze/full-toolkit/canary/secret.txt'\\\\n\\\", "
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.03600775000086287}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.01858712499961257}\""
         }
       },
       "checks": {

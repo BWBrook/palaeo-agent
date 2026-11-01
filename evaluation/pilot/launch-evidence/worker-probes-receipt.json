@@ -25,7 +25,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.5442111669981387
+            "duration_seconds": 0.6079693329957081
           }
         },
         {
@@ -44,7 +44,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 2.9713852499990026
+            "duration_seconds": 2.4361173750003218
           }
         },
         {
@@ -63,7 +63,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.03210279199993238
+            "duration_seconds": 0.022373249994416256
           }
         },
         {
@@ -82,7 +82,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02999683300004108
+            "duration_seconds": 0.019867249997332692
           }
         },
         {
@@ -101,7 +101,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029062957997666672
+            "duration_seconds": 0.019686915999045596
           }
         },
         {
@@ -120,7 +120,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028550249997351784
+            "duration_seconds": 0.020162832995993085
           }
         },
         {
@@ -139,7 +139,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.027409999995143153
+            "duration_seconds": 0.019859874999383464
           }
         },
         {
@@ -158,7 +158,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.026945041994622443
+            "duration_seconds": 0.01976637500047218
           }
         },
         {
@@ -177,7 +177,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028451833000872284
+            "duration_seconds": 0.020460084000660572
           }
         },
         {
@@ -196,7 +196,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028652959001192357
+            "duration_seconds": 0.020260208002582658
           }
         },
         {
@@ -215,7 +215,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029481083001883235
+            "duration_seconds": 0.020421666995389387
           }
         },
         {
@@ -234,7 +234,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.026367707992903888
+            "duration_seconds": 0.020123875001445413
           }
         },
         {
@@ -253,7 +253,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02643825000268407
+            "duration_seconds": 0.020549375003611203
           }
         },
         {
@@ -272,7 +272,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028298750003159512
+            "duration_seconds": 0.02053712500492111
           }
         },
         {
@@ -291,7 +291,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028104292003263254
+            "duration_seconds": 0.02016962500056252
           }
         },
         {
@@ -310,7 +310,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02763191700069001
+            "duration_seconds": 0.02031133299897192
           }
         },
         {
@@ -329,7 +329,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029442917002597824
+            "duration_seconds": 0.022381624999979977
           }
         },
         {
@@ -348,7 +348,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.026833957999770064
+            "duration_seconds": 0.020287208004447166
           }
         },
         {
@@ -367,7 +367,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.027945292000367772
+            "duration_seconds": 0.019955292002123315
           }
         },
         {
@@ -386,7 +386,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.031225625003571622
+            "duration_seconds": 0.021175708003283944
           }
         },
         {
@@ -405,7 +405,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029060916996968444
+            "duration_seconds": 0.019305999994685408
           }
         },
         {
@@ -424,7 +424,7 @@
               "stdout": true,
               "stderr": false
             },
-            "duration_seconds": 0.022052041997085325
+            "duration_seconds": 0.016005000004952308
           }
         },
         {
@@ -443,7 +443,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 3.004678249999415
+            "duration_seconds": 3.005086000004667
           }
         },
         {
@@ -466,7 +466,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.0356562919987482
+            "duration_seconds": 0.022448374998930376
           }
         },
         {
@@ -494,7 +494,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.05061879099957878
+            "duration_seconds": 0.021137332994840108
           }
         },
         {
@@ -513,7 +513,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.031051833000674378
+            "duration_seconds": 0.02405887500208337
           }
         },
         {
@@ -532,7 +532,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02723737500491552
+            "duration_seconds": 0.020148334006080404
           }
         }
       ],
@@ -575,7 +575,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.1581879579971428
+            "duration_seconds": 0.11422287500317907
           }
         },
         {
@@ -594,7 +594,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 1.1902968750000582
+            "duration_seconds": 2.295969167003932
           }
         },
         {
@@ -613,7 +613,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.030749999998079147
+            "duration_seconds": 0.02198604199656984
           }
         },
         {
@@ -632,7 +632,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.0282366249957704
+            "duration_seconds": 0.020093291001103353
           }
         },
         {
@@ -651,7 +651,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.030186041003616992
+            "duration_seconds": 0.019534292005118914
           }
         },
         {
@@ -670,7 +670,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028020665995427407
+            "duration_seconds": 0.01918262499384582
           }
         },
         {
@@ -689,7 +689,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02727358300035121
+            "duration_seconds": 0.01985429200431099
           }
         },
         {
@@ -708,7 +708,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.027711583003110718
+            "duration_seconds": 0.02099104199442081
           }
         },
         {
@@ -727,7 +727,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028062000004865695
+            "duration_seconds": 0.0197917920013424
           }
         },
         {
@@ -746,7 +746,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029122792002453934
+            "duration_seconds": 0.01936862499860581
           }
         },
         {
@@ -765,7 +765,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.03268087500327965
+            "duration_seconds": 0.019600040999648627
           }
         },
         {
@@ -784,7 +784,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028284916006668936
+            "duration_seconds": 0.019450416999461595
           }
         },
         {
@@ -803,7 +803,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.027321708003000822
+            "duration_seconds": 0.01958016600110568
           }
         },
         {
@@ -822,7 +822,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.027040874992962927
+            "duration_seconds": 0.019557874999009073
           }
         },
         {
@@ -841,7 +841,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.029199874996265862
+            "duration_seconds": 0.01967437499843072
           }
         },
         {
@@ -860,7 +860,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.02804287500475766
+            "duration_seconds": 0.019538500004273374
           }
         },
         {
@@ -879,7 +879,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.030818750004982576
+            "duration_seconds": 0.022138665997772478
           }
         },
         {
@@ -898,7 +898,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028138458998000715
+            "duration_seconds": 0.020252000002074055
           }
         },
         {
@@ -917,7 +917,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.0273624999972526
+            "duration_seconds": 0.020387999997183215
           }
         },
         {
@@ -936,7 +936,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.04356779200315941
+            "duration_seconds": 0.021202249998168554
           }
         },
         {
@@ -955,7 +955,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.06648324999696342
+            "duration_seconds": 0.021060332997876685
           }
         },
         {
@@ -974,7 +974,7 @@
               "stdout": true,
               "stderr": false
             },
-            "duration_seconds": 0.24111654100124724
+            "duration_seconds": 0.017474500004027504
           }
         },
         {
@@ -993,7 +993,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 3.003782334002608
+            "duration_seconds": 3.00455129200418
           }
         },
         {
@@ -1016,7 +1016,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.03213300000061281
+            "duration_seconds": 0.023262957998667844
           }
         },
         {
@@ -1044,7 +1044,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.03171104200009722
+            "duration_seconds": 0.0219211669973447
           }
         },
         {
@@ -1063,7 +1063,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.030854458003886975
+            "duration_seconds": 0.023744250000163447
           }
         },
         {
@@ -1082,7 +1082,7 @@
               "stdout": false,
               "stderr": false
             },
-            "duration_seconds": 0.028657625000050757
+            "duration_seconds": 0.02080641700013075
           }
         }
       ],
@@ -1091,8 +1091,8 @@
       "scope": "Actual SDK client initialization/list_tools/call_tool, supervisor dispatcher and confined per-call worker; not proof of supervisor model-visible tool inventory"
     }
   ],
-  "work_root": "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/probes",
-  "runtime_root": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-20261101",
+  "work_root": "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/probes-freeze",
+  "runtime_root": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-freeze-20261101",
   "supervisor_permissions": "Host user access, authentication and network; trusted fixed adapter only",
   "worker_permissions": "Trial read/write; immutable arm/Python runtime and explicit OS read paths; no child processes, network or user state"
 }
