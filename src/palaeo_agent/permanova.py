@@ -8,7 +8,8 @@ from typing import Literal
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 
-from .community import MAX_EXACT_COUNT, _near_duplicates, _prepare, _read_inputs, community_distances
+from .community import (FORMAT_HELP, MAX_EXACT_COUNT, _near_duplicates, _prepare, _read_inputs, check_delimiter,
+                        community_distances)
 from .core import AnalysisError, ResultItem
 
 
@@ -28,7 +29,8 @@ class PermanovaSpec(BaseModel):
     input: Path
     metadata: Path
     group_column: str = Field(min_length=1, pattern=r"\S")
-    format: Literal["past"]
+    format: Literal["past", "delimited"] = Field(description=FORMAT_HELP)
+    delimiter: Literal["tab", "comma"] | None = Field(default=None, description="Required for format 'delimited'")
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     value_type: Literal["count"]
     distance: Literal["braycurtis", "jaccard"]
@@ -42,6 +44,7 @@ class PermanovaSpec(BaseModel):
 
     @model_validator(mode="after")
     def supported_distance_transform(self):
+        check_delimiter(self)
         if self.distance == "jaccard" and self.transform != "none":
             raise ValueError("Relative abundance is an unsupported no-op before binary Jaccard; request transform='none'")
         return self

@@ -13,7 +13,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/bare-direct/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-direct/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -42,7 +42,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        453
+        396
       ],
       "scripted_calls": [
         "Bash",
@@ -96,11 +96,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-direct/canary/secret.txt'\\\\n\\\","
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.02414712500103633}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.029237542003102135}\""
         }
       },
       "checks": {
@@ -126,7 +126,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/bare-toolkit/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-toolkit/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -177,7 +177,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        454
+        397
       ],
       "scripted_calls": [
         "Bash",
@@ -231,11 +231,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/bare-toolkit/canary/secret.txt'\\\\n\\\""
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.023045124999043765}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.03604450000420911}\""
         }
       },
       "checks": {
@@ -260,7 +260,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/full-direct/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-direct/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -290,7 +290,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        6094
+        5980
       ],
       "scripted_calls": [
         "Bash",
@@ -344,11 +344,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-direct/canary/secret.txt'\\\\n\\\","
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.021781833998829825}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.027259832997515332}\""
         }
       },
       "checks": {
@@ -373,7 +373,7 @@
         "--tools=",
         "--strict-mcp-config",
         "--mcp-config",
-        "/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479cd059/scratchpad/cc3/full-toolkit/mcp.json",
+        "/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-toolkit/mcp.json",
         "--setting-sources=",
         "--no-session-persistence",
         "--permission-mode",
@@ -425,7 +425,7 @@
         "mcp__worker__worker_write"
       ],
       "system_chars": [
-        6096
+        5982
       ],
       "scripted_calls": [
         "Bash",
@@ -479,11 +479,11 @@
         },
         "toolu_09": {
           "is_error": true,
-          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/private/tmp/claude-501/-Users-bwbrook-work-palaeo-agent/80d2cece-8d45-44b3-afff-af32479"
+          "content": "\"{\\\"status\\\": \\\"error\\\", \\\"exit_code\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nPermissionError: [Errno 1] Operation not permitted: '/Users/bwbrook/palaeo-eval/client-probe-v4-20261101/full-toolkit/canary/secret.txt'\\\\n\\\""
         },
         "toolu_10": {
           "is_error": false,
-          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.02166616700196755}\""
+          "content": "\"{\\\"status\\\":\\\"ok\\\",\\\"exit_code\\\":0,\\\"stdout\\\":\\\"42\\\\n\\\",\\\"stderr\\\":\\\"\\\",\\\"output_bytes\\\":{\\\"stdout\\\":3,\\\"stderr\\\":0},\\\"truncated\\\":{\\\"stdout\\\":false,\\\"stderr\\\":false},\\\"duration_seconds\\\":0.03600775000086287}\""
         }
       },
       "checks": {

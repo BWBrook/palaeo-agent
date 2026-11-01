@@ -44,12 +44,41 @@ def selected_subspace_info(eigenvalues, k, eigenvalue_tolerance):
             "largest_allowed_dimensions_at_or_below_requested": max((cutoff for cutoff in allowed if cutoff <= k), default=0)}
 
 
+FORMAT_HELP = ("'past': classic PAST table, first header cell '.', tab-separated (whitespace if the file has no tabs). "
+               "'delimited': tab- or comma-separated with a declared delimiter; the first header cell names the ID "
+               "column. Empty and NA cells are missing counts.")
+
+
+def check_delimiter(spec):
+    if (spec.format == "delimited") != (spec.delimiter is not None):
+        raise ValueError("Declare a delimiter exactly when format is 'delimited'")
+
+
+def parse_table(text, format, delimiter=None):
+    """Header and rows of a count or measurement table. Nothing is inferred from file names or repaired."""
+    if format == "delimited":
+        rows = [row for row in csv.reader(io.StringIO(text), delimiter="\t" if delimiter == "tab" else ",")
+                if any(cell.strip() for cell in row)]
+        rows = [[cell.strip() for cell in row] for row in rows]
+        if len(rows) < 2 or not rows[0][0]:
+            raise AnalysisError("invalid_header", "A delimited table needs a header whose first cell names the ID column")
+        rows = [[cell if cell not in ("", "NA") else "." for cell in row] for row in rows]
+        return rows
+    lines = [line for line in text.splitlines() if line.strip()]
+    tabbed = bool(lines) and "\t" in lines[0]
+    rows = [[cell.strip() for cell in line.split("\t")] if tabbed else line.split() for line in lines]
+    if len(rows) < 2 or not rows[0] or rows[0][0] != ".":
+        raise AnalysisError("invalid_past_header", "Expected a classic PAST header beginning with '.'")
+    return rows
+
+
 class CommunitySpec(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     method: Literal["community"]
     input: Path
-    format: Literal["past"]
+    format: Literal["past", "delimited"] = Field(description=FORMAT_HELP)
+    delimiter: Literal["tab", "comma"] | None = Field(default=None, description="Required for format 'delimited'")
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     value_type: Literal["count"]
     metadata: Path | None = None
@@ -63,6 +92,7 @@ class CommunitySpec(BaseModel):
 
     @model_validator(mode="after")
     def sensitivity_purpose(self):
+        check_delimiter(self)
         if self.distance == "jaccard" and self.transform != "none":
             raise ValueError("Relative abundance is an unsupported no-op before binary Jaccard; request transform='none'")
         if self.baseline_run is not None and (self.purpose is None or not self.purpose.strip()):
@@ -282,11 +312,10 @@ def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metada
 
 def _read_inputs(spec, data, metadata):
     try:
-        rows = [line.split() for line in data.decode("utf-8-sig").splitlines() if line.strip()]
+        text = data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
-        raise AnalysisError("invalid_encoding", "The supported PAST matrix must be UTF-8 text") from exc
-    if len(rows) < 2 or not rows[0] or rows[0][0] != ".":
-        raise AnalysisError("invalid_past_header", "Expected a classic PAST header beginning with '.'")
+        raise AnalysisError("invalid_encoding", "The count matrix must be UTF-8 text") from exc
+    rows = parse_table(text, spec.format, spec.delimiter)
     columns = _ids(rows[0][1:], "column")
     labels = _ids([row[0] for row in rows[1:]], "row")
     values = []

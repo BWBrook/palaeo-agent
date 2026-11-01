@@ -20,13 +20,20 @@ SPEC_ADAPTER = TypeAdapter(MethodSpec)
 COMMON_FILES = {"spec.json", "results.json", "environment.json", "diagnostics.svg", "diagnostics.png"}
 METHOD_INDEX = [
     {"id": "rma", "description": "Descriptive reduced-major-axis regression",
-     "scope": "Paired measurements; no inferential uncertainty", "refuses": ["constant variables", "undefined covariance"]},
+     "scope": "Paired measurements; no inferential uncertainty", "refuses": ["constant variables", "undefined covariance"],
+     "provides": ["slope", "intercept", "correlation", "means and SDs", "residual RMSE", "raw or log10 scale"]},
     {"id": "community", "description": "Count diversity, dissimilarities and uncorrected PCoA",
-     "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved positive eigenvalue cutoff"]},
+     "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved positive eigenvalue cutoff"],
+     "provides": ["per-sample total, richness, Shannon (natural log) and Simpson (1 - sum p^2)",
+                  "Bray-Curtis or binary Jaccard distance matrix", "raw or relative-abundance input",
+                  "PCoA coordinates and eigenvalues"]},
     {"id": "permanova", "description": "One-factor free-label PERMANOVA with descriptive dispersion",
      "scope": "Independent units; exchangeable labels; two or more samples per group",
-     "refuses": ["restricted or repeated designs", "empty samples", "undefined observed finite F"]},
+     "refuses": ["restricted or repeated designs", "empty samples", "undefined observed finite F"],
+     "provides": ["pseudo-F", "R-squared", "permutation p-value", "group dispersions"]},
 ]
+INPUT_FORMATS = ("Count tables: format 'past' (first header cell '.', tab-separated) or 'delimited' with delimiter "
+                 "'tab' or 'comma' (first header cell names the ID column). Metadata: UTF-8 CSV joined by exact ID.")
 
 
 def parse_spec(value):
@@ -61,7 +68,7 @@ def discover():
         "input_schema": PermanovaSpec.model_json_schema(),
         "output_schema": PermanovaResult.model_json_schema(),
     })
-    return {"method_index": METHOD_INDEX, "methods": methods}
+    return {"method_index": METHOD_INDEX, "input_formats": INPUT_FORMATS, "methods": methods}
 
 
 def read_inputs(spec):

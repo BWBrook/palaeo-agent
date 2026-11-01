@@ -18,6 +18,7 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
+from .community import FORMAT_HELP, check_delimiter, parse_table
 from .core import AnalysisError
 from .methods import parse_spec, summary
 from .runs import inspect_run, run
@@ -32,7 +33,15 @@ class Model(BaseModel):
 
 class TableInput(Model):
     kind: Literal["counts", "measurements"]
-    path: Path = Field(description="Classic PAST table; relative to the study file")
+    path: Path = Field(description="Table path, relative to the study file")
+    format: Literal["past", "delimited"] = Field(default="past", description=FORMAT_HELP)
+    delimiter: Literal["tab", "comma"] | None = Field(default=None, description="Required for format 'delimited'")
+
+    @model_validator(mode="after")
+    def declared_delimiter(self):
+        check_delimiter(self)
+        return self
+
     orientation: Literal["samples_by_taxa", "taxa_by_samples"] = Field(
         description="Declared layout; derived datasets are always samples_by_taxa")
 
@@ -127,11 +136,10 @@ def _unique(labels, role):
 
 def read_table(data: bytes, declaration: TableInput):
     try:
-        rows = [line.split() for line in data.decode("utf-8-sig").splitlines() if line.strip()]
+        text = data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise AnalysisError("invalid_encoding", "Tables must be UTF-8 text") from exc
-    if len(rows) < 2 or rows[0][0] != ".":
-        raise AnalysisError("invalid_past_header", "Expected a classic PAST header beginning with '.'")
+    rows = parse_table(text, declaration.format, declaration.delimiter)
     columns, labels = rows[0][1:], [row[0] for row in rows[1:]]
     for line, row in enumerate(rows[1:], 2):
         if len(row) != len(columns) + 1:

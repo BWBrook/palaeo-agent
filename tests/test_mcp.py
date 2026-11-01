@@ -178,3 +178,10 @@ def test_study_tools_are_root_scoped(tmp_path):
     escaping["inputs"]["counts"]["path"] = "../outside.dat"
     refused = transport.dispatch("study_run", {"study": escaping, "output": "x"})
     assert refused["code"] == "path_outside_root" and not (tmp_path / "x").exists()
+
+
+def test_advertised_spec_is_compact_but_calls_are_fully_validated(tmp_path):
+    definitions = {d["name"]: d["inputSchema"] for d in tool_definitions()}
+    assert len(json.dumps(definitions["run"])) < 1000 and "$defs" not in definitions["run"]
+    refused = Transport(tmp_path).dispatch("validate", {"spec": {"method": "community", "input": "x"}})
+    assert refused["status"] == "error" and refused["code"] in ("invalid_arguments", "invalid_spec", "invalid_request")

@@ -10,7 +10,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from .core import AnalysisError
-from .methods import MethodSpec, METHOD_INDEX, discover, summary, validate
+from .methods import INPUT_FORMATS, MethodSpec, METHOD_INDEX, discover, summary, validate
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 from .study import StudySpec, inspect_study, reproduce_study, run_study
@@ -82,8 +82,24 @@ REQUESTS = {
 }
 
 
+COMPACT_SPEC = {"type": "object", "required": ["method"], "additionalProperties": True,
+                "properties": {"method": {"enum": ["rma", "community", "permanova"]}},
+                "description": "A complete method specification. Its exact schema comes from "
+                               "palaeo_discover with that method; invalid specifications are refused with details."}
+
+
+def _schema(model):
+    """Advertised input schema. The three-method spec union is replaced by a reference to discovery; the
+    server still validates every call against the full typed model."""
+    schema = model.model_json_schema()
+    if "spec" in schema.get("properties", {}):
+        schema["properties"]["spec"] = COMPACT_SPEC
+        schema.pop("$defs", None)
+    return schema
+
+
 def tool_definitions():
-    return [{"name": name, "description": description, "inputSchema": model.model_json_schema()}
+    return [{"name": name, "description": description, "inputSchema": _schema(model)}
             for name, (model, description) in REQUESTS.items()]
 
 
@@ -142,7 +158,7 @@ class Transport:
     def _dispatch(self, name, request):
         if name == "discover":
             if request.method is None:
-                return {"method_index": METHOD_INDEX,
+                return {"method_index": METHOD_INDEX, "input_formats": INPUT_FORMATS,
                         "path_policy": "All paths resolve inside the configured session root; relative paths start there"}
             return next(item for item in discover()["methods"] if item["id"] == request.method)
         if name == "validate":

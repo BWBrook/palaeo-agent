@@ -39,7 +39,7 @@ def test_compact_discovery_precedes_all_large_schemas():
     prefix = encoded[:encoded.index('"methods"')]
     assert list(output)[0] == "method_index"
     assert all(name in prefix for name in ("rma", "community", "permanova"))
-    assert len(prefix) < 1024
+    assert len(prefix) < 1536  # index plus capability labels and input formats
     completed = subprocess.run([sys.executable, "-m", "palaeo_agent", "--help"], capture_output=True, text=True)
     assert completed.returncode == 0
     assert "Supported methods: rma, community, permanova" in completed.stdout
