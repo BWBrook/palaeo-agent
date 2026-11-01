@@ -1,0 +1,1 @@
+The analysis is finished; do not change anything. Answer in a short paragraph or a few bullets, from memory of this session: which tools or libraries did you use for the main computations, and what led to each choice? Did you consider tools you then did not use, and why not? Was there anything you needed that was not available?
