@@ -1,0 +1,19 @@
+{
+  "reviewed_run": "https://github.com/BWBrook/palaeo-agent/actions/runs/41275862734",
+  "reviewed_commit": "799e0dec725bb1274bcf10452ddf09f90e30d22c",
+  "repaired_run": "https://github.com/BWBrook/palaeo-agent/actions/runs/41285966892",
+  "repaired_commit": "d2bbefefb70306390dca751eaf9c4d476f3d8d85",
+  "platform": "Ubuntu 24.04.5 GitHub runner",
+  "status": "failure",
+  "repaired_tests": {
+    "passed": 466,
+    "skipped": 8,
+    "failed": 1,
+    "seconds": 71.77
+  },
+  "failed_test": "tests/test_pilot_bank_v4.py::test_rebuild_is_identical",
+  "changed_file": "evaluation/pilot/items-v4/P09-trap/key.json",
+  "committed_sha256": "dba1d2e54c2ae7feb233ac69c7d05b0fd9d522457bf44cd6a0e44c1c5934a14c",
+  "linux_regenerated_sha256": "61ae7dc9b74a43699adea1fc7d18f5bb404c91bac323484a6992d6fd5c0423b0",
+  "note": "Same sole failure and hash difference on reviewed and repaired commits. Logs show hashes, not key value differences; root cause remains unestablished."
+}

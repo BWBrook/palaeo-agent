@@ -2,7 +2,8 @@
 
 Codex (GPT-6 Astra), 1 November 2026. Reviewed `799e0de`, including the plan
 revision `baa3efa` and implementation `b9c9a6f`. **The gate remains withheld:
-P04 and P09 do not yet support their scoring rules.** The review also found
+P04 and P09 do not yet support their scoring rules, and Linux bank
+regeneration fails.** The review also found
 and repaired concrete replay and parser defects. No live analyst or reviewer
 trials ran during this review.
 
@@ -172,6 +173,17 @@ Native evidence, final source/runtime fingerprints and test totals are saved
 with the review. Supervisor instruction/authentication qualification against
 the eventual bank freeze remains a release condition, not a claim made by
 these worker/client probes.
+
+**Linux CI is not green.** The reviewed commit's
+[run](https://github.com/BWBrook/palaeo-agent/actions/runs/41275862734) already
+failed `test_pilot_bank_v4.py::test_rebuild_is_identical`. The repaired code's
+[run](https://github.com/BWBrook/palaeo-agent/actions/runs/41285966892) reports
+466 passed, eight native-only skips and the same sole failure. Regeneration
+changes the hash of `items-v4/P09-trap/key.json` from `dba1d2e5…` to
+`61ae7dc9…` on Linux; the differing field values are not exposed in these CI
+logs, so the cause is not established here. Resolve the bank's cross-platform
+regeneration contract during its scientific repair. Do not weaken the check
+or call the complete cross-platform gate passed based on the native result.
 
 Before recalibration, Claude should repair the bank definitions above, rebuild
 their keys, alternatives and calibration twins, and return the changed

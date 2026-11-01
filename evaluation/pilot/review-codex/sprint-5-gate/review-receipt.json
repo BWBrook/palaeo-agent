@@ -1,6 +1,6 @@
 {
   "reviewed_commit": "799e0de",
-  "gate": "withheld: P04 coverage/target and P09 individual measurement scoring",
+  "gate": "withheld: P04 coverage/target and P09 individual measurement scoring; Linux key regeneration mismatch",
   "new_live_trials": 0,
   "native_tests": {
     "passed": 475,
@@ -22,7 +22,7 @@
   },
   "files_sha256": {
     "docs/pilot-protocol.md": "034e283dc259e3c8358454b10762fef3ad7e5acefccb9a62910b469a1f4be93e",
-    "docs/sprint-5-gate-review.md": "3e41cb27a7285039985c9183a3e208fdd22b268bdc052587210f8e3a296adc1f",
+    "docs/sprint-5-gate-review.md": "82946d6bc8ae0f5e131f414157c7fcfa8d6aca9d8f2f783899703b7b88440d86",
     "docs/sprints-5-6-proposal.md": "6309fe7b359cc2d4f23810589a473b9903604f499e82a1afeb4b829bc8404479",
     "evaluation/pilot/launch.py": "3b431dff47bea3fc91a53680fe3cf69377ccf1afb886f8e0205472f3c7a01999",
     "evaluation/pilot/prompts/analyst.md": "e795c64a2d41806adebdd3d7401ccfc5c38dd21cb478f069e43f42a888aeb997",
@@ -144,6 +144,26 @@
     "src/palaeo_agent/core.py": "ec5cc1cb55074ebffee5487cd4042bc78869ca55d7d87b15318d1964ef5a8473",
     "tests/test_delimited_input.py": "e07e7c4986052f4fa8e879fef8c963d60c9228aae4706ba8df9c46bc9b2b4ea2",
     "tests/test_pilot_launch.py": "98ecce7988c18051322e5e428c41f4c9599078aa37814c1339b51b6e91b030f6",
-    "tests/test_pilot_replay.py": "ef6281891394a0c254cc96763901ef1d53a82ef461cf9794dcf0c02936ef8e09"
+    "tests/test_pilot_replay.py": "ef6281891394a0c254cc96763901ef1d53a82ef461cf9794dcf0c02936ef8e09",
+    "evaluation/pilot/review-codex/sprint-5-gate/linux-ci-receipt.json": "50018568da126ae174499afd90a1c1ded3e3b20cf390f657fc322558599a7217"
+  },
+  "linux_ci": {
+    "reviewed_run": "https://github.com/BWBrook/palaeo-agent/actions/runs/41275862734",
+    "reviewed_commit": "799e0dec725bb1274bcf10452ddf09f90e30d22c",
+    "repaired_run": "https://github.com/BWBrook/palaeo-agent/actions/runs/41285966892",
+    "repaired_commit": "d2bbefefb70306390dca751eaf9c4d476f3d8d85",
+    "platform": "Ubuntu 24.04.5 GitHub runner",
+    "status": "failure",
+    "repaired_tests": {
+      "passed": 466,
+      "skipped": 8,
+      "failed": 1,
+      "seconds": 71.77
+    },
+    "failed_test": "tests/test_pilot_bank_v4.py::test_rebuild_is_identical",
+    "changed_file": "evaluation/pilot/items-v4/P09-trap/key.json",
+    "committed_sha256": "dba1d2e54c2ae7feb233ac69c7d05b0fd9d522457bf44cd6a0e44c1c5934a14c",
+    "linux_regenerated_sha256": "61ae7dc9b74a43699adea1fc7d18f5bb404c91bac323484a6992d6fd5c0423b0",
+    "note": "Same sole failure and hash difference on reviewed and repaired commits. Logs show hashes, not key value differences; root cause remains unestablished."
   }
 }
