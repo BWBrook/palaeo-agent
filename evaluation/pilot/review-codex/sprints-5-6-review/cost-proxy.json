@@ -1,0 +1,30 @@
+{
+  "scope": "Eight historical toolkit calibration trials; canonical audit result JSON, not wire bytes, model tokens or causal cost attribution",
+  "counts": {
+    "supervisor_load_tool_definitions": 8,
+    "worker_read": 24,
+    "worker_execute": 28,
+    "study_run": 9,
+    "discover": 5,
+    "study_inspect": 3,
+    "result": 5,
+    "inspect": 2,
+    "run": 6,
+    "worker_write": 2
+  },
+  "result_json_bytes": {
+    "supervisor_load_tool_definitions": 158805,
+    "worker_read": 25028,
+    "worker_execute": 13364,
+    "study_run": 4800,
+    "discover": 31885,
+    "study_inspect": 2919,
+    "result": 8969,
+    "inspect": 9466,
+    "run": 3185,
+    "worker_write": 399
+  },
+  "inventory_load_bytes": 158805,
+  "excluding_inventory_load_bytes": 100015,
+  "discovery_and_inspection_bytes": 44270
+}

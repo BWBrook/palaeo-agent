@@ -1,0 +1,14 @@
+{
+  "reviewed_commit": "0c3e106",
+  "new_live_trials": 0,
+  "scope": "Closure evidence verification and proposal critique only",
+  "files_sha256": {
+    "docs/sprints-5-6-critique.md": "520319314a661e55b8db1ea49dc352970372931b284478156493bfc47bf65c90",
+    "evaluation/pilot/review-codex/sprints-5-6-review/closeout/check.py": "97de285d918137eeeef6888ea6d232e9f2522b33f839e01d3eadb32c1aca6e8b",
+    "evaluation/pilot/review-codex/sprints-5-6-review/closeout/receipt.json": "af764b763fcf3d43d02916d0d0dbeb358ef18409248b66013fd893dfebc5fccb",
+    "evaluation/pilot/review-codex/sprints-5-6-review/closeout/report.md": "4cd0e41f4d177d360a37b294e9369a74121d49837ba16fa35c5423e9b174d913",
+    "evaluation/pilot/review-codex/sprints-5-6-review/cost-proxy.json": "d8bc92007cfd1d74f455a8c33370117e36b49f3e6c5a685a6e1b7aed165a1844",
+    "evaluation/pilot/review-codex/sprints-5-6-review/cost-proxy.py": "44bb8dd314dc2f932be11b19470221b222c6a1e66d1b63e8f1483e5e184137d3",
+    "evaluation/pilot/review-codex/sprints-5-6-review/design/report.md": "805ce4a3a4e1cfe944f6d3d41a29ffa98779305ab558b24ee7ed1037cf191a59"
+  }
+}

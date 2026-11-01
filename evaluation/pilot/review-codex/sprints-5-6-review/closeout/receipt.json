@@ -1,0 +1,1030 @@
+{
+  "reviewed_commit": "0c3e106",
+  "trial_records": [
+    {
+      "record": "pilot-calibration-20261101/trials/T001",
+      "trial": {
+        "item": "P11-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P11",
+        "trial_id": "T001",
+        "block": 1
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 5745,
+      "elapsed_seconds": 24.050899028778076,
+      "reconciliation": {
+        "worker": 4,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T002",
+      "trial": {
+        "item": "P11-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P11",
+        "trial_id": "T002",
+        "block": 1
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 17088,
+      "elapsed_seconds": 47.41431498527527,
+      "reconciliation": {
+        "worker": 13,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [
+        "study_out2",
+        "study_out3",
+        "study_out"
+      ],
+      "runs": [
+        "study_out3/runs/bc/ed96aef4fcfb414a8ab7e14b279e5e48"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T003",
+      "trial": {
+        "item": "P05-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P05",
+        "trial_id": "T003",
+        "block": 2
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 4891,
+      "elapsed_seconds": 21.4876708984375,
+      "reconciliation": {
+        "worker": 4,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T004",
+      "trial": {
+        "item": "P05-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P05",
+        "trial_id": "T004",
+        "block": 2
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 16793,
+      "elapsed_seconds": 54.73690581321716,
+      "reconciliation": {
+        "worker": 19,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [
+        "study_out2",
+        "study_out3",
+        "study_out4",
+        "study_out"
+      ],
+      "runs": [
+        "study_out4/runs/a/e0131936a27b4dd4b74c9afecfdc50be"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T005",
+      "trial": {
+        "item": "P03-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P03",
+        "trial_id": "T005",
+        "block": 3
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 10894,
+      "elapsed_seconds": 39.113205909729004,
+      "reconciliation": {
+        "worker": 10,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": [
+        "runs/27047c69993041a6b89bf3ea45c74493"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T006",
+      "trial": {
+        "item": "P03-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P03",
+        "trial_id": "T006",
+        "block": 3
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 4190,
+      "elapsed_seconds": 17.380059957504272,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T007",
+      "trial": {
+        "item": "P08-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P08",
+        "trial_id": "T007",
+        "block": 4
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 10845,
+      "elapsed_seconds": 29.845557689666748,
+      "reconciliation": {
+        "worker": 9,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [
+        "study_holo"
+      ],
+      "runs": [
+        "study_holo/runs/bc/400b543a8f55483f882e34a25f345a89"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T008",
+      "trial": {
+        "item": "P08-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P08",
+        "trial_id": "T008",
+        "block": 4
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 4408,
+      "elapsed_seconds": 18.663284063339233,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T009",
+      "trial": {
+        "item": "P06-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P06",
+        "trial_id": "T009",
+        "block": 5
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 7305,
+      "elapsed_seconds": 25.713683366775513,
+      "reconciliation": {
+        "worker": 9,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": [
+        "runs/598e6b2157b14169bcca2e2cddf50e76"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T010",
+      "trial": {
+        "item": "P06-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P06",
+        "trial_id": "T010",
+        "block": 5
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 5393,
+      "elapsed_seconds": 21.39900803565979,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T011",
+      "trial": {
+        "item": "P10-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P10",
+        "trial_id": "T011",
+        "block": 6
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 8249,
+      "elapsed_seconds": 24.758811950683594,
+      "reconciliation": {
+        "worker": 9,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": [
+        "runs/bc52f8c968c947acaf3927f823d905bc"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T012",
+      "trial": {
+        "item": "P10-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P10",
+        "trial_id": "T012",
+        "block": 6
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 3728,
+      "elapsed_seconds": 16.210007190704346,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T013",
+      "trial": {
+        "item": "P04-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P04",
+        "trial_id": "T013",
+        "block": 7
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 5272,
+      "elapsed_seconds": 19.2878999710083,
+      "reconciliation": {
+        "worker": 5,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T014",
+      "trial": {
+        "item": "P04-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P04",
+        "trial_id": "T014",
+        "block": 7
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 4330,
+      "elapsed_seconds": 18.860538005828857,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T015",
+      "trial": {
+        "item": "P09-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P09",
+        "trial_id": "T015",
+        "block": 8
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 7870,
+      "elapsed_seconds": 25.328449726104736,
+      "reconciliation": {
+        "worker": 10,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": [
+        "runs/1a42d81abb174497808effd68fde8923"
+      ]
+    },
+    {
+      "record": "pilot-calibration-20261101/trials/T016",
+      "trial": {
+        "item": "P09-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P09",
+        "trial_id": "T016",
+        "block": 8
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 7839,
+      "elapsed_seconds": 27.678761959075928,
+      "reconciliation": {
+        "worker": 7,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-integration-20261101/trials/T001",
+      "trial": {
+        "item": "P05-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P05",
+        "trial_id": "T001",
+        "block": 1
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 28813,
+      "elapsed_seconds": 62.47764873504639,
+      "reconciliation": {
+        "worker": 20,
+        "client_refusal": 3,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [
+        "study2",
+        "study3",
+        "study1"
+      ],
+      "runs": [
+        "study3/runs/a/808c9d08d1e544dfb99948c3916e4570"
+      ]
+    },
+    {
+      "record": "pilot-integration-20261101/trials/T002",
+      "trial": {
+        "item": "P05-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P05",
+        "trial_id": "T002",
+        "block": 1
+      },
+      "complete": false,
+      "client_launched": false,
+      "counted_tokens": null,
+      "elapsed_seconds": 0.0,
+      "reconciliation": null,
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-integration-20261101b/trials/T002",
+      "trial": {
+        "item": "P05-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P05",
+        "trial_id": "T002",
+        "block": 1
+      },
+      "complete": false,
+      "client_launched": true,
+      "counted_tokens": 7236,
+      "elapsed_seconds": 29.914484977722168,
+      "reconciliation": {
+        "worker": 4,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    },
+    {
+      "record": "pilot-integration-20261101c/trials/T001",
+      "trial": {
+        "item": "P10-cal",
+        "arm": "toolkit",
+        "session": 1,
+        "family": "P10",
+        "trial_id": "T001",
+        "block": 1
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 9288,
+      "elapsed_seconds": 25.09113311767578,
+      "reconciliation": {
+        "worker": 8,
+        "client_refusal": 3,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": [
+        "runs/dc81bbac781a47db87c071e864f46868"
+      ]
+    },
+    {
+      "record": "pilot-integration-20261101c/trials/T002",
+      "trial": {
+        "item": "P10-cal",
+        "arm": "direct",
+        "session": 1,
+        "family": "P10",
+        "trial_id": "T002",
+        "block": 1
+      },
+      "complete": true,
+      "client_launched": true,
+      "counted_tokens": 3547,
+      "elapsed_seconds": 16.997706174850464,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "matches_saved_reconciliation": true,
+      "scripts": [],
+      "studies": [],
+      "runs": []
+    }
+  ],
+  "totals": {
+    "executed": 20,
+    "complete": 19,
+    "preflight_halts": 1,
+    "integration_tokens": 48884,
+    "calibration_tokens": 124840
+  },
+  "qualification_source_hashes_match": {
+    "evaluation/execution/__init__.py": true,
+    "evaluation/execution/server.py": true,
+    "evaluation/execution/worker.py": true,
+    "evaluation/pilot/launch.py": true,
+    "evaluation/pilot/score.py": true,
+    "evaluation/revised/score.py": true,
+    "evaluation/sprint3/claude-client-boundary/probe.py": true,
+    "prompt/analyst-toolkit.md": true,
+    "prompt/analyst.md": true,
+    "prompt/reviewer.md": true,
+    "qualification_script": true
+  },
+  "qualification_verdict": {
+    "capture_clean": true,
+    "supervisor_clean": true,
+    "positive_control_detected": true,
+    "supervisor_logged_in": true,
+    "no_credential_header_to_fake_endpoint": true
+  },
+  "archive_special_files": [],
+  "reproductions": [
+    {
+      "bundle": "pilot-calibration-20261101/trials/T002/workspace/study_out2",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T002/workspace/study_out3",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "complete",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T002/workspace/study_out",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T002/workspace/study_out3/runs/bc/ed96aef4fcfb414a8ab7e14b279e5e48",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.1852699939915544,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T004/workspace/study_out2",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T004/workspace/study_out3",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T004/workspace/study_out4",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "complete",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T004/workspace/study_out",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T004/workspace/study_out4/runs/a/e0131936a27b4dd4b74c9afecfdc50be",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.3974390985851559,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T005/workspace/runs/27047c69993041a6b89bf3ea45c74493",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.2831375885812041,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T007/workspace/study_holo",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "complete",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T007/workspace/study_holo/runs/bc/400b543a8f55483f882e34a25f345a89",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.4998932587430199,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T009/workspace/runs/598e6b2157b14169bcca2e2cddf50e76",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation"
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T011/workspace/runs/bc52f8c968c947acaf3927f823d905bc",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.1747206905788597,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-calibration-20261101/trials/T015/workspace/runs/1a42d81abb174497808effd68fde8923",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-12,
+          "atol": 1e-12
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation"
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-integration-20261101/trials/T001/workspace/study2",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-integration-20261101/trials/T001/workspace/study3",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "complete",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-integration-20261101/trials/T001/workspace/study1",
+      "kind": "study",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": {},
+        "derived_identical": true,
+        "scope": "Preparation recomputed byte for byte and numerical outputs compared; interpretation is not verified"
+      },
+      "study_status": "partial",
+      "environment_difference": null
+    },
+    {
+      "bundle": "pilot-integration-20261101/trials/T001/workspace/study3/runs/a/808c9d08d1e544dfb99948c3916e4570",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.3974390985851559,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    },
+    {
+      "bundle": "pilot-integration-20261101c/trials/T001/workspace/runs/dc81bbac781a47db87c071e864f46868",
+      "kind": "run",
+      "verified": true,
+      "result": {
+        "status": "reproduced",
+        "differences": [],
+        "tolerance": {
+          "rtol": 1e-10,
+          "atol": 1e-10
+        },
+        "environment_identical": false,
+        "scope": "Recorded numerical outputs compared; this does not verify the scientific interpretation",
+        "ordination_comparison": {
+          "full_positive_gram_compared": true,
+          "selected_gram_compared": true,
+          "cutoff_relative_eigengap": 0.1747206905788597,
+          "cutoff_relative_eigengap_threshold": 1e-08,
+          "selected_subspace_ambiguous": false
+        }
+      },
+      "study_status": null,
+      "environment_difference": {
+        "platform": {
+          "original": "macOS-27.2-arm64-64bit",
+          "reproduction": "macOS-27.2-arm64-arm-64bit"
+        }
+      }
+    }
+  ],
+  "live_model_calls": 0,
+  "qualification_runtime_hashes_match": {
+    "client_sha256": true,
+    "runtime_tree": true,
+    "base_interpreter_tree": true,
+    "direct_has_toolkit": true,
+    "source": true,
+    "prompts": true,
+    "items_manifest_sha256": true
+  },
+  "archive_source_comparison": {
+    "pilot-calibration-20261101": {
+      "matched": 408,
+      "missing_at_original": [],
+      "different": []
+    },
+    "pilot-integration-20261101": {
+      "matched": 56,
+      "missing_at_original": [],
+      "different": []
+    },
+    "pilot-integration-20261101b": {
+      "matched": 21,
+      "missing_at_original": [],
+      "different": []
+    },
+    "pilot-integration-20261101c": {
+      "matched": 50,
+      "missing_at_original": [],
+      "different": []
+    }
+  }
+}
