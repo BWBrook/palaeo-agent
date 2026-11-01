@@ -1,0 +1,194 @@
+{
+  "review_scope": {
+    "packet": "/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/palaeo-p04-adjudication-t77iljoh",
+    "blinding": "Only materials and neutral responses A/B were read as inputs. No repository, score, identity, prior review, Board or model/provider evidence was accessed.",
+    "order": "Materials inspected and independent-calculations.json saved before either response was read.",
+    "method": "Python standard library csv, json and math; natural-log plug-in Shannon per core, equally weighted arithmetic means."
+  },
+  "input_sha256": {
+    "materials/answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "materials/cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "materials/counts.tsv": "fc3f4f8a359cf4cce3980791193724a35eedbdd187be22ab7c16feab2b02866e",
+    "materials/dictionary.md": "6a1a2aa1579041f1a6081da283d6fa7bb6e9529958ef2b116cd91b9714b4ed5f",
+    "materials/task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce",
+    "response-A.json": "0627d94cad5f5dac4bdb40e63d4ee8f1e740dfdc6122c806482306aec8ad8506",
+    "response-B.json": "acd4364396946bd38cab09054131b38f816a8ad290a2cc59507a65183571bdf0"
+  },
+  "calculations": {
+    "formula": "H = -sum((n_i/N) * ln(n_i/N)) for positive n_i; arithmetic mean of per-core H, not pooled counts",
+    "per_core": [
+      {
+        "core": "K01",
+        "campaign": "2017",
+        "coarse_total": 143,
+        "coarse_shannon": 1.81646844710572,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K02",
+        "campaign": "2017",
+        "coarse_total": 162,
+        "coarse_shannon": 2.0149634858504193,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K03",
+        "campaign": "2017",
+        "coarse_total": 208,
+        "coarse_shannon": 1.9733016510638581,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K04",
+        "campaign": "2017",
+        "coarse_total": 262,
+        "coarse_shannon": 1.9713678856424446,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K05",
+        "campaign": "2017",
+        "coarse_total": 249,
+        "coarse_shannon": 1.9825546409565744,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K06",
+        "campaign": "2017",
+        "coarse_total": 282,
+        "coarse_shannon": 1.985825331346265,
+        "all_fractions_total": null,
+        "all_fractions_shannon": null
+      },
+      {
+        "core": "K07",
+        "campaign": "2021",
+        "coarse_total": 222,
+        "coarse_shannon": 1.902963235520791,
+        "all_fractions_total": 268,
+        "all_fractions_shannon": 2.2122056001501105
+      },
+      {
+        "core": "K08",
+        "campaign": "2021",
+        "coarse_total": 189,
+        "coarse_shannon": 2.025036895813453,
+        "all_fractions_total": 261,
+        "all_fractions_shannon": 2.349707903369477
+      },
+      {
+        "core": "K09",
+        "campaign": "2021",
+        "coarse_total": 202,
+        "coarse_shannon": 1.9663160832030957,
+        "all_fractions_total": 246,
+        "all_fractions_shannon": 2.254181311945591
+      },
+      {
+        "core": "K10",
+        "campaign": "2021",
+        "coarse_total": 145,
+        "coarse_shannon": 1.8580583579701089,
+        "all_fractions_total": 170,
+        "all_fractions_shannon": 2.155154128589187
+      },
+      {
+        "core": "K11",
+        "campaign": "2021",
+        "coarse_total": 283,
+        "coarse_shannon": 1.9473600333950116,
+        "all_fractions_total": 384,
+        "all_fractions_shannon": 2.277847292193352
+      },
+      {
+        "core": "K12",
+        "campaign": "2021",
+        "coarse_total": 122,
+        "coarse_shannon": 1.9373897257387722,
+        "all_fractions_total": 168,
+        "all_fractions_shannon": 2.2514592794372783
+      }
+    ],
+    "common_gt150_means": {
+      "2017": 1.9574135736608802,
+      "2021": 1.9395207219402053
+    },
+    "common_gt150_delta_2021_minus_2017": -0.017892851720674896,
+    "all_picked_2021_mean": 2.2500925859474994,
+    "unmatched_observed_delta_2021_minus_2017": 0.2926790122866192,
+    "identification": "The materials do not define a shared size-fraction target in task.md. Common >150 um diversity is identified for both campaigns. 63–150 um was unpicked in 2017, so both-fractions 2017 and temporal change for both fractions are unidentified without assumptions. Dot is unobserved, not zero; nominal whole-row means compare different observation supports."
+  },
+  "target_identification": {
+    "task_explicitly_selects_common_size_fraction": false,
+    "material_facts_identify_common_gt150_target": true,
+    "material_facts_identify_both_fraction_2017_target": false,
+    "assessment": "The requested campaign-core Shannon mean lacks an explicit size-fraction target. The dictionary identifies complete observation of >150 um in both campaigns, permitting an explicitly conditional common-fraction comparison. It does not make that target uniquely intended. The 2017 both-fraction assemblage and its temporal difference are not identified. No missing-to-zero replacement is warranted.",
+    "legitimate_responses": "An explicitly qualified common-fraction estimate is scientifically acceptable. A justified unresolved answer that explains the unspecified target and unobserved 2017 fine fraction would also be legitimate."
+  },
+  "response_verdicts": {
+    "A": {
+      "verdict": "acceptable_conditional_answer",
+      "numerical_accuracy": "Both requested means exactly match independent common-fraction calculations at stored floating-point precision.",
+      "scientific_coverage": "Explicitly states T01-T08/>150 um in assumptions, exclusions and summary; correctly distinguishes unpicked cells from zero and uses completed_with_assumptions. Therefore does not silently substitute the common-fraction estimate for a whole-assemblage estimate.",
+      "qualification_limitations": [
+        "The phrase \"inflate 2021 diversity artificially\" is imprecise: 2021 all-fraction diversity is a valid observed quantity; the issue is unequal coverage across campaigns. This is a wording caveat, not a numerical or substantive failure of the explicitly restricted result.",
+        "The statement \"toolkit has no Shannon method\" cannot be verified from the packet. It is extraneous to the scientific result and was not accepted as evidence.",
+        "Could state more explicitly that whole-assemblage change remains unresolved and that the fraction restriction defines the target."
+      ]
+    },
+    "B": {
+      "verdict": "acceptable_conditional_answer",
+      "numerical_accuracy": "Both requested means exactly match independent common-fraction calculations. The additional 2021 all-fraction mean 2.2501 and restricted mean 1.9395 are correct to four decimal places.",
+      "scientific_coverage": "Explicitly states T01-T08/>150 um in assumptions, exclusions and summary; correctly treats 2017 fine-fraction dots as missing and explains that full 2021 coverage is not comparable to 2017. Uses completed_with_assumptions appropriately.",
+      "qualification_limitations": [
+        "Could state explicitly that a both-fraction temporal change remains unresolved; the present restriction and comparability warning nevertheless qualify the supplied results sufficiently."
+      ]
+    }
+  },
+  "comparison": {
+    "same_substantive_verdict": true,
+    "preferred_explanation": "B",
+    "reason": "B quantifies the difference in 2021 size-fraction coverage and avoids describing the valid full-coverage Shannon value as artificial. This modest explanatory advantage does not justify rejecting A."
+  },
+  "verification": {
+    "response_checks": {
+      "A": {
+        "top_level_keys_match": true,
+        "allowed_status": true,
+        "requested_result_keys_match": true,
+        "assumptions_and_issues_are_string_arrays": true,
+        "exclusions_conform": true,
+        "summary_is_string": true,
+        "absolute_errors": {
+          "shannon_mean_2017": 0.0,
+          "shannon_mean_2021": 0.0
+        }
+      },
+      "B": {
+        "top_level_keys_match": true,
+        "allowed_status": true,
+        "requested_result_keys_match": true,
+        "assumptions_and_issues_are_string_arrays": true,
+        "exclusions_conform": true,
+        "summary_is_string": true,
+        "absolute_errors": {
+          "shannon_mean_2017": 0.0,
+          "shannon_mean_2021": 0.0
+        }
+      }
+    },
+    "independent_algebraic_check": "H = ln(N) - sum(n_i*ln(n_i))/N, evaluated with math.fsum for each common-fraction core",
+    "maximum_alternative_formula_absolute_difference": 6.661338147750939e-16
+  },
+  "limitations": [
+    "No unavailable 2017 fine-fraction counts were inferred or imputed.",
+    "No confidence intervals, significance or population-level temporal trend was inferred from the descriptive means.",
+    "The packet does not verify collection-site comparability or any other unreported design features; comparability here refers specifically to taxonomic/size-fraction coverage.",
+    "Toolkit availability and execution provenance of the original responses were outside the supplied evidence."
+  ]
+}

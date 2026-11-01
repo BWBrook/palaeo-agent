@@ -1,0 +1,39 @@
+{
+  "source_revision": "4a80b5f",
+  "calibration_trials": 16,
+  "total_counted_tokens": 124840,
+  "direct_median_counted_tokens": 4649.5,
+  "toolkit_median_counted_tokens": 9547.0,
+  "ratio_of_arm_medians": 2.0533390687170665,
+  "pooled_median_counted_tokens": 6525.0,
+  "working_ceiling_96_at_unchanged_cost": 939600.0,
+  "hypothetical_ceiling_192_at_unchanged_cost": 1879200.0,
+  "variance_examples_not_power_estimates": [
+    {
+      "between_item_variance": 0,
+      "within_item_variance": 1,
+      "variance_ratio_4_over_2_sessions": 0.5,
+      "standard_error_ratio": 0.7071067811865476
+    },
+    {
+      "between_item_variance": 1,
+      "within_item_variance": 1,
+      "variance_ratio_4_over_2_sessions": 0.8333333333333334,
+      "standard_error_ratio": 0.9128709291752769
+    },
+    {
+      "between_item_variance": 4,
+      "within_item_variance": 1,
+      "variance_ratio_4_over_2_sessions": 0.9444444444444445,
+      "standard_error_ratio": 0.9718253158075502
+    }
+  ],
+  "independent_double_success_examples_not_fitted_rates": {
+    "0.95": 0.9025,
+    "0.98": 0.9603999999999999
+  },
+  "prior_missingness_counterexample_under_current_rules": {
+    "n_S": 8,
+    "delta_S": 0.0
+  }
+}

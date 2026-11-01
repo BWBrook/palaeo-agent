@@ -1,0 +1,33 @@
+{
+  "reviewed_commit": "4a80b5f03b922fc866da7b258a179cd68e000d40",
+  "native_tests": {
+    "passed": 372,
+    "skipped": 0,
+    "seconds": 81.78
+  },
+  "calibration_trials": 16,
+  "counted_tokens": 124840,
+  "median_tokens": {
+    "direct": 4649.5,
+    "toolkit": 9547.0
+  },
+  "K": 2.0533390687170665,
+  "new_live_trials": 0,
+  "files_sha256": {
+    "docs/sprint-4-calibration-review.md": "8d139e897483ce319a7e2525cb0039dff26cd7b61f35a0d4ff6d2b9caa1fc58a",
+    "evaluation/pilot/review-codex/calibration-review/design/check.py": "2de4c87a0f155e2472fdee8535aec81adc0e493b550353cc1a76aac3d24ec613",
+    "evaluation/pilot/review-codex/calibration-review/design/receipt.json": "7ea43c3646df503ddbc1e9bfc48265343d6a08b521eab79583c8ff63c469b0ba",
+    "evaluation/pilot/review-codex/calibration-review/design/report.md": "69aaf2291327befa30c8594f41f7aeefbb07e08111b6248d3ca09c82d1a4a0f1",
+    "evaluation/pilot/review-codex/calibration-review/launcher/check.py": "ac5eebf58606f55411ebee7bb53443a36f211f27e161119772311b3fa7e8fc54",
+    "evaluation/pilot/review-codex/calibration-review/launcher/receipt.json": "2df25dead7957c2f5f1b5f678276149082018260c5f4ab760eef82d3bac915cf",
+    "evaluation/pilot/review-codex/calibration-review/launcher/report.md": "8ae4b8b119b3437557e0cfc8fda6fee29169b89b3fdaf5ab932209637b4a46c4",
+    "evaluation/pilot/review-codex/calibration-review/p04-adjudication/exposed-score-attempt/blinding-incident.md": "4a7c01b15a5504ce4edd22129fbae1e64564431bbdd6a60fb94030ec047bcac9",
+    "evaluation/pilot/review-codex/calibration-review/p04-adjudication/exposed-score-attempt/independent-calculation.json": "784cc53eb02b0ad79e366966817f4c0c12a4775a01d873270075a3e1027c0494",
+    "evaluation/pilot/review-codex/calibration-review/p04-adjudication/exposed-score-attempt/independent_calculation.py": "56d69074bc87791baebd14a6e804c3223c1d2c63e367b364de24daf0bb9378cd",
+    "evaluation/pilot/review-codex/calibration-review/p04-adjudication/exposed-score-attempt/receipt.json": "ea3c0936081473c81973dcbefda85539e983eaae6b4d4c160cb329e7f16a1526",
+    "evaluation/pilot/review-codex/calibration-review/p04-packet-review/independent-calculations.json": "fd9ade44d3e86842feb1eb7aee092cf43b7f103eec980554e2d8ad3991f69c5b",
+    "evaluation/pilot/review-codex/calibration-review/p04-packet-review/report.md": "7df3582dee92f17f7bc949be47c4363db8aa156a5ce7310632c1e5d471fdbe82",
+    "evaluation/pilot/review-codex/calibration-review/p04-packet-review/verdict.json": "c5d7a1942daf5b2c5a909c3996f65fe832d39ed1b3a9a5dada8ff78eb9d1868e",
+    "evaluation/pilot/review-codex/calibration-review/p04-packet-review/verdict.sha256": "f29d5c72b7f91d0a86af91d1351e5f3005953f5b85b5fddd7d0253dd873d7a7b"
+  }
+}

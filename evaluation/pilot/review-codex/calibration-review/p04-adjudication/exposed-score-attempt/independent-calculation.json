@@ -1,0 +1,171 @@
+{
+  "method": "Per-core H = -sum(p_i * ln(p_i)), p_i = count_i / sum(counts); arithmetic campaign mean over six cores. No pooling.",
+  "input_sha256": {
+    "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+    "cores.csv": "cea5805d20bcbf5475c23632b45116852e84a40cc9ea962a576c3dc9ea635153",
+    "counts.tsv": "fc3f4f8a359cf4cce3980791193724a35eedbdd187be22ab7c16feab2b02866e",
+    "dictionary.md": "6a1a2aa1579041f1a6081da283d6fa7bb6e9529958ef2b116cd91b9714b4ed5f",
+    "task.md": "723f73e3d91dcff45bc50b976f79b36a5339adbf24c4137d3c4507ead6afd4ce"
+  },
+  "cores": [
+    {
+      "core": "K01",
+      "campaign": "2017",
+      "common_T01_T08_N": 143,
+      "common_T01_T08_H": 1.81646844710572,
+      "observed_taxa_count": 8,
+      "observed_N": 143,
+      "observed_H": 1.81646844710572,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K02",
+      "campaign": "2017",
+      "common_T01_T08_N": 162,
+      "common_T01_T08_H": 2.0149634858504197,
+      "observed_taxa_count": 8,
+      "observed_N": 162,
+      "observed_H": 2.0149634858504197,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K03",
+      "campaign": "2017",
+      "common_T01_T08_N": 208,
+      "common_T01_T08_H": 1.9733016510638581,
+      "observed_taxa_count": 8,
+      "observed_N": 208,
+      "observed_H": 1.9733016510638581,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K04",
+      "campaign": "2017",
+      "common_T01_T08_N": 262,
+      "common_T01_T08_H": 1.9713678856424444,
+      "observed_taxa_count": 8,
+      "observed_N": 262,
+      "observed_H": 1.9713678856424444,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K05",
+      "campaign": "2017",
+      "common_T01_T08_N": 249,
+      "common_T01_T08_H": 1.9825546409565746,
+      "observed_taxa_count": 8,
+      "observed_N": 249,
+      "observed_H": 1.9825546409565746,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K06",
+      "campaign": "2017",
+      "common_T01_T08_N": 282,
+      "common_T01_T08_H": 1.9858253313462653,
+      "observed_taxa_count": 8,
+      "observed_N": 282,
+      "observed_H": 1.9858253313462653,
+      "unpicked_taxa": [
+        "T09",
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "core": "K07",
+      "campaign": "2021",
+      "common_T01_T08_N": 222,
+      "common_T01_T08_H": 1.902963235520791,
+      "observed_taxa_count": 11,
+      "observed_N": 268,
+      "observed_H": 2.212205600150111,
+      "unpicked_taxa": []
+    },
+    {
+      "core": "K08",
+      "campaign": "2021",
+      "common_T01_T08_N": 189,
+      "common_T01_T08_H": 2.025036895813453,
+      "observed_taxa_count": 11,
+      "observed_N": 261,
+      "observed_H": 2.349707903369477,
+      "unpicked_taxa": []
+    },
+    {
+      "core": "K09",
+      "campaign": "2021",
+      "common_T01_T08_N": 202,
+      "common_T01_T08_H": 1.9663160832030957,
+      "observed_taxa_count": 11,
+      "observed_N": 246,
+      "observed_H": 2.254181311945591,
+      "unpicked_taxa": []
+    },
+    {
+      "core": "K10",
+      "campaign": "2021",
+      "common_T01_T08_N": 145,
+      "common_T01_T08_H": 1.858058357970109,
+      "observed_taxa_count": 11,
+      "observed_N": 170,
+      "observed_H": 2.1551541285891873,
+      "unpicked_taxa": []
+    },
+    {
+      "core": "K11",
+      "campaign": "2021",
+      "common_T01_T08_N": 283,
+      "common_T01_T08_H": 1.9473600333950116,
+      "observed_taxa_count": 11,
+      "observed_N": 384,
+      "observed_H": 2.277847292193352,
+      "unpicked_taxa": []
+    },
+    {
+      "core": "K12",
+      "campaign": "2021",
+      "common_T01_T08_N": 122,
+      "common_T01_T08_H": 1.9373897257387724,
+      "observed_taxa_count": 11,
+      "observed_N": 168,
+      "observed_H": 2.2514592794372783,
+      "unpicked_taxa": []
+    }
+  ],
+  "campaign_means": {
+    "2017": {
+      "n_cores": 6,
+      "common_T01_T08_mean_H": 1.9574135736608804,
+      "observed_mean_H": 1.9574135736608804
+    },
+    "2021": {
+      "n_cores": 6,
+      "common_T01_T08_mean_H": 1.9395207219402053,
+      "observed_mean_H": 2.2500925859474994
+    }
+  },
+  "common_T01_T08_delta_2021_minus_2017": -0.017892851720675118,
+  "unmatched_observed_delta_2021_minus_2017": 0.29267901228661897,
+  "interpretation": "Matched comparison identifiable for fully picked >150 micrometre fraction, taxa T01-T08 only. Full-community comparison including T09-T11 is not identifiable in 2017: dots denote unpicked fraction, not zeros. Observed-coverage means use different taxon/fraction bases and cannot establish temporal community diversity change."
+}

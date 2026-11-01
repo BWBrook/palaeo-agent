@@ -1,0 +1,8 @@
+{
+  "kind": "independent_arithmetic_only_no_adjudication",
+  "sha256": {
+    "independent_calculation.py": "56d69074bc87791baebd14a6e804c3223c1d2c63e367b364de24daf0bb9378cd",
+    "independent-calculation.json": "784cc53eb02b0ad79e366966817f4c0c12a4775a01d873270075a3e1027c0494",
+    "blinding-incident.md": "4a7c01b15a5504ce4edd22129fbae1e64564431bbdd6a60fb94030ec047bcac9"
+  }
+}

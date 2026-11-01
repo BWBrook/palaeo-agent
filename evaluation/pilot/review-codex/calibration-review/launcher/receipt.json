@@ -1,0 +1,129 @@
+{
+  "baseline": "4a80b5f",
+  "checks": [
+    {
+      "name": "installed_dependency_change_detected",
+      "passed": true
+    },
+    {
+      "name": "base_interpreter_change_detected",
+      "passed": true
+    },
+    {
+      "name": "exact_material_positive",
+      "passed": true
+    },
+    {
+      "name": "extra_material_rejected",
+      "passed": true
+    },
+    {
+      "name": "modified_material_rejected",
+      "passed": true
+    },
+    {
+      "name": "material_symlink_rejected",
+      "passed": true
+    },
+    {
+      "name": "matching_full_write_accepted",
+      "passed": true
+    },
+    {
+      "name": "changed_write_content_rejected",
+      "passed": true
+    },
+    {
+      "name": "changed_returned_value_rejected",
+      "passed": true
+    },
+    {
+      "name": "changed_read_range_rejected",
+      "passed": true
+    },
+    {
+      "name": "default_read_normalised",
+      "passed": true
+    },
+    {
+      "name": "orphan_result_rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate_result_rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate_use_rejected",
+      "passed": true
+    },
+    {
+      "name": "toolkit_adapter_value_accepted",
+      "passed": true
+    },
+    {
+      "name": "toolkit_forged_value_rejected",
+      "passed": true
+    },
+    {
+      "name": "empty_managed_settings_accepted",
+      "passed": true
+    },
+    {
+      "name": "nonempty_managed_settings_rejected",
+      "passed": true
+    },
+    {
+      "name": "status_uses_launch_environment",
+      "passed": true
+    },
+    {
+      "name": "saved_qualification_script_matches",
+      "passed": true
+    },
+    {
+      "name": "saved_positive_control_present",
+      "passed": true
+    },
+    {
+      "name": "saved_verdict_all_true",
+      "passed": true
+    }
+  ],
+  "passed": 22,
+  "live_client_calls": 0,
+  "provider_calls": 0,
+  "credential_access": false,
+  "qualification": {
+    "kind": "inspection of saved source-bound receipt, not a rerun",
+    "recorded_verdict": {
+      "capture_clean": true,
+      "supervisor_clean": true,
+      "positive_control_detected": true,
+      "supervisor_logged_in": true,
+      "no_credential_header_to_fake_endpoint": true
+    },
+    "recorded_inference_calls": 0,
+    "source_matches_current": {
+      "evaluation/execution/__init__.py": true,
+      "evaluation/execution/server.py": true,
+      "evaluation/execution/worker.py": true,
+      "evaluation/pilot/launch.py": false,
+      "evaluation/pilot/score.py": true,
+      "evaluation/revised/score.py": true,
+      "evaluation/sprint3/claude-client-boundary/probe.py": true
+    },
+    "prompts_match_current": {
+      "analyst-toolkit.md": false,
+      "analyst.md": false,
+      "reviewer.md": false
+    },
+    "current_script_sha256": "7fd305ebad904cfa1198048c12795f7b3d262679da5ef6e3e8227e322e312cf0"
+  },
+  "source_sha256": {
+    "evaluation/pilot/review-codex/calibration-review/launcher/check.py": "ac5eebf58606f55411ebee7bb53443a36f211f27e161119772311b3fa7e8fc54",
+    "evaluation/pilot/launch.py": "e0604e2484854a8bee704e14ebe69ab1e65dbdc5b3fdec61dbfa019c8e52f20a",
+    "evaluation/pilot/qualify_supervisor.py": "7fd305ebad904cfa1198048c12795f7b3d262679da5ef6e3e8227e322e312cf0",
+    "evaluation/pilot/launch-evidence/supervisor-qualification.json": "a9d6690f088122e58869650fa095111809633c2ad826fc1e40d4e5527bc51eed"
+  }
+}
