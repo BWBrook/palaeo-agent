@@ -1,15 +1,25 @@
-"""Pilot launcher, Claude route (docs/pilot-protocol.md, launch conditions).
+"""Pilot launcher, Claude route, subscription authentication (docs/pilot-protocol.md, launch conditions).
 
-Every trial: pinned client binary; a fake-endpoint inventory capture that must
-equal the frozen inventory; Claude Code in --bare mode (no CLAUDE.md, memory,
-hooks, plugins or keychain) with only the confined worker MCP server; the
-client's init record checked against the inventory; tool events reconciled
-with the worker audit log; a turn cap and a wall-clock kill; process cleanup
-verified; usage required. Any breach halts further launches. A trial record,
-once started, is never rerun.
+The supervisor is Claude Code in its normal mode, authenticated by Barry's
+subscription through a dedicated configuration directory that holds no
+instructions, memory, skills or plugins. Every trial:
 
-    python evaluation/pilot/launch.py plan ITEMS_DIR PLAN.json --runtime RUNTIME_ROOT [...]
-    python evaluation/pilot/launch.py run PLAN.json OUT_DIR --key-file FILE
+- verifies the frozen fingerprints (client, runtimes, worker and launcher
+  source, prompts, item materials) and the configuration directory's contents;
+- captures the identical command's request against a fake local endpoint and
+  requires the frozen tool inventory (the capture is saved);
+- requires the client's init record to match that inventory;
+- reconciles every tool event with the worker audit by identity;
+- kills the client group, then the worker server and every recorded worker
+  process group, and verifies they are gone;
+- exports only regular files, never following links;
+- requires complete usage accounting.
+
+Any failure writes HALTED.json; no later launch runs until it is resolved.
+A started trial is never rerun.
+
+    python evaluation/pilot/launch.py plan ITEMS_DIR PLAN.json --runtime R --work-root W --config-dir C --ceiling N
+    python evaluation/pilot/launch.py run PLAN.json OUT_DIR
 """
 
 import argparse
@@ -20,6 +30,7 @@ from pathlib import Path
 import random
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import tempfile
@@ -35,6 +46,14 @@ from evaluation.pilot.score import score  # noqa: E402
 
 MODEL = "claude-sonnet-5-5"
 PROMPTS = HERE / "prompts"
+PINNED_SOURCE = ["evaluation/execution/__init__.py", "evaluation/execution/server.py",
+                 "evaluation/execution/worker.py", "evaluation/pilot/launch.py", "evaluation/pilot/score.py",
+                 "evaluation/revised/score.py", "evaluation/sprint3/claude-client-boundary/probe.py"]
+CONFIG_ALLOWED = {".claude.json", ".claude.json.backup", "statsig", "todos", "shell-snapshots", "projects",
+                  ".credentials.json", "backups", "session-env", "cache", "sessions", ".last-cleanup"}
+CONFIG_FORBIDDEN = {"CLAUDE.md", "agents", "commands", "skills", "plugins", "hooks", "settings.json",
+                    "settings.local.json", "output-styles", "rules"}
+USAGE_FIELDS = ("input_tokens", "cache_creation_input_tokens", "output_tokens", "cache_read_input_tokens")
 
 
 class Halt(RuntimeError):
@@ -52,6 +71,61 @@ def client_path():
 def prompt(arm):
     text = (PROMPTS / "analyst.md").read_text()
     return text + (PROMPTS / "analyst-toolkit.md").read_text() if arm == "toolkit" else text
+
+
+def tree_digest(root):
+    root = Path(root)
+    return {p.relative_to(root).as_posix(): sha(p) for p in sorted(root.rglob("*"))
+            if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts}
+
+
+def fingerprints(runtime_root, items_dir):
+    runtime_root = Path(runtime_root)
+    site = lambda arm: next((runtime_root / arm / "lib").glob("python3.*/site-packages"))
+    return {"client_sha256": sha(client_path()),
+            "runtime_manifest_sha256": sha(runtime_root / "runtime.json"),
+            "toolkit_package": tree_digest(site("toolkit") / "palaeo_agent"),
+            "direct_has_toolkit": (site("direct") / "palaeo_agent").exists(),
+            "pyvenv": {arm: sha(runtime_root / arm / "pyvenv.cfg") for arm in ("direct", "toolkit")},
+            "source": {name: sha(REPO / name) for name in PINNED_SOURCE},
+            "prompts": {p.name: sha(p) for p in sorted(PROMPTS.glob("*.md"))},
+            "items_manifest_sha256": sha(Path(items_dir) / "MANIFEST.json")}
+
+
+def verify_materials(items_dir, item):
+    manifest = json.loads((Path(items_dir) / "MANIFEST.json").read_text())
+    for name, digest in manifest.items():
+        if name.startswith(f"{item}/") and sha(Path(items_dir) / name) != digest:
+            raise Halt(f"item file differs from manifest: {name}")
+
+
+def verify_config_dir(config_dir):
+    config_dir = Path(config_dir)
+    names = {p.name for p in config_dir.iterdir()}
+    if names & CONFIG_FORBIDDEN or names - CONFIG_ALLOWED:
+        raise Halt(f"configuration directory holds unexpected entries: {sorted(names - CONFIG_ALLOWED)}")
+    projects = config_dir / "projects"
+    if projects.exists() and any(p.is_file() and ("memory" in p.relative_to(projects).parts or p.suffix == ".md")
+                                 for p in projects.rglob("*")):
+        raise Halt("configuration directory holds project memory")
+
+
+def subscription_status(config_dir):
+    completed = subprocess.run([str(client_path()), "auth", "status", "--json"], capture_output=True, text=True,
+                               env={"PATH": "/usr/bin:/bin:/opt/homebrew/bin", "HOME": os.environ["HOME"],
+                                    "USER": os.environ["USER"], "CLAUDE_CONFIG_DIR": str(config_dir)}, timeout=60)
+    status = json.loads(completed.stdout or "{}")
+    kept = {k: status.get(k) for k in ("loggedIn", "authMethod", "subscriptionType", "apiProvider")}
+    if not kept["loggedIn"] or "api" in str(kept.get("authMethod", "")).lower():
+        raise Halt(f"configuration directory is not logged in to a subscription: {kept}")
+    return kept
+
+
+def no_instruction_ancestors(path):
+    for parent in [Path(path), *Path(path).parents]:
+        for name in ("CLAUDE.md", "CLAUDE.local.md", ".claude"):
+            if (parent / name).exists():
+                raise Halt(f"instruction file above the client's working directory: {parent / name}")
 
 
 def stage(trial_root, materials, runtime_root, arm, audit_dir):
@@ -72,163 +146,272 @@ def stage(trial_root, materials, runtime_root, arm, audit_dir):
     return mcp
 
 
-def command(client, text, mcp, max_turns, model):
-    return [str(client), "--bare", "-p", text, "--tools=", "--strict-mcp-config", "--mcp-config", str(mcp),
+def command(text, mcp, max_turns, model):
+    return [str(client_path()), "-p", text, "--tools=", "--strict-mcp-config", "--mcp-config", str(mcp),
             "--setting-sources=", "--no-session-persistence", "--permission-mode", "bypassPermissions",
             "--allowedTools", "mcp__worker__*", "--model", model, "--max-turns", str(max_turns),
             "--output-format", "stream-json", "--verbose"]
 
 
-def environment(home, key, base_url=None):
+def environment(home, config_dir, api_key=None, base_url=None):
     env = {"PATH": "/usr/bin:/bin:/opt/homebrew/bin", "HOME": str(home), "USER": os.environ["USER"],
-           "LOGNAME": os.environ["USER"], "ANTHROPIC_API_KEY": key, "DISABLE_TELEMETRY": "1",
+           "LOGNAME": os.environ["USER"], "CLAUDE_CONFIG_DIR": str(config_dir), "DISABLE_TELEMETRY": "1",
            "DISABLE_ERROR_REPORTING": "1", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"}
+    if api_key:
+        env["ANTHROPIC_API_KEY"] = api_key
     if base_url:
         env["ANTHROPIC_BASE_URL"] = base_url
     return env
 
 
-def capture_inventory(runtime_root, arm, model):
-    """Offline: the tools the identical command advertises, from a fake endpoint."""
-    with tempfile.TemporaryDirectory() as scratch:
-        scratch = Path(scratch)
-        materials = scratch / "materials"
-        materials.mkdir()
-        (materials / "task.md").write_text("inventory capture\n")
-        mcp = stage(scratch / "work/trial", materials, runtime_root, arm, scratch / "audit")
-        (scratch / "home").mkdir()
-        log = []
-        server = endpoint([], log)
-        try:
-            subprocess.run(command(client_path(), prompt(arm), mcp, 2, model), cwd=scratch / "home",
-                           env=environment(scratch / "home", DUMMY, f"http://127.0.0.1:{server.server_address[1]}"),
-                           stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
-        finally:
-            server.shutdown()
-        if not log:
-            raise Halt("inventory capture produced no request")
-        return sorted(log[0]["tools"])
+def living_groups(groups):
+    """Groups that still hold a non-zombie process; a failed enumeration is an error, never empty."""
+    listing = subprocess.run(["/bin/ps", "-A", "-o", "pgid=,stat="], capture_output=True, text=True)
+    if listing.returncode != 0 or not listing.stdout.strip():
+        raise Halt("process enumeration failed")
+    alive = set()
+    for line in listing.stdout.splitlines():
+        pgid, state = line.split()
+        if int(pgid) in groups and not state.startswith("Z"):
+            alive.add(int(pgid))
+    return alive
 
 
-def cleanup(marker):
-    """Kill and verify the absence of any process whose arguments name this trial."""
-    def survivors():
-        found = subprocess.run(["pgrep", "-f", marker], capture_output=True, text=True).stdout.split()
-        return [int(pid) for pid in found if int(pid) != os.getpid()]
-    for pid in survivors():
+def terminate(client_pgid, audit_dir):
+    """Kill the client group, the worker server and every recorded worker group; verify all are gone."""
+    groups = set()
+    if client_pgid:
+        groups.add(client_pgid)
+    audit_dir = Path(audit_dir)
+    if (audit_dir / "server.pid").exists():
+        pid, pgid = map(int, (audit_dir / "server.pid").read_text().split())
+        groups.add(pgid)
         try:
             os.kill(pid, signal.SIGKILL)
         except ProcessLookupError:
             pass
-    time.sleep(0.2)
-    left = survivors()
-    if left:
-        raise Halt(f"processes survived cleanup: {left}")
+    if (audit_dir / "pids.jsonl").exists():
+        groups |= {json.loads(line)["pgid"] for line in (audit_dir / "pids.jsonl").read_text().splitlines()}
+    groups.discard(os.getpgid(0))
+    for group in groups:
+        try:
+            os.killpg(group, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+    deadline = time.monotonic() + 5
+    alive = living_groups(groups)
+    while alive and time.monotonic() < deadline:
+        time.sleep(0.05)
+        alive = living_groups(groups)
+    if alive:
+        raise Halt(f"process groups survived termination: {sorted(alive)}")
+    return sorted(groups)
+
+
+def capture_inventory(runtime_root, arm, model, config_dir, record=None):
+    """Offline: the request the identical command builds, from a fake endpoint with a dummy key."""
+    with tempfile.TemporaryDirectory() as scratch:
+        scratch = Path(scratch)
+        (scratch / "materials").mkdir()
+        (scratch / "materials/task.md").write_text("inventory capture\n")
+        audit = scratch / "audit"
+        mcp = stage(scratch / "work/trial", scratch / "materials", runtime_root, arm, audit)
+        (scratch / "home").mkdir()
+        log = []
+        server = endpoint([], log)
+        proc = subprocess.Popen(command(prompt(arm), mcp, 2, model), cwd=scratch / "home",
+                                env=environment(scratch / "home", config_dir, DUMMY,
+                                                f"http://127.0.0.1:{server.server_address[1]}"),
+                                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=True)
+        try:
+            proc.communicate(timeout=120)
+        except subprocess.TimeoutExpired:
+            pass
+        finally:
+            server.shutdown()
+            terminate(proc.pid, audit)
+        if not log:
+            raise Halt("inventory capture produced no request")
+        if any(r["authorization_header"] or not r["dummy_api_key"] for r in log):
+            raise Halt("inventory capture would have sent a real credential")
+        if record is not None:
+            Path(record).write_text(json.dumps({"requests": log, "arm": arm}, indent=1) + "\n")
+        return sorted(log[0]["tools"])
+
+
+def export(trial_root, destination):
+    """Copy regular files only, never following links; return what was refused."""
+    refused = []
+    for parent, folders, files in os.walk(trial_root, followlinks=False):
+        relative = Path(parent).relative_to(trial_root)
+        if relative.parts[:1] == (".worker",):
+            continue
+        for name in folders:
+            if (Path(parent) / name).is_symlink():
+                refused.append({"path": (relative / name).as_posix(), "kind": "link",
+                                "target": os.readlink(Path(parent) / name)})
+        for name in files:
+            source = Path(parent) / name
+            info = source.lstat()
+            if not stat.S_ISREG(info.st_mode):
+                refused.append({"path": (relative / name).as_posix(),
+                                "kind": "link" if stat.S_ISLNK(info.st_mode) else "special",
+                                **({"target": os.readlink(source)} if stat.S_ISLNK(info.st_mode) else {})})
+                continue
+            target = destination / relative / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            descriptor = os.open(source, os.O_RDONLY | os.O_NOFOLLOW)
+            with os.fdopen(descriptor, "rb") as stream:
+                target.write_bytes(stream.read())
+    return refused
+
+
+def worker_request(name, arguments):
+    tool = name.removeprefix("mcp__worker__")
+    if tool == "worker_execute":
+        return {"tool": tool, "code": arguments.get("code")}
+    if tool in ("worker_read", "worker_write"):
+        return {"tool": tool, "path": arguments.get("path")}
+    return {"tool": tool.removeprefix("palaeo_"), "arguments": arguments}
 
 
 def reconcile(events, audit_dir, inventory):
-    uses = {}
-    results = {}
+    """Match every tool event to its worker audit record, or to a client refusal, by identity."""
+    uses, results = [], {}
     for event in events:
-        for block in (event.get("message") or {}).get("content", []) if isinstance(event.get("message"), dict) else []:
-            if not isinstance(block, dict):
-                continue
-            if block.get("type") == "tool_use":
-                uses[block["id"]] = block["name"]
-            elif block.get("type") == "tool_result":
+        message = event.get("message")
+        for block in message.get("content", []) if isinstance(message, dict) and isinstance(message.get("content"), list) else []:
+            if isinstance(block, dict) and block.get("type") == "tool_use":
+                uses.append(block)
+            elif isinstance(block, dict) and block.get("type") == "tool_result":
                 results[block["tool_use_id"]] = block
-    calls = [json.loads(line) for line in (Path(audit_dir) / "calls.jsonl").read_text().splitlines()] \
-        if (Path(audit_dir) / "calls.jsonl").exists() else []
-    worker_calls = [c for c in calls if c["request"].get("tool") != "supervisor_load_tool_definitions"]
-    categories = {"worker": 0, "client_refusal": 0, "other": []}
-    for use_id, name in uses.items():
-        result = results.get(use_id, {})
+    path = Path(audit_dir) / "calls.jsonl"
+    calls = [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
+    audit = [c for c in calls if c["request"].get("tool") != "supervisor_load_tool_definitions"]
+    bootstrap = len(calls) - len(audit)
+    matched, refused, problems = 0, 0, []
+    queue = list(audit)
+    for use in uses:
+        result = results.get(use["id"])
+        if result is None:
+            problems.append({"id": use["id"], "problem": "no result"})
+            continue
         text = json.dumps(result.get("content"))
-        if name in inventory and name.startswith("mcp__worker__"):
-            categories["worker"] += 1
-        elif name not in inventory and result.get("is_error") and "No such tool available" in text:
-            categories["client_refusal"] += 1
+        if use["name"] not in inventory:
+            if result.get("is_error") and "No such tool available" in text:
+                refused += 1
+            else:
+                problems.append({"id": use["id"], "problem": "unadvertised tool not refused", "name": use["name"]})
+            continue
+        if not use["name"].startswith("mcp__worker__"):
+            problems.append({"id": use["id"], "problem": "advertised non-worker tool", "name": use["name"]})
+            continue
+        if not queue:
+            problems.append({"id": use["id"], "problem": "no audit record"})
+            continue
+        call = queue.pop(0)
+        expected = worker_request(use["name"], use.get("input", {}))
+        recorded = {k: call["request"].get(k) for k in expected}
+        failed = call["result"].get("status") in ("error", "timed_out")
+        if recorded != expected:
+            problems.append({"id": use["id"], "problem": "audit record differs", "expected": expected["tool"],
+                             "recorded": call["request"].get("tool")})
+        elif bool(result.get("is_error")) != failed and use["name"].startswith("mcp__worker__worker_"):
+            problems.append({"id": use["id"], "problem": "outcome differs from audit"})
         else:
-            categories["other"].append({"id": use_id, "name": name})
-    categories["worker_audit_calls"] = len(worker_calls)
-    categories["consistent"] = not categories["other"] and categories["worker"] == len(worker_calls)
-    return categories
+            matched += 1
+    problems += [{"problem": "audit record without tool event", "tool": c["request"].get("tool")} for c in queue]
+    return {"worker": matched, "client_refusal": refused, "bootstrap": bootstrap, "problems": problems,
+            "consistent": not problems}
 
 
-def run_trial(trial, plan, out_dir, key, base_url=None):
+def complete_usage(usage):
+    return isinstance(usage, dict) and all(isinstance(usage.get(k), int) and usage[k] >= 0 for k in USAGE_FIELDS)
+
+
+def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
     record = Path(out_dir) / "trials" / trial["trial_id"]
     record.mkdir(parents=True, exist_ok=False)
-    started = {"trial": trial, "started_unix": time.time()}
-    (record / "started.json").write_text(json.dumps(started) + "\n")
-    if sha(client_path()) != plan["client_sha256"]:
-        raise Halt("client binary differs from the plan")
-    inventory = capture_inventory(plan["runtime_root"], trial["arm"], plan["model"])
-    if inventory != plan["inventory"][trial["arm"]]:
-        raise Halt(f"captured inventory differs: {inventory}")
-    work = Path(tempfile.mkdtemp(prefix="pilot-", dir=plan["work_root"]))
-    trial_root = work / "trial"
-    audit = record / "worker-audit"
-    mcp = stage(trial_root, Path(plan["items_dir"]) / trial["item"] / "materials", plan["runtime_root"], trial["arm"], audit)
-    (work / "home").mkdir()
-    proc = subprocess.Popen(command(client_path(), prompt(trial["arm"]), mcp, plan["max_turns"], plan["model"]),
-                            cwd=work / "home", env=environment(work / "home", key, base_url),
-                            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                            start_new_session=True, text=True)
-    events, breach = [], []
-
-    def read():
-        for line in proc.stdout:
-            try:
-                event = json.loads(line)
-            except ValueError:
-                continue
-            events.append(event)
-            if event.get("type") == "system" and event.get("subtype") == "init" and \
-                    sorted(event.get("tools", [])) != sorted(t for t in plan["inventory"][trial["arm"]]
-                                                             if t != "DeferredToolPlaceholder"):
-                breach.append("init_inventory")
-                os.killpg(proc.pid, signal.SIGKILL)
-
-    reader = threading.Thread(target=read, daemon=True)
-    reader.start()
-    termination = "exited"
+    (record / "started.json").write_text(json.dumps({"trial": trial, "started_unix": time.time()}) + "\n")
+    summary = {"trial": trial, "complete": False}
+    events, breach, proc, work = [], [], None, None
     try:
-        proc.wait(timeout=plan["wall_seconds"])
-    except subprocess.TimeoutExpired:
-        termination = "wall_limit"
-        os.killpg(proc.pid, signal.SIGKILL)
-        proc.wait()
-    reader.join(timeout=5)
-    try:
-        os.killpg(proc.pid, signal.SIGKILL)
-    except ProcessLookupError:
-        pass
-    cleanup(str(trial_root))
-    (record / "transcript.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events))
-    (record / "stderr.txt").write_text(proc.stderr.read())
+        if fingerprints(plan["runtime_root"], plan["items_dir"]) != plan["fingerprints"]:
+            raise Halt("frozen fingerprints differ")
+        verify_materials(plan["items_dir"], trial["item"])
+        verify_config_dir(plan["config_dir"])
+        if not base_url:
+            summary["auth"] = subscription_status(plan["config_dir"])
+        inventory = capture_inventory(plan["runtime_root"], trial["arm"], plan["model"],
+                                      plan["capture_config_dir"], record / "inventory-capture.json")
+        if inventory != plan["inventory"][trial["arm"]]:
+            raise Halt(f"captured inventory differs: {inventory}")
+        work = Path(tempfile.mkdtemp(prefix="pilot-", dir=plan["work_root"]))
+        trial_root = work / "trial"
+        audit = record / "worker-audit"
+        mcp = stage(trial_root, Path(plan["items_dir"]) / trial["item"] / "materials", plan["runtime_root"],
+                    trial["arm"], audit)
+        (work / "home").mkdir()
+        no_instruction_ancestors(work / "home")
+        proc = subprocess.Popen(command(prompt(trial["arm"]), mcp, plan["max_turns"], plan["model"]),
+                                cwd=work / "home", env=environment(work / "home", plan["config_dir"], api_key, base_url),
+                                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=True, text=True)
+        advertised = sorted(t for t in plan["inventory"][trial["arm"]] if t != "DeferredToolPlaceholder")
+
+        def read():
+            for line in proc.stdout:
+                try:
+                    event = json.loads(line)
+                except ValueError:
+                    continue
+                events.append(event)
+                if event.get("type") == "system" and event.get("subtype") == "init" and \
+                        sorted(event.get("tools", [])) != advertised:
+                    breach.append("init_inventory")
+                    os.killpg(proc.pid, signal.SIGKILL)
+
+        reader = threading.Thread(target=read, daemon=True)
+        reader.start()
+        summary["termination"] = "exited"
+        try:
+            proc.wait(timeout=plan["wall_seconds"])
+        except subprocess.TimeoutExpired:
+            summary["termination"] = "wall_limit"
+        reader.join(timeout=5)
+    finally:
+        try:
+            summary["terminated_groups"] = terminate(proc.pid if proc else None, record / "worker-audit")
+        finally:
+            (record / "transcript.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events))
+            if proc is not None:
+                (record / "stderr.txt").write_text(proc.stderr.read() if proc.stderr else "")
+            (record / "trial.json").write_text(json.dumps(summary, indent=1) + "\n")
+    if not any(e.get("type") == "system" and e.get("subtype") == "init" for e in events):
+        breach.append("no_init_record")
     result = next((e for e in reversed(events) if e.get("type") == "result"), None)
     usage = (result or {}).get("usage")
-    counted = None if not usage else sum(usage.get(k, 0) or 0 for k in
-                                        ("input_tokens", "cache_creation_input_tokens", "output_tokens"))
-    categories = reconcile(events, audit, plan["inventory"][trial["arm"]])
-    shutil.copytree(trial_root, record / "workspace", ignore=shutil.ignore_patterns(".worker"))
-    outcome = score(record / "workspace", Path(plan["items_dir"]) / trial["item"],
-                    "wall_limit" if termination == "wall_limit" else "exited")
-    summary = {**started, "termination": termination, "exit_code": proc.returncode, "breach": breach,
-               "result_subtype": (result or {}).get("subtype"), "usage": usage, "counted_tokens": counted,
-               "cache_read_tokens": (usage or {}).get("cache_read_input_tokens"), "reconciliation": categories,
-               "score": outcome, "finished_unix": time.time()}
+    summary.update(exit_code=proc.returncode, breach=breach, result_subtype=(result or {}).get("subtype"), usage=usage)
+    summary["refused_exports"] = export(trial_root, record / "workspace")
+    summary["reconciliation"] = reconcile(events, record / "worker-audit", plan["inventory"][trial["arm"]])
+    if complete_usage(usage):
+        summary["counted_tokens"] = sum(usage[k] for k in USAGE_FIELDS[:3])
+        summary["cache_read_tokens"] = usage["cache_read_input_tokens"]
+    summary["score"] = score(record / "workspace", Path(plan["items_dir"]) / trial["item"],
+                             "wall_limit" if summary["termination"] == "wall_limit" else "exited")
+    summary["complete"] = not breach and summary["reconciliation"]["consistent"] and complete_usage(usage)
+    summary["finished_unix"] = time.time()
     (record / "trial.json").write_text(json.dumps(summary, indent=1) + "\n")
     shutil.rmtree(work)
-    if breach or not categories["consistent"]:
-        raise Halt(f"boundary breach or unreconciled tool events in {trial['trial_id']}")
-    if counted is None:
-        raise Halt(f"usage unavailable in {trial['trial_id']}")
+    if not summary["complete"]:
+        raise Halt(f"{trial['trial_id']}: breach {breach}, reconciliation {summary['reconciliation']['problems']}, "
+                   f"usage complete {complete_usage(usage)}")
     return summary
 
 
-def make_plan(items_dir, path, *, runtime_root, work_root, ceiling, sessions=2, seed=20261101, max_turns=60,
-              wall_seconds=600, model=MODEL, families=None):
+def make_plan(items_dir, path, *, runtime_root, work_root, config_dir, capture_config_dir, ceiling, sessions=2,
+              seed=20261101, max_turns=60, wall_seconds=600, model=MODEL, families=None):
     items_dir = Path(items_dir).resolve()
     keys = {p.parent.name: json.loads(p.read_text()) for p in sorted(items_dir.glob("*/key.json"))}
     families = families or sorted({k["family"] for k in keys.values()})
@@ -245,12 +428,11 @@ def make_plan(items_dir, path, *, runtime_root, work_root, ceiling, sessions=2, 
     for b, block in enumerate(blocks):
         for t in block:
             trials.append(dict(t, trial_id=f"T{len(trials) + 1:03d}", block=b + 1))
-    plan = {"model": model, "client": str(client_path()), "client_sha256": sha(client_path()),
-            "runtime_root": str(Path(runtime_root).resolve()),
-            "runtime_manifest_sha256": sha(Path(runtime_root) / "runtime.json"),
-            "items_dir": str(items_dir), "items_manifest_sha256": sha(items_dir / "MANIFEST.json"),
-            "prompts_sha256": {p.name: sha(p) for p in sorted(PROMPTS.glob("*.md"))},
-            "inventory": {arm: capture_inventory(runtime_root, arm, model) for arm in ("direct", "toolkit")},
+    plan = {"model": model, "runtime_root": str(Path(runtime_root).resolve()), "items_dir": str(items_dir),
+            "config_dir": str(Path(config_dir).resolve()), "capture_config_dir": str(Path(capture_config_dir).resolve()),
+            "fingerprints": fingerprints(runtime_root, items_dir),
+            "inventory": {arm: capture_inventory(runtime_root, arm, model, capture_config_dir)
+                          for arm in ("direct", "toolkit")},
             "work_root": str(Path(work_root).resolve()), "max_turns": max_turns, "wall_seconds": wall_seconds,
             "counted_token_ceiling": ceiling, "seed": seed, "trials": trials}
     with Path(path).open("x") as stream:
@@ -258,25 +440,48 @@ def make_plan(items_dir, path, *, runtime_root, work_root, ceiling, sessions=2, 
     return plan
 
 
-def run(plan_path, out_dir, key, base_url=None):
+def ledger(out_dir, plan_digest):
+    """Refuse to continue unless every earlier trial completed cleanly under this plan."""
+    out_dir = Path(out_dir)
+    if (out_dir / "HALTED.json").exists():
+        raise Halt("run is halted; see HALTED.json")
+    binding = out_dir / "PLAN.sha256"
+    if binding.exists() and binding.read_text().strip() != plan_digest:
+        raise Halt("output directory belongs to a different plan")
+    spent = 0
+    for directory in sorted((out_dir / "trials").glob("*")):
+        path = directory / "trial.json"
+        summary = json.loads(path.read_text()) if path.exists() else {}
+        if not summary.get("complete"):
+            raise Halt(f"earlier trial did not complete cleanly: {directory.name}")
+        spent += summary["counted_tokens"]
+    return spent
+
+
+def run(plan_path, out_dir, api_key=None, base_url=None):
     plan = json.loads(Path(plan_path).read_text())
+    digest = sha(plan_path)
     out_dir = Path(out_dir)
     (out_dir / "trials").mkdir(parents=True, exist_ok=True)
-    spent = sum(json.loads(p.read_text()).get("counted_tokens") or 0 for p in (out_dir / "trials").glob("*/trial.json"))
     log = []
-    for trial in plan["trials"]:
-        if (out_dir / "trials" / trial["trial_id"]).exists():
-            continue
-        if spent >= plan["counted_token_ceiling"]:
-            log.append({"stop": "ceiling", "spent": spent})
-            break
-        try:
-            summary = run_trial(trial, plan, out_dir, key, base_url)
-        except Halt as exc:
-            log.append({"halt": str(exc), "trial": trial["trial_id"]})
-            break
-        spent += summary["counted_tokens"]
-        log.append({"trial": trial["trial_id"], "outcome": summary["score"]["outcome"], "counted": summary["counted_tokens"]})
+    try:
+        spent = ledger(out_dir, digest)
+        if not (out_dir / "PLAN.sha256").exists():
+            (out_dir / "PLAN.sha256").write_text(digest + "\n")
+        for trial in plan["trials"]:
+            if (out_dir / "trials" / trial["trial_id"]).exists():
+                continue
+            if spent >= plan["counted_token_ceiling"]:
+                log.append({"stop": "ceiling", "spent": spent})
+                break
+            summary = run_trial(trial, plan, out_dir, api_key, base_url)
+            spent += summary["counted_tokens"]
+            log.append({"trial": trial["trial_id"], "outcome": summary["score"]["outcome"],
+                        "counted": summary["counted_tokens"]})
+    except Halt as exc:
+        log.append({"halt": str(exc)})
+        if not (out_dir / "HALTED.json").exists():
+            (out_dir / "HALTED.json").write_text(json.dumps({"halt": str(exc), "time_unix": time.time()}) + "\n")
     with (out_dir / "run_log.jsonl").open("a") as stream:
         for entry in log:
             stream.write(json.dumps(entry) + "\n")
@@ -289,22 +494,21 @@ def main():
     p = commands.add_parser("plan")
     p.add_argument("items_dir")
     p.add_argument("plan")
-    p.add_argument("--runtime", required=True)
-    p.add_argument("--work-root", required=True)
+    for name in ("--runtime", "--work-root", "--config-dir", "--capture-config-dir"):
+        p.add_argument(name, required=True)
     p.add_argument("--ceiling", type=int, required=True)
     p.add_argument("--sessions", type=int, default=2)
     r = commands.add_parser("run")
     r.add_argument("plan")
     r.add_argument("out_dir")
-    r.add_argument("--key-file", required=True, help="File holding the Anthropic API key; never recorded")
     args = parser.parse_args()
     if args.command == "plan":
         plan = make_plan(args.items_dir, args.plan, runtime_root=args.runtime, work_root=args.work_root,
+                         config_dir=args.config_dir, capture_config_dir=args.capture_config_dir,
                          ceiling=args.ceiling, sessions=args.sessions)
         print(json.dumps({"trials": len(plan["trials"]), "inventory": plan["inventory"]}))
     else:
-        key = Path(args.key_file).read_text().strip()
-        print(json.dumps(run(args.plan, args.out_dir, key)))
+        print(json.dumps(run(args.plan, args.out_dir)))
 
 
 if __name__ == "__main__":

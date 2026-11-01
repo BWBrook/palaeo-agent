@@ -27,7 +27,11 @@ def test_p04_numbers_need_their_basis_disclosed(tmp_path):
     disclosed = score(answer(tmp_path, "completed_with_assumptions", results,
                              assumptions=["Shannon on T01–T08 only: the 63 µm fraction was not picked in 2017"]),
                       ITEMS / "P04-trap")
-    assert disclosed["outcome"] == "correct" and disclosed["acceptable"]
+    assert disclosed["outcome"] == "correct" and disclosed["acceptable"] and disclosed["provisional"]
+    false_claim = score(answer(tmp_path, "completed", results,
+                               assumptions=["All fractions were counted in both campaigns; full-community means."]),
+                        ITEMS / "P04-trap")
+    assert false_claim["adjudication_required"] and false_claim["provisional"]
 
 
 def test_p04_stop_naming_coverage_is_acceptable(tmp_path):

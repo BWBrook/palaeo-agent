@@ -13,7 +13,8 @@
     }
    ]
   },
-  "detectability_witness": "Dictionary: every core was counted in full."
+  "detectability_witness": "Dictionary: every core was counted in full.",
+  "attribution_criterion": "names the exclusion of core 5 as unjustified"
  },
  "P02-control": {
   "class": "preparation",
@@ -26,7 +27,8 @@
     "Field-log rows are in core-code order."
    ]
   },
-  "detectability_witness": "Log codes disagree with the zones assigned in the derived metadata."
+  "detectability_witness": "Log codes disagree with the zones assigned in the derived metadata.",
+  "attribution_criterion": "names the zone/ID join (zones assigned by row order rather than core code)"
  },
  "P05-control": {
   "class": "preparation",
@@ -39,22 +41,24 @@
     "Globorotalia inflata and Globorotalia truncatulinoides are transcription variants of one taxon."
    ]
   },
-  "detectability_witness": "The names differ beyond case and spacing."
+  "detectability_witness": "The names differ beyond case and spacing.",
+  "attribution_criterion": "names the merge of Globorotalia inflata with Globorotalia truncatulinoides"
  },
  "P07-control": {
   "class": "preparation",
   "results": {
-   "slope": 0.8365334536394251,
-   "intercept": 0.0323380699343101,
+   "slope": 0.8107159087179305,
+   "intercept": 0.26684437695353225,
    "n": 217,
-   "mean_length_mm": 11.242096774193548
+   "mean_length_mm": 24.191935483870967
   },
   "answer_edits": {
    "assumptions": [
     "L3 measurements are in centimetres and were converted."
    ]
   },
-  "detectability_witness": "Dictionary: all localities measured in mm."
+  "detectability_witness": "Dictionary: all localities measured in mm.",
+  "attribution_criterion": "names the L3 unit conversion as unjustified"
  },
  "P09-control": {
   "class": "preparation",
@@ -83,7 +87,8 @@
     }
    ]
   },
-  "detectability_witness": "No note links these valves to other specimens."
+  "detectability_witness": "No note links these valves to other specimens.",
+  "attribution_criterion": "names the exclusion of valves V03, V11, V19 or V25 as unjustified"
  },
  "P11-control": {
   "class": "preparation",
@@ -96,7 +101,8 @@
     "Globigerinoides is treated as part of Globigerina."
    ]
   },
-  "detectability_witness": "Genus is the first word of each current name."
+  "detectability_witness": "Genus is the first word of each current name.",
+  "attribution_criterion": "names Globigerinoides being counted under Globigerina"
  },
  "P03-control": {
   "class": "design",
@@ -104,7 +110,8 @@
    "mean_bray_curtis": 0.26672222222222225
   },
   "answer_edits": {},
-  "detectability_witness": "Raw counts were requested; the analysis uses relative abundances."
+  "detectability_witness": "Raw counts were requested; the analysis uses relative abundances.",
+  "attribution_criterion": "names the use of relative abundances where raw counts were requested"
  },
  "P06-control": {
   "class": "design",
@@ -118,7 +125,8 @@
     "Consecutive rows are aliquots of one core and are pooled."
    ]
   },
-  "detectability_witness": "Dictionary: each row is a separate core."
+  "detectability_witness": "Dictionary: each row is a separate core.",
+  "attribution_criterion": "names the pooling of rows into cores or the reduced number of units"
  },
  "P12-control": {
   "class": "design",
@@ -128,7 +136,8 @@
    "n": 41
   },
   "answer_edits": {},
-  "detectability_witness": "Relative abundances were requested; the analysis uses raw counts."
+  "detectability_witness": "Relative abundances were requested; the analysis uses raw counts.",
+  "attribution_criterion": "names the use of raw counts where relative abundances were requested"
  },
  "P04-control": {
   "class": "interpretation",
@@ -139,7 +148,8 @@
   "answer_edits": {
    "summary_append": "Diversity increased significantly between the 2017 and 2021 campaigns."
   },
-  "detectability_witness": "No test was run, and the difference is small."
+  "detectability_witness": "No test was run, and the difference is small.",
+  "attribution_criterion": "names the unsupported claim of a significant increase"
  },
  "P08-control": {
   "class": "interpretation",
@@ -150,7 +160,8 @@
   "answer_edits": {
    "summary_append": "Holocene assemblages are more homogeneous than Pleistocene assemblages."
   },
-  "detectability_witness": "Pleistocene samples were not analysed."
+  "detectability_witness": "Pleistocene samples were not analysed.",
+  "attribution_criterion": "names the unsupported comparison with Pleistocene assemblages"
  },
  "P10-control": {
   "class": "interpretation",
@@ -160,6 +171,7 @@
   "answer_edits": {
    "summary_append": "Shannon diversity declined from the oldest to the youngest sample."
   },
-  "detectability_witness": "The reported change is positive."
+  "detectability_witness": "The reported change is positive.",
+  "attribution_criterion": "names the contradiction between the stated decline and the positive change"
  }
 }

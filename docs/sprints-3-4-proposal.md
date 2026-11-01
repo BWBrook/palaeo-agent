@@ -478,6 +478,18 @@ Other changes:
 - **Endpoints:** a primary endpoint, a co-primary safety endpoint, and
   bootstrap intervals that resample items.
 
+**Design revision, 1 November 2026: a same-family Sonnet pilot.** Codex's
+client could not be qualified with pre-dispatch admission, so the conditional
+analyst authorisation below took effect. Analysts and reviewers are both
+`claude-sonnet-5-5`, with at most 48 reviewer trials in the 1.5M envelope.
+The Codex rows of the resource table no longer apply. Cross-family validation
+is deferred and explicitly unfinished. Barry, in Claude chat on 1 November
+2026: "No, subscription only please: I don't have an Anthropic or Codex API
+account, and don't plan on getting one. I rely on the subscription usage only.
+Do the best you can with that." All Anthropic trials therefore use his
+subscription through a dedicated, instruction-free configuration directory.
+[`docs/pilot-protocol.md`](pilot-protocol.md) is the operative design.
+
 **Authorised by Barry: a Sonnet 5.5 reviewer replicate.** Asked in Claude
 chat on 31 October 2026, "Authorise the optional 48-trial Sonnet 5.5
 reviewer replicate in sprint 4?", Barry answered: "Yes, authorise it".

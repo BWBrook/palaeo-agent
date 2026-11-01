@@ -22,12 +22,18 @@ implements F1 and F2.
     advertise (the [sprint-3 review](sprint-3-review.md) scripted these calls
     offline), and its init record exposes the inventory.
   - Barry authorised this fallback on 31 October 2026.
-  - The same route carries the reviewer trials. The **governing reviewer
-    population is Sonnet** (F6). Codex reviewers run only if a Codex admission
-    route later qualifies; they would then be a reported secondary population,
-    never pooled and never decisive.
-  - Reviewers are therefore the same family as the analysts. That limits the
-    inference, and the report must say so.
+  - **Same-family development pilot (agreed with Codex, Board 2764/2765).**
+    Analysts and reviewers are both Sonnet. There are at most 48 reviewer
+    trials, inside the existing 1,500,000 counted-token envelope. The earlier
+    two-population reviewer design is withdrawn. Cross-family validation is
+    deferred and explicitly unfinished; no result is claimed to generalise
+    across model families.
+  - **Authentication: Barry's subscription only** (Barry, 1 November 2026).
+    The supervisor authenticates through a dedicated configuration directory,
+    logged in once with `claude auth login --claudeai`. Before each trial the
+    launcher checks that this directory holds no instructions, memory, skills,
+    plugins or settings, and that it is logged in to a subscription.
+    No API account is used.
 - **Arms.**
   - Both arms get the confined worker's `worker_execute`, `worker_read` and
     `worker_write`.
@@ -39,6 +45,12 @@ implements F1 and F2.
 - **Trials.** 24 items × 2 arms × 2 sessions = 96. They run in balanced blocks
   (one family × both classes × both arms × one session), in a seeded order
   fixed at freeze.
+- **Partial blocks (L8).** The ceiling stops launches immediately, even inside
+  a block; no block is completed beyond the ceiling.
+  - The primary paired analyses use only item-session pairs with both arms
+    present.
+  - Every unpaired trial is reported descriptively and listed.
+  - The report gives the number of complete pairs per family and stratum.
 
 ## Scoring (amendment to `sprint1-revised-v2`)
 
@@ -50,9 +62,12 @@ keys:
    acceptable.
 2. **`out_of_scope_ids`.** Samples outside the task's scope (P08's
    Pleistocene samples) are neither required nor penalised as exclusions.
-3. **`disclosure_tokens` (F2).** A numerically correct P04-trap answer that
-   does not disclose its restricted taxonomic basis scores `undisclosed`,
-   which is not acceptable.
+3. **`disclosure_tokens` (F2).** A numerically correct P04-trap or P04-cal
+   answer that does not disclose its restricted taxonomic basis scores
+   `undisclosed`, which is not acceptable. A keyword match is only a candidate:
+   every numerically correct answer is provisional until semantic
+   adjudication confirms that the restricted basis was actually disclosed.
+   A false full-community claim fails.
 4. **`equivalent_exclusions` (F1).** In P09-trap, excluding either valve of a
    pair, or neither if the pair is averaged, is equivalent. Excluding both is
    flagged in the evidence checks.
@@ -78,12 +93,12 @@ reviewer trial runs:
 **Eligibility, fixed now.**
 
 - Use the 12 control items' session-1 packages, from both arms.
-- A pair is eligible when both arms produced a schema-valid answer and a
+- A pair is eligible when both arms produced a schema-valid answer, and a
   package that passes its own integrity check: `inspect_study` or
-  `inspect_run` where used, and file hashes otherwise.
+  `inspect_run` where used, otherwise re-execution of the saved script
+  reproducing the answer.
 - Ineligible pairs are recorded and never replaced. **E** is the number of
-  eligible pairs, at most 12.
-- The denominator for every reviewer rate is E, not 12.
+  eligible pairs. It is reported only as a count; no rate uses it.
 
 **Analysis set (F4).**
 
@@ -96,9 +111,8 @@ reviewer trial runs:
 - Restricting to packages that are correct in both arms is a selection, and
   it is reported as one.
 
-**Variants.** Each eligible package is reviewed twice: intact, and with the
-item's planted flaw. That gives 4E Codex reviewer trials, plus 4E in the Sonnet
-replicate.
+**Variants.** Each package in E\* is reviewed twice: intact, and with the
+item's planted flaw. That gives 4E\* ≤ 48 Sonnet reviewer trials.
 
 **Flaw rules.**
 
@@ -117,7 +131,7 @@ replicate.
 | P01-control | preparation | Core 5 excluded as "residue lost" | Dictionary: every core counted in full. |
 | P02-control | preparation | Field log joined by row order, not code | Log codes ≠ assigned zones in the derived metadata. |
 | P05-control | preparation | Two distinct species merged as a "case variant" | Names differ beyond case and spacing. |
-| P07-control | preparation | L3 values divided by 10 as "cm" | Dictionary: all localities measured in mm. |
+| P07-control | preparation | L3 values treated as cm and multiplied by 10 to give "mm" | Dictionary: all localities measured in mm. |
 | P09-control | preparation | Four right valves dropped as "duplicates" | No notes link them to other specimens. |
 | P11-control | preparation | Globigerinoides counted under Globigerina | Genus is the first word; the names differ. |
 | P03-control | design | Bray–Curtis on relative abundances, with raw counts requested | Spec or script shows the transform. |
@@ -134,9 +148,18 @@ replicate.
   `interpretation` or `numerical`) and the step or field;
 - a short justification.
 
-The reference verdict for a flawed variant is `reject` with the planted class.
-For an intact variant it comes from the analyst package's own score: `accept`
-if acceptable, otherwise `reject`. The reference is fixed before any review.
+**References.** All in E\* are frozen before any review.
+
+- A flawed variant's reference is `reject`, attributed to its frozen
+  `attribution_criterion` (`evaluation/pilot/flaws.json`).
+- Intact variants in E\* were adjudicated acceptable as whole packages, so
+  their reference is `accept`.
+
+**Attribution (F4).** Claude and a Codex delegate adjudicate each rejection
+independently against the flaw's `attribution_criterion`. It counts as
+detection only if it identifies the actual mistaken operation or conclusion,
+with a justification that fits that criterion. Naming the right broad class
+for an unrelated reason does not count.
 
 **Reviewer metrics, each over E\* (F4).**
 
@@ -145,8 +168,10 @@ if acceptable, otherwise `reject`. The reference is fixed before any review.
   rejection for another reason is counted separately as non-attributed.
 - **False accusation:** intact variants rejected.
 - **Missing reviews:** a reviewer trial that failed or returned no valid
-  verdict counts as non-detection or non-accusation and is reported
-  separately.
+  verdict is excluded from both numerator and denominator and reported. It is
+  never counted as a non-accusation.
+- **Completion (C):** the share of reviewer trials with a valid verdict,
+  per arm.
 - **Cost:** tokens and time.
 - A metric with a zero denominator is undefined, never zero.
 
@@ -187,50 +212,60 @@ that matches decides. **Confined** means ΔT_tk ≥ 0.15 and ΔT_other < 0.05.
 | 1 | I > 0.20 | **Repair the instrument.** No efficacy verdict. Part A still applies. |
 | 2 | D ≥ 0.90 | **Stop this design**, because it cannot discriminate. Part A still applies. |
 | 3 | Part A flagged harm | **Adverse.** Stop expansion. |
-| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, K ≤ 2.0, not confined, and (E\* < 6, or ΔS ≥ −1/E\* and ΔA ≤ 1/E\*) | **Expand.** |
+| 4 | ΔT ≥ 0.15 with lower bound > 0, ΔC ≤ 0.05, K ≤ 2.0, not confined, E\* ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ −1/E\* and ΔA ≤ 1/E\* | **Expand.** |
+| 4a | Rule 4's analyst conditions hold, but E\* < 6 or C < 0.8 in either arm | **Incomplete: analyst signal, reviewer instrument repair.** Report the analyst findings; no expansion verdict. |
 | 5 | Rule 4's conditions hold except that the gain is confined | **Repair:** enforcement works but does not generalise. |
 | 6 | ΔT ≥ 0.15 with lower bound > 0, but ΔC, K, ΔS or ΔA fails rule 4 | **Repair** the failing axis. |
-| 7 | E\* ≥ 6, ΔS ≥ 2/E\*, ΔA ≤ 1/E\*, \|ΔT\| < 0.15, ΔC ≤ 0.05 | **Development signal for auditability.** No claim of established review gain or of correctness equivalence. |
+| 7 | E\* ≥ 6, C ≥ 0.8 in both arms, ΔS ≥ 2/E\*, ΔA ≤ 1/E\*, \|ΔT\| < 0.15, ΔC ≤ 0.05 | **Development signal for auditability.** No claim of established review gain or of correctness equivalence. |
 | 8 | \|ΔT\| < 0.15, ΔC ≤ 0.05, and (E\* < 6 or \|ΔS\| ≤ 1/E\*) | **Null: stop this efficacy line** at this power. |
 | 9 | Anything else | **Inconclusive.** No claim. |
 
-When E\* < 6, the reviewer clauses drop out and the verdict rests on the
-analyst endpoints alone. The report states this.
+Reviewer clauses never drop out of rules 4 and 7. Inadequate reviewer
+evidence leads to rule 4a, or to rules 8–9.
 
 **Counterexample check.** Codex's case had 7 toolkit-stratum improvements and
 5 zeros in the other stratum. It now matches rule 5, not rule 4: ΔT_other = 0
 is below 0.05.
 
-## Launch conditions (both backends)
+## Launch conditions (implemented in `evaluation/pilot/launch.py`)
 
-- **Runtime.** Rebuild both arm runtimes with the current wheel, which
-  includes the study tools. Rerun the worker probes and both clients'
-  inventory and scripted-refusal probes against those runtimes, and freeze the
-  inventories.
-- **Pinned and gated per launch.**
-  - Pin the client binary, any model catalogue, the command, the prompt, the
-    MCP configuration and the runtime manifests. Check them at each launch.
-  - Immediately before each trial, run the fake-endpoint capture with the
-    identical configuration. Refuse the launch if the inventory differs from
-    the frozen one.
-- **Admission (Claude route).** Claude Code itself refuses unadvertised tools
-  before dispatch, as the scripted probes show. Its init record must equal the
-  frozen inventory, or the trial is aborted before its first turn.
-- **Event reconciliation, with explicit categories.** Every tool event falls
-  into exactly one of:
-  - a worker MCP call, which must appear in the worker audit log;
-  - a client refusal of an unadvertised name, which must have no worker
-    record;
-  - anything else. That invalidates the trial and halts launches.
-
-  This tripwire comes on top of the admission check; it does not replace it.
-- **Abort cleanup.**
-  - The launcher kills the client's process group.
-  - It then finds and kills any surviving process whose arguments name the
-    trial root (worker calls run in their own sessions).
-  - It verifies that no such process remains. If one does, launches halt.
+- **Runtime.** Both arm runtimes are rebuilt with the current wheel, which
+  includes the study tools. The worker probes and the client's inventory and
+  scripted-refusal probes are rerun against them, and the inventories are
+  frozen in the plan.
+- **Fingerprints, enforced at every launch.** The client binary, the runtime
+  manifest, the installed toolkit files, both `pyvenv.cfg` files, the worker,
+  server, launcher and scorer source, the prompts, and the item manifest,
+  including the trial's own materials. Any difference halts launches.
+- **Configuration directory.** It may hold no CLAUDE.md, agents, commands,
+  skills, plugins, hooks, settings or memory content, and it must be logged in
+  to a subscription. The client's working directory has no instruction files
+  above it.
+- **Inventory capture.** The identical command is run against a fake endpoint
+  with a dummy key, using a separate configuration directory that is not
+  logged in, so no real credential can be sent. Each capture is saved with the
+  trial, and it must equal the frozen inventory.
+- **Admission.** Claude Code refuses unadvertised tools before dispatch, as
+  the scripted probes show. Its init record must equal the frozen inventory,
+  or the trial is killed. A missing init record is a breach.
+- **Reconciliation by identity.**
+  - Each worker tool event is matched, in order, to its audit record by tool
+    and primary arguments, and its success or error must agree.
+  - Each unadvertised name must show a client refusal and have no audit row.
+  - An event without a result, an audit row without an event, or anything
+    else halts launches.
+- **Abort cleanup.** The launcher kills the client's process group, the worker
+  server and every worker process group the worker recorded. It then verifies
+  from a full process listing that none survive. A failed listing halts
+  launches.
+- **Export.** Only regular files are copied, never following links. Links and
+  special files are listed, never read.
+- **Usage and the ledger.**
+  - Every usage field must be present and non-negative.
+  - Any incomplete trial, breach or halt writes `HALTED.json`, and no later
+    trial launches until a reviewed decision.
+  - The output directory is bound to its plan's hash. A started trial is
+    never rerun.
+- **Per-trial limits.** A turn cap and a wall-clock kill.
 - **Codex route.** Retained only if a pre-dispatch admission route qualifies
-  and Codex reviews it. Pinning and fake-endpoint capture are configuration
-  evidence only (F8).
-- **Per-trial limits.** A turn cap, a wall-clock kill and no retries. Unknown
-  usage stops launches.
+  and Codex reviews it (F8).

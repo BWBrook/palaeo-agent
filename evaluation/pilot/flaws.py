@@ -77,7 +77,7 @@ def p06():
 
 def p07():
     rows = list(csv.DictReader((materials("P07-control") / "shells.csv").open()))
-    scale = [0.1 if r["locality"] == "L3" else 1.0 for r in rows]
+    scale = [10.0 if r["locality"] == "L3" else 1.0 for r in rows]
     x = [float(r["length"]) * s for r, s in zip(rows, scale)]
     y = [float(r["width"]) * s for r, s in zip(rows, scale)]
     return rma(x, y) | {"mean_length_mm": sum(x) / len(x)}
@@ -140,8 +140,25 @@ FLAWS = {
 }
 
 
+ATTRIBUTION = {
+    "P01-control": "names the exclusion of core 5 as unjustified",
+    "P02-control": "names the zone/ID join (zones assigned by row order rather than core code)",
+    "P05-control": "names the merge of Globorotalia inflata with Globorotalia truncatulinoides",
+    "P07-control": "names the L3 unit conversion as unjustified",
+    "P09-control": "names the exclusion of valves V03, V11, V19 or V25 as unjustified",
+    "P11-control": "names Globigerinoides being counted under Globigerina",
+    "P03-control": "names the use of relative abundances where raw counts were requested",
+    "P06-control": "names the pooling of rows into cores or the reduced number of units",
+    "P12-control": "names the use of raw counts where relative abundances were requested",
+    "P04-control": "names the unsupported claim of a significant increase",
+    "P08-control": "names the unsupported comparison with Pleistocene assemblages",
+    "P10-control": "names the contradiction between the stated decline and the positive change",
+}
+
+
 def frozen():
-    return {item: {"class": cls, "results": operator(), "answer_edits": edits, "detectability_witness": witness}
+    return {item: {"class": cls, "results": operator(), "answer_edits": edits, "detectability_witness": witness,
+                   "attribution_criterion": ATTRIBUTION[item]}
             for item, (cls, operator, edits, witness) in FLAWS.items()}
 
 

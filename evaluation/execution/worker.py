@@ -171,6 +171,8 @@ class Worker:
                                             stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                             cwd=self.trial_root, env=self.environment,
                                             start_new_session=True)
+                    with (self.log_dir / "pids.jsonl").open("a", encoding="utf-8") as stream:
+                        stream.write(json.dumps({"pgid": proc.pid, "time_unix": time.time()}) + "\n")
                     with selectors.DefaultSelector() as selector:
                         for name in buffers:
                             selector.register(getattr(proc, name), selectors.EVENT_READ, name)

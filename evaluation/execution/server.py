@@ -7,6 +7,7 @@ or opens model-selected paths outside Worker.run_python.
 import argparse
 import asyncio
 import json
+import os
 from pathlib import Path
 
 from .worker import Worker
@@ -91,7 +92,9 @@ async def serve(config):
     from mcp.server.stdio import stdio_server
     config = dict(config)
     toolkit = config.pop("toolkit", False)
-    transport = ExecutionTransport(Worker(**config), toolkit=toolkit)
+    worker = Worker(**config)
+    (worker.log_dir / "server.pid").write_text(f"{os.getpid()} {os.getpgid(0)}\n")
+    transport = ExecutionTransport(worker, toolkit=toolkit)
     server = create_server(transport)
     async with stdio_server() as (read, write):
         await server.run(read, write, server.create_initialization_options())
