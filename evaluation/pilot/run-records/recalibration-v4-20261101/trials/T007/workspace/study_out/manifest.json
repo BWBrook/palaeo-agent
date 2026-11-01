@@ -1,0 +1,27 @@
+{
+  "study_version": 1,
+  "status": "complete",
+  "steps": [
+    {
+      "id": "dataset:holocene",
+      "status": "complete"
+    },
+    {
+      "id": "analysis:bc",
+      "status": "complete"
+    }
+  ],
+  "runs": {
+    "bc": {
+      "run_dir": "runs/bc/2f6a9de08fbc4087abe8198043206231",
+      "manifest_sha256": "cd644c297c02227aa9b4bcd2dcdc44ffb432bb2521b7e55531d8522ce4acaa0d"
+    }
+  },
+  "files": {
+    "derived/holocene.dat": "d535db8c4a41d91406c8cd19005cca44d1d0cc5bcb63005d9ccd6f3a74702da8",
+    "derived/holocene.json": "c612413c8ac46805760b40a39eb21870e0cf02199c3ea9ac29a0bcdc0e59ce5f",
+    "inputs/counts": "0cae323d14e1bd81015447f1853d2a7f0491bdfaaa33c20ccc284274e9811d21",
+    "report.md": "cfc457af72acfb5e4516d85c77dc5bf66af9ac7b05c7b00c0d1078035d3effc2",
+    "study.json": "613de46b1885facc2a4b85fd858570130b58d55820181106f83169034dd7581c"
+  }
+}

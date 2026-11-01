@@ -1,0 +1,46 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "counts": {
+   "kind": "counts",
+   "path": "../counts.tsv",
+   "orientation": "samples_by_taxa",
+   "format": "delimited",
+   "delimiter": "tab"
+  }
+ },
+ "datasets": {
+  "acc": {
+   "source": "counts",
+   "operations": [
+    {
+     "op": "map_taxa",
+     "reason": "Rename to accepted names (taxonomy.csv); synonyms summed",
+     "mapping": {
+      "Globigerinoides sacculifer": "Trilobatus sacculifer",
+      "Globigerinoides tenellus": "Globoturborotalita tenella",
+      "Neogloboquadrina pachyderma (dextral)": "Neogloboquadrina incompta",
+      "Neogloboquadrina pachyderma (sinistral)": "Neogloboquadrina pachyderma"
+     }
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "bc",
+   "dataset": "acc",
+   "spec": {
+    "method": "community",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 2,
+    "missing": "error",
+    "empty_samples": "error",
+    "format": "past",
+    "orientation": "samples_by_taxa"
+   }
+  }
+ ]
+}

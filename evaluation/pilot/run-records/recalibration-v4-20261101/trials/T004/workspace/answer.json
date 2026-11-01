@@ -1,0 +1,17 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "richness": 24,
+  "mean_bray_curtis": 0.32385682180916114
+ },
+ "assumptions": [
+  "Names recorded by the two labs were mapped to accepted names via taxonomy.csv and synonymous columns summed (G. sacculifer->Trilobatus sacculifer; G. tenellus->Globoturborotalita tenella; N. pachyderma dextral->N. incompta; sinistral->N. pachyderma).",
+  "Bray-Curtis on raw counts (no transform), mean over all 276 sample pairs, via palaeo_agent community method."
+ ],
+ "exclusions": [],
+ "issues": [
+  "The two labs used different names for the same species, which would inflate richness and dissimilarity if unmapped.",
+  "Lab log remarks reviewed; none indicate samples to exclude."
+ ],
+ "summary": "Mapped recorded names to accepted names (palaeo_agent study with map_taxa), computed Bray-Curtis on raw counts, averaged the upper triangle, and counted species with >=1 specimen."
+}

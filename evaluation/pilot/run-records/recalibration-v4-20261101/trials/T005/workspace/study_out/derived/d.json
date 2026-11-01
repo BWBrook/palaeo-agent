@@ -1,0 +1,91 @@
+{
+  "dataset": "d",
+  "kind": "counts",
+  "samples": [
+    "SR325",
+    "SR341",
+    "SR237",
+    "SR233",
+    "SR179",
+    "SR158",
+    "SR304",
+    "SR335",
+    "SR211",
+    "SR229",
+    "SR260",
+    "SR133",
+    "SR296",
+    "SR149",
+    "SR188",
+    "SR193"
+  ],
+  "columns": [
+    "Neogloboquadrina incompta",
+    "Melonis barleeanum",
+    "Globigerinoides ruber",
+    "Berggrenia pumilio",
+    "Globobulimina affinis",
+    "Pulleniatina obliquiloculata",
+    "Pyrgo depressa",
+    "Tenuitella iota",
+    "Neogloboquadrina pachyderma",
+    "Globigerina falconensis",
+    "Globigerinella siphonifera",
+    "Ammonia beccarii",
+    "Cassidulina laevigata",
+    "Globigerinita glutinata",
+    "Globorotalia scitula",
+    "Globoturborotalita rubescens",
+    "Orbulina universa",
+    "Pyrgo murrhina",
+    "Cibicidoides wuellerstorfi",
+    "Oridorsalis umbonatus",
+    "Elphidium excavatum",
+    "Candeina nitida",
+    "Globorotalia inflata",
+    "Globigerinoides conglobatus",
+    "Globigerinella calida",
+    "Hoeglundina elegans"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "c",
+      "orientation": "samples_by_taxa",
+      "samples": 24,
+      "columns": 26
+    },
+    {
+      "op": "select",
+      "reason": "1998 rows are published relative abundances (%), not raw counts",
+      "kept": [
+        "SR325",
+        "SR341",
+        "SR237",
+        "SR233",
+        "SR179",
+        "SR158",
+        "SR304",
+        "SR335",
+        "SR211",
+        "SR229",
+        "SR260",
+        "SR133",
+        "SR296",
+        "SR149",
+        "SR188",
+        "SR193"
+      ],
+      "removed": [
+        "SR198",
+        "SR209",
+        "SR219",
+        "SR142",
+        "SR236",
+        "SR328",
+        "SR366",
+        "SR295"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.28501412169549767,
+    "n_genera": 17
+  },
+  "assumptions": [
+    "Genus = first word of current_name in taxonomy.csv (WoRMS 2025-10), so renamed species are assigned to their current genus.",
+    "Bray-Curtis on raw counts, unweighted mean over all 253 sample pairs; all 23 samples kept."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Sample N05 has very low counts (low yield per lab log); kept since raw counts were requested, but it inflates dissimilarities.",
+    "Several 1987 names are outdated (e.g. Globigerina pachyderma, G. quinqueloba, Globigerinoides sacculifer) and were remapped, changing genus composition."
+  ],
+  "summary": "Mapped recorded names to current genera, summed counts, computed pairwise Bray-Curtis on raw counts and averaged."
+}

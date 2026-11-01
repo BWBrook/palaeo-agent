@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-13g9_2cp/a/trial/analysis.py:49: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  chk = float(pdist(c.div(c.sum(1), axis=0).values, \"braycurtis\").mean())\n",
+  "output_bytes": {
+    "stdout": 0,
+    "stderr": 263
+  },
+  "truncated": {
+    "stdout": false,
+    "stderr": false
+  },
+  "duration_seconds": 2.1917264579969924,
+  "answer_error": null,
+  "answer_sha256": "2c8b77a179f684a2cbf3a90ef29f582d54738067dd59cc0d235396fa803c7edf"
+}

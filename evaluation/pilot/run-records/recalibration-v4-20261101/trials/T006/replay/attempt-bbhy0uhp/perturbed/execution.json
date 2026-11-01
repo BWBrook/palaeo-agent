@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-ruei83jn/b/trial/analysis.py:15: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  issues.append(\"Percent rows sums (min,max): %.2f,%.2f\"%(c.loc[pct].sum(1).min(),c.loc[pct].sum(1).max()))\n",
+  "output_bytes": {
+    "stdout": 0,
+    "stderr": 297
+  },
+  "truncated": {
+    "stdout": false,
+    "stderr": false
+  },
+  "duration_seconds": 0.9040416249990813,
+  "answer_error": null,
+  "answer_sha256": "9bc2be4d5842390e23a2ff136c6cb8f7cd52cc416ab8157e1b653a98eb2fad6f"
+}

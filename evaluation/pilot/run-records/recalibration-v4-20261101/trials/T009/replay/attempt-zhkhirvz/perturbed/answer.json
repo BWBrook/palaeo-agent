@@ -1,0 +1,19 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "pseudo_f": 19.017032289388375,
+    "r_squared": 0.6131157910905142,
+    "n": 14,
+    "p_value": 0.0005827505827505828
+  },
+  "assumptions": [
+    "Cores (one per site, sites >=3 km apart) are the independent sampling units; free permutation of core labels is valid.",
+    "Splits of one core residue are complementary fractions of one sample, so their counts are summed."
+  ],
+  "exclusions": [],
+  "issues": [
+    "28 lab numbers come from 14 cores (splits a/b/c of the same residue); treating lab numbers as units would be pseudoreplication, so counts were pooled per core (n=14).",
+    "Split totals vary widely (e.g. L4203 has 8 specimens); pooling avoids noisy relative abundances from tiny splits."
+  ],
+  "summary": "Pooled split counts per core, converted to relative abundances, Bray-Curtis, one-way PERMANOVA of inner vs outer zone on 14 cores via palaeo_agent."
+}

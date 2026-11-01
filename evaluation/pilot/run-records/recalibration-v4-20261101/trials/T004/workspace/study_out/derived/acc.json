@@ -1,0 +1,111 @@
+{
+  "dataset": "acc",
+  "kind": "counts",
+  "samples": [
+    "AT01",
+    "AT02",
+    "AT03",
+    "AT04",
+    "AT05",
+    "AT06",
+    "AT07",
+    "AT08",
+    "AT09",
+    "AT10",
+    "AT11",
+    "AT12",
+    "AT13",
+    "AT14",
+    "AT15",
+    "AT16",
+    "AT17",
+    "AT18",
+    "AT19",
+    "AT20",
+    "AT21",
+    "AT22",
+    "AT23",
+    "AT24"
+  ],
+  "columns": [
+    "Tenuitella iota",
+    "Trilobatus sacculifer",
+    "Orbulina universa",
+    "Globoturborotalita tenella",
+    "Berggrenia pumilio",
+    "Candeina nitida",
+    "Globoturborotalita rubescens",
+    "Globigerinita uvula",
+    "Beella digitata",
+    "Globigerinella calida",
+    "Globorotalia hirsuta",
+    "Globorotalia menardii",
+    "Globorotalia truncatulinoides",
+    "Neogloboquadrina incompta",
+    "Turborotalita quinqueloba",
+    "Globigerinita glutinata",
+    "Hastigerina pelagica",
+    "Pulleniatina obliquiloculata",
+    "Globorotalia inflata",
+    "Globigerinella siphonifera",
+    "Neogloboquadrina pachyderma",
+    "Sphaeroidinella dehiscens",
+    "Globigerinoides conglobatus",
+    "Globigerina falconensis"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "counts",
+      "orientation": "samples_by_taxa",
+      "samples": 24,
+      "columns": 26
+    },
+    {
+      "op": "map_taxa",
+      "reason": "Rename to accepted names (taxonomy.csv); synonyms summed",
+      "mapping": {
+        "Globigerinoides sacculifer": "Trilobatus sacculifer",
+        "Globigerinoides tenellus": "Globoturborotalita tenella",
+        "Neogloboquadrina pachyderma (dextral)": "Neogloboquadrina incompta",
+        "Neogloboquadrina pachyderma (sinistral)": "Neogloboquadrina pachyderma"
+      },
+      "merged": {
+        "Trilobatus sacculifer": [
+          "Globigerinoides sacculifer",
+          "Trilobatus sacculifer"
+        ],
+        "Globoturborotalita tenella": [
+          "Globigerinoides tenellus",
+          "Globoturborotalita tenella"
+        ]
+      },
+      "columns": [
+        "Tenuitella iota",
+        "Trilobatus sacculifer",
+        "Orbulina universa",
+        "Globoturborotalita tenella",
+        "Berggrenia pumilio",
+        "Candeina nitida",
+        "Globoturborotalita rubescens",
+        "Globigerinita uvula",
+        "Beella digitata",
+        "Globigerinella calida",
+        "Globorotalia hirsuta",
+        "Globorotalia menardii",
+        "Globorotalia truncatulinoides",
+        "Neogloboquadrina incompta",
+        "Turborotalita quinqueloba",
+        "Globigerinita glutinata",
+        "Hastigerina pelagica",
+        "Pulleniatina obliquiloculata",
+        "Globorotalia inflata",
+        "Globigerinella siphonifera",
+        "Neogloboquadrina pachyderma",
+        "Sphaeroidinella dehiscens",
+        "Globigerinoides conglobatus",
+        "Globigerina falconensis"
+      ]
+    }
+  ]
+}

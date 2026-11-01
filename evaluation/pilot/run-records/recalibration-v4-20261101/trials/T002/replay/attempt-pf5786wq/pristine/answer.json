@@ -1,0 +1,17 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.28501412169549767,
+    "n_genera": 17
+  },
+  "assumptions": [
+    "Genus = first word of current_name in taxonomy.csv (WoRMS 2025-10); counts summed within genus.",
+    "Raw counts used with no rarefaction/standardisation, as requested; sample N05 (low yield, small total) kept."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Recorded names are 1987 taxonomy; several were renamed (e.g. Globigerina pachyderma -> Neogloboquadrina, G. quinqueloba -> Turborotalita, G. sacculifer -> Trilobatus), merging Neogloboquadrina taxa into one genus.",
+    "N05 has a much lower total count than other samples, which affects raw-count Bray-Curtis."
+  ],
+  "summary": "Mapped recorded names to current genera via palaeo_agent study (map_taxa), computed Bray-Curtis on raw genus counts, averaged over all 253 sample pairs."
+}

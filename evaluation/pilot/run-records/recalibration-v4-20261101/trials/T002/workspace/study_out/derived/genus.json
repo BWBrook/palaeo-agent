@@ -1,0 +1,133 @@
+{
+  "dataset": "genus",
+  "kind": "counts",
+  "samples": [
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23"
+  ],
+  "columns": [
+    "Globigerina",
+    "Globigerinoides",
+    "Neogloboquadrina",
+    "Hastigerina",
+    "Globoturborotalita",
+    "Globigerinella",
+    "Globigerinita",
+    "Turborotalita",
+    "Trilobatus",
+    "Tenuitella",
+    "Orbulina",
+    "Globorotalia",
+    "Berggrenia",
+    "Sphaeroidinella",
+    "Beella",
+    "Candeina",
+    "Pulleniatina"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "counts",
+      "orientation": "taxa_by_samples",
+      "samples": 23,
+      "columns": 24
+    },
+    {
+      "op": "map_taxa",
+      "reason": "Aggregate recorded names to genus of current_name (taxonomy.csv)",
+      "mapping": {
+        "Beella digitata": "Beella",
+        "Berggrenia pumilio": "Berggrenia",
+        "Candeina nitida": "Candeina",
+        "Globigerina bulloides": "Globigerina",
+        "Globigerina pachyderma": "Neogloboquadrina",
+        "Globigerina quinqueloba": "Turborotalita",
+        "Globigerinella calida": "Globigerinella",
+        "Globigerinella siphonifera": "Globigerinella",
+        "Globigerinita glutinata": "Globigerinita",
+        "Globigerinita uvula": "Globigerinita",
+        "Globigerinoides conglobatus": "Globigerinoides",
+        "Globigerinoides ruber": "Globigerinoides",
+        "Globigerinoides sacculifer": "Trilobatus",
+        "Globorotalia menardii": "Globorotalia",
+        "Globorotalia truncatulinoides": "Globorotalia",
+        "Globoturborotalita rubescens": "Globoturborotalita",
+        "Globoturborotalita tenella": "Globoturborotalita",
+        "Hastigerina pelagica": "Hastigerina",
+        "Neogloboquadrina dutertrei": "Neogloboquadrina",
+        "Neogloboquadrina incompta": "Neogloboquadrina",
+        "Orbulina universa": "Orbulina",
+        "Pulleniatina obliquiloculata": "Pulleniatina",
+        "Sphaeroidinella dehiscens": "Sphaeroidinella",
+        "Tenuitella iota": "Tenuitella"
+      },
+      "merged": {
+        "Globigerinoides": [
+          "Globigerinoides ruber",
+          "Globigerinoides conglobatus"
+        ],
+        "Neogloboquadrina": [
+          "Neogloboquadrina incompta",
+          "Neogloboquadrina dutertrei",
+          "Globigerina pachyderma"
+        ],
+        "Globoturborotalita": [
+          "Globoturborotalita tenella",
+          "Globoturborotalita rubescens"
+        ],
+        "Globigerinella": [
+          "Globigerinella calida",
+          "Globigerinella siphonifera"
+        ],
+        "Globigerinita": [
+          "Globigerinita uvula",
+          "Globigerinita glutinata"
+        ],
+        "Globorotalia": [
+          "Globorotalia truncatulinoides",
+          "Globorotalia menardii"
+        ]
+      },
+      "columns": [
+        "Globigerina",
+        "Globigerinoides",
+        "Neogloboquadrina",
+        "Hastigerina",
+        "Globoturborotalita",
+        "Globigerinella",
+        "Globigerinita",
+        "Turborotalita",
+        "Trilobatus",
+        "Tenuitella",
+        "Orbulina",
+        "Globorotalia",
+        "Berggrenia",
+        "Sphaeroidinella",
+        "Beella",
+        "Candeina",
+        "Pulleniatina"
+      ]
+    }
+  ]
+}

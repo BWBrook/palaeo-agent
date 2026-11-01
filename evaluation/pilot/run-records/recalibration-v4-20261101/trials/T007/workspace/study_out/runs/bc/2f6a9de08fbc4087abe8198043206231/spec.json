@@ -1,0 +1,16 @@
+{
+  "method": "community",
+  "input": "input.dat",
+  "format": "past",
+  "delimiter": null,
+  "orientation": "samples_by_taxa",
+  "value_type": "count",
+  "metadata": null,
+  "transform": "relative_abundance",
+  "distance": "braycurtis",
+  "dimensions": 2,
+  "missing": "error",
+  "empty_samples": "error",
+  "baseline_run": null,
+  "purpose": null
+}

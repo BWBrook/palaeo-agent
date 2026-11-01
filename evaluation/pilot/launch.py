@@ -365,6 +365,20 @@ def adapter_value(name, result):
     return value
 
 
+def client_number_form(value):
+    """The client re-serialises JSON numbers as IEEE-754 doubles, so integers beyond 2**53 arrive rounded
+    (2**64 - 1 becomes 18446744073709552000). Compare both sides in that form; nothing else is relaxed."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) and abs(value) > 2 ** 53:
+        return float(value)
+    if isinstance(value, dict):
+        return {k: client_number_form(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [client_number_form(v) for v in value]
+    return value
+
+
 def result_value(result):
     content = result.get("content")
     if isinstance(content, list):
@@ -422,7 +436,7 @@ def reconcile(events, audit_dir, inventory):
         for i in candidates:
             value = adapter_value(use["name"], audit[i]["result"])
             flagged = isinstance(value, dict) and value.get("status") in ("error", "timed_out", "different")
-            if observed == value and bool(result.get("is_error")) == flagged:
+            if client_number_form(observed) == client_number_form(value) and bool(result.get("is_error")) == flagged:
                 unmatched.remove(i)
                 matched += 1
                 break

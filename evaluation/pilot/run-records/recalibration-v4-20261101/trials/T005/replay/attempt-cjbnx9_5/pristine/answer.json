@@ -1,0 +1,50 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.33268331383345795
+  },
+  "assumptions": [
+    "Mean taken over all 120 pairs among the 16 2024 count samples only.",
+    "Percent-only 1998 samples could not be converted to counts faithfully (rounding, unarchived counts), so they are left out rather than mixing scales."
+  ],
+  "exclusions": [
+    {
+      "id": "SR295",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR209",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR366",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR328",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR198",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR236",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR142",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    },
+    {
+      "id": "SR219",
+      "reason": "1998 campaign row is a published relative abundance (%), not a raw count; counts not archived, so raw-count Bray-Curtis is not defined"
+    }
+  ],
+  "issues": [
+    "Mixed value types: 8 samples are percentages summing to ~100, Bray-Curtis on raw values would be meaningless across scales.",
+    "SR325 has only 47 specimens counted; retained but its dissimilarities are noisy.",
+    "Bray-Curtis PCoA has a small negative eigenvalue; irrelevant to the mean dissimilarity."
+  ],
+  "summary": "Used palaeo_agent run_study (select 16 count samples, community Bray-Curtis on untransformed counts) and averaged the upper-triangle of the distance matrix."
+}

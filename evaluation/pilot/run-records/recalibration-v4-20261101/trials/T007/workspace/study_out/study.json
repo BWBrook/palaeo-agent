@@ -1,0 +1,70 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "counts": {
+      "kind": "counts",
+      "path": "inputs/counts",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    }
+  },
+  "datasets": {
+    "holocene": {
+      "source": "counts",
+      "metadata": null,
+      "drop_unmatched_metadata": false,
+      "operations": [
+        {
+          "op": "select",
+          "samples": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08",
+            "S09",
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S16",
+            "S17",
+            "S18",
+            "S19",
+            "S20",
+            "S21",
+            "S22",
+            "S23",
+            "S24",
+            "S25",
+            "S26"
+          ],
+          "reason": "Holocene: age < 11700 cal BP from linear interpolation over accepted dates"
+        }
+      ]
+    }
+  },
+  "analyses": [
+    {
+      "id": "bc",
+      "dataset": "holocene",
+      "spec": {
+        "method": "community",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "transform": "relative_abundance",
+        "distance": "braycurtis",
+        "dimensions": 2,
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    }
+  ]
+}

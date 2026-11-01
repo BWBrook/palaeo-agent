@@ -1,0 +1,159 @@
+{
+ "trial": {
+  "item": "P03-cal",
+  "arm": "direct",
+  "session": 1,
+  "family": "P03",
+  "trial_id": "T006",
+  "block": 3
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-fsz22qqz",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  1205,
+  1235,
+  1237,
+  1256
+ ],
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 8,
+  "cache_creation_input_tokens": 7925,
+  "cache_read_input_tokens": 18440,
+  "output_tokens": 1721,
+  "output_tokens_details": {
+   "thinking_tokens": 254
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 7925,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 3,
+  "client_refusal": 0,
+  "bootstrap": 0,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 9654,
+ "cache_read_tokens": 18440,
+ "score": {
+  "version": "pilot-v4",
+  "item": "P03-cal",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "provisional": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 5,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled",
+  "family": "P03",
+  "stratum": "toolkit",
+  "acceptable": true
+ },
+ "replay": {
+  "trial": "T006",
+  "item": "P03-cal",
+  "arm": "direct",
+  "original_answer_sha256": "10c514aab92c9b794c2d1c3ac1beaafddcf452a7a9328c87e5f52dd44d778d61",
+  "files": [
+   "analysis.py"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-ruei83jn/a/trial/analysis.py:15: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  issues.append(\"Percent rows sums (min,max): %.2f,%.2f\"%(c.loc[pct].sum(1).min(),c.loc[pct].sum(1).max()))\n"
+  },
+  "perturbation_execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-ruei83jn/b/trial/analysis.py:15: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  issues.append(\"Percent rows sums (min,max): %.2f,%.2f\"%(c.loc[pct].sum(1).min(),c.loc[pct].sum(1).max()))\n"
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-20261101/trials/T006/replay/attempt-bbhy0uhp",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+ },
+ "finished_unix": 1793523304.525579
+}

@@ -1,0 +1,29 @@
+{
+  "trial": "T007",
+  "item": "P08-cal",
+  "arm": "toolkit",
+  "original_answer_sha256": "2c8b77a179f684a2cbf3a90ef29f582d54738067dd59cc0d235396fa803c7edf",
+  "files": [
+    "analysis.py",
+    "specs/study.json"
+  ],
+  "execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-13g9_2cp/a/trial/analysis.py:49: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  chk = float(pdist(c.div(c.sum(1), axis=0).values, \"braycurtis\").mean())\n"
+  },
+  "perturbation_execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-13g9_2cp/b/trial/analysis.py:49: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  chk = float(pdist(c.div(c.sum(1), axis=0).values, \"braycurtis\").mean())\n"
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-20261101/trials/T007/replay/attempt-hrht4v0u",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+}

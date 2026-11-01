@@ -1,0 +1,27 @@
+{
+  "study_version": 1,
+  "status": "complete",
+  "steps": [
+    {
+      "id": "dataset:genus",
+      "status": "complete"
+    },
+    {
+      "id": "analysis:bc",
+      "status": "complete"
+    }
+  ],
+  "runs": {
+    "bc": {
+      "run_dir": "runs/bc/8763b16cf2ab454da90fbba33471acff",
+      "manifest_sha256": "ed43f189d45c510b5e2309a82b0eca5fbba30b5fc728bf4436102a3066365f8c"
+    }
+  },
+  "files": {
+    "derived/genus.dat": "da89660338770d7231b1612db8e0bd0a51fd791011054f9fbb3da625cfa9ceee",
+    "derived/genus.json": "76ee49a88727cc126e37cd519db4eec13de6feda7da08fdf7fe2b4dd22a5a2d4",
+    "inputs/counts": "e0a75e1d2a63cee60048e1ec2cfcde2a330a7ad62e83898ee33dca8dfd00bd37",
+    "report.md": "9bab27abcec05bd382c035d534858764a4635af3ab228e2b1873db8d740a5d46",
+    "study.json": "6f096620d43143a30cac49f5a7ac7e68bf8ed838bc4f706c6918b2e25a122744"
+  }
+}

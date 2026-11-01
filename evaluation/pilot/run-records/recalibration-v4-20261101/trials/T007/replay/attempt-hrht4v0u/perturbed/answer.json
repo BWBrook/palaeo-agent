@@ -1,0 +1,38 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.2576472487813861,
+    "n_holocene": 26
+  },
+  "assumptions": [
+    "Age model: linear interpolation between accepted dated levels only (OZ4817 rejected).",
+    "Holocene = interpolated age < 11700 cal BP (boundary at ~222.7 cm); no extrapolation needed as all samples lie within dated range.",
+    "Mean over all unordered pairs of Holocene samples; Bray-Curtis on per-sample relative abundances."
+  ],
+  "exclusions": [
+    {
+      "id": "OZ4817",
+      "reason": "date rejected: age reversal; reworked shell (dating report); excluded from age model"
+    },
+    {
+      "id": "S29",
+      "reason": "older than Holocene (interpolated age 14472 cal BP)"
+    },
+    {
+      "id": "S27",
+      "reason": "older than Holocene (interpolated age 11768 cal BP)"
+    },
+    {
+      "id": "S30",
+      "reason": "older than Holocene (interpolated age 14732 cal BP)"
+    },
+    {
+      "id": "S28",
+      "reason": "older than Holocene (interpolated age 12288 cal BP)"
+    }
+  ],
+  "issues": [
+    "Dated level OZ4817 (198 cm, 12816 BP) is a reversal and was rejected; had it been used, samples near 198-219 cm would be classed pre-Holocene."
+  ],
+  "summary": "Built age model from accepted dates, selected 26 Holocene samples, computed mean pairwise Bray-Curtis on relative abundances via palaeo_agent study = 0.2576472487813861."
+}

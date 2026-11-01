@@ -1,0 +1,29 @@
+{
+ "requests": [
+  {
+   "path": "/v1/messages?beta=true",
+   "dummy_api_key": true,
+   "authorization_header": false,
+   "tools": [
+    "mcp__worker__palaeo_compare",
+    "mcp__worker__palaeo_discover",
+    "mcp__worker__palaeo_inspect",
+    "mcp__worker__palaeo_inspect_comparison",
+    "mcp__worker__palaeo_reproduce",
+    "mcp__worker__palaeo_result",
+    "mcp__worker__palaeo_run",
+    "mcp__worker__palaeo_study_inspect",
+    "mcp__worker__palaeo_study_reproduce",
+    "mcp__worker__palaeo_study_run",
+    "mcp__worker__palaeo_validate",
+    "mcp__worker__worker_execute",
+    "mcp__worker__worker_read",
+    "DeferredToolPlaceholder",
+    "mcp__worker__worker_write"
+   ],
+   "system_chars": 3763,
+   "tool_results": []
+  }
+ ],
+ "arm": "toolkit"
+}

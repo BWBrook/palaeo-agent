@@ -1,0 +1,1 @@
+{"halt": "T009: breach [], reconciliation [{'id': 'toolu_01JfX7dSS4vgLFAV8p6RM9TE', 'problem': 'returned value differs from audit', 'name': 'mcp__worker__palaeo_discover'}, {'problem': 'audit record without tool event', 'tool': 'discover'}], usage complete True", "time_unix": 1793523423.309249}

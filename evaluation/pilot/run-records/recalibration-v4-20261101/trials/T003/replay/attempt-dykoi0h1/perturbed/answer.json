@@ -1,0 +1,15 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "richness": 24,
+    "mean_bray_curtis": 0.3254964434840173
+  },
+  "assumptions": [
+    "Recorded names merged to accepted_name via taxonomy.csv (synonyms from the two labs summed); all 24 samples used, raw counts, no rarefaction."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Labs used different names for the same species (e.g. Globigerinoides sacculifer/Trilobatus sacculifer, G. tenellus/Globoturborotalita tenella, N. pachyderma dextral/sinistral renamed to N. incompta/N. pachyderma); merged under current taxonomy."
+  ],
+  "summary": "Merged synonyms, counted species with >=1 specimen, mean Bray-Curtis over all 276 sample pairs on raw counts."
+}

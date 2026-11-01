@@ -1,0 +1,1 @@
+{"mcpServers": {"worker": {"type": "stdio", "command": "/Users/bwbrook/work/palaeo-agent/.venv/bin/python", "args": ["-m", "evaluation.execution.server", "--config", "/Users/Shared/palaeo-pilot-work/pilot-49tnxdhk/worker.json"], "cwd": "/Users/bwbrook/work/palaeo-agent", "env": {"PYTHONPATH": "/Users/bwbrook/work/palaeo-agent"}}}}

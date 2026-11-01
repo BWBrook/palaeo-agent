@@ -1,0 +1,17 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.31285204992933446
+  },
+  "assumptions": [
+    "1998 samples are published percentages (counts not archived); converted to approximate counts as percent/100*n_counted, rounded to integers, so all samples are on the count scale.",
+    "SR325 (n=47, low yield but counted in full) retained."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Mixed value types: 1998 rows are relative %, 2024 rows raw counts; Bray-Curtis on raw values would be invalid without conversion. Reconstructed counts carry rounding error.",
+    "Percent rows sums (min,max): 99.96,100.02",
+    "Bray-Curtis on counts depends on differing sample totals (47 to 415 specimens)."
+  ],
+  "summary": "Converted percent rows to counts via n_counted, computed Bray-Curtis for all 276 pairs of 24 samples, and averaged."
+}

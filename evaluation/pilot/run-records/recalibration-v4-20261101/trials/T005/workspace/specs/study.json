@@ -1,0 +1,58 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "c": {
+   "kind": "counts",
+   "path": "../counts.tsv",
+   "orientation": "samples_by_taxa",
+   "format": "delimited",
+   "delimiter": "tab"
+  }
+ },
+ "datasets": {
+  "d": {
+   "source": "c",
+   "operations": [
+    {
+     "op": "select",
+     "samples": [
+      "SR325",
+      "SR341",
+      "SR237",
+      "SR233",
+      "SR179",
+      "SR158",
+      "SR304",
+      "SR335",
+      "SR211",
+      "SR229",
+      "SR260",
+      "SR133",
+      "SR296",
+      "SR149",
+      "SR188",
+      "SR193"
+     ],
+     "reason": "1998 rows are published relative abundances (%), not raw counts"
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "bc",
+   "dataset": "d",
+   "spec": {
+    "method": "community",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 2,
+    "missing": "error",
+    "empty_samples": "error",
+    "format": "past",
+    "orientation": "samples_by_taxa"
+   }
+  }
+ ]
+}

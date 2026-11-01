@@ -1,0 +1,177 @@
+{
+ "trial": {
+  "item": "P03-cal",
+  "arm": "toolkit",
+  "session": 1,
+  "family": "P03",
+  "trial_id": "T005",
+  "block": 3
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-5y59xuxt",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  1075,
+  1088,
+  1093,
+  1096,
+  1097,
+  1098,
+  1099,
+  1100,
+  1101,
+  1102,
+  1106,
+  1118,
+  1119,
+  1136,
+  1149,
+  1153
+ ],
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 24,
+  "cache_creation_input_tokens": 16648,
+  "cache_read_input_tokens": 208701,
+  "output_tokens": 3771,
+  "output_tokens_details": {
+   "thinking_tokens": 278
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 16648,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 14,
+  "client_refusal": 0,
+  "bootstrap": 1,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 20443,
+ "cache_read_tokens": 208701,
+ "score": {
+  "version": "pilot-v4",
+  "item": "P03-cal",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": true,
+  "provisional": true,
+  "notes": [
+   "keyword issue match requires adjudication"
+  ],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": true
+   },
+   "score": 0.75
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 5,
+  "issue_named": true,
+  "mismatches": [
+   "mean_bray_curtis"
+  ],
+  "outcome": "wrong",
+  "signature": "percent_rows_dropped",
+  "pitfall": "detected_mishandled",
+  "family": "P03",
+  "stratum": "toolkit",
+  "acceptable": false
+ },
+ "replay": {
+  "trial": "T005",
+  "item": "P03-cal",
+  "arm": "toolkit",
+  "original_answer_sha256": "cbea20bf40e96aaf99f1257160d08eb82c3e583664afd69a3b58cf4270094b06",
+  "files": [
+   "analysis.py",
+   "specs/study.json"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": ""
+  },
+  "perturbation_execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": ""
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-20261101/trials/T005/replay/attempt-cjbnx9_5",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+ },
+ "finished_unix": 1793523280.269619
+}

@@ -1,0 +1,28 @@
+{
+  "trial": "T006",
+  "item": "P03-cal",
+  "arm": "direct",
+  "original_answer_sha256": "10c514aab92c9b794c2d1c3ac1beaafddcf452a7a9328c87e5f52dd44d778d61",
+  "files": [
+    "analysis.py"
+  ],
+  "execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-ruei83jn/a/trial/analysis.py:15: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  issues.append(\"Percent rows sums (min,max): %.2f,%.2f\"%(c.loc[pct].sum(1).min(),c.loc[pct].sum(1).max()))\n"
+  },
+  "perturbation_execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": "/private/var/folders/2y/0v0ttwy532n0k7m47vvggdm80000gn/T/replay-ruei83jn/b/trial/analysis.py:15: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.\n  issues.append(\"Percent rows sums (min,max): %.2f,%.2f\"%(c.loc[pct].sum(1).min(),c.loc[pct].sum(1).max()))\n"
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-20261101/trials/T006/replay/attempt-bbhy0uhp",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+}

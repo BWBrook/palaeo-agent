@@ -248,3 +248,16 @@ def test_organisation_managed_files(tmp_path):
     (tmp_path / "remote-settings.json").write_text(json.dumps({"env": {"X": "1"}}))
     with pytest.raises(launch.Halt, match="managed settings"):
         launch.verify_config_dir(tmp_path)
+
+
+def test_reconciliation_compares_large_integers_as_the_client_serialises_them(tmp_path):
+    value = {"status": "ok", "schema": {"maximum": 2 ** 64 - 1}}
+    raw = {"status": "ok", "exit_code": 0, "stdout": json.dumps(value) + "\n", "stderr": "", "truncated": {"stdout": False}}
+    use = {"type": "tool_use", "id": "p", "name": "mcp__worker__palaeo_discover", "input": {"method": "permanova"}}
+    row = {"request": {"tool": "discover", "arguments": {"method": "permanova"}}, "result": raw}
+    inventory = INVENTORY + ["mcp__worker__palaeo_discover"]
+    rounded = '{"status":"ok","schema":{"maximum":18446744073709552000}}'
+    seen = {"type": "tool_result", "tool_use_id": "p", "content": rounded}
+    assert launch.reconcile(events(use, seen), audit(tmp_path, row), inventory)["consistent"]
+    changed = dict(seen, content='{"status":"ok","schema":{"maximum":18446744073709000000}}')
+    assert not launch.reconcile(events(use, changed), audit(tmp_path, row), inventory)["consistent"]

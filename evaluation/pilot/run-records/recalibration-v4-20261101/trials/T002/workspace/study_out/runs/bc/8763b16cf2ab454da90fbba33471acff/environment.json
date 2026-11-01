@@ -1,0 +1,243 @@
+{
+  "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "platform": "macOS-27.2-arm64-64bit",
+  "packages": {
+    "annotated-types": "0.8.0",
+    "anyio": "4.15.1",
+    "attrs": "26.1.0",
+    "cffi": "2.1.1",
+    "click": "8.5.0",
+    "contourpy": "1.4.0",
+    "cryptography": "50.0.2",
+    "cycler": "0.12.1",
+    "fonttools": "4.68.0",
+    "h11": "0.16.0",
+    "httpcore2": "2.16.0",
+    "httpx2": "2.16.0",
+    "idna": "3.20",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "kiwisolver": "1.5.1",
+    "matplotlib": "3.11.2",
+    "mcp": "2.3.0",
+    "mcp-types": "2.3.0",
+    "numpy": "2.5.4",
+    "opentelemetry-api": "1.45.2",
+    "packaging": "26.3",
+    "palaeo-agent": "0.2.0.dev0",
+    "pandas": "3.1.0",
+    "pillow": "13.0.0",
+    "pycparser": "3.12",
+    "pydantic": "2.14.2",
+    "pydantic-core": "2.50.2",
+    "pyjwt": "2.15.1",
+    "pyparsing": "3.3.3",
+    "python-dateutil": "3.0.0",
+    "python-multipart": "0.0.32",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.9.1",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "sse-starlette": "3.6.0",
+    "starlette": "1.10.0",
+    "truststore": "0.10.5",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2026.6",
+    "uvicorn": "0.54.0"
+  },
+  "distributions": [
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "cryptography",
+      "version": "50.0.2"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0"
+    },
+    {
+      "name": "httpcore2",
+      "version": "2.16.0"
+    },
+    {
+      "name": "httpx2",
+      "version": "2.16.0"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0"
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2025.9.1"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2"
+    },
+    {
+      "name": "mcp",
+      "version": "2.3.0"
+    },
+    {
+      "name": "mcp-types",
+      "version": "2.3.0"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.2"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "palaeo-agent",
+      "version": "0.2.0.dev0"
+    },
+    {
+      "name": "pandas",
+      "version": "3.1.0"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.12"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.2"
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.50.2"
+    },
+    {
+      "name": "pyjwt",
+      "version": "2.15.1"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0"
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.32"
+    },
+    {
+      "name": "referencing",
+      "version": "0.37.0"
+    },
+    {
+      "name": "rpds-py",
+      "version": "2026.9.1"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "sse-starlette",
+      "version": "3.6.0"
+    },
+    {
+      "name": "starlette",
+      "version": "1.10.0"
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.5"
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0"
+    }
+  ],
+  "implementation_sha256": "b32649cc0b961675c78e6fd0ed95a2b19c0417e59bed5f23debc8295da34fc7e",
+  "source_files_sha256": {
+    "__init__.py": "79b4181b9dccbb24940a766bc1217bd0e32a2f5949959f23f92c2380a30d9d8c",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "88074405753e310ee4c60c33d79dd8aed55bc147c7ea4fc54d4cf7b3f2da62e2",
+    "community.py": "7cc6ec4fd672f4810bbee028a820f6913e5be896869164292870924cfbb2d39d",
+    "core.py": "ec5cc1cb55074ebffee5487cd4042bc78869ca55d7d87b15318d1964ef5a8473",
+    "mcp_server.py": "224743f0b8c83e8814d37a10e985aa889d181d84a63dcf79130d766be13ca27a",
+    "methods.py": "ea63aef6a046b395891e377d787edbabcb850300cc433bbec727bea3fe0d17ab",
+    "permanova.py": "efd3a147e9fa8a73e9f9ed8aaec77aec358c6d62619ada5ea43c084957504554",
+    "runs.py": "20f4988bbd27acf7dc9f2bd12192ebd8abd4c51a715e9e8ae641960624ae66f8",
+    "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6",
+    "study.py": "9d0ed6cba7f371edd960fbe076e7d435f8b54991c25a754cb09f3bdf25ffb824"
+  },
+  "lockfile": {
+    "available": false,
+    "path": null,
+    "reason": "No checkout lockfile available; all installed distribution versions recorded"
+  },
+  "rng": "not used; deterministic method"
+}

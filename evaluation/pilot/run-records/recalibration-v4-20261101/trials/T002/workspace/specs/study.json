@@ -1,0 +1,66 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "counts": {
+   "kind": "counts",
+   "path": "counts.tsv",
+   "orientation": "taxa_by_samples",
+   "format": "delimited",
+   "delimiter": "tab"
+  }
+ },
+ "datasets": {
+  "genus": {
+   "source": "counts",
+   "operations": [
+    {
+     "op": "map_taxa",
+     "mapping": {
+      "Beella digitata": "Beella",
+      "Berggrenia pumilio": "Berggrenia",
+      "Candeina nitida": "Candeina",
+      "Globigerina bulloides": "Globigerina",
+      "Globigerina pachyderma": "Neogloboquadrina",
+      "Globigerina quinqueloba": "Turborotalita",
+      "Globigerinella calida": "Globigerinella",
+      "Globigerinella siphonifera": "Globigerinella",
+      "Globigerinita glutinata": "Globigerinita",
+      "Globigerinita uvula": "Globigerinita",
+      "Globigerinoides conglobatus": "Globigerinoides",
+      "Globigerinoides ruber": "Globigerinoides",
+      "Globigerinoides sacculifer": "Trilobatus",
+      "Globorotalia menardii": "Globorotalia",
+      "Globorotalia truncatulinoides": "Globorotalia",
+      "Globoturborotalita rubescens": "Globoturborotalita",
+      "Globoturborotalita tenella": "Globoturborotalita",
+      "Hastigerina pelagica": "Hastigerina",
+      "Neogloboquadrina dutertrei": "Neogloboquadrina",
+      "Neogloboquadrina incompta": "Neogloboquadrina",
+      "Orbulina universa": "Orbulina",
+      "Pulleniatina obliquiloculata": "Pulleniatina",
+      "Sphaeroidinella dehiscens": "Sphaeroidinella",
+      "Tenuitella iota": "Tenuitella"
+     },
+     "reason": "Aggregate recorded names to genus of current_name (taxonomy.csv)"
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "bc",
+   "dataset": "genus",
+   "spec": {
+    "method": "community",
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "transform": "none",
+    "distance": "braycurtis",
+    "dimensions": 2,
+    "missing": "error",
+    "empty_samples": "error"
+   }
+  }
+ ]
+}

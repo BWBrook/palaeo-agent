@@ -1,0 +1,38 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "mean_bray_curtis": 0.25791732846794,
+    "n_holocene": 26
+  },
+  "assumptions": [
+    "Age model: linear interpolation through accepted dates only (rejected date OZ4817 excluded; see exclusions).",
+    "Holocene = interpolated age < 11700 cal yr BP (depth approx 222.7 cm).",
+    "Bray-Curtis computed on per-sample relative abundances, averaged over all unordered pairs."
+  ],
+  "exclusions": [
+    {
+      "id": "OZ4817",
+      "reason": "Radiocarbon date rejected in dating report (age reversal; reworked shell); not used in age model"
+    },
+    {
+      "id": "S29",
+      "reason": "older than 11700 cal yr BP (not Holocene)"
+    },
+    {
+      "id": "S27",
+      "reason": "older than 11700 cal yr BP (not Holocene)"
+    },
+    {
+      "id": "S30",
+      "reason": "older than 11700 cal yr BP (not Holocene)"
+    },
+    {
+      "id": "S28",
+      "reason": "older than 11700 cal yr BP (not Holocene)"
+    }
+  ],
+  "issues": [
+    "Two taxa (Uvigerina peregrina, Textularia agglutinans) have all-zero counts; they do not affect the result."
+  ],
+  "summary": "Joined samples to counts, built age model from accepted dates, selected Holocene samples, converted to relative abundance and averaged pairwise Bray-Curtis."
+}
