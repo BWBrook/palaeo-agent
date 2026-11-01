@@ -1,0 +1,71 @@
+{
+ "trials": [
+  {
+   "trial": "T001",
+   "item": "P05-cal",
+   "arm": "toolkit",
+   "complete": true,
+   "outcome": "correct",
+   "counted_tokens": 28813,
+   "successful_executions": 8,
+   "toolkit_structured_errors": [
+    {
+     "tool": "palaeo_study_run",
+     "code": "request_failed"
+    },
+    {
+     "tool": "palaeo_validate",
+     "code": "duplicate_id"
+    },
+    {
+     "tool": "palaeo_inspect",
+     "code": "unsupported_schema"
+    }
+   ],
+   "studies": [
+    {
+     "study": "study1",
+     "inspect": "verified",
+     "reproduce": "reproduced"
+    },
+    {
+     "study": "study2",
+     "inspect": "verified",
+     "reproduce": "reproduced"
+    },
+    {
+     "study": "study3",
+     "inspect": "verified",
+     "reproduce": "reproduced"
+    }
+   ]
+  },
+  {
+   "trial": "T001",
+   "item": "P10-cal",
+   "arm": "toolkit",
+   "complete": true,
+   "outcome": "correct",
+   "counted_tokens": 9288,
+   "successful_executions": 1,
+   "toolkit_structured_errors": [],
+   "studies": []
+  },
+  {
+   "trial": "T002",
+   "item": "P10-cal",
+   "arm": "direct",
+   "complete": true,
+   "outcome": "correct",
+   "counted_tokens": 3547,
+   "successful_executions": 3,
+   "toolkit_structured_errors": [],
+   "studies": []
+  }
+ ],
+ "criteria": {
+  "numerical_execution": true,
+  "structured_refusal": true,
+  "bundle_reproduction": true
+ }
+}

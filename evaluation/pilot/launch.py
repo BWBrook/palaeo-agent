@@ -56,7 +56,10 @@ PINNED_SOURCE = ["evaluation/execution/__init__.py", "evaluation/execution/serve
                  "evaluation/execution/worker.py", "evaluation/pilot/launch.py", "evaluation/pilot/score.py",
                  "evaluation/revised/score.py", "evaluation/sprint3/claude-client-boundary/probe.py"]
 CONFIG_ALLOWED = {".claude.json", ".claude.json.backup", "statsig", "todos", "shell-snapshots", "projects",
-                  ".credentials.json", "backups", "session-env", "cache", "sessions", ".last-cleanup"}
+                  ".credentials.json", "backups", "session-env", "cache", "sessions", ".last-cleanup",
+                  "remote-settings.json", "policy-limits.json"}
+MANAGED_SIDECARS = ("remote-settings.json.", "policy-limits.json.")
+POLICY_KEYS = {"restrictions", "compliance_taints", "monitoring_notice", "defaults"}
 CONFIG_FORBIDDEN = {"CLAUDE.md", "agents", "commands", "skills", "plugins", "hooks", "settings.json",
                     "settings.local.json", "output-styles", "rules"}
 USAGE_FIELDS = ("input_tokens", "cache_creation_input_tokens", "output_tokens", "cache_read_input_tokens")
@@ -138,13 +141,25 @@ def verify_materials(items_dir, item):
 
 def verify_config_dir(config_dir):
     config_dir = Path(config_dir)
-    names = {p.name for p in config_dir.iterdir()}
+    names = {p.name for p in config_dir.iterdir() if not (p.name.startswith(MANAGED_SIDECARS) and p.is_file())}
     if names & CONFIG_FORBIDDEN or names - CONFIG_ALLOWED:
         raise Halt(f"configuration directory holds unexpected entries: {sorted(names - CONFIG_ALLOWED)}")
     projects = config_dir / "projects"
     if projects.exists() and any(p.is_file() and ("memory" in p.relative_to(projects).parts or p.suffix == ".md")
                                  for p in projects.rglob("*")):
         raise Halt("configuration directory holds project memory")
+    # A subscription login fetches the organisation's signed managed files. Managed settings could change the
+    # client's behaviour, so they must be empty; product policy limits are recorded.
+    remote = config_dir / "remote-settings.json"
+    if remote.exists() and json.loads(remote.read_text()) != {}:
+        raise Halt("organisation-managed settings are present")
+    policy = config_dir / "policy-limits.json"
+    if not policy.exists():
+        return {}
+    limits = json.loads(policy.read_text())
+    if set(limits) - POLICY_KEYS:
+        raise Halt(f"unrecognised policy-limit fields: {sorted(set(limits) - POLICY_KEYS)}")
+    return {"policy_limits_sha256": sha(policy), "policy_limits": limits}
 
 
 def supervisor_home(home, keychain=True):
@@ -433,7 +448,7 @@ def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
         if fingerprints(plan["runtime_root"], plan["items_dir"]) != plan["fingerprints"]:
             raise Halt("frozen fingerprints differ")
         materials = verify_materials(plan["items_dir"], trial["item"])
-        verify_config_dir(plan["config_dir"])
+        summary["organisation_policy"] = verify_config_dir(plan["config_dir"])
         inventory = capture_inventory(plan["runtime_root"], trial["arm"], plan["model"],
                                       plan["capture_config_dir"], record / "inventory-capture.json")
         if inventory != plan["inventory"][trial["arm"]]:
@@ -478,6 +493,10 @@ def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
             if proc is not None:
                 (record / "stderr.txt").write_text(proc.stderr.read() if proc.stderr else "")
             (record / "trial.json").write_text(json.dumps(summary, indent=1) + "\n")
+    try:
+        summary["organisation_policy_after"] = verify_config_dir(plan["config_dir"])
+    except Halt as exc:
+        breach.append(f"configuration_after: {exc}")
     if not any(e.get("type") == "system" and e.get("subtype") == "init" for e in events):
         breach.append("no_init_record")
     result = next((e for e in reversed(events) if e.get("type") == "result"), None)

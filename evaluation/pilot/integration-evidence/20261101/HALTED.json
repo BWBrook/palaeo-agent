@@ -1,0 +1,1 @@
+{"halt": "configuration directory holds unexpected entries: ['policy-limits.json', 'policy-limits.json.signature.json', 'policy-limits.json.stamp.json', 'remote-settings.json', 'remote-settings.json.signature.json', 'remote-settings.json.synced-at']", "time_unix": 1793504370.4824362}

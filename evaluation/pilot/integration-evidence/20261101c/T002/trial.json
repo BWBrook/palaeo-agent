@@ -1,0 +1,131 @@
+{
+ "trial": {
+  "item": "P10-cal",
+  "arm": "direct",
+  "session": 1,
+  "family": "P10",
+  "trial_id": "T002",
+  "block": 1
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-83574dyk",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  70611,
+  70629,
+  70630,
+  70631
+ ],
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 8,
+  "cache_creation_input_tokens": 2638,
+  "cache_read_input_tokens": 13274,
+  "output_tokens": 901,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 2638,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 3,
+  "client_refusal": 0,
+  "bootstrap": 0,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 3547,
+ "cache_read_tokens": 13274,
+ "score": {
+  "version": "pilot-v3",
+  "item": "P10-cal",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "provisional": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": false,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.25
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 3,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled",
+  "family": "P10",
+  "stratum": "other",
+  "acceptable": true
+ },
+ "finished_unix": 1793504586.487348
+}

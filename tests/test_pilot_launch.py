@@ -223,3 +223,13 @@ def test_configuration_memory_halts(tmp_path):
     (tmp_path / "CLAUDE.md").write_text("x")
     with pytest.raises(launch.Halt):
         launch.verify_config_dir(tmp_path)
+
+
+def test_organisation_managed_files(tmp_path):
+    (tmp_path / "remote-settings.json").write_text("{}")
+    (tmp_path / "remote-settings.json.signature-iat.json").write_text("{}")
+    (tmp_path / "policy-limits.json").write_text(json.dumps({"restrictions": {"allow_product_feedback": {"allowed": False}}}))
+    assert launch.verify_config_dir(tmp_path)["policy_limits"]["restrictions"]
+    (tmp_path / "remote-settings.json").write_text(json.dumps({"env": {"X": "1"}}))
+    with pytest.raises(launch.Halt, match="managed settings"):
+        launch.verify_config_dir(tmp_path)

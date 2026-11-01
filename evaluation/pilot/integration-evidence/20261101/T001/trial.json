@@ -1,0 +1,107 @@
+{
+ "trial": {
+  "item": "P05-cal",
+  "arm": "toolkit",
+  "session": 1,
+  "family": "P05",
+  "trial_id": "T001",
+  "block": 1
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-v5_0dq2l",
+ "complete": true,
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  69740,
+  69757,
+  69789,
+  69790,
+  69791,
+  69798,
+  69803,
+  69805,
+  69807,
+  69808,
+  69810,
+  69811,
+  69814,
+  69815,
+  69818,
+  69820,
+  69823,
+  69833,
+  69836,
+  69837,
+  69843,
+  69844
+ ],
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 38,
+  "cache_creation_input_tokens": 23353,
+  "cache_read_input_tokens": 307930,
+  "output_tokens": 5422,
+  "output_tokens_details": {
+   "thinking_tokens": 807
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 23353,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 20,
+  "client_refusal": 3,
+  "bootstrap": 1,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 28813,
+ "cache_read_tokens": 307930,
+ "score": {
+  "version": "pilot-v3",
+  "item": "P05-cal",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "provisional": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": true
+   },
+   "score": 0.75
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 3,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled",
+  "family": "P05",
+  "stratum": "toolkit",
+  "acceptable": true
+ },
+ "finished_unix": 1793504366.421131
+}

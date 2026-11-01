@@ -1,0 +1,13 @@
+{
+ "trial": {
+  "item": "P05-cal",
+  "arm": "direct",
+  "session": 1,
+  "family": "P05",
+  "trial_id": "T002",
+  "block": 1
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-ics6ks00",
+ "complete": false,
+ "terminated_groups": []
+}
