@@ -1,0 +1,86 @@
+{
+ "model": "claude-sonnet-5-5",
+ "runtime_root": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-freeze-20261101",
+ "cases_dir": "/Users/bwbrook/work/palaeo-agent/evaluation/authentic/cases",
+ "config_dir": "/Users/bwbrook/palaeo-eval/claude-pilot-config",
+ "capture_config_dir": "/Users/bwbrook/palaeo-eval/claude-capture-config-v4",
+ "fingerprints": {
+  "client_sha256": "ca923c86ac84b30574a82331a05b6e066c27477a926ceaffe46a845a33e4dd37",
+  "runtime_tree": "2e8afca1ae11b83ea67f3c5608929bcb6f98dd43f857635c65187f8cc99f44b8",
+  "base_interpreter_tree": "0b25aeacc097ed3381492dde3fdea9736f669f51d673c0f16ebc8d301493858e",
+  "direct_has_toolkit": false,
+  "source": {
+   "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
+   "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974",
+   "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
+   "evaluation/pilot/launch.py": "c2e3f3266aeb28f78ba699b6980f93ac767dee9009a28d1246269359195bfd07",
+   "evaluation/pilot/score.py": "91d41f4a940a97bb40c4d4c79a9f9391e83db429893fa1119b1f3d921f8d6d33",
+   "evaluation/revised/score.py": "990173f2bff82d3e3f1141d5f47fd5d2bc735a2b673b4154d31204d84ad02918",
+   "evaluation/sprint3/claude-client-boundary/probe.py": "52c867f23e7f6d041732212b1e877d7176dc288b6218611bb9fd9b495f0f9da4",
+   "evaluation/pilot/replay.py": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+  },
+  "prompts": {
+   "analyst-toolkit.md": "dc0e77577c19c14ac2ce5c329d521727be95d3c24eaea5a5cc023f3cb910d571",
+   "analyst.md": "e795c64a2d41806adebdd3d7401ccfc5c38dd21cb478f069e43f42a888aeb997",
+   "reviewer.md": "0161b466aa53679f20ae29a56ce693b6b303f6caf9ed142a5755cdfae08cb9ea"
+  },
+  "items_manifest_sha256": "de0c3f87adf43b6218ea2fae82bb3020ebc77d895c63e68a7922f1cdc7402166"
+ },
+ "session_source": {
+  "evaluation/authentic/session.py": "aaeb14ba3cb2e454f2bb3a58155d3deeaf45b90f16279e48daa74294b63a76e2",
+  "evaluation/authentic/contract.md": "e9fa7319b9595d950812af82485675f86ede766cb22cece266308c94e5dcd54f",
+  "evaluation/authentic/toolkit.md": "419497cf3d8885ab6a2d13afea3bf307b4f14ee6fd33470143d332884fc26979",
+  "evaluation/authentic/retrospective.md": "c53e6ce92f591304996294ac993c65334dd9bf6cf5074ffced73c53e373c35bf"
+ },
+ "inventory": {
+  "direct": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ],
+  "toolkit": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__palaeo_compare",
+   "mcp__worker__palaeo_discover",
+   "mcp__worker__palaeo_inspect",
+   "mcp__worker__palaeo_inspect_comparison",
+   "mcp__worker__palaeo_reproduce",
+   "mcp__worker__palaeo_result",
+   "mcp__worker__palaeo_run",
+   "mcp__worker__palaeo_study_inspect",
+   "mcp__worker__palaeo_study_reproduce",
+   "mcp__worker__palaeo_study_run",
+   "mcp__worker__palaeo_validate",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ]
+ },
+ "work_root": "/Users/Shared/palaeo-pilot-work",
+ "max_turns": 80,
+ "wall_seconds": 1800,
+ "counted_token_ceiling": 150000,
+ "sessions": [
+  {
+   "session_id": "A1",
+   "case": "llanvirn",
+   "arm": "toolkit"
+  },
+  {
+   "session_id": "A2",
+   "case": "dielasma",
+   "arm": "toolkit"
+  },
+  {
+   "session_id": "A3",
+   "case": "llanvirn",
+   "arm": "direct"
+  },
+  {
+   "session_id": "A4",
+   "case": "dielasma",
+   "arm": "direct"
+  }
+ ]
+}

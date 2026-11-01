@@ -1,0 +1,151 @@
+{
+ "session": {
+  "session_id": "A2",
+  "case": "dielasma",
+  "arm": "toolkit"
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/authentic-mwq5fny9",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  5979,
+  5993,
+  6005,
+  6006,
+  6007,
+  6031,
+  6033,
+  6041
+ ],
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 12,
+  "cache_creation_input_tokens": 16443,
+  "cache_read_input_tokens": 67059,
+  "output_tokens": 7976,
+  "output_tokens_details": {
+   "thinking_tokens": 325
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 16443,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "num_turns": 7,
+ "duration_ms": 64033,
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 6,
+  "client_refusal": 0,
+  "bootstrap": 1,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 24431,
+ "cache_read_tokens": 67059,
+ "retrospective": {
+  "text": "- **What I used:** Only the worker tools: `worker_execute` to run Python, `worker_read` for `provenance.md`, and `worker_write` for `report.md`. The computations used numpy, pandas and scipy. I chose them because the brief listed them as installed and the analysis needed only standard methods: log-log RMA and OLS slopes, bootstrap CIs, Kruskal-Wallis, Mann-Whitney and KS tests, an ANCOVA done by hand with least squares and F-tests, a permutation test, and a small EM two-Gaussian mixture for BIC. I wrote those directly because I wanted every step visible and checkable in `analysis.py`, not hidden inside a package.\n- **Tools considered but not used:** The Palaeo-Agent toolkit (`mcp__worker__palaeo_*` and the `palaeo_agent` package) was optional. I never called `palaeo_discover`, so I don't know what it offers and can't say whether it would have helped. I simply preferred hand-written scipy code. I didn't use matplotlib because figures were optional, so there are none.\n- **What was missing:**\n  - Subprocess calls were blocked (`PermissionError`), so I couldn't run `python analysis.py` as a separate process. I ran the script via `exec` inside the worker, and that is how `results.json` was produced. I have not confirmed that it works as a standalone run in a clean directory.\n  - There were no dedicated allometry or mixture-model libraries, such as statsmodels or scikit-learn, so I wrote the RMA, ANCOVA and EM mixture code myself.",
+  "subtype": "success",
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 17116,
+   "cache_read_input_tokens": 1161,
+   "output_tokens": 534,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 17116,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "attempted_tool_uses": 0,
+  "counted_tokens": 17652
+ },
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "replay": {
+  "original_results_sha256": "9b46044d21901dbe647c8d4a02c0a2d8c0cce566e1623f9fad18fc9532d12867",
+  "files": [
+   "analysis.py"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "stderr_tail": ""
+  },
+  "regenerated_results_sha256": "9b46044d21901dbe647c8d4a02c0a2d8c0cce566e1623f9fad18fc9532d12867",
+  "outcome": "replayed",
+  "byte_identical": true,
+  "provenance_review_required": true,
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/authentic-20261101/sessions/A2/replay/attempt-yg9t28gj"
+ },
+ "finished_unix": 1793529937.601307
+}

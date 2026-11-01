@@ -1,0 +1,151 @@
+{
+ "session": {
+  "session_id": "A1",
+  "case": "llanvirn",
+  "arm": "toolkit"
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/authentic-g9qss9yt",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  5725,
+  5738,
+  5765,
+  5783,
+  5804,
+  5807,
+  5830,
+  5844
+ ],
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 14,
+  "cache_creation_input_tokens": 22428,
+  "cache_read_input_tokens": 77314,
+  "output_tokens": 8194,
+  "output_tokens_details": {
+   "thinking_tokens": 527
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 22428,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "num_turns": 7,
+ "duration_ms": 72030,
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 6,
+  "client_refusal": 0,
+  "bootstrap": 1,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 30636,
+ "cache_read_tokens": 77314,
+ "retrospective": {
+  "text": "- **What I used:** `mcp__worker__worker_execute` for everything, `worker_write` for `report.md`, and in `analysis.py` numpy, pandas and scipy. numpy gave the multinomial resampling (seeded `default_rng`) and the PCoA by eigendecomposition. pandas held the taxon-by-horizon table. scipy supplied `gammaln` for analytic rarefaction, `fisher_exact` and `spearmanr`. I picked them because the dataset is tiny and the brief wanted a self-contained, checkable script. Bray\u2013Curtis, Wilson intervals, Shannon, inverse Simpson and the null-homogeneity test were short enough to write by hand, which keeps every step visible.\n- **Considered but not used:** the Palaeo-Agent toolkit (`mcp__worker__palaeo_*` and `palaeo_agent`). I never ran `palaeo_discover` or looked at what it offers, so I can't say it wouldn't have helped. I just defaulted to writing the calculations directly. I also didn't use scikit-bio or vegan-style packages, since they weren't listed as installed, and I wrote the PCoA manually.\n- **Not available:**\n  - Subprocess calls failed with a permission error, so I ran `analysis.py` through `exec` inside the worker rather than as `python analysis.py`. This means I never tested it in a clean directory.\n  - The data lacked sampling effort, counting protocol and replicates, and the `_N_` label codes were undocumented. Those limits are in the report.",
+  "subtype": "success",
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 17688,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 517,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 17688,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "attempted_tool_uses": 0,
+  "counted_tokens": 18207
+ },
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "replay": {
+  "original_results_sha256": "f71d61721b73c67e526d54b4746eedaca0b146ebbe86cf560e6dca27dc283800",
+  "files": [
+   "analysis.py"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "stderr_tail": ""
+  },
+  "regenerated_results_sha256": "f71d61721b73c67e526d54b4746eedaca0b146ebbe86cf560e6dca27dc283800",
+  "outcome": "replayed",
+  "byte_identical": true,
+  "provenance_review_required": true,
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/authentic-20261101/sessions/A1/replay/attempt-bj7mm8sa"
+ },
+ "finished_unix": 1793529832.2271192
+}

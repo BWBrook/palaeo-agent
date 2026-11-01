@@ -1,0 +1,175 @@
+{
+  "items": [
+    {
+      "session": "A1",
+      "kind": "overstated",
+      "severity": "minor",
+      "location": "report.md:11–13 (Answer); analysis.py:49–55",
+      "statement": "The pooled-composition test does not establish that each listed change exceeds sampling noise. It tests overall proportional composition while holding specimen totals fixed, not changes in totals or richness.",
+      "evidence": "nullbc fixes totals at N[a] and N[b] and tests Bray–Curtis dissimilarity. Moreover, taxon_change_5_6.Rbryo has Bonferroni-adjusted p=0.3083, despite Rbryo appearing among the changes covered by this assertion.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "wrong_value",
+      "severity": "minor",
+      "location": "report.md:29 (Robustness)",
+      "statement": "Horizon 5 contains 51 non-Sowerbyella specimens, not 48. The latter count excludes both Sowerbyella and Basil.",
+      "evidence": "llanvirn.dat gives total=473, Sower=422 and Basil=3: 473−422=51; 473−422−3=48. results.json rest_fauna_5_6.n_a correctly records the second quantity.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "overstated",
+      "severity": "minor",
+      "location": "report.md:30 (Robustness)",
+      "statement": "The categorical conclusion that 5→6 changes relative abundance rather than taxon membership is too strong. Only 10 of horizon 6's 15 observed taxa also occur at horizon 5.",
+      "evidence": "Recomputed from llanvirn.dat: five observed gains are Hespe, Ortho, Pseud, Schiz and Tripl; four observed losses are Gastr, Marro, Salop and Talin. These observations do not prove biological turnover, but neither the presence-distance ranking nor abundance tests exclude it.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "mislabelled",
+      "severity": "minor",
+      "location": "report.md:30 (Robustness)",
+      "statement": "Talin and Salop are incorrectly listed as losses across 6→7. Both disappear from the observed counts at 5→6.",
+      "evidence": "llanvirn.dat gives Talin counts 9,0,0 and Salop counts 6,0,0 at horizons 5,6,7. Actual observed 6→7 losses are Basil, Horde, Ortho, Pseud, Rostr, Schiz, Tripl and hyalo; Glypt is gained.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "method_error",
+      "severity": "minor",
+      "location": "report.md:26–28; analysis.py:32–38",
+      "statement": "The log-count comparison confounds abundance representation with unequal specimen totals. Its reversal of the two focal steps cannot be attributed solely to changing how composition is represented.",
+      "evidence": "log_count applies log1p directly to counts, comparing totals 473→702 and 702→26. Recomputing log1p after standardizing totals to 13 gives BC=0.5568 for 5→6 and 0.4805 for 6→7; standardizing to 100 gives 0.5009 and 0.4306. The reported unstandardized values are 0.4593 and 0.6535.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "untraceable",
+      "severity": "minor",
+      "location": "report.md:25 (Robustness); analysis.py:24–30",
+      "statement": "The assertion that rarefied richness at horizons 7–10 is only 'slightly more uncertain' is not quantified or produced by the analysis.",
+      "evidence": "rarefied_richness and rarefied_richness_n50 contain expectations only. No rarefaction variances, confidence intervals or comparison of their uncertainty is calculated.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "method_error",
+      "severity": "minor",
+      "location": "report.md:14,30,45; analysis.py:39–47",
+      "statement": "The bootstrap intervals omit uncertainty associated with taxa absent from an observed sample. This particularly limits their use as evidence about underlying taxon membership, beyond the general sampling caveat already stated.",
+      "evidence": "Each bootstrap draws from the observed proportions, so every observed zero remains zero in every replicate. For example, Basil can never occur in a horizon-7 replicate, although wilson_Basil.7 allows an underlying proportion up to 0.1287; no unseen-taxon or detection model is fitted.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "unflagged_external_fact",
+      "severity": "minor",
+      "location": "report.md:10,15,35,44",
+      "statement": "The expansion of Basil to Basilicus and its identification as a trilobite are not established by the permitted materials. The anatomical and counting assertions about trilobite sclerites also introduce external knowledge without identifying it as such.",
+      "evidence": "provenance.md:21–24 supplies expansions only for Sower and Dalma and leaves the prefix codes undocumented; llanvirn.dat supplies only Basil. The proposed counting bias is appropriately hypothetical, but its taxonomic and anatomical premises cannot be verified from this package.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "mislabelled",
+      "severity": "minor",
+      "location": "results.json:mean_pooled_prop; analysis.py:81–83",
+      "statement": "The unused mean_pooled_prop output contains proportions of specimens contributed by horizons, not pooled taxonomic compositions.",
+      "evidence": "DataFrame.sum() defaults to summing down each horizon column. Consequently UFG has horizon keys 1–6, including 321/2199=0.1460 for horizon 1, rather than taxon keys; the actual pooled Sower proportion would be 1546/2199=0.7030.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A1",
+      "kind": "other",
+      "severity": "note",
+      "location": "Overall verdict",
+      "statement": "The main numerical results are traceable, and the strong abundance reorganisation at horizon 6 and substantial 6→7 change are sound conditional on the stated specimen-sampling model. Claims about membership, uncertainty and robustness need the corrections above, while ecological causes and population representativeness remain unresolved.",
+      "evidence": "Independent calculations reproduce all five adjacent Bray–Curtis representations, totals, richness, rarefaction expectations and corrected focal taxon tests. Proportional BC is 0.6707 for 5→6 and 0.5570 for 6→7; rarefied richness rises from 2.3024 to 4.7409 across 5→6.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "overstated",
+      "severity": "minor",
+      "location": "report.md:6,17–19 (Answer)",
+      "statement": "The headline 'probably [isometric] in L3' is stronger than the evidence supports and conflicts with the subsequent description of L3 as inconclusive. Failure to reject an OLS slope of one does not establish probable isometry or overturn a different estimator's interval.",
+      "evidence": "loglog_fit.L3 gives primary RMA slope=1.1071 with bootstrap CI [1.0084,1.2860], excluding one; the OLS interval [0.9163,1.1745] includes one. No equivalence test or probability of isometry is calculated.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "mislabelled",
+      "severity": "minor",
+      "location": "report.md:20; analysis.py:64–75",
+      "statement": "The reported slope-homogeneity test compares OLS slopes, whereas the report identifies RMA slopes as its primary allometric estimates. Its result should be explicitly labelled as an OLS comparison.",
+      "evidence": "ancova uses least-squares residual sums of squares for separate and parallel conditional regressions. ancova_all.slope_homog_F=1.7043 and p=0.1844 therefore do not constitute a direct test of equality among the reported RMA slopes.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "method_error",
+      "severity": "minor",
+      "location": "report.md:35,59; analysis.py:74–75",
+      "statement": "The pairwise ANCOVA p-values are unadjusted, unlike the other pairwise comparisons. The L1–L3 elevation difference does not survive the same three-comparison Bonferroni correction.",
+      "evidence": "ancova_pairs.L1_L3.intercept_p=0.0226169, giving adjusted p=0.0678507; L2–L3 remains significant at adjusted p=0.0006674. No alternative protected-testing procedure is specified.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "missed_data_issue",
+      "severity": "minor",
+      "location": "report.md:30,48–52; analysis.py:101–105",
+      "statement": "The assertion that raw-data conclusions hold after removing duplicate L2 pairs overlooks a changed pairwise size conclusion. The corrected L1–L2 length comparison is no longer significant.",
+      "evidence": "Recomputing the same tie-corrected, continuity-corrected Mann–Whitney test after retaining 71 unique L2 pairs gives Bonferroni-adjusted p=0.0717544, versus 0.0139446 originally. The supplied sensitivity code recalculates only omnibus Kruskal–Wallis and ANCOVA tests, not pairwise comparisons.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "untraceable",
+      "severity": "note",
+      "location": "report.md:46; analysis.py:18–20; results.json:L2_duplicate_pairs_list",
+      "statement": "The repeated-block row identifications are correct when interpreted as specimen row identifiers, but are not traceable through results.json and analysis.py.",
+      "evidence": "Direct inspection confirms specimen rows 58–63 repeat at 65–70 and 15.00/13.52 occurs at 59 and 66. The code groups duplicate measurement pairs and saves their multiplicities, discarding row identifiers and never detecting consecutive blocks.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "other",
+      "severity": "note",
+      "location": "report.md:41 (Choices and why)",
+      "statement": "The assertion that there is no simple exact RMA interval is too categorical. A normal-model SMA/RMA interval is available, although using a paired bootstrap remains defensible.",
+      "evidence": "Under bivariate normality, an interval is b̂[√(1+C) ± √C], where C=t²(1−r²)/(n−2). Applying it to L3 gives approximately [0.9855,1.2437], illustrating that interval assumptions matter for its borderline result.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "method_error",
+      "severity": "note",
+      "location": "report.md:35–36; analysis.py:64–83",
+      "statement": "The calibration of the classical ANCOVA and the claimed centroid-permutation test needs checking under unequal scatter and unequal sample sizes. The package supplies no residual-variance or multivariate-dispersion assessment.",
+      "evidence": "Recomputed within-locality OLS residual variances are 0.00444, 0.00310 and 0.00998 for L1–L3; log-length SDs are 0.4444, 0.4660 and 0.2700, with n=103,79,35. These differences warrant robust calibration checks; their effect on the reported p-values was not established here.",
+      "verdict_confidence": "uncertain"
+    },
+    {
+      "session": "A2",
+      "kind": "unflagged_external_fact",
+      "severity": "note",
+      "location": "report.md:58 (Taxonomy)",
+      "statement": "The designation of internal structures, loop and beak as diagnostic characters introduces anatomical knowledge absent from the supplied materials without flagging its external basis.",
+      "evidence": "provenance.md records genus, provenance and length/width measurements but provides no diagnostic anatomical criteria. Their absence from the measurement table is checkable; their diagnostic status cannot be verified within the permitted sources.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "session": "A2",
+      "kind": "other",
+      "severity": "note",
+      "location": "Overall verdict",
+      "statement": "The main numerical claims are traceable and accurate, and clear sample size-structure differences plus near-isometric scaling in L1 and L2 are supported. L3 remains unresolved, and the pairwise locality conclusions require qualification for duplicate sensitivity, estimator choice and testing procedure.",
+      "evidence": "Independent calculations reproduce descriptive statistics, RMA/OLS estimates, curvature tests, Kruskal–Wallis tests, ANCOVA, the multivariate F statistic and mixture BIC values. The principal additional sensitivity finding is loss of the corrected L1–L2 length difference after deduplication; population, environmental and taxonomic extrapolations are appropriately restricted.",
+      "verdict_confidence": "checked"
+    }
+  ]
+}
