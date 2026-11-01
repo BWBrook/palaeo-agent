@@ -1,0 +1,66 @@
+{
+ "item": "P02-trap",
+ "bank_version": "pilot-v4",
+ "family": "P02",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 8.110347966120594,
+  "r_squared": 0.2885182344912777,
+  "n": 22
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "join_by_position",
+   "results": {
+    "pseudo_f": 1.2003407807309616,
+    "r_squared": 0.05661893802301301,
+    "n": 22
+   }
+  },
+  {
+   "name": "exact_join_drops_leg2",
+   "results": {
+    "pseudo_f": 6.10573872441944,
+    "r_squared": 0.31957616570018144,
+    "n": 15
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "PB-",
+   "hyphen",
+   "format",
+   "leg 2",
+   "not match",
+   "unmatched",
+   "normalis",
+   "normaliz"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Leg-2 station IDs carry a hyphen (PB-07) where the counts use PB07; the numbers are unique and identical, so they are the same stations. An exact join silently loses the leg-2 samples.",
+ "analysis_specification": "Join counts.tsv rows to stations.csv by station ID, treating 'PB-07' and 'PB07' as the same ID (remove the hyphen). Ignore stations with no counts row. Run one-way PERMANOVA (Bray\u2013Curtis on raw counts) with zone as the factor over all counted samples; report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "PB04",
+  "value": 7
+ },
+ "reviewer_flaw": null
+}

@@ -1,0 +1,255 @@
+{
+  "items": [
+    {
+      "dossier": "D381",
+      "act_on": [],
+      "leave_alone": [
+        "register.csv maps the 14 laboratory numbers to 14 distinct cores, all unsplit; there is no evidence of pseudoreplication.",
+        "The all-zero Bulimina aculeata and Pyrgo depressa columns do not affect Bray–Curtis distances.",
+        "Unequal count totals, routine processing remarks and two unidentified broken tests do not justify excluding or altering samples."
+      ],
+      "notes": "Join records by identifier, not row position. All 16 dossiers reference answer.schema.json, but none contains it; output-schema validation would therefore be unavailable within the permitted materials."
+    },
+    {
+      "dossier": "D603",
+      "act_on": [
+        {
+          "irregularity": "Campaign and sieve size are completely confounded.",
+          "evidence": "campaigns.csv lines 2–3: 2017 used 150 µm mesh; 2021 used 63 µm. taxa.csv identifies eight taxa as 63–150 µm; their counts.tsv rows 2, 5, 6, 10, 11, 13, 19 and 20 are zero throughout 2017 but positive in 2021.",
+          "inference": "Whole-table Shannon diversity compares differently sampled size fractions. The 2017 zeros for these small taxa cannot be interpreted as ecological absences.",
+          "handling": "Using the supplied size classifications, restrict both campaigns to taxa labelled >150 µm, recalculate proportions within each core, then calculate Shannon diversity and the unweighted campaign means. Explicitly describe this as diversity of the common size fraction."
+        }
+      ],
+      "leave_alone": [
+        "The two universally absent taxa contribute nothing to Shannon diversity.",
+        "Unequal specimen totals do not require rarefaction for the explicitly requested mean of per-core Shannon estimates."
+      ],
+      "notes": "Full-assemblage diversity is not recoverable for 2017. The campaigns also sampled different positions in cores.csv, so their means do not isolate temporal change at fixed sites. Size harmonisation relies on the supplied atlas classifications."
+    },
+    {
+      "dossier": "D739",
+      "act_on": [
+        {
+          "irregularity": "Three recorded species names belong to different genera under the supplied current taxonomy.",
+          "evidence": "taxonomy.csv lines 6, 7 and 13 map Globigerina pachyderma to Neogloboquadrina pachyderma, Globigerina quinqueloba to Turborotalita quinqueloba, and Globigerinoides sacculifer to Trilobatus sacculifer. These have positive counts in counts.tsv rows 17, 14 and 27.",
+          "inference": "Extracting genera directly from the legacy names would allocate specimens incorrectly and change genus-level Bray–Curtis distances.",
+          "handling": "Map every recorded name to current_name first, then sum raw counts by current genus and calculate pairwise distances."
+        }
+      ],
+      "leave_alone": [
+        "N05 contains 47 specimens and is explicitly marked 'low yield; counted in full' in lab_log.csv line 10; retain it.",
+        "Pulleniatina obliquiloculata and Tenuitella iota are universally zero. Their rows do not affect distances and do not establish observed genera.",
+        "Routine processing remarks and unidentified broken tests provide no basis for numerical corrections."
+      ],
+      "notes": "Interpret n_genera as genera actually observed: 14, versus 16 genus labels if universally absent genera are counted. The task does not explicitly define that distinction."
+    },
+    {
+      "dossier": "D766",
+      "act_on": [
+        {
+          "irregularity": "The accepted names retain two subspecies although the task requests species-level analysis.",
+          "evidence": "taxonomy.csv lines 11–12 map the pink and white Globigerinoides ruber columns to Globigerinoides ruber ruber and Globigerinoides ruber albus. Both columns have positive counts in counts.tsv.",
+          "inference": "Treating distinct accepted-name strings as species would overcount richness and retain within-species variation in Bray–Curtis distances.",
+          "handling": "Collapse both subspecies to Globigerinoides ruber and sum their counts within each sample before calculating richness and distances."
+        }
+      ],
+      "leave_alone": [
+        "Neogloboquadrina incompta and Globigerina falconensis are universally absent; they do not count toward richness or affect distances.",
+        "AT03 has 42 specimens and is documented as fully counted despite low yield; retain it.",
+        "Different counting laboratories, blank checked_against entries and routine bench remarks do not independently justify adjustment."
+      ],
+      "notes": "Use the supplied accepted taxonomy at the requested species rank. There is no calibration evidence supporting a further laboratory correction."
+    },
+    {
+      "dossier": "D324",
+      "act_on": [
+        {
+          "irregularity": "The same accepted species is recorded under laboratory-associated alternative names.",
+          "evidence": "taxonomy.csv lines 13 and 28 identify Globigerinoides sacculifer and Trilobatus sacculifer as Trilobatus sacculifer. Their counts.tsv columns show complementary positive records in Bremen and Hobart samples, respectively, when joined to samples.csv.",
+          "inference": "Leaving the columns separate creates artificial species turnover and inflates richness.",
+          "handling": "Map both names to Trilobatus sacculifer and sum their raw counts within each sample before either calculation."
+        },
+        {
+          "irregularity": "Two accepted subspecies must be combined for the requested species-level analysis.",
+          "evidence": "taxonomy.csv lines 11–12 map the pink and white ruber forms to Globigerinoides ruber ruber and Globigerinoides ruber albus; both have positive counts.",
+          "inference": "Distinct subspecies strings are not separate species for this task.",
+          "handling": "Sum the two columns into Globigerinoides ruber before calculating species richness and Bray–Curtis distances."
+        }
+      ],
+      "leave_alone": [
+        "Neogloboquadrina pachyderma (dextral) maps to N. incompta, but both columns are entirely zero; this synonym has no numerical effect here.",
+        "Globigerina falconensis is also universally zero and contributes no richness.",
+        "AT03 has 49 specimens and is explicitly fully counted despite low yield; retain it."
+      ],
+      "notes": "The supplied mappings support harmonisation without estimating a general laboratory effect."
+    },
+    {
+      "dossier": "D854",
+      "act_on": [],
+      "leave_alone": [
+        "KC04 has 51 specimens; lab_log.csv line 16 explicitly records low yield and full counting. Retain it in the raw-count calculation.",
+        "Sphaeroidinella dehiscens and Neogloboquadrina pachyderma are universally absent and do not affect distances.",
+        "All 23 samples have positive totals. Routine processing remarks and two unidentified broken tests do not justify exclusions or imputation.",
+        "The table contains both benthic and planktonic taxa, but the task requests the supplied assemblages without restricting either group."
+      ],
+      "notes": "Raw-count Bray–Curtis includes differences in specimen totals. That is the requested estimand; silently normalising or removing low-yield samples would change it."
+    },
+    {
+      "dossier": "D800",
+      "act_on": [
+        {
+          "irregularity": "Positive legacy records require reassignment to current genera.",
+          "evidence": "taxonomy.csv lines 6 and 14 map Globigerina pachyderma to Neogloboquadrina pachyderma and Globigerinoides sacculifer to Trilobatus sacculifer. Both have positive counts in counts.tsv rows 17 and 12.",
+          "inference": "Grouping the recorded names directly would misallocate counts and distort genus-level distances.",
+          "handling": "Apply the complete current-name mapping before aggregating raw counts by genus."
+        }
+      ],
+      "leave_alone": [
+        "Globigerina quinqueloba maps to Turborotalita quinqueloba but is entirely zero; this particular reassignment does not affect distances.",
+        "Globigerinoides conglobatus is also universally zero.",
+        "N05 has 50 specimens and is documented as fully counted despite low yield; retain it.",
+        "Routine processing remarks provide no evidence of failed samples."
+      ],
+      "notes": "Report 16 observed genera. Counting the zero-only Turborotalita label would give 17; the task does not explicitly define whether absent genera belong in n_genera."
+    },
+    {
+      "dossier": "D101",
+      "act_on": [
+        {
+          "irregularity": "The grouping variable is itself defined using faunal composition.",
+          "evidence": "zonation.csv lines 2–3 gives the bases of zones A and B as G. inflata dominance and G. truncatulinoides dominance. Both taxa are included in counts.tsv.",
+          "inference": "A composition contrast between taxon-defined zones is not an independent test of an externally defined environmental grouping; some separation may follow from the zoning criterion.",
+          "handling": "Assign the published zones by depth and calculate the requested statistics, but describe them as a contrast between existing biozones. Do not interpret separation as independent confirmation of those zones or invent a replacement zoning."
+        },
+        {
+          "irregularity": "All samples come from one ordered core rather than independent replicate cores.",
+          "evidence": "dictionary.md identifies core CR-9; samples.csv gives depths from 6 to 342 cm, and zonation.csv defines contiguous depth intervals.",
+          "inference": "Unrestricted sample permutations would assume exchangeability that the stratigraphic design does not establish.",
+          "handling": "Report pseudo-F, R-squared and n=22 descriptively. Any inferential permutation test requires a defensible model of stratigraphic dependence; do not claim unrestricted permutations establish significance."
+        }
+      ],
+      "leave_alone": [
+        "Join sample depths by sample_id; shuffled metadata rows are not errors. The supplied boundaries assign Z01–Z08 to A and Z09–Z22 to B.",
+        "Ammonia beccarii and Tenuitella iota are universally zero and do not affect distances."
+      ],
+      "notes": "The materials do not establish whether the published zonation was constructed independently of these counts. Its stated dominance criteria are not straightforwardly reproduced by the supplied rows; preserve the published depth boundaries and flag this provenance uncertainty."
+    },
+    {
+      "dossier": "D952",
+      "act_on": [],
+      "leave_alone": [
+        "catalogue.csv contains 52 unique individual_id values, each represented by one valve; paired-valve pseudoreplication is absent.",
+        "Catalogue and measurement rows are differently ordered, but specimen_id matches one-to-one across all 52 records.",
+        "Left/right valves, locality differences and the largest shells do not supply evidence for exclusion, averaging or transformation beyond the requested logarithms."
+      ],
+      "notes": "All measurements are positive, so the specified log10 reduced-major-axis regression can use all 52 individuals."
+    },
+    {
+      "dossier": "D228",
+      "act_on": [],
+      "leave_alone": [
+        "observers.csv lines 2–5 records millimetres for every observer. The different decimal precision in shells.csv matches the documented instrument resolutions; no unit conversion is warranted.",
+        "D026 is large at 58.0 by 28.8 mm (shells.csv line 27), but has plausible proportions and no recorded measurement fault.",
+        "Repeated rounded measurement pairs belong to different specimen identifiers and are not evidence of duplicate specimens."
+      ],
+      "notes": "All 95 measurements are positive. Observer, season and locality metadata alone do not support a numerical correction or exclusion from the requested pooled regression."
+    },
+    {
+      "dossier": "D161",
+      "act_on": [],
+      "leave_alone": [
+        "Every samples.csv value_type is count, and each counts.tsv row sums exactly to its recorded n_counted; there is no mixed-scale problem.",
+        "SR368 has 40 specimens and is explicitly marked fully counted despite low yield in lab_log.csv line 6; retain it.",
+        "Pullenia quinqueloba and Globorotalia hirsuta are universally zero and do not affect distances.",
+        "Campaign differences, routine processing remarks and unidentified broken tests do not warrant replacing the requested raw counts."
+      ],
+      "notes": "Use all 21 samples. Normalising, rarefying or excluding low totals would change the specified raw-count summary."
+    },
+    {
+      "dossier": "D205",
+      "act_on": [
+        {
+          "irregularity": "Laboratory numbers include multiple residue splits from the same core.",
+          "evidence": "register.csv maps 28 laboratory numbers to 14 cores. For example, lines 10, 19 and 8 map L4153, L4160 and L4169 to MC05 splits a, b and c; lines 3, 21 and 16 similarly identify three MC07 splits.",
+          "inference": "Laboratory rows are subsamples, not independent sampling units. Treating all 28 as replicates would pseudoreplicate cores and give cores unequal representation.",
+          "handling": "Join by lab_number, sum taxon counts across splits within each core, convert each pooled core to relative abundances, then calculate Bray–Curtis and one-way PERMANOVA using 14 cores, seven per zone."
+        }
+      ],
+      "leave_alone": [
+        "Very small split counts, including eight specimens in L4203, are not failed independent samples; include them when pooling their cores.",
+        "Batch labels do not define additional sampling units.",
+        "The all-zero Bolivina robusta and Cibicidoides wuellerstorfi columns do not affect distances."
+      ],
+      "notes": "Pooling follows the register's description of distinct residue splits. Averaging split percentages would instead give small and large splits equal weight."
+    },
+    {
+      "dossier": "D811",
+      "act_on": [
+        {
+          "irregularity": "The count matrix mixes specimen counts with rounded percentages.",
+          "evidence": "samples.csv lines 2, 5, 9, 10, 12, 18 and 20 mark SR286, SR106, SR333, SR264, SR324, SR219 and SR125 as relative (%), with n_counted values. Their counts.tsv rows total approximately 100, whereas the other 14 rows contain counts.",
+          "inference": "Direct raw-count Bray–Curtis on this mixture would introduce artificial scale differences. However, every percentage cell permits exactly one integer count at the stated denominator under rounding to two decimal places; each reconstructed row sums to n_counted.",
+          "handling": "Recover each percentage-row count as round(percentage × n_counted / 100). Validate integer uniqueness, row totals and rounding back to every published percentage, then combine these reconstructed counts with the original count rows for the requested calculation. Identify the recovered values as reconstructed."
+        },
+        {
+          "irregularity": "The processing log and source metadata give inconsistent impressions of count availability.",
+          "evidence": "samples.csv labels the seven percentage rows as a published Rivera 1999 table with counts not archived. Nevertheless, lab_log.csv contains later full-counting entries for them; line 22 even records SR333 as 're-counted after audit; counts unchanged'.",
+          "inference": "These log entries cannot establish that original raw counts are available or independently verify the reconstructed counts.",
+          "handling": "Retain the published-source provenance, document the inconsistency and base numerical recovery on the explicit percentages and denominators rather than treating the log as an archived count record."
+        }
+      ],
+      "leave_alone": [
+        "Percentage totals of 99.97–100.03 are consistent with cell rounding; do not force them to 100 before integer reconstruction.",
+        "The 14 count rows exactly match their n_counted totals.",
+        "SR368 is fully counted despite its low total of 40; retain it.",
+        "The two universally zero taxon columns do not affect distances."
+      ],
+      "notes": "Integer recovery is unique under the interpretation that the percentages use the stated n_counted denominators and ordinary rounding to 0.01 percentage points. It does not independently authenticate the published values or resolve the provenance conflict."
+    },
+    {
+      "dossier": "D239",
+      "act_on": [],
+      "leave_alone": [
+        "Every recorded name already matches current_name in taxonomy.csv; no genus reassignment is needed.",
+        "Pulleniatina obliquiloculata and Tenuitella iota are universally zero. They do not affect distances or establish observed genera.",
+        "N05 has 47 specimens and is explicitly fully counted despite low yield; retain it.",
+        "Routine processing remarks and unidentified broken tests do not justify numerical changes."
+      ],
+      "notes": "Use 14 observed genera. The table contains 16 genus labels if the two universally absent genera are included; n_genera is not explicitly defined on this point."
+    },
+    {
+      "dossier": "D600",
+      "act_on": [
+        {
+          "irregularity": "Sample identifiers and table order do not encode chronological order.",
+          "evidence": "samples.csv line 9 places S16 at 395 cm, while line 16 places S06 at 5 cm. These are the maximum and minimum depths; dictionary.md states that the core is undisturbed.",
+          "inference": "S16 is the oldest sample and S06 the youngest. Using the first/last count rows or numerical sample identifiers would select the wrong endpoints.",
+          "handling": "Join depths by sample_id and calculate Shannon(S06) minus Shannon(S16), using within-sample proportions and natural logarithms."
+        }
+      ],
+      "leave_alone": [
+        "Shuffled metadata rows and interspersed processing batches do not alter stratigraphic order.",
+        "Unequal specimen totals are handled by the proportions used in Shannon diversity.",
+        "The two universally zero taxa and routine processing remarks require no correction."
+      ],
+      "notes": "An age model is unnecessary for identifying these endpoints under the stated undisturbed-core assumption. The requested difference is not a rate of change."
+    },
+    {
+      "dossier": "D193",
+      "act_on": [
+        {
+          "irregularity": "An unprocessed, lost sample is encoded as an all-zero assemblage.",
+          "evidence": "counts.tsv column KC05 is zero in every taxon row. lab_log.csv line 17 states 'residue not recovered after store B flood; no picking'.",
+          "inference": "KC05 represents missing observations, not a genuinely empty community. Including it would create artificial dissimilarities of one against every observed sample.",
+          "handling": "Exclude KC05 from the distance calculation, document the processing loss and calculate the mean over pairs of the remaining 22 samples; report n_samples=22."
+        }
+      ],
+      "leave_alone": [
+        "KC04 has 51 specimens and is explicitly marked 'low yield; counted in full' in lab_log.csv line 16; retain it.",
+        "Sphaeroidinella dehiscens and Neogloboquadrina pachyderma are universally absent and do not affect distances.",
+        "Other routine processing remarks and unidentified broken tests do not justify further exclusions."
+      ],
+      "notes": "The supplied materials cannot reconstruct KC05. Its loss leaves a gap along the transect, so the resulting mean describes the observed samples."
+    }
+  ]
+}

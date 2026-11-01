@@ -1,0 +1,148 @@
+[
+ {
+  "item": "items-v4/P09-control",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P09-control/materials",
+  "specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+  "report_fields": [
+   "intercept",
+   "n",
+   "slope"
+  ]
+ },
+ {
+  "item": "items-v4/P09-trap",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P09-trap/materials",
+  "specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+  "report_fields": [
+   "intercept",
+   "n",
+   "slope"
+  ]
+ },
+ {
+  "item": "items-v4/P10-control",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P10-control/materials",
+  "specification": "The youngest sample is the shallowest by depth_cm and the oldest the deepest. Report Shannon (natural log) of the youngest minus that of the oldest.",
+  "report_fields": [
+   "shannon_change"
+  ]
+ },
+ {
+  "item": "items-v4/P10-trap",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P10-trap/materials",
+  "specification": "The youngest sample is the shallowest by depth_cm and the oldest the deepest. Report Shannon (natural log) of the youngest minus that of the oldest.",
+  "report_fields": [
+   "shannon_change"
+  ]
+ },
+ {
+  "item": "items-v4/P11-control",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P11-control/materials",
+  "specification": "Map each recorded name to its current_name in taxonomy.csv; the genus is the first word of the current name. Sum counts per genus; mean Bray\u2013Curtis on raw genus counts over all sample pairs; report it and the number of genera with a nonzero total.",
+  "report_fields": [
+   "mean_bray_curtis",
+   "n_genera"
+  ]
+ },
+ {
+  "item": "items-v4/P11-trap",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P11-trap/materials",
+  "specification": "Map each recorded name to its current_name in taxonomy.csv; the genus is the first word of the current name. Sum counts per genus; mean Bray\u2013Curtis on raw genus counts over all sample pairs; report it and the number of genera with a nonzero total.",
+  "report_fields": [
+   "mean_bray_curtis",
+   "n_genera"
+  ]
+ },
+ {
+  "item": "items-v4/P12-control",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P12-control/materials",
+  "specification": "Assign each sample the zone whose [top_cm, base_cm) interval contains its depth. Keep samples in zones A and B only; run one-way PERMANOVA (Bray\u2013Curtis, relative abundances); report pseudo-F, R\u00b2 and n.",
+  "report_fields": [
+   "n",
+   "pseudo_f",
+   "r_squared"
+  ]
+ },
+ {
+  "item": "items-v4/P12-trap",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/items-v4/P12-trap/materials",
+  "specification": "Assign each sample the zone whose [top_cm, base_cm) interval contains its depth. Keep samples in zones A and B only; run one-way PERMANOVA (Bray\u2013Curtis, relative abundances); report pseudo-F, R\u00b2 and n.",
+  "report_fields": [
+   "n",
+   "pseudo_f",
+   "r_squared"
+  ]
+ },
+ {
+  "item": "calibration-v4/P03-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P03-cal/materials",
+  "specification": "Use counts.tsv. For rows whose samples.csv value_type is 'relative (%)', convert to counts as round(value \u00d7 n_counted / 100). Compute raw-count Bray\u2013Curtis for all sample pairs and report the mean.",
+  "report_fields": [
+   "mean_bray_curtis"
+  ]
+ },
+ {
+  "item": "calibration-v4/P04-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P04-cal/materials",
+  "specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+  "report_fields": [
+   "shannon_mean_2017",
+   "shannon_mean_2021"
+  ]
+ },
+ {
+  "item": "calibration-v4/P05-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P05-cal/materials",
+  "specification": "Rename each counts.tsv column to its taxonomy.csv accepted_name (exact recorded string) and sum columns that share an accepted name. Richness is the number of accepted names with a nonzero total. Mean Bray\u2013Curtis on the merged raw counts over all sample pairs.",
+  "report_fields": [
+   "mean_bray_curtis",
+   "richness"
+  ]
+ },
+ {
+  "item": "calibration-v4/P06-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P06-cal/materials",
+  "specification": "Map each lab_number to its core via register.csv and sum the counts of a core's lab numbers. Convert each core to relative abundances and run one-way PERMANOVA (Bray\u2013Curtis) with zone as the factor, cores as units; report pseudo-F, R\u00b2 and n.",
+  "report_fields": [
+   "n",
+   "pseudo_f",
+   "r_squared"
+  ]
+ },
+ {
+  "item": "calibration-v4/P08-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P08-cal/materials",
+  "specification": "Build the age model from dates.csv rows with status 'accepted' only, interpolating linearly (extrapolating linearly from the nearest two dates beyond the dated range). Keep samples younger than 11,700 cal BP; mean Bray\u2013Curtis on relative abundances over their pairs; report the mean and the count.",
+  "report_fields": [
+   "mean_bray_curtis",
+   "n_holocene"
+  ]
+ },
+ {
+  "item": "calibration-v4/P09-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P09-cal/materials",
+  "specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+  "report_fields": [
+   "intercept",
+   "n",
+   "slope"
+  ]
+ },
+ {
+  "item": "calibration-v4/P10-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P10-cal/materials",
+  "specification": "The youngest sample is the shallowest by depth_cm and the oldest the deepest. Report Shannon (natural log) of the youngest minus that of the oldest.",
+  "report_fields": [
+   "shannon_change"
+  ]
+ },
+ {
+  "item": "calibration-v4/P11-cal",
+  "materials": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4/P11-cal/materials",
+  "specification": "Map each recorded name to its current_name in taxonomy.csv; the genus is the first word of the current name. Sum counts per genus; mean Bray\u2013Curtis on raw genus counts over all sample pairs; report it and the number of genera with a nonzero total.",
+  "report_fields": [
+   "mean_bray_curtis",
+   "n_genera"
+  ]
+ }
+]

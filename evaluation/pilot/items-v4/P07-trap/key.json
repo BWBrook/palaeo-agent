@@ -1,0 +1,58 @@
+{
+ "item": "P07-trap",
+ "bank_version": "pilot-v4",
+ "family": "P07",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "slope": 0.9411802461135124,
+  "intercept": -0.21871858543114975,
+  "n": 95,
+  "mean_length_mm": 25.954631578947367
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "cm_as_mm",
+   "results": {
+    "slope": 0.9863727973510591,
+    "intercept": -0.28442863133582064,
+    "n": 95,
+    "mean_length_mm": 20.45042105263158
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "cm",
+   "centimet",
+   "unit",
+   "KT",
+   "ruler",
+   "convert"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Observer KT recorded with a ruler in centimetres (observers.csv); those values are \u00d710 smaller and must be converted before pooling.",
+ "analysis_specification": "Convert lengths and widths recorded by observers whose unit_recorded is 'cm' to mm (\u00d710). Fit RMA of log10(width) on log10(length) over all specimens; report slope, intercept, n and mean length in mm.",
+ "replay_perturbation": {
+  "file": "shells.csv",
+  "kind": "scale_column",
+  "match": "length",
+  "value": 1.05
+ },
+ "reviewer_flaw": null
+}

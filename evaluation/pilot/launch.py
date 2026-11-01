@@ -18,7 +18,9 @@ instructions, memory, skills or plugins. Every trial:
 - kills the client group, then the worker server and every recorded worker
   process group, and verifies they are gone;
 - exports only regular files, never following links;
-- requires complete usage accounting.
+- requires complete usage accounting;
+- replays the package end to end from pristine materials (replay.py); a replay
+  infrastructure failure halts for diagnosis.
 
 Any failure writes HALTED.json; no later launch runs until it is resolved.
 A started trial is never rerun.
@@ -54,7 +56,8 @@ MODEL = "claude-sonnet-5-5"
 PROMPTS = HERE / "prompts"
 PINNED_SOURCE = ["evaluation/execution/__init__.py", "evaluation/execution/server.py",
                  "evaluation/execution/worker.py", "evaluation/pilot/launch.py", "evaluation/pilot/score.py",
-                 "evaluation/revised/score.py", "evaluation/sprint3/claude-client-boundary/probe.py"]
+                 "evaluation/revised/score.py", "evaluation/sprint3/claude-client-boundary/probe.py",
+                 "evaluation/pilot/replay.py"]
 CONFIG_ALLOWED = {".claude.json", ".claude.json.backup", "statsig", "todos", "shell-snapshots", "projects",
                   ".credentials.json", "backups", "session-env", "cache", "sessions", ".last-cleanup",
                   "remote-settings.json", "policy-limits.json"}
@@ -509,6 +512,10 @@ def run_trial(trial, plan, out_dir, api_key=None, base_url=None):
         summary["cache_read_tokens"] = usage["cache_read_input_tokens"]
     summary["score"] = score(record / "workspace", Path(plan["items_dir"]) / trial["item"],
                              "wall_limit" if summary["termination"] == "wall_limit" else "exited")
+    from evaluation.pilot.replay import replay
+    summary["replay"] = replay(record, plan["items_dir"], plan["runtime_root"])
+    if summary["replay"]["outcome"] == "infrastructure":
+        breach.append("replay_infrastructure")
     summary["complete"] = not breach and summary["reconciliation"]["consistent"] and complete_usage(usage)
     summary["finished_unix"] = time.time()
     (record / "trial.json").write_text(json.dumps(summary, indent=1) + "\n")

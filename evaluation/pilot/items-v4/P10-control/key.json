@@ -1,0 +1,50 @@
+{
+ "item": "P10-control",
+ "bank_version": "pilot-v4",
+ "family": "P10",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "shannon_change": -0.108628477660762
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "sign_reversed",
+   "results": {
+    "shannon_change": 0.108628477660762
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Sample numbers increase downcore with depth.",
+ "analysis_specification": "The youngest sample is the shallowest by depth_cm and the oldest the deepest. Report Shannon (natural log) of the youngest minus that of the oldest.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "S01",
+  "value": 12
+ },
+ "reviewer_flaw": {
+  "class": "interpretation",
+  "results": {
+   "shannon_change": -0.108628477660762
+  },
+  "answer_edits": {
+   "summary_append": "Shannon diversity increased from the oldest to the youngest sample."
+  },
+  "attribution_criterion": "names the contradiction between the stated direction and the sign of shannon_change"
+ }
+}

@@ -1,0 +1,245 @@
+{
+  "items": [
+    {
+      "dossier": "D245",
+      "act_on": [
+        {
+          "irregularity": "Measurements mix centimetres and millimetres.",
+          "evidence": "observers.csv line 2: KT records cm; lines 3–5: other observers record mm. shells.csv has 21 KT specimens, including D001 at line 2.",
+          "inference": "The small KT values reflect different units. Logging the recorded values directly would distort the regression.",
+          "handling": "Join observer metadata and multiply both KT dimensions by 10 before calculating logs, RMA coefficients and mean length. Retain all 95 specimens."
+        }
+      ],
+      "leave_alone": [
+        "Observer-specific decimal precision follows the recorded instruments; retain the supplied precision.",
+        "D026 is large (shells.csv line 27: 58.0 × 28.8 mm), but nothing identifies it as erroneous."
+      ],
+      "notes": "Every dossier references answer.schema.json, but none contains that file. This prevents checking the requested answer-file format, without affecting this materials review."
+    },
+    {
+      "dossier": "D151",
+      "act_on": [
+        {
+          "irregularity": "Sieve mesh differs between campaigns, creating unequal taxonomic coverage.",
+          "evidence": "campaigns.csv lines 2–3: 2017 used 150 µm and 2021 used 63 µm. taxa.csv lines 2, 3, 11, 13, 17, 18, 23 and 24 identify eight 63–150 µm taxa; their counts.tsv rows are zero throughout 2017.",
+          "inference": "An unrestricted Shannon comparison confounds assemblage diversity with recovery of smaller taxa.",
+          "handling": "Use the supplied size metadata to compare the shared >150 µm taxon set, renormalising within each core before calculating Shannon diversity and campaign means. Explicitly identify this restricted estimand."
+        }
+      ],
+      "leave_alone": [
+        "The two globally zero taxa (counts.tsv lines 26–27) contribute nothing to Shannon diversity.",
+        "Different count totals do not justify automatically rarefying or removing cores from the requested descriptive calculation."
+      ],
+      "notes": "Whole-community diversity change cannot be recovered because small-taxon counts are unavailable for 2017. Adult-size categories do not provide specimen-level size fractions. Different campaign locations also limit a purely temporal interpretation."
+    },
+    {
+      "dossier": "D462",
+      "act_on": [
+        {
+          "irregularity": "One sample belongs to an explicitly unzoned interval.",
+          "evidence": "samples.csv line 11: Z08 is at 156 cm. zonation.csv line 3 defines 140–185 cm as unzoned.",
+          "inference": "Z08 belongs to neither A nor B and cannot enter the requested two-zone contrast.",
+          "handling": "Join samples by ID, assign zones using the stated inclusive-top/exclusive-base intervals, and exclude Z08. Analyse 21 samples: seven A and fourteen B."
+        }
+      ],
+      "leave_alone": [
+        "Shuffled samples.csv rows require an ID join, without changing any depth.",
+        "The globally zero Ammonia beccarii and Tenuitella iota columns do not affect Bray–Curtis distances."
+      ],
+      "notes": "The published zones are defined using assemblage taxa. Their compositional contrast is therefore not independent validation of the zonation; interpret the requested statistics accordingly."
+    },
+    {
+      "dossier": "D960",
+      "act_on": [
+        {
+          "irregularity": "Seven individuals contribute both valves.",
+          "evidence": "catalogue.csv contains 59 valves but 52 individual_id values. Repeated individuals are I001, I017, I018, I020, I024, I040 and I045; for example, I024 occurs at lines 24 and 27.",
+          "inference": "A regression over valve rows would give paired individuals twice the weight of unpaired individuals.",
+          "handling": "Join measurements by specimen_id, obtain one length and height per individual, then log-transform and fit the RMA. Use arithmetic mean dimensions across available valves as an explicit convention; n = 52."
+        }
+      ],
+      "leave_alone": [
+        "Locality conflicts occur within I001 (catalogue.csv lines 8, 55), I018 (54, 60) and I040 (12, 42). They do not require locality-based exclusions from the pooled fit."
+      ],
+      "notes": "The task does not specify how to combine paired-valve measurements. Averaging dimensions is reasonable but not uniquely prescribed. The locality conflicts cannot be resolved internally; the proposed grouping trusts individual_id as defined in dictionary.md."
+    },
+    {
+      "dossier": "D106",
+      "act_on": [
+        {
+          "irregularity": "Twenty individuals contribute paired valves.",
+          "evidence": "catalogue.csv lines 2–70 contain 69 valves representing 49 individual_id values. For example, I021 has R and L valves at lines 3 and 21.",
+          "inference": "Valve-level fitting would overweight individuals represented by two valves.",
+          "handling": "Join measurements by specimen_id and combine dimensions within individual before logging and fitting RMA. Document arithmetic mean dimensions as the aggregation convention; n = 49."
+        }
+      ],
+      "leave_alone": [
+        "Paired individuals I008, I019, I024, I028, I029, I041 and I048 have conflicting locality labels in catalogue.csv. Locality is unused in the requested pooled fit.",
+        "I021's valves have identical rounded dimensions (measurements.csv lines 16 and 56); distinct specimen IDs and opposite valves support retaining both measurements for aggregation."
+      ],
+      "notes": "The paired-valve aggregation rule is unspecified. Locality conflicts leave uncertainty about catalogue provenance; no supplied record resolves them, so the proposed analysis trusts the defined individual_id linkage."
+    },
+    {
+      "dossier": "D144",
+      "act_on": [],
+      "leave_alone": [
+        "Both campaigns used 63 µm mesh (campaigns.csv lines 2–3); the adult-size categories do not warrant removing smaller taxa.",
+        "Tenuitella iota and Globigerina bulloides are globally zero (counts.tsv lines 26–27), with no effect on Shannon diversity.",
+        "Variable core totals and occasional taxon absences do not require changing the specified calculation."
+      ],
+      "notes": "Campaigns sampled different positions. The requested means describe campaign samples and cannot alone establish temporal change at fixed sites."
+    },
+    {
+      "dossier": "D290",
+      "act_on": [
+        {
+          "irregularity": "Sample numbering does not follow stratigraphic order.",
+          "evidence": "samples.csv line 5 places S06 at 5 cm, the shallowest sample; line 11 places S05 at 350 cm, the deepest. S01 and S15 are at 170 and 175 cm.",
+          "inference": "Using the first and last count rows, sample numbers or processing dates would select the wrong temporal endpoints.",
+          "handling": "Join by sample ID and use depth in the stated undisturbed core. Calculate H(S06) minus H(S05)."
+        }
+      ],
+      "leave_alone": [
+        "Processing batches and dates describe laboratory work, not sediment chronology.",
+        "Recounting, relabelling and repeat sieving remarks report no unresolved count correction.",
+        "The two globally zero taxon columns do not affect Shannon diversity."
+      ],
+      "notes": ""
+    },
+    {
+      "dossier": "D607",
+      "act_on": [
+        {
+          "irregularity": "A rejected radiocarbon determination remains in the date table.",
+          "evidence": "dates.csv line 5: OZ6803, 198 cm, 12,816 cal BP, status rejected, with a reworked-shell comment.",
+          "inference": "Including this determination would incorrectly shift the Holocene boundary and sample eligibility.",
+          "handling": "Interpolate using accepted dates only. The 11,700 BP boundary is approximately 222.692 cm; retain S01–S24, giving n_holocene = 24."
+        }
+      ],
+      "leave_alone": [
+        "The globally zero Uvigerina peregrina and Textularia agglutinans columns do not affect distances.",
+        "Shuffled metadata rows are harmless when joined by sample ID."
+      ],
+      "notes": "S29 and S30 lie below the deepest accepted date, so interpolation supplies no exact ages for them. Under monotonic continuation they are older than the Holocene; no numerical extrapolation is needed. The supplied dates do not themselves demonstrate the reversal mentioned in the rejection comment, but the explicit rejection remains authoritative."
+    },
+    {
+      "dossier": "D126",
+      "act_on": [
+        {
+          "irregularity": "The matrix mixes raw counts with rounded percentages.",
+          "evidence": "samples.csv marks SR198, SR209, SR219, SR142, SR236, SR328, SR366 and SR295 as relative (%), with n_counted supplied. Their counts.tsv rows are lines 2, 5, 8, 11, 14, 17, 20 and 23.",
+          "inference": "Using those percentages as counts would corrupt raw-count Bray–Curtis distances. Under ordinary rounding to 0.01%, every percentage cell has exactly one compatible integer count at its supplied n_counted; reconstructed row totals equal n_counted.",
+          "handling": "Reconstruct these eight rows from percentage × n_counted / 100, rounding to integers. Validate each reconstructed percentage against the reported rounding interval and each row total against n_counted. Retain the existing count rows unchanged."
+        }
+      ],
+      "leave_alone": [
+        "Percentage totals of 99.96–100.02 reflect rounding; do not renormalise them before reconstructing counts.",
+        "SR325's low yield is documented (lab_log.csv line 3), and its count total agrees with n_counted = 47.",
+        "Unidentifiable broken tests do not justify inventing taxon counts; globally zero columns are harmless."
+      ],
+      "notes": "Reconstruction assumes ordinary rounding of specimen percentages. Provenance is inconsistent: samples.csv describes the percentage rows as published 1998 material with counts unarchived, while lab_log.csv supplies 2025 processing records for them despite dictionary.md restricting that log to this study's laboratory. The numerical reconstruction is internally consistent, but the provenance cannot be resolved."
+    },
+    {
+      "dossier": "D503",
+      "act_on": [
+        {
+          "irregularity": "Seven counted samples have differently formatted station identifiers.",
+          "evidence": "counts.tsv uses PB16–PB22; stations.csv lines 3, 5, 9, 14, 15, 20 and 23 instead use PB-17, PB-21, PB-16, PB-20, PB-22, PB-18 and PB-19.",
+          "inference": "A literal identifier join would lose seven counted samples or leave their zones undefined.",
+          "handling": "Create an explicit PB-16–PB-22 to PB16–PB22 crosswalk. Normalisation gives unique matches for every counted sample. Retain all 22 samples: nine A and thirteen B."
+        }
+      ],
+      "leave_alone": [
+        "PB23 and PB24 have station records but no counts; dictionary.md explicitly allows stations without samples. Do not create zero assemblages.",
+        "Overlapping water depths do not justify replacing the sedimentology-based zone labels.",
+        "Broken-test remarks and the two globally zero columns require no count alteration."
+      ],
+      "notes": "The punctuation crosswalk is strongly supported by unique matching identifiers and the cruise-leg pattern, but no explicit crosswalk file is supplied."
+    },
+    {
+      "dossier": "D497",
+      "act_on": [
+        {
+          "irregularity": "Synonymous names occupy separate columns and are used differently by the laboratories.",
+          "evidence": "taxonomy.csv lines 12 and 26 map Globigerinoides sacculifer and Trilobatus sacculifer to Trilobatus sacculifer; lines 19 and 21 map Neogloboquadrina incompta and N. pachyderma (dextral) to N. incompta. These are separate counts.tsv columns.",
+          "inference": "Treating recorded names as distinct taxa inflates richness and introduces artificial between-sample dissimilarity.",
+          "handling": "Map recorded names through taxonomy.csv and sum synonymous columns within each sample before calculating either statistic."
+        },
+        {
+          "irregularity": "Two accepted names are subspecies, whereas the task requests species-level analysis.",
+          "evidence": "taxonomy.csv lines 10–11 map pink and white forms to Globigerinoides ruber ruber and Globigerinoides ruber albus.",
+          "inference": "Stopping at accepted-name reconciliation would still count two units within one species.",
+          "handling": "Combine both subspecies under Globigerinoides ruber before richness and Bray–Curtis calculations. After all reconciliation and presence filtering, 21 species are observed."
+        }
+      ],
+      "leave_alone": [
+        "Pulleniatina obliquiloculata and Turborotalita quinqueloba are globally zero; they contribute neither observed richness nor distance.",
+        "AT03's low yield is documented (lab_log.csv line 15); retain it for the requested raw-count comparison.",
+        "Unidentifiable broken tests provide no defensible taxonomic allocation."
+      ],
+      "notes": "Use the supplied taxonomy as the materials' authority; its external currency cannot be checked within this review's scope."
+    },
+    {
+      "dossier": "D437",
+      "act_on": [
+        {
+          "irregularity": "Laboratory rows include multiple residue splits from the same core.",
+          "evidence": "register.csv maps 31 lab_number records to 14 cores. For example, MC01 comprises L4169, L4178 and L4187 (lines 32, 3 and 4); MC05 is unsplit (line 6). dictionary.md defines these as residue splits.",
+          "inference": "Laboratory numbers are not independent sampling units. Treating them as replicates would create pseudoreplication and unequal core weighting.",
+          "handling": "Sum taxon counts across splits within each core, then convert each pooled core to relative abundances. Perform PERMANOVA at core level with n = 14, seven cores per zone."
+        }
+      ],
+      "leave_alone": [
+        "Unequal split counts and low-yield aliquots do not warrant dropping splits or averaging their relative abundances equally.",
+        "Laboratory remarks saying counted in full describe the processed material; they do not override the register's split identities.",
+        "Water-depth overlap does not justify changing core zones; globally zero taxon columns are harmless."
+      ],
+      "notes": ""
+    },
+    {
+      "dossier": "D557",
+      "act_on": [],
+      "leave_alone": [
+        "All six dates are accepted and increase with depth (dates.csv lines 2–7).",
+        "Shuffled sample metadata require ID matching only.",
+        "The globally zero Neogloboquadrina dutertrei and Uvigerina mediterranea columns do not affect Bray–Curtis distances."
+      ],
+      "notes": "S25 at 293 cm lies below the deepest dated level, 290 cm, so its exact age is undefined under interpolation alone. Monotonic continuation places it outside the Holocene. The interpolated boundary is approximately 222.692 cm, giving 18 eligible samples; their classification requires no extrapolation."
+    },
+    {
+      "dossier": "D673",
+      "act_on": [
+        {
+          "irregularity": "The date table includes an explicitly rejected determination.",
+          "evidence": "dates.csv line 5: OZ2347 at 198 cm has age 12,816 cal BP and status rejected, with an age-reversal/reworked-shell comment.",
+          "inference": "Using every dated row would incorrectly classify several samples around the Holocene boundary.",
+          "handling": "Exclude the rejected determination from age modelling and interpolate between accepted levels. The boundary is approximately 222.692 cm; retain S01–S18, giving n_holocene = 18."
+        }
+      ],
+      "leave_alone": [
+        "Shuffled sample metadata and the two globally zero taxon columns require no data correction."
+      ],
+      "notes": "S25 at 293 cm is outside interpolation support; under monotonic continuation it is older than the Holocene, without assigning an extrapolated numerical age. The retained dates do not independently demonstrate the reversal described in the comment, but provide no reason to override the explicit rejection."
+    },
+    {
+      "dossier": "D218",
+      "act_on": [],
+      "leave_alone": [
+        "PB23 and PB24 appear only in stations.csv (lines 10 and 13); dictionary.md explicitly allows stations without samples. Analyse the 22 counted samples without fabricating zero rows.",
+        "Zone water depths overlap, but dictionary.md says zones were assigned from sedimentology; retain those labels.",
+        "Broken-test remarks and the globally zero Nonionella turgida and Cibicidoides pachyderma columns require no count correction."
+      ],
+      "notes": "All counted samples have unique matching station records, giving nine A and thirteen B samples."
+    },
+    {
+      "dossier": "D957",
+      "act_on": [],
+      "leave_alone": [
+        "samples.csv is shuffled, but depths confirm S01 at 5 cm as youngest (line 8) and S17 at 395 cm as oldest (line 11).",
+        "Processing dates and batches do not define stratigraphic order.",
+        "The globally zero Neogloboquadrina dutertrei and Globigerina falconensis columns do not affect Shannon diversity."
+      ],
+      "notes": "The stated undisturbed core supports the endpoint calculation H(S01) minus H(S17)."
+    }
+  ]
+}

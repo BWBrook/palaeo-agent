@@ -1,0 +1,53 @@
+{
+ "item": "P08-cal",
+ "bank_version": "pilot-v4",
+ "family": "P08",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.25791732846794,
+  "n_holocene": 26
+ },
+ "integer_results": [
+  "n_holocene"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "rejected_date_used",
+   "results": {
+    "mean_bray_curtis": 0.26889557200314074,
+    "n_holocene": 19
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "rejected",
+   "reversal",
+   "reworked",
+   "excluded date",
+   "OZ"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "One date is flagged rejected in the dating report (an age reversal from a reworked shell); it is not part of the age model, and including it moves the boundary.",
+ "analysis_specification": "Build the age model from dates.csv rows with status 'accepted' only, interpolating linearly (extrapolating linearly from the nearest two dates beyond the dated range). Keep samples younger than 11,700 cal BP; mean Bray\u2013Curtis on relative abundances over their pairs; report the mean and the count.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "S01",
+  "value": 8
+ },
+ "reviewer_flaw": null
+}

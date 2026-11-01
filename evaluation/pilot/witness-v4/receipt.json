@@ -1,0 +1,45 @@
+{
+ "implementation_witness": {
+  "model": "gpt-6.1-terra",
+  "rounds": [
+   {
+    "round": 1,
+    "agree": 32,
+    "of": 32,
+    "note": "before cue-audit fixes"
+   },
+   {
+    "round": 2,
+    "agree": 32,
+    "of": 32,
+    "tolerance": "1e-9 relative/absolute",
+    "note": "after fixes; P11 lab-log dates and P09 reason text changed afterwards without touching any analysed value"
+   }
+  ]
+ },
+ "cue_audit": {
+  "model": "gpt-6.1-sol",
+  "round1": {
+   "dossiers": 32,
+   "blinded": true,
+   "defects_found": [
+    "P05 species-level vs accepted subspecies",
+    "P11 n_genera counted unobserved genera",
+    "P03 lab log contradicted published provenance",
+    "P09 valve localities inconsistent within individual",
+    "P08 samples beyond dated range",
+    "P12 zone basis text inconsistent with data"
+   ],
+   "all_trap_facts_found": true
+  },
+  "round2": {
+   "dossiers": 10,
+   "fixes_confirmed": true,
+   "residual": [
+    "P09 averaging rule unspecified: arithmetic and log means agree within tolerance; left/right/mean accepted",
+    "P11 1987 counts vs 2025 log dates: log now dated 1987"
+   ]
+  }
+ },
+ "diagnostic_only": "A strong reviewer finding every deciding fact is not evidence of difficulty for the analyst model."
+}

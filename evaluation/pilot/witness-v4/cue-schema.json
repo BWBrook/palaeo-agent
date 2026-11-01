@@ -1,0 +1,63 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "items"
+ ],
+ "properties": {
+  "items": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "dossier",
+     "act_on",
+     "leave_alone",
+     "notes"
+    ],
+    "properties": {
+     "dossier": {
+      "type": "string"
+     },
+     "act_on": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "irregularity",
+        "evidence",
+        "inference",
+        "handling"
+       ],
+       "properties": {
+        "irregularity": {
+         "type": "string"
+        },
+        "evidence": {
+         "type": "string"
+        },
+        "inference": {
+         "type": "string"
+        },
+        "handling": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "leave_alone": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "notes": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

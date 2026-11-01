@@ -1,0 +1,56 @@
+{
+ "item": "P03-cal",
+ "bank_version": "pilot-v4",
+ "family": "P03",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.31285204992933446
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "percent_as_counts",
+   "results": {
+    "mean_bray_curtis": 0.4056015235466214
+   }
+  },
+  {
+   "name": "percent_rows_dropped",
+   "results": {
+    "mean_bray_curtis": 0.33268331383345795
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "percent",
+   "relative",
+   "%",
+   "n_counted",
+   "reconstruct",
+   "convert"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "The 1998 rows are percentages from a published table, as samples.csv states, with n_counted given; raw counts are recovered exactly as percent \u00d7 n / 100, and percentages are not counts.",
+ "analysis_specification": "Use counts.tsv. For rows whose samples.csv value_type is 'relative (%)', convert to counts as round(value \u00d7 n_counted / 100). Compute raw-count Bray\u2013Curtis for all sample pairs and report the mean.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "SR133",
+  "value": 4
+ },
+ "reviewer_flaw": null
+}

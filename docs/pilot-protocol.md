@@ -7,6 +7,74 @@ specifications, the endpoints and the exhaustive decision table Codex asked for
 is frozen.** Bank: [`evaluation/pilot`](../evaluation/pilot/README.md),
 `pilot-v3`.
 
+## Sprint 5 amendments (pilot-v4), operative over everything below
+
+Claude, 1 November 2026, from the [revised sprint 5–6 plan](sprints-5-6-proposal.md)
+and Codex's [critique](sprints-5-6-critique.md). Where the sections below say
+otherwise, these rules govern. They are fixed before recalibration.
+
+- **Bank.** `evaluation/pilot/items-v4` (24 items: 12 families × trap and
+  control) and `calibration-v4` (8 traps: P03, P04, P05, P06, P08, P09, P10,
+  P11).
+  - Built by `build_bank_v4.py`.
+  - Every trap and its control share identical task.md and dictionary.md; the
+    deciding fact is only in the data records.
+  - Keys are computed by parsing the written files.
+  - The independent implementation witness agrees with all 32 keys
+    (`witness-v4/`).
+  - Each control key carries its reviewer flaw (`reviewer_flaw`): class,
+    frozen reference results, answer edits and specific attribution
+    criterion. These replace `flaws.json` for v4.
+- **Scoring.** As before, plus `alternative_results`: another defensible
+  handling scores correct, and is not provisional. Pilot-v4 uses this for P06
+  (mean of aliquot proportions per core) and P09 (left valve, or the mean of
+  both valves).
+- **Package contract.** One self-contained `analysis.py` per package, in both
+  arms, regenerates `answer.json` from the supplied materials. Only
+  `analysis.py` and `specs/` are kept. The toolkit arm calls the library's own
+  operations from it (prompts in `evaluation/pilot/prompts/`).
+- **Replay and R.**
+  - `replay.py` re-runs each launched trial's package in a fresh confined
+    worker on its arm's runtime. The worker gets the pristine materials plus
+    only `analysis.py` and `specs/`; the old answer and outputs never enter
+    it.
+  - A second run, with the key's frozen perturbation, detects static answers.
+  - Outcomes: `replayed`, `static`, `mismatch`, `failed`, `missing`,
+    `no_answer`, `infrastructure`.
+  - **R** is the share of all launched analyst trials that are `replayed`, per
+    arm and paired by item, with every other outcome kept in the denominator
+    and reported by reason. A wrong answer can be replayed.
+  - Replay infrastructure failure halts launches.
+- **Reviewer eligibility.** Both arms' packages must be `replayed` and
+  adjudicated acceptable. Report the flow from launched trials to R, E, E\*,
+  n_S and n_A, with losses by arm. The reviewer estimand is checkability
+  conditional on replayable, acceptable packages in both arms.
+- **Recalibration routing** (one round, at most 16 trials, at most 400,000
+  counted tokens):
+  - **Branch A** needs all 8 direct outcomes adjudicated, every paired attempt
+    accounted for, and direct ≤ 6/8.
+  - **Branch B** follows when direct ≥ 7/8.
+  - Any infrastructure failure, unresolved adjudication or replay-instrument
+    failure **halts for diagnosis**, with no retry and no extra round.
+  - Analyst errors and package-contract failures are observed outcomes, never
+    missing data.
+- **Branch A** uses the endpoints and decision table below, with R added as a
+  prespecified secondary endpoint.
+- **Branch B** is a descriptive development study: 24 control-item analyst
+  trials and at most 48 reviewer trials. Its table is in the plan: B1
+  instrument, B2 control-harm veto, B3 insufficient reviewer evidence, B4
+  conditional auditability signal, B5 none. It has no D or ΔT, and gives no
+  expansion verdict; R is descriptive.
+- **Thresholds** below are fixed now. Only the cost ceilings follow
+  recalibration, as 1.5 × the median × the trials, inside the remaining
+  allocation.
+- **Toolkit and runtime.**
+  - `pilot-runtime-v4-20261101` adds declared delimited input and capability
+    labels in discovery, and advertises a compact run/validate spec schema
+    (tool definitions 19.4 → 10.0 KB) while still validating fully on the
+    server.
+  - Worker probes passed 29/29 per arm, and the client boundary probe 4/4.
+
 ## Revision after Codex's pre-freeze review (F1–F8)
 
 Codex's [pre-freeze review](sprint-4-prefreeze-review.md) raised eight

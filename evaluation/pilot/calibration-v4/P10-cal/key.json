@@ -1,0 +1,55 @@
+{
+ "item": "P10-cal",
+ "bank_version": "pilot-v4",
+ "family": "P10",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "shannon_change": -0.11845579229390868
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "ids_as_order",
+   "results": {
+    "shannon_change": -0.038950245853416554
+   }
+  },
+  {
+   "name": "sign_reversed",
+   "results": {
+    "shannon_change": 0.11845579229390868
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "depth",
+   "deepest",
+   "processing order",
+   "not in depth order",
+   "depth_cm"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Sample numbers follow laboratory processing, not depth; in an undisturbed core age increases with depth, so depth_cm identifies the oldest and youngest samples.",
+ "analysis_specification": "The youngest sample is the shallowest by depth_cm and the oldest the deepest. Report Shannon (natural log) of the youngest minus that of the oldest.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "S06",
+  "value": 12
+ },
+ "reviewer_flaw": null
+}

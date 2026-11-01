@@ -1,0 +1,64 @@
+{
+ "item": "P01-trap",
+ "bank_version": "pilot-v4",
+ "family": "P01",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.33005918450144617,
+  "n_samples": 22
+ },
+ "integer_results": [
+  "n_samples"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "low_yield_dropped",
+   "results": {
+    "mean_bray_curtis": 0.2939260663925118,
+    "n_samples": 21
+   }
+  },
+  {
+   "name": "zeros_as_sample",
+   "results": {
+    "mean_bray_curtis": 0.38831490758827697,
+    "n_samples": 23
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "not recovered",
+   "flood",
+   "uncounted",
+   "not counted",
+   "no picking",
+   "zeros",
+   "KC05"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [
+  "KC05"
+ ],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "The log records that KC05's residue was not recovered and never picked, and its column is all zeros: it is an export placeholder, not an assemblage, so it is excluded. KC04 is a genuine low-yield sample counted in full and stays.",
+ "analysis_specification": "Read counts.tsv (taxa as rows, samples as columns). Exclude any sample whose column is all zero. Compute Bray\u2013Curtis dissimilarity on raw counts for every pair of remaining samples and report the mean, and the number of samples used.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Globoturborotalita tenella",
+  "value": 3
+ },
+ "reviewer_flaw": null
+}

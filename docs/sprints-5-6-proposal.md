@@ -78,7 +78,7 @@ boundary.
     arms.
 - **Replay boundary.** A fresh confined worker with no model, running the
   arm's own runtime, starts from the pristine supplied materials. It adds only
-  the package's `*.py` files and the files under `specs/`, and runs
+  the package's `analysis.py` and the files under `specs/`, and runs
   `python analysis.py`.
   - The old `answer.json`, bundles and every other generated output stay
     outside the replay.

@@ -1,0 +1,66 @@
+{
+ "item": "P09-control",
+ "bank_version": "pilot-v4",
+ "family": "P09",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "slope": 1.1096280843275212,
+  "intercept": -0.2370918039832124,
+  "n": 52
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Each individual is represented by a single valve.",
+ "analysis_specification": "Join measurements to the catalogue by specimen_id. Use one value per individual: the right valve where both valves were measured. RMA of log10(height) on log10(length); report slope, intercept and n.",
+ "replay_perturbation": {
+  "file": "measurements.csv",
+  "kind": "scale_column",
+  "match": "height_mm",
+  "value": 1.04
+ },
+ "reviewer_flaw": {
+  "class": "preparation",
+  "results": {
+   "slope": 1.1066552538060128,
+   "intercept": -0.23319725045085415,
+   "n": 48
+  },
+  "answer_edits": {
+   "exclusions": [
+    {
+     "id": "I001",
+     "reason": "duplicate specimen"
+    },
+    {
+     "id": "I002",
+     "reason": "duplicate specimen"
+    },
+    {
+     "id": "I003",
+     "reason": "duplicate specimen"
+    },
+    {
+     "id": "I004",
+     "reason": "duplicate specimen"
+    }
+   ]
+  },
+  "attribution_criterion": "names the exclusion of individuals I001, I002, I003, I004 as unjustified"
+ }
+}

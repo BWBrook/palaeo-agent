@@ -1,0 +1,47 @@
+{
+ "item": "P08-control",
+ "bank_version": "pilot-v4",
+ "family": "P08",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.24988904121629033,
+  "n_holocene": 18
+ },
+ "integer_results": [
+  "n_holocene"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "All dates are accepted and in stratigraphic order.",
+ "analysis_specification": "Build the age model from dates.csv rows with status 'accepted' only, interpolating linearly (extrapolating linearly from the nearest two dates beyond the dated range). Keep samples younger than 11,700 cal BP; mean Bray\u2013Curtis on relative abundances over their pairs; report the mean and the count.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "S01",
+  "value": 8
+ },
+ "reviewer_flaw": {
+  "class": "interpretation",
+  "results": {
+   "mean_bray_curtis": 0.24988904121629033,
+   "n_holocene": 18
+  },
+  "answer_edits": {
+   "summary_append": "Holocene assemblages are more homogeneous than Pleistocene assemblages."
+  },
+  "attribution_criterion": "names the unsupported comparison with Pleistocene samples, which were not analysed"
+ }
+}

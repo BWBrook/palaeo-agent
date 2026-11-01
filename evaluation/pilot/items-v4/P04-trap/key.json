@@ -1,0 +1,71 @@
+{
+ "item": "P04-trap",
+ "bank_version": "pilot-v4",
+ "family": "P04",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "shannon_mean_2017": 2.513702941670762,
+  "shannon_mean_2021": 2.5685220808024063
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "all_taxa_both_campaigns",
+   "results": {
+    "shannon_mean_2017": 2.513702941670762,
+    "shannon_mean_2021": 2.9814890300038996
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "150",
+   "mesh",
+   "sieve",
+   "size fraction",
+   "63"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [
+  {
+   "status": "stopped",
+   "issue_tokens": [
+    [
+     "mesh",
+     "sieve",
+     "150",
+     "size fraction"
+    ]
+   ]
+  }
+ ],
+ "alternative_results": [],
+ "disclosure_tokens": [
+  [
+   ">150",
+   "150 \u00b5m",
+   "coarse",
+   "large",
+   "comparable"
+  ]
+ ],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "2017 sediments were washed on a 150 \u00b5m mesh, so taxa whose adults are 63\u2013150 \u00b5m could not be retained; their zeros in 2017 are not absences. Diversity is comparable only on the >150 \u00b5m taxa, a restriction the answer must state; stopping with the reason is also acceptable.",
+ "analysis_specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Neogloboquadrina incompta",
+  "value": 6
+ },
+ "reviewer_flaw": null
+}

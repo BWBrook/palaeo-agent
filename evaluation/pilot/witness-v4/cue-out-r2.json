@@ -1,0 +1,155 @@
+{
+  "items": [
+    {
+      "dossier": "D324",
+      "act_on": [
+        {
+          "irregularity": "Two species are each split across synonymous count columns.",
+          "evidence": "taxonomy.csv lines 12–13 map Globigerinoides sacculifer to Trilobatus sacculifer and Globigerinoides tenellus to Globoturborotalita tenella. Both names in each pair occur in counts.tsv's header. Across AT01–AT23, usage follows counting_lab in samples.csv.",
+          "inference": "Laboratory naming conventions create artificial species distinctions and inflate between-laboratory dissimilarity.",
+          "handling": "Map all columns to accepted_name and sum synonymous columns within each sample before calculating richness or raw-count Bray–Curtis."
+        }
+      ],
+      "leave_alone": [
+        "The sinistral and dextral pachyderma labels map to different accepted species (taxonomy.csv lines 22–23); retain them separately.",
+        "AT03 has documented low yield but was counted in full (lab_log.csv line 6); retain its counts without scaling or exclusion.",
+        "Recounts, relabelling, double sieving and unidentified broken tests provide no evidence requiring count corrections."
+      ],
+      "notes": "task.md line 7 references answer.schema.json, which is absent from the dossier. The scientific calculation is otherwise specified."
+    },
+    {
+      "dossier": "D766",
+      "act_on": [],
+      "leave_alone": [
+        "The two pachyderma labels represent separate accepted species: dextral maps to Neogloboquadrina incompta and sinistral to N. pachyderma (taxonomy.csv lines 21–22). This one-to-one relabelling requires no column merging.",
+        "AT03's low yield is documented as counted in full (lab_log.csv line 2); retain it for the requested raw-count calculation.",
+        "Repeated water depths, split 1/1, relabelling, recounts and second-analyst checks do not establish duplicated samples or altered counting fractions."
+      ],
+      "notes": "Every recorded taxon maps to a distinct accepted species; no synonym consolidation is needed. task.md references an absent answer.schema.json."
+    },
+    {
+      "dossier": "D497",
+      "act_on": [
+        {
+          "irregularity": "Two accepted species are represented by separate old-name and current-name columns.",
+          "evidence": "taxonomy.csv lines 11–12 map Globigerinoides sacculifer to Trilobatus sacculifer and Globigerinoides tenellus to Globoturborotalita tenella. All four columns occur in counts.tsv; their usage across AT01–AT24 follows the Bremen/Hobart assignments in samples.csv.",
+          "inference": "The apparent distinctions reflect laboratory nomenclature rather than additional species or ecological turnover.",
+          "handling": "Sum each synonymous pair within samples under its accepted name before computing either requested statistic."
+        }
+      ],
+      "leave_alone": [
+        "Keep sinistral and dextral pachyderma separate, following their distinct accepted names in taxonomy.csv lines 20–21.",
+        "AT03's low yield is documented as counted in full (lab_log.csv line 16); do not exclude or standardise it.",
+        "Split 1/1 entries describe full counts. The broken tests noted for AT15 have no species assignments and should not be allocated to taxa."
+      ],
+      "notes": "No unresolved scientific decision is apparent after taxonomic reconciliation. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D739",
+      "act_on": [
+        {
+          "irregularity": "Three legacy species names place counts in the wrong genera under current taxonomy.",
+          "evidence": "counts.tsv lines 4, 12 and 23 contain Globigerina quinqueloba, Globigerina pachyderma and Globigerinoides sacculifer. taxonomy.csv lines 7, 6 and 13 respectively assign them to Turborotalita quinqueloba, Neogloboquadrina pachyderma and Trilobatus sacculifer.",
+          "inference": "Extracting genera directly from recorded names would misallocate counts and miss currently recognised genera.",
+          "handling": "Map each taxon through current_name first, then extract and sum by current genus within each sample. Calculate Bray–Curtis between sample columns on those raw genus totals."
+        }
+      ],
+      "leave_alone": [
+        "Taxa occupy rows and samples columns, as explicitly documented; preserve that distinction when forming sample pairs.",
+        "N05's low yield is documented as counted in full (lab_log.csv line 19); retain it.",
+        "Unidentifiable broken tests, split 1/1 and routine processing remarks do not justify count adjustments."
+      ],
+      "notes": "The 1987 legacy description and 2025 processing dates leave the processing history unclear, but do not change the requested calculation. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D239",
+      "act_on": [],
+      "leave_alone": [
+        "Despite the legacy-data description, all recorded names already match current_name in taxonomy.csv; no genus reassignment is needed.",
+        "N05's low yield was counted in full (lab_log.csv line 19); retain it for raw-count Bray–Curtis.",
+        "Shuffled log entries, split 1/1, relabelling and unidentified broken tests do not require changing counts."
+      ],
+      "notes": "The relationship between the 1987 legacy description and 2025 processing log is unspecified, without a consequence for this calculation. task.md references an absent answer.schema.json."
+    },
+    {
+      "dossier": "D800",
+      "act_on": [
+        {
+          "irregularity": "Recorded legacy names assign three species to obsolete genera.",
+          "evidence": "counts.tsv lines 9, 11 and 25 record Globigerina quinqueloba, Globigerinoides sacculifer and Globigerina pachyderma. taxonomy.csv lines 7, 14 and 6 map them to Turborotalita quinqueloba, Trilobatus sacculifer and Neogloboquadrina pachyderma.",
+          "inference": "Grouping by the recorded first word would produce incorrect current-genus totals and genus richness.",
+          "handling": "Apply current_name mappings before genus aggregation; then compute the number of occupied genera and all-pair Bray–Curtis on raw genus counts."
+        }
+      ],
+      "leave_alone": [
+        "N05's low yield is explicitly documented as counted in full (lab_log.csv line 17); retain it without scaling.",
+        "Split 1/1, second-analyst checks, relabelling and the unidentified broken tests at N10 do not warrant count corrections.",
+        "The transposed count-table orientation is documented and consistent."
+      ],
+      "notes": "The 1987 description and 2025 processing dates do not explain the full processing history, but provide no basis for changing observations. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D811",
+      "act_on": [
+        {
+          "irregularity": "The count table mixes specimen counts with rounded percentages.",
+          "evidence": "samples.csv labels SR286, SR106, SR333, SR264, SR324, SR219 and SR125 as relative (%) in lines 2, 5, 9, 10, 12, 18 and 20. Their corresponding counts.tsv lines are 17, 5, 8, 2, 11, 20 and 14. Each metadata record supplies n_counted.",
+          "inference": "Using the table directly would compare incompatible units. Despite archived counts being unavailable, every percentage has exactly one integer count consistent with rounding to 0.01 percentage points and its supplied denominator; reconstructed row totals equal n_counted.",
+          "handling": "Join metadata by sample_id. Reconstruct each percentage entry as round(percentage × n_counted / 100), verify rounding consistency and row totals, and retain the existing count rows. Compute Bray–Curtis on the resulting specimen counts."
+        }
+      ],
+      "leave_alone": [
+        "Percentage totals range from 99.97 to 100.03 because of rounding; do not renormalise them before integer reconstruction.",
+        "Pullenia quinqueloba and Globorotalia hirsuta are entirely zero (counts.tsv); they contribute nothing to Bray–Curtis.",
+        "SR368's 40 specimens match n_counted and its low-yield log entry; retain it.",
+        "Historical samples lack local lab-log entries consistently with their published-table source and the dictionary's stated log coverage."
+      ],
+      "notes": "Nearest rounding to two decimal places is inferred rather than explicitly documented, but all historical entries and totals support unique reconstruction. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D126",
+      "act_on": [
+        {
+          "irregularity": "Rows from the historical campaign are percentages, while study rows are specimen counts.",
+          "evidence": "samples.csv identifies SR295, SR209, SR366, SR328, SR198, SR236, SR142 and SR219 as relative (%) in lines 3, 4, 5, 10, 12, 15, 18 and 23. Their counts.tsv lines are 23, 5, 20, 17, 2, 14, 11 and 8; n_counted is supplied for every row.",
+          "inference": "Direct raw-count Bray–Curtis on the supplied mixed-unit table would be incorrect. Every historical percentage uniquely identifies an integer count under rounding to 0.01 percentage points; reconstructed totals match n_counted.",
+          "handling": "Match rows by sample_id, reconstruct historical counts using round(percentage × n_counted / 100), verify rounding and totals, and combine with unchanged study counts for the requested calculation."
+        }
+      ],
+      "leave_alone": [
+        "Historical percentage totals of 99.96–100.02 reflect rounding; no percentage renormalisation is needed.",
+        "Globigerinella calida and Hoeglundina elegans are all-zero columns and do not affect Bray–Curtis.",
+        "SR325 has 47 specimens, consistent with samples.csv line 2 and the low-yield remark in lab_log.csv line 6; retain it.",
+        "Missing local processing logs for published historical samples are consistent with the documented log coverage."
+      ],
+      "notes": "The rounding convention is implicit, but unique integer recovery is supported by every percentage and denominator. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D960",
+      "act_on": [
+        {
+          "irregularity": "Measurement rows are valves, and some animals contribute two valves.",
+          "evidence": "catalogue.csv contains 72 specimen IDs belonging to 52 individual IDs: 20 animals have both L and R valves. For example, I052 appears at lines 4 and 10 as V41347 and V51064; their measurements occur at measurements.csv lines 28 and 32.",
+          "inference": "A regression using all 72 rows would weight paired animals twice and report the wrong number of individuals.",
+          "handling": "Join measurements to the catalogue by specimen_id and construct one length–height observation per individual. A defensible default is to average available valve lengths and heights within each animal, then log10-transform and fit the reduced-major-axis regression using 52 individuals."
+        }
+      ],
+      "leave_alone": [
+        "Paired valves have slightly different measurements; retain that information when forming individual summaries rather than treating the records as erroneous duplicates.",
+        "Catalogue and measurement ordering differs, but specimen IDs join completely and uniquely.",
+        "Two localities are represented; the task requests a pooled regression and supplies no requirement for separate locality fits."
+      ],
+      "notes": "The materials do not specify how paired valves should represent an individual. Arithmetic averaging before logging, averaging logged values, or selecting one valve can yield different coefficients; the chosen rule must be stated. The referenced answer.schema.json is absent."
+    },
+    {
+      "dossier": "D557",
+      "act_on": [],
+      "leave_alone": [
+        "samples.csv is unsorted; sample IDs provide an unambiguous join to counts.tsv.",
+        "Neogloboquadrina dutertrei and Uvigerina mediterranea are all-zero columns and do not affect relative abundances or Bray–Curtis.",
+        "All six dates are accepted and increase monotonically with depth; there is no supplied evidence for rejecting a date."
+      ],
+      "notes": "All sample depths are bracketed by dates. Linear interpolation places 11,700 cal yr BP at approximately 222.692 cm: S18 at 222 cm is Holocene and S19 at 223 cm is older, so membership is unambiguous under the stipulated model. The referenced answer.schema.json is absent."
+    }
+  ]
+}

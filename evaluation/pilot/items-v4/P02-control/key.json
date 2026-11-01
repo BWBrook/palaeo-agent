@@ -1,0 +1,60 @@
+{
+ "item": "P02-control",
+ "bank_version": "pilot-v4",
+ "family": "P02",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 8.110347966120594,
+  "r_squared": 0.2885182344912777,
+  "n": 22
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "join_by_position",
+   "results": {
+    "pseudo_f": 1.2003407807309616,
+    "r_squared": 0.05661893802301301,
+    "n": 22
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Station IDs match the counts exactly; two stations have no sample.",
+ "analysis_specification": "Join counts.tsv rows to stations.csv by station ID, treating 'PB-07' and 'PB07' as the same ID (remove the hyphen). Ignore stations with no counts row. Run one-way PERMANOVA (Bray\u2013Curtis on raw counts) with zone as the factor over all counted samples; report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "PB04",
+  "value": 7
+ },
+ "reviewer_flaw": {
+  "class": "preparation",
+  "results": {
+   "pseudo_f": 1.2003407807309616,
+   "r_squared": 0.05661893802301301,
+   "n": 22
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Station-list rows are in the same order as the counts."
+   ]
+  },
+  "attribution_criterion": "names the zone assignment by row position instead of by station ID"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "item": "P12-control",
+ "bank_version": "pilot-v4",
+ "family": "P12",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 18.754653887823924,
+  "r_squared": 0.4839329475657201,
+  "n": 22
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "The zonation covers the whole core with zones A and B.",
+ "analysis_specification": "Assign each sample the zone whose [top_cm, base_cm) interval contains its depth. Keep samples in zones A and B only; run one-way PERMANOVA (Bray\u2013Curtis, relative abundances); report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Z01",
+  "value": 6
+ },
+ "reviewer_flaw": {
+  "class": "design",
+  "results": {
+   "pseudo_f": 13.72400844289957,
+   "r_squared": 0.40695068814659535,
+   "n": 22
+  },
+  "answer_edits": {},
+  "attribution_criterion": "names the use of raw counts where relative abundances were requested"
+ }
+}

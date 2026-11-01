@@ -1,0 +1,41 @@
+{
+ "item": "P03-control",
+ "bank_version": "pilot-v4",
+ "family": "P03",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.3185829537850918
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "All rows are counts from this study.",
+ "analysis_specification": "Use counts.tsv. For rows whose samples.csv value_type is 'relative (%)', convert to counts as round(value \u00d7 n_counted / 100). Compute raw-count Bray\u2013Curtis for all sample pairs and report the mean.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "SR351",
+  "value": 4
+ },
+ "reviewer_flaw": {
+  "class": "design",
+  "results": {
+   "mean_bray_curtis": 0.25425052207038173
+  },
+  "answer_edits": {},
+  "attribution_criterion": "names the use of relative abundances where raw counts were requested"
+ }
+}

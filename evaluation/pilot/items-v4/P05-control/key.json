@@ -1,0 +1,57 @@
+{
+ "item": "P05-control",
+ "bank_version": "pilot-v4",
+ "family": "P05",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "richness": 27,
+  "mean_bray_curtis": 0.3139517156972499
+ },
+ "integer_results": [
+  "richness"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "variants_merged",
+   "results": {
+    "richness": 26,
+    "mean_bray_curtis": 0.3104287068111107
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Every recorded name maps to its own accepted name; nothing merges.",
+ "analysis_specification": "Rename each counts.tsv column to its taxonomy.csv accepted_name (exact recorded string) and sum columns that share an accepted name. Richness is the number of accepted names with a nonzero total. Mean Bray\u2013Curtis on the merged raw counts over all sample pairs.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "AT06",
+  "value": 5
+ },
+ "reviewer_flaw": {
+  "class": "preparation",
+  "results": {
+   "richness": 26,
+   "mean_bray_curtis": 0.3104287068111107
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Neogloboquadrina pachyderma (sinistral) and (dextral) are one species."
+   ]
+  },
+  "attribution_criterion": "names the merging of the sinistral and dextral pachyderma columns, which taxonomy.csv maps to two distinct species"
+ }
+}

@@ -7,6 +7,8 @@
 - equivalent_exclusions: either member of a pair may be excluded, or neither if
   the pair is averaged; excluding both is flagged (P09-trap).
 - out_of_scope_ids are never required as exclusions.
+- alternative_results: another defensible handling's results count as correct
+  (pilot-v4: core pooling by mean proportions; either valve or their mean).
 
     uv run python evaluation/pilot/score.py WORKSPACE ITEM_DIR
 """
@@ -16,9 +18,9 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from evaluation.revised.score import corpus, load_answer, named, score as revised_score  # noqa: E402
+from evaluation.revised.score import compare, corpus, load_answer, named, score as revised_score  # noqa: E402
 
-VERSION = "pilot-v3"
+VERSION = "pilot-v4"
 ACCEPTABLE = {"correct", "correct_unresolved"}
 
 
@@ -43,6 +45,17 @@ def score(workspace, item_dir, termination="exited"):
                 output["notes"].append("restricted basis not disclosed")
             else:
                 output["notes"].append("disclosure keyword found; semantic adjudication must confirm the restricted basis")
+        if output["outcome"] == "wrong":
+            for alternative in key.get("alternative_results", []):
+                if not compare(alternative["results"], answer["results"], key["tolerance"], set(key["integer_results"])):
+                    output.update(outcome="correct", mismatches=[], alternative=alternative["name"],
+                                  adjudication_required=False, provisional=False)
+                    output["notes"] = [n for n in output["notes"] if "keyword issue match" not in n]
+                    if key["class"] == "trap":
+                        output["pitfall"] = "handled"
+                        output.pop("signature", None)
+                    output["notes"].append(f"accepted alternative result: {alternative['name']}")
+                    break
         pairs = key.get("equivalent_exclusions", [])
         excluded = {item["id"] for item in answer["exclusions"]}
         if pairs:

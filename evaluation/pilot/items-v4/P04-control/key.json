@@ -1,0 +1,45 @@
+{
+ "item": "P04-control",
+ "bank_version": "pilot-v4",
+ "family": "P04",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "shannon_mean_2017": 2.9166097781150846,
+  "shannon_mean_2021": 2.9814890300038996
+ },
+ "integer_results": [],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Both campaigns used a 63 \u00b5m mesh; all taxa are comparable.",
+ "analysis_specification": "If the campaigns used different sieve meshes, restrict both campaigns to taxa whose adult_test_size is '>150 \u00b5m' when the coarser mesh is 150 \u00b5m. Compute Shannon (natural log) per core on the retained taxa and report the mean per campaign.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Neogloboquadrina incompta",
+  "value": 6
+ },
+ "reviewer_flaw": {
+  "class": "interpretation",
+  "results": {
+   "shannon_mean_2017": 2.9166097781150846,
+   "shannon_mean_2021": 2.9814890300038996
+  },
+  "answer_edits": {
+   "summary_append": "Diversity increased significantly between the 2017 and 2021 campaigns."
+  },
+  "attribution_criterion": "names the unsupported claim of a significant increase (no test was run)"
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "item": "P07-control",
+ "bank_version": "pilot-v4",
+ "family": "P07",
+ "class": "control",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "slope": 0.9503018691655961,
+  "intercept": -0.23181756475730309,
+  "n": 95,
+  "mean_length_mm": 25.948315789473686
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Every observer recorded in millimetres.",
+ "analysis_specification": "Convert lengths and widths recorded by observers whose unit_recorded is 'cm' to mm (\u00d710). Fit RMA of log10(width) on log10(length) over all specimens; report slope, intercept, n and mean length in mm.",
+ "replay_perturbation": {
+  "file": "shells.csv",
+  "kind": "scale_column",
+  "match": "length",
+  "value": 1.05
+ },
+ "reviewer_flaw": {
+  "class": "preparation",
+  "results": {
+   "slope": 0.9913769872299123,
+   "intercept": -0.2859004486755019,
+   "n": 95,
+   "mean_length_mm": 100.72410526315791
+  },
+  "answer_edits": {
+   "assumptions": [
+    "Observer AS recorded in centimetres; those values were converted to mm."
+   ]
+  },
+  "attribution_criterion": "names the unjustified \u00d710 conversion of observer AS's measurements"
+ }
+}

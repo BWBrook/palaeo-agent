@@ -1,0 +1,23 @@
+sample_id,processed,analyst,remark
+PB20,2025-11-03,AK,counted in full
+PB10,2025-07-21,RT,picked by second analyst; cross-checked
+PB13,2025-03-24,JM,split 1/1; counted in full
+PB08,2025-07-19,JM,counted in full
+PB11,2025-12-14,AK,counted in full; two broken tests not identifiable
+PB19,2025-10-18,JM,counted in full
+PB01,2025-03-22,RT,photographed before picking
+PB21,2025-08-17,RT,counted in full
+PB04,2025-09-17,AK,split 1/1; counted in full
+PB02,2025-02-16,RT,counted in full
+PB15,2025-08-17,RT,counted in full
+PB22,2025-03-04,JM,residue archived (store A)
+PB03,2025-09-26,RT,counted in full
+PB14,2025-12-10,AK,photographed before picking
+PB16,2025-04-23,RT,photographed before picking
+PB05,2025-11-14,RT,re-counted after audit; counts unchanged
+PB06,2025-02-16,JM,slide re-labelled after drying; counted in full
+PB18,2025-01-09,AK,counted in full
+PB09,2025-11-03,AK,counted in full
+PB17,2025-11-25,RT,residue archived (store A)
+PB07,2025-08-11,AK,re-counted after audit; counts unchanged
+PB12,2025-09-09,RT,residue archived (store A)

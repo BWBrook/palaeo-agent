@@ -1,0 +1,15 @@
+core_id,zone,site_spacing_km,water_depth_m
+MC01,inner,3,129
+MC02,outer,4,58
+MC03,inner,8,78
+MC04,outer,6,42
+MC05,inner,6,80
+MC06,outer,4,42
+MC07,inner,6,85
+MC08,outer,7,91
+MC09,inner,8,86
+MC10,outer,9,89
+MC11,inner,7,136
+MC12,outer,5,78
+MC13,inner,7,127
+MC14,outer,4,52

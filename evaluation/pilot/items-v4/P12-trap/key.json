@@ -1,0 +1,55 @@
+{
+ "item": "P12-trap",
+ "bank_version": "pilot-v4",
+ "family": "P12",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 18.413762679114836,
+  "r_squared": 0.4921654856541278,
+  "n": 21
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "unzoned_as_group",
+   "results": {
+    "pseudo_f": 10.47636110200174,
+    "r_squared": 0.5244379118152781,
+    "n": 22
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "unzoned",
+   "no zone",
+   "excluded",
+   "marker taxa absent",
+   "not assigned"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "The zonation leaves an interval unzoned because its marker taxa are absent; samples there belong to neither biozone and are not a third group.",
+ "analysis_specification": "Assign each sample the zone whose [top_cm, base_cm) interval contains its depth. Keep samples in zones A and B only; run one-way PERMANOVA (Bray\u2013Curtis, relative abundances); report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Z01",
+  "value": 6
+ },
+ "reviewer_flaw": null
+}

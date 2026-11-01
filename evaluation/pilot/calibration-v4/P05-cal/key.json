@@ -1,0 +1,62 @@
+{
+ "item": "P05-cal",
+ "bank_version": "pilot-v4",
+ "family": "P05",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "richness": 24,
+  "mean_bray_curtis": 0.32385682180916114
+ },
+ "integer_results": [
+  "richness"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "variants_merged",
+   "results": {
+    "richness": 23,
+    "mean_bray_curtis": 0.3199038480907188
+   }
+  },
+  {
+   "name": "synonyms_unmerged",
+   "results": {
+    "richness": 26,
+    "mean_bray_curtis": 0.35997596084917877
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "synonym",
+   "accepted",
+   "crosswalk",
+   "taxonomy.csv",
+   "same species",
+   "incompta",
+   "sacculifer"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "The Bremen laboratory recorded two species under older names; taxonomy.csv maps each to an accepted name already used by Hobart, so the columns are one species and are summed. The sinistral and dextral pachyderma columns map to two distinct accepted species (N. pachyderma, N. incompta) and stay separate.",
+ "analysis_specification": "Rename each counts.tsv column to its taxonomy.csv accepted_name (exact recorded string) and sum columns that share an accepted name. Richness is the number of accepted names with a nonzero total. Mean Bray\u2013Curtis on the merged raw counts over all sample pairs.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "AT06",
+  "value": 5
+ },
+ "reviewer_flaw": null
+}

@@ -1,0 +1,7 @@
+lab_code,depth_cm,age_cal_bp,status,comment
+OZ9901,10,640,accepted,
+OZ1397,80,4280,accepted,
+OZ6613,150,7920,accepted,
+OZ4926,198,12816,rejected,age reversal; reworked shell (Smith 2024)
+OZ6672,255,13380,accepted,
+OZ2347,290,15200,accepted,

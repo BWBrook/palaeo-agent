@@ -1,0 +1,60 @@
+{
+ "item": "P01-control",
+ "bank_version": "pilot-v4",
+ "family": "P01",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.32787627774409533,
+  "n_samples": 23
+ },
+ "integer_results": [
+  "n_samples"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "low_yield_dropped",
+   "results": {
+    "mean_bray_curtis": 0.2933403705274871,
+    "n_samples": 22
+   }
+  }
+ ],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Every sample was picked; KC04 is low-yield but counted in full.",
+ "analysis_specification": "Read counts.tsv (taxa as rows, samples as columns). Exclude any sample whose column is all zero. Compute Bray\u2013Curtis dissimilarity on raw counts for every pair of remaining samples and report the mean, and the number of samples used.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Globoturborotalita tenella",
+  "value": 3
+ },
+ "reviewer_flaw": {
+  "class": "preparation",
+  "results": {
+   "mean_bray_curtis": 0.2933403705274871,
+   "n_samples": 22
+  },
+  "answer_edits": {
+   "exclusions": [
+    {
+     "id": "KC04",
+     "reason": "residue lost before counting"
+    }
+   ]
+  },
+  "attribution_criterion": "names the exclusion of KC04 as unjustified (the log says it was counted in full)"
+ }
+}

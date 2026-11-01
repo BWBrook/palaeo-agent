@@ -1,0 +1,66 @@
+{
+ "item": "P06-trap",
+ "bank_version": "pilot-v4",
+ "family": "P06",
+ "class": "trap",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 16.077416143583005,
+  "r_squared": 0.5726102452364529,
+  "n": 14
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "aliquots_as_units",
+   "results": {
+    "pseudo_f": 15.810740245849088,
+    "r_squared": 0.35283372153874804,
+    "n": 31
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "aliquot",
+   "split",
+   "pseudorepl",
+   "same core",
+   "pool",
+   "register"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [
+  {
+   "name": "mean_of_aliquot_proportions",
+   "reason": "Averaging aliquot relative abundances per core is also a defensible core-level pooling.",
+   "results": {
+    "pseudo_f": 11.823715400445039,
+    "r_squared": 0.4963002286462911,
+    "n": 14
+   }
+  }
+ ],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Several cores were split and processed under two or three laboratory numbers; the splits are subsamples of one core at one site, so the core is the sampling unit and its splits are pooled. Treating splits as units inflates n.",
+ "analysis_specification": "Map each lab_number to its core via register.csv and sum the counts of a core's lab numbers. Convert each core to relative abundances and run one-way PERMANOVA (Bray\u2013Curtis) with zone as the factor, cores as units; report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "L4169",
+  "value": 9
+ },
+ "reviewer_flaw": null
+}

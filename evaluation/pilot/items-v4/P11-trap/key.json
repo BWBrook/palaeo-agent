@@ -1,0 +1,54 @@
+{
+ "item": "P11-trap",
+ "bank_version": "pilot-v4",
+ "family": "P11",
+ "class": "trap",
+ "stratum": "other",
+ "expected": "complete",
+ "results": {
+  "mean_bray_curtis": 0.29982092011311645,
+  "n_genera": 16
+ },
+ "integer_results": [
+  "n_genera"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [
+  {
+   "name": "recorded_genus",
+   "results": {
+    "mean_bray_curtis": 0.29242318970429637,
+    "n_genera": 14
+   }
+  }
+ ],
+ "issue_tokens": [
+  [
+   "current",
+   "obsolete",
+   "reassigned",
+   "Neogloboquadrina",
+   "Turborotalita",
+   "Trilobatus"
+  ]
+ ],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Three 1987 names are obsolete combinations whose species now sit in other genera (taxonomy.csv); the genus must come from the current name.",
+ "analysis_specification": "Map each recorded name to its current_name in taxonomy.csv; the genus is the first word of the current name. Sum counts per genus; mean Bray\u2013Curtis on raw genus counts over all sample pairs; report it and the number of genera with a nonzero total.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "Globoturborotalita tenella",
+  "value": 5
+ },
+ "reviewer_flaw": null
+}

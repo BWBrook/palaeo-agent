@@ -1,0 +1,47 @@
+{
+ "item": "P06-control",
+ "bank_version": "pilot-v4",
+ "family": "P06",
+ "class": "control",
+ "stratum": "toolkit",
+ "expected": "complete",
+ "results": {
+  "pseudo_f": 16.077416143583005,
+  "r_squared": 0.5726102452364529,
+  "n": 14
+ },
+ "integer_results": [
+  "n"
+ ],
+ "tolerance": {
+  "abs": 0.0001,
+  "rel": 0.0001
+ },
+ "failure_signatures": [],
+ "issue_tokens": [],
+ "issue_token_kind": "keyword",
+ "exclusions_expected": [],
+ "out_of_scope_ids": [],
+ "acceptable_alternatives": [],
+ "alternative_results": [],
+ "disclosure_tokens": [],
+ "equivalent_exclusions": [],
+ "sufficiency_witness": "Each core has exactly one laboratory number; cores are the units.",
+ "analysis_specification": "Map each lab_number to its core via register.csv and sum the counts of a core's lab numbers. Convert each core to relative abundances and run one-way PERMANOVA (Bray\u2013Curtis) with zone as the factor, cores as units; report pseudo-F, R\u00b2 and n.",
+ "replay_perturbation": {
+  "file": "counts.tsv",
+  "kind": "add_row",
+  "match": "L4165",
+  "value": 9
+ },
+ "reviewer_flaw": {
+  "class": "design",
+  "results": {
+   "pseudo_f": 13.405541838977042,
+   "r_squared": 0.5276621110442263,
+   "n": 14
+  },
+  "answer_edits": {},
+  "attribution_criterion": "names the use of raw counts where relative abundances were requested"
+ }
+}
