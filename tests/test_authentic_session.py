@@ -1,9 +1,11 @@
 import json
 from pathlib import Path
+import sys
 
 import pytest
 
-from evaluation.authentic.session import CASES, replay, session_prompt
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from evaluation.authentic.session import CASES, replay, session_prompt  # noqa: E402
 
 RUNTIME = Path.home() / "palaeo-eval/pilot-runtime-v4-freeze-20261101/direct"
 pytestmark = pytest.mark.skipif(not RUNTIME.exists(), reason="frozen runtime not present")
