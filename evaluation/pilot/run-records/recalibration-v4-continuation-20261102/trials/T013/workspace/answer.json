@@ -1,0 +1,10 @@
+{
+ "status": "stopped",
+ "results": {},
+ "assumptions": [],
+ "exclusions": [],
+ "issues": [
+  "The >63 um assemblage is not available for 2017: all 10 2017 cores (GB01, GB03, GB05, GB07, GB09, GB11, GB13, GB15, GB17, GB19) have the 63-150 um fraction archived, not picked. Only the 2021 cores (9) have both fractions. Like-for-like >150 um mean Shannon: 2017=2.7790308361619895 (n=10), 2021=2.7668293980433427 (n=9). 2021 >63 um combined mean=3.0436604058434487. Comparing 2017 >150 only with 2021 combined would confound campaign with size fraction."
+ ],
+ "summary": "Computed per-core Shannon (ln) from the count tables. The requested 2017 >63 um value cannot be computed because the 63-150 um fraction was never picked for 2017 cores, so the campaign comparison was not made. See issues for the like-for-like >150 um values. Shannon computed directly with numpy (not via the palaeo toolkit)."
+}

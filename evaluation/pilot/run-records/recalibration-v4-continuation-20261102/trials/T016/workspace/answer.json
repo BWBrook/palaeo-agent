@@ -1,0 +1,18 @@
+{
+ "status": "completed_with_assumptions",
+ "results": {
+  "slope": 1.0454913162907096,
+  "intercept": -0.15371854194354007,
+  "n": 49
+ },
+ "assumptions": [
+  "Valves of the same individual averaged in log10 space to give one observation per animal",
+  "RMA slope = sign(r)*sd(y)/sd(x); log10 of mm values",
+  "No outliers removed"
+ ],
+ "exclusions": [],
+ "issues": [
+  "60 valve records belong to 49 individuals; 11 individuals have two valves (pseudoreplication)."
+ ],
+ "summary": "Joined catalogue to measurements, averaged log10 length/height across valves per individual, fitted RMA regression of log10 height on log10 length."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "shannon_change": -0.11845579229390868
+  },
+  "assumptions": [
+    "Depth is the age proxy (undisturbed core): oldest = deepest sample (S05, 350 cm), youngest = shallowest (S06, 5 cm).",
+    "Shannon computed on raw counts, natural log, via the palaeo_agent community method; two all-zero taxa columns do not affect it."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Sample order in counts.tsv is not depth order; ordered using samples.csv depth_cm.",
+    "Sample totals differ (184-385 specimens); Shannon is not rarefied, so the difference in totals may bias comparisons.",
+    "Lab log remarks (re-counted, archived residue, re-labelled slide) do not indicate count problems; no samples excluded. Processing batches differ (S05 B1, S06 B3) and are not adjusted for."
+  ],
+  "summary": "Shannon (ln) of S06 (youngest) minus S05 (oldest): 3.003419 - 3.121875."
+}

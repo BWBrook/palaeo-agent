@@ -15,6 +15,8 @@ these records.
 | `pilot-integration-20261101b` | T002 executed and reconciled, marked incomplete | The model ran and the answer scored correct. A post-trial configuration check flagged new signature sidecars, so the ledger counts the trial as incomplete. Scratch: `scratch-retained/pilot-x0pqfgtg` (its keychain link was removed before commit). |
 | `pilot-integration-20261101c` | T001, T002 complete | |
 | `pilot-calibration-20261101` | T001–T016 complete | |
+| `recalibration-v4-20261101` | T001–T008 complete; T009 executed, halted | The run halted at T009 because the client re-serialised the integer 2^64−1 as a double. T010–T016 were not launched. See `docs/recalibration-v4.md`. |
+| `recalibration-v4-continuation-20261102` | T010–T016 complete | Codex's continuation plan (`plan.json`, sha256 dcbad5a9…), on client 2.1.309 (the original run used 2.1.308) and the repaired launcher. See `docs/recalibration-v4.md`. |
 
 ## Recorded deviations from the agreed limits
 

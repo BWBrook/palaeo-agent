@@ -1,0 +1,129 @@
+{
+ "model": "claude-sonnet-5-5",
+ "runtime_root": "/Users/bwbrook/palaeo-eval/pilot-runtime-v4-freeze-20261101",
+ "items_dir": "/Users/bwbrook/work/palaeo-agent/evaluation/pilot/calibration-v4",
+ "config_dir": "/Users/bwbrook/palaeo-eval/claude-pilot-config",
+ "capture_config_dir": "/Users/bwbrook/palaeo-eval/claude-capture-config-v4",
+ "fingerprints": {
+  "client_sha256": "5eadc0009cdcdbc0d06e58110d7b2baf88ced6088b1c33a60a21217fe410619c",
+  "runtime_tree": "2e8afca1ae11b83ea67f3c5608929bcb6f98dd43f857635c65187f8cc99f44b8",
+  "base_interpreter_tree": "0b25aeacc097ed3381492dde3fdea9736f669f51d673c0f16ebc8d301493858e",
+  "direct_has_toolkit": false,
+  "source": {
+   "evaluation/execution/__init__.py": "0ff18af60b4913441c5dbd2e3b2a0460aeba12bc5b46b63f4688b513ef9e83b3",
+   "evaluation/execution/server.py": "7177bef3b1c3349bbfc04d0a056d34c8f8c6cd5b59f6d400a8102ccd649aa974",
+   "evaluation/execution/worker.py": "72e61dab933ddc3b30f87f4a6de98136bbdf1f2e0f18acf332a94df0a76f4954",
+   "evaluation/pilot/launch.py": "4ff9ad539fcae5123c7d2e0b8793c4bcc58c48948d2c276bff03ffd25cd8eaaa",
+   "evaluation/pilot/score.py": "91d41f4a940a97bb40c4d4c79a9f9391e83db429893fa1119b1f3d921f8d6d33",
+   "evaluation/revised/score.py": "990173f2bff82d3e3f1141d5f47fd5d2bc735a2b673b4154d31204d84ad02918",
+   "evaluation/sprint3/claude-client-boundary/probe.py": "52c867f23e7f6d041732212b1e877d7176dc288b6218611bb9fd9b495f0f9da4",
+   "evaluation/pilot/replay.py": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+  },
+  "prompts": {
+   "analyst-toolkit.md": "dc0e77577c19c14ac2ce5c329d521727be95d3c24eaea5a5cc023f3cb910d571",
+   "analyst.md": "e795c64a2d41806adebdd3d7401ccfc5c38dd21cb478f069e43f42a888aeb997",
+   "reviewer.md": "0161b466aa53679f20ae29a56ce693b6b303f6caf9ed142a5755cdfae08cb9ea"
+  },
+  "items_manifest_sha256": "f0f21af74a783312261adfe264721e6af91ced12c8e68236dda701d45786b0ba"
+ },
+ "inventory": {
+  "direct": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ],
+  "toolkit": [
+   "DeferredToolPlaceholder",
+   "mcp__worker__palaeo_compare",
+   "mcp__worker__palaeo_discover",
+   "mcp__worker__palaeo_inspect",
+   "mcp__worker__palaeo_inspect_comparison",
+   "mcp__worker__palaeo_reproduce",
+   "mcp__worker__palaeo_result",
+   "mcp__worker__palaeo_run",
+   "mcp__worker__palaeo_study_inspect",
+   "mcp__worker__palaeo_study_reproduce",
+   "mcp__worker__palaeo_study_run",
+   "mcp__worker__palaeo_validate",
+   "mcp__worker__worker_execute",
+   "mcp__worker__worker_read",
+   "mcp__worker__worker_write"
+  ]
+ },
+ "work_root": "/Users/Shared/palaeo-pilot-work",
+ "max_turns": 60,
+ "wall_seconds": 600,
+ "counted_token_ceiling": 267662,
+ "seed": 20261101,
+ "trials": [
+  {
+   "item": "P06-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P06",
+   "trial_id": "T010",
+   "block": 5
+  },
+  {
+   "item": "P10-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P10",
+   "trial_id": "T011",
+   "block": 6
+  },
+  {
+   "item": "P10-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P10",
+   "trial_id": "T012",
+   "block": 6
+  },
+  {
+   "item": "P04-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P04",
+   "trial_id": "T013",
+   "block": 7
+  },
+  {
+   "item": "P04-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P04",
+   "trial_id": "T014",
+   "block": 7
+  },
+  {
+   "item": "P09-cal",
+   "arm": "toolkit",
+   "session": 1,
+   "family": "P09",
+   "trial_id": "T015",
+   "block": 8
+  },
+  {
+   "item": "P09-cal",
+   "arm": "direct",
+   "session": 1,
+   "family": "P09",
+   "trial_id": "T016",
+   "block": 8
+  }
+ ],
+ "continuation": {
+  "original_plan_sha256": "f20e6cb74c39b9ef2d06d526e03c8218eb63e7bad7764e297adb977840daa618",
+  "original_trials": "T001-T009 retained unchanged; no retry",
+  "prior_counted_tokens": 132338,
+  "combined_launch_stop_ceiling": 400000,
+  "review_date": "2026-11-02",
+  "qualification_sha256": "17dde5e691f90d3a51209894892e7eadc0ca9c0d308845726b6f8a1010ae90cc",
+  "client_version_deviation": {
+   "original": "2.1.308",
+   "continuation": "2.1.309"
+  }
+ }
+}

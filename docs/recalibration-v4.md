@@ -173,3 +173,93 @@ Claude's reading of the evidence so far:
      total.
    - **Authorisation.** This is a new kind of live use, so it needs Barry's
      go-ahead.
+
+## Final outcome: the round is complete and routes to branch B
+
+Claude (Opus 5.5), 2 November 2026.
+
+**Continuation.**
+- Codex accepted resuming T010–T016 only, with no rerun of T009.
+- It narrowed the reconciliation repair to the two observed PERMANOVA
+  seed-maximum substitutions, and prepared a continuation plan (sha256
+  `dcbad5a9…`).
+- Its review is
+  [recalibration-authentic-review-20261102.md](recalibration-authentic-review-20261102.md).
+- Immediately before launch, the plan fingerprints matched the machine.
+- The client was 2.1.309, which Codex had qualified; the original run used
+  2.1.308. That is a recorded execution-version deviation. The scientific
+  runtime, prompts, bank and scorer are unchanged.
+- Records:
+  [run-records/recalibration-v4-continuation-20261102](../evaluation/pilot/run-records/recalibration-v4-continuation-20261102/).
+- All seven trials completed. Every trial exited normally, with no breach, a
+  consistent reconciliation, no refused exports and a mechanical replay.
+
+| Trial | Item | Arm | Scored | Adjudicated | Replay | Counted |
+| --- | --- | --- | --- | --- | --- | ---: |
+| T010 | P06-cal | direct | correct | correct | replayed (perturbation changed) | 10,746 |
+| T011 | P10-cal | toolkit | correct | correct | replayed (changed) | 22,435 |
+| T012 | P10-cal | direct | correct | correct | replayed (changed) | 6,052 |
+| T013 | P04-cal | toolkit | correct_unresolved, provisional | **correct (justified stop)** | replayed (no numbers) | 10,093 |
+| T014 | P04-cal | direct | correct_unresolved, provisional | **correct (justified stop)** | replayed (no numbers) | 9,429 |
+| T015 | P09-cal | toolkit | correct | correct | replayed (changed) | 10,153 |
+| T016 | P09-cal | direct | correct | correct | replayed (changed) | 5,608 |
+
+**T013 and T014 adjudication (Claude).**
+- Both stopped and named the deciding fact: every 2017 core's 63–150 µm
+  residue was archived, not picked, so the 2017 >63 µm assemblage does not
+  exist.
+- Both explained why comparing 2017 >150 µm with 2021 >63 µm would confound
+  campaign with size fraction. That is the key's accepted "justified stop"
+  alternative.
+- T013 also reported, in its issues, the like-for-like >150 µm means
+  (2.7790, 2.7668) and the 2021 >63 µm mean (3.0437). All three equal the key
+  values.
+- Neither stop is over-cautious, because the target is not identified in this
+  item by design.
+
+**T005 second adjudication (Codex, sealed, materials and answer only):**
+wrong. It answers the 16-sample count subset (0.3327) instead of the requested
+all-sample population. Conditional reconstruction gives 0.3129 over 276 pairs.
+This agrees with Claude's adjudication.
+
+**Provenance.**
+- Codex source-reviewed T001–T009: all compute from the supplied materials
+  (R = 9/9).
+- Claude skimmed T010–T016: each script reads only the item's materials (and
+  `specs/` for T011) and contains no stored long decimals. T013 and T014 report
+  no numerical result, so their perturbation is not applicable.
+- On mechanical replay and this review, R = 16/16 launched trials replayed.
+  T009's original ledger halt stays in the flow accounting.
+
+| Arm | Adjudicated correct | Error |
+| --- | --- | --- |
+| Direct | **8/8** (one a justified stop) | none |
+| Toolkit | 7/8 (one a justified stop) | T005, a population change on P03 |
+
+**Routing.**
+- The direct arm is 8/8, which is ≥ 7/8, so the frozen routing gives
+  **branch B**. The ceiling persists on the redesigned bank, as it did on v3.
+- The classification would be the same if T014 had been judged wrong, since
+  7/8 is also ≥ 7.
+
+**Spend.**
+- 74,516 counted in the continuation, so the round total is **206,854 of
+  400,000**.
+- Median counted tokens: toolkit 18,812 and direct 8,558, a ratio of
+  **about 2.2**.
+
+**What branch B means here.**
+- Branch B prescribes a descriptive checkability study: 24 control analyst
+  trials and up to 48 reviewer trials, outcomes B1–B5, with no expansion
+  verdict.
+- Codex and Claude agree, following Barry's direction, that a ceiling does not
+  by itself justify spending on it.
+- The open question it would address is whether toolkit packages are easier to
+  review. The authentic sessions bear on that directly: neither analyst
+  adopted the toolkit. Both direct-style packages could be replayed, traced
+  and refereed by an independent model (with the qualifications in Codex's
+  review).
+- **Claude's recommendation: classify the round as branch B, and do not run
+  the 24/48 trials.** No named development decision depends on their result.
+  Either B4 or B5 would leave the next step the same: improve the analyses and
+  their verification on real cases, not the API's scope.

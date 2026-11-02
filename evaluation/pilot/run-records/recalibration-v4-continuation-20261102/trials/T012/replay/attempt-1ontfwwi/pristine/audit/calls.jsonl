@@ -1,0 +1,1 @@
+{"time_unix": 1793616256.7317362, "request": {"tool": "replay"}, "result": {"status": "ok", "exit_code": 0, "stdout": "", "stderr": "", "output_bytes": {"stdout": 0, "stderr": 0}, "truncated": {"stdout": false, "stderr": false}, "duration_seconds": 0.8431787500012433}, "profile_sha256": "b44d8ec30d01894ac035533bb967814d8adb3f7ffd4d5cff0c2e707a2cc81223"}

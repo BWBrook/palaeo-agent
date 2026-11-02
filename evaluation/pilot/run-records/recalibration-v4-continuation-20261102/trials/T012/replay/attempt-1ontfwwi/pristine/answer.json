@@ -1,0 +1,16 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "shannon_change": -0.11845579229390868
+  },
+  "assumptions": [
+    "Depth below core top increases with age (undisturbed core), so oldest=S05 (350 cm), youngest=S06 (5 cm).",
+    "Shannon computed on raw counts of all taxa, natural log, zero-count taxa ignored; sample totals differ but no rarefaction applied."
+  ],
+  "exclusions": [],
+  "issues": [
+    "Two taxa have all-zero counts in every sample; they do not affect Shannon.",
+    "Lab log remarks (archived residue, photographed, re-labelled) do not indicate count problems; processing batches differ but were not adjusted for."
+  ],
+  "summary": "Computed Shannon H (ln) for youngest (shallowest) and oldest (deepest) samples; reported youngest minus oldest."
+}

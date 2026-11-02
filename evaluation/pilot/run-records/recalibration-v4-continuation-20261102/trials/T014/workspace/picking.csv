@@ -1,0 +1,39 @@
+core_id,fraction_um,status,picker
+GB01,63-150,"residue archived, not picked",
+GB01,>150,picked in full,JM
+GB02,63-150,picked in full,AK
+GB02,>150,picked in full,AK
+GB03,63-150,"residue archived, not picked",
+GB03,>150,picked in full,JM
+GB04,63-150,picked in full,JM
+GB04,>150,picked in full,AK
+GB05,63-150,"residue archived, not picked",
+GB05,>150,picked in full,JM
+GB06,63-150,picked in full,JM
+GB06,>150,picked in full,JM
+GB07,63-150,"residue archived, not picked",
+GB07,>150,picked in full,JM
+GB08,63-150,picked in full,AK
+GB08,>150,picked in full,AK
+GB09,63-150,"residue archived, not picked",
+GB09,>150,picked in full,AK
+GB10,63-150,picked in full,AK
+GB10,>150,picked in full,JM
+GB11,63-150,"residue archived, not picked",
+GB11,>150,picked in full,AK
+GB12,63-150,picked in full,AK
+GB12,>150,picked in full,JM
+GB13,63-150,"residue archived, not picked",
+GB13,>150,picked in full,AK
+GB14,63-150,picked in full,JM
+GB14,>150,picked in full,JM
+GB15,63-150,"residue archived, not picked",
+GB15,>150,picked in full,AK
+GB16,63-150,picked in full,JM
+GB16,>150,picked in full,AK
+GB17,63-150,"residue archived, not picked",
+GB17,>150,picked in full,AK
+GB18,63-150,picked in full,AK
+GB18,>150,picked in full,AK
+GB19,63-150,"residue archived, not picked",
+GB19,>150,picked in full,AK

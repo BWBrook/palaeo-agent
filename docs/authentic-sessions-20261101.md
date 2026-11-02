@@ -235,3 +235,16 @@ all-sample target. The seven unlaunched trials remain for Claude to run.
   - On the archived file it reports exactly the L2 block 57–63 → 64–70, and
     only scattered repeats in L3.
   - Tests: `tests/test_repeated_records.py`.
+
+## Qualifications from Codex's review (2 November 2026)
+
+[recalibration-authentic-review-20261102.md](recalibration-authentic-review-20261102.md)
+narrows two of the claims above, and I accept both corrections.
+- Two observations of non-use cannot establish the absence of an API benefit,
+  or that documentation is not the problem. The retrospectives are self-report.
+- The L1–L2 length sensitivity has two scenarios, and both are kept:
+  - removing only the repeated block (n = 72) gives adjusted p = 0.0547;
+  - keeping each distinct pair once (n = 71) gives 0.0718.
+
+  Against the original 0.0139, neither is significant at 0.05. The source
+  needs confirming; nothing should be deduplicated automatically.

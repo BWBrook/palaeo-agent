@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "output_bytes": {
+    "stdout": 0,
+    "stderr": 0
+  },
+  "truncated": {
+    "stdout": false,
+    "stderr": false
+  },
+  "duration_seconds": 1.1652836660068715,
+  "answer_error": null,
+  "answer_sha256": "47359d2e831b41a7df4863e572f4123fafc8d0d6b2c5857a8f50bc716845cb10"
+}

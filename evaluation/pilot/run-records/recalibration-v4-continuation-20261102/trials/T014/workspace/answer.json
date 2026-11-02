@@ -1,0 +1,15 @@
+{
+  "status": "stopped",
+  "results": {},
+  "assumptions": [],
+  "exclusions": [],
+  "issues": [
+    "63-150 um fraction was archived, not picked, for every 2017 core (GB01, GB03, GB05, GB07, GB09, GB11, GB13, GB15, GB17, GB19); it was picked for all 2021 cores in the 63-150 fraction table only.",
+    "Hence a >63 um Shannon value can be computed for 2021 cores only; campaign is perfectly confounded with whether the fine fraction was picked.",
+    "Using >150 um alone for 2017 would not be like-for-like: for 2021 cores, >150-only Shannon differs from >63 Shannon by a mean of -0.277 nats, so a 2017-vs-2021 difference would be an artefact of fraction coverage.",
+    "Fine-fraction assemblages differ strongly in composition from coarse ones, so the missing fraction cannot be imputed reliably.",
+    "Picker (JM/AK) varies across cores and fractions; not a factor in the decision to stop.",
+    "Taxa Globorotalia inflata and Neogloboquadrina dutertrei have zero counts everywhere."
+  ],
+  "summary": "No answer: the >63 um assemblage exists only for 2021 cores; 2017 cores have only the >150 um fraction picked, so the campaign means are not comparable and the 2017 value cannot be computed without biasing the comparison."
+}

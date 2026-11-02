@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "exit_code": 0,
+  "stdout": "{'slope': 1.0454913162907096, 'intercept': -0.13668520264475958, 'n': 49} ['60 valve records belong to 49 individuals; 11 individuals have two valves (pseudoreplication).']\n",
+  "stderr": "",
+  "output_bytes": {
+    "stdout": 173,
+    "stderr": 0
+  },
+  "truncated": {
+    "stdout": false,
+    "stderr": false
+  },
+  "duration_seconds": 0.8827861669997219,
+  "answer_error": null,
+  "answer_sha256": "76c2ce5bdd7acb2ae24f91481b8abdcd980185ea6720ab721b93c81a293ed0df"
+}

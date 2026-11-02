@@ -1,0 +1,11 @@
+{
+  "analysis.py": "7fea43a003d2670e8a93269bd71b98acb6355ea0674d78293d28abe4c7067a4b",
+  "answer.schema.json": "cedd8f5fb209976973ced6db2087593043cfa4fab75c53d51e3f4d694932bd78",
+  "campaigns.csv": "b220c4960461a82c02af7577e935325bfa4fd8120e4abdbd75a77941b8ec233b",
+  "cores.csv": "1d585a74f87bbdceaf2fb4158225a9af03c3d05ce8de0a4b81463d1bf6af9db0",
+  "counts_63_150.tsv": "a88a3c86f54c4c6bb8894066b929cfcedc3c9d7635cb1a19f8f4ca3fdd0ec313",
+  "counts_gt150.tsv": "8d4a0a04b8045247d917757cb916026ee9641acbfe4be1212864b96c15959f76",
+  "dictionary.md": "8ebaa9a7605410dfded27920db308e1633137ab5827a23a9c1cd7878d0f075c2",
+  "picking.csv": "9bcc5420261a49d8c1efd9602e0a6266b6f0edd754358f63a3feb53cbd3afbf7",
+  "task.md": "c6bac1eaf8e197e2dce204dccea24aca6cc494414568a965368a2e1e33db1ce5"
+}

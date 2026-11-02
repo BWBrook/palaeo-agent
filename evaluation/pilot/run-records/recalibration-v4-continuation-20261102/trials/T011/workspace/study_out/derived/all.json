@@ -1,0 +1,60 @@
+{
+  "dataset": "all",
+  "kind": "counts",
+  "samples": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15"
+  ],
+  "columns": [
+    "Globoturborotalita rubescens",
+    "Pullenia bulloides",
+    "Neogloboquadrina incompta",
+    "Globigerina falconensis",
+    "Hastigerina pelagica",
+    "Melonis pompilioides",
+    "Melonis barleeanum",
+    "Bolivina spathulata",
+    "Pulleniatina obliquiloculata",
+    "Cibicidoides wuellerstorfi",
+    "Berggrenia pumilio",
+    "Bulimina aculeata",
+    "Pyrgo murrhina",
+    "Nonionella turgida",
+    "Bulimina marginata",
+    "Elphidium excavatum",
+    "Pullenia quinqueloba",
+    "Globorotalia menardii",
+    "Globigerinita glutinata",
+    "Trilobatus sacculifer",
+    "Globorotalia scitula",
+    "Tenuitella iota",
+    "Globigerinoides conglobatus",
+    "Hoeglundina elegans",
+    "Pyrgo depressa",
+    "Oridorsalis umbonatus",
+    "Sphaeroidinella dehiscens",
+    "Globorotalia truncatulinoides"
+  ],
+  "operations": [
+    {
+      "op": "read",
+      "input": "counts",
+      "orientation": "samples_by_taxa",
+      "samples": 15,
+      "columns": 28
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+ "trial": {
+  "item": "P10-cal",
+  "arm": "direct",
+  "session": 1,
+  "family": "P10",
+  "trial_id": "T012",
+  "block": 6
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/pilot-02ivwi9h",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  82350,
+  82387,
+  82397,
+  82438
+ ],
+ "organisation_policy_after": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 8,
+  "cache_creation_input_tokens": 4798,
+  "cache_read_input_tokens": 16040,
+  "output_tokens": 1246,
+  "output_tokens_details": {
+   "thinking_tokens": 114
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 4798,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 3,
+  "client_refusal": 0,
+  "bootstrap": 0,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 6052,
+ "cache_read_tokens": 16040,
+ "score": {
+  "version": "pilot-v4",
+  "item": "P10-cal",
+  "class": "trap",
+  "expected": "complete",
+  "termination": "exited",
+  "adjudication_required": false,
+  "provisional": false,
+  "notes": [],
+  "evidence": {
+   "checks": {
+    "answer_valid": true,
+    "analysis_code_saved": true,
+    "input_hashes_recorded": false,
+    "environment_recorded": false
+   },
+   "score": 0.5
+  },
+  "status": "completed_with_assumptions",
+  "caveats": 4,
+  "issue_named": true,
+  "mismatches": [],
+  "outcome": "correct",
+  "pitfall": "handled",
+  "family": "P10",
+  "stratum": "other",
+  "acceptable": true
+ },
+ "replay": {
+  "trial": "T012",
+  "item": "P10-cal",
+  "arm": "direct",
+  "original_answer_sha256": "3a4b77f63d758529c02e98535e824f35dd72029491ae9613ca1a9770efad5264",
+  "files": [
+   "analysis.py"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": ""
+  },
+  "perturbation_execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "answer_error": null,
+   "stderr_tail": ""
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-continuation-20261102/trials/T012/replay/attempt-1ontfwwi",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+ },
+ "finished_unix": 1793616257.658711
+}

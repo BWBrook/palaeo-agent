@@ -1,0 +1,62 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "slope": 1.0454913162907096,
+    "intercept": -0.1366852026447598,
+    "n": 49
+  },
+  "assumptions": [
+    "Valves of one animal are duplicate measurements (identical values); one valve (R) kept per individual so n counts individuals.",
+    "Intercept is for log10(height_mm) on log10(length_mm)."
+  ],
+  "exclusions": [
+    {
+      "id": "V16665",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V24441",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V33382",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V47933",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V52993",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V55565",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V66406",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V72850",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V73797",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V77125",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    },
+    {
+      "id": "V80168",
+      "reason": "second valve (L) of an individual already represented by its R valve; pseudoreplicate"
+    }
+  ],
+  "issues": [
+    "Catalogue has 60 specimens but 49 individuals; 11 individuals have two valves with identical measurements."
+  ],
+  "summary": "Dropped duplicate left valves, giving one record per individual, then RMA of log10 height on log10 length via palaeo_agent.rma_regression."
+}

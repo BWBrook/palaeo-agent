@@ -1,0 +1,37 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "counts": {
+      "kind": "counts",
+      "path": "inputs/counts",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    }
+  },
+  "datasets": {
+    "all": {
+      "source": "counts",
+      "metadata": null,
+      "drop_unmatched_metadata": false,
+      "operations": []
+    }
+  },
+  "analyses": [
+    {
+      "id": "comm",
+      "dataset": "all",
+      "spec": {
+        "method": "community",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "transform": "none",
+        "distance": "braycurtis",
+        "dimensions": 2,
+        "missing": "error",
+        "empty_samples": "drop"
+      }
+    }
+  ]
+}

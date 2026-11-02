@@ -1,0 +1,28 @@
+{
+  "trial": "T010",
+  "item": "P06-cal",
+  "arm": "direct",
+  "original_answer_sha256": "72d847a365e4d185f730d343e5b246a7d9d38d79a8cc42510fc822e99d1890ea",
+  "files": [
+    "analysis.py"
+  ],
+  "execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": ""
+  },
+  "perturbation_execution": {
+    "status": "ok",
+    "exit_code": 0,
+    "code": null,
+    "answer_error": null,
+    "stderr_tail": ""
+  },
+  "provenance_review_required": true,
+  "perturbation": "changed",
+  "outcome": "replayed",
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/recalibration-v4-continuation-20261102/trials/T010/replay/attempt-batc1qlp",
+  "replay_source_sha256": "7ad3580c26e5fed46d803049354dbbedbb2e4ef79ee436cee0b0cbb7abda85a0"
+}

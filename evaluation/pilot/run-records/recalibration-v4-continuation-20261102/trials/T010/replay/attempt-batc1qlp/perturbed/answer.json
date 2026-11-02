@@ -1,0 +1,18 @@
+{
+  "status": "completed_with_assumptions",
+  "results": {
+    "pseudo_f": 19.017032289388375,
+    "r_squared": 0.6131157910905142,
+    "n": 14
+  },
+  "assumptions": [
+    "Sampling unit is the core (each core is one site); multiple lab numbers per core are splits of the same residue and were pooled by summing counts before computing relative abundances.",
+    "Taxa with zero counts in all samples dropped (no effect on Bray-Curtis)."
+  ],
+  "exclusions": [],
+  "issues": [
+    "28 lab numbers map to 14 cores (splits a/b/c); treating them as separate units would be pseudoreplication.",
+    "lab_log remarks (re-labelling, re-counts with unchanged counts) did not indicate any data change."
+  ],
+  "summary": "One-way PERMANOVA (inner vs outer) on Bray-Curtis of relative abundances of core-pooled counts, 14 cores."
+}
