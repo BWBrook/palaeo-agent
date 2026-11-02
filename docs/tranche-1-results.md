@@ -12,17 +12,19 @@ The numerical results reported here are unchanged.
 
 ## Acquired reference material
 
-- PAST 5.4 manual: 321 pages, supplied by Barry, preserved unchanged.
-- 2001 case-study ZIP: supplied by Barry, original preserved; all 17 members
-  CRC-checked, hashed and extracted byte-for-byte.
+- PAST 5.4 manual: 321 pages, supplied by Barry (not redistributed here).
+- 2001 case-study ZIP: supplied by Barry; all 17 members were CRC-checked and
+  hashed. The ZIP is not redistributed; the data files are fetched from the
+  original site and verified against these hashes.
 - All 14 substantive vignettes, their 10 linked suggested-answer pages, the
-  original index and 49 images: 74 captured source assets.
+  original index and 49 images: 74 captured source assets (not redistributed).
 - Original HTML and derived UTF-8 offline reading copies are separate, with
-  source URLs, dates and checksums in the capture manifest.
+  source URLs, dates and checksums in the capture manifest (removed from the current tree).
 
-Start at the [offline index](../benchmarks/past/vignettes/html/doc1.html).
-`uv run python scripts/capture_past.py --offline` verifies source hashes and
-regenerates the reading copies without a network request.
+Start at the [original online index](https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html).
+The captured pages are not redistributed in this repository;
+`uv run python scripts/fetch_past.py` downloads the example data files and
+verifies their recorded SHA-256 checksums.
 
 ## Numerical evidence
 

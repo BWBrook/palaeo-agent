@@ -68,7 +68,7 @@ it does not defend against another hostile host process with the same user.
   executes all three methods, refuses a repeated design, and reproduces all
   three bundles in a new supervisor and copied trial. Its first helper attempt
   mishandled a relative bundle path; the initial failure logs are retained.
-- The original legacy corpus verification still passes: 17 ZIP members,
+- The original legacy corpus verification passed at the time (before the corpus was removed from the published history): 17 ZIP members,
   14 HTML vignettes and 74 captured sources. Frozen historical evaluations,
   their keys, scores and the disabled launcher are unchanged.
 

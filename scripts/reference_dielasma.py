@@ -5,12 +5,10 @@ import json
 import math
 from pathlib import Path
 import statistics
-import zipfile
 
 
-def calculate(archive: Path) -> dict:
-    with zipfile.ZipFile(archive) as bundle:
-        raw = bundle.read("dielasma.dat")
+def calculate(data: Path) -> dict:
+    raw = data.read_bytes()
     rows = [line.split() for line in raw.decode("ascii").splitlines() if line.strip()]
     headers, observations = rows[0], rows[1:]
     cases = []
@@ -58,4 +56,4 @@ def calculate(archive: Path) -> dict:
 
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[1]
-    print(json.dumps(calculate(root / "benchmarks/past/casefiles.ZIP"), indent=2, allow_nan=False))
+    print(json.dumps(calculate(root / "benchmarks/past/legacy-data/dielasma.dat"), indent=2, allow_nan=False))

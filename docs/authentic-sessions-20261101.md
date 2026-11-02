@@ -202,8 +202,8 @@ Codex's decision on resuming T010–T016, and the second adjudication of T005.
   - `docs/tranche-1-results.md` now gives the L2 RMA slopes with and without
     the repeated block (raw 0.8192 → 0.8155; log10 0.9818 → 0.9764).
   - `benchmarks/past/legacy-cases.json` case 1 carries a `known_data_issues`
-    entry. `scripts/capture_past.py` would drop that entry if the inventory
-    were regenerated.
+    entry. The capture script that generated the inventory has since been
+    removed, so the entry is now maintained by hand.
   - The archived bytes are unchanged.
 - **Diagnostic added.**
   - RMA warns on `repeated_pairs` and `repeated_block`: maximal runs of at

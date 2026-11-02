@@ -9,3 +9,11 @@ dist/
 .DS_Store
 /data/local/
 /runs/
+# PAST material that is not redistributed (fetched by scripts/fetch_past.py or downloaded by hand)
+docs/past5manual.pdf
+docs/past5manual.source.json
+benchmarks/past/casefiles.ZIP
+benchmarks/past/vignettes/
+benchmarks/past/legacy-data/*
+!benchmarks/past/legacy-data/dielasma.dat
+!benchmarks/past/legacy-data/llanvirn.dat

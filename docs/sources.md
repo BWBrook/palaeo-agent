@@ -22,17 +22,18 @@ dataset inventory. URLs and observed versions may change.
 ## Open evidence work
 
 The initial reconnaissance found twelve readable case pages and fifteen linked
-filenames; that partial snapshot is superseded by the acquired corpus. Barry
-then supplied the original ZIP and PAST 5.4 PDF and authorised preserving them
-and the vignettes in the private repository. All fourteen case pages are now
-captured, with ten linked answer pages and forty-nine images. All seventeen ZIP
-members are extracted byte-for-byte. Case 4 supplies `outlines.dat`; case 11
-supplies `directions.dat`, accounting for the two previously unobserved files.
+filenames; that partial snapshot is superseded by the acquired corpus. On
+30 October 2026 all fourteen case pages, ten linked answer pages and forty-nine
+images were captured, and all seventeen data files were obtained. Case 4
+supplies `outlines.dat`; case 11 supplies `directions.dat`, accounting for the
+two previously unobserved files. The captured pages, images and the PAST manual
+are not redistributed in this repository; the
+[original index](https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html)
+and the PAST download page remain the sources.
 
-The updated [case inventory](../benchmarks/past/legacy-cases.json) and
-[capture manifest](../benchmarks/past/vignettes/manifest.json) record the source
-URLs, capture times and original/derived checksums. Start reading from the
-[offline index](../benchmarks/past/vignettes/html/doc1.html).
+The [case inventory](../benchmarks/past/legacy-cases.json) maps each case to its
+dataset URL and SHA-256. `scripts/fetch_past.py` downloads the data files from
+the original site and verifies those checksums.
 
 - Enumerate current official worked examples and their actual downloadable data.
 - Establish whether examples are separate downloads, embedded in documentation,
@@ -42,7 +43,7 @@ URLs, capture times and original/derived checksums. Start reading from the
 - Determine where expected numerical outputs and complete settings are available.
 - Freeze the bounded source inventory before reporting coverage percentages.
 
-The supplied manual and ZIP, extracted data and captured pages are retained.
+The manual, ZIP, captured pages and most data files were archived privately during development and were removed from the published history (see `THIRD_PARTY.md`).
 Barry installed the Mac PAST app separately. CUA inspection of Help > About on
 30 October 2026 shows Past 5.4, October 2026; the App Store bundle version is
 not used as the scientific version. No numerical PAST reference analysis has

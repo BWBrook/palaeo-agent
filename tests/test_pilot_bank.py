@@ -6,7 +6,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "evaluation/pilot"))
+sys.path.insert(0, str(ROOT / "scripts"))
 import build_bank  # noqa: E402
+import fetch_past  # noqa: E402
 
 
 def close(a, b):
@@ -21,6 +23,9 @@ def close(a, b):
 
 @pytest.fixture(scope="module")
 def rebuilt(tmp_path_factory):
+    problems = fetch_past.ensure(["hirnanti.dat", "alveolinid.dat"])
+    if problems:
+        pytest.skip("legacy PAST datasets unavailable: " + "; ".join(problems))
     root = tmp_path_factory.mktemp("bank")
     build_bank.build(root)
     return root

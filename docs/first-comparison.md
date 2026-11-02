@@ -18,11 +18,12 @@ This is a first complete operation, not the whole community-analysis workflow.
 
 ## Frozen inputs and numerical reference
 
-- ZIP: `benchmarks/past/casefiles.ZIP`, SHA-256
-  `34de24563eadb4f895cdd86487b3795c07864ca6e618f5b3edcd3004975804e0`.
-- Member: `dielasma.dat`, SHA-256
+- Source: `dielasma.dat` from the 2001 PAST site (originally supplied in a
+  case-study ZIP, SHA-256
+  `34de24563eadb4f895cdd86487b3795c07864ca6e618f5b3edcd3004975804e0`, no longer
+  distributed here), SHA-256
   `1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd`.
-- Manual: `docs/past5manual.pdf`, SHA-256
+- Manual (not distributed here; download from the PAST site), SHA-256
   `499659a327366817350727c31fac2d2828ab55ab45bee4f1b990d98f3de5d1a9`.
 - Data have 103 labelled rows and three pairs of locality-specific columns.
   The `.` cells pad the smaller samples; they are not zeros or absences.

@@ -47,7 +47,7 @@ and reviewer-package qualification requirements remain in force.
 
 Candidate: the Coed Duon Upper Llanvirn shelly-fauna data, already archived
 with source provenance as `benchmarks/past/legacy-data/llanvirn.dat` and
-`benchmarks/past/vignettes/html/study8.html`. The source describes ten horizons
+[the original study 8 page](https://palaeo-electronica.org/2001_1/past/pastprog/study8.html). The source describes ten horizons
 and the transitions between 5–6 and 6–7, with an unconformity at the latter.
 This is a genuine fossil dataset represented in a historical teaching subset.
 It is familiar to the developers and has existing toolkit benchmarks; it

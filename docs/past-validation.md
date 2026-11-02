@@ -6,8 +6,8 @@ Target: account for every publicly available example dataset associated with
 PAST 5 within a documented source scope, then compare the supported documented
 analyses against actual, versioned PAST outputs. The complete public PAST 5
 corpus has not yet been enumerated or acquired. Barry supplied the version 5.4
-manual and original 2001 case-study ZIP; the legacy corpus is preserved under
-his explicit private-repository authorisation. The
+manual and original 2001 case-study ZIP; the legacy corpus was archived under
+his explicit authorisation, then removed from the published history; see `THIRD_PARTY.md`. The
 [31 October validation tranche](validation-tranche-3-results.md) compared
 native PAST 5.4 outputs for declared community and RMA cases on Llanvirn and
 Dielasma. This covers two legacy datasets, not the complete current corpus.
@@ -21,9 +21,9 @@ page label or an old screenshot is not an execution record.
 The 2001 site contains fourteen case studies. These are a separate legacy
 source, not evidence that PAST 5 has exactly fourteen example datasets.
 The [legacy inventory](../benchmarks/past/legacy-cases.json) maps all fourteen
-captured cases to the seventeen acquired datasets. Original HTML and offline
-reading copies, with source provenance, are available from the
-[archived index](../benchmarks/past/vignettes/html/doc1.html).
+captured cases to the seventeen acquired datasets. The original pages are at the
+[online index](https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html);
+they are not redistributed here.
 
 ## What a comparison means
 
