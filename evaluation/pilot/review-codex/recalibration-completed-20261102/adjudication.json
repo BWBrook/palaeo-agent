@@ -1,0 +1,33 @@
+{
+  "reviewed_commit": "36813b2646bfb5a11e5b56aef3c765c1677e571b",
+  "decision": "branch_B_classified_followup_study_not_launched",
+  "correct_requested_outcome": {
+    "direct": 8,
+    "toolkit": 7,
+    "per_arm_trials": 8
+  },
+  "source_verified_replays": {
+    "direct": 8,
+    "toolkit": 8
+  },
+  "T009_original_incomplete_preserved": true,
+  "P04": {
+    "T013": "correct_justified_stop",
+    "T014": "correct_justified_stop_with_interpretive_overstatement",
+    "T014_qualification": "Coverage confounds the comparison; the true campaign difference is unknown, not proved to be entirely artificial.",
+    "review_blinded_until_sealed": true,
+    "sealed_review_sha256": "9d0eee90854ee42da29d49d25d67f5926932c6ca08a9d6e5c92c09ce6581a368",
+    "parent_key_check": "Both meet the frozen acceptable justified-stop alternative. Even downgrading T014 leaves branch B at 7/8 direct."
+  },
+  "counted_tokens": 206854,
+  "median_counted_tokens": {
+    "toolkit": 18811.5,
+    "direct": 8557.5
+  },
+  "new_live_analyst_or_reviewer_calls": 0,
+  "files": {
+    "P04-independent-review.md": "9d0eee90854ee42da29d49d25d67f5926932c6ca08a9d6e5c92c09ce6581a368",
+    "execution-audit.json": "8695393797505773686f5784850ecb87d3901fb58cd410290eb8b167cfc4b82a",
+    "execution-audit.md": "9a66d9340674cfe00a1208288fc2e5995a310ea9f60de1bbfdab7fb2fba03209"
+  }
+}

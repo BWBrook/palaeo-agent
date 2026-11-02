@@ -1,0 +1,31 @@
+{
+  "runs": [
+    {
+      "name": "coed-duon-llanvirn",
+      "exit_code": 0,
+      "elapsed_seconds": 2.3481572909950046,
+      "stdout": "",
+      "stderr": "",
+      "original_sha256": "60af441c32e925864fbdc04181e2b5c3221db3a469b2016ac67a2c3011fc493a",
+      "replay_sha256": "60af441c32e925864fbdc04181e2b5c3221db3a469b2016ac67a2c3011fc493a",
+      "bytes_equal": true
+    },
+    {
+      "name": "dielasma",
+      "exit_code": 0,
+      "elapsed_seconds": 106.49846074999368,
+      "stdout": "",
+      "stderr": "",
+      "original_sha256": "f8cd7b4b43d7182ee02c76248891450b68edbe5624495318018d1e7683c73cfa",
+      "replay_sha256": "f8cd7b4b43d7182ee02c76248891450b68edbe5624495318018d1e7683c73cfa",
+      "bytes_equal": true
+    }
+  ],
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "source": "existing local cache"
+  },
+  "reviewed_commit": "36813b2646bfb5a11e5b56aef3c765c1677e571b"
+}

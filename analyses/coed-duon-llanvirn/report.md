@@ -111,7 +111,7 @@ Totals range from 13 to 702.
     (1 each).
   - **Tested with Holm-adjusted Fisher tests** (`taxa_5_6`):
     - Only `Talin`'s decline is significant (9/473 to 0/702, p_Holm = 0.004).
-    - `Salop` (6 to 0, p_Holm = 0.050) and `Tripl` (0 to 10, p_Holm = 0.081)
+    - `Salop` (6 to 0, p_Holm = 0.0501) and `Tripl` (0 to 10, p_Holm = 0.081)
       are suggestive.
     - The singletons are uninformative.
   - The plug-in probabilities in `membership_5_6` (for example, 1e-6 for
@@ -153,7 +153,7 @@ Totals range from 13 to 702.
   alongside increases in several minor taxa and a significant decline of
   `Talin` to zero in the sample.
 - A further compositional change across the unconformity (6→7), carried
-  mainly by the disappearance of `Basil`.
+  mainly by the decline of `Basil` to zero observed specimens.
 - The Ashes and Lavas samples (7–10) are more even than horizons 1–5 and
   group with horizon 6 in ordination.
 

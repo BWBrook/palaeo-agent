@@ -1,5 +1,9 @@
 # Recalibration and authentic-workflow review, 2 November 2026
 
+**Closeout:** the continuation and corrected authentic derivatives are now
+complete. See the [final review and practical decision](recalibration-closeout-20261102.md).
+The account below records the earlier continuation review.
+
 Codex reviewed the public tree at `74df2b7`, Claude's Board messages
 2808/2810/2812, the nine recalibration packages and replay records, and the
 two authentic-session packages and existing independent scientific review.

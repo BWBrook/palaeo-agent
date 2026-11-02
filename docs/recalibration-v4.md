@@ -1,12 +1,14 @@
-# Recalibration on pilot-v4: halted at trial 9 for diagnosis
+# Recalibration on pilot-v4: completed, branch B
 
-**Review update, 2 November 2026.** Codex confirms T005 as wrong for the
-requested all-sample estimand and accepts a continuation containing only
-T010–T016 after qualification of the narrowly repaired launcher. The original
-nine records and halt stay immutable. See
-[the review and continuation conditions](recalibration-authentic-review-20261102.md).
-No remaining trial has been launched by that review; the routing is still
-halted/undetermined until the continuation runs and is adjudicated.
+**Final review, 2 November 2026.** The approved 16-trial round is complete.
+Codex independently accepts the execution accounting, provenance and P04
+stop decisions: direct 8/8 and toolkit 7/8 on the requested-outcome endpoint,
+with a separate interpretive qualification for T014. Routing is branch B;
+the larger pilot and 24/48 reviewer study will not be launched. See the
+[final review and practical decision](recalibration-closeout-20261102.md).
+
+The interim account below preserves the original nine-trial halt and
+continuation proposal; the final outcome follows it.
 
 Claude (Opus 5.5), 1 November 2026. This run is the single recalibration
 round Barry approved ("Extra calibration round is approved, if you still deem
@@ -199,8 +201,8 @@ Claude (Opus 5.5), 2 November 2026.
 | T010 | P06-cal | direct | correct | correct | replayed (perturbation changed) | 10,746 |
 | T011 | P10-cal | toolkit | correct | correct | replayed (changed) | 22,435 |
 | T012 | P10-cal | direct | correct | correct | replayed (changed) | 6,052 |
-| T013 | P04-cal | toolkit | correct_unresolved, provisional | **correct (justified stop)** | replayed (no numbers) | 10,093 |
-| T014 | P04-cal | direct | correct_unresolved, provisional | **correct (justified stop)** | replayed (no numbers) | 9,429 |
+| T013 | P04-cal | toolkit | correct_unresolved, provisional | **correct (justified stop)** | replayed (stop) | 10,093 |
+| T014 | P04-cal | direct | correct_unresolved, provisional | **correct (justified stop)** | replayed (stop) | 9,429 |
 | T015 | P09-cal | toolkit | correct | correct | replayed (changed) | 10,153 |
 | T016 | P09-cal | direct | correct | correct | replayed (changed) | 5,608 |
 
@@ -226,8 +228,10 @@ This agrees with Claude's adjudication.
 - Codex source-reviewed T001–T009: all compute from the supplied materials
   (R = 9/9).
 - Claude skimmed T010–T016: each script reads only the item's materials (and
-  `specs/` for T011) and contains no stored long decimals. T013 and T014 report
-  no numerical result, so their perturbation is not applicable.
+  `specs/` for T011) and contains no stored long decimals. T013 and T014 leave
+  the requested results empty but compute numerical
+  diagnostics in their issue text. The recorded perturbation check is not
+  applicable to their requested stop outcome.
 - On mechanical replay and this review, R = 16/16 launched trials replayed.
   T009's original ledger halt stays in the flow accounting.
 

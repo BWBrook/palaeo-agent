@@ -1,0 +1,173 @@
+{
+  "verdict": "accept_execution_ledger_and_source_provenance",
+  "continuation_plan_sha256": "dcbad5a9b9fe3725a6c4b6c04af644588fdd08b96f413d49c659fd70e22c6b85",
+  "trial_count": 16,
+  "original_trial_records_unchanged_from_prior_review": true,
+  "historical_T009_complete": false,
+  "historical_halt_preserved": true,
+  "original_counted_tokens": 132338,
+  "continuation_counted_tokens": 74516,
+  "total_counted_tokens": 206854,
+  "medians": {
+    "direct": 8557.5,
+    "toolkit": 18811.5
+  },
+  "median_ratio": 2.1982471516213846,
+  "continuation_trials": [
+    {
+      "trial": "T010",
+      "item": "P06-cal",
+      "arm": "direct",
+      "counted_tokens": 10746,
+      "reconciliation": {
+        "worker": 4,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 8,
+      "analysis_sha256": "5ed2e7798a8e29d330f8a2f161c07c2d5857cd7fec465ceb9eef33b0dbcb70c7",
+      "answer_sha256": "72d847a365e4d185f730d343e5b246a7d9d38d79a8cc42510fc822e99d1890ea",
+      "trial_sha256": "d6e739eb0f232d4d6922d843eed346c6df8e751297a409623b5d22fb4dde42da",
+      "replay": "replayed",
+      "perturbation": "changed",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Reads counts.tsv, register.csv and cores.csv; sums residue splits per core, converts to relative abundances, calculates Bray-Curtis distances and one-way PERMANOVA pseudo-F/R-squared directly. n comes from pooled cores."
+    },
+    {
+      "trial": "T011",
+      "item": "P10-cal",
+      "arm": "toolkit",
+      "counted_tokens": 22435,
+      "reconciliation": {
+        "worker": 10,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 8,
+      "analysis_sha256": "9bec381392040427e8b9b60523dbeef3dcc6035dfc8343762b5320622ae3f34c",
+      "answer_sha256": "e38b513b26ebeceaeb042a3b96ffa270f2b8775c50c3ad3a4e47d3165ee1c757",
+      "trial_sha256": "1cc8cf1f6b7339c7811157ea6e039772c921479ad7d43014b3a305794450264b",
+      "replay": "replayed",
+      "perturbation": "changed",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Reads specs/study.json and counts.tsv; removes prior study_out, reruns palaeo_agent.run_study, reads newly generated diversity outputs; samples.csv depth selects oldest and youngest, then subtracts their Shannon indices. Study spec contains paths/settings, no answer constants."
+    },
+    {
+      "trial": "T012",
+      "item": "P10-cal",
+      "arm": "direct",
+      "counted_tokens": 6052,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 7,
+      "analysis_sha256": "dbfde52fc47ab006a2677289ce963607f6104dcec49c61f6111ba9a8cdf61448",
+      "answer_sha256": "3a4b77f63d758529c02e98535e824f35dd72029491ae9613ca1a9770efad5264",
+      "trial_sha256": "4b2ad0895043815e1489a5ffa3202d321efc3bf70543b2368c8328d59261ba9e",
+      "replay": "replayed",
+      "perturbation": "changed",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Reads counts.tsv and samples.csv; derives oldest/youngest using depth, computes natural-log Shannon from nonzero relative counts, then subtracts."
+    },
+    {
+      "trial": "T013",
+      "item": "P04-cal",
+      "arm": "toolkit",
+      "counted_tokens": 10093,
+      "reconciliation": {
+        "worker": 5,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 9,
+      "analysis_sha256": "52fc53f895d829727777ba7fae24f31c437bcd0008582740b2b6db1f37d9b1bf",
+      "answer_sha256": "1c4a28eac3727f36c96c59a888ec3492807ad21f26fa20217600cb7318a930b6",
+      "trial_sha256": "d6ba9fea5c12e0d23fc0f3ddf0091ad30cb2d27a4886748dc7cf9fbdf11dffa6",
+      "replay": "replayed",
+      "perturbation": "not_applicable",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Reads both fraction count tables and cores.csv; computes campaign-specific mean Shannon diagnostics and identifies columns missing from fine-fraction table. Requested results are empty; the stop explanation is fixed narrative based on supplied material, not a conditional code branch. Diagnostic numbers inside the issues string are computed, not stored."
+    },
+    {
+      "trial": "T014",
+      "item": "P04-cal",
+      "arm": "direct",
+      "counted_tokens": 9429,
+      "reconciliation": {
+        "worker": 3,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 9,
+      "analysis_sha256": "7fea43a003d2670e8a93269bd71b98acb6355ea0674d78293d28abe4c7067a4b",
+      "answer_sha256": "52bf7786207c4bc7a3976c839a35ab230f38c105290d21b279156fa13896c37d",
+      "trial_sha256": "58544de5c27785e15b6495b94f3077983bd48c5c4e4987e345981cfa4b21439b",
+      "replay": "replayed",
+      "perturbation": "not_applicable",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Reads both fraction tables, picking.csv and cores.csv; derives unpicked-core list and computes mean fine/coarse Shannon difference for diagnostic prose. Requested results are empty; decision-to-stop wording is fixed narrative based on supplied material, not a conditional code branch."
+    },
+    {
+      "trial": "T015",
+      "item": "P09-cal",
+      "arm": "toolkit",
+      "counted_tokens": 10153,
+      "reconciliation": {
+        "worker": 8,
+        "client_refusal": 0,
+        "bootstrap": 1,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 6,
+      "analysis_sha256": "e0e204340a27feecce5e17889bd9bf82a70478faa6152db62f61c7fb1b39b12a",
+      "answer_sha256": "668a5b75ca5af90bd9c7344978477b611667caed37f82272e6824213c7260507",
+      "trial_sha256": "c96f6667f96ac1431bcc07ffc48163cd7edfd792e81240260b96b03ee9310bf4",
+      "replay": "replayed",
+      "perturbation": "changed",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Joins catalogue and measurements; uses individual IDs to identify duplicate valves, drops duplicate left valves, asserts unique retained individuals, and calls palaeo_agent.rma_regression on retained measurements with log10 transform. Reported slope/intercept/n come from returned computation."
+    },
+    {
+      "trial": "T016",
+      "item": "P09-cal",
+      "arm": "direct",
+      "counted_tokens": 5608,
+      "reconciliation": {
+        "worker": 5,
+        "client_refusal": 0,
+        "bootstrap": 0,
+        "problems": [],
+        "consistent": true
+      },
+      "staged_files_verified": 6,
+      "analysis_sha256": "ce723e1df624fed6c691feb08f505a79dc3824864f446f62dd36ab598e063fe5",
+      "answer_sha256": "3de4b52498b93a55561cf91ab77e930ddbe0a613a56665f311e7990eeca760cb",
+      "trial_sha256": "d4389f43b87d3afad71912e27998899c6128af50aa6e8d2cc0154e1b47ca6c18",
+      "replay": "replayed",
+      "perturbation": "changed",
+      "source_provenance": "computed_from_supplied_materials",
+      "source_review": "Joins catalogue and measurements on specimen_id; averages log10 measurements per individual, calculates sign(r)*sd(y)/sd(x), intercept and individual count directly."
+    }
+  ],
+  "source_verified_replays_combined": 16,
+  "prior_source_review": "evaluation/pilot/review-codex/recalibration-20261102/provenance-adjudication.json; not duplicated",
+  "scope_limitations": [
+    "No fresh model inference or execution of submitted scripts; independently verified saved replay staging and output hashes, and inspected source.",
+    "P04 scientific adjudication is assigned to parent; this receipt establishes calculation provenance, not scientific correctness.",
+    "Runtime/client version deviation retained in continuation plan. Current installed runtime tree was not rehashed by this delegate.",
+    "Perturbation is diagnostic only; no provenance conclusion rests on changed perturbation outputs."
+  ]
+}

@@ -26,3 +26,6 @@ Both runs are deterministic: they use fixed seeds and reproduce
 - A second independent Codex review of these corrected versions
   (`review-codex-20261102.json`) found no major issue. Its minor findings are
   fixed, and each report lists them.
+- The [final bounded check](review-codex-final-20261102.md) confirms those
+  fixes and byte-identical scratch replays of both scripts. Two final prose
+  clarifications are recorded in the [closeout](../docs/recalibration-closeout-20261102.md).
