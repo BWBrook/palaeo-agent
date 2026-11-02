@@ -250,14 +250,50 @@ def test_organisation_managed_files(tmp_path):
         launch.verify_config_dir(tmp_path)
 
 
-def test_reconciliation_compares_large_integers_as_the_client_serialises_them(tmp_path):
-    value = {"status": "ok", "schema": {"maximum": 2 ** 64 - 1}}
+def test_reconciliation_limits_client_rounding_to_permanova_schema_seed_maxima(tmp_path):
+    value = {"status": "ok", "input_schema": {"properties": {"seed": {"maximum": 2 ** 64 - 1}}},
+             "output_schema": {"$defs": {"PermutationRecord": {"properties": {"seed": {"maximum": 2 ** 64 - 1}}}}},
+             "results": {"seed": 2 ** 64 - 1, "n": 2 ** 64 - 1, "count": 2 ** 64 - 1}}
     raw = {"status": "ok", "exit_code": 0, "stdout": json.dumps(value) + "\n", "stderr": "", "truncated": {"stdout": False}}
     use = {"type": "tool_use", "id": "p", "name": "mcp__worker__palaeo_discover", "input": {"method": "permanova"}}
     row = {"request": {"tool": "discover", "arguments": {"method": "permanova"}}, "result": raw}
     inventory = INVENTORY + ["mcp__worker__palaeo_discover"]
-    rounded = '{"status":"ok","schema":{"maximum":18446744073709552000}}'
-    seen = {"type": "tool_result", "tool_use_id": "p", "content": rounded}
+    rounded = json.loads(json.dumps(value))
+    rounded["input_schema"]["properties"]["seed"]["maximum"] = 18446744073709552000
+    rounded["output_schema"]["$defs"]["PermutationRecord"]["properties"]["seed"]["maximum"] = 18446744073709552000
+    seen = result_for("p", rounded)
     assert launch.reconcile(events(use, seen), audit(tmp_path, row), inventory)["consistent"]
-    changed = dict(seen, content='{"status":"ok","schema":{"maximum":18446744073709000000}}')
-    assert not launch.reconcile(events(use, changed), audit(tmp_path, row), inventory)["consistent"]
+    assert launch.reconcile(events(use, result_for("p", value)), audit(tmp_path, row), inventory)["consistent"]
+    assert value["input_schema"]["properties"]["seed"]["maximum"] == 2 ** 64 - 1
+    for wrong in (18446744073709551999, 18446744073709552001, 2 ** 64 - 2, float(2 ** 64)):
+        for schema in ("input_schema", "output_schema"):
+            changed = json.loads(json.dumps(rounded))
+            node = changed[schema] if schema == "input_schema" else changed[schema]["$defs"]["PermutationRecord"]
+            node["properties"]["seed"]["maximum"] = wrong
+            assert not launch.reconcile(events(use, result_for("p", changed)), audit(tmp_path, row), inventory)["consistent"]
+    for key in ("seed", "n", "count"):
+        changed = json.loads(json.dumps(rounded))
+        changed["results"][key] = 18446744073709552000
+        assert not launch.reconcile(events(use, result_for("p", changed)), audit(tmp_path, row), inventory)["consistent"]
+    different_method = dict(use, input={"method": "community"})
+    other_row = dict(row, request={"tool": "discover", "arguments": {"method": "community"}})
+    assert not launch.reconcile(events(different_method, seen), audit(tmp_path, other_row), inventory)["consistent"]
+    assert not launch.reconcile(events(use, dict(seen, is_error=True)), audit(tmp_path, row), inventory)["consistent"]
+
+
+@pytest.mark.parametrize("expected, observed", [
+    (2 ** 53, 2 ** 53 + 1), (2 ** 53 + 1, 2 ** 53), (-(2 ** 53 + 1), -2 ** 53),
+    (2 ** 64 - 1, 2 ** 64 - 2), (2 ** 64 - 1, 18446744073709552000),
+    (10 ** 400, 10 ** 400 + 1),
+])
+def test_reconciliation_keeps_other_large_integers_exact(tmp_path, expected, observed):
+    value = {"status": "ok", "result": {"seed": expected}, "schema": {"maximum": expected}}
+    raw = {"status": "ok", "exit_code": 0, "stdout": json.dumps(value), "truncated": {"stdout": False}}
+    use = {"type": "tool_use", "id": "p", "name": "mcp__worker__palaeo_discover", "input": {"method": "permanova"}}
+    row = {"request": {"tool": "discover", "arguments": use["input"]}, "result": raw}
+    changed = {"status": "ok", "result": {"seed": observed}, "schema": {"maximum": observed}}
+    assert not launch.reconcile(events(use, result_for("p", changed)), audit(tmp_path, row), [use["name"]])["consistent"]
+    assert launch.reconcile(events(use, result_for("p", value)), audit(tmp_path, row), [use["name"]])["consistent"]
+    row["request"]["arguments"] = {"method": "permanova", "seed": expected}
+    use["input"] = {"method": "permanova", "seed": observed}
+    assert not launch.reconcile(events(use, result_for("p", value)), audit(tmp_path, row), [use["name"]])["consistent"]

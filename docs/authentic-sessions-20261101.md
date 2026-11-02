@@ -1,5 +1,10 @@
 # Authentic-workflow sessions: Llanvirn and Dielasma
 
+Codex reviewed the interpretation on 2 November 2026 and qualified the
+generalisations below. Original session outputs remain unchanged; the
+[review](recalibration-authentic-review-20261102.md) separates reproducibility,
+scientific corrections and the decision about further trials.
+
 Claude (Opus 5.5), 1 November 2026. Barry approved two small real-data sessions
 with optional toolkit use (Claude Code chat, 1 November 2026: "Approved."),
 following Codex's proposal in [research-workflow-next-step.md](research-workflow-next-step.md).
@@ -95,7 +100,7 @@ scikit-bio and vegan-style packages.
   - a permutation multivariate test;
   - a curvature test;
   - a two-Gaussian mixture compared by BIC.
-- **It found a defect in the archived data:** a block of six or seven
+- **It found a suspected duplication in the archived data:** a block of six or seven
   consecutive L2 specimens is repeated exactly.
   - Rows 58–63 repeat at rows 65–70; 7.00/6.00 also occurs at rows 57, 64
     and 71.
@@ -110,53 +115,65 @@ scikit-bio and vegan-style packages.
   - The slope-homogeneity test compares OLS slopes, not the reported RMA slopes.
   - The pairwise ANCOVA p-values are unadjusted. L1–L3 does not survive the
     Bonferroni correction applied elsewhere.
-  - **Most material:** with the repeats removed, the L1–L2 length difference is
+  - **Most material:** retaining each distinct pair once, the L1–L2 length difference is
     no longer significant (adjusted p 0.072 against 0.014). The session's
     sensitivity analysis rechecked only the omnibus tests and said the
     conclusions held.
 
-Neither package contains an error that changes its main answer. Every reviewed
-issue is the kind a careful referee raises: multiplicity applied
-inconsistently, an estimator mismatch, a headline slightly stronger than its
-evidence, a sensitivity check not carried through to every claim.
+The main descriptive patterns are supported, but some substantive claims need
+revision: L3 isometry, pairwise differences and robustness to the repeated
+records are not all supported as written. A successful replay does not resolve
+these scientific errors. The original packages remain experimental records,
+not corrected research deliverables.
 
 ## Why no toolkit-free twins
 
 Codex's rule: run a twin only if a named decision depends on it. Neither
-session touched the toolkit, so a toolkit-free twin would differ only by the
-offer sentence. It could not inform any decision about the toolkit. The
+session touched the toolkit, so no specific development decision justified
+spending on a toolkit-free twin at this stage. Another stochastic run could
+produce different choices; non-use does not make a comparison logically
+uninformative. The
 remaining ~59k tokens are unspent.
 
 ## What this evidence says
 
 1. **Adoption.**
-   - When the toolkit is optional, a capable analyst does not even discover it,
-     on a supported workflow (Llanvirn: diversity, Bray–Curtis, PCoA) or an
-     unsupported one (Dielasma: slope inference). This adds to the calibration
-     record, where the direct arm has made no error in 12 trials and costs
-     about 2.4 times fewer tokens.
+   - In these two Sonnet sessions, the agent did not discover the optional
+     toolkit. Llanvirn includes supported operations (diversity, Bray–Curtis,
+     PCoA); Dielasma includes unsupported slope inference. This is a useful
+     observation about the offered workflow, not an adoption-rate estimate
+     or a general result about capable agents.
+   - The separate calibration record has 12 correct direct outcomes across
+     two bank versions. The partial v4 toolkit median cost is 2.36 times the
+     direct median, with five versus four trials; this is descriptive.
    - Self-reported reason: hand-written code is more visible and checkable.
-     That is a defensible preference, not a documentation failure.
+     This self-report does not distinguish low perceived need, prompt
+     visibility, discoverability or documentation quality. Neither agent
+     inspected the documentation, so its adequacy was not tested.
 2. **What the analyses needed.**
    - Rarefaction, resampling nulls and multiplicity-aware per-taxon tests for
      composition change.
    - Slope inference, slope and elevation comparison and mixture models for
      allometry.
    - Input-integrity checks.
-   - The toolkit offers almost none of these, and the analysts wrote all of
-     them correctly in a few lines each.
-   - Adding them to the toolkit would mostly re-implement what agents already
-     do well, which Barry's direction warns against.
-3. **Where the value showed: the package contract, not the API.**
+   - These choices identify candidate needs beyond the current descriptive
+     API. Much arithmetic was reproduced, but the review found estimator,
+     multiplicity and interpretation problems; it does not certify every
+     hand-written method as correct.
+   - These two cases do not justify implementing that entire method list.
+     A repeated research need and a defensible validation plan should select
+     any next capability.
+3. **What the delivered packages made inspectable.**
    - Requiring a runnable `analysis.py`, a `results.json` and a report, then
      replaying it in a clean confined worker and having an independent model
      review it, produced:
      - traceable claims;
      - byte-identical replays;
      - a referee-level list of overstatements and inconsistencies;
-     - the discovery of a real data defect.
-   - That verification layer, not the calculation API, is what made two
-     70-second analyses checkable.
+     - the discovery of a suspicious repeated data block.
+   - Saved code, results and source records made these analyses checkable.
+     This demonstrates a useful workflow; without a comparison it does not
+     isolate the causal contribution of any verification component.
 4. **One recurring need the toolkit should meet: input integrity.** Duplicate
    records are a common defect in legacy palaeontological tables. The toolkit
    refuses duplicate IDs and warns on near-duplicate labels, but reports
@@ -183,8 +200,9 @@ remaining ~59k tokens are unspent.
     reference values to check agents' numbers, rather than as the path agents
     must take.
   
-  The 96-trial toolkit-versus-direct pilot would measure a benefit that every
-  observation so far says is absent. I recommend not running it.
+  There is not yet a positive signal that justifies prioritising the
+  96-trial toolkit-versus-direct pilot. I recommend not running it. The small,
+  incomplete evaluation cannot establish that a benefit is absent.
 - **Housekeeping for any future sessions:**
   - The retrospective resume re-creates the prompt cache, so it costs about
     18k tokens each (37% of this batch). Ask the question within the session's
@@ -193,8 +211,11 @@ remaining ~59k tokens are unspent.
     as a standalone run. The replay covers this, but a `worker_run_script`
     tool would let them.
 
-Still outstanding from the recalibration round, and unaffected by this:
-Codex's decision on resuming T010–T016, and the second adjudication of T005.
+Outstanding at the original handoff were the recalibration continuation
+decision and the second adjudication of T005. The
+[2 November review](recalibration-authentic-review-20261102.md) now accepts
+the qualified continuation and confirms T005 as wrong for the requested
+all-sample target. The seven unlaunched trials remain for Claude to run.
 
 ## Follow-up done (Barry, Claude Code chat, 1 November 2026: "Yes, do both.")
 

@@ -36,7 +36,8 @@ def test_short_runs_and_overlapping_periodic_runs():
     two = [(1, 1), (2, 2), (3, 5), (1, 1), (2, 2), (4, 4), (5, 9), (6, 1)]
     assert [b for b in core.repeated_records(two, ids)[1]] == []
     constant = [(1, 1)] * 6
-    groups, blocks = core.repeated_records(constant, ids[:6])
+    groups, blocks, omitted = core.repeated_records(constant, ids[:6])
+    assert omitted == 0
     assert groups == [ids[:6]]
     assert {"first": ids[:3], "repeat": ids[3:6]} in blocks
     assert all(len(b["first"]) == len(b["repeat"]) and b["first"][-1] < b["repeat"][0] for b in blocks)
@@ -48,3 +49,27 @@ def test_identical_count_profiles_are_reported():
                                empty_samples="error")
     warning = next(w for w in result["warnings"] if w["code"] == "identical_samples")
     assert warning["details"]["groups"] == [["a", "c"]]
+
+
+def test_block_warning_identifies_consecutive_retained_records_after_dropping_missing():
+    result = core.rma_regression([1, 2, None, 3, 1, 2, 3], [2, 4, None, 6, 2, 4, 6],
+                                 sample_ids=list("abcdefg"), transform="none", missing="drop_pairs")
+    block = next(w for w in result["warnings"] if w["code"] == "repeated_block")
+    assert block["details"] == {"first": ["a", "b", "d"], "repeat": ["e", "f", "g"]}
+    assert "consecutive retained records" in block["message"]
+    assert result["n"] == 6 and result["slope"] == 2
+
+
+def test_repetitive_input_bounds_block_payload_and_reports_all_omissions():
+    ids = [str(i) for i in range(2048)]
+    warnings = core.repeated_warnings([(i % 2, i % 2) for i in range(2048)], ids, "pairs")
+    assert warnings[0]["details"]["groups"] == [ids[::2], ids[1::2]]
+    blocks = [w for w in warnings if w["code"] == "repeated_block"]
+    assert len(blocks) == 20
+    assert blocks[-1]["details"]["omitted_blocks"] == 1001
+    assert blocks[-1]["details"]["reported_blocks"] == 20
+    assert "1001 additional block pairs omitted" in blocks[-1]["message"]
+    for block, offset in zip(blocks, range(4, 44, 2), strict=True):
+        assert block["details"]["first"] == ids[:offset]
+        assert block["details"]["repeat"] == ids[offset:2 * offset]
+    assert len(json.dumps(warnings)) < 50_000

@@ -30,6 +30,7 @@ A started trial is never rerun.
 """
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -365,18 +366,30 @@ def adapter_value(name, result):
     return value
 
 
-def client_number_form(value):
-    """The client re-serialises JSON numbers as IEEE-754 doubles, so integers beyond 2**53 arrive rounded
-    (2**64 - 1 becomes 18446744073709552000). Compare both sides in that form; nothing else is relaxed."""
-    if isinstance(value, bool):
-        return value
-    if isinstance(value, int) and abs(value) > 2 ** 53:
-        return float(value)
-    if isinstance(value, dict):
-        return {k: client_number_form(v) for k, v in value.items()}
-    if isinstance(value, list):
-        return [client_number_form(v) for v in value]
-    return value
+def returned_values_match(name, arguments, observed, expected):
+    """Allow only T009's verified client rounding of the two PERMANOVA schema seed maxima.
+
+    Scientific values, other schema fields and tool arguments retain exact comparison.
+    """
+    if observed == expected:
+        return True
+    if name != "mcp__worker__palaeo_discover" or arguments != {"method": "permanova"}:
+        return False
+    adjusted = copy.deepcopy(expected)
+    paths = [("input_schema", "properties", "seed"),
+             ("output_schema", "$defs", "PermutationRecord", "properties", "seed")]
+    for path in paths:
+        expected_node, observed_node = adjusted, observed
+        try:
+            for key in path:
+                expected_node, observed_node = expected_node[key], observed_node[key]
+            if (type(expected_node["maximum"]) is int and expected_node["maximum"] == 2 ** 64 - 1
+                    and type(observed_node["maximum"]) is int
+                    and observed_node["maximum"] == 18446744073709552000):
+                expected_node["maximum"] = observed_node["maximum"]
+        except (KeyError, TypeError):
+            continue
+    return observed == adjusted
 
 
 def result_value(result):
@@ -436,7 +449,7 @@ def reconcile(events, audit_dir, inventory):
         for i in candidates:
             value = adapter_value(use["name"], audit[i]["result"])
             flagged = isinstance(value, dict) and value.get("status") in ("error", "timed_out", "different")
-            if client_number_form(observed) == client_number_form(value) and bool(result.get("is_error")) == flagged:
+            if returned_values_match(use["name"], arguments, observed, value) and bool(result.get("is_error")) == flagged:
                 unmatched.remove(i)
                 matched += 1
                 break

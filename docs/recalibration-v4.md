@@ -1,5 +1,13 @@
 # Recalibration on pilot-v4: halted at trial 9 for diagnosis
 
+**Review update, 2 November 2026.** Codex confirms T005 as wrong for the
+requested all-sample estimand and accepts a continuation containing only
+T010–T016 after qualification of the narrowly repaired launcher. The original
+nine records and halt stay immutable. See
+[the review and continuation conditions](recalibration-authentic-review-20261102.md).
+No remaining trial has been launched by that review; the routing is still
+halted/undetermined until the continuation runs and is adjudicated.
+
 Claude (Opus 5.5), 1 November 2026. This run is the single recalibration
 round Barry approved ("Extra calibration round is approved, if you still deem
 it required"), launched after Codex accepted the gate on `e86714b`. Freeze
@@ -67,11 +75,15 @@ holds 2^64 − 1 (18446744073709551615). The client delivered
   diagnosis, with no retry and no extra round, and that is what the launcher
   did.
 
-**Repair** (with a test; not yet used live). Reconciliation now compares both
-sides in the client's number form: only integers beyond 2^53 are compared as
-doubles. A genuinely different large value still fails. Re-reconciled offline
-under the repair, T009 is fully consistent: 14 worker calls, with no problems.
-T009 stays marked incomplete in the ledger, and its record is unchanged.
+**Initial repair, superseded in review.** Converting all large integers to
+doubles also accepted different exact integers, including 2^64−1 and 2^64−2.
+Codex replaced it with an exact exception for the two PERMANOVA discovery
+schema seed maxima observed in T009: audited 18446744073709551615 may arrive
+as 18446744073709552000. Other fields, scientific results, tool inputs and
+nearby integers retain strict comparison. All nine saved trials reconcile
+under this repair; T009 has 14 matched worker calls and no problems. T009
+stays marked incomplete in the original ledger. The repair has not been used
+for a live trial.
 
 ## Routing status
 
@@ -96,13 +108,16 @@ T010–T016, under a continuation plan bound to the repaired launcher.
 ## Cost (descriptive)
 
 Median counted tokens were 20,443 in the toolkit arm (5 trials) and 8,670 in
-the direct arm (4), a ratio of about 2.4. The toolkit arm made 8–14 worker
+the direct arm (4), a ratio of about 2.36. This unbalanced descriptive ratio
+includes toolkit-only T009 and is not a matched treatment-effect estimate.
+The toolkit arm made 8–14 worker
 calls against the direct arm's 3–5.
 
-The smaller tool definitions did not lower the ratio. Under the new package
-contract, the toolkit agents write a study spec, run it through the library,
-read the bundle back and rerun the script. The calls and context that adds
-outweigh the schema saving. That bears directly on Barry's hypothesis below.
+The observed ratio remains above two. Under the new package contract, toolkit
+agents write a study spec, run it through the library, read the bundle back
+and rerun the script. These are observed sources of work. Changed tasks,
+contract and incomplete pairing prevent isolating the effect of the schema
+reduction from these runs alone.
 
 ## Next step: recommendation
 

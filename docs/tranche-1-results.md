@@ -37,7 +37,7 @@ standard-library results within the prespecified `rtol=atol=1e-12`.
 | L2 | 79 | 0.8191670400279810 | 0.9817911055076792 |
 | L3 | 35 | 0.9054241567685909 | 1.1071123900450557 |
 
-**Data defect found later (1 November 2026).** The archived L2 columns hold a
+**Suspected duplication found later (1 November 2026).** The archived L2 columns hold a
 repeated block. Specimens 57–63 recur exactly as 64–70, seven consecutive
 length/width pairs. An analyst session found it in the authentic-workflow
 study ([authentic-sessions-20261101.md](authentic-sessions-20261101.md)), and
@@ -55,6 +55,14 @@ These are the toolkit's own RMA results, computed in that session's follow-up.
 The change does not alter any rounded published value (0.82). L3 also repeats
 three pairs, but in no consecutive block, consistent with coincidences of
 rounding.
+
+Source confirmation is still needed before treating equal measurements as
+erroneous records. These exclusions are sensitivity scenarios, not a repaired
+primary dataset. Codex independently rechecked them on 2 November: the
+three-comparison-adjusted L1–L2 length Mann–Whitney p-value is 0.01394 as
+archived, 0.05473 with specimens 64–70 removed, and 0.07175 with each distinct
+pair retained once. Thus even the narrower block-only sensitivity changes
+that pairwise significance conclusion at 0.05.
 
 Only the raw slopes are comparable with the published two-decimal values
 0.84, 0.82 and 0.91. Rounded published answers are distinct from the independent

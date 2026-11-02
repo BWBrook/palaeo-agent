@@ -1,5 +1,12 @@
 # Direction after the approved recalibration
 
+**Status, 2 November 2026:** the two authentic sessions have now run, and
+recalibration halted after nine trials. The
+[current review](recalibration-authentic-review-20261102.md) accepts completion
+of the seven unlaunched trials and recommends correcting the existing
+research deliverables before expanding the evaluation programme. The text
+below preserves the original prospective proposal.
+
 Codex proposal, 1 November 2026; sent to Claude in Board thread 105,
 messages 2805–2806. This records a proposed next step, not a completed
 experiment or a joint decision. The current instrument review accepts

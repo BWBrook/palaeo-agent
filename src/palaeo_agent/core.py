@@ -122,18 +122,20 @@ def discover():
 
 
 MIN_REPEATED_BLOCK = 3
+MAX_REPORTED_BLOCKS = 20
 
 
 def repeated_records(records, ids):
-    """Exact repeated records, and maximal runs of at least MIN_REPEATED_BLOCK consecutive records that recur.
+    """Return repeated groups, the first 20 maximal block pairs, and the omitted-block count.
 
-    Diagnostics only: repeats can be coincidences of rounding, but a recurring run is the signature of a
-    duplicated data-entry block."""
+    Blocks contain at least three consecutive retained records, with no overlap within each pair.
+    Diagnostics only: recurring runs warrant checking the source for duplicated data entry."""
     positions = defaultdict(list)
     for index, record in enumerate(records):
         positions[record].append(index)
     groups = [[ids[i] for i in where] for where in positions.values() if len(where) > 1]
     blocks = []
+    omitted = 0
     for where in positions.values():
         for a, i in enumerate(where):
             for j in where[a + 1:]:
@@ -143,12 +145,15 @@ def repeated_records(records, ids):
                 while j + length < len(records) and i + length < j and records[i + length] == records[j + length]:
                     length += 1
                 if length >= MIN_REPEATED_BLOCK:
-                    blocks.append({"first": ids[i:i + length], "repeat": ids[j:j + length]})
-    return groups, blocks
+                    if len(blocks) < MAX_REPORTED_BLOCKS:
+                        blocks.append({"first": ids[i:i + length], "repeat": ids[j:j + length]})
+                    else:
+                        omitted += 1
+    return groups, blocks, omitted
 
 
 def repeated_warnings(records, ids, what):
-    groups, blocks = repeated_records(records, ids)
+    groups, blocks, omitted = repeated_records(records, ids)
     warnings = []
     if groups:
         warnings.append({"code": "repeated_pairs" if what == "pairs" else "identical_samples",
@@ -158,10 +163,14 @@ def repeated_warnings(records, ids, what):
                          "details": {"groups": groups}})
     for block in blocks:
         warnings.append({"code": "repeated_block",
-                         "message": f"{len(block['first'])} consecutive records {block['first'][0]}..{block['first'][-1]} "
+                         "message": f"{len(block['first'])} consecutive retained records {block['first'][0]}..{block['first'][-1]} "
                                     f"recur exactly as {block['repeat'][0]}..{block['repeat'][-1]}; "
                                     "check the source for a duplicated data-entry block",
                          "details": block})
+    if omitted:
+        warnings[-1]["message"] += f"; {omitted} additional block pairs omitted (first {len(blocks)} reported)"
+        warnings[-1]["details"]["omitted_blocks"] = omitted
+        warnings[-1]["details"]["reported_blocks"] = len(blocks)
     return warnings
 
 
