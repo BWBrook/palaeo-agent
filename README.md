@@ -1,5 +1,7 @@
 # palaeo-agent
 
+> **Status:** developed in the open as a working record. This is work in progress: contents may change, and nothing here is peer-reviewed unless stated.
+
 Working name for a native Python toolkit for agent-driven ecology and
 palaeontology. People discuss scientific questions and review evidence through
 agents such as Codex or Claude. The toolkit supplies explicit, validated
@@ -11,12 +13,12 @@ every feature.
 
 ## Current state
 
-Private development repository, established 30 October 2026. The first native
+Developed since 30 October 2026 (v0.2.0.dev0). The first native
 Python operations include descriptive reduced-major-axis regression, an
 explicit count-community workflow and one-way free-permutation PERMANOVA, available through
 the Python API, structured CLI and optional local MCP server. It saves a self-contained input snapshot,
 resolved specification, numerical results, diagnostics and integrity manifest.
-The name is provisional. No public release or full PAST compatibility is claimed.
+The name is provisional. No stable API or full PAST compatibility is claimed. Validation compares against PAST 5.4 outputs captured on 30-31 October 2026. PAST, its manual, the 2001 case-study pages and most of its example datasets are not distributed here; the datasets are fetched from their original source (see [THIRD_PARTY.md](THIRD_PARTY.md)).
 
 - [Vision and scope](docs/vision.md)
 - [Implementation framework](docs/architecture.md)
@@ -24,7 +26,7 @@ The name is provisional. No public release or full PAST compatibility is claimed
 - [PAST examples and validation design](docs/past-validation.md)
 - [Sources and observations](docs/sources.md)
 - [Initial legacy example inventory](benchmarks/past/legacy-cases.json)
-- [Offline index of all 14 legacy vignettes](benchmarks/past/vignettes/html/doc1.html)
+- [Original online index of the 14 legacy vignettes](https://palaeo-electronica.org/2001_1/past/pastprog/doc1.html)
 - [First numerical comparison](docs/first-comparison.md)
 - [First implementation results and limits](docs/tranche-1-results.md)
 - [Community workflow plan](docs/tranche-2-plan.md)
@@ -133,7 +135,7 @@ development verification in a new run directory. Reference regeneration uses
 optional validation step; R is not an analysis runtime dependency.
 
 Run bundle schema 2 replaces the development schema 1. The committed RMA demo
-was regenerated with version 0.2; the original remains in Git commit `445da1b`.
+was regenerated with version 0.2; the original remains in the commit that was `445da1b` before the history was rewritten for publication (see `docs/commit-map.txt`).
 
 ## Check the implementation and reference archive
 
@@ -153,15 +155,18 @@ and inferential sensitivity comparisons are unsupported.
 
 ```sh
 uv run pytest -q
-uv run python scripts/capture_past.py --offline
+uv run python scripts/fetch_past.py
 uv run python scripts/reference_dielasma.py
 uv run python scripts/compare_past_captures.py --output /tmp/past-comparison.json
 ```
 
-The archive contains the supplied PAST 5.4 manual, all 17 data files from the
-2001 ZIP, all 14 vignettes, 10 answer pages and 49 images. Original bytes and
-offline reading copies are separate. These legacy examples do not establish a
-complete current PAST 5 corpus. Native exports from the installed PAST 5.4
+The repository tracks two of the 17 legacy example datasets (`dielasma.dat`,
+`llanvirn.dat`); `scripts/fetch_past.py` downloads the other 15 from the original
+2001 site into `benchmarks/past/legacy-data/` (git-ignored) and verifies each
+against the SHA-256 recorded in `benchmarks/past/legacy-cases.json`. The PAST
+manual and the 2001 vignette pages are not redistributed: follow the links in
+[THIRD_PARTY.md](THIRD_PARTY.md). These legacy examples do not establish a
+complete current PAST 5 corpus. Native exports from the PAST 5.4
 app now agree with the declared community and RMA calculations on two legacy
 datasets, within export precision. See the
 [validation results](docs/validation-tranche-3-results.md) for the captures,
@@ -188,3 +193,7 @@ refusal with permissible dimensions.
 
 These documents distinguish the agreed direction from proposed implementation
 choices. They are the first design, not a frozen specification.
+
+## Licence
+
+Code is released under the [MIT Licence](LICENSE). Text, figures and data created for this project are released under [CC BY-SA 4.0](LICENSE-CONTENT). Third-party material keeps its own terms where stated.
