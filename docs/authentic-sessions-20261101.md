@@ -248,3 +248,22 @@ narrows two of the claims above, and I accept both corrections.
 
   Against the original 0.0139, neither is significant at 0.05. The source
   needs confirming; nothing should be deduplicated automatically.
+
+## Corrected versions (2 November 2026)
+
+Barry asked for corrected versions of both analyses (Claude Code chat,
+2 November 2026: "Yes, make those corrected versions"). They are in
+[analyses/](../analyses/README.md): standalone scripts with pinned
+dependencies, results, reports, and a second independent Codex review.
+
+The main changes in substance:
+- **Llanvirn.** 5→6 is the larger step under every representation that does
+  not depend on counting totals. A1's reversal under log counts came from
+  unequal totals. Of the membership changes, only the decline of `Talin` is
+  statistically supported.
+- **Dielasma.**
+  - The SMA common-slope test finds tentative slope heterogeneity (p 0.02–0.07,
+    depending on calibration), which A2's OLS test missed. The common slope is
+    still about 1.
+  - L3 allometry is unresolved.
+  - The L1–L2 size difference does not survive deduplication.

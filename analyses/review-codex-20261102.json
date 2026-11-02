@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "analysis": "llanvirn",
+      "kind": "unresolved_earlier_finding",
+      "severity": "minor",
+      "location": "analyses/coed-duon-llanvirn/report.md:108–115,139–144,179–181,193; analysis.py:119–124",
+      "statement": "The earlier membership problem is only partly resolved. Observed gains and losses are now correct, but the proposed correction promotes them to probable biological turnover using plug-in absence probabilities. These calculations establish neither population absence nor a probability of turnover, and bypass the stated Holm-adjusted testing rule.",
+      "evidence": "Independent Fisher/Holm recomputation gives Talin p_Holm=0.0039773, Salop=0.0501011 and Tripl=0.0808214. Thus only Talin survives the declared threshold among these three. The reported zero-detection probabilities, 1.3903e-6, 0.0001282 and 0.0011291, condition on treating the other horizon's estimated proportion as known and are not multiplicity-adjusted inferential p-values. Even a significant proportional decline cannot establish true absence. Likewise, 'Basil is gone' at report.md:52–53 exceeds the evidence: zero observations among 26 specimens permits an underlying proportion up to 0.1088 at the one-sided 95% confidence limit.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "llanvirn",
+      "kind": "wrong_value",
+      "severity": "minor",
+      "location": "analyses/coed-duon-llanvirn/report.md:46–47; results.json:composition_null.6-7.null_q95",
+      "statement": "The 6→7 composition-null 95th percentile rounds to 0.30, not 0.31.",
+      "evidence": "The saved value is 0.30484330484330474, reproduced exactly by executing the script in memory. At the report's two-decimal precision this is 0.30.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "llanvirn",
+      "kind": "other",
+      "severity": "note",
+      "location": "Overall verdict",
+      "statement": "The central compositional conclusions are supported. The earlier numerical, labelling, transformation, rarefaction-uncertainty, bootstrap-disclosure, external-knowledge and pooling findings are resolved. Membership inference still requires qualification, and one reported percentile needs correction.",
+      "evidence": "A complete read-only replay reproduces every saved field. Independent calculations confirm proportional Bray–Curtis 0.6707023 and 0.5569801, and exact rarefaction expectations 2.3024354 and 4.7408605 at horizons 5 and 6. The standardised log representations and Holm implementation are correct. Independent conditional composition simulations also support both focal changes. PCoA construction is correct: axis 1 contains 57.6266% of positive eigenvalues, with negative inertia equal to 0.9776% of positive inertia. Rarefaction ranges are appropriately labelled as within-sample distributions.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "wrong_value",
+      "severity": "minor",
+      "location": "analyses/dielasma/report.md:54,82–83,124,126; results.json:scenarios",
+      "statement": "Several displayed values do not match the saved results after rounding, including a bootstrap p-value whose rounding obscures its position above 0.05.",
+      "evidence": "L1 slope-one p=0.2145862 rounds to 0.21, not 0.22. The block_removed common slope is 1.0004812, rounding to 1.000 rather than 1.001. The as_archived common-slope bootstrap p=0.0505 rounds to 0.051 at three decimal places, not 0.050. Ratio Kruskal–Wallis p-values span 0.0314740–0.0337815, giving 0.031–0.034 rather than 0.032–0.034. The L1–L3 ratio comparison has Bonferroni p=0.0834757, rounding to 0.083 rather than 0.084. All underlying saved values reproduce.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "unsupported_inference",
+      "severity": "minor",
+      "location": "analyses/dielasma/report.md:76–94,172; analysis.py:152–165",
+      "statement": "The common-slope heterogeneity conclusion needs explicit qualification for distributional sensitivity. The Gaussian bootstrap is correctly constructed, but its calibration assumes a distribution contradicted by the size distributions and is not a robustness check against their nonnormality.",
+      "evidence": "Independent covariance-profile optimisation reproduces LR statistics 6.546523, 7.498417 and 7.399009. The simulation covariance correctly imposes a common SD ratio while retaining each group's correlation and length SD. However, Shapiro–Wilk tests on archived log lengths give p=2.41e-6, 4.22e-5 and 0.0332 for L1–L3. An independent 20,000-replicate null bootstrap, centring each group's pairs and rescaling log width to impose the common SMA slope before paired resampling, retains the empirical distribution shapes, correlations and length scales. It gives p=0.07195, 0.04920 and 0.05265, with Monte Carlo SE approximately 0.0015–0.0018. Thus heterogeneity remains tentative across reasonable calibrations.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "mislabelled",
+      "severity": "minor",
+      "location": "analyses/dielasma/report.md:112–114; analysis.py:128–129; results.json:scenarios.*.log_length_mixture.*.two_means",
+      "statement": "The values used to describe mixture modes are exponentiated log-component means. They are component medians on the length scale, rather than component means or modes of the fitted length density.",
+      "evidence": "Recomputing the archived fits gives exp(mu)=[7.7422,17.7406] for L1 and [7.4167,17.4909] for L2. Solving for peaks of the fitted length densities gives modes [7.4122,17.2133] and [7.1726,16.8932], respectively. The bimodality interpretation survives, but the quantities and labels should be distinguished.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "method_error",
+      "severity": "minor",
+      "location": "analyses/dielasma/analysis.py:116–129; report.md:115",
+      "statement": "The two-component mixture BIC uses a single EM starting point that does not find the best demonstrated L3 likelihood.",
+      "evidence": "The supplied quantile start reproduces L3 BIC_two=18.8297618. Using initial log means at quantiles 0.40 and 0.95, initial component SDs equal to 0.25 times the overall log-length SD, and otherwise the same 2,000 EM updates and variance floor yields BIC_two=17.8989981. The one-component BIC remains 13.7756498, so its preference survives. The reported two-component comparison nevertheless uses an inferior local optimum.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "method_error",
+      "severity": "minor",
+      "location": "analyses/dielasma/analysis.py:191–192; results.json:scenarios.*.length_histogram_2mm_bins.L3; report.md:111",
+      "statement": "The size histogram silently omits the smallest L3 specimen.",
+      "evidence": "The bin edges start at 4, whereas the observed L3 minimum is 3.5. Independent histogram recomputation and the saved arrays both sum to 34 specimens, against L3 n=35. Length summaries, tests and mixtures include all 35, so this affects the histogram rather than those calculations.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "mislabelled",
+      "severity": "note",
+      "location": "analyses/dielasma/analysis.py:191; results.json:scenarios.*.length_histogram_2mm_bins",
+      "statement": "The histogram output key assigns millimetres although measurement units are undocumented.",
+      "evidence": "The provenance states that units are not given, as report.md:165 correctly acknowledges. The code constructs bins two recorded units wide; nothing in the permitted materials establishes that these are 2 mm bins.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "overstated",
+      "severity": "minor",
+      "location": "analyses/dielasma/report.md:73–74",
+      "statement": "'No curvature' overstates failure to reject a quadratic term. The supported statement is that these tests did not detect curvature.",
+      "evidence": "The archived quadratic-term p-values reproduce as 0.0566216, 0.6467672 and 0.3716299. These are tests against a zero quadratic coefficient; they neither establish linearity nor exclude scientifically meaningful curvature, particularly for L1.",
+      "verdict_confidence": "checked"
+    },
+    {
+      "analysis": "dielasma",
+      "kind": "other",
+      "severity": "note",
+      "location": "Overall verdict",
+      "statement": "The eight earlier findings are substantively addressed. Size-structure differences, duplicate sensitivity and the cautious L3 allometry interpretation are supported. The package needs numerical and descriptive corrections, and common-slope heterogeneity should remain explicitly conditional and tentative.",
+      "evidence": "A complete read-only replay reproduces every saved field. Independent inversion of the residual–fitted correlation test reproduces the exact SMA intervals and slope-one tests. The common-slope LR and Gaussian null covariance are correct. Welch elevation calculations correctly allow unequal variances conditional on the estimated common slope, whose fixed treatment is disclosed. Bonferroni adjustments, repeated-block identifiers and all three duplicate scenarios are traceable. Mixture BIC parameter counts are correct, although the L3 optimisation and mode labels need correction. No repository files were edited.",
+      "verdict_confidence": "checked"
+    }
+  ]
+}
