@@ -1,8 +1,62 @@
 # Sprints 7–8 proposal: comparing assemblages with unequal counts, an agent primer, and instructed use
 
-Claude (Opus 5.5), 3 November 2026. This is a draft for Codex's critique; no
-implementation has started. It answers Barry's request in Claude Code chat on
-3 November 2026, quoted where it constrains the design.
+Claude (Opus 5.5), 3 November 2026. It answers Barry's request in Claude
+Code chat on 3 November 2026, quoted where it constrains the design. Revised
+after Codex's [critique](sprints-7-8-critique.md) (330286b). No
+implementation has started.
+
+## Settled after Codex's critique
+
+Claude accepts every substantive point. The binding scientific contracts are
+now [rarefaction-contract.md](rarefaction-contract.md) and
+[count-homogeneity-contract.md](count-homogeneity-contract.md); where this
+proposal's summaries differ, the contracts govern.
+
+1. **The omnibus test** is the fixed-margin Pearson test with a stated
+   sampling model, Monte Carlo convention, plus-one p, exceedance count and
+   Clopper–Pearson Monte Carlo interval, with Bray–Curtis as a separate
+   effect size.
+2. **Multiplicity** has two separately labelled Holm families:
+   - the omnibus family, across the declared pairs;
+   - **one taxon family across every pair × taxon test**, as Codex
+     recommended.
+
+   Neither family is selected post hoc, and together they do not promise a
+   single error rate.
+3. **Rarefaction** is equal-count rarefaction plus coverage diagnostics,
+   with the m < n and m = n coverage branches, the f₁/f₂ boundaries and the
+   n = 1 case specified. Equal-coverage standardisation is deferred, for a
+   concrete reason: Coed Duon has no common coverage reachable by
+   interpolation. Claude reproduced Codex's values, 0.9090342679 and
+   0.7046153846.
+4. **No `primer_sha256` in scientific bundles.** Delivery is audited from
+   session records: the full primer body appears in a visible tool or command
+   result, in order, before the first analytical execution.
+5. **Deferred:** the public `check_values` helper and the MCP prompt. The
+   cross-check is a field-labelled comparison script with a receipt.
+6. **Primer guidance corrected:**
+   - a refusal is never a reason to coerce or delete data;
+   - necessary unsupported preparation is allowed, with saved provenance;
+   - a demonstrated toolkit defect makes that operation unsuitable until it
+     is repaired, which is not a licence for convenience;
+   - suitability is judged for the requested design, with no blanket claim
+     about restricted designs;
+   - transport-correct names are used.
+7. **I2** uses the existing toolkit runtime with the analysis MCP tools
+   withheld. This is a new, explicit delivery mode in staging, inventory and
+   replay. The bootstrap is `print(palaeo_agent.primer()["text"])` through
+   `worker_execute`, since the confinement has no CLI subprocess.
+8. **The worker forwards the server's instructions** verbatim. The scripted
+   client-boundary check verifies instruction *content*, and that the full
+   primer is delivered below output limits.
+9. **New sessions only.** The new sessions use new prompts that allow the
+   scientific MCP tools. The A1/A2 prompts and records are unchanged.
+10. **Two sessions remain**, as two descriptive demonstrations of different
+    cases and paths. Neither the pair nor its outcome supports a causal
+    attribution. The explicit bootstrap is the documented baseline.
+11. **Codex CLI** documents support for server `instructions`, and
+    recommends a self-contained first 512 characters. Ours are written to
+    that limit.
 
 ## 1. The research need, and why one workflow
 
@@ -15,15 +69,14 @@ The named need is the Coed Duon question in
 - **The question.** How does composition change through ten horizons whose
   counts range from 13 to 702 specimens, and which conclusions survive those
   unequal totals?
-- **Why it recurs.** Unequal counting totals are the default condition of
-  fossil count data, not a special case. Sieved bulk samples, bed-by-bed
-  collections and museum lots all differ in yield. Two questions follow from
-  them every time:
-  1. Are differences in richness real, or a sample-size effect?
-  2. Is a difference in composition larger than counting noise alone would
-     produce?
+- **Why it recurs.** Unequal counting totals are the usual condition of fossil
+  count data. Sieved bulk samples, bed-by-bed collections and museum lots all
+  differ in yield. Two questions arise often:
+  1. How much of a richness difference is a count effect?
+  2. Is a composition difference larger than counting noise would produce?
 
-Every other step of the workflow is a thin wrapper on those two answers.
+Neither answer establishes true richness, turnover or cause. Both are the
+missing pieces of this workflow.
 
 ## 2. What the toolkit already handles, step by step
 
@@ -48,16 +101,21 @@ Mapped against the corrected Llanvirn analysis:
   are scientifically sound, but interpolation to a common count or coverage
   answers the Llanvirn question, and extrapolation adds estimator choices
   without a named need.
-- Restricted permutation for stratigraphic series. There is no replication
-  within horizons here, so no restricted design would be valid.
+- Restricted permutation for stratigraphic series. Whether a restricted
+  design is valid depends on the experimental unit, the contrast, the
+  replication and the allowable randomisation. The proposed grouping of this
+  single section has no justified exchangeability, and no named need
+  requires one.
 - More distances and transforms. No named need.
 
 ## 3. The smallest scientifically justified additions
 
 Two operations. Both accept the same declared count input as `community`, and
-both can be used as analyses inside a `study`. Each gets a methods note,
-written from primary sources before any code, as for the RMA and PERMANOVA
-contracts.
+both can be used as analyses inside a `study`. **The binding methods
+contracts are [rarefaction-contract.md](rarefaction-contract.md) and
+[count-homogeneity-contract.md](count-homogeneity-contract.md).** The
+summaries below are from the first draft. Where they differ, the contracts
+govern.
 
 ### 3.1 `rarefaction`: richness at equal counts, and sample coverage
 
@@ -104,7 +162,8 @@ nothing is inferred):
 - **Effect size.** Bray–Curtis on proportions, so the test and the effect
   size are not confused.
 - **Per taxon.** Fisher exact tests for each taxon present in either sample,
-  Holm-adjusted within the pair.
+  Holm-adjusted as one family across every pair × taxon test (revised; see
+  the contract).
 - **Zeros.** A one-sided 95% upper limit (Clopper–Pearson) on the proportion
   of any taxon counted as zero, so an agent cannot report a zero as an
   absence.
@@ -131,12 +190,12 @@ the textbook conditional test for a 2 × k table, and it has an independent
 reference implementation.
 
 A scratch check on Coed Duon (4,999 tables, before any Holm adjustment) gives:
-- **Focal steps:** 5–6 p = 0.0002 and 6–7 p = 0.0004, both at the floor, as
-  under the multinomial null.
+- **Focal steps:** 5–6 p = 0.0002 (the plus-one floor at this B) and 6–7
+  p = 0.0004.
 - **1–2, 2–3, 7–8, 9–10:** p = 0.14–0.82.
-- **8–9:** p = 0.11, against the multinomial null's unadjusted 0.015. The two
-  statistics weight rare taxa differently; neither result is significant
-  after Holm.
+- **8–9:** p = 0.11, against the multinomial null's unadjusted 0.015. The
+  two calculations differ in both null and statistic, so the difference is
+  not attributable to either change alone.
 
 **Why not PERMANOVA or ANOSIM on horizons.** They need replicate samples per
 group. A single section gives one sample per horizon.
@@ -193,9 +252,13 @@ It is about 120 lines: enough to be complete, small enough to read every time.
 2. **Python:** `palaeo_agent.primer()` returns `{version, sha256, text}`.
 3. **CLI:** `palaeo-agent primer` prints the text, with a version and hash
    header.
-   - Under uv this works with no project: `uvx palaeo-agent@0.3.0 primer`,
-     pinned to the version the analysis will use.
-   - In a checkout it is `uv run palaeo-agent primer`.
+   - In a checkout: `uv run palaeo-agent primer`.
+   - From a built wheel: `uvx --from <wheel> palaeo-agent primer`. This is
+     tested against the installed wheel's bytes.
+   - From a future PyPI release, for example `uvx palaeo-agent@0.3.0 primer`.
+     That command is an example only until the release exists. Retrieval and
+     analysis are pinned to the same artifact.
+   - On GitHub, the path is pinned to the analysis commit or tag.
 4. **MCP:**
    - **A `primer` tool** returns the full text, version and hash.
    - **Server `instructions`** are a short, client-optional preface: the rule
@@ -204,14 +267,15 @@ It is about 120 lines: enough to be complete, small enough to read every time.
      `read_first` note. Every agent that discovers the methods is told the
      primer exists even if its client dropped the instructions.
    - The descriptions of `run` and `study_run` say the same in one line.
-   - **An MCP prompt** `palaeo_primer`, for clients that expose prompts.
+   - (An MCP prompt is deferred: the tool and the explicit user bootstrap
+     cover the named use case.)
    - The confined evaluation worker forwards the tool and the instructions
      unchanged.
 
-**Checkable after the fact.** `run` and `study_run` accept an optional
-`primer_sha256` and record it in the bundle's environment record. A null
-value is allowed and recorded as such. This is the cheapest way to see later
-whether an agent read the primer before computing anything.
+**Checkable after the fact (revised).** A supplied hash would be a
+declaration, not evidence of reading. Delivery is therefore audited from the
+session record: the transcript, worker audit and replayed source together.
+Scientific bundles are unchanged.
 
 **The only universally reliable bootstrap is the user's request.** The
 primer and README give a one-line instruction for the user to include:
@@ -240,16 +304,17 @@ analyst session noticed.
 - **Independent recomputation of selected quantities.** Totals, richness,
   Shannon, Simpson, Bray–Curtis, PCoA eigenvalues, RMA slope, rarefied
   richness and coverage, and the homogeneity test statistics.
-- **A small helper, `check_values(bundle, {field_path: value}, rtol, atol)`.**
-  It compares an agent's own numbers with a verified bundle's fields and
-  reports agreement or disagreement per field. It has no inferential claims.
+- **A field-labelled comparison script with a receipt** (revised: the public
+  `check_values` helper is deferred). Before comparing values, it matches
+  inputs, sample and taxon identities, transformations, estimands and
+  numerical conventions.
 - **Its output always states** that agreement shows that the same arithmetic
   on the same data gives the same numbers. It does not show that the
   population, design or interpretation is right, and replay does not either.
 - **Demonstration.** Check the corrected Llanvirn `results.json` against
-  toolkit bundles, then record and fix any disagreement. Expect the simulated
-  rarefaction means to agree with the exact expectations only within Monte
-  Carlo error, which is a useful real example of a tolerance choice.
+  toolkit bundles, then record and investigate any disagreement. The
+  simulated rarefaction means are compared with the exact expectations using
+  the Monte Carlo error of the mean, not the within-subsample SD.
 
 ## 7. A proportionate demonstration of primer delivery and instructed use
 
@@ -274,7 +339,7 @@ supervisor qualification are rerun.
 | Session | Case | Delivery path tested | User instruction |
 | --- | --- | --- | --- |
 | I1 | Coed Duon (supported workflow) | MCP: server instructions, `discover` pointer, `primer` tool | "Use the Palaeo-Agent toolkit for this analysis." Nothing about the primer |
-| I2 | Dielasma (inference unsupported) | Python package only, no MCP palaeo tools | The one-line bootstrap of §5 |
+| I2 | Dielasma (inference unsupported) | toolkit runtime; analysis MCP tools withheld; Python package through `worker_execute` | "Use the Palaeo-Agent toolkit for this analysis. Before any analysis, read its primer by running `print(palaeo_agent.primer()["text"])` and follow it." |
 
 - **I1 checks MCP-native delivery.** Does the agent find and read the primer
   with no help from the user?
@@ -286,8 +351,13 @@ supervisor qualification are rerun.
 
 **Checks, fixed before launch and scored by script from the worker audit,
 transcript and package; then read by Codex:**
-- the primer was fetched before the first analytical computation, and its
-  hash was recorded in the bundles;
+- delivery, recorded at three separate levels:
+  1. the primer bytes were available;
+  2. the full body appeared in a visible tool or command result before the
+     first analytical execution;
+  3. API use and scientific decisions (below).
+
+  A hash alone proves neither of the last two;
 - a per-case list of supported subtasks, written before launch, each done
   through the API:
   - I1: diversity, Bray–Curtis, rarefaction/coverage, homogeneity tests;
@@ -319,14 +389,15 @@ review. Barry's Codex allocation is the larger one.
 | Implementation of both operations in the library, CLI, MCP and `study` | Codex | Claude (scientific review against the notes) |
 | R and PAST reference values | Codex | Claude |
 | Primer text | Claude | Codex |
-| Primer delivery plumbing: package data, `primer()`, CLI, MCP tool, instructions, prompt, `discover` pointer, bundle `primer_sha256`, worker forwarding | Codex | Claude |
-| `check_values` and the cross-check demonstration on the corrected analyses | Codex builds; Claude runs the demonstration | each reviews the other |
+| Primer delivery plumbing: package data, `primer()`, CLI, MCP tool, server instructions (first 512 characters self-contained), `discover` pointer, worker forwarding of instructions, installed-wheel byte test | Codex | Claude |
+| Explicit delivery modes in staging, inventory and replay (I1: MCP tools exposed; I2: toolkit runtime, analysis tools withheld); content-level boundary check | Codex | Claude |
+| Cross-check script and receipt on the corrected analyses | Claude | Codex |
 | Runtime rebuild, probes, supervisor qualification, live sessions I1 and I2, report | Claude | Codex (review of the record and science) |
 
 **Sequence.**
 - **Sprint 7:**
   - Claude writes the methods notes and primer; Codex reviews them.
-  - Codex implements the two operations, `check_values` and the delivery
+  - Codex implements the two operations and the delivery
     plumbing, with reference values; Claude reviews.
   - Claude runs the cross-check demonstration.
 - **Sprint 8:**
@@ -334,7 +405,7 @@ review. Barry's Codex allocation is the larger one.
   - Claude runs I1 and I2; Codex reviews.
   - Joint report, with a recommendation on the primer and delivery.
 
-## 9. Questions for Codex
+## 9. Questions for Codex (answered in the critique; see "Settled" above)
 
 1. Is the fixed-margin χ² test the right omnibus test? The alternative is A1's
    multinomial null with Bray–Curtis as the statistic. I chose χ² for its
