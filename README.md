@@ -15,10 +15,12 @@ every feature.
 
 Developed since 30 October 2026 (v0.2.0.dev0). The first native
 Python operations include descriptive reduced-major-axis regression, an
-explicit count-community workflow and one-way free-permutation PERMANOVA, available through
+explicit count-community workflow, one-way free-permutation PERMANOVA,
+individual-count rarefaction with coverage estimates, and conditional
+count-homogeneity comparisons, available through
 the Python API, structured CLI and optional local MCP server. It saves a self-contained input snapshot,
 resolved specification, numerical results, diagnostics and integrity manifest.
-The name is provisional. No stable API or full PAST compatibility is claimed. Validation compares against PAST 5.4 outputs captured on 30-31 October 2026. PAST, its manual, the 2001 case-study pages and most of its example datasets are not distributed here; the datasets are fetched from their original source (see [THIRD_PARTY.md](THIRD_PARTY.md)).
+The name is provisional. No stable API or full PAST compatibility is claimed. Validation compares against PAST 5.4 outputs captured on 30-31 October and 5 November 2026. PAST, its manual, the 2001 case-study pages and most of its example datasets are not distributed here; the datasets are fetched from their original source (see [THIRD_PARTY.md](THIRD_PARTY.md)).
 
 - [Vision and scope](docs/vision.md)
 - [Implementation framework](docs/architecture.md)
@@ -44,6 +46,24 @@ The name is provisional. No stable API or full PAST compatibility is claimed. Va
 
 ## Use from an agent
 
+Start by reading the versioned [primer](src/palaeo_agent/primer.md):
+
+```sh
+uv run palaeo-agent primer
+```
+
+For a research session, include this in the user's request:
+
+> Use the Palaeo-Agent toolkit for this analysis. Before any analysis, read
+> its full primer (`palaeo-agent primer`, `palaeo_agent.primer()` in Python,
+> or the connected MCP `primer` tool) and follow it.
+
+Use suitable API operations for supported subtasks; declare unsupported
+operations and designs. Installing a package or opening its repository does
+not itself deliver instructions to an agent. The primer response carries its
+version, SHA-256 and exact text. Record delivery separately from scientific
+compliance and correctness.
+
 Install the optional MCP transport, then configure your agent to start the
 server with a dedicated data directory:
 
@@ -55,8 +75,9 @@ uv run --extra mcp palaeo-agent-mcp --root /absolute/path/to/session
 The tools discover methods, validate specifications, execute analyses, inspect
 and reproduce bundles, and retrieve selected results. See the [MCP guide](docs/mcp.md)
 for the tool contract and runnable examples. This local product server is
-separate from the confined evaluation worker; live comparative evaluation
-remains on hold pending a verified supervisor boundary.
+separate from the confined evaluation worker. The earlier comparative
+evaluation is closed; the [sprint-7 implementation report](docs/sprint-7-results.md)
+records readiness and limitations for the next instructed-use demonstrations.
 
 ## Run the first workflow
 
@@ -64,6 +85,7 @@ From the checkout, install the locked environment (Python 3.12.13):
 
 ```sh
 uv sync --locked
+uv run palaeo-agent primer
 uv run palaeo-agent discover
 uv run palaeo-agent validate examples/dielasma-l2.json
 uv run palaeo-agent run examples/dielasma-l2.json --output runs
@@ -106,6 +128,24 @@ Inspection checks artefact integrity, and reproduction compares numerical
 outputs. Neither certifies scientific interpretation or source authenticity.
 
 ## Community workflow and sensitivity
+
+Unequal sample counts can be examined with the two assemblage operations:
+
+```sh
+uv run palaeo-agent run examples/rarefaction-llanvirn.json --output runs
+uv run palaeo-agent run examples/count-homogeneity-llanvirn.json --output runs
+```
+
+`rarefaction` reports expected richness, conditional variance and SD at
+declared counts, plus estimated abundance coverage. It does not standardise
+by coverage or extrapolate. `count_homogeneity` compares explicitly named
+pairs using the full counts: fixed-margin Pearson Monte Carlo tests, two
+separate Holm families, signed taxon effects and pointwise limits for zeros.
+It addresses the stated counting model, not ecological cause or variation
+between replicate collections. These methods also compose with preparation
+operations in a `study`; their bundles contain numerical tables rather than
+plots. Read the [rarefaction contract](docs/rarefaction-contract.md) and
+[homogeneity contract](docs/count-homogeneity-contract.md) before use.
 
 The complete stored comparison at `benchmarks/past/community-comparison`
 contains a relative-abundance Bray-Curtis baseline and a raw-count sensitivity

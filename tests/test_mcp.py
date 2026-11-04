@@ -10,8 +10,9 @@ import pytest
 mcp = pytest.importorskip("mcp")
 from mcp import Client, StdioServerParameters
 
-from palaeo_agent.mcp_server import Transport, tool_definitions
+from palaeo_agent.mcp_server import SERVER_INSTRUCTIONS, Transport, create_server, tool_definitions
 from palaeo_agent.methods import calculate_method, parse_spec, read_inputs, summary
+from palaeo_agent.primer import primer, primer_metadata
 from palaeo_agent.runs import run
 
 REPO = Path(__file__).resolve().parents[1]
@@ -21,7 +22,9 @@ REPO = Path(__file__).resolve().parents[1]
 def materials(tmp_path):
     specs = {}
     for method, source in (("rma", "dielasma-l2"), ("community", "community-llanvirn-raw"),
-                           ("permanova", "permanova-llanvirn")):
+                           ("permanova", "permanova-llanvirn"),
+                           ("rarefaction", "rarefaction-llanvirn"),
+                           ("count_homogeneity", "count-homogeneity-llanvirn")):
         spec_path = REPO / "examples" / f"{source}.json"
         spec = json.loads(spec_path.read_text())
         for key in ("input", "metadata"):
@@ -52,7 +55,8 @@ def test_stdio_equivalence_and_fresh_reproduction(materials):
             tools = await session.list_tools()
             assert {tool.name for tool in tools.tools} == set(item["name"] for item in tool_definitions())
             discovery = unpack(await session.call_tool("discover", {}))
-            assert [m["id"] for m in discovery["method_index"]] == ["rma", "community", "permanova"]
+            assert [m["id"] for m in discovery["method_index"]] == [
+                "rma", "community", "permanova", "rarefaction", "count_homogeneity"]
             for method, spec in specs.items():
                 schema = unpack(await session.call_tool("discover", {"method": method}))
                 assert schema["input_schema"]["properties"]["method"]["const"] == method
@@ -185,3 +189,36 @@ def test_advertised_spec_is_compact_but_calls_are_fully_validated(tmp_path):
     assert len(json.dumps(definitions["run"])) < 1000 and "$defs" not in definitions["run"]
     refused = Transport(tmp_path).dispatch("validate", {"spec": {"method": "community", "input": "x"}})
     assert refused["status"] == "error" and refused["code"] in ("invalid_arguments", "invalid_spec", "invalid_request")
+
+
+def test_primer_tool_delivery_and_discovery(tmp_path):
+    async def scenario():
+        async with client(tmp_path) as session:
+            assert session.instructions == SERVER_INSTRUCTIONS
+            assert session.server_info.version == primer()["version"]
+            delivered = unpack(await session.call_tool("primer", {}))
+            assert delivered == primer()
+            assert (await session.call_tool("primer", {"bundle": "outside"})).is_error
+            discovery = unpack(await session.call_tool("discover", {}))
+            assert discovery["primer"] == primer_metadata()
+            for method in discovery["method_index"]:
+                detailed = unpack(await session.call_tool("discover", {"method": method["id"]}))
+                assert detailed["primer"] == primer_metadata()
+                assert detailed["input_schema"]["properties"]["method"]["const"] == method["id"]
+
+    asyncio.run(scenario())
+
+
+def test_primer_instructions_and_schemas(tmp_path):
+    assert len(SERVER_INSTRUCTIONS) <= 512
+    assert "primer tool" in SERVER_INSTRUCTIONS
+    assert "never bypass it with bespoke code" in SERVER_INSTRUCTIONS
+    assert create_server(tmp_path).create_initialization_options().instructions == SERVER_INSTRUCTIONS
+    definitions = {item["name"]: item for item in tool_definitions()}
+    schema = definitions["primer"]["inputSchema"]
+    assert schema["properties"] == {} and schema["additionalProperties"] is False
+    assert "required" not in schema or schema["required"] == []
+    for name in ("run", "study_run"):
+        assert "Read the primer first" in definitions[name]["description"]
+    assert {"rarefaction", "count_homogeneity"} <= set(
+        definitions["run"]["inputSchema"]["properties"]["spec"]["properties"]["method"]["enum"])

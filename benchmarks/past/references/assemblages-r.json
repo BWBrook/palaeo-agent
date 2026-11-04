@@ -1,0 +1,3153 @@
+{
+  "reference_kind": "independent_R_library_and_pinned_upstream_source_not_PAST_execution",
+  "generator": "scripts/reference_assemblages.R",
+  "generator_sha256": "b0f04a53e8a689b9b6beea9937bbd357e673b0796ff061cccbd010e0608be27b",
+  "command": "Rscript --vanilla scripts/reference_assemblages.R /path/to/pinned-iNEXT-source-directory",
+  "R": "R version 4.6.1 (2026-06-24)",
+  "packages": {
+    "vegan": "2.7.6",
+    "stats": "4.6.1",
+    "jsonlite": "2.0.0"
+  },
+  "input": {
+    "path": "benchmarks/past/legacy-data/llanvirn.dat",
+    "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+    "orientation": "taxa_by_samples"
+  },
+  "coverage_reference": {
+    "kind": "unmodified_upstream_function_executed_without_installing_package",
+    "package": "iNEXT",
+    "version": "3.0.2",
+    "function_name": "Chat.Ind",
+    "revision": "27ac0343bd4f6133fe585c49a583e7de694cfb58",
+    "source_url": "https://raw.githubusercontent.com/JohnsonHsieh/iNEXT/27ac0343bd4f6133fe585c49a583e7de694cfb58/R/iNEXT.r",
+    "source_sha256": "ebda76c6f9477c44141900314e94aa0a20498be015afe21877d6d26f170f7619",
+    "description_sha256": "73d08ae95e8956b05b5a44db8bf7d0695376d84563ac8b6c2071c9fc57c54be8",
+    "single_specimen_policy": "contract deliberately returns null; raw upstream value recorded separately"
+  },
+  "settings": {
+    "rarefaction": "vegan::rarefy(x, sample=m, se=TRUE); variance=se^2",
+    "chi_squared": "stats::chisq.test(table, correct=FALSE)",
+    "monte_carlo": "stats::chisq.test(table, simulate.p.value=TRUE, B=9999)",
+    "RNG": [
+      "Mersenne-Twister",
+      "Inversion",
+      "Rejection"
+    ],
+    "seed": 7112026,
+    "simulations": 9999,
+    "stream": "one sequential R stream in declared pair order; independent from Python streams",
+    "fisher": "stats::fisher.test(table, alternative='two.sided'); relative probability tolerance 1e-7",
+    "adjustment": "stats::p.adjust(method='holm'); one omnibus family, one pooled pair-by-taxon family",
+    "zero_limits": "stats::binom.test(0,n,alternative='less',conf.level=0.95)",
+    "monte_carlo_intervals": "stats::binom.test(b,B,conf.level=0.95)$conf.int",
+    "monte_carlo_acceptance": "absolute difference <= 6*sqrt(p_pool*(1-p_pool)*(1/B_R+1/B_Python)) + 2/min(B_R,B_Python); no RNG identity expected"
+  },
+  "rarefaction": {
+    "llanvirn": [
+      {
+        "sample_id": "1",
+        "counts": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          306,
+          0,
+          0,
+          2,
+          2,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": 321,
+        "observed_richness": 6,
+        "f1": 1,
+        "f2": 2,
+        "full_coverage": 0.99692319526172068,
+        "raw_inext_full_coverage": 0.99692319526172068,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1.0000000000000004,
+            "variance": 3.372302437298913e-15,
+            "sd": 5.8071528628915161e-08,
+            "coverage": 0.90903426791277664,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 1.5737775075103733,
+            "variance": 0.47098840793483454,
+            "sd": 0.68628595201623832,
+            "coverage": 0.95876028698830984,
+            "warnings": []
+          },
+          {
+            "size": 321,
+            "expected_richness": 6,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.99692319526172068,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "2",
+        "counts": [
+          0,
+          1,
+          0,
+          0,
+          2,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          6,
+          225,
+          1,
+          0,
+          0,
+          4,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": 243,
+        "observed_richness": 9,
+        "f1": 4,
+        "f2": 2,
+        "full_coverage": 0.98360683500143953,
+        "raw_inext_full_coverage": 0.98360683500143953,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999656,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.85783763561542437,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 1.9047751545033074,
+            "variance": 0.70837419677703084,
+            "sd": 0.84164968768308279,
+            "coverage": 0.93533408134335838,
+            "warnings": []
+          },
+          {
+            "size": 243,
+            "expected_richness": 9,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.98360683500143953,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "3",
+        "counts": [
+          0,
+          0,
+          0,
+          2,
+          4,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          2,
+          288,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": 304,
+        "observed_richness": 9,
+        "f1": 4,
+        "f2": 2,
+        "full_coverage": 0.98688538781163437,
+        "raw_inext_full_coverage": 0.98688538781163437,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1.0000000000000029,
+            "variance": 3.8385961076414794e-14,
+            "sd": 1.9592335510707954e-07,
+            "coverage": 0.8976463435817339,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 1.66098965828765,
+            "variance": 0.56253594255994277,
+            "sd": 0.75002396132386517,
+            "coverage": 0.95118718157011461,
+            "warnings": []
+          },
+          {
+            "size": 304,
+            "expected_richness": 9,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.98688538781163437,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "4",
+        "counts": [
+          0,
+          0,
+          1,
+          3,
+          3,
+          10,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          15,
+          115,
+          0,
+          0,
+          0,
+          1,
+          4,
+          0,
+          1,
+          0,
+          0
+        ],
+        "total": 156,
+        "observed_richness": 12,
+        "f1": 6,
+        "f2": 0,
+        "full_coverage": 0.96163746163746167,
+        "raw_inext_full_coverage": 0.96163746163746167,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999978,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.55558312655088704,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 3.5971188549216135,
+            "variance": 1.2175790021029091,
+            "sd": 1.1034396232249906,
+            "coverage": 0.85445703985843358,
+            "warnings": []
+          },
+          {
+            "size": 156,
+            "expected_richness": 12,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.96163746163746167,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "5",
+        "counts": [
+          3,
+          1,
+          0,
+          4,
+          3,
+          9,
+          1,
+          3,
+          0,
+          0,
+          1,
+          1,
+          13,
+          422,
+          0,
+          0,
+          2,
+          6,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": 473,
+        "observed_richness": 14,
+        "f1": 4,
+        "f2": 1,
+        "full_coverage": 0.99155228922670779,
+        "raw_inext_full_coverage": 0.99155228922670779,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.999999999999997,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.79712975239191863,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 2.3024354284330872,
+            "variance": 0.99001356567824828,
+            "sd": 0.99499425409308184,
+            "coverage": 0.90809214122623672,
+            "warnings": []
+          },
+          {
+            "size": 473,
+            "expected_richness": 14,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.99155228922670779,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "6",
+        "counts": [
+          11,
+          37,
+          0,
+          40,
+          18,
+          0,
+          0,
+          330,
+          1,
+          0,
+          0,
+          16,
+          10,
+          190,
+          0,
+          10,
+          4,
+          0,
+          28,
+          0,
+          1,
+          3,
+          3
+        ],
+        "total": 702,
+        "observed_richness": 15,
+        "f1": 2,
+        "f2": 0,
+        "full_coverage": 0.99715910242226036,
+        "raw_inext_full_coverage": 0.99715910242226036,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999722,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.30275837123163152,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 4.740860530157442,
+            "variance": 1.4414489749159158,
+            "sd": 1.2006035877490604,
+            "coverage": 0.82915450019462911,
+            "warnings": []
+          },
+          {
+            "size": 702,
+            "expected_richness": 15,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.99715910242226036,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "7",
+        "counts": [
+          0,
+          3,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          12,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          2,
+          0,
+          0
+        ],
+        "total": 26,
+        "observed_richness": 8,
+        "f1": 3,
+        "f2": 2,
+        "full_coverage": 0.89045764362220059,
+        "raw_inext_full_coverage": 0.89045764362220059,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1.0000000000000009,
+            "variance": 9.1038288019262836e-15,
+            "sd": 9.5413986406219729e-08,
+            "coverage": 0.23692307692308612,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 5.8621725669672902,
+            "variance": 0.94081380196111852,
+            "sd": 0.96995556700351926,
+            "coverage": 0.77066765378920632,
+            "warnings": []
+          },
+          {
+            "size": 26,
+            "expected_richness": 8,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.89045764362220059,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "8",
+        "counts": [
+          0,
+          8,
+          0,
+          1,
+          4,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          5,
+          4,
+          25,
+          0,
+          1,
+          1,
+          0,
+          15,
+          0,
+          3,
+          0,
+          0
+        ],
+        "total": 68,
+        "observed_richness": 11,
+        "f1": 4,
+        "f2": 0,
+        "full_coverage": 0.9417560127499276,
+        "raw_inext_full_coverage": 0.9417560127499276,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1.0000000000000051,
+            "variance": 7.2275518903097691e-14,
+            "sd": 2.6884106625122899e-07,
+            "coverage": 0.20105355575067219,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 5.8772189884789494,
+            "variance": 1.2891195027971325,
+            "sd": 1.1353939857147088,
+            "coverage": 0.78956600816093903,
+            "warnings": []
+          },
+          {
+            "size": 68,
+            "expected_richness": 11,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.9417560127499276,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "9",
+        "counts": [
+          0,
+          3,
+          0,
+          0,
+          5,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          2,
+          36,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          2,
+          0,
+          0
+        ],
+        "total": 57,
+        "observed_richness": 7,
+        "f1": 1,
+        "f2": 2,
+        "full_coverage": 0.98362573099415207,
+        "raw_inext_full_coverage": 0.98362573099415207,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999956,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.42167919799499487,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 4.2233482989389612,
+            "variance": 0.98583657864113361,
+            "sd": 0.99289303484370039,
+            "coverage": 0.84873503363283453,
+            "warnings": []
+          },
+          {
+            "size": 57,
+            "expected_richness": 7,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.98362573099415207,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "10",
+        "counts": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "total": 13,
+        "observed_richness": 6,
+        "f1": 4,
+        "f2": 1,
+        "full_coverage": 0.70461538461538464,
+        "raw_inext_full_coverage": 0.70461538461538464,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999978,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.28205128205128149,
+            "warnings": []
+          },
+          {
+            "size": 13,
+            "expected_richness": 6,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.70461538461538464,
+            "warnings": []
+          }
+        ]
+      }
+    ],
+    "fixtures": [
+      {
+        "sample_id": "enumeration",
+        "counts": [
+          3,
+          2,
+          1,
+          1
+        ],
+        "total": 7,
+        "observed_richness": 4,
+        "f1": 2,
+        "f2": 1,
+        "full_coverage": 0.75510204081632659,
+        "raw_inext_full_coverage": 0.75510204081632659,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999989,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.19047619047619091,
+            "warnings": []
+          },
+          {
+            "size": 2,
+            "expected_richness": 1.8095238095238102,
+            "variance": 0.15419501133787075,
+            "sd": 0.39267672624930389,
+            "coverage": 0.35238095238095268,
+            "warnings": []
+          },
+          {
+            "size": 3,
+            "expected_richness": 2.4571428571428577,
+            "variance": 0.30530612244898064,
+            "sd": 0.55254513159467855,
+            "coverage": 0.48571428571428577,
+            "warnings": []
+          },
+          {
+            "size": 5,
+            "expected_richness": 3.3809523809523809,
+            "variance": 0.33106575963718826,
+            "sd": 0.57538314159974158,
+            "coverage": 0.66666666666666674,
+            "warnings": []
+          },
+          {
+            "size": 7,
+            "expected_richness": 4,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.75510204081632659,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "all_singletons",
+        "counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "total": 4,
+        "observed_richness": 4,
+        "f1": 4,
+        "f2": 0,
+        "full_coverage": 0.18181818181818177,
+        "raw_inext_full_coverage": 0.18181818181818177,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999956,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1.1102230246251565e-16,
+            "warnings": []
+          },
+          {
+            "size": 2,
+            "expected_richness": 2,
+            "variance": 1.1102230246251568e-16,
+            "sd": 1.0536712127723509e-08,
+            "coverage": 0,
+            "warnings": []
+          },
+          {
+            "size": 4,
+            "expected_richness": 4,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.18181818181818177,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "no_doubletons",
+        "counts": [
+          5,
+          1,
+          1
+        ],
+        "total": 7,
+        "observed_richness": 3,
+        "f1": 2,
+        "f2": 0,
+        "full_coverage": 0.7857142857142857,
+        "raw_inext_full_coverage": 0.7857142857142857,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999989,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.47619047619047628,
+            "warnings": []
+          },
+          {
+            "size": 2,
+            "expected_richness": 1.5238095238095244,
+            "variance": 0.2494331065759646,
+            "sd": 0.49943278484293019,
+            "coverage": 0.66666666666666674,
+            "warnings": []
+          },
+          {
+            "size": 7,
+            "expected_richness": 3,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.7857142857142857,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "no_singletons",
+        "counts": [
+          4,
+          2,
+          2
+        ],
+        "total": 8,
+        "observed_richness": 3,
+        "f1": 0,
+        "f2": 2,
+        "full_coverage": 1,
+        "raw_inext_full_coverage": 1,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 0.99999999999999967,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 0.2857142857142857,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 2"
+            ]
+          },
+          {
+            "size": 2,
+            "expected_richness": 1.7142857142857144,
+            "variance": 0.20408163265306165,
+            "sd": 0.45175395145262609,
+            "coverage": 0.50000000000000011,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 2"
+            ]
+          },
+          {
+            "size": 8,
+            "expected_richness": 3,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 2"
+            ]
+          }
+        ]
+      },
+      {
+        "sample_id": "boundary_one_singleton",
+        "counts": [
+          5,
+          1
+        ],
+        "total": 6,
+        "observed_richness": 2,
+        "f1": 1,
+        "f2": 0,
+        "full_coverage": 1,
+        "raw_inext_full_coverage": 1,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1,
+            "variance": 5.5511151231257827e-17,
+            "sd": 7.4505805969238281e-09,
+            "coverage": 0.66666666666666663,
+            "warnings": []
+          },
+          {
+            "size": 2,
+            "expected_richness": 1.333333333333333,
+            "variance": 0.22222222222222215,
+            "sd": 0.47140452079103162,
+            "coverage": 0.83333333333333337,
+            "warnings": []
+          },
+          {
+            "size": 6,
+            "expected_richness": 2,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1,
+            "warnings": []
+          }
+        ]
+      },
+      {
+        "sample_id": "one_taxon",
+        "counts": [
+          7
+        ],
+        "total": 7,
+        "observed_richness": 1,
+        "f1": 0,
+        "f2": 0,
+        "full_coverage": 1,
+        "raw_inext_full_coverage": 1,
+        "coverage_policy": "iNEXT_Chat.Ind",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 7"
+            ]
+          },
+          {
+            "size": 2,
+            "expected_richness": 1,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 7"
+            ]
+          },
+          {
+            "size": 7,
+            "expected_richness": 1,
+            "variance": 0,
+            "sd": 0,
+            "coverage": 1,
+            "warnings": [
+              "most observed count data have counts 1, but smallest count is 7"
+            ]
+          }
+        ]
+      },
+      {
+        "sample_id": "single_specimen",
+        "counts": [
+          1
+        ],
+        "total": 1,
+        "observed_richness": 1,
+        "f1": 1,
+        "f2": 0,
+        "full_coverage": null,
+        "raw_inext_full_coverage": 1,
+        "coverage_policy": "coverage_unavailable_single_specimen",
+        "estimates": [
+          {
+            "size": 1,
+            "expected_richness": 1,
+            "variance": 0,
+            "sd": 0,
+            "coverage": null,
+            "warnings": []
+          }
+        ]
+      }
+    ]
+  },
+  "count_homogeneity": {
+    "pairs": [
+      {
+        "sample_ids": [
+          "1",
+          "2"
+        ],
+        "taxon_ids": [
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_0_Talin",
+          "_1_Basil",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Oxopl",
+          "_0_Horde",
+          "_0_Salop",
+          "_0_Dalma"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_fenes",
+          "_0_Marro",
+          "_0_Ortho",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Rostr",
+          "_0_Tripl",
+          "_0_Glypt",
+          "_0_Hespe",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [0, 1],
+          [1, 0],
+          [0, 2],
+          [0, 1],
+          [0, 1],
+          [6, 6],
+          [306, 225],
+          [0, 1],
+          [2, 0],
+          [2, 4],
+          [4, 2]
+        ],
+        "pearson_chi_squared": 12.134112182125982,
+        "expected_counts": [
+          [0.56914893617021278, 0.43085106382978722],
+          [0.56914893617021278, 0.43085106382978722],
+          [1.1382978723404256, 0.86170212765957444],
+          [0.56914893617021278, 0.43085106382978722],
+          [0.56914893617021278, 0.43085106382978722],
+          [6.8297872340425529, 5.1702127659574471],
+          [302.218085106383, 228.78191489361703],
+          [0.56914893617021278, 0.43085106382978722],
+          [1.1382978723404256, 0.86170212765957444],
+          [3.4148936170212765, 2.5851063829787235],
+          [3.4148936170212765, 2.5851063829787235]
+        ],
+        "p_value": 0.20399999999999999,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [0, 321],
+              [1, 242]
+            ],
+            "p_value": 0.43085106382978722,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [1, 320],
+              [0, 243]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [0, 321],
+              [2, 241]
+            ],
+            "p_value": 0.18519708249877181,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Talin",
+            "table": [
+              [0, 321],
+              [1, 242]
+            ],
+            "p_value": 0.43085106382978722,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [0, 321],
+              [1, 242]
+            ],
+            "p_value": 0.43085106382978722,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [6, 315],
+              [6, 237]
+            ],
+            "p_value": 0.77010784921438624,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [306, 15],
+              [225, 18]
+            ],
+            "p_value": 0.20516872234152128,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Oxopl",
+            "table": [
+              [0, 321],
+              [1, 242]
+            ],
+            "p_value": 0.43085106382978722,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [2, 319],
+              [0, 243]
+            ],
+            "p_value": 0.5086920373379693,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Salop",
+            "table": [
+              [2, 319],
+              [4, 239]
+            ],
+            "p_value": 0.41034303879212997,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [4, 317],
+              [2, 241]
+            ],
+            "p_value": 0.70363435317810918,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 2039,
+          "tail_probability_interval": [0.19606019359986193, 0.21195340725471168]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.61199999999999999
+      },
+      {
+        "sample_ids": [
+          "2",
+          "3"
+        ],
+        "taxon_ids": [
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_0_Talin",
+          "_0_Marro",
+          "_1_Basil",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Oxopl",
+          "_0_Salop",
+          "_0_Dalma"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_fenes",
+          "_0_Ortho",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Glypt",
+          "_0_Hespe",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [1, 0],
+          [0, 2],
+          [2, 4],
+          [1, 1],
+          [0, 1],
+          [1, 1],
+          [0, 1],
+          [6, 2],
+          [225, 288],
+          [1, 0],
+          [4, 0],
+          [2, 4]
+        ],
+        "pearson_chi_squared": 14.447284230855452,
+        "expected_counts": [
+          [0.44424131627056673, 0.55575868372943327],
+          [0.88848263254113347, 1.1115173674588665],
+          [2.6654478976234004, 3.3345521023765996],
+          [0.88848263254113347, 1.1115173674588665],
+          [0.44424131627056673, 0.55575868372943327],
+          [0.88848263254113347, 1.1115173674588665],
+          [0.44424131627056673, 0.55575868372943327],
+          [3.5539305301645339, 4.4460694698354661],
+          [227.89579524680073, 285.10420475319927],
+          [0.44424131627056673, 0.55575868372943327],
+          [1.7769652650822669, 2.2230347349177331],
+          [2.6654478976234004, 3.3345521023765996]
+        ],
+        "p_value": 0.14499999999999999,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [1, 242],
+              [0, 304]
+            ],
+            "p_value": 0.44424131627056684,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [0, 243],
+              [2, 302]
+            ],
+            "p_value": 0.50531369909797696,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [2, 241],
+              [4, 300]
+            ],
+            "p_value": 0.69743593542865345,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Talin",
+            "table": [
+              [1, 242],
+              [1, 303]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Marro",
+            "table": [
+              [0, 243],
+              [1, 303]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [1, 242],
+              [1, 303]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [0, 243],
+              [1, 303]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [6, 237],
+              [2, 302]
+            ],
+            "p_value": 0.14749645868970174,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [225, 18],
+              [288, 16]
+            ],
+            "p_value": 0.37326594568300464,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Oxopl",
+            "table": [
+              [1, 242],
+              [0, 304]
+            ],
+            "p_value": 0.44424131627056684,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Salop",
+            "table": [
+              [4, 239],
+              [0, 304]
+            ],
+            "p_value": 0.038412675091078881,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [2, 241],
+              [4, 300]
+            ],
+            "p_value": 0.69743593542865345,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 1449,
+          "tail_probability_interval": [0.13806892869100468, 0.15196755955391772]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.57999999999999996
+      },
+      {
+        "sample_ids": [
+          "3",
+          "4"
+        ],
+        "taxon_ids": [
+          "_0_fenes",
+          "_0_praso",
+          "_0_Rbryo",
+          "_0_Talin",
+          "_0_Marro",
+          "_1_Basil",
+          "_0_Nucul",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Salop",
+          "_0_Dalma",
+          "_0_Hespe"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_crino",
+          "_0_Ortho",
+          "_0_Gastr",
+          "_0_Oxopl",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Glypt",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [0, 1],
+          [2, 3],
+          [4, 3],
+          [1, 10],
+          [1, 0],
+          [1, 1],
+          [0, 1],
+          [1, 1],
+          [2, 15],
+          [288, 115],
+          [0, 1],
+          [4, 4],
+          [0, 1]
+        ],
+        "pearson_chi_squared": 54.987920698737035,
+        "expected_counts": [
+          [0.66086956521739126, 0.33913043478260868],
+          [3.3043478260869565, 1.6956521739130435],
+          [4.6260869565217391, 2.3739130434782609],
+          [7.2695652173913041, 3.7304347826086954],
+          [0.66086956521739126, 0.33913043478260868],
+          [1.3217391304347825, 0.67826086956521736],
+          [0.66086956521739126, 0.33913043478260868],
+          [1.3217391304347825, 0.67826086956521736],
+          [11.234782608695653, 5.7652173913043478],
+          [266.33043478260868, 136.66956521739129],
+          [0.66086956521739126, 0.33913043478260868],
+          [5.2869565217391301, 2.7130434782608694],
+          [0.66086956521739126, 0.33913043478260868]
+        ],
+        "p_value": 0.0001,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_fenes",
+            "table": [
+              [0, 304],
+              [1, 155]
+            ],
+            "p_value": 0.33913043478260874,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [2, 302],
+              [3, 153]
+            ],
+            "p_value": 0.34212720099119059,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [4, 300],
+              [3, 153]
+            ],
+            "p_value": 0.693590511979568,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Talin",
+            "table": [
+              [1, 303],
+              [10, 146]
+            ],
+            "p_value": 0.00012828060752465822,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.014110866827712405
+          },
+          {
+            "taxon_id": "_0_Marro",
+            "table": [
+              [1, 303],
+              [0, 156]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [1, 303],
+              [1, 155]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Nucul",
+            "table": [
+              [0, 304],
+              [1, 155]
+            ],
+            "p_value": 0.33913043478260874,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [1, 303],
+              [1, 155]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [2, 302],
+              [15, 141]
+            ],
+            "p_value": 3.8123232381359883e-06,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.00043079252590936667
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [288, 16],
+              [115, 41]
+            ],
+            "p_value": 6.6796666437834291e-10,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 7.7484133067887772e-08
+          },
+          {
+            "taxon_id": "_0_Salop",
+            "table": [
+              [0, 304],
+              [1, 155]
+            ],
+            "p_value": 0.33913043478260874,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [4, 300],
+              [4, 152]
+            ],
+            "p_value": 0.45256641875378317,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [0, 304],
+              [1, 155]
+            ],
+            "p_value": 0.33913043478260874,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 0,
+          "tail_probability_interval": [0, 0.0003688567934951887]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.00090000000000000008
+      },
+      {
+        "sample_ids": [
+          "4",
+          "5"
+        ],
+        "taxon_ids": [
+          "_0_hyalo",
+          "_0_crino",
+          "_0_fenes",
+          "_0_praso",
+          "_0_Rbryo",
+          "_0_Talin",
+          "_0_Marro",
+          "_1_Basil",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Horde",
+          "_0_Salop",
+          "_0_Dalma",
+          "_0_Hespe"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_Ortho",
+          "_0_Oxopl",
+          "_0_Tripl",
+          "_0_Glypt",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [0, 3],
+          [0, 1],
+          [1, 0],
+          [3, 4],
+          [3, 3],
+          [10, 9],
+          [0, 1],
+          [1, 3],
+          [1, 0],
+          [0, 1],
+          [1, 1],
+          [15, 13],
+          [115, 422],
+          [0, 2],
+          [1, 6],
+          [4, 4],
+          [1, 0]
+        ],
+        "pearson_chi_squared": 42.439237263112595,
+        "expected_counts": [
+          [0.7440381558028617, 2.2559618441971385],
+          [0.24801271860095389, 0.75198728139904614],
+          [0.24801271860095389, 0.75198728139904614],
+          [1.7360890302066774, 5.2639109697933231],
+          [1.4880763116057234, 4.511923688394277],
+          [4.7122416534181237, 14.287758346581876],
+          [0.24801271860095389, 0.75198728139904614],
+          [0.99205087440381556, 3.0079491255961845],
+          [0.24801271860095389, 0.75198728139904614],
+          [0.24801271860095389, 0.75198728139904614],
+          [0.49602543720190778, 1.5039745627980923],
+          [6.9443561208267095, 21.055643879173292],
+          [133.18282988871223, 403.81717011128774],
+          [0.49602543720190778, 1.5039745627980923],
+          [1.7360890302066774, 5.2639109697933231],
+          [1.9841017488076311, 6.0158982511923691],
+          [0.24801271860095389, 0.75198728139904614]
+        ],
+        "p_value": 0.0001,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_hyalo",
+            "table": [
+              [0, 156],
+              [3, 470]
+            ],
+            "p_value": 0.99999999999999989,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [0, 156],
+              [1, 472]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_fenes",
+            "table": [
+              [1, 155],
+              [0, 473]
+            ],
+            "p_value": 0.24801271860095395,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [3, 153],
+              [4, 469]
+            ],
+            "p_value": 0.37310585690891479,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [3, 153],
+              [3, 470]
+            ],
+            "p_value": 0.16534743279466779,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Talin",
+            "table": [
+              [10, 146],
+              [9, 464]
+            ],
+            "p_value": 0.011554834784769858,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Marro",
+            "table": [
+              [0, 156],
+              [1, 472]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [1, 155],
+              [3, 470]
+            ],
+            "p_value": 0.99999999999999989,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Nucul",
+            "table": [
+              [1, 155],
+              [0, 473]
+            ],
+            "p_value": 0.24801271860095395,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Gastr",
+            "table": [
+              [0, 156],
+              [1, 472]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [1, 155],
+              [1, 472]
+            ],
+            "p_value": 0.43481210697396527,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [15, 141],
+              [13, 460]
+            ],
+            "p_value": 0.0010553163337143215,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.11291884770743241
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [115, 41],
+              [422, 51]
+            ],
+            "p_value": 6.4970148436908057e-06,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.00072116864764967944
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [0, 156],
+              [2, 471]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Salop",
+            "table": [
+              [1, 155],
+              [6, 467]
+            ],
+            "p_value": 0.99999999999999989,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [4, 152],
+              [4, 469]
+            ],
+            "p_value": 0.10970019974228604,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [1, 155],
+              [0, 473]
+            ],
+            "p_value": 0.24801271860095395,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 0,
+          "tail_probability_interval": [0, 0.0003688567934951887]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.00090000000000000008
+      },
+      {
+        "sample_ids": [
+          "5",
+          "6"
+        ],
+        "taxon_ids": [
+          "_0_hyalo",
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_0_Talin",
+          "_0_Marro",
+          "_1_Basil",
+          "_0_Ortho",
+          "_0_Gastr",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Salop",
+          "_0_Dalma",
+          "_0_Hespe",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_fenes",
+          "_0_Nucul",
+          "_0_Oxopl",
+          "_0_Glypt"
+        ],
+        "observed_counts": [
+          [3, 11],
+          [1, 37],
+          [4, 40],
+          [3, 18],
+          [9, 0],
+          [1, 0],
+          [3, 330],
+          [0, 1],
+          [1, 0],
+          [1, 16],
+          [13, 10],
+          [422, 190],
+          [0, 10],
+          [2, 4],
+          [6, 0],
+          [4, 28],
+          [0, 1],
+          [0, 3],
+          [0, 3]
+        ],
+        "pearson_chi_squared": 530.7226870965153,
+        "expected_counts": [
+          [5.6357446808510634, 8.3642553191489366],
+          [15.297021276595745, 22.702978723404254],
+          [17.712340425531917, 26.287659574468083],
+          [8.453617021276596, 12.546382978723404],
+          [3.6229787234042554, 5.3770212765957446],
+          [0.40255319148936169, 0.59744680851063825],
+          [134.05021276595744, 198.94978723404256],
+          [0.40255319148936169, 0.59744680851063825],
+          [0.40255319148936169, 0.59744680851063825],
+          [6.8434042553191485, 10.156595744680851],
+          [9.2587234042553188, 13.741276595744681],
+          [246.36255319148935, 365.63744680851062],
+          [4.0255319148936168, 5.9744680851063832],
+          [2.4153191489361703, 3.5846808510638297],
+          [2.4153191489361703, 3.5846808510638297],
+          [12.881702127659574, 19.118297872340424],
+          [0.40255319148936169, 0.59744680851063825],
+          [1.2076595744680851, 1.7923404255319149],
+          [1.2076595744680851, 1.7923404255319149]
+        ],
+        "p_value": 0.0001,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_hyalo",
+            "table": [
+              [3, 470],
+              [11, 691]
+            ],
+            "p_value": 0.17853715636342249,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [1, 472],
+              [37, 665]
+            ],
+            "p_value": 7.8049828073461009e-08,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 8.9757302284480163e-06
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [4, 469],
+              [40, 662]
+            ],
+            "p_value": 5.3396775098877027e-06,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.00059804388110742273
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [3, 470],
+              [18, 684]
+            ],
+            "p_value": 0.013405149923858131,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Talin",
+            "table": [
+              [9, 464],
+              [0, 702]
+            ],
+            "p_value": 0.00026515132167844808,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.028901494062950839
+          },
+          {
+            "taxon_id": "_0_Marro",
+            "table": [
+              [1, 472],
+              [0, 702]
+            ],
+            "p_value": 0.40255319148936192,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [3, 470],
+              [330, 372]
+            ],
+            "p_value": 8.151589580093911e-87,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 9.5373598087098763e-85
+          },
+          {
+            "taxon_id": "_0_Ortho",
+            "table": [
+              [0, 473],
+              [1, 701]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Gastr",
+            "table": [
+              [1, 472],
+              [0, 702]
+            ],
+            "p_value": 0.40255319148936192,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [1, 472],
+              [16, 686]
+            ],
+            "p_value": 0.0022983652261260516,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.24362671396936147
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [13, 460],
+              [10, 692]
+            ],
+            "p_value": 0.13285020016599086,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [422, 51],
+              [190, 512]
+            ],
+            "p_value": 9.525235876558126e-107,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1.1239778334338588e-104
+          },
+          {
+            "taxon_id": "_0_Tripl",
+            "table": [
+              [0, 473],
+              [10, 692]
+            ],
+            "p_value": 0.0073474034858950141,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.74943515556129148
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [2, 471],
+              [4, 698]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Salop",
+            "table": [
+              [6, 467],
+              [0, 702]
+            ],
+            "p_value": 0.0041750939832094301,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.43003468027057129
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [4, 469],
+              [28, 674]
+            ],
+            "p_value": 0.00079784542399328605,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.086167305791274892
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [0, 473],
+              [1, 701]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Schiz",
+            "table": [
+              [0, 473],
+              [3, 699]
+            ],
+            "p_value": 0.2778730653521333,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Pseud",
+            "table": [
+              [0, 473],
+              [3, 699]
+            ],
+            "p_value": 0.2778730653521333,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 0,
+          "tail_probability_interval": [0, 0.0003688567934951887]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.00090000000000000008
+      },
+      {
+        "sample_ids": [
+          "6",
+          "7"
+        ],
+        "taxon_ids": [
+          "_0_hyalo",
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_1_Basil",
+          "_0_Ortho",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Dalma",
+          "_0_Glypt",
+          "_0_Hespe",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_fenes",
+          "_0_Talin",
+          "_0_Marro",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Oxopl",
+          "_0_Salop"
+        ],
+        "observed_counts": [
+          [11, 0],
+          [37, 3],
+          [40, 1],
+          [18, 2],
+          [330, 0],
+          [1, 0],
+          [16, 0],
+          [10, 1],
+          [190, 12],
+          [10, 0],
+          [4, 0],
+          [28, 4],
+          [0, 1],
+          [1, 2],
+          [3, 0],
+          [3, 0]
+        ],
+        "pearson_chi_squared": 91.697003738314223,
+        "expected_counts": [
+          [10.607142857142858, 0.39285714285714285],
+          [38.571428571428569, 1.4285714285714286],
+          [39.535714285714285, 1.4642857142857142],
+          [19.285714285714285, 0.7142857142857143],
+          [318.21428571428572, 11.785714285714286],
+          [0.9642857142857143, 0.035714285714285712],
+          [15.428571428571429, 0.5714285714285714],
+          [10.607142857142858, 0.39285714285714285],
+          [194.78571428571428, 7.2142857142857144],
+          [9.6428571428571423, 0.35714285714285715],
+          [3.8571428571428572, 0.14285714285714285],
+          [30.857142857142858, 1.1428571428571428],
+          [0.9642857142857143, 0.035714285714285712],
+          [2.8928571428571428, 0.10714285714285714],
+          [2.8928571428571428, 0.10714285714285714],
+          [2.8928571428571428, 0.10714285714285714]
+        ],
+        "p_value": 0.00040000000000000002,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_hyalo",
+            "table": [
+              [11, 691],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [37, 665],
+              [3, 23]
+            ],
+            "p_value": 0.1664914178477675,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [40, 662],
+              [1, 25]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [18, 684],
+              [2, 24]
+            ],
+            "p_value": 0.15727936565689229,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [330, 372],
+              [0, 26]
+            ],
+            "p_value": 1.2681180402394174e-07,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1.4456545658729359e-05
+          },
+          {
+            "taxon_id": "_0_Ortho",
+            "table": [
+              [1, 701],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [16, 686],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [10, 692],
+              [1, 25]
+            ],
+            "p_value": 0.33160096221210927,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [190, 512],
+              [12, 14]
+            ],
+            "p_value": 0.043371880577232361,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Tripl",
+            "table": [
+              [10, 692],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [4, 698],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [28, 674],
+              [4, 22]
+            ],
+            "p_value": 0.023247463422737369,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Glypt",
+            "table": [
+              [0, 702],
+              [1, 25]
+            ],
+            "p_value": 0.035714285714285698,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [1, 701],
+              [2, 24]
+            ],
+            "p_value": 0.003603218089900597,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.3783378994395627
+          },
+          {
+            "taxon_id": "_0_Schiz",
+            "table": [
+              [3, 699],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Pseud",
+            "table": [
+              [3, 699],
+              [0, 26]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 3,
+          "tail_probability_interval": [6.1877673943221478e-05, 0.00087656215345155528]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.0024000000000000002
+      },
+      {
+        "sample_ids": [
+          "7",
+          "8"
+        ],
+        "taxon_ids": [
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_1_Basil",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Dalma",
+          "_0_Glypt",
+          "_0_Hespe"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_fenes",
+          "_0_Talin",
+          "_0_Marro",
+          "_0_Ortho",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Oxopl",
+          "_0_Salop",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [3, 8],
+          [1, 1],
+          [2, 4],
+          [0, 1],
+          [0, 5],
+          [1, 4],
+          [12, 25],
+          [0, 1],
+          [0, 1],
+          [4, 15],
+          [1, 0],
+          [2, 3]
+        ],
+        "pearson_chi_squared": 7.6333258337902299,
+        "expected_counts": [
+          [3.0425531914893615, 7.957446808510638],
+          [0.55319148936170215, 1.446808510638298],
+          [1.6595744680851063, 4.3404255319148932],
+          [0.27659574468085107, 0.72340425531914898],
+          [1.3829787234042554, 3.6170212765957448],
+          [1.3829787234042554, 3.6170212765957448],
+          [10.23404255319149, 26.76595744680851],
+          [0.27659574468085107, 0.72340425531914898],
+          [0.27659574468085107, 0.72340425531914898],
+          [5.2553191489361701, 13.74468085106383],
+          [0.27659574468085107, 0.72340425531914898],
+          [1.3829787234042554, 3.6170212765957448]
+        ],
+        "p_value": 0.81200000000000006,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [3, 23],
+              [8, 60]
+            ],
+            "p_value": 0.99999999999999989,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [1, 25],
+              [1, 67]
+            ],
+            "p_value": 0.47883779455502173,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [2, 24],
+              [4, 64]
+            ],
+            "p_value": 0.66713123705545085,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [0, 26],
+              [1, 67]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [0, 26],
+              [5, 63]
+            ],
+            "p_value": 0.31752568334586179,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [1, 25],
+              [4, 64]
+            ],
+            "p_value": 0.99999999999999978,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [12, 14],
+              [25, 43]
+            ],
+            "p_value": 0.48121428505934999,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Tripl",
+            "table": [
+              [0, 26],
+              [1, 67]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [0, 26],
+              [1, 67]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [4, 22],
+              [15, 53]
+            ],
+            "p_value": 0.57457149690966158,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Glypt",
+            "table": [
+              [1, 25],
+              [0, 68]
+            ],
+            "p_value": 0.27659574468085119,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [2, 24],
+              [3, 65]
+            ],
+            "p_value": 0.61425364710853037,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 8119,
+          "tail_probability_interval": [0.80418225008715771, 0.81959800090707413]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.81200000000000006
+      },
+      {
+        "sample_ids": [
+          "8",
+          "9"
+        ],
+        "taxon_ids": [
+          "_0_crino",
+          "_0_praso",
+          "_0_Rbryo",
+          "_1_Basil",
+          "_0_Rostr",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Dalma",
+          "_0_Hespe"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_fenes",
+          "_0_Talin",
+          "_0_Marro",
+          "_0_Ortho",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Oxopl",
+          "_0_Salop",
+          "_0_Glypt",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [8, 3],
+          [1, 0],
+          [4, 5],
+          [1, 1],
+          [5, 0],
+          [4, 2],
+          [25, 36],
+          [1, 0],
+          [1, 0],
+          [15, 8],
+          [3, 2]
+        ],
+        "pearson_chi_squared": 14.508903337939799,
+        "expected_counts": [
+          [5.984, 5.016],
+          [0.54400000000000004, 0.45600000000000002],
+          [4.8959999999999999, 4.1040000000000001],
+          [1.0880000000000001, 0.91200000000000003],
+          [2.7200000000000002, 2.2799999999999998],
+          [3.2639999999999998, 2.7360000000000002],
+          [33.183999999999997, 27.815999999999999],
+          [0.54400000000000004, 0.45600000000000002],
+          [0.54400000000000004, 0.45600000000000002],
+          [12.512, 10.488],
+          [2.7200000000000002, 2.2799999999999998]
+        ],
+        "p_value": 0.1051,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [8, 60],
+              [3, 54]
+            ],
+            "p_value": 0.3423333726111521,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_praso",
+            "table": [
+              [1, 67],
+              [0, 57]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [4, 64],
+              [5, 52]
+            ],
+            "p_value": 0.73070222102520388,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [1, 67],
+              [1, 56]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rostr",
+            "table": [
+              [5, 63],
+              [0, 57]
+            ],
+            "p_value": 0.062299725271181883,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [4, 64],
+              [2, 55]
+            ],
+            "p_value": 0.6873776940836569,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [25, 43],
+              [36, 21]
+            ],
+            "p_value": 0.0041073083394068902,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 0.42716006729831657
+          },
+          {
+            "taxon_id": "_0_Tripl",
+            "table": [
+              [1, 67],
+              [0, 57]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Horde",
+            "table": [
+              [1, 67],
+              [0, 57]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [15, 53],
+              [8, 49]
+            ],
+            "p_value": 0.35426042734432422,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [3, 65],
+              [2, 55]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 1050,
+          "tail_probability_interval": [0.099067262068695316, 0.11118488763210321]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.52549999999999997
+      },
+      {
+        "sample_ids": [
+          "9",
+          "10"
+        ],
+        "taxon_ids": [
+          "_0_crino",
+          "_0_Rbryo",
+          "_1_Basil",
+          "_0_Macro",
+          "_3_Sower",
+          "_0_Dalma",
+          "_0_Hespe"
+        ],
+        "taxa_absent_from_pair": [
+          "_0_hyalo",
+          "_0_fenes",
+          "_0_praso",
+          "_0_Talin",
+          "_0_Marro",
+          "_0_Ortho",
+          "_0_Nucul",
+          "_0_Gastr",
+          "_0_Rostr",
+          "_0_Oxopl",
+          "_0_Tripl",
+          "_0_Horde",
+          "_0_Salop",
+          "_0_Glypt",
+          "_0_Schiz",
+          "_0_Pseud"
+        ],
+        "observed_counts": [
+          [3, 1],
+          [5, 1],
+          [1, 2],
+          [2, 1],
+          [36, 7],
+          [8, 0],
+          [2, 1]
+        ],
+        "pearson_chi_squared": 7.5511303601878863,
+        "expected_counts": [
+          [3.2571428571428571, 0.74285714285714288],
+          [4.8857142857142861, 1.1142857142857143],
+          [2.4428571428571431, 0.55714285714285716],
+          [2.4428571428571431, 0.55714285714285716],
+          [35.014285714285712, 7.9857142857142858],
+          [6.5142857142857142, 1.4857142857142858],
+          [2.4428571428571431, 0.55714285714285716]
+        ],
+        "p_value": 0.2631,
+        "taxon_tests": [
+          {
+            "taxon_id": "_0_crino",
+            "table": [
+              [3, 54],
+              [1, 12]
+            ],
+            "p_value": 0.56918731152422031,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Rbryo",
+            "table": [
+              [5, 52],
+              [1, 12]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_1_Basil",
+            "table": [
+              [1, 56],
+              [2, 11]
+            ],
+            "p_value": 0.086445012787723763,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Macro",
+            "table": [
+              [2, 55],
+              [1, 12]
+            ],
+            "p_value": 0.465473145780051,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_3_Sower",
+            "table": [
+              [36, 21],
+              [7, 6]
+            ],
+            "p_value": 0.54486488538671463,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Dalma",
+            "table": [
+              [8, 49],
+              [0, 13]
+            ],
+            "p_value": 0.33609464551557161,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "_0_Hespe",
+            "table": [
+              [2, 55],
+              [1, 12]
+            ],
+            "p_value": 0.465473145780051,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 2630,
+          "tail_probability_interval": [0.25441661074008892, 0.27177421499529131]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.61199999999999999
+      }
+    ],
+    "omnibus_family_size": 9,
+    "taxon_family_size": 118
+  },
+  "tiny_count_homogeneity": {
+    "pairs": [
+      {
+        "sample_ids": [
+          "a",
+          "b"
+        ],
+        "taxon_ids": [
+          "t1",
+          "t2",
+          "t3"
+        ],
+        "taxa_absent_from_pair": [
+          "absent"
+        ],
+        "observed_counts": [
+          [2, 0],
+          [1, 1],
+          [0, 2]
+        ],
+        "pearson_chi_squared": 4,
+        "expected_counts": [
+          [1, 1],
+          [1, 1],
+          [1, 1]
+        ],
+        "p_value": 0.60089999999999999,
+        "taxon_tests": [
+          {
+            "taxon_id": "t1",
+            "table": [
+              [2, 1],
+              [0, 3]
+            ],
+            "p_value": 0.39999999999999997,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "t2",
+            "table": [
+              [1, 2],
+              [1, 2]
+            ],
+            "p_value": 1,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          },
+          {
+            "taxon_id": "t3",
+            "table": [
+              [0, 3],
+              [2, 1]
+            ],
+            "p_value": 0.39999999999999997,
+            "near_ties_added_by_R_tolerance": [],
+            "p_value_holm": 1
+          }
+        ],
+        "monte_carlo": {
+          "simulations": 9999,
+          "count_extreme": 6008,
+          "tail_probability_interval": [0.59118299202224678, 0.61047839603026555]
+        },
+        "warnings": [
+          "Chi-squared approximation may be incorrect"
+        ],
+        "p_value_holm": 0.60089999999999999
+      }
+    ],
+    "omnibus_family_size": 1,
+    "taxon_family_size": 3,
+    "exact": {
+      "first_sample_allocations": [
+        [2, 1, 0],
+        [1, 2, 0],
+        [2, 0, 1],
+        [1, 1, 1],
+        [0, 2, 1],
+        [1, 0, 2],
+        [0, 1, 2]
+      ],
+      "probabilities": [0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.40000000000000002, 0.10000000000000001, 0.10000000000000001, 0.10000000000000001],
+      "statistics": [4, 4, 4, 0, 4, 4, 4],
+      "probability_sum": 1,
+      "conditional_tail_probability": 0.59999999999999998,
+      "table_count": 7
+    }
+  },
+  "zero_count_limits": [
+    {
+      "sample_id": "1",
+      "total": 321,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.0092890866773892578,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_crino",
+        "_0_fenes",
+        "_0_Rbryo",
+        "_0_Talin",
+        "_0_Marro",
+        "_1_Basil",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Rostr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Glypt",
+        "_0_Hespe",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "2",
+      "total": 243,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.012252436441829606,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_fenes",
+        "_0_praso",
+        "_0_Marro",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Rostr",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Glypt",
+        "_0_Hespe",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "3",
+      "total": 304,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.0098059871509261765,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_crino",
+        "_0_fenes",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Salop",
+        "_0_Glypt",
+        "_0_Hespe",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "4",
+      "total": 156,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.0190202011259194,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_crino",
+        "_0_Marro",
+        "_0_Ortho",
+        "_0_Gastr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Glypt",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "5",
+      "total": 473,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.0063134578784190161,
+      "taxon_ids": [
+        "_0_fenes",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Glypt",
+        "_0_Hespe",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "6",
+      "total": 702,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.0042583323719809791,
+      "taxon_ids": [
+        "_0_fenes",
+        "_0_Talin",
+        "_0_Marro",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Oxopl",
+        "_0_Salop",
+        "_0_Glypt"
+      ]
+    },
+    {
+      "sample_id": "7",
+      "total": 26,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.10883035576078481,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_fenes",
+        "_0_Talin",
+        "_0_Marro",
+        "_1_Basil",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Rostr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Salop",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "8",
+      "total": 68,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.043098564820088336,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_fenes",
+        "_0_Talin",
+        "_0_Marro",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Oxopl",
+        "_0_Salop",
+        "_0_Glypt",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "9",
+      "total": 57,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.051199483677039193,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_fenes",
+        "_0_praso",
+        "_0_Talin",
+        "_0_Marro",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Rostr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Salop",
+        "_0_Glypt",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    },
+    {
+      "sample_id": "10",
+      "total": 13,
+      "confidence": 0.94999999999999996,
+      "upper_limit": 0.20581666518655062,
+      "taxon_ids": [
+        "_0_hyalo",
+        "_0_fenes",
+        "_0_praso",
+        "_0_Talin",
+        "_0_Marro",
+        "_0_Ortho",
+        "_0_Nucul",
+        "_0_Gastr",
+        "_0_Rostr",
+        "_0_Oxopl",
+        "_0_Tripl",
+        "_0_Horde",
+        "_0_Salop",
+        "_0_Dalma",
+        "_0_Glypt",
+        "_0_Schiz",
+        "_0_Pseud"
+      ]
+    }
+  ],
+  "monte_carlo_interval_controls": [
+    {
+      "count_extreme": 0,
+      "simulations": 1000,
+      "interval": [0, 0.0036820838968656712]
+    },
+    {
+      "count_extreme": 1,
+      "simulations": 1000,
+      "interval": [2.5317487491294069e-05, 0.005558924279826627]
+    },
+    {
+      "count_extreme": 500,
+      "simulations": 1000,
+      "interval": [0.46854917297179194, 0.53145082702820812]
+    },
+    {
+      "count_extreme": 999,
+      "simulations": 1000,
+      "interval": [0.99444107572017337, 0.99997468251250876]
+    },
+    {
+      "count_extreme": 1000,
+      "simulations": 1000,
+      "interval": [0.99631791610313436, 1]
+    }
+  ]
+}

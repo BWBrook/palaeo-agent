@@ -23,9 +23,9 @@ def community_request(tmp_path, *, metadata=True, transform="none"):
     return request
 
 
-def test_discovery_exposes_both_methods_with_typed_outputs():
+def test_discovery_exposes_all_methods_with_typed_outputs():
     methods = {method["id"]: method for method in discover()["methods"]}
-    assert set(methods) == {"rma", "community", "permanova"}
+    assert set(methods) == {"rma", "community", "permanova", "rarefaction", "count_homogeneity"}
     assert methods["community"]["input_schema"]["additionalProperties"] is False
     assert "retained_counts" in methods["community"]["output_schema"]["required"]
 

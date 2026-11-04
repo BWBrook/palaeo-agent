@@ -135,3 +135,57 @@ def test_startup_fails_closed_on_unreadable_directory(tmp_path):
         assert outside.read_text() == "synthetic"
     finally:
         hidden.chmod(0o700)
+
+
+def test_confined_metadata_forwards_verbatim_and_primer(tmp_path, monkeypatch):
+    from evaluation.execution.server import SERVER_METADATA_CODE, SERVER_METADATA_REQUEST, create_server
+    w = worker(tmp_path)
+    metadata = {"instructions": "installed canonical instructions\nexact bytes", "tools": [
+        {"name": "primer", "description": "full primer", "inputSchema": {"type": "object", "properties": {}}}]}
+    calls = []
+    def load(arguments, *, request):
+        calls.append((arguments, request))
+        return {"status": "ok", "exit_code": 0, "stdout": json.dumps(metadata), "truncated": {"stdout": False}}
+    monkeypatch.setattr(w, "run_python", load)
+    transport = ExecutionTransport(w, toolkit=True)
+    assert calls == [(["-c", SERVER_METADATA_CODE], SERVER_METADATA_REQUEST)]
+    assert transport.instructions == metadata["instructions"]
+    assert json.loads((w.log_dir / "server-metadata.json").read_text()) == metadata
+    assert create_server(transport).create_initialization_options().instructions == metadata["instructions"]
+    document = {"version": "test", "sha256": "digest", "text": "full primer"}
+    def palaeo(name, arguments):
+        assert (name, arguments) == ("primer", {})
+        return {"status": "ok", "exit_code": 0, "stdout": json.dumps(document), "truncated": {"stdout": False}}
+    monkeypatch.setattr(w, "palaeo", palaeo)
+    assert transport.dispatch("palaeo_primer", {}) == document
+
+
+@pytest.mark.parametrize("response", [
+    {"status": "ok", "exit_code": 0, "stdout": "{}", "truncated": {"stdout": True}},
+    {"status": "error", "exit_code": 1, "stdout": "{}", "truncated": {"stdout": False}},
+    {"status": "ok", "exit_code": 0, "stdout": '{"tools": [], "instructions": ""}', "truncated": {"stdout": False}},
+])
+def test_metadata_fails_closed_on_failed_truncated_or_empty_instructions(tmp_path, monkeypatch, response):
+    w = worker(tmp_path)
+    monkeypatch.setattr(w, "run_python", lambda *a, **k: response)
+    with pytest.raises(ValueError):
+        ExecutionTransport(w, toolkit=True)
+
+
+def test_python_delivery_never_imports_package_for_instructions(tmp_path, monkeypatch):
+    w = worker(tmp_path)
+    monkeypatch.setattr(w, "run_python", lambda *a, **k: pytest.fail("Python-only startup must not import toolkit"))
+    transport = ExecutionTransport(w, toolkit=False)
+    assert transport.instructions is None
+    assert [t["name"] for t in transport.tools] == ["worker_execute", "worker_read", "worker_write"]
+
+
+def test_primer_truncation_is_an_error(tmp_path, monkeypatch):
+    w = worker(tmp_path)
+    metadata = {"instructions": "installed", "tools": [
+        {"name": "primer", "inputSchema": {"type": "object", "properties": {}}}]}
+    monkeypatch.setattr(w, "run_python", lambda *a, **k: {
+        "status": "ok", "exit_code": 0, "stdout": json.dumps(metadata), "truncated": {"stdout": False}})
+    transport = ExecutionTransport(w, toolkit=True)
+    monkeypatch.setattr(w, "palaeo", lambda *a, **k: {"truncated": {"stdout": True}})
+    assert transport.dispatch("palaeo_primer", {})["code"] == "output_limit"

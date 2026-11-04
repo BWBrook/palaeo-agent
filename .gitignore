@@ -17,3 +17,4 @@ benchmarks/past/vignettes/
 benchmarks/past/legacy-data/*
 !benchmarks/past/legacy-data/dielasma.dat
 !benchmarks/past/legacy-data/llanvirn.dat
+/references/past/captures/sprint7-rarefaction/

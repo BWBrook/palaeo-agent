@@ -44,8 +44,9 @@ proposal's summaries differ, the contracts govern.
    - transport-correct names are used.
 7. **I2** uses the existing toolkit runtime with the analysis MCP tools
    withheld. This is a new, explicit delivery mode in staging, inventory and
-   replay. The bootstrap is `print(palaeo_agent.primer()["text"])` through
-   `worker_execute`, since the confinement has no CLI subprocess.
+   replay. The bootstrap prints the complete `palaeo_agent.primer()` object
+   (version, SHA-256 and text) through `worker_execute`, since the confinement
+   has no CLI subprocess.
 8. **The worker forwards the server's instructions** verbatim. The scripted
    client-boundary check verifies instruction *content*, and that the full
    primer is delivered below output limits.
@@ -238,8 +239,8 @@ It is about 120 lines: enough to be complete, small enough to read every time.
   only when the working directory is inside the repository, and it is meant
   for developers rather than research users.
 - MCP server `instructions` are optional for clients to surface.
-  - Claude Code places them in the system prompt; this session shows server
-    instructions that way.
+  - Claude Code's provider-visible placement is version-dependent; the
+    sprint-7 probe checks the actual text in system or user-message prefaces.
   - Other clients may ignore or truncate them.
   - MCP prompts are user-invoked in most clients.
 
@@ -253,7 +254,7 @@ It is about 120 lines: enough to be complete, small enough to read every time.
 3. **CLI:** `palaeo-agent primer` prints the text, with a version and hash
    header.
    - In a checkout: `uv run palaeo-agent primer`.
-   - From a built wheel: `uvx --from <wheel> palaeo-agent primer`. This is
+   - From a built wheel: `uvx --python 3.12.13 --from <wheel> palaeo-agent primer`. This is
      tested against the installed wheel's bytes.
    - From a future PyPI release, for example `uvx palaeo-agent@0.3.0 primer`.
      That command is an example only until the release exists. Retrieval and
@@ -277,7 +278,7 @@ declaration, not evidence of reading. Delivery is therefore audited from the
 session record: the transcript, worker audit and replayed source together.
 Scientific bundles are unchanged.
 
-**The only universally reliable bootstrap is the user's request.** The
+**The documented bootstrap is an explicit user request.** The
 primer and README give a one-line instruction for the user to include:
 
 > Use the Palaeo-Agent toolkit for this analysis. Before any analysis, read
@@ -299,7 +300,8 @@ analyst session noticed.
 
 - **Input diagnostics.** `validate` on the analysis's own input table reports
   repeated records and blocks, near-duplicate labels, identical samples,
-  empty samples and orientation problems. Running it on `dielasma.dat` would
+  empty samples and structural inconsistencies under the declared orientation.
+  It cannot infer the scientifically correct orientation. Running it on `dielasma.dat` would
   have flagged the L2 block in every session.
 - **Independent recomputation of selected quantities.** Totals, richness,
   Shannon, Simpson, Bray–Curtis, PCoA eigenvalues, RMA slope, rarefied
@@ -339,7 +341,7 @@ supervisor qualification are rerun.
 | Session | Case | Delivery path tested | User instruction |
 | --- | --- | --- | --- |
 | I1 | Coed Duon (supported workflow) | MCP: server instructions, `discover` pointer, `primer` tool | "Use the Palaeo-Agent toolkit for this analysis." Nothing about the primer |
-| I2 | Dielasma (inference unsupported) | toolkit runtime; analysis MCP tools withheld; Python package through `worker_execute` | "Use the Palaeo-Agent toolkit for this analysis. Before any analysis, read its primer by running `print(palaeo_agent.primer()["text"])` and follow it." |
+| I2 | Dielasma (inference unsupported) | toolkit runtime; analysis MCP tools withheld; Python package through `worker_execute` | "Use the Palaeo-Agent toolkit for this analysis. Before any analysis, print the complete object returned by `palaeo_agent.primer()` (version, SHA-256 and text), read it, and follow it." |
 
 - **I1 checks MCP-native delivery.** Does the agent find and read the primer
   with no help from the user?
@@ -373,9 +375,11 @@ repeats, no scoring bank. Two sessions give descriptive evidence about
 delivery and compliance in one client and model. They give no compliance
 rate.
 
-**If I1 fails on delivery but I2 succeeds,** the finding is that MCP-native
-delivery is not enough in this client and the user bootstrap is required.
-That would be a documentation decision, not a reason for more trials.
+**If I1 fails on delivery but I2 succeeds,** record those two outcomes and
+recommend the explicit bootstrap as the documented baseline. Different cases
+and sessions cannot establish a causal effect of the bootstrap, or prove that
+MCP-native delivery always fails in this client. No additional trials follow
+automatically.
 
 ## 8. Division of work
 

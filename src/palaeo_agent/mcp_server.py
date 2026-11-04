@@ -11,9 +11,18 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from .core import AnalysisError
 from .methods import INPUT_FORMATS, MethodSpec, METHOD_INDEX, discover, summary, validate
+from .primer import primer, primer_metadata
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 from .study import StudySpec, inspect_study, reproduce_study, run_study
+
+
+SERVER_INSTRUCTIONS = (
+    "Before any analysis, call the primer tool and read its full text. Follow that primer for the session: "
+    "use a suitable Palaeo-Agent API operation for every supported analytical subtask; "
+    "never bypass it with bespoke code. Assess scientific suitability, and declare unsupported "
+    "parts or demonstrated defects. Discover method scopes and schemas before running analyses."
+)
 
 
 class Request(BaseModel):
@@ -21,7 +30,7 @@ class Request(BaseModel):
 
 
 class DiscoverRequest(Request):
-    method: Literal["rma", "community", "permanova"] | None = None
+    method: Literal["rma", "community", "permanova", "rarefaction", "count_homogeneity"] | None = None
 
 
 class ValidateRequest(Request):
@@ -68,28 +77,29 @@ class ResultRequest(BundleRequest):
 
 
 REQUESTS = {
+    "primer": (Request, "Read the full versioned agent primer before any analysis; returns exact text and its SHA-256."),
     "discover": (DiscoverRequest, "List method summaries, or request one method's complete typed schemas."),
     "validate": (ValidateRequest, "Validate declared data and numerical requirements; sampling assumptions are not established."),
-    "run": (RunRequest, "Run a declared analysis and save a self-contained evidence bundle."),
+    "run": (RunRequest, "Read the primer first. Run a declared analysis and save a self-contained evidence bundle."),
     "inspect": (BundleRequest, "Verify a run's integrity and return a compact summary, field names and artifact references."),
     "reproduce": (ReproduceRequest, "Recompute a saved bundle and compare its numerical outputs."),
     "compare": (CompareRequest, "Compare community runs descriptively under the existing provenance and one-factor rules."),
     "inspect_comparison": (BundleRequest, "Verify a descriptive comparison and both embedded run bundles."),
     "result": (ResultRequest, "Read one verified run-result field, with bounded rows and matrix columns."),
-    "study_run": (StudyRunRequest, "Run a multi-step study: declared exclusions, selections and taxon mappings, then analyses; saves one bundle."),
+    "study_run": (StudyRunRequest, "Read the primer first. Run a multi-step study: declared preparation, then analyses; saves one bundle."),
     "study_inspect": (StudyRequest, "Verify a study's integrity, recompute its prepared data and verify every run."),
     "study_reproduce": (StudyReproduceRequest, "Rerun a verified study from its saved inputs and compare every analysis."),
 }
 
 
 COMPACT_SPEC = {"type": "object", "required": ["method"], "additionalProperties": True,
-                "properties": {"method": {"enum": ["rma", "community", "permanova"]}},
+                "properties": {"method": {"enum": ["rma", "community", "permanova", "rarefaction", "count_homogeneity"]}},
                 "description": "A complete method specification. Its exact schema comes from "
-                               "palaeo_discover with that method; invalid specifications are refused with details."}
+                               "the discover tool with that method; invalid specifications are refused with details."}
 
 
 def _schema(model):
-    """Advertised input schema. The three-method spec union is replaced by a reference to discovery; the
+    """Advertised input schema. The method spec union is replaced by a reference to discovery; the
     server still validates every call against the full typed model."""
     schema = model.model_json_schema()
     if "spec" in schema.get("properties", {}):
@@ -156,11 +166,15 @@ class Transport:
             return {"status": "error", "code": "request_failed", "message": str(exc)}
 
     def _dispatch(self, name, request):
+        if name == "primer":
+            return primer()
         if name == "discover":
             if request.method is None:
                 return {"method_index": METHOD_INDEX, "input_formats": INPUT_FORMATS,
+                        "primer": primer_metadata(),
                         "path_policy": "All paths resolve inside the configured session root; relative paths start there"}
-            return next(item for item in discover()["methods"] if item["id"] == request.method)
+            method = next(item for item in discover()["methods"] if item["id"] == request.method)
+            return {**method, "primer": primer_metadata()}
         if name == "validate":
             return validate(self._spec(request.spec))
         if name == "run":
@@ -229,7 +243,8 @@ def create_server(root):
             content=[types.TextContent(type="text", text=json.dumps(value, allow_nan=False))],
             structured_content=value, is_error=value.get("status") == "error")
 
-    return Server("palaeo-agent", version="0.2.0.dev0", on_list_tools=list_tools, on_call_tool=call_tool)
+    return Server("palaeo-agent", version=primer_metadata()["version"], instructions=SERVER_INSTRUCTIONS,
+                  on_list_tools=list_tools, on_call_tool=call_tool)
 
 
 async def serve(root):

@@ -29,17 +29,29 @@ EXECUTION_TOOLS = [
 ]
 
 
+SERVER_METADATA_CODE = ("import json; from palaeo_agent.mcp_server import tool_definitions, SERVER_INSTRUCTIONS; "
+                        "print(json.dumps({'tools': tool_definitions(), 'instructions': SERVER_INSTRUCTIONS}))")
+SERVER_METADATA_REQUEST = {"tool": "supervisor_load_server_metadata", "code": SERVER_METADATA_CODE}
+
+
 class ExecutionTransport:
     def __init__(self, worker, *, toolkit=False):
         self.worker = worker
         self.tools = list(EXECUTION_TOOLS)
         self.palaeo_names = set()
+        self.instructions = None
         if toolkit:
-            discovery = worker.run_python(["-c", "import json; from palaeo_agent.mcp_server import tool_definitions; print(json.dumps(tool_definitions()))"],
-                                          request={"tool": "supervisor_load_tool_definitions"})
-            if discovery["status"] != "ok" or discovery["truncated"]["stdout"]:
-                raise ValueError(f"Cannot discover confined toolkit tools: {discovery}")
-            for tool in json.loads(discovery["stdout"]):
+            discovery = worker.run_python(["-c", SERVER_METADATA_CODE], request=SERVER_METADATA_REQUEST)
+            if (discovery.get("status") != "ok" or discovery.get("exit_code") != 0
+                    or discovery.get("truncated", {}).get("stdout", True)):
+                raise ValueError(f"Cannot discover confined toolkit metadata: {discovery}")
+            metadata = json.loads(discovery["stdout"])
+            if (set(metadata) != {"tools", "instructions"} or not isinstance(metadata["tools"], list)
+                    or not isinstance(metadata["instructions"], str) or not metadata["instructions"].strip()):
+                raise ValueError("Malformed confined toolkit metadata")
+            self.instructions = metadata["instructions"]
+            (worker.log_dir / "server-metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
+            for tool in metadata["tools"]:
                 self.palaeo_names.add(tool["name"])
                 self.tools.append({**tool, "name": "palaeo_" + tool["name"]})
         (worker.log_dir / "tools.json").write_text(json.dumps(self.tools, indent=2) + "\n")
@@ -85,13 +97,17 @@ def create_server(transport):
         return types.CallToolResult(content=[types.TextContent(type="text", text=json.dumps(value, allow_nan=False))],
                                     structured_content=value, is_error=value.get("status") in ("error", "timed_out", "different"))
 
-    return Server("confined-scientific-worker", version="1", on_list_tools=list_tools, on_call_tool=call_tool)
+    return Server("confined-scientific-worker", version="1", instructions=transport.instructions,
+                  on_list_tools=list_tools, on_call_tool=call_tool)
 
 
 async def serve(config):
     from mcp.server.stdio import stdio_server
     config = dict(config)
     toolkit = config.pop("toolkit", False)
+    delivery_mode = config.pop("delivery_mode", "mcp" if toolkit else "python")
+    if delivery_mode not in ("mcp", "python") or toolkit != (delivery_mode == "mcp"):
+        raise ValueError("Inconsistent scientific MCP delivery mode")
     worker = Worker(**config)
     (worker.log_dir / "server.pid").write_text(f"{os.getpid()} {os.getpgid(0)}\n")
     transport = ExecutionTransport(worker, toolkit=toolkit)

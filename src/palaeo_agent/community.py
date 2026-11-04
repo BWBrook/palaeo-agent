@@ -266,10 +266,8 @@ def _metadata(rows, ids):
     return [lookup[name] for name in ids]
 
 
-def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metadata):
+def _prepare_counts(matrix, *, sample_ids, taxon_ids, empty_samples, metadata):
     samples, taxa = _ids(sample_ids, "sample"), _ids(taxon_ids, "taxon")
-    if not isinstance(dimensions, int) or isinstance(dimensions, bool) or dimensions < 1:
-        raise AnalysisError("invalid_dimensions", "dimensions must be a positive integer")
     if not isinstance(empty_samples, str) or empty_samples not in {"error", "drop"}:
         raise AnalysisError("invalid_option", "Declare empty_samples as error or drop")
     if not taxa:
@@ -292,10 +290,11 @@ def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metada
             if not valid:
                 raise AnalysisError("invalid_count", "Counts must be finite nonnegative exactly representable integers; proportions are unsupported and must not be rescaled or rounded into counts",
                                     sample_id=samples[i], taxon_id=taxa[j])
-    counts = np.asarray(values, dtype=np.float64)
-    total = counts.sum(axis=1)
-    if np.any(total > MAX_EXACT_COUNT):
+    exact_totals = [sum(int(value) for value in row) for row in values]
+    if any(total > MAX_EXACT_COUNT for total in exact_totals):
         raise AnalysisError("count_range", "Sample totals exceed exact float64 integer range")
+    counts = np.asarray(values, dtype=np.float64)
+    total = np.asarray(exact_totals, dtype=np.float64)
     aligned = _metadata(metadata, samples)
     empty = total == 0
     excluded = [{"sample_id": name, "reason": "empty_sample"} for name, flag in zip(samples, empty) if flag]
@@ -303,18 +302,29 @@ def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metada
         raise AnalysisError("empty_samples", "Empty samples require an explicit drop policy", excluded=excluded)
     keep = ~empty
     retained_ids = [name for name, flag in zip(samples, keep) if flag]
-    if len(retained_ids) <= dimensions:
-        raise AnalysisError("insufficient_samples", "More retained samples than ordination dimensions are required",
-                            retained=len(retained_ids), dimensions=dimensions)
-    estimated = 6 * len(retained_ids)**2 * 8
-    if estimated > MAX_MATRIX_BYTES:
-        raise AnalysisError("resource_limit", "Distance/eigen matrices exceed the local allocation budget",
-                            estimated_bytes=estimated, limit_bytes=MAX_MATRIX_BYTES)
+    if not retained_ids:
+        raise AnalysisError("insufficient_samples", "No nonempty sample remains after declared exclusions")
     return {"counts": counts[keep], "input_sample_ids": samples, "sample_ids": retained_ids,
             "taxon_ids": taxa, "excluded": excluded,
             "metadata": None if aligned is None else [row for row, flag in zip(aligned, keep) if flag],
             "warnings": _near_duplicates(samples, "sample") + _near_duplicates(taxa, "taxon")
             + repeated_warnings([tuple(row) for row in counts[keep].tolist()], retained_ids, "samples")}
+
+
+def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metadata):
+    if not isinstance(dimensions, int) or isinstance(dimensions, bool) or dimensions < 1:
+        raise AnalysisError("invalid_dimensions", "dimensions must be a positive integer")
+    prepared = _prepare_counts(matrix, sample_ids=sample_ids, taxon_ids=taxon_ids,
+                               empty_samples=empty_samples, metadata=metadata)
+    n = len(prepared["sample_ids"])
+    if n <= dimensions:
+        raise AnalysisError("insufficient_samples", "More retained samples than ordination dimensions are required",
+                            retained=n, dimensions=dimensions)
+    estimated = 6 * n**2 * 8
+    if estimated > MAX_MATRIX_BYTES:
+        raise AnalysisError("resource_limit", "Distance/eigen matrices exceed the local allocation budget",
+                            estimated_bytes=estimated, limit_bytes=MAX_MATRIX_BYTES)
+    return prepared
 
 
 def _read_inputs(spec, data, metadata):

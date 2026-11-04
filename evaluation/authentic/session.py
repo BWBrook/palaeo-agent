@@ -5,7 +5,8 @@ subscription login in the launch environment, captured tool inventory, init-reco
 reconciliation, process-group termination and link-refusing export. What differs from a pilot trial:
 
 - materials come from `cases/<case>/materials`, verified against `cases/MANIFEST.json`;
-- the prompt is `contract.md` (+ `toolkit.md` when the toolkit is offered) and the case brief;
+- the historical prompt is `contract.md` (+ `toolkit.md` when offered) and the brief;
+  explicit `mcp`/`python` delivery modes select the new instructed prompts on the same toolkit runtime;
 - nothing is scored; the deliverable is replayed: `analysis.py` (+ `specs/`) runs in a fresh confined
   worker from pristine materials and its `results.json` must match the delivered one;
 - after the session, one neutral retrospective question is asked by resuming it with no tools.
@@ -42,13 +43,21 @@ CASES = HERE / "cases"
 TOLERANCE = {"rel": 1e-6, "abs": 1e-9}
 REPLAY_TIMEOUT = 300
 SOURCE = ["evaluation/authentic/session.py", "evaluation/authentic/contract.md", "evaluation/authentic/toolkit.md",
-          "evaluation/authentic/retrospective.md"]
+          "evaluation/authentic/retrospective.md", "evaluation/authentic/instructed-contract.md",
+          "evaluation/authentic/instructed-mcp.md", "evaluation/authentic/instructed-python.md"]
 
 
-def session_prompt(case, arm):
-    text = (HERE / "contract.md").read_text()
-    if arm == "toolkit":
-        text += (HERE / "toolkit.md").read_text()
+def session_prompt(case, arm, delivery_mode=None):
+    mode = launch.delivery(arm, delivery_mode)
+    if delivery_mode is not None:
+        if arm != "toolkit":
+            raise Halt("Instructed sessions require the toolkit runtime")
+        text = (HERE / "instructed-contract.md").read_text()
+        text += (HERE / f"instructed-{mode}.md").read_text()
+    else:
+        text = (HERE / "contract.md").read_text()
+        if arm == "toolkit":
+            text += (HERE / "toolkit.md").read_text()
     return text + "\n## Brief\n\n" + (CASES / case / "brief.md").read_text()
 
 
@@ -98,10 +107,12 @@ def load_results(path):
         return None, None, f"{type(exc).__name__}: {exc}"
 
 
-def replay(record, cases_dir, case, runtime):
+def replay(record, cases_dir, case, runtime, *, delivery_mode=None):
     """Rerun the delivered analysis from pristine materials; compare results.json."""
     workspace = record / "workspace"
-    out = {}
+    if delivery_mode is not None:
+        launch.delivery("toolkit", delivery_mode)
+    out = {"runtime": str(runtime), "delivery_mode": delivery_mode}
     original, digest, error = load_results(workspace / "results.json")
     out["original_results_sha256"] = digest
     if original is None:
@@ -144,6 +155,8 @@ def replay(record, cases_dir, case, runtime):
 
 
 def run_session(session, plan, out_dir):
+    inventory_key = launch.session_inventory_key(session)
+    mode = session.get("delivery_mode")
     record = Path(out_dir) / "sessions" / session["session_id"]
     record.mkdir(parents=True, exist_ok=False)
     work = Path(tempfile.mkdtemp(prefix="authentic-", dir=plan["work_root"]))
@@ -160,19 +173,19 @@ def run_session(session, plan, out_dir):
         materials = verify_materials(plan["cases_dir"], session["case"])
         summary["organisation_policy"] = verify_config_dir(plan["config_dir"])
         inventory = capture_inventory(plan["runtime_root"], session["arm"], plan["model"],
-                                      plan["capture_config_dir"], record / "inventory-capture.json")
-        if inventory != plan["inventory"][session["arm"]]:
+                                      plan["capture_config_dir"], record / "inventory-capture.json", delivery_mode=mode)
+        if inventory != plan["inventory"][inventory_key]:
             raise Halt(f"captured inventory differs: {inventory}")
-        mcp = stage(trial_root, materials, plan["runtime_root"], session["arm"], record / "worker-audit")
+        mcp = stage(trial_root, materials, plan["runtime_root"], session["arm"], record / "worker-audit", delivery_mode=mode)
         home = supervisor_home(work / "home")
         no_instruction_ancestors(home)
         summary["auth"] = subscription_status(home, plan["config_dir"])
-        text = session_prompt(session["case"], session["arm"])
+        text = session_prompt(session["case"], session["arm"], mode)
         (record / "prompt.md").write_text(text)
         proc = subprocess.Popen(main_command(text, mcp, plan["max_turns"], plan["model"]), cwd=home,
                                 env=environment(home, plan["config_dir"]), stdin=subprocess.DEVNULL,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True, text=True)
-        advertised = sorted(t for t in plan["inventory"][session["arm"]] if t != "DeferredToolPlaceholder")
+        advertised = sorted(t for t in plan["inventory"][inventory_key] if t != "DeferredToolPlaceholder")
 
         def check(event):
             if event.get("type") == "system" and event.get("subtype") == "init" and \
@@ -203,7 +216,7 @@ def run_session(session, plan, out_dir):
                    usage=usage, num_turns=(result or {}).get("num_turns"),
                    duration_ms=(result or {}).get("duration_ms"))
     summary["refused_exports"] = export(trial_root, record / "workspace")
-    summary["reconciliation"] = reconcile(events, record / "worker-audit", plan["inventory"][session["arm"]])
+    summary["reconciliation"] = reconcile(events, record / "worker-audit", plan["inventory"][inventory_key])
     if complete_usage(usage):
         summary["counted_tokens"] = sum(usage[k] for k in USAGE_FIELDS[:3])
         summary["cache_read_tokens"] = usage["cache_read_input_tokens"]
@@ -243,7 +256,7 @@ def run_session(session, plan, out_dir):
 
     (record / "replay").mkdir()
     summary["replay"] = replay(record, plan["cases_dir"], session["case"],
-                               Path(plan["runtime_root"]) / session["arm"])
+                               Path(plan["runtime_root"]) / session["arm"], delivery_mode=mode)
     if summary["replay"]["outcome"] == "infrastructure":
         breach.append("replay_infrastructure")
     summary["complete"] = not breach and summary["reconciliation"]["consistent"] and complete_usage(usage)
@@ -259,13 +272,19 @@ def run_session(session, plan, out_dir):
 
 def make_plan(path, *, runtime_root, work_root, config_dir, capture_config_dir, ceiling, sessions,
               max_turns=80, wall_seconds=1800, model=launch.MODEL):
-    arms = sorted({s["arm"] for s in sessions})
+    inventories = {}
+    for session in sessions:
+        if session.get("delivery_mode") is not None and session["arm"] != "toolkit":
+            raise Halt("Instructed sessions require the toolkit runtime")
+        key = launch.session_inventory_key(session)
+        inventories[key] = (session["arm"], session.get("delivery_mode"))
     plan = {"model": model, "runtime_root": str(Path(runtime_root).resolve()), "cases_dir": str(CASES),
             "config_dir": str(Path(config_dir).resolve()),
             "capture_config_dir": str(Path(capture_config_dir).resolve()),
             "fingerprints": fingerprints(runtime_root, CASES),
             "session_source": {name: sha(launch.REPO / name) for name in SOURCE},
-            "inventory": {arm: capture_inventory(runtime_root, arm, model, capture_config_dir) for arm in arms},
+            "inventory": {key: capture_inventory(runtime_root, arm, model, capture_config_dir, delivery_mode=mode)
+                          for key, (arm, mode) in inventories.items()},
             "work_root": str(Path(work_root).resolve()), "max_turns": max_turns, "wall_seconds": wall_seconds,
             "counted_token_ceiling": ceiling, "sessions": sessions}
     with Path(path).open("x") as out:
@@ -328,14 +347,19 @@ def main():
     for name in ("--runtime", "--work-root", "--config-dir", "--capture-config-dir"):
         p.add_argument(name, required=True)
     p.add_argument("--ceiling", type=int, required=True)
-    p.add_argument("--session", action="append", required=True, help="ID:CASE:ARM")
+    p.add_argument("--session", action="append", required=True, help="ID:CASE:ARM or ID:CASE:toolkit:DELIVERY_MODE (mcp/python)")
     r = sub.add_parser("run")
     r.add_argument("plan")
     r.add_argument("out_dir")
     r.add_argument("--only", nargs="*")
     args = parser.parse_args()
     if args.cmd == "plan":
-        sessions = [dict(zip(("session_id", "case", "arm"), s.split(":"))) for s in args.session]
+        sessions = []
+        for value in args.session:
+            parts = value.split(":")
+            if len(parts) not in (3, 4):
+                parser.error("--session requires ID:CASE:ARM[:DELIVERY_MODE]")
+            sessions.append(dict(zip(("session_id", "case", "arm", "delivery_mode"), parts)))
         make_plan(args.plan, runtime_root=args.runtime, work_root=args.work_root, config_dir=args.config_dir,
                   capture_config_dir=args.capture_config_dir, ceiling=args.ceiling, sessions=sessions)
         print(args.plan)

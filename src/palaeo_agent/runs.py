@@ -12,7 +12,7 @@ from pydantic import Field, model_validator
 
 from .core import AnalysisError, ResultItem
 from .methods import (
-    calculate_method, compare_results, parse_spec, read_inputs, required_files,
+    PLOT_FILES, calculate_method, compare_results, parse_spec, read_inputs, required_files,
     steps_for, summary, validate_result, write_tables,
 )
 
@@ -130,6 +130,11 @@ def _find_lockfile():
 
 
 def _rng_description(result):
+    if result is not None and result["method"] == "count_homogeneity":
+        randomization = result["randomization"]
+        return (f"NumPy Generator({randomization['bit_generator']}), seed={randomization['seed']}; "
+                "SeedSequence.spawn in declared pair order; SciPy random_table patefield; "
+                "settings saved in randomization.json")
     if result is None or result["method"] != "permanova":
         return "not used; deterministic method"
     permutation = result["permutation"]
@@ -241,7 +246,8 @@ def run(spec, output_root: str | Path):
         _json(directory / "environment.json", _environment(lock, result))
         if lock is not None:
             (directory / "uv.lock").write_bytes(lock.read_bytes())
-        _plot(directory / "diagnostics.svg", result, spec)
+        if PLOT_FILES <= required_files(spec):
+            _plot(directory / "diagnostics.svg", result, spec)
         steps = steps_for(spec, lock is not None)
         producers = {filename: step["id"] for step in steps for filename in step["outputs"]}
         media_types = {".json": "application/json", ".csv": "text/csv", ".svg": "image/svg+xml", ".png": "image/png",
@@ -311,6 +317,13 @@ def inspect_run(run_dir: str | Path):
             schedule = json.loads((directory / "permutations.json").read_text(encoding="utf-8"))
             if schedule != result["permutation"]:
                 raise ValueError("Saved permutation artefact differs from the numerical result")
+        if spec.method == "count_homogeneity":
+            for package in ("numpy", "scipy"):
+                if result["randomization"][package + "_version"] != environment["packages"].get(package):
+                    raise ValueError("Sampling library version differs from its recorded environment")
+            randomization = json.loads((directory / "randomization.json").read_text(encoding="utf-8"))
+            if randomization != result["randomization"]:
+                raise ValueError("Saved randomization artefact differs from the numerical result")
     except AnalysisError as exc:
         if exc.code == "unsupported_schema":
             raise

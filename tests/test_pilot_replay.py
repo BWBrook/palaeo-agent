@@ -236,3 +236,20 @@ def test_perturbations_are_diagnostic_and_infrastructure_is_not_success(tmp_path
     monkeypatch.setattr(replay, "execute", fail_perturbed)
     out = replay.replay(rec, items, RUNTIME)
     assert out["outcome"] == "infrastructure"
+
+
+def test_python_delivery_replay_uses_toolkit_runtime(tmp_path, monkeypatch):
+    items = item(tmp_path)
+    rec = record(tmp_path, "python", HONEST)
+    payload = json.loads((rec / "trial.json").read_text())
+    payload["trial"].update(arm="toolkit", delivery_mode="python")
+    (rec / "trial.json").write_text(json.dumps(payload))
+    original = json.loads((rec / "workspace/answer.json").read_text())
+    seen = []
+    def execute(materials, workspace, files, runtime, scratch, *args, **kwargs):
+        seen.append(runtime)
+        return {"status": "ok", "exit_code": 0}, original
+    monkeypatch.setattr(replay, "execute", execute)
+    result = replay.evaluate(rec, items, tmp_path / "runtime", tmp_path / "evidence")
+    assert seen and all(path == tmp_path / "runtime/toolkit" for path in seen)
+    assert result["delivery_mode"] == "python"

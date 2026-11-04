@@ -189,19 +189,35 @@ def subscription_status(home, config_dir):
 
 def no_instruction_ancestors(path):
     for parent in [Path(path), *Path(path).parents]:
-        for name in ("CLAUDE.md", "CLAUDE.local.md", ".claude"):
+        for name in ("CLAUDE.md", "CLAUDE.local.md", "AGENTS.md", ".claude"):
             if (parent / name).exists():
                 raise Halt(f"instruction file above the client's working directory: {parent / name}")
 
 
-def stage(trial_root, materials, runtime_root, arm, audit_dir):
+def delivery(arm, delivery_mode=None):
+    if arm not in ("direct", "toolkit"):
+        raise Halt(f"Unknown runtime arm: {arm}")
+    mode = delivery_mode if delivery_mode is not None else ("mcp" if arm == "toolkit" else "python")
+    if mode not in ("mcp", "python") or (arm == "direct" and mode != "python"):
+        raise Halt(f"Unsupported runtime/delivery: {arm}/{mode}")
+    return mode
+
+
+def session_inventory_key(session):
+    mode = session.get("delivery_mode")
+    delivery(session["arm"], mode)
+    return session["arm"] if mode is None else f"{session['arm']}:{mode}"
+
+
+def stage(trial_root, materials, runtime_root, arm, audit_dir, *, delivery_mode=None):
+    mode = delivery(arm, delivery_mode)
     trial_root.mkdir(parents=True)
     for source in materials:
         shutil.copyfile(source, trial_root / source.name)
     runtime = Path(runtime_root) / arm
     worker = {"trial_root": str(trial_root), "runtime": str(runtime), "python": str(runtime / "bin/python"),
               "log_dir": str(audit_dir), "trusted_read_roots": [str(UV_PYTHON)], "timeout_seconds": 60,
-              "max_output_bytes": 65536, "toolkit": arm == "toolkit"}
+              "max_output_bytes": 65536, "toolkit": mode == "mcp", "delivery_mode": mode}
     config = trial_root.parent / "worker.json"
     config.write_text(json.dumps(worker))
     mcp = trial_root.parent / "mcp.json"
@@ -223,7 +239,8 @@ def environment(home, config_dir, api_key=None, base_url=None):
     env = {"PATH": "/usr/bin:/bin:/opt/homebrew/bin", "HOME": str(home), "USER": os.environ["USER"],
            "LOGNAME": os.environ["USER"], "CLAUDE_CONFIG_DIR": str(config_dir), "DISABLE_TELEMETRY": "1",
            "DISABLE_ERROR_REPORTING": "1", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-           "MAX_MCP_OUTPUT_TOKENS": "200000", "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"}
+           "MAX_MCP_OUTPUT_TOKENS": "200000", "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+           "CLAUDE_CODE_AGENTS_MD_ROWS_EVERY_PROCESS": "1"}
     if api_key:
         env["ANTHROPIC_API_KEY"] = api_key
     if base_url:
@@ -275,17 +292,17 @@ def terminate(client_pgid, audit_dir):
     return sorted(groups)
 
 
-def capture_inventory(runtime_root, arm, model, config_dir, record=None):
+def capture_inventory(runtime_root, arm, model, config_dir, record=None, *, delivery_mode=None):
     """Offline: the request the identical command builds, from a fake endpoint with a dummy key."""
     with tempfile.TemporaryDirectory() as scratch:
         scratch = Path(scratch)
         (scratch / "task.md").write_text("inventory capture\n")
         audit = scratch / "audit"
-        mcp = stage(scratch / "work/trial", [scratch / "task.md"], runtime_root, arm, audit)
+        mcp = stage(scratch / "work/trial", [scratch / "task.md"], runtime_root, arm, audit, delivery_mode=delivery_mode)
         supervisor_home(scratch / "home", keychain=False)
         log = []
         server = endpoint([], log)
-        proc = subprocess.Popen(command(prompt(arm), mcp, 2, model), cwd=scratch / "home",
+        proc = subprocess.Popen(command(prompt(arm) if delivery_mode is None else "Offline tool inventory capture.", mcp, 2, model), cwd=scratch / "home",
                                 env=environment(scratch / "home", config_dir, DUMMY,
                                                 f"http://127.0.0.1:{server.server_address[1]}"),
                                 stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -302,7 +319,7 @@ def capture_inventory(runtime_root, arm, model, config_dir, record=None):
         if any(r["authorization_header"] or not r["dummy_api_key"] for r in log):
             raise Halt("inventory capture would have sent a real credential")
         if record is not None:
-            Path(record).write_text(json.dumps({"requests": log, "arm": arm}, indent=1) + "\n")
+            Path(record).write_text(json.dumps({"requests": log, "arm": arm, "delivery_mode": delivery(arm, delivery_mode)}, indent=1) + "\n")
         return sorted(log[0]["tools"])
 
 
@@ -420,8 +437,34 @@ def reconcile(events, audit_dir, inventory):
     problems += [{"id": i, "problem": "result without tool use"} for i in results if i not in ids]
     path = Path(audit_dir) / "calls.jsonl"
     calls = [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
-    audit = [c for c in calls if c["request"].get("tool") != "supervisor_load_tool_definitions"]
-    bootstrap = len(calls) - len(audit)
+    from evaluation.execution.server import SERVER_METADATA_REQUEST
+    audit, bootstrap = [], 0
+    scientific_inventory = sorted(n for n in inventory if n.startswith("mcp__worker__palaeo_"))
+    for index, call in enumerate(calls):
+        request, result = call["request"], call["result"]
+        if request.get("tool") not in ("supervisor_load_tool_definitions", "supervisor_load_server_metadata"):
+            audit.append(call)
+            continue
+        bootstrap += 1
+        valid = index == 0 and bootstrap == 1 and bool(scientific_inventory)
+        valid = valid and result.get("status") == "ok" and result.get("exit_code") == 0
+        valid = valid and result.get("truncated", {}).get("stdout") is False
+        try:
+            metadata = json.loads(result["stdout"])
+            if request.get("tool") == "supervisor_load_server_metadata":
+                valid = valid and request == SERVER_METADATA_REQUEST
+                saved = json.loads((Path(audit_dir) / "server-metadata.json").read_text())
+                valid = valid and metadata == saved and set(metadata) == {"tools", "instructions"}
+                valid = valid and isinstance(metadata["instructions"], str) and bool(metadata["instructions"].strip())
+                definitions = metadata["tools"]
+            else:
+                valid = valid and request == {"tool": "supervisor_load_tool_definitions"}
+                definitions = metadata
+            valid = valid and sorted("mcp__worker__palaeo_" + t["name"] for t in definitions) == scientific_inventory
+        except (OSError, ValueError, KeyError, TypeError):
+            valid = False
+        if not valid:
+            problems.append({"problem": "invalid supervisor bootstrap", "index": index})
     matched, refused = 0, 0
     unmatched = list(range(len(audit)))
     for use in uses:

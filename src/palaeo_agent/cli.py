@@ -9,6 +9,7 @@ from pydantic import ValidationError
 
 from .core import AnalysisError
 from .methods import METHOD_INDEX, discover, parse_spec, validate
+from .primer import primer
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 from .study import inspect_study, reproduce_study, run_study
@@ -35,6 +36,7 @@ def main(argv=None):
         ". Use discover for method summaries and complete input/output schemas."
     ))
     commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("primer", help="Read the full agent primer before analysis")
     commands.add_parser("discover")
     for command in ("validate", "run"):
         sub = commands.add_parser(command)
@@ -58,6 +60,11 @@ def main(argv=None):
     try:
         args = parser.parse_args(argv)
         match args.command:
+            case "primer":
+                document = primer()
+                print(f"Palaeo-Agent primer — version {document['version']}\nSHA-256: {document['sha256']}\n")
+                sys.stdout.write(document["text"])
+                return 0
             case "discover":
                 result = discover()
             case "validate":

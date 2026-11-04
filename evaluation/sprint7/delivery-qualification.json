@@ -1,0 +1,278 @@
+{
+  "schema": "sprint7-offline-delivery-qualification-v1",
+  "date": "2026-11-05",
+  "status": "full_mode_qualified; bare_mcp_server_instructions_not_delivered",
+  "scope": "Deterministic local provider endpoint and native confined-worker checks; no analyst or reviewer inference.",
+  "model_inference_calls": 0,
+  "live_session_or_runtime_freeze": false,
+  "client": {
+    "version": "2.1.311 (Claude Code)",
+    "sha256": "85d8c08707fcfd1e78ffa0204eefbc6ec9e4fe22f375fb2767ef85d957ed3161"
+  },
+  "installed_package": {
+    "wheel_sha256": "db0a05ab58cdbdf291b4435cfb2b4548e6c4684d4228beab2be30ffb3fc72eed",
+    "primer_version": "0.2.0.dev0",
+    "primer_sha256": "73a9070f4ab5fc01f6bd3957d070f5759832d07e9b998795f43b25d7736fdc53",
+    "primer_bytes": 9134,
+    "installed_resource_matches_checkout": true,
+    "api_text_and_metadata_match": true,
+    "cli_exact_header_and_body_match": true,
+    "methods": [
+      "rma",
+      "community",
+      "permanova",
+      "rarefaction",
+      "count_homogeneity"
+    ],
+    "module_is_in_fresh_runtime": true,
+    "clean_working_directory_outside_repository": true,
+    "uvx_tested": true,
+    "wheel_file": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+    "all_15_package_source_files_match_wheel": true,
+    "package_source_sha256": {
+      "palaeo_agent/__init__.py": "9630a61e8a845235298a93597d6150261035772846e4afc4d10c71bbc909fecc",
+      "palaeo_agent/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "palaeo_agent/cli.py": "7ed088179ab8a1437233a411b99120b3bd7b29b79bce783961b76bea3d97e662",
+      "palaeo_agent/community.py": "9bdebfad5425112c25170b2d86ef27f198519bdebb6d7885846240aa975e9c95",
+      "palaeo_agent/core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
+      "palaeo_agent/count_homogeneity.py": "355c9aeda2113c5d4df0adf10f4136fe4a65937024b17d7e960013e400a97717",
+      "palaeo_agent/mcp_server.py": "6d4dd38a95650b56ac4611ae71d6d72c5cd7f91eece92b6567f7e26a2e90dc22",
+      "palaeo_agent/methods.py": "6942431ed51f58d6ac80c21b79b31152806096057f783eb5041b44be9fde974c",
+      "palaeo_agent/permanova.py": "80a76a14218a294baac00fdc6f6c497fabd2404c611b2334b7d483e59de80574",
+      "palaeo_agent/primer.md": "73a9070f4ab5fc01f6bd3957d070f5759832d07e9b998795f43b25d7736fdc53",
+      "palaeo_agent/primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
+      "palaeo_agent/rarefaction.py": "be6562d5efb74bbd32afe88fd518f16db2ddccc41b4be636cb6d86cdc0c3ce79",
+      "palaeo_agent/runs.py": "d1d8fe2ca81080ea827cdd52230459284b84ca8a60dbdd1680d6cec730c5fcb2",
+      "palaeo_agent/sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6",
+      "palaeo_agent/study.py": "9d0ed6cba7f371edd960fbe076e7d435f8b54991c25a754cb09f3bdf25ffb824"
+    },
+    "runtime_python": "3.12.13",
+    "runtime_package_count": 43,
+    "installed_dependencies_compatible": true,
+    "selected_dependencies": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "pydantic": "2.14.2",
+      "matplotlib": "3.11.2",
+      "mcp": "2.3.0"
+    },
+    "direct_toolkit_importable": false,
+    "toolkit_toolkit_importable": true,
+    "arm_package_identities_differ_only_by_toolkit": true,
+    "uvx": {
+      "python": "3.12.13",
+      "offline": true,
+      "wheel_sha256": "db0a05ab58cdbdf291b4435cfb2b4548e6c4684d4228beab2be30ffb3fc72eed",
+      "exact_cli_header_and_body_match": true,
+      "stdout_sha256": "e4ef3c19cfa7f92d52943882df058947c61d36e7f09b9bc63a92f054a4412acc",
+      "note": "Parent additionally verified uvx --offline --python 3.12.13 --from the same local wheel. Initial unpinned offline resolution lacked cached dependencies; no live model requests."
+    }
+  },
+  "probe": {
+    "passed_cases": 5,
+    "total_cases": 6,
+    "all_full_mode_cases_passed": true,
+    "actual_authentic_and_pilot_launcher_mode": "full",
+    "raw_receipt_sha256": "60b51b5fcd80f7b3077fa4baddefcd8acbeb44c5eb15b09488c325fc77bfc9bd",
+    "checks_recomputed_from_saved_provider_requests": true,
+    "recheck_note": "Canonical instructions are checked in system and system/user text prefaces, never tool_result. Python delivery explicitly checks instructions are withheld.",
+    "cases": [
+      {
+        "case": "bare-direct-python",
+        "launch_mode": "bare",
+        "runtime_arm": "direct",
+        "delivery_mode": "python",
+        "provider_requests": 12,
+        "instruction_locations_on_first_request": [],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true
+        },
+        "passed": true
+      },
+      {
+        "case": "bare-toolkit-mcp",
+        "launch_mode": "bare",
+        "runtime_arm": "toolkit",
+        "delivery_mode": "mcp",
+        "provider_requests": 14,
+        "instruction_locations_on_first_request": [],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true,
+          "full_primer_before_analysis": true,
+          "primer_below_output_limit": true,
+          "analysis_completed": true,
+          "canonical_instructions_delivered": false
+        },
+        "passed": false
+      },
+      {
+        "case": "bare-toolkit-python",
+        "launch_mode": "bare",
+        "runtime_arm": "toolkit",
+        "delivery_mode": "python",
+        "provider_requests": 14,
+        "instruction_locations_on_first_request": [],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true,
+          "full_primer_before_analysis": true,
+          "primer_below_output_limit": true,
+          "analysis_completed": true,
+          "canonical_instructions_withheld": true
+        },
+        "passed": true
+      },
+      {
+        "case": "full-direct-python",
+        "launch_mode": "full",
+        "runtime_arm": "direct",
+        "delivery_mode": "python",
+        "provider_requests": 12,
+        "instruction_locations_on_first_request": [],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true
+        },
+        "passed": true
+      },
+      {
+        "case": "full-toolkit-mcp",
+        "launch_mode": "full",
+        "runtime_arm": "toolkit",
+        "delivery_mode": "mcp",
+        "provider_requests": 14,
+        "instruction_locations_on_first_request": [
+          "messages.system"
+        ],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true,
+          "full_primer_before_analysis": true,
+          "primer_below_output_limit": true,
+          "analysis_completed": true,
+          "canonical_instructions_delivered": true
+        },
+        "passed": true
+      },
+      {
+        "case": "full-toolkit-python",
+        "launch_mode": "full",
+        "runtime_arm": "toolkit",
+        "delivery_mode": "python",
+        "provider_requests": 14,
+        "instruction_locations_on_first_request": [],
+        "plugin_state_directory_created": false,
+        "checks": {
+          "every_request_inventory_is_worker_only": true,
+          "init_inventory_matches_requests": true,
+          "no_credential_sent": true,
+          "forbidden_builtins_refused": true,
+          "worker_outside_read_denied": true,
+          "secret_not_returned": true,
+          "no_canary_writes": true,
+          "positive_control": true,
+          "client_exit_zero": true,
+          "full_primer_before_analysis": true,
+          "primer_below_output_limit": true,
+          "analysis_completed": true,
+          "canonical_instructions_withheld": true
+        },
+        "passed": true
+      }
+    ]
+  },
+  "native_tests": {
+    "passed": 61,
+    "failed": 0,
+    "skipped": 0,
+    "files": [
+      "tests/test_execution_worker.py",
+      "tests/test_authentic_session.py",
+      "tests/test_pilot_launch.py",
+      "tests/test_pilot_replay.py",
+      "tests/test_client_boundary_delivery.py"
+    ],
+    "post_label_clarification_provider_checker_tests": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "isolation": {
+    "scientific_mcp_and_instructions_withheld_in_python_mode": true,
+    "same_toolkit_runtime_for_both_delivery_modes": true,
+    "plugin_directory_prohibition_unchanged": true,
+    "agents_md_ancestor_guard": true,
+    "session_local_client_control": {
+      "name": "CLAUDE_CODE_AGENTS_MD_ROWS_EVERY_PROCESS",
+      "value": "1",
+      "purpose": "Avoid persistent built-in instruction-file usage telemetry deduplication state; existing telemetry-disable setting remains active.",
+      "verified_against_client_sha256": "85d8c08707fcfd1e78ffa0204eefbc6ec9e4fe22f375fb2767ef85d957ed3161",
+      "no_plugin_state_directory_in_all_six_cases": true
+    },
+    "no_global_configuration_changes": true,
+    "old_frozen_runtimes_unchanged": true
+  },
+  "limitations": [
+    "Claude Code --bare omits the canonical MCP instructions in this configuration. No instruction injection was added to force a pass.",
+    "Scripted receipt proves provider-visible delivery and ordering; it does not establish agent perception, voluntary discovery, compliance or scientific suitability.",
+    "uvx was not tested; CLI checks used the console script from the fresh installed wheel."
+  ],
+  "commands_with_output_paths_parameterised": [
+    "UV_OFFLINE=true .venv/bin/python evaluation/execution/runtime.py <fresh-runtime-root>",
+    "uv pip check --python <fresh-runtime-root>/toolkit/bin/python",
+    ".venv/bin/python evaluation/sprint3/claude-client-boundary/probe.py <fresh-runtime-root> <new-output-directory>",
+    "PALAEONATIVE_BOUNDARY_TESTS=1 PALAEO_PILOT_RUNTIME=<fresh-runtime-root> .venv/bin/python -m pytest -q tests/test_execution_worker.py tests/test_authentic_session.py tests/test_pilot_launch.py tests/test_pilot_replay.py tests/test_client_boundary_delivery.py"
+  ],
+  "harness_source_sha256": {
+    "evaluation/execution/server.py": "257a9ce5946e3118140f26fe0cd0f5f51a5de14c1d4b87c249858287bcd873f5",
+    "evaluation/pilot/launch.py": "83fcf6c275bd461a278e4711c680d40ba1866e7173435fe766d0236df91b0d02",
+    "evaluation/pilot/replay.py": "5d7ba81c9e0b047bc8414e6284ac3baf4f1991b80a1eba4ae7e14c2b59d4aca8",
+    "evaluation/authentic/session.py": "0e164dc65b3c79964006dfd4d66c9ba511e99620cc3da75d4821f381a8c48cde",
+    "evaluation/sprint3/claude-client-boundary/probe.py": "6afe11a060d2786f6d2ce4a75589c36b1ad8b649fefa7ec1e3684412d32e9689",
+    "evaluation/authentic/instructed-contract.md": "bc949ee6fde91a6bb9f63b4bac800ecfaf18722c9c1659965d6daf165462b935",
+    "evaluation/authentic/instructed-mcp.md": "f5c2391a3d4cb0309882af310dca5d18c65c22bbe88b27349f141f4586a5ce32",
+    "evaluation/authentic/instructed-python.md": "8aababcf0a41b42bbb0a2febb396c9094e553a172faa99d8beb622340594d44f"
+  }
+}

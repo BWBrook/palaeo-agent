@@ -297,3 +297,64 @@ def test_reconciliation_keeps_other_large_integers_exact(tmp_path, expected, obs
     row["request"]["arguments"] = {"method": "permanova", "seed": expected}
     use["input"] = {"method": "permanova", "seed": observed}
     assert not launch.reconcile(events(use, result_for("p", value)), audit(tmp_path, row), [use["name"]])["consistent"]
+
+
+def test_delivery_selection_and_staging_share_toolkit_runtime(tmp_path):
+    material = tmp_path / "task.md"
+    material.write_text("task")
+    configs = []
+    for mode in ("mcp", "python"):
+        launch.stage(tmp_path / mode / "trial", [material], tmp_path / "runtime", "toolkit",
+                     tmp_path / mode / "audit", delivery_mode=mode)
+        configs.append(json.loads((tmp_path / mode / "worker.json").read_text()))
+    assert configs[0]["runtime"] == configs[1]["runtime"] == str(tmp_path / "runtime/toolkit")
+    assert configs[0]["toolkit"] is True and configs[1]["toolkit"] is False
+    assert [c["delivery_mode"] for c in configs] == ["mcp", "python"]
+    assert launch.delivery("direct") == "python"
+    assert launch.delivery("toolkit") == "mcp"
+    for arm, mode in (("direct", "mcp"), ("new", "python"), ("toolkit", "bogus")):
+        with pytest.raises(launch.Halt):
+            launch.delivery(arm, mode)
+    assert launch.session_inventory_key({"arm": "toolkit", "delivery_mode": "python"}) == "toolkit:python"
+    assert launch.session_inventory_key({"arm": "toolkit"}) == "toolkit"
+
+
+def test_bootstrap_requires_exact_provenance(tmp_path):
+    from evaluation.execution.server import SERVER_METADATA_REQUEST
+    metadata = {"instructions": "canonical text", "tools": [{"name": "primer"}]}
+    result = {"status": "ok", "exit_code": 0, "stdout": json.dumps(metadata), "truncated": {"stdout": False}}
+    row = {"request": SERVER_METADATA_REQUEST, "result": result}
+    inventory = INVENTORY + ["mcp__worker__palaeo_primer"]
+    location = audit(tmp_path, row)
+    (location / "server-metadata.json").write_text(json.dumps(metadata))
+    assert launch.reconcile([], location, inventory)["consistent"]
+    for invalid in (dict(row, request={**SERVER_METADATA_REQUEST, "code": "malicious"}),
+                    dict(row, result={**result, "truncated": {"stdout": True}}),
+                    dict(row, result={**result, "stdout": json.dumps({**metadata, "instructions": "altered"})})):
+        assert not launch.reconcile([], audit(tmp_path, invalid), inventory)["consistent"]
+    assert not launch.reconcile([], audit(tmp_path, row, row), inventory)["consistent"]
+    assert not launch.reconcile([], audit(tmp_path, row), INVENTORY)["consistent"]
+    legacy = {"request": {"tool": "supervisor_load_tool_definitions"},
+              "result": {**result, "stdout": json.dumps(metadata["tools"])}}
+    assert launch.reconcile([], audit(tmp_path, legacy), inventory)["consistent"]
+    legacy["request"]["arbitrary"] = "hidden execution"
+    assert not launch.reconcile([], audit(tmp_path, legacy), inventory)["consistent"]
+
+
+def test_isolated_environment_avoids_builtin_plugin_bookkeeping(monkeypatch, tmp_path):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "must-not-inherit")
+    monkeypatch.setenv("CLAUDE_CODE_AGENTS_MD_ROWS_EVERY_PROCESS", "0")
+    env = launch.environment(tmp_path / "home", tmp_path / "config")
+    assert env["CLAUDE_CODE_AGENTS_MD_ROWS_EVERY_PROCESS"] == "1"
+    assert env["DISABLE_TELEMETRY"] == "1"
+    assert "ANTHROPIC_API_KEY" not in env
+    assert "plugins" in launch.CONFIG_FORBIDDEN
+    (tmp_path / "plugins").mkdir()
+    with pytest.raises(launch.Halt, match="plugins"):
+        launch.verify_config_dir(tmp_path)
+
+
+def test_instruction_ancestor_check_includes_agents_md(tmp_path):
+    (tmp_path / "AGENTS.md").write_text("synthetic instruction canary")
+    with pytest.raises(launch.Halt, match="AGENTS.md"):
+        launch.no_instruction_ancestors(tmp_path / "client-home")

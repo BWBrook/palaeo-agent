@@ -32,6 +32,7 @@ The small tool surface is:
 
 | Tool | Arguments | Result |
 | --- | --- | --- |
+| `primer` | none | Exact canonical text, package version and SHA-256 |
 | `discover` | optional `method` | Short catalogue, or one method's complete input/output schemas |
 | `validate` | `spec` | Existing data/numerical checks or a structured refusal |
 | `run` | `spec`, optional `output` | Saved bundle reference and numerical summary |
@@ -40,13 +41,24 @@ The small tool surface is:
 | `compare` | `baseline`, `sensitivity`, optional `output` | Existing descriptive community comparison |
 | `inspect_comparison` | `bundle` | Comparison verification and artifact references |
 | `result` | `bundle`, `field`, optional paging arguments | One verified result field |
+| `study_run` | `spec`, optional `output` | Prepared datasets and composed analysis bundles |
+| `study_inspect` | `bundle` | Study integrity and recorded child runs |
+| `study_reproduce` | `bundle`, optional `output` | Fresh preparation and numerical reproduction |
 
 `spec` is the same discriminated Pydantic specification as the Python API;
-`tools/list` embeds its schema. Numerical implementations and scientific
+`discover` with a method name returns its full schema. Numerical implementations and scientific
 refusals remain in the library. Input validation failures and scientific errors
 return MCP `isError: true` with the same structured content in the text and
 `structuredContent` fields. Unsupported repeated or restricted designs fail
 schema validation; `validate` never establishes sampling independence.
+
+Read `primer` before analysis. Every discovery shape includes the primer's
+version, hash and retrieval pointer. The server also supplies a short
+`instructions` preface, but clients control whether they deliver it. See
+[sprint-7 results](sprint-7-results.md) for the installed-package and scripted
+client checks, including the observed `--bare` limitation. A connected tool
+or matching hash alone does not prove that an agent received or followed the
+full primer.
 
 Default output roots are `runs` and `comparisons`. Returned bundle and artifact
 references are relative to the session root. Runs use new UUID directories;

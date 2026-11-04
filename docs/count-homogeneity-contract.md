@@ -22,9 +22,10 @@ and in which taxa.
   hypergeometric probability.
 
 **What the model assumes and does not test.**
-- Specimens are exchangeable within a sample: no clustering, patchiness or
-  taphonomic aggregation within a horizon. When that fails, the test is
-  anticonservative.
+- Counting units within each collection are independent categorical
+  observations with a common probability vector. Positive clustering or
+  taphonomic aggregation can make the test anticonservative; validity
+  depends on this counting model, not exchangeability alone.
 - The test concerns counting error only. It says nothing about variation
   between replicate collections, ecological exchangeability between
   horizons, cause, time or rate.
@@ -37,10 +38,21 @@ and in which taxa.
 | --- | --- |
 | `method` | `"count_homogeneity"` |
 | input fields | as `community` |
-| `pairs` | list of distinct `[sample_a, sample_b]`, with a ≠ b; the order within a pair is recorded but does not affect any statistic |
+| `pairs` | list of distinct `[sample_a, sample_b]`, with a ≠ b; order is recorded and defines the signed taxon effect (b minus a) |
 | `simulations` | integer B, 999 ≤ B ≤ 99,999; no default, so the caller fixes it before seeing results |
-| `seed` | integer, required |
+| `seed` | strict integer, required, 0 ≤ seed ≤ 2³² − 1 |
 | `confidence` | for zero-count limits; default 0.95 |
+
+Settings are not coerced from Boolean values, strings or fractional
+integers. Confidence is finite and strictly between 0 and 1. Pairs are a
+nonempty list of exact, distinct string IDs. Pooled margins are summed in
+exact integer arithmetic; backend numerical/resource limits are checked
+explicitly before sampling. The seed bound is exactly representable through
+the JSON client boundary.
+
+Pearson X², proportional Bray–Curtis and exact two-sided Fisher p-values
+are symmetric under swapping the pair. The signed taxon effects reverse;
+finite Monte Carlo draws need not be identical after reordering margins.
 
 ## Calculations, for each pair
 
@@ -67,12 +79,15 @@ and in which taxa.
      exceedances.
 4. **Monte Carlo uncertainty.**
    - The result reports b, B and p.
-   - It also reports a two-sided 95% Clopper–Pearson interval for the
-     conditional tail probability b/B. This interval is never zero-width: at
+   - It also reports a two-sided 95% Clopper–Pearson interval for the unknown
+     conditional tail probability, estimated by b/B. This interval is never zero-width: at
      b = 0 its upper end is 1 − 0.025^(1/B).
-   - When that interval straddles the reporting α, the pair is flagged
-     `monte_carlo_unresolved`. There is no automatic re-run with a larger B,
-     because that would be significance-driven retrying.
+   - The fixed `reporting_alpha` is 0.05. `monte_carlo_unresolved` is true
+     exactly when that interval contains 0.05, including its endpoints;
+     its scope is `unadjusted_tail_only`. A false flag means only that the
+     raw-tail interval excludes 0.05. It does not establish stability near a
+     Holm threshold. The interval is neither for the adjusted p-value nor
+     simultaneous across pairs. There is no automatic re-run with a larger B.
    - Results replay exactly under the same seed, B, input order and
      SciPy/NumPy versions, and the result records those versions. A
      different input order or library version gives a different Monte Carlo
@@ -139,7 +154,9 @@ taxa or samples, and a zero count is not evidence of absence.
 - **Enumerated tables.** For a tiny table (for example (2, 1, 0) against
   (0, 1, 2)), the exact conditional tail probability is computed by
   enumerating every table with those margins, with hypergeometric weights.
-  The Monte Carlo estimate must cover it.
+  A fixed-seed sampler check uses a prespecified binomial-error tolerance;
+  a pointwise 95% interval is not guaranteed to cover the exact probability
+  on every run.
 - **Fisher, Holm and zero limits:** R `fisher.test`, `p.adjust` and
   `binom.test`, under the tolerances above.
 - **Tests:** pairs sharing a sample, a taxon zero in both samples, a single

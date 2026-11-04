@@ -1,0 +1,50 @@
+{
+  "method": "count_homogeneity",
+  "input": "../benchmarks/past/legacy-data/llanvirn.dat",
+  "format": "past",
+  "orientation": "taxa_by_samples",
+  "value_type": "count",
+  "missing": "error",
+  "empty_samples": "error",
+  "pairs": [
+    [
+      "1",
+      "2"
+    ],
+    [
+      "2",
+      "3"
+    ],
+    [
+      "3",
+      "4"
+    ],
+    [
+      "4",
+      "5"
+    ],
+    [
+      "5",
+      "6"
+    ],
+    [
+      "6",
+      "7"
+    ],
+    [
+      "7",
+      "8"
+    ],
+    [
+      "8",
+      "9"
+    ],
+    [
+      "9",
+      "10"
+    ]
+  ],
+  "simulations": 9999,
+  "seed": 7112026,
+  "confidence": 0.95
+}

@@ -85,9 +85,11 @@ be the numbers of taxa with exactly 1 and 2 specimens.
 
   Ĉ_m = 1 − Σ_i (X_i / n) · C(n − X_i, m) / C(n − 1, m)
 
-  This is the expected abundance share, in the full sample, of the taxa
-  present in a random size-m subsample. It is exactly computable from the
-  sample; the full-sample estimator is not used here.
+  This estimates expected population abundance coverage at sample size m
+  from the reference counts. Evaluation of the formula is deterministic,
+  but the output remains an estimator; it is not the expected represented
+  fraction of the finite observed collection. For counts (1, 1) and m = 1,
+  this estimate is 0, whereas the finite collection's represented mass is 1/2.
 - **For m = n** (the full sample):
 
   Ĉ_n = 1 − (f₁ / n) · A
@@ -97,8 +99,10 @@ be the numbers of taxa with exactly 1 and 2 specimens.
   - When f₁ = 0: A = 1, so Ĉ_n = 1.
 
   This is the Good–Turing estimate with the Chao–Jost correction. It
-  estimates population abundance coverage, so it is a different quantity
-  from the m < n branch, and the two are labelled separately in the result.
+  estimates coverage of the full reference sample. Both branches concern
+  population abundance coverage at their respective sample sizes; the
+  estimation formula differs, not the scientific interpretation. Evaluate
+  the f₁ = 0 branch first to avoid an undefined unused expression.
 - **Boundaries.**
   - Ĉ_n = 1 when f₁ = 0, or when f₁ = 1 and f₂ = 0. The result then records
     `coverage_boundary: true` and a note that the estimator's boundary does
@@ -107,11 +111,18 @@ be the numbers of taxa with exactly 1 and 2 specimens.
     `null` with the reason `coverage_unavailable_single_specimen`.
 - **Recorded with each sample:** f₁, f₂, n and S_obs.
 
-**Numerics.** Ratios of binomial coefficients are computed as exponentials
-of differences of log-gamma values, as vegan does. Pair terms are summed in
-a fixed (sorted-label) order. A negative variance that arises only from
+**Numerics.** Use stable binomial-coefficient ratios and stable summation,
+with exact degenerate boundaries. Unqualified subtraction of log-gamma
+values is not sufficiently accurate over the accepted count range. For
+counts (n−1, 1) and m = 2, E = 1 + 2/n and Var = (2/n)(1−2/n), including
+n = 10⁹. Accepted inputs must meet these numerical contracts; any unsupported
+numerical or computational range is refused explicitly. Pair terms are
+summed in a fixed (sorted-label) order. A negative variance that arises only from
 rounding, with |Var| ≤ 64 ε · E[S_m]², is reported as 0 and flagged. Any
 larger negative value refuses.
+Expected richness and coverage must also remain inside their mathematical
+bounds. `sizes` accepts strict integers only, excluding Boolean values,
+strings and fractional values.
 
 ## Refusals
 

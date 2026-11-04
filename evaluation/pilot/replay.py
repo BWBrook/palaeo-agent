@@ -192,7 +192,11 @@ def evaluate(record, items_dir, runtime_root, evidence):
     if files is None:
         return out | {"outcome": "missing"}
     out["files"] = [f.as_posix() for f in files]
+    from evaluation.pilot.launch import delivery
+    mode = delivery(trial["arm"], trial.get("delivery_mode"))
+    out["delivery_mode"] = mode
     runtime = Path(runtime_root) / trial["arm"]
+    out["runtime"] = str(runtime)
     try:
         materials = verify_materials(items_dir, trial["item"])
         with tempfile.TemporaryDirectory(prefix="replay-") as scratch:
