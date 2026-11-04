@@ -256,14 +256,14 @@
   },
   "limitations": [
     "Claude Code --bare omits the canonical MCP instructions in this configuration. No instruction injection was added to force a pass.",
-    "Scripted receipt proves provider-visible delivery and ordering; it does not establish agent perception, voluntary discovery, compliance or scientific suitability.",
-    "uvx was not tested; CLI checks used the console script from the fresh installed wheel."
+    "Scripted receipt proves provider-visible delivery and ordering; it does not establish agent perception, voluntary discovery, compliance or scientific suitability."
   ],
   "commands_with_output_paths_parameterised": [
     "UV_OFFLINE=true .venv/bin/python evaluation/execution/runtime.py <fresh-runtime-root>",
     "uv pip check --python <fresh-runtime-root>/toolkit/bin/python",
     ".venv/bin/python evaluation/sprint3/claude-client-boundary/probe.py <fresh-runtime-root> <new-output-directory>",
-    "PALAEONATIVE_BOUNDARY_TESTS=1 PALAEO_PILOT_RUNTIME=<fresh-runtime-root> .venv/bin/python -m pytest -q tests/test_execution_worker.py tests/test_authentic_session.py tests/test_pilot_launch.py tests/test_pilot_replay.py tests/test_client_boundary_delivery.py"
+    "PALAEONATIVE_BOUNDARY_TESTS=1 PALAEO_PILOT_RUNTIME=<fresh-runtime-root> .venv/bin/python -m pytest -q tests/test_execution_worker.py tests/test_authentic_session.py tests/test_pilot_launch.py tests/test_pilot_replay.py tests/test_client_boundary_delivery.py",
+    "uvx --offline --python 3.12.13 --from <same-wheel-artifact> palaeo-agent primer"
   ],
   "harness_source_sha256": {
     "evaluation/execution/server.py": "257a9ce5946e3118140f26fe0cd0f5f51a5de14c1d4b87c249858287bcd873f5",

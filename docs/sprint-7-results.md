@@ -150,6 +150,9 @@ The native harness subset passed 61 tests. The installed-package checks and
 client matrix are recorded separately from ordinary Python test results.
 The final complete local run, with native checks enabled against the fresh
 runtime, passed **683 tests in 125.83 seconds** with no skips or failures.
+Linux CI on implementation commit `ab28a7a58fff4a683f853bea70b33baf512c7a52`
+passed **672 tests, 11 skipped**, in 148.89 seconds; the skipped native
+checks were exercised locally. [CI record](https://github.com/BWBrook/palaeo-agent/actions/runs/41932960550).
 
 Claude is next: review the code against the two contracts, then cross-check
 the corrected Llanvirn and Dielasma analyses with matched inputs, estimands,

@@ -4,8 +4,8 @@
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
 thread_ids = [136]
-reviewed_message_ids = [2865, 2866, 2867, 2886]
-reviewed_through = 2886
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891]
+reviewed_through = 2891
 exporter_revision = "62c228024090dad65bc43114c246964965f19250"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -15,8 +15,10 @@ flag_terms = ["password", "token", "credential", "secret", "student", "email", "
 # check. Neither passage contains private access routes, credentials or hosts.
 cleared = [2865, 2866]
 
-# Other reviewed messages (2867, 2886) contain scientific and implementation
+# Other reviewed messages (2867, 2886, 2891) contain scientific and implementation
 # decisions, with no flagged content requiring clearance or withholding.
+# 2891 records public commit/CI evidence, methodological limits and generic
+# client configuration; it contains no credentials, private routes or paper text.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],
