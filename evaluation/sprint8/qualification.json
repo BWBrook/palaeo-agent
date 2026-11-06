@@ -1,0 +1,76 @@
+{
+ "schema": "sprint8-runtime-freeze-qualification-v1",
+ "date": "2026-11-06",
+ "commit": "106dc69",
+ "runtime_root": "~/palaeo-eval/sprint8-runtime-20261106",
+ "wheel": "palaeo_agent-0.2.0.dev0-py3-none-any.whl",
+ "wheel_sha256": "0935d468e3e62be858cec2456418e2a87ae2649f59258a1c6ebe779c837dd48b",
+ "requirements_sha256": "bbca59552ace1aa44b373604518f68b73ab9b17e77e03a36e5f25cce95b5581d",
+ "primer": {
+  "sha256": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3",
+  "bytes": 9675,
+  "installed_matches_checkout": true,
+  "cli_header_matches": true,
+  "direct_arm_cannot_import_toolkit": true
+ },
+ "client": {
+  "version": "2.1.311 (Claude Code)",
+  "sha256": "85d8c08707fcfd1e78ffa0204eefbc6ec9e4fe22f375fb2767ef85d957ed3161"
+ },
+ "model_calls": 0,
+ "client_probe": {
+  "raw_receipt_sha256": "299ccb7ac72d44a4f12a837a2141e283a09a4d7e5e348059d02c8243c13f3f75",
+  "cases": [
+   {
+    "case": "bare-direct-python",
+    "passed": true,
+    "requests": 12,
+    "failed_checks": []
+   },
+   {
+    "case": "bare-toolkit-mcp",
+    "passed": false,
+    "requests": 14,
+    "failed_checks": [
+     "canonical_instructions_delivered"
+    ]
+   },
+   {
+    "case": "bare-toolkit-python",
+    "passed": true,
+    "requests": 14,
+    "failed_checks": []
+   },
+   {
+    "case": "full-direct-python",
+    "passed": true,
+    "requests": 12,
+    "failed_checks": []
+   },
+   {
+    "case": "full-toolkit-mcp",
+    "passed": true,
+    "requests": 14,
+    "failed_checks": []
+   },
+   {
+    "case": "full-toolkit-python",
+    "passed": true,
+    "requests": 14,
+    "failed_checks": []
+   }
+  ],
+  "full_mode_all_passed": true,
+  "known_limitation": "bare toolkit/MCP suppresses canonical server instructions (as in sprint 7); I1/I2 use the full route"
+ },
+ "worker_probes": {
+  "status": "passed",
+  "scientific_runs": 3
+ },
+ "native_suite": {
+  "command": "PALAEONATIVE_BOUNDARY_TESTS=1 PALAEO_PILOT_RUNTIME=<runtime> uv run --extra mcp pytest -q",
+  "passed": 688,
+  "skipped": 0
+ },
+ "scope": "Scripted delivery and confinement only; not agent perception or compliance."
+}
