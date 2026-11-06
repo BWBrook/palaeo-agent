@@ -247,3 +247,11 @@ def test_failed_dataset_marks_every_later_step(tmp_path):
     assert [(s["id"], s["status"]) for s in outcome["steps"]] == [
         ("dataset:bad", "failed"), ("dataset:clean", "not_run"), ("analysis:describe", "not_run"), ("analysis:zones", "not_run")]
     assert inspect_study(outcome["study_dir"])["study_status"] == "partial"
+
+
+def test_existing_study_directory_is_a_named_refusal(tmp_path):
+    path = community_study(tmp_path)
+    (tmp_path / "out").mkdir()
+    with pytest.raises(AnalysisError) as error:
+        run_study(path, tmp_path / "out")
+    assert error.value.code == "output_exists"

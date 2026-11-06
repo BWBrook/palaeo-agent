@@ -300,7 +300,11 @@ def run_study(study, output_root, *, base_dir=None):
         except OSError as exc:
             raise AnalysisError("input_unreadable", "Cannot read study input", input=name, reason=str(exc)) from exc
     directory = Path(output_root).resolve()
-    directory.mkdir(parents=True, exist_ok=False)
+    try:
+        directory.mkdir(parents=True, exist_ok=False)
+    except FileExistsError as exc:
+        raise AnalysisError("output_exists", "The study bundle directory already exists; give a new path for this study",
+                            study_dir=str(directory)) from exc
     portable = spec.model_dump(mode="json")
     for name, item in portable["inputs"].items():
         item["path"] = f"inputs/{name}"

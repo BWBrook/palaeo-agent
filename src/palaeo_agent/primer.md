@@ -60,6 +60,11 @@ exchangeability, so do not run it there.
 - Correct a justified error only with a recorded reason and provenance. Use
   `study` operations where they apply: `exclude`, `select`, `map_taxa`, and
   metadata joins. They are not a general data-editing language.
+- `exclude` and `select` act on whole rows. In a measurement table whose
+  column pairs hold different groups (for example localities side by side),
+  a row number is not one specimen across groups: excluding it removes
+  values from every column. Exclude rows in a dataset used only by the
+  analyses they concern.
 - **Never coerce data to pass a check.** Never convert percentages into
   integer counts, round values, or delete observations merely so that an
   operation accepts the input.
@@ -83,7 +88,7 @@ use the names advertised by your client.
 | Catalogue | `discover` | `palaeo_agent.discover()` |
 | Check a specification | `validate` | `palaeo_agent.validate(spec)` |
 | Run one analysis | `run` | `palaeo_agent.run(spec, output_root)` |
-| Run a study (preparation, then analyses) | `study_run` | `palaeo_agent.run_study(study, output_root)` |
+| Run a study (preparation, then analyses) | `study_run` | `palaeo_agent.run_study(study, new_study_dir)` (the bundle directory itself; it must not exist) |
 | Verify a run's integrity and read it | `inspect`, then `result` for one field | `palaeo_agent.inspect_run(run_dir)["result"]` |
 | Verify a study's integrity or recompute its analyses | `study_inspect`, `study_reproduce` | `palaeo_agent.inspect_study`, `palaeo_agent.reproduce_study` |
 | Recompute a run and compare its numbers | `reproduce` | `palaeo_agent.reproduce(run_dir, output_root)` |

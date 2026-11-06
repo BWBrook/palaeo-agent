@@ -1,0 +1,2131 @@
+{
+ "purpose": "Arithmetic cross-check of matched quantities between the corrected analyses and Palaeo-Agent operations; not scientific validation (primer section 7).",
+ "palaeo_agent_version": "0.2.0.dev0",
+ "primer": {
+  "version": "0.2.0.dev0",
+  "sha256": "5482e3f96770207f4603195edd9c875177e6ccfa8da53b69dca16f0739ed30df"
+ },
+ "inputs": {
+  "llanvirn": {
+   "file": "benchmarks/past/legacy-data/llanvirn.dat",
+   "sha256": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37"
+  },
+  "dielasma": {
+   "file": "benchmarks/past/legacy-data/dielasma.dat",
+   "sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd"
+  }
+ },
+ "validation": {
+  "rarefaction": {
+   "status": "valid",
+   "n_input": 10,
+   "n": 10,
+   "n_taxa": 23,
+   "sizes": [
+    13
+   ],
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+  },
+  "count_homogeneity": {
+   "status": "valid",
+   "n_input": 10,
+   "n": 10,
+   "n_taxa": 23,
+   "n_pairs": 9,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input, declared pairs, exact margins and backend bounds checked; no Monte Carlo tables sampled"
+  },
+  "community_relative": {
+   "status": "valid",
+   "n_input": 10,
+   "n": 10,
+   "n_taxa": 23,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  }
+ },
+ "dielasma_study_status": "verified",
+ "conventions": {
+  "exact": "integer or list equality",
+  "relative": "relative tolerance 1e-12 for deterministic floats; 1e-10 for Fisher p-values (SciPy on both sides)",
+  "monte_carlo_mean": "|analysis mean of 2000 hypergeometric subsamples - exact expectation| <= 3.29 x conditional SD / sqrt(2000)",
+  "taxa": "matched by row position in llanvirn.dat; the analysis strips the _x_ label prefix, the API keeps raw labels",
+  "inverse_simpson": "API reports Gini-Simpson 1 - sum p^2; compared as 1 / (1 - simpson)"
+ },
+ "summary": {
+  "checks": 159,
+  "agree": 159
+ },
+ "checks": [
+  {
+   "case": "llanvirn",
+   "quantity": "rarefaction size",
+   "analysis_field": "rarefaction_n",
+   "api_field": "rarefaction.sizes[0]",
+   "analysis": 13,
+   "api": 13,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 1",
+   "analysis_field": "totals.1",
+   "api_field": "rarefaction.samples[1].total",
+   "analysis": 321,
+   "api": 321,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 1",
+   "analysis_field": "richness.1",
+   "api_field": "rarefaction.samples[1].observed_richness",
+   "analysis": 6,
+   "api": 6,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 1",
+   "analysis_field": "rarefied_richness.1.mean",
+   "api_field": "rarefaction.samples[1].estimates[0].expected_richness",
+   "analysis": 1.591,
+   "api": 1.5737775075103715,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.05048774913940785,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 2",
+   "analysis_field": "totals.2",
+   "api_field": "rarefaction.samples[2].total",
+   "analysis": 243,
+   "api": 243,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 2",
+   "analysis_field": "richness.2",
+   "api_field": "rarefaction.samples[2].observed_richness",
+   "analysis": 9,
+   "api": 9,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 2",
+   "analysis_field": "rarefied_richness.2.mean",
+   "api_field": "rarefaction.samples[2].estimates[0].expected_richness",
+   "analysis": 1.8955,
+   "api": 1.9047751545032854,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.06191733660022959,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 3",
+   "analysis_field": "totals.3",
+   "api_field": "rarefaction.samples[3].total",
+   "analysis": 304,
+   "api": 304,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 3",
+   "analysis_field": "richness.3",
+   "api_field": "rarefaction.samples[3].observed_richness",
+   "analysis": 9,
+   "api": 9,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 3",
+   "analysis_field": "rarefied_richness.3.mean",
+   "api_field": "rarefaction.samples[3].estimates[0].expected_richness",
+   "analysis": 1.6765,
+   "api": 1.6609896582876664,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.05517674009881232,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 4",
+   "analysis_field": "totals.4",
+   "api_field": "rarefaction.samples[4].total",
+   "analysis": 156,
+   "api": 156,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 4",
+   "analysis_field": "richness.4",
+   "api_field": "rarefaction.samples[4].observed_richness",
+   "analysis": 12,
+   "api": 12,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 4",
+   "analysis_field": "rarefied_richness.4.mean",
+   "api_field": "rarefaction.samples[4].estimates[0].expected_richness",
+   "analysis": 3.59,
+   "api": 3.5971188549216255,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.08117634161705624,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 5",
+   "analysis_field": "totals.5",
+   "api_field": "rarefaction.samples[5].total",
+   "analysis": 473,
+   "api": 473,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 5",
+   "analysis_field": "richness.5",
+   "api_field": "rarefaction.samples[5].observed_richness",
+   "analysis": 14,
+   "api": 14,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 5",
+   "analysis_field": "rarefied_richness.5.mean",
+   "api_field": "rarefaction.samples[5].estimates[0].expected_richness",
+   "analysis": 2.281,
+   "api": 2.3024354284331405,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.07319838057042195,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 6",
+   "analysis_field": "totals.6",
+   "api_field": "rarefaction.samples[6].total",
+   "analysis": 702,
+   "api": 702,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 6",
+   "analysis_field": "richness.6",
+   "api_field": "rarefaction.samples[6].observed_richness",
+   "analysis": 15,
+   "api": 15,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 6",
+   "analysis_field": "rarefied_richness.6.mean",
+   "api_field": "rarefaction.samples[6].estimates[0].expected_richness",
+   "analysis": 4.744,
+   "api": 4.740860530157544,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.08832436767223975,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 7",
+   "analysis_field": "totals.7",
+   "api_field": "rarefaction.samples[7].total",
+   "analysis": 26,
+   "api": 26,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 7",
+   "analysis_field": "richness.7",
+   "api_field": "rarefaction.samples[7].observed_richness",
+   "analysis": 8,
+   "api": 8,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 7",
+   "analysis_field": "rarefied_richness.7.mean",
+   "api_field": "rarefaction.samples[7].estimates[0].expected_richness",
+   "analysis": 5.892,
+   "api": 5.86217256696729,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.07135636857985186,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 8",
+   "analysis_field": "totals.8",
+   "api_field": "rarefaction.samples[8].total",
+   "analysis": 68,
+   "api": 68,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 8",
+   "analysis_field": "richness.8",
+   "api_field": "rarefaction.samples[8].observed_richness",
+   "analysis": 11,
+   "api": 11,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 8",
+   "analysis_field": "rarefied_richness.8.mean",
+   "api_field": "rarefaction.samples[8].estimates[0].expected_richness",
+   "analysis": 5.95,
+   "api": 5.877218988478952,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.08352711658565493,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 9",
+   "analysis_field": "totals.9",
+   "api_field": "rarefaction.samples[9].total",
+   "analysis": 57,
+   "api": 57,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 9",
+   "analysis_field": "richness.9",
+   "api_field": "rarefaction.samples[9].observed_richness",
+   "analysis": 7,
+   "api": 7,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 9",
+   "analysis_field": "rarefied_richness.9.mean",
+   "api_field": "rarefaction.samples[9].estimates[0].expected_richness",
+   "analysis": 4.226,
+   "api": 4.223348298938965,
+   "rule": "monte_carlo_mean",
+   "tolerance": 0.07304380093775845,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "total 10",
+   "analysis_field": "totals.10",
+   "api_field": "rarefaction.samples[10].total",
+   "analysis": 13,
+   "api": 13,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "richness 10",
+   "analysis_field": "richness.10",
+   "api_field": "rarefaction.samples[10].observed_richness",
+   "analysis": 6,
+   "api": 6,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "rarefied richness 10",
+   "analysis_field": "rarefied_richness.10.mean",
+   "api_field": "rarefaction.samples[10].estimates[0].expected_richness",
+   "analysis": 6.0,
+   "api": 6.0,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 1",
+   "analysis_field": "shannon.1",
+   "api_field": "community.samples[1].shannon",
+   "analysis": 0.2559103935988128,
+   "api": 0.2559103935988128,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 1",
+   "analysis_field": "inverse_simpson.1",
+   "api_field": "1/(1 - community.samples[1].simpson)",
+   "analysis": 1.0997257116022925,
+   "api": 1.0997257116022925,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 2",
+   "analysis_field": "shannon.2",
+   "api_field": "community.samples[2].shannon",
+   "analysis": 0.3996831985747781,
+   "api": 0.3996831985747781,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 2",
+   "analysis_field": "inverse_simpson.2",
+   "api_field": "1/(1 - community.samples[2].simpson)",
+   "analysis": 1.1649273017814517,
+   "api": 1.1649273017814517,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 3",
+   "analysis_field": "shannon.3",
+   "api_field": "community.samples[3].shannon",
+   "analysis": 0.306515984661645,
+   "api": 0.306515984661645,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 3",
+   "analysis_field": "inverse_simpson.3",
+   "api_field": "1/(1 - community.samples[3].simpson)",
+   "analysis": 1.1136067865233528,
+   "api": 1.1136067865233528,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 4",
+   "analysis_field": "shannon.4",
+   "api_field": "community.samples[4].shannon",
+   "analysis": 1.0661979951678986,
+   "api": 1.0661979951678986,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 4",
+   "analysis_field": "inverse_simpson.4",
+   "api_field": "1/(1 - community.samples[4].simpson)",
+   "analysis": 1.7907284768211915,
+   "api": 1.7907284768211915,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 5",
+   "analysis_field": "shannon.5",
+   "api_field": "community.samples[5].shannon",
+   "analysis": 0.5835640522769578,
+   "api": 0.5835640522769578,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 5",
+   "analysis_field": "inverse_simpson.5",
+   "api_field": "1/(1 - community.samples[5].simpson)",
+   "analysis": 1.253826280423903,
+   "api": 1.253826280423903,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 6",
+   "analysis_field": "shannon.6",
+   "api_field": "community.samples[6].shannon",
+   "analysis": 1.616540912380677,
+   "api": 1.616540912380677,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 6",
+   "analysis_field": "inverse_simpson.6",
+   "api_field": "1/(1 - community.samples[6].simpson)",
+   "analysis": 3.2921638051974074,
+   "api": 3.2921638051974065,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 7",
+   "analysis_field": "shannon.7",
+   "api_field": "community.samples[7].shannon",
+   "analysis": 1.6645395060914945,
+   "api": 1.6645395060914945,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 7",
+   "analysis_field": "inverse_simpson.7",
+   "api_field": "1/(1 - community.samples[7].simpson)",
+   "analysis": 3.755555555555555,
+   "api": 3.755555555555555,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 8",
+   "analysis_field": "shannon.8",
+   "api_field": "community.samples[8].shannon",
+   "analysis": 1.864190612693595,
+   "api": 1.864190612693595,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 8",
+   "analysis_field": "inverse_simpson.8",
+   "api_field": "1/(1 - community.samples[8].simpson)",
+   "analysis": 4.699186991869919,
+   "api": 4.699186991869918,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 9",
+   "analysis_field": "shannon.9",
+   "api_field": "community.samples[9].shannon",
+   "analysis": 1.2402823333034405,
+   "api": 1.2402823333034405,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 9",
+   "analysis_field": "inverse_simpson.9",
+   "api_field": "1/(1 - community.samples[9].simpson)",
+   "analysis": 2.315751960085531,
+   "api": 2.3157519600855316,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Shannon 10",
+   "analysis_field": "shannon.10",
+   "api_field": "community.samples[10].shannon",
+   "analysis": 1.4105135571148382,
+   "api": 1.4105135571148382,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "inverse Simpson 10",
+   "analysis_field": "inverse_simpson.10",
+   "api_field": "1/(1 - community.samples[10].simpson)",
+   "analysis": 2.9649122807017547,
+   "api": 2.9649122807017547,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 1-2",
+   "analysis_field": "bray_curtis.proportion.1-2",
+   "api_field": "count_homogeneity.pairs[1-2].braycurtis_proportions",
+   "analysis": 0.040921503019114645,
+   "api": 0.040921503019114645,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 1-2",
+   "analysis_field": "bray_curtis.proportion.1-2",
+   "api_field": "community.distances[1][2]",
+   "analysis": 0.040921503019114645,
+   "api": 0.040921503019114645,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 2-3",
+   "analysis_field": "bray_curtis.proportion.2-3",
+   "api_field": "count_homogeneity.pairs[2-3].braycurtis_proportions",
+   "analysis": 0.04445527398743771,
+   "api": 0.044455273987437705,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 2-3",
+   "analysis_field": "bray_curtis.proportion.2-3",
+   "api_field": "community.distances[2][3]",
+   "analysis": 0.04445527398743771,
+   "api": 0.04445527398743771,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 3-4",
+   "analysis_field": "bray_curtis.proportion.3-4",
+   "api_field": "count_homogeneity.pairs[3-4].braycurtis_proportions",
+   "analysis": 0.2134784075573549,
+   "api": 0.21347840755735487,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 3-4",
+   "analysis_field": "bray_curtis.proportion.3-4",
+   "api_field": "community.distances[3][4]",
+   "analysis": 0.2134784075573549,
+   "api": 0.2134784075573549,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 4-5",
+   "analysis_field": "bray_curtis.proportion.4-5",
+   "api_field": "count_homogeneity.pairs[4-5].braycurtis_proportions",
+   "analysis": 0.17818615493034093,
+   "api": 0.17818615493034096,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 4-5",
+   "analysis_field": "bray_curtis.proportion.4-5",
+   "api_field": "community.distances[4][5]",
+   "analysis": 0.17818615493034093,
+   "api": 0.17818615493034093,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 5-6",
+   "analysis_field": "bray_curtis.proportion.5-6",
+   "api_field": "count_homogeneity.pairs[5-6].braycurtis_proportions",
+   "analysis": 0.6707022520976009,
+   "api": 0.6707022520976009,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 5-6",
+   "analysis_field": "bray_curtis.proportion.5-6",
+   "api_field": "community.distances[5][6]",
+   "analysis": 0.6707022520976009,
+   "api": 0.6707022520976009,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 6-7",
+   "analysis_field": "bray_curtis.proportion.6-7",
+   "api_field": "count_homogeneity.pairs[6-7].braycurtis_proportions",
+   "analysis": 0.556980056980057,
+   "api": 0.556980056980057,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 6-7",
+   "analysis_field": "bray_curtis.proportion.6-7",
+   "api_field": "community.distances[6][7]",
+   "analysis": 0.556980056980057,
+   "api": 0.556980056980057,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 7-8",
+   "analysis_field": "bray_curtis.proportion.7-8",
+   "api_field": "count_homogeneity.pairs[7-8].braycurtis_proportions",
+   "analysis": 0.20701357466063347,
+   "api": 0.20701357466063347,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 7-8",
+   "analysis_field": "bray_curtis.proportion.7-8",
+   "api_field": "community.distances[7][8]",
+   "analysis": 0.20701357466063347,
+   "api": 0.20701357466063347,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 8-9",
+   "analysis_field": "bray_curtis.proportion.8-9",
+   "api_field": "count_homogeneity.pairs[8-9].braycurtis_proportions",
+   "analysis": 0.2956656346749225,
+   "api": 0.2956656346749226,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 8-9",
+   "analysis_field": "bray_curtis.proportion.8-9",
+   "api_field": "community.distances[8][9]",
+   "analysis": 0.2956656346749225,
+   "api": 0.2956656346749225,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 9-10",
+   "analysis_field": "bray_curtis.proportion.9-10",
+   "api_field": "count_homogeneity.pairs[9-10].braycurtis_proportions",
+   "analysis": 0.24426450742240216,
+   "api": 0.24426450742240216,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Bray-Curtis proportions 9-10",
+   "analysis_field": "bray_curtis.proportion.9-10",
+   "api_field": "community.distances[9][10]",
+   "analysis": 0.24426450742240216,
+   "api": 0.24426450742240216,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 hyalo",
+   "analysis_field": "taxa_5_6.hyalo.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_hyalo].counts",
+   "analysis": [
+    3,
+    11
+   ],
+   "api": [
+    3,
+    11
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 hyalo",
+   "analysis_field": "taxa_5_6.hyalo.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_hyalo].p_value",
+   "analysis": 0.1785371563634225,
+   "api": 0.1785371563634225,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 crino",
+   "analysis_field": "taxa_5_6.crino.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_crino].counts",
+   "analysis": [
+    1,
+    37
+   ],
+   "api": [
+    1,
+    37
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 crino",
+   "analysis_field": "taxa_5_6.crino.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_crino].p_value",
+   "analysis": 7.804982807346057e-08,
+   "api": 7.804982807346057e-08,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 praso",
+   "analysis_field": "taxa_5_6.praso.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_praso].counts",
+   "analysis": [
+    4,
+    40
+   ],
+   "api": [
+    4,
+    40
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 praso",
+   "analysis_field": "taxa_5_6.praso.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_praso].p_value",
+   "analysis": 5.339677509887708e-06,
+   "api": 5.339677509887708e-06,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Rbryo",
+   "analysis_field": "taxa_5_6.Rbryo.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Rbryo].counts",
+   "analysis": [
+    3,
+    18
+   ],
+   "api": [
+    3,
+    18
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Rbryo",
+   "analysis_field": "taxa_5_6.Rbryo.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Rbryo].p_value",
+   "analysis": 0.013405149923858134,
+   "api": 0.013405149923858134,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Talin",
+   "analysis_field": "taxa_5_6.Talin.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Talin].counts",
+   "analysis": [
+    9,
+    0
+   ],
+   "api": [
+    9,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Talin",
+   "analysis_field": "taxa_5_6.Talin.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Talin].p_value",
+   "analysis": 0.00026515132167844786,
+   "api": 0.00026515132167844786,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Marro",
+   "analysis_field": "taxa_5_6.Marro.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Marro].counts",
+   "analysis": [
+    1,
+    0
+   ],
+   "api": [
+    1,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Marro",
+   "analysis_field": "taxa_5_6.Marro.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Marro].p_value",
+   "analysis": 0.40255319148936175,
+   "api": 0.40255319148936175,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Basil",
+   "analysis_field": "taxa_5_6.Basil.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_1_Basil].counts",
+   "analysis": [
+    3,
+    330
+   ],
+   "api": [
+    3,
+    330
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Basil",
+   "analysis_field": "taxa_5_6.Basil.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_1_Basil].p_value",
+   "analysis": 8.1515895800941e-87,
+   "api": 8.1515895800941e-87,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Ortho",
+   "analysis_field": "taxa_5_6.Ortho.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Ortho].counts",
+   "analysis": [
+    0,
+    1
+   ],
+   "api": [
+    0,
+    1
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Ortho",
+   "analysis_field": "taxa_5_6.Ortho.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Ortho].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Gastr",
+   "analysis_field": "taxa_5_6.Gastr.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Gastr].counts",
+   "analysis": [
+    1,
+    0
+   ],
+   "api": [
+    1,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Gastr",
+   "analysis_field": "taxa_5_6.Gastr.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Gastr].p_value",
+   "analysis": 0.40255319148936175,
+   "api": 0.40255319148936175,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Rostr",
+   "analysis_field": "taxa_5_6.Rostr.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Rostr].counts",
+   "analysis": [
+    1,
+    16
+   ],
+   "api": [
+    1,
+    16
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Rostr",
+   "analysis_field": "taxa_5_6.Rostr.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Rostr].p_value",
+   "analysis": 0.0022983652261260464,
+   "api": 0.0022983652261260464,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Macro",
+   "analysis_field": "taxa_5_6.Macro.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Macro].counts",
+   "analysis": [
+    13,
+    10
+   ],
+   "api": [
+    13,
+    10
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Macro",
+   "analysis_field": "taxa_5_6.Macro.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Macro].p_value",
+   "analysis": 0.1328502001659908,
+   "api": 0.1328502001659908,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Sower",
+   "analysis_field": "taxa_5_6.Sower.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_3_Sower].counts",
+   "analysis": [
+    422,
+    190
+   ],
+   "api": [
+    422,
+    190
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Sower",
+   "analysis_field": "taxa_5_6.Sower.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_3_Sower].p_value",
+   "analysis": 9.525235876557669e-107,
+   "api": 9.525235876557669e-107,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Tripl",
+   "analysis_field": "taxa_5_6.Tripl.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Tripl].counts",
+   "analysis": [
+    0,
+    10
+   ],
+   "api": [
+    0,
+    10
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Tripl",
+   "analysis_field": "taxa_5_6.Tripl.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Tripl].p_value",
+   "analysis": 0.007347403485895017,
+   "api": 0.007347403485895017,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Horde",
+   "analysis_field": "taxa_5_6.Horde.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Horde].counts",
+   "analysis": [
+    2,
+    4
+   ],
+   "api": [
+    2,
+    4
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Horde",
+   "analysis_field": "taxa_5_6.Horde.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Horde].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Salop",
+   "analysis_field": "taxa_5_6.Salop.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Salop].counts",
+   "analysis": [
+    6,
+    0
+   ],
+   "api": [
+    6,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Salop",
+   "analysis_field": "taxa_5_6.Salop.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Salop].p_value",
+   "analysis": 0.00417509398320944,
+   "api": 0.00417509398320944,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Dalma",
+   "analysis_field": "taxa_5_6.Dalma.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Dalma].counts",
+   "analysis": [
+    4,
+    28
+   ],
+   "api": [
+    4,
+    28
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Dalma",
+   "analysis_field": "taxa_5_6.Dalma.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Dalma].p_value",
+   "analysis": 0.0007978454239932867,
+   "api": 0.0007978454239932867,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Hespe",
+   "analysis_field": "taxa_5_6.Hespe.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Hespe].counts",
+   "analysis": [
+    0,
+    1
+   ],
+   "api": [
+    0,
+    1
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Hespe",
+   "analysis_field": "taxa_5_6.Hespe.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Hespe].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Schiz",
+   "analysis_field": "taxa_5_6.Schiz.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Schiz].counts",
+   "analysis": [
+    0,
+    3
+   ],
+   "api": [
+    0,
+    3
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Schiz",
+   "analysis_field": "taxa_5_6.Schiz.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Schiz].p_value",
+   "analysis": 0.2778730653521331,
+   "api": 0.2778730653521331,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 5-6 Pseud",
+   "analysis_field": "taxa_5_6.Pseud.count_a/b",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Pseud].counts",
+   "analysis": [
+    0,
+    3
+   ],
+   "api": [
+    0,
+    3
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 5-6 Pseud",
+   "analysis_field": "taxa_5_6.Pseud.fisher_p",
+   "api_field": "count_homogeneity.pairs[5-6].taxon_tests[_0_Pseud].p_value",
+   "analysis": 0.2778730653521331,
+   "api": 0.2778730653521331,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 hyalo",
+   "analysis_field": "taxa_6_7.hyalo.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_hyalo].counts",
+   "analysis": [
+    11,
+    0
+   ],
+   "api": [
+    11,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 hyalo",
+   "analysis_field": "taxa_6_7.hyalo.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_hyalo].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 crino",
+   "analysis_field": "taxa_6_7.crino.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_crino].counts",
+   "analysis": [
+    37,
+    3
+   ],
+   "api": [
+    37,
+    3
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 crino",
+   "analysis_field": "taxa_6_7.crino.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_crino].p_value",
+   "analysis": 0.1664914178477674,
+   "api": 0.1664914178477674,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 praso",
+   "analysis_field": "taxa_6_7.praso.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_praso].counts",
+   "analysis": [
+    40,
+    1
+   ],
+   "api": [
+    40,
+    1
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 praso",
+   "analysis_field": "taxa_6_7.praso.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_praso].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Rbryo",
+   "analysis_field": "taxa_6_7.Rbryo.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Rbryo].counts",
+   "analysis": [
+    18,
+    2
+   ],
+   "api": [
+    18,
+    2
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Rbryo",
+   "analysis_field": "taxa_6_7.Rbryo.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Rbryo].p_value",
+   "analysis": 0.15727936565689205,
+   "api": 0.15727936565689205,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Basil",
+   "analysis_field": "taxa_6_7.Basil.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_1_Basil].counts",
+   "analysis": [
+    330,
+    0
+   ],
+   "api": [
+    330,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Basil",
+   "analysis_field": "taxa_6_7.Basil.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_1_Basil].p_value",
+   "analysis": 1.2681180402394174e-07,
+   "api": 1.2681180402394174e-07,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Ortho",
+   "analysis_field": "taxa_6_7.Ortho.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Ortho].counts",
+   "analysis": [
+    1,
+    0
+   ],
+   "api": [
+    1,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Ortho",
+   "analysis_field": "taxa_6_7.Ortho.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Ortho].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Rostr",
+   "analysis_field": "taxa_6_7.Rostr.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Rostr].counts",
+   "analysis": [
+    16,
+    0
+   ],
+   "api": [
+    16,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Rostr",
+   "analysis_field": "taxa_6_7.Rostr.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Rostr].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Macro",
+   "analysis_field": "taxa_6_7.Macro.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Macro].counts",
+   "analysis": [
+    10,
+    1
+   ],
+   "api": [
+    10,
+    1
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Macro",
+   "analysis_field": "taxa_6_7.Macro.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Macro].p_value",
+   "analysis": 0.3316009622121094,
+   "api": 0.3316009622121094,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Sower",
+   "analysis_field": "taxa_6_7.Sower.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_3_Sower].counts",
+   "analysis": [
+    190,
+    12
+   ],
+   "api": [
+    190,
+    12
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Sower",
+   "analysis_field": "taxa_6_7.Sower.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_3_Sower].p_value",
+   "analysis": 0.04337188057723229,
+   "api": 0.04337188057723229,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Tripl",
+   "analysis_field": "taxa_6_7.Tripl.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Tripl].counts",
+   "analysis": [
+    10,
+    0
+   ],
+   "api": [
+    10,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Tripl",
+   "analysis_field": "taxa_6_7.Tripl.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Tripl].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Horde",
+   "analysis_field": "taxa_6_7.Horde.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Horde].counts",
+   "analysis": [
+    4,
+    0
+   ],
+   "api": [
+    4,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Horde",
+   "analysis_field": "taxa_6_7.Horde.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Horde].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Dalma",
+   "analysis_field": "taxa_6_7.Dalma.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Dalma].counts",
+   "analysis": [
+    28,
+    4
+   ],
+   "api": [
+    28,
+    4
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Dalma",
+   "analysis_field": "taxa_6_7.Dalma.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Dalma].p_value",
+   "analysis": 0.023247463422737372,
+   "api": 0.023247463422737372,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Glypt",
+   "analysis_field": "taxa_6_7.Glypt.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Glypt].counts",
+   "analysis": [
+    0,
+    1
+   ],
+   "api": [
+    0,
+    1
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Glypt",
+   "analysis_field": "taxa_6_7.Glypt.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Glypt].p_value",
+   "analysis": 0.03571428571428571,
+   "api": 0.03571428571428571,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Hespe",
+   "analysis_field": "taxa_6_7.Hespe.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Hespe].counts",
+   "analysis": [
+    1,
+    2
+   ],
+   "api": [
+    1,
+    2
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Hespe",
+   "analysis_field": "taxa_6_7.Hespe.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Hespe].p_value",
+   "analysis": 0.0036032180899005957,
+   "api": 0.0036032180899005957,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Schiz",
+   "analysis_field": "taxa_6_7.Schiz.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Schiz].counts",
+   "analysis": [
+    3,
+    0
+   ],
+   "api": [
+    3,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Schiz",
+   "analysis_field": "taxa_6_7.Schiz.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Schiz].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "taxon counts 6-7 Pseud",
+   "analysis_field": "taxa_6_7.Pseud.count_a/b",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Pseud].counts",
+   "analysis": [
+    3,
+    0
+   ],
+   "api": [
+    3,
+    0
+   ],
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "llanvirn",
+   "quantity": "Fisher p 6-7 Pseud",
+   "analysis_field": "taxa_6_7.Pseud.fisher_p",
+   "api_field": "count_homogeneity.pairs[6-7].taxon_tests[_0_Pseud].p_value",
+   "analysis": 1.0,
+   "api": 1.0,
+   "rule": "relative",
+   "tolerance": 1e-10,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "n as_archived L1",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L1.n",
+   "api_field": "study[as_archived.L1].rma.n",
+   "analysis": 103,
+   "api": 103,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "slope as_archived L1",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L1.slope",
+   "api_field": "study[as_archived.L1].rma.slope",
+   "analysis": 1.0183654435676797,
+   "api": 1.0183654435676797,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "intercept as_archived L1",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L1.intercept",
+   "api_field": "study[as_archived.L1].rma.intercept",
+   "analysis": -0.09781735211676779,
+   "api": -0.09781735211676779,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "r as_archived L1",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L1.r",
+   "api_field": "study[as_archived.L1].rma.correlation",
+   "analysis": 0.9892176249454925,
+   "api": 0.9892176249454925,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "n as_archived L2",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L2.n",
+   "api_field": "study[as_archived.L2].rma.n",
+   "analysis": 79,
+   "api": 79,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "slope as_archived L2",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L2.slope",
+   "api_field": "study[as_archived.L2].rma.slope",
+   "analysis": 0.9817911055076792,
+   "api": 0.9817911055076792,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "intercept as_archived L2",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L2.intercept",
+   "api_field": "study[as_archived.L2].rma.intercept",
+   "analysis": -0.054562233229950574,
+   "api": -0.054562233229950574,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "r as_archived L2",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L2.r",
+   "api_field": "study[as_archived.L2].rma.correlation",
+   "analysis": 0.9926570415538231,
+   "api": 0.9926570415538232,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "n as_archived L3",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L3.n",
+   "api_field": "study[as_archived.L3].rma.n",
+   "analysis": 35,
+   "api": 35,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "slope as_archived L3",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L3.slope",
+   "api_field": "study[as_archived.L3].rma.slope",
+   "analysis": 1.1071123900450557,
+   "api": 1.1071123900450557,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "intercept as_archived L3",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L3.intercept",
+   "api_field": "study[as_archived.L3].rma.intercept",
+   "analysis": -0.19270266419259063,
+   "api": -0.19270266419259063,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "r as_archived L3",
+   "analysis_field": "scenarios.as_archived.sma_log10_width_on_length.L3.r",
+   "api_field": "study[as_archived.L3].rma.correlation",
+   "analysis": 0.9442336539011459,
+   "api": 0.9442336539011459,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "n block_removed L2",
+   "analysis_field": "scenarios.block_removed.sma_log10_width_on_length.L2.n",
+   "api_field": "study[block_removed.L2].rma.n",
+   "analysis": 72,
+   "api": 72,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "slope block_removed L2",
+   "analysis_field": "scenarios.block_removed.sma_log10_width_on_length.L2.slope",
+   "api_field": "study[block_removed.L2].rma.slope",
+   "analysis": 0.976420600043458,
+   "api": 0.976420600043458,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "intercept block_removed L2",
+   "analysis_field": "scenarios.block_removed.sma_log10_width_on_length.L2.intercept",
+   "api_field": "study[block_removed.L2].rma.intercept",
+   "analysis": -0.04859725509143553,
+   "api": -0.04859725509143553,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "r block_removed L2",
+   "analysis_field": "scenarios.block_removed.sma_log10_width_on_length.L2.r",
+   "api_field": "study[block_removed.L2].rma.correlation",
+   "analysis": 0.992574241668556,
+   "api": 0.9925742416685562,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "n unique_pairs L2",
+   "analysis_field": "scenarios.unique_pairs.sma_log10_width_on_length.L2.n",
+   "api_field": "study[unique_pairs.L2].rma.n",
+   "analysis": 71,
+   "api": 71,
+   "rule": "exact",
+   "tolerance": null,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "slope unique_pairs L2",
+   "analysis_field": "scenarios.unique_pairs.sma_log10_width_on_length.L2.slope",
+   "api_field": "study[unique_pairs.L2].rma.slope",
+   "analysis": 0.9765259484987477,
+   "api": 0.9765259484987477,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "intercept unique_pairs L2",
+   "analysis_field": "scenarios.unique_pairs.sma_log10_width_on_length.L2.intercept",
+   "api_field": "study[unique_pairs.L2].rma.intercept",
+   "analysis": -0.04872946712637982,
+   "api": -0.04872946712637982,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  },
+  {
+   "case": "dielasma",
+   "quantity": "r unique_pairs L2",
+   "analysis_field": "scenarios.unique_pairs.sma_log10_width_on_length.L2.r",
+   "api_field": "study[unique_pairs.L2].rma.correlation",
+   "analysis": 0.9924777680792192,
+   "api": 0.9924777680792194,
+   "rule": "relative",
+   "tolerance": 1e-12,
+   "agrees": true
+  }
+ ],
+ "not_matched": [
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.1-2.p",
+   "analysis": 0.1398,
+   "api_field": "count_homogeneity.pairs[1-2].p_value",
+   "api": 0.2047,
+   "api_p_holm": 0.6141,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.2-3.p",
+   "analysis": 0.1444,
+   "api_field": "count_homogeneity.pairs[2-3].p_value",
+   "api": 0.1368,
+   "api_p_holm": 0.5472,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.3-4.p",
+   "analysis": 0.0002,
+   "api_field": "count_homogeneity.pairs[3-4].p_value",
+   "api": 0.0001,
+   "api_p_holm": 0.0009000000000000001,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.4-5.p",
+   "analysis": 0.0002,
+   "api_field": "count_homogeneity.pairs[4-5].p_value",
+   "api": 0.0001,
+   "api_p_holm": 0.0009000000000000001,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.5-6.p",
+   "analysis": 0.0002,
+   "api_field": "count_homogeneity.pairs[5-6].p_value",
+   "api": 0.0001,
+   "api_p_holm": 0.0009000000000000001,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.6-7.p",
+   "analysis": 0.0002,
+   "api_field": "count_homogeneity.pairs[6-7].p_value",
+   "api": 0.0002,
+   "api_p_holm": 0.0012000000000000001,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.7-8.p",
+   "analysis": 0.6656,
+   "api_field": "count_homogeneity.pairs[7-8].p_value",
+   "api": 0.8108,
+   "api_p_holm": 0.8108,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.8-9.p",
+   "analysis": 0.0148,
+   "api_field": "count_homogeneity.pairs[8-9].p_value",
+   "api": 0.1092,
+   "api_p_holm": 0.546,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "composition_null.9-10.p",
+   "analysis": 0.4274,
+   "api_field": "count_homogeneity.pairs[9-10].p_value",
+   "api": 0.2574,
+   "api_p_holm": 0.6141,
+   "api_monte_carlo_unresolved": false,
+   "reason": "different null (unconditional multinomial at pooled proportions vs fixed-margin conditional) and statistic (Bray-Curtis vs Pearson X2); shown side by side, no tolerance applies"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "taxa_<a>_<b>.<taxon>.p_holm",
+   "reason": "per-pair Holm family over that pair's taxa; the API uses one Holm family over all 9 pairs x taxa, by contract"
+  },
+  {
+   "case": "llanvirn",
+   "analysis_field": "rarefied_richness.<h>.q025/q975, sorensen_rarefied, bray_curtis_bootstrap, other bray_curtis representations, pcoa_sqrt_proportion",
+   "reason": "no matching API estimand (quantiles of simulated subsample richness, rarefied presence dissimilarity, counting-error bootstrap, sqrt or log1p representations)"
+  },
+  {
+   "case": "dielasma",
+   "analysis_field": "SMA ci95, slope = 1 test, bootstrap CI, common-slope LR, elevation, length and ratio tests, mixtures",
+   "reason": "rma is descriptive (no inferential uncertainty); no API operation computes these"
+  }
+ ]
+}

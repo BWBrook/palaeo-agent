@@ -34,7 +34,7 @@ record.
 | Operation | Effect | Refuses |
 | --- | --- | --- |
 | Input `orientation` | Declares the layout. Derived data are always samples by taxa. | duplicate sample or column IDs |
-| `exclude` | Removes the named samples. | unknown or duplicated IDs; removing every sample |
+| `exclude` | Removes the named samples (whole rows). In a measurement table whose column pairs hold different groups, a row removes values from every pair, so give such exclusions their own dataset. | unknown or duplicated IDs; removing every sample |
 | `select` | Keeps the named samples, in the order given. | unknown or duplicated IDs |
 | `map_taxa` | Renames exact labels. Labels mapped to the same target are summed as exact integers. | unknown labels; merging a missing cell; non-integer cells; use on measurements |
 | Metadata join | Reorders metadata to the dataset by exact ID and renames the declared ID column to `sample_id`. | dataset samples without metadata; metadata rows without samples, unless `drop_unmatched_metadata` is declared, in which case they are listed |
