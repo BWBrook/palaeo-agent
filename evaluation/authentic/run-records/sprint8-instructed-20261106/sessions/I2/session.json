@@ -1,0 +1,175 @@
+{
+ "session": {
+  "session_id": "I2",
+  "case": "dielasma",
+  "arm": "toolkit",
+  "delivery_mode": "python"
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/authentic-5sii4c7q",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "8feb18066278235fd45cf09aa7054997cdd6aae51dce04a08eb740785cd7e0be",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "allow_connector_file_downloads": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  32287,
+  32308,
+  32310,
+  32326,
+  32329,
+  32330,
+  32342,
+  32358,
+  32368,
+  32371,
+  32391,
+  32393,
+  32429,
+  32430,
+  32460,
+  32470,
+  32473
+ ],
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 30,
+  "cache_creation_input_tokens": 35149,
+  "cache_read_input_tokens": 257885,
+  "output_tokens": 12256,
+  "output_tokens_details": {
+   "thinking_tokens": 1020
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 35149,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "num_turns": 17,
+ "duration_ms": 97054,
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 16,
+  "client_refusal": 0,
+  "bootstrap": 0,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 47435,
+ "cache_read_tokens": 257885,
+ "retrospective": {
+  "text": "- **Palaeo-Agent `rma`** (via `validate`, `run`, `inspect_run`): used for the per-locality length\u2013width regressions, log10 as the main run and raw scale as a sensitivity check. I chose it because the primer says to use a toolkit operation wherever one computes the quantity, and `rma` does exactly that. Its output also carried the repeated-pair and repeated-block warnings for L2 and L3.\n- **numpy, pandas, scipy (my own code):** used for the bootstrap confidence intervals on slopes and slope differences, the Kruskal\u2013Wallis, Mann\u2013Whitney and KS tests, the Holm correction, the summaries and histograms, and the L2 duplicate check. I used them because the toolkit had nothing for these. `rma` states it gives no standard errors, CIs or tests, and no operation compares groups of morphometric measurements. I declared this in the unsupported-parts table and checked that my RMA slope matched the toolkit's to 1e\u20119.\n- **Considered but not used:**\n  - `permanova`: it needs independent, freely exchangeable units, which three single unreplicated collections don't justify.\n  - `community`, `rarefaction` and `count_homogeneity`: these are for count data, and this is not count data.\n  - I also thought about reshaping the file to tab-separated, but the PAST reader accepted it as it was, so I removed that file.\n- **Not available:**\n  - Toolkit support for slope uncertainty and isometry tests.\n  - Between-locality comparison of slopes or size distributions.\n  - Any way to account for the unrecorded collecting method, age and stratigraphic position, which also limits what the results can say.\n\nOne more thing: the worker doesn't keep Python state between calls, so I re-imported modules each time. I also ran `analysis.py` only once, through `runpy`, and did not check it from a clean directory.",
+  "subtype": "success",
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 33258,
+   "cache_read_input_tokens": 1161,
+   "output_tokens": 623,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 33258,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "attempted_tool_uses": 0,
+  "counted_tokens": 33883
+ },
+ "organisation_policy_after": {
+  "policy_limits_sha256": "8feb18066278235fd45cf09aa7054997cdd6aae51dce04a08eb740785cd7e0be",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "allow_connector_file_downloads": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "replay": {
+  "runtime": "/Users/bwbrook/palaeo-eval/sprint8-runtime-20261106/toolkit",
+  "delivery_mode": "python",
+  "original_results_sha256": "e8c295a275dbba344ad4a52001ef89555beb012c9222b5650200062c35b9952b",
+  "files": [
+   "analysis.py",
+   "specs/rma_L3_log10.json",
+   "specs/rma_L2_none.json",
+   "specs/rma_L3_none.json",
+   "specs/rma_L1_log10.json",
+   "specs/rma_L2_log10.json",
+   "specs/rma_L1_none.json"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "stderr_tail": ""
+  },
+  "regenerated_results_sha256": "e8c295a275dbba344ad4a52001ef89555beb012c9222b5650200062c35b9952b",
+  "outcome": "replayed",
+  "byte_identical": true,
+  "provenance_review_required": true,
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/sprint8-instructed-20261106/sessions/I2/replay/attempt-d2muruu6"
+ },
+ "finished_unix": 1793968135.011905
+}

@@ -1,0 +1,13 @@
+{
+ "method": "community",
+ "transform": "none",
+ "distance": "braycurtis",
+ "dimensions": 2,
+ "purpose": "sensitivity: raw counts",
+ "input": "llanvirn.dat",
+ "format": "past",
+ "orientation": "taxa_by_samples",
+ "value_type": "count",
+ "missing": "error",
+ "empty_samples": "error"
+}

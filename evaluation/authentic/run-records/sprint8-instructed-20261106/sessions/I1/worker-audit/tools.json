@@ -1,0 +1,727 @@
+[
+  {
+    "name": "worker_execute",
+    "description": "Execute Python in the trial. No network, subprocesses, credentials or outside files. Installed scientific packages are available.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "maxLength": 262144
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "worker_read",
+    "description": "Read a UTF-8 trial file in a bounded page; paths are relative to the trial root.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32768,
+          "default": 32768
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "worker_write",
+    "description": "Write a UTF-8 trial file; paths are relative to the trial root.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "maxLength": 262144
+        }
+      },
+      "required": [
+        "path",
+        "content"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "palaeo_primer",
+    "description": "Read the full versioned agent primer before any analysis; returns exact text and its SHA-256.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {},
+      "title": "Request",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_discover",
+    "description": "List method summaries, or request one method's complete typed schemas.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "anyOf": [
+            {
+              "enum": [
+                "rma",
+                "community",
+                "permanova",
+                "rarefaction",
+                "count_homogeneity"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Method"
+        }
+      },
+      "title": "DiscoverRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_validate",
+    "description": "Validate declared data and numerical requirements; sampling assumptions are not established.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "method"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "method": {
+              "enum": [
+                "rma",
+                "community",
+                "permanova",
+                "rarefaction",
+                "count_homogeneity"
+              ]
+            }
+          },
+          "description": "A complete method specification. Its exact schema comes from the discover tool with that method; invalid specifications are refused with details."
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "title": "ValidateRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_run",
+    "description": "Read the primer first. Run a declared analysis and save a self-contained evidence bundle.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "method"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "method": {
+              "enum": [
+                "rma",
+                "community",
+                "permanova",
+                "rarefaction",
+                "count_homogeneity"
+              ]
+            }
+          },
+          "description": "A complete method specification. Its exact schema comes from the discover tool with that method; invalid specifications are refused with details."
+        },
+        "output": {
+          "default": "runs",
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "title": "RunRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_inspect",
+    "description": "Verify a run's integrity and return a compact summary, field names and artifact references.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle": {
+          "title": "Bundle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bundle"
+      ],
+      "title": "BundleRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_reproduce",
+    "description": "Recompute a saved bundle and compare its numerical outputs.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle": {
+          "title": "Bundle",
+          "type": "string"
+        },
+        "output": {
+          "default": "runs",
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bundle"
+      ],
+      "title": "ReproduceRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_compare",
+    "description": "Compare community runs descriptively under the existing provenance and one-factor rules.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "title": "Baseline",
+          "type": "string"
+        },
+        "sensitivity": {
+          "title": "Sensitivity",
+          "type": "string"
+        },
+        "output": {
+          "default": "comparisons",
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseline",
+        "sensitivity"
+      ],
+      "title": "CompareRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_inspect_comparison",
+    "description": "Verify a descriptive comparison and both embedded run bundles.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle": {
+          "title": "Bundle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bundle"
+      ],
+      "title": "BundleRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_result",
+    "description": "Read one verified run-result field, with bounded rows and matrix columns.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle": {
+          "title": "Bundle",
+          "type": "string"
+        },
+        "field": {
+          "description": "Dot-separated result-field path; discover fields with inspect",
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "offset": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 25,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "column_offset": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Column Offset",
+          "type": "integer"
+        },
+        "column_limit": {
+          "default": 25,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Column Limit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bundle",
+        "field"
+      ],
+      "title": "ResultRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_study_run",
+    "description": "Read the primer first. Run a multi-step study: declared preparation, then analyses; saves one bundle.",
+    "inputSchema": {
+      "$defs": {
+        "Analysis": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Id",
+              "type": "string"
+            },
+            "dataset": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Dataset",
+              "type": "string"
+            },
+            "spec": {
+              "additionalProperties": true,
+              "description": "A method specification without input or metadata paths",
+              "title": "Spec",
+              "type": "object"
+            }
+          },
+          "required": [
+            "id",
+            "dataset",
+            "spec"
+          ],
+          "title": "Analysis",
+          "type": "object"
+        },
+        "Dataset": {
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Source",
+              "type": "string"
+            },
+            "metadata": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Metadata"
+            },
+            "drop_unmatched_metadata": {
+              "default": false,
+              "description": "Allow metadata rows whose IDs are absent from the dataset; they are listed",
+              "title": "Drop Unmatched Metadata",
+              "type": "boolean"
+            },
+            "operations": {
+              "default": [],
+              "items": {
+                "discriminator": {
+                  "mapping": {
+                    "exclude": "#/$defs/Exclude",
+                    "map_taxa": "#/$defs/MapTaxa",
+                    "select": "#/$defs/Select"
+                  },
+                  "propertyName": "op"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/Exclude"
+                  },
+                  {
+                    "$ref": "#/$defs/Select"
+                  },
+                  {
+                    "$ref": "#/$defs/MapTaxa"
+                  }
+                ]
+              },
+              "title": "Operations",
+              "type": "array"
+            }
+          },
+          "required": [
+            "source"
+          ],
+          "title": "Dataset",
+          "type": "object"
+        },
+        "Exclude": {
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "exclude",
+              "title": "Op",
+              "type": "string"
+            },
+            "samples": {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Samples",
+              "type": "array"
+            },
+            "reason": {
+              "minLength": 1,
+              "pattern": "\\S",
+              "title": "Reason",
+              "type": "string"
+            }
+          },
+          "required": [
+            "op",
+            "samples",
+            "reason"
+          ],
+          "title": "Exclude",
+          "type": "object"
+        },
+        "MapTaxa": {
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "map_taxa",
+              "title": "Op",
+              "type": "string"
+            },
+            "mapping": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Exact old label -> new label; equal targets are summed",
+              "minProperties": 1,
+              "title": "Mapping",
+              "type": "object"
+            },
+            "reason": {
+              "minLength": 1,
+              "pattern": "\\S",
+              "title": "Reason",
+              "type": "string"
+            }
+          },
+          "required": [
+            "op",
+            "mapping",
+            "reason"
+          ],
+          "title": "MapTaxa",
+          "type": "object"
+        },
+        "MetadataInput": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "metadata",
+              "title": "Kind",
+              "type": "string"
+            },
+            "path": {
+              "description": "UTF-8 CSV; relative to the study file",
+              "format": "path",
+              "title": "Path",
+              "type": "string"
+            },
+            "id_column": {
+              "description": "Exact column holding sample IDs",
+              "minLength": 1,
+              "title": "Id Column",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path",
+            "id_column"
+          ],
+          "title": "MetadataInput",
+          "type": "object"
+        },
+        "Select": {
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "select",
+              "title": "Op",
+              "type": "string"
+            },
+            "samples": {
+              "description": "Samples kept, in this order",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Samples",
+              "type": "array"
+            },
+            "reason": {
+              "minLength": 1,
+              "pattern": "\\S",
+              "title": "Reason",
+              "type": "string"
+            }
+          },
+          "required": [
+            "op",
+            "samples",
+            "reason"
+          ],
+          "title": "Select",
+          "type": "object"
+        },
+        "StudySpec": {
+          "additionalProperties": false,
+          "properties": {
+            "study_version": {
+              "const": 1,
+              "title": "Study Version",
+              "type": "integer"
+            },
+            "inputs": {
+              "patternProperties": {
+                "^[A-Za-z0-9_.-]+$": {
+                  "discriminator": {
+                    "mapping": {
+                      "counts": "#/$defs/TableInput",
+                      "measurements": "#/$defs/TableInput",
+                      "metadata": "#/$defs/MetadataInput"
+                    },
+                    "propertyName": "kind"
+                  },
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/TableInput"
+                    },
+                    {
+                      "$ref": "#/$defs/MetadataInput"
+                    }
+                  ]
+                }
+              },
+              "propertyNames": {
+                "minLength": 1
+              },
+              "title": "Inputs",
+              "type": "object"
+            },
+            "datasets": {
+              "patternProperties": {
+                "^[A-Za-z0-9_.-]+$": {
+                  "$ref": "#/$defs/Dataset"
+                }
+              },
+              "propertyNames": {
+                "minLength": 1
+              },
+              "title": "Datasets",
+              "type": "object"
+            },
+            "analyses": {
+              "items": {
+                "$ref": "#/$defs/Analysis"
+              },
+              "minItems": 1,
+              "title": "Analyses",
+              "type": "array"
+            }
+          },
+          "required": [
+            "study_version",
+            "inputs",
+            "datasets",
+            "analyses"
+          ],
+          "title": "StudySpec",
+          "type": "object"
+        },
+        "TableInput": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "counts",
+                "measurements"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "path": {
+              "description": "Table path, relative to the study file",
+              "format": "path",
+              "title": "Path",
+              "type": "string"
+            },
+            "format": {
+              "default": "past",
+              "description": "'past': classic PAST table, first header cell '.', tab-separated (whitespace if the file has no tabs). 'delimited': tab- or comma-separated with a declared delimiter; the first header cell names the ID column. Empty and NA cells are missing counts.",
+              "enum": [
+                "past",
+                "delimited"
+              ],
+              "title": "Format",
+              "type": "string"
+            },
+            "delimiter": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "tab",
+                    "comma"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Required for format 'delimited'",
+              "title": "Delimiter"
+            },
+            "orientation": {
+              "description": "Declared layout; derived datasets are always samples_by_taxa",
+              "enum": [
+                "samples_by_taxa",
+                "taxa_by_samples"
+              ],
+              "title": "Orientation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path",
+            "orientation"
+          ],
+          "title": "TableInput",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "study": {
+          "$ref": "#/$defs/StudySpec"
+        },
+        "output": {
+          "description": "New directory for the study bundle",
+          "minLength": 1,
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "study",
+        "output"
+      ],
+      "title": "StudyRunRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_study_inspect",
+    "description": "Verify a study's integrity, recompute its prepared data and verify every run.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "study_dir": {
+          "title": "Study Dir",
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_dir"
+      ],
+      "title": "StudyRequest",
+      "type": "object"
+    }
+  },
+  {
+    "name": "palaeo_study_reproduce",
+    "description": "Rerun a verified study from its saved inputs and compare every analysis.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "study_dir": {
+          "title": "Study Dir",
+          "type": "string"
+        },
+        "output": {
+          "minLength": 1,
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "study_dir",
+        "output"
+      ],
+      "title": "StudyReproduceRequest",
+      "type": "object"
+    }
+  }
+]

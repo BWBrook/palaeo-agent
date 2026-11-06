@@ -1,0 +1,179 @@
+{
+ "session": {
+  "session_id": "I1",
+  "case": "llanvirn",
+  "arm": "toolkit",
+  "delivery_mode": "mcp"
+ },
+ "scratch": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0",
+ "complete": true,
+ "organisation_policy": {
+  "policy_limits_sha256": "3ca89f769614f7ad850f9771f72fa71dd001f1d9f49d8cc075df838462ba395a",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "subscriptionType": "team",
+  "apiProvider": "firstParty"
+ },
+ "termination": "exited",
+ "terminated_groups": [
+  31974,
+  31985,
+  32010,
+  32011,
+  32012,
+  32013,
+  32014,
+  32015,
+  32016,
+  32018,
+  32029,
+  32033,
+  32036,
+  32037,
+  32041,
+  32042,
+  32066,
+  32087,
+  32092,
+  32125,
+  32167,
+  32171,
+  32172,
+  32177
+ ],
+ "exit_code": 0,
+ "breach": [],
+ "result_subtype": "success",
+ "usage": {
+  "input_tokens": 38,
+  "cache_creation_input_tokens": 45582,
+  "cache_read_input_tokens": 552929,
+  "output_tokens": 11982,
+  "output_tokens_details": {
+   "thinking_tokens": 1616
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 45582,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "num_turns": 23,
+ "duration_ms": 132544,
+ "refused_exports": [],
+ "reconciliation": {
+  "worker": 22,
+  "client_refusal": 0,
+  "bootstrap": 1,
+  "problems": [],
+  "consistent": true
+ },
+ "counted_tokens": 57602,
+ "cache_read_tokens": 552929,
+ "retrospective": {
+  "text": "**Tools used for the main computations**\n- All the reported numbers came from the Palaeo-Agent toolkit, called through its Python API from `analysis.py`. The primer says to use the toolkit wherever an operation fits, and its worked example for unequal counts maps directly onto this brief.\n- `community` gave totals, richness, Shannon and Simpson, Bray-Curtis and Jaccard distances, and the PCoA. I ran it three ways: relative abundance as the baseline, raw counts, and presence/absence. The brief asked about \"defensible ways of representing abundance\".\n- `compare_community_runs` quantified how much raw versus relative representation changes the distances.\n- `rarefaction` gave richness at a common count and estimated coverage, to handle the 13\u2013702 range in totals.\n- `count_homogeneity` ran the nine adjacent-horizon pairs with a fixed seed and Holm correction. It was the supported way to ask whether a pair differs beyond counting noise, and in which taxa.\n- Outside the toolkit, I used pandas once, to sum the column totals while inspecting the file. I also used plain Python to read result fields and format `results.json`.\n\n**Tools considered but not used**\n- I did not run `permanova`. Ten horizons from one section, split around an unconformity, are not exchangeable independent units, as the primer warns.\n- I did not use the `study` operations (`exclude`, `select`, `map_taxa`). Nothing in the data justified editing it, and I didn't want to alter labels or drop taxa without a reason.\n- I did not run `reproduce`, `study_inspect` or `study_reproduce`. I re-ran `analysis.py` from clean, but I didn't run the toolkit's own replay checks, and I said so in the report.\n\n**What wasn't available**\n- There is no operation to drop the dominant taxa for a sensitivity analysis, so I didn't do one. That is declared in the report's unsupported-parts table.\n- Rarefaction refuses extrapolation, so I couldn't compare richness above size 13.\n- Early in the session I had two minor problems: `/tmp` was blocked as an output root, so I wrote runs under the working directory instead. The result schema also needed a little handling to extract the comparison report. Neither affected the numbers.\n- The data itself lacked sampling effort, counting protocol, dates and thicknesses. The report treats those as limits on what can be concluded.",
+  "subtype": "success",
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 40049,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 975,
+   "output_tokens_details": {
+    "thinking_tokens": 177
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 40049,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "attempted_tool_uses": 0,
+  "counted_tokens": 41026
+ },
+ "organisation_policy_after": {
+  "policy_limits_sha256": "8feb18066278235fd45cf09aa7054997cdd6aae51dce04a08eb740785cd7e0be",
+  "policy_limits": {
+   "restrictions": {
+    "allow_product_feedback": {
+     "allowed": false
+    },
+    "allow_quick_web_setup": {
+     "allowed": false
+    },
+    "allow_connector_file_downloads": {
+     "allowed": false
+    },
+    "enforce_web_search_mcp_isolation": {
+     "allowed": false
+    }
+   },
+   "compliance_taints": [],
+   "monitoring_notice": null,
+   "defaults": {
+    "remote_control_at_startup": false
+   }
+  }
+ },
+ "replay": {
+  "runtime": "/Users/bwbrook/palaeo-eval/sprint8-runtime-20261106/toolkit",
+  "delivery_mode": "mcp",
+  "original_results_sha256": "4d2112274f2f5e96e136da6523c6938741f374fc3610038500ee594f57aa1e56",
+  "files": [
+   "analysis.py",
+   "specs/rare13.json",
+   "specs/comm_jac.json",
+   "specs/rare_multi.json",
+   "specs/comm_rel_bc.json",
+   "specs/comm_raw_bc.json",
+   "specs/homog_adj.json"
+  ],
+  "execution": {
+   "status": "ok",
+   "exit_code": 0,
+   "code": null,
+   "stderr_tail": ""
+  },
+  "regenerated_results_sha256": "4d2112274f2f5e96e136da6523c6938741f374fc3610038500ee594f57aa1e56",
+  "outcome": "replayed",
+  "byte_identical": true,
+  "provenance_review_required": true,
+  "evidence_dir": "/Users/bwbrook/palaeo-eval/sprint8-instructed-20261106/sessions/I1/replay/attempt-4gm_wgf9"
+ },
+ "finished_unix": 1793968018.496934
+}

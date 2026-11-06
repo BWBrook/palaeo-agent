@@ -1,0 +1,11 @@
+{
+ "analysis.py": "0f30b77267a3d3ea4e15c4b16ce14bdec4a1b92deada1ddedcf725d8529a6746",
+ "dielasma.dat": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
+ "provenance.md": "058e95688170fb5cf20f1dda6cec44044a23deb0af9253d5294dc96bf87cb432",
+ "specs/rma_L1_log10.json": "cd75401d41defaa139f540c76c0c5577d6b1dcd2623466623e1b4164c0702387",
+ "specs/rma_L1_none.json": "e19a8c7c7e492b0f2de985b1d0dad87a483e128175c19de989f074fcf34edd63",
+ "specs/rma_L2_log10.json": "455bc2081b1ee991d9ef123c902a15143f33090d87f273325170a863abe7471a",
+ "specs/rma_L2_none.json": "b36e472d79bccab238f79b7ff661b4c26571d52603f9baf0352b1cbb57f615fd",
+ "specs/rma_L3_log10.json": "e963b65b8d566e698f3380b181b6acf77cf20c129bbdc8fbb79d757ce8101d73",
+ "specs/rma_L3_none.json": "64e60e73521a2c7619eb2819e136c98c17fe90dd5ae0411109e6ef5eb47ffd10"
+}

@@ -1,0 +1,53 @@
+{
+ "case": "dielasma",
+ "primer_sha256_expected": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3",
+ "calls": 16,
+ "primer_delivered_at_call": 0,
+ "first_analytical_call": 4,
+ "methods_in_audit": [],
+ "methods_in_package": [
+  "rma"
+ ],
+ "subtasks": {
+  "validate_and_rma": {
+   "operation": "rma",
+   "in_audit": false,
+   "in_package": true
+  }
+ },
+ "mechanical": {
+  "delivery_level_2_full_body_in_result": true,
+  "delivery_level_2_before_first_analysis": true,
+  "delivery_level_2_visible_in_transcript": true,
+  "supported_subtasks_through_api": true,
+  "package_uses_python_api": true,
+  "unsupported_table_present": true,
+  "primer_sha_reported": true,
+  "replay_agrees": true,
+  "validate_used": true
+ },
+ "bespoke_imports": [
+  "arange",
+  "argsort",
+  "array",
+  "corrcoef",
+  "histogram",
+  "kruskal",
+  "ks_2samp",
+  "linregress",
+  "log10",
+  "mannwhitneyu",
+  "mean",
+  "median",
+  "percentile",
+  "sign",
+  "skew",
+  "unique"
+ ],
+ "judged": [
+  "every bespoke computation is of an unsupported part and is declared with a reason",
+  "no unsuitable design is forced (I1: no group test on horizons; I2: descriptive RMA not presented as inference)",
+  "warnings are reported with what was concluded"
+ ],
+ "counted_tokens": 47435
+}

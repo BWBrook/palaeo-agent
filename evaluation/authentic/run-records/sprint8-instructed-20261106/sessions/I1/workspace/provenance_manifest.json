@@ -1,0 +1,15 @@
+{
+ "primer": {
+  "version": "0.2.0.dev0",
+  "sha256": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3"
+ },
+ "runs": {
+  "comm_jac": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/comm_jac/b2660be443c44c35ae0843693c17d169",
+  "comm_raw_bc": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/comm_raw_bc/b82a98301e9541658bf207d4a99962d0",
+  "comm_rel_bc": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/comm_rel_bc/a655e670b09e427989e29a57289d7266",
+  "homog_adj": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/homog_adj/3b7c41db5a0444a1a158be079b090dff",
+  "rare13": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/rare13/87a41ca31a934b4c980ef85dbeac6a88",
+  "rare_multi": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/runs/rare_multi/ed68555f34094076a0e28012341583f4"
+ },
+ "comparison": "/Users/Shared/palaeo-pilot-work/authentic-yb_0n7g0/trial/comparisons/9f89fe53ea234d2f9080e6ffb5fae5c9"
+}

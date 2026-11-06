@@ -1,0 +1,13 @@
+{
+ "method": "community",
+ "transform": "none",
+ "distance": "jaccard",
+ "dimensions": 2,
+ "purpose": "sensitivity: presence/absence",
+ "input": "llanvirn.dat",
+ "format": "past",
+ "orientation": "taxa_by_samples",
+ "value_type": "count",
+ "missing": "error",
+ "empty_samples": "error"
+}

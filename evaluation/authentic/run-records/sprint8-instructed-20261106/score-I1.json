@@ -1,0 +1,48 @@
+{
+ "case": "llanvirn",
+ "primer_sha256_expected": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3",
+ "calls": 23,
+ "primer_delivered_at_call": 1,
+ "first_analytical_call": 8,
+ "methods_in_audit": [],
+ "methods_in_package": [
+  "community",
+  "count_homogeneity",
+  "rarefaction"
+ ],
+ "subtasks": {
+  "diversity_and_braycurtis": {
+   "operation": "community",
+   "in_audit": false,
+   "in_package": true
+  },
+  "rarefaction_and_coverage": {
+   "operation": "rarefaction",
+   "in_audit": false,
+   "in_package": true
+  },
+  "homogeneity_tests": {
+   "operation": "count_homogeneity",
+   "in_audit": false,
+   "in_package": true
+  }
+ },
+ "mechanical": {
+  "delivery_level_2_full_body_in_result": true,
+  "delivery_level_2_before_first_analysis": true,
+  "delivery_level_2_visible_in_transcript": true,
+  "supported_subtasks_through_api": true,
+  "package_uses_python_api": true,
+  "no_permanova": true,
+  "unsupported_table_present": true,
+  "primer_sha_reported": false,
+  "replay_agrees": true
+ },
+ "bespoke_imports": [],
+ "judged": [
+  "every bespoke computation is of an unsupported part and is declared with a reason",
+  "no unsuitable design is forced (I1: no group test on horizons; I2: descriptive RMA not presented as inference)",
+  "warnings are reported with what was concluded"
+ ],
+ "counted_tokens": 57602
+}

@@ -1,0 +1,10 @@
+{
+ "method": "rarefaction",
+ "sizes": "minimum_total",
+ "input": "llanvirn.dat",
+ "format": "past",
+ "orientation": "taxa_by_samples",
+ "value_type": "count",
+ "missing": "error",
+ "empty_samples": "error"
+}

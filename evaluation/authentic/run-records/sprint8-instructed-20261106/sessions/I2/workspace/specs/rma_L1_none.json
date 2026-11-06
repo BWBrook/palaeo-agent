@@ -1,0 +1,9 @@
+{
+ "method": "rma",
+ "input": "dielasma.dat",
+ "format": "past",
+ "x": "L1/X1",
+ "y": "L1/X2",
+ "transform": "none",
+ "missing": "drop_pairs"
+}

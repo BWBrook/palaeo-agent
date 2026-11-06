@@ -30,24 +30,26 @@ def stdout_of(call):
     return (call.get("result") or {}).get("stdout") or ""
 
 
-def holds_body(text, body):
+def holds_body(text, body, depth=0):
+    """True if the exact primer body occurs in text, or in any JSON value found in text or its lines (nested)."""
     if body in text:
         return True
-    try:
-        value = json.loads(text)
-    except (ValueError, TypeError):
+    if depth > 3:
         return False
-    stack = [value]
-    while stack:
-        item = stack.pop()
-        if item == body:
-            return True
-        if isinstance(item, dict):
-            stack.extend(item.values())
-        elif isinstance(item, list):
-            stack.extend(item)
-        elif isinstance(item, str) and body in item:
-            return True
+    for chunk in dict.fromkeys([text, *text.splitlines()]):
+        try:
+            value = json.loads(chunk)
+        except (ValueError, TypeError):
+            continue
+        stack = [value]
+        while stack:
+            item = stack.pop()
+            if isinstance(item, dict):
+                stack.extend(item.values())
+            elif isinstance(item, list):
+                stack.extend(item)
+            elif isinstance(item, str) and holds_body(item, body, depth + 1):
+                return True
     return False
 
 

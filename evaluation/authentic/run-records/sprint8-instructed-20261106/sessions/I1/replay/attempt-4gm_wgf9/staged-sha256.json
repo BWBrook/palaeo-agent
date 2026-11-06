@@ -1,0 +1,11 @@
+{
+ "analysis.py": "f16fe04d4664f34586a9ad34b2e525c483d472cdaec25869eccb6bec86614e68",
+ "llanvirn.dat": "a39a2ec7ef405623efdac5e5cd2b9be7dd38e5ca98c4fe9efa4dab2cda076f37",
+ "provenance.md": "ecb8ba08485f6743832478b43be2632790b25422b128eb98c08cf93852855717",
+ "specs/comm_jac.json": "be7e07e3f5794e3240b69d545b4df14d54caedf1e059e28bad29e1a167540dc0",
+ "specs/comm_raw_bc.json": "7454a833e8970db902131be16254cc75777fdd3135578d7809628c5e0ca6dcc7",
+ "specs/comm_rel_bc.json": "8b90d5c495446e2d165f97f5918f5fdfc26d2debfe2cec94e6840a88ca8af735",
+ "specs/homog_adj.json": "d06544786f9e304f5560895a9a96fd9f3b2e2c50f96701fac1236c9f15ad4ad2",
+ "specs/rare13.json": "960053a0775a2ba4cf597b4b829dfe297beb2fa6f9cb6fbd50423933536f47e7",
+ "specs/rare_multi.json": "f428db3598d7c050c34b0003461a5b0af50f8461b70a55fb6db1a9176be4af56"
+}

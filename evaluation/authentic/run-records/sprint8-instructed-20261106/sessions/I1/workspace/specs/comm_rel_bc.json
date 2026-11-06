@@ -1,0 +1,13 @@
+{
+ "method": "community",
+ "transform": "relative_abundance",
+ "distance": "braycurtis",
+ "dimensions": 2,
+ "purpose": "baseline: composition",
+ "input": "llanvirn.dat",
+ "format": "past",
+ "orientation": "taxa_by_samples",
+ "value_type": "count",
+ "missing": "error",
+ "empty_samples": "error"
+}
