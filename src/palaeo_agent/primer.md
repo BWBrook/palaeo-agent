@@ -64,7 +64,9 @@ exchangeability, so do not run it there.
   column pairs hold different groups (for example localities side by side),
   a row number is not one specimen across groups: excluding it removes
   values from every column. Exclude rows in a dataset used only by the
-  analyses they concern.
+  analyses they concern. A study reports `row_filter_removes_pairs` when a
+  filter removes complete pairs from an `rma` analysis's columns; confirm
+  that each such filter applies to that analysis.
 - **Never coerce data to pass a check.** Never convert percentages into
   integer counts, round values, or delete observations merely so that an
   operation accepts the input.

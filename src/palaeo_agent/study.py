@@ -227,6 +227,43 @@ def apply(operation, table, kind):
     return {"samples": samples, "columns": order, "values": new_values}, record
 
 
+ROW_FILTER_MESSAGE = ("A row filter removed complete x/y pairs from this analysis's columns. Confirm that this "
+                      "exclusion applies to this analysis; the warning does not judge whether it is right.")
+
+
+def _present(cell):
+    return cell.strip() not in ("", ".")
+
+
+def row_filter_warnings(spec: StudySpec, raw: dict, datasets=None):
+    """For each rma analysis, report row filters that remove complete pairs in its x/y columns.
+
+    Each operation's removals are counted from its incoming table, so sequential filters never
+    double-count. Recomputed from saved inputs during inspection."""
+    warnings = []
+    for analysis in spec.analyses:
+        if analysis.spec.get("method") != "rma" or (datasets is not None and analysis.dataset not in datasets):
+            continue
+        dataset = spec.datasets[analysis.dataset]
+        declaration = spec.inputs[dataset.source]
+        x, y = analysis.spec.get("x"), analysis.spec.get("y")
+        table = read_table(raw[dataset.source], declaration)
+        for index, operation in enumerate(dataset.operations):
+            incoming = table
+            table, record = apply(operation, table, declaration.kind)
+            if operation.op not in ("exclude", "select") or x not in incoming["columns"] or y not in incoming["columns"]:
+                continue
+            i, j = incoming["columns"].index(x), incoming["columns"].index(y)
+            rows = dict(zip(incoming["samples"], incoming["values"]))
+            removed = [s for s in record["removed"] if _present(rows[s][i]) and _present(rows[s][j])]
+            if removed:
+                warnings.append({"code": "row_filter_removes_pairs", "message": ROW_FILTER_MESSAGE,
+                                 "analysis": analysis.id, "dataset": analysis.dataset, "x": x, "y": y,
+                                 "operation_index": index, "op": operation.op, "removed_rows": removed,
+                                 "complete_pairs_removed": len(removed), "reason": operation.reason})
+    return warnings
+
+
 def _past(table):
     lines = ["\t".join([".", *table["columns"]])]
     lines += ["\t".join([sample, *row]) for sample, row in zip(table["samples"], table["values"])]
@@ -346,17 +383,19 @@ def run_study(study, output_root, *, base_dir=None):
                              "manifest_sha256": _sha((run_dir / "manifest.json").read_bytes())}
         steps.append({"id": f"analysis:{analysis.id}", "status": "complete"})
     status = "complete" if all(step["status"] == "complete" for step in steps) else "partial"
-    _write(directory / "report.md", report(spec, datasets, runs, steps, directory).encode())
+    filters = row_filter_warnings(spec, raw, datasets)
+    _write(directory / "report.md", report(spec, datasets, runs, steps, directory, filters).encode())
     files = {path.relative_to(directory).as_posix(): _sha(path.read_bytes())
              for path in sorted(directory.rglob("*")) if path.is_file() and not path.relative_to(directory).parts[0] == "runs"}
-    manifest = {"study_version": STUDY_VERSION, "status": status, "steps": steps, "runs": runs, "files": files}
+    manifest = {"study_version": STUDY_VERSION, "status": status, "steps": steps, "runs": runs,
+                "row_filter_warnings": filters, "files": files}
     _write(directory / "manifest.json", _json(manifest))
     failed = next((step for step in steps if step["status"] == "failed"), None)
-    return {"status": status, "study_dir": str(directory), "steps": steps,
+    return {"status": status, "study_dir": str(directory), "steps": steps, "row_filter_warnings": filters,
             **({"failed_step": failed["id"], "error": failed["error"]} if failed else {})}
 
 
-def report(spec, datasets, runs, steps, directory):
+def report(spec, datasets, runs, steps, directory, filters):
     lines = ["# Study report", "",
              "Factual record generated from the saved study. Every number links to the field it came from;",
              "scientific interpretation and sampling validity are not established by this report.", ""]
@@ -383,6 +422,11 @@ def report(spec, datasets, runs, steps, directory):
         run_dir = runs[analysis.id]["run_dir"]
         result = json.loads((directory / run_dir / "results.json").read_text())
         lines += ["", f"## Analysis `{analysis.id}` ({result['method']}, dataset `{analysis.dataset}`)", ""]
+        for item in (w for w in filters if w["analysis"] == analysis.id):
+            lines.append(f"- **row filter `{item['code']}`**: {item['op']} (operation {item['operation_index']}) removed "
+                         f"{item['complete_pairs_removed']} complete {item['x']}/{item['y']} pairs "
+                         f"(rows {', '.join(item['removed_rows'])}); recorded reason: \"{item['reason']}\". "
+                         "Confirm it applies to this analysis (`manifest.json#row_filter_warnings`).")
         for key, value in summary(result).items():
             if key in ("method", "warnings", "excluded"):
                 continue
@@ -443,6 +487,11 @@ def inspect_study(study_dir):
                         raise ValueError(f"Derived file does not recompute: {filename}")
                 if json.loads((directory / "derived" / f"{name}.json").read_text()) != record:
                     raise ValueError(f"Preparation record does not recompute: {name}")
+        datasets = {step["id"].split(":", 1)[1] for step in steps
+                    if step["id"].startswith("dataset:") and step["status"] == "complete"}
+        filters = row_filter_warnings(spec, raw, datasets)
+        if manifest["row_filter_warnings"] != filters:
+            raise ValueError("Row-filter warnings do not recompute from the saved inputs")
         verified = {}
         run_dirs = {p for p in (directory / "runs").glob("*/*") if p.is_dir()} if (directory / "runs").exists() else set()
         if {directory / item["run_dir"] for item in manifest["runs"].values()} != run_dirs:
@@ -473,7 +522,7 @@ def inspect_study(study_dir):
     except (OSError, ValueError, KeyError, TypeError, ValidationError) as exc:
         raise AnalysisError("invalid_study", "Study could not be verified", study_dir=str(directory), reason=str(exc)) from exc
     return {"status": "verified", "study_status": manifest["status"], "study_dir": str(directory),
-            "steps": manifest["steps"], "runs": verified,
+            "steps": manifest["steps"], "runs": verified, "row_filter_warnings": filters,
             "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"}
 
 
@@ -489,6 +538,8 @@ def reproduce_study(study_dir, output_root):
                 "differences": ["study_status"]}
     recreated = inspect_study(fresh["study_dir"])
     differences = {}
+    if recreated["row_filter_warnings"] != original["row_filter_warnings"]:
+        differences["row_filter_warnings"] = ["row-filter warnings differ"]
     for analysis_id, item in original["runs"].items():
         a = json.loads((directory / item["run_dir"] / "results.json").read_text())
         b = json.loads((Path(fresh["study_dir"]) / recreated["runs"][analysis_id]["run_dir"] / "results.json").read_text())

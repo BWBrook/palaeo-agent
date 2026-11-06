@@ -44,6 +44,22 @@ stay in the method specification. Those methods already declare and refuse
 invalid values, so a separate preparation transform would only duplicate them.
 This is a deliberate narrowing of the plan's five operations.
 
+## Row-filter warnings
+
+`exclude` and `select` act on whole rows. For every `rma` analysis, the study
+reports each filter that removed complete x/y pairs from that analysis's
+columns, as `row_filter_removes_pairs` with the analysis, dataset, columns,
+operation index and type, removed rows, pair count and the verbatim reason.
+Each operation's removals are counted from its incoming table, so sequential
+filters never double-count; rows missing in either column do not count. The
+warning asks you to confirm that the filter applies to that analysis. It does
+not say the filter is wrong, and it is not inferred from the reason text.
+
+The warnings are returned by `run_study`, saved in `manifest.json`, listed
+beside the affected analysis in `report.md`, and recomputed from the saved
+inputs by `inspect_study` (and therefore by `reproduce_study`). Method results
+are unchanged.
+
 ## Bundle
 
 ```

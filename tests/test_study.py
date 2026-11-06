@@ -255,3 +255,75 @@ def test_existing_study_directory_is_a_named_refusal(tmp_path):
     with pytest.raises(AnalysisError) as error:
         run_study(path, tmp_path / "out")
     assert error.value.code == "output_exists"
+
+
+DIELASMA = Path(__file__).resolve().parents[1] / "benchmarks/past/legacy-data/dielasma.dat"
+L2_BLOCK = [str(i) for i in range(64, 71)]
+
+
+def rma_spec(loc):
+    return {"method": "rma", "format": "past", "x": f"{loc}/X1", "y": f"{loc}/X2", "transform": "log10",
+            "missing": "drop_pairs"}
+
+
+def dielasma_study(datasets, analyses):
+    return {"study_version": 1,
+            "inputs": {"d": {"kind": "measurements", "path": str(DIELASMA), "orientation": "samples_by_taxa"}},
+            "datasets": datasets, "analyses": [{"id": i, "dataset": d, "spec": rma_spec(loc)} for i, d, loc in analyses]}
+
+
+def exclude(rows, reason="L2 repeated block"):
+    return {"op": "exclude", "samples": rows, "reason": reason}
+
+
+def test_shared_row_filter_warns_for_every_affected_analysis(tmp_path):
+    study = dielasma_study({"x": {"source": "d", "operations": [exclude(L2_BLOCK)]}},
+                           [("l1", "x", "L1"), ("l2", "x", "L2")])
+    outcome = run_study(study, tmp_path / "s")
+    warnings = {w["analysis"]: w for w in outcome["row_filter_warnings"]}
+    assert set(warnings) == {"l1", "l2"}
+    assert warnings["l1"] == {"code": "row_filter_removes_pairs", "message": warnings["l1"]["message"],
+                              "analysis": "l1", "dataset": "x", "x": "L1/X1", "y": "L1/X2", "operation_index": 0,
+                              "op": "exclude", "removed_rows": L2_BLOCK, "complete_pairs_removed": 7,
+                              "reason": "L2 repeated block"}
+    inspected = inspect_study(outcome["study_dir"])
+    assert inspected["row_filter_warnings"] == outcome["row_filter_warnings"]
+    assert inspected["runs"]["l1"]["summary"]["n"] == 96
+    report_text = (Path(outcome["study_dir"]) / "report.md").read_text()
+    assert report_text.count("row_filter_removes_pairs") == 2 and "L2 repeated block" in report_text
+    replay = reproduce_study(outcome["study_dir"], tmp_path / "again")
+    assert replay["status"] == "reproduced"
+
+
+def test_separate_datasets_leave_the_raw_analysis_unwarned(tmp_path):
+    study = dielasma_study({"raw": {"source": "d"}, "l2": {"source": "d", "operations": [exclude(L2_BLOCK)]}},
+                           [("l1", "raw", "L1"), ("l2", "l2", "L2")])
+    outcome = run_study(study, tmp_path / "s")
+    assert [w["analysis"] for w in outcome["row_filter_warnings"]] == ["l2"]
+    assert inspect_study(outcome["study_dir"])["runs"]["l1"]["summary"]["n"] == 103
+
+
+def test_select_missing_only_and_sequential_filters(tmp_path):
+    rows = DIELASMA.read_text().splitlines()[1:]
+    every = [line.split()[0] for line in rows if line.strip()]
+    # Row 100 is missing in L2 but complete in L1; selecting it away warns L1 only.
+    kept = [r for r in every if r not in L2_BLOCK + ["100"]]
+    study = dielasma_study({"x": {"source": "d", "operations": [
+        exclude(L2_BLOCK), {"op": "select", "samples": kept, "reason": "drop specimen 100"}]}},
+        [("l1", "x", "L1"), ("l2", "x", "L2")])
+    outcome = run_study(study, tmp_path / "s")
+    found = {(w["analysis"], w["operation_index"]): w for w in outcome["row_filter_warnings"]}
+    assert set(found) == {("l1", 0), ("l2", 0), ("l1", 1)}
+    assert found[("l1", 1)]["op"] == "select"
+    assert found[("l1", 1)]["removed_rows"] == ["100"] and found[("l1", 1)]["complete_pairs_removed"] == 1
+
+
+def test_altered_row_filter_record_fails_inspection(tmp_path):
+    study = dielasma_study({"x": {"source": "d", "operations": [exclude(L2_BLOCK)]}}, [("l1", "x", "L1")])
+    outcome = run_study(study, tmp_path / "s")
+    path = Path(outcome["study_dir"]) / "manifest.json"
+    manifest = json.loads(path.read_text())
+    manifest["row_filter_warnings"] = []
+    path.write_text(json.dumps(manifest))
+    with pytest.raises(AnalysisError, match="Study could not be verified"):
+        inspect_study(outcome["study_dir"])

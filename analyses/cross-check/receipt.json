@@ -3,7 +3,7 @@
  "palaeo_agent_version": "0.2.0.dev0",
  "primer": {
   "version": "0.2.0.dev0",
-  "sha256": "5482e3f96770207f4603195edd9c875177e6ccfa8da53b69dca16f0739ed30df"
+  "sha256": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3"
  },
  "inputs": {
   "llanvirn": {
