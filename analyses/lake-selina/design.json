@@ -1,0 +1,895 @@
+{
+ "stage": "1: intake and design, frozen before any composition result was computed or viewed",
+ "source": {
+  "neotoma_dataset": 52767,
+  "collection": "SEL1999",
+  "sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
+  "chronologies_sha256": "8bda8c89b64fab4def996b43cbe3e2b431a1ff374f9a863f1d127878b7764f61",
+  "dois": [
+   "10.21233/5Y7N-1B24",
+   "10.21233/av7h-5y24"
+  ],
+  "publication_doi": "10.1016/S1040-6182(98)00046-9",
+  "license": "CC BY 4.0 (Neotoma policy)"
+ },
+ "pollen_sum": {
+  "rule": "element pollen; ecological group TRSH or UPHE; NISP; source labels kept; no aggregation; absent entry = zero count (archive stores no zero entries)",
+  "n_levels": 72,
+  "n_taxa": 66,
+  "excluded_categories": "spores (VACR, AQBR, AQVP) and aquatic pollen (AQVP)"
+ },
+ "chronology": {
+  "primary": "IPPD-2 (37590, Bacon); ages are annotations only",
+  "alternative": "IPPD-1 (37589, best-fit curve), used only to check endpoint selection"
+ },
+ "named_comparisons": {
+  "historical_45_38ka": {
+   "window_cal_bp": [
+    38000,
+    45000
+   ],
+   "rule": "young endpoint: deepest-age level with IPPD-2 point age <= window young bound; old endpoint: level with smallest IPPD-2 point age >= window old bound",
+   "endpoints": [
+    {
+     "sample_id": "531333",
+     "depth_cm": 225,
+     "age_ippd2": 36902,
+     "age_ippd2_younger": 33665,
+     "age_ippd2_older": 39882,
+     "age_ippd1": 39879
+    },
+    {
+     "sample_id": "531341",
+     "depth_cm": 265,
+     "age_ippd2": 45481,
+     "age_ippd2_younger": 40785,
+     "age_ippd2_older": 50901,
+     "age_ippd1": 44568
+    }
+   ],
+   "elapsed_ippd2_years": 8579,
+   "levels_between": 7
+  },
+  "benchmark_mis3_lgm": {
+   "window_cal_bp": [
+    21000,
+    28000
+   ],
+   "rule": "young endpoint: deepest-age level with IPPD-2 point age <= window young bound; old endpoint: level with smallest IPPD-2 point age >= window old bound",
+   "endpoints": [
+    {
+     "sample_id": "531310",
+     "depth_cm": 145,
+     "age_ippd2": 20928,
+     "age_ippd2_younger": 19263,
+     "age_ippd2_older": 22141,
+     "age_ippd1": 23526
+    },
+    {
+     "sample_id": "531319",
+     "depth_cm": 190,
+     "age_ippd2": 28830,
+     "age_ippd2_younger": 25782,
+     "age_ippd2_older": 32458,
+     "age_ippd1": 36818
+    }
+   ],
+   "elapsed_ippd2_years": 7902,
+   "levels_between": 8
+  },
+  "benchmark_lateglacial_holocene": {
+   "window_cal_bp": [
+    8000,
+    15000
+   ],
+   "rule": "young endpoint: deepest-age level with IPPD-2 point age <= window young bound; old endpoint: level with smallest IPPD-2 point age >= window old bound",
+   "endpoints": [
+    {
+     "sample_id": "531321",
+     "depth_cm": 100,
+     "age_ippd2": 7532,
+     "age_ippd2_younger": 3369,
+     "age_ippd2_older": 11806,
+     "age_ippd1": 8207
+    },
+    {
+     "sample_id": "531332",
+     "depth_cm": 120,
+     "age_ippd2": 15176,
+     "age_ippd2_younger": 11524,
+     "age_ippd2_older": 17350,
+     "age_ippd1": 16071
+    }
+   ],
+   "elapsed_ippd2_years": 7644,
+   "levels_between": 3
+  }
+ },
+ "chronology_sensitivity": {
+  "historical_45_38ka": {
+   "ippd1_selects_same_endpoints": false,
+   "ippd1_endpoints": [
+    {
+     "sample_id": "531319",
+     "depth_cm": 190,
+     "age_ippd2": 28830,
+     "age_ippd2_younger": 25782,
+     "age_ippd2_older": 32458,
+     "age_ippd1": 36818
+    },
+    {
+     "sample_id": "531342",
+     "depth_cm": 270,
+     "age_ippd2": 46552,
+     "age_ippd2_younger": 41629,
+     "age_ippd2_older": 52201,
+     "age_ippd1": 45214
+    }
+   ]
+  },
+  "benchmark_mis3_lgm": {
+   "ippd1_selects_same_endpoints": false,
+   "ippd1_endpoints": [
+    {
+     "sample_id": "531308",
+     "depth_cm": 135,
+     "age_ippd2": 19097,
+     "age_ippd2_younger": 17458,
+     "age_ippd2_older": 20850,
+     "age_ippd1": 20544
+    },
+    {
+     "sample_id": "531314",
+     "depth_cm": 165,
+     "age_ippd2": 23132,
+     "age_ippd2_younger": 22473,
+     "age_ippd2_older": 24092,
+     "age_ippd1": 29457
+    }
+   ]
+  },
+  "benchmark_lateglacial_holocene": {
+   "ippd1_selects_same_endpoints": false,
+   "ippd1_endpoints": [
+    {
+     "sample_id": "531329",
+     "depth_cm": 95,
+     "age_ippd2": 5758,
+     "age_ippd2_younger": 1921,
+     "age_ippd2_older": 10145,
+     "age_ippd1": 6188
+    },
+    {
+     "sample_id": "531332",
+     "depth_cm": 120,
+     "age_ippd2": 15176,
+     "age_ippd2_younger": 11524,
+     "age_ippd2_older": 17350,
+     "age_ippd1": 16071
+    }
+   ]
+  }
+ },
+ "declared_pairs": {
+  "n": 77,
+  "adjacent": 71,
+  "named_or_sensitivity": 6,
+  "pairs": [
+   [
+    "531306",
+    "531305"
+   ],
+   [
+    "531305",
+    "531304"
+   ],
+   [
+    "531304",
+    "531329"
+   ],
+   [
+    "531329",
+    "531321"
+   ],
+   [
+    "531321",
+    "531323"
+   ],
+   [
+    "531323",
+    "531327"
+   ],
+   [
+    "531327",
+    "531328"
+   ],
+   [
+    "531328",
+    "531332"
+   ],
+   [
+    "531332",
+    "531330"
+   ],
+   [
+    "531330",
+    "531307"
+   ],
+   [
+    "531307",
+    "531308"
+   ],
+   [
+    "531308",
+    "531309"
+   ],
+   [
+    "531309",
+    "531310"
+   ],
+   [
+    "531310",
+    "531311"
+   ],
+   [
+    "531311",
+    "531312"
+   ],
+   [
+    "531312",
+    "531313"
+   ],
+   [
+    "531313",
+    "531314"
+   ],
+   [
+    "531314",
+    "531315"
+   ],
+   [
+    "531315",
+    "531316"
+   ],
+   [
+    "531316",
+    "531317"
+   ],
+   [
+    "531317",
+    "531318"
+   ],
+   [
+    "531318",
+    "531319"
+   ],
+   [
+    "531319",
+    "531320"
+   ],
+   [
+    "531320",
+    "531322"
+   ],
+   [
+    "531322",
+    "531324"
+   ],
+   [
+    "531324",
+    "531325"
+   ],
+   [
+    "531325",
+    "531326"
+   ],
+   [
+    "531326",
+    "531331"
+   ],
+   [
+    "531331",
+    "531333"
+   ],
+   [
+    "531333",
+    "531334"
+   ],
+   [
+    "531334",
+    "531335"
+   ],
+   [
+    "531335",
+    "531336"
+   ],
+   [
+    "531336",
+    "531337"
+   ],
+   [
+    "531337",
+    "531338"
+   ],
+   [
+    "531338",
+    "531339"
+   ],
+   [
+    "531339",
+    "531340"
+   ],
+   [
+    "531340",
+    "531341"
+   ],
+   [
+    "531341",
+    "531342"
+   ],
+   [
+    "531342",
+    "531343"
+   ],
+   [
+    "531343",
+    "531345"
+   ],
+   [
+    "531345",
+    "531344"
+   ],
+   [
+    "531344",
+    "531346"
+   ],
+   [
+    "531346",
+    "531347"
+   ],
+   [
+    "531347",
+    "531348"
+   ],
+   [
+    "531348",
+    "531349"
+   ],
+   [
+    "531349",
+    "531350"
+   ],
+   [
+    "531350",
+    "531351"
+   ],
+   [
+    "531351",
+    "531352"
+   ],
+   [
+    "531352",
+    "531353"
+   ],
+   [
+    "531353",
+    "531354"
+   ],
+   [
+    "531354",
+    "531355"
+   ],
+   [
+    "531355",
+    "531356"
+   ],
+   [
+    "531356",
+    "531357"
+   ],
+   [
+    "531357",
+    "531358"
+   ],
+   [
+    "531358",
+    "531359"
+   ],
+   [
+    "531359",
+    "531360"
+   ],
+   [
+    "531360",
+    "531361"
+   ],
+   [
+    "531361",
+    "531362"
+   ],
+   [
+    "531362",
+    "531363"
+   ],
+   [
+    "531363",
+    "531365"
+   ],
+   [
+    "531365",
+    "531364"
+   ],
+   [
+    "531364",
+    "531366"
+   ],
+   [
+    "531366",
+    "531367"
+   ],
+   [
+    "531367",
+    "531368"
+   ],
+   [
+    "531368",
+    "531369"
+   ],
+   [
+    "531369",
+    "531370"
+   ],
+   [
+    "531370",
+    "531371"
+   ],
+   [
+    "531371",
+    "531373"
+   ],
+   [
+    "531373",
+    "531372"
+   ],
+   [
+    "531372",
+    "531374"
+   ],
+   [
+    "531374",
+    "531375"
+   ],
+   [
+    "531333",
+    "531341"
+   ],
+   [
+    "531310",
+    "531319"
+   ],
+   [
+    "531321",
+    "531332"
+   ],
+   [
+    "531319",
+    "531342"
+   ],
+   [
+    "531308",
+    "531314"
+   ],
+   [
+    "531329",
+    "531332"
+   ]
+  ]
+ },
+ "specs": {
+  "rarefaction": {
+   "input": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "rarefaction",
+   "sizes": [
+    282
+   ]
+  },
+  "count_homogeneity": {
+   "input": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "count_homogeneity",
+   "pairs": [
+    [
+     "531306",
+     "531305"
+    ],
+    [
+     "531305",
+     "531304"
+    ],
+    [
+     "531304",
+     "531329"
+    ],
+    [
+     "531329",
+     "531321"
+    ],
+    [
+     "531321",
+     "531323"
+    ],
+    [
+     "531323",
+     "531327"
+    ],
+    [
+     "531327",
+     "531328"
+    ],
+    [
+     "531328",
+     "531332"
+    ],
+    [
+     "531332",
+     "531330"
+    ],
+    [
+     "531330",
+     "531307"
+    ],
+    [
+     "531307",
+     "531308"
+    ],
+    [
+     "531308",
+     "531309"
+    ],
+    [
+     "531309",
+     "531310"
+    ],
+    [
+     "531310",
+     "531311"
+    ],
+    [
+     "531311",
+     "531312"
+    ],
+    [
+     "531312",
+     "531313"
+    ],
+    [
+     "531313",
+     "531314"
+    ],
+    [
+     "531314",
+     "531315"
+    ],
+    [
+     "531315",
+     "531316"
+    ],
+    [
+     "531316",
+     "531317"
+    ],
+    [
+     "531317",
+     "531318"
+    ],
+    [
+     "531318",
+     "531319"
+    ],
+    [
+     "531319",
+     "531320"
+    ],
+    [
+     "531320",
+     "531322"
+    ],
+    [
+     "531322",
+     "531324"
+    ],
+    [
+     "531324",
+     "531325"
+    ],
+    [
+     "531325",
+     "531326"
+    ],
+    [
+     "531326",
+     "531331"
+    ],
+    [
+     "531331",
+     "531333"
+    ],
+    [
+     "531333",
+     "531334"
+    ],
+    [
+     "531334",
+     "531335"
+    ],
+    [
+     "531335",
+     "531336"
+    ],
+    [
+     "531336",
+     "531337"
+    ],
+    [
+     "531337",
+     "531338"
+    ],
+    [
+     "531338",
+     "531339"
+    ],
+    [
+     "531339",
+     "531340"
+    ],
+    [
+     "531340",
+     "531341"
+    ],
+    [
+     "531341",
+     "531342"
+    ],
+    [
+     "531342",
+     "531343"
+    ],
+    [
+     "531343",
+     "531345"
+    ],
+    [
+     "531345",
+     "531344"
+    ],
+    [
+     "531344",
+     "531346"
+    ],
+    [
+     "531346",
+     "531347"
+    ],
+    [
+     "531347",
+     "531348"
+    ],
+    [
+     "531348",
+     "531349"
+    ],
+    [
+     "531349",
+     "531350"
+    ],
+    [
+     "531350",
+     "531351"
+    ],
+    [
+     "531351",
+     "531352"
+    ],
+    [
+     "531352",
+     "531353"
+    ],
+    [
+     "531353",
+     "531354"
+    ],
+    [
+     "531354",
+     "531355"
+    ],
+    [
+     "531355",
+     "531356"
+    ],
+    [
+     "531356",
+     "531357"
+    ],
+    [
+     "531357",
+     "531358"
+    ],
+    [
+     "531358",
+     "531359"
+    ],
+    [
+     "531359",
+     "531360"
+    ],
+    [
+     "531360",
+     "531361"
+    ],
+    [
+     "531361",
+     "531362"
+    ],
+    [
+     "531362",
+     "531363"
+    ],
+    [
+     "531363",
+     "531365"
+    ],
+    [
+     "531365",
+     "531364"
+    ],
+    [
+     "531364",
+     "531366"
+    ],
+    [
+     "531366",
+     "531367"
+    ],
+    [
+     "531367",
+     "531368"
+    ],
+    [
+     "531368",
+     "531369"
+    ],
+    [
+     "531369",
+     "531370"
+    ],
+    [
+     "531370",
+     "531371"
+    ],
+    [
+     "531371",
+     "531373"
+    ],
+    [
+     "531373",
+     "531372"
+    ],
+    [
+     "531372",
+     "531374"
+    ],
+    [
+     "531374",
+     "531375"
+    ],
+    [
+     "531333",
+     "531341"
+    ],
+    [
+     "531310",
+     "531319"
+    ],
+    [
+     "531321",
+     "531332"
+    ],
+    [
+     "531319",
+     "531342"
+    ],
+    [
+     "531308",
+     "531314"
+    ],
+    [
+     "531329",
+     "531332"
+    ]
+   ],
+   "simulations": 99999,
+   "seed": 7112026
+  },
+  "community_relative_braycurtis": {
+   "input": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "braycurtis",
+   "transform": "relative_abundance",
+   "dimensions": 3
+  },
+  "community_raw_braycurtis": {
+   "input": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "braycurtis",
+   "transform": "none",
+   "dimensions": 3
+  },
+  "community_jaccard": {
+   "input": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "jaccard",
+   "transform": "none",
+   "dimensions": 3
+  }
+ },
+ "validation": {
+  "rarefaction": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 66,
+   "sizes": [
+    282
+   ],
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+  },
+  "community": [
+   "community",
+   "community",
+   "community"
+  ],
+  "count_homogeneity": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 66,
+   "n_pairs": 77,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input, declared pairs, exact margins and backend bounds checked; no Monte Carlo tables sampled"
+  }
+ },
+ "intake_script_sha256": "496f16bbe62e4630fc8a143c1f9370c4ce9f80bbbb1193f7e90dc8d6c91e5e55",
+ "counts_sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
+}

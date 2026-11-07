@@ -151,7 +151,13 @@ that depends on the age model.
 (Neotoma 59906) and Melaleuca Inlet (57982), for a west–east comparison of
 the Late Glacial to Holocene transition.
 
-## The one choice for Barry
+## Decision
+
+Barry, 7 November 2026, in chat: "I'll leave that to you to decide." I
+decided to keep the secondary 45–38 ka comparison, as recommended below and
+by Codex. Stage 1 may still drop it if the chronology cannot be reconciled.
+
+## The choice as it was put to Barry
 
 Whether to keep the secondary 45–38 ka comparison:
 - **Recommended:** keep it as a secondary comparison that depends on the
