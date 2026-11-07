@@ -25,6 +25,21 @@ WINDOWS = {
     "benchmark_lateglacial_holocene": (8000, 15000),
 }
 SIMULATIONS, SEED, SIZE = 99999, 7112026, 282
+REPORTING_RULES = {
+    "primary_p": "API plus-one Monte Carlo p-values and their API Holm adjustment across all 77 pairs; "
+                 "taxon tests in the API's global pair x taxon Holm family; the two families do not jointly "
+                 "control one error rate",
+    "monte_carlo_sensitivity": "apply Holm separately to the 77 lower and the 77 upper Clopper-Pearson bounds "
+                               "of the exact conditional tail probabilities; flag pair i when "
+                               "Holm(lower)[i] <= 0.05 <= Holm(upper)[i]; a sensitivity envelope, not a "
+                               "simultaneous interval or a new significance rule (unsupported postprocessing)",
+    "ranks": "rank the 71 adjacent steps by proportional Bray-Curtis among themselves; report the three "
+             "primary long-interval comparisons separately, each beside its IPPD-1 sensitivity pair; no "
+             "pooled rank over 77 pairs",
+    "direction": "pairs run shallow/younger (a) to deep/older (b); the API taxon effect is b - a; forward-time "
+                 "change is reported as younger minus older = -(b - a), labelled with both sample IDs",
+    "no_reruns": "B and seed fixed; no rerun for significance",
+}
 
 
 def sha(path):
@@ -113,26 +128,26 @@ def main():
                                   dimensions=3),
     }
     data = table.read_bytes()
-    validation = {
-        "rarefaction": pa.validate_rarefaction(pa.RarefactionSpec(**specs["rarefaction"]), data),
-        "community": [pa.CommunitySpec(**specs[k]).method for k in specs if k.startswith("community")],
-        "count_homogeneity": pa.validate_count_homogeneity(pa.CountHomogeneitySpec(**specs["count_homogeneity"]),
-                                                           data),
-    }
+    validation = {k: pa.validate(dict(v, input=str(table))) for k, v in specs.items()}
     design = {
         "stage": "1: intake and design, frozen before any composition result was computed or viewed",
         "source": {"neotoma_dataset": 52767, "collection": "SEL1999", "sha256": SOURCE_SHA256,
                    "chronologies_sha256": CHRONOLOGIES_SHA256, "dois": dataset["doi"],
                    "publication_doi": "10.1016/S1040-6182(98)00046-9", "license": "CC BY 4.0 (Neotoma policy)"},
         "pollen_sum": {"rule": "element pollen; ecological group TRSH or UPHE; NISP; source labels kept; "
-                               "no aggregation; absent entry = zero count (archive stores no zero entries)",
+                               "no aggregation; absent entries zero-filled by the archive conversion convention "
+                               "(Neotoma stores positive counts only); archived variables assumed disjoint "
+                               "counting categories pending the 1999 source",
                        "n_levels": len(levels), "n_taxa": len(names),
                        "excluded_categories": "spores (VACR, AQBR, AQVP) and aquatic pollen (AQVP)"},
         "chronology": {"primary": "IPPD-2 (37590, Bacon); ages are annotations only",
-                       "alternative": "IPPD-1 (37589, best-fit curve), used only to check endpoint selection"},
+                       "alternative": "IPPD-1 (37589, best-fit curve): archived-model endpoint sensitivity only, "
+                                      "not an equally validated chronology or an uncertainty distribution",
+                       "temporal_scope": "named comparisons within 100-295 cm; levels below 295 cm by depth only"},
         "named_comparisons": named, "chronology_sensitivity": sensitivity,
         "declared_pairs": {"n": len(pairs), "adjacent": len(ids) - 1, "named_or_sensitivity": len(pairs) - len(ids) + 1,
                            "pairs": pairs},
+        "reporting_rules": REPORTING_RULES,
         "specs": specs, "validation": validation,
         "intake_script_sha256": sha(Path(__file__)), "counts_sha256": hashlib.sha256(data).hexdigest(),
     }

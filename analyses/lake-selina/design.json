@@ -13,14 +13,15 @@
   "license": "CC BY 4.0 (Neotoma policy)"
  },
  "pollen_sum": {
-  "rule": "element pollen; ecological group TRSH or UPHE; NISP; source labels kept; no aggregation; absent entry = zero count (archive stores no zero entries)",
+  "rule": "element pollen; ecological group TRSH or UPHE; NISP; source labels kept; no aggregation; absent entries zero-filled by the archive conversion convention (Neotoma stores positive counts only); archived variables assumed disjoint counting categories pending the 1999 source",
   "n_levels": 72,
   "n_taxa": 66,
   "excluded_categories": "spores (VACR, AQBR, AQVP) and aquatic pollen (AQVP)"
  },
  "chronology": {
   "primary": "IPPD-2 (37590, Bacon); ages are annotations only",
-  "alternative": "IPPD-1 (37589, best-fit curve), used only to check endpoint selection"
+  "alternative": "IPPD-1 (37589, best-fit curve): archived-model endpoint sensitivity only, not an equally validated chronology or an uncertainty distribution",
+  "temporal_scope": "named comparisons within 100-295 cm; levels below 295 cm by depth only"
  },
  "named_comparisons": {
   "historical_45_38ka": {
@@ -485,6 +486,13 @@
    ]
   ]
  },
+ "reporting_rules": {
+  "primary_p": "API plus-one Monte Carlo p-values and their API Holm adjustment across all 77 pairs; taxon tests in the API's global pair x taxon Holm family; the two families do not jointly control one error rate",
+  "monte_carlo_sensitivity": "apply Holm separately to the 77 lower and the 77 upper Clopper-Pearson bounds of the exact conditional tail probabilities; flag pair i when Holm(lower)[i] <= 0.05 <= Holm(upper)[i]; a sensitivity envelope, not a simultaneous interval or a new significance rule (unsupported postprocessing)",
+  "ranks": "rank the 71 adjacent steps by proportional Bray-Curtis among themselves; report the three primary long-interval comparisons separately, each beside its IPPD-1 sensitivity pair; no pooled rank over 77 pairs",
+  "direction": "pairs run shallow/younger (a) to deep/older (b); the API taxon effect is b - a; forward-time change is reported as younger minus older = -(b - a), labelled with both sample IDs",
+  "no_reruns": "B and seed fixed; no rerun for significance"
+ },
  "specs": {
   "rarefaction": {
    "input": "data/counts.tsv",
@@ -874,11 +882,6 @@
    "warnings": [],
    "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
   },
-  "community": [
-   "community",
-   "community",
-   "community"
-  ],
   "count_homogeneity": {
    "status": "valid",
    "n_input": 72,
@@ -888,8 +891,35 @@
    "excluded": [],
    "warnings": [],
    "scope": "Input, declared pairs, exact margins and backend bounds checked; no Monte Carlo tables sampled"
+  },
+  "community_relative_braycurtis": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 66,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  },
+  "community_raw_braycurtis": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 66,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  },
+  "community_jaccard": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 66,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
   }
  },
- "intake_script_sha256": "496f16bbe62e4630fc8a143c1f9370c4ce9f80bbbb1193f7e90dc8d6c91e5e55",
+ "intake_script_sha256": "9c3a4091f98772f6a3cd622646026f3970f04956a1086aa94967e931ea5be9a9",
  "counts_sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
 }
