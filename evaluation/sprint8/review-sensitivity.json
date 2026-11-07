@@ -1,0 +1,209 @@
+{
+  "purpose": "Independent I2 review sensitivity; original session records unchanged",
+  "source_sha256": "1e471093a057df4d81c944d9f41d2dff4649b205a653c9402083b4a1768249bd",
+  "script_sha256": "bd5c05947ebd5e4a6ac17e6d90f14a4fb82f1915b861e10e2f0db7aeed8b42f0",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "47cab28432d1202fad35223999983b4921b4d2721503f8d9e876799faed913d3"
+  },
+  "numpy_version": "2.5.4",
+  "scipy_version": "1.18.1",
+  "conventions": "I2 two-sided scipy.stats.mannwhitneyu defaults; Holm across three pairs x length/ratio",
+  "archived_pvalues_match_exactly": true,
+  "row_filter_warnings": [
+    {
+      "code": "row_filter_removes_pairs",
+      "message": "A row filter removed complete x/y pairs from this analysis's columns. Confirm that this exclusion applies to this analysis; the warning does not judge whether it is right.",
+      "analysis": "block_removed.L2",
+      "dataset": "block_removed",
+      "x": "L2/X1",
+      "y": "L2/X2",
+      "operation_index": 0,
+      "op": "exclude",
+      "removed_rows": [
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70"
+      ],
+      "complete_pairs_removed": 7,
+      "reason": "L2 duplicate sensitivity: block_removed; provenance remains unresolved"
+    },
+    {
+      "code": "row_filter_removes_pairs",
+      "message": "A row filter removed complete x/y pairs from this analysis's columns. Confirm that this exclusion applies to this analysis; the warning does not judge whether it is right.",
+      "analysis": "unique_pairs.L2",
+      "dataset": "unique_pairs",
+      "x": "L2/X1",
+      "y": "L2/X2",
+      "operation_index": 0,
+      "op": "exclude",
+      "removed_rows": [
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71"
+      ],
+      "complete_pairs_removed": 8,
+      "reason": "L2 duplicate sensitivity: unique_pairs; provenance remains unresolved"
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "as_archived",
+      "L2_rows_removed": [],
+      "L2_n": 79,
+      "L2_log10_rma_slope": 0.9817911055076792,
+      "tests": [
+        {
+          "pair": "L1-L2",
+          "var": "length",
+          "p": 0.004648192333219261,
+          "holm6": 0.023240961666096304
+        },
+        {
+          "pair": "L1-L2",
+          "var": "ratio",
+          "p": 0.5644254031000228,
+          "holm6": 0.5644254031000228
+        },
+        {
+          "pair": "L1-L3",
+          "var": "length",
+          "p": 1.469168346484954e-07,
+          "holm6": 8.815010078909725e-07
+        },
+        {
+          "pair": "L1-L3",
+          "var": "ratio",
+          "p": 0.027825226400555944,
+          "holm6": 0.05565045280111189
+        },
+        {
+          "pair": "L2-L3",
+          "var": "length",
+          "p": 0.01115364506978514,
+          "holm6": 0.03844471467296127
+        },
+        {
+          "pair": "L2-L3",
+          "var": "ratio",
+          "p": 0.009611178668240317,
+          "holm6": 0.03844471467296127
+        }
+      ]
+    },
+    {
+      "scenario": "block_removed",
+      "L2_rows_removed": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "L2_n": 72,
+      "L2_log10_rma_slope": 0.976420600043458,
+      "tests": [
+        {
+          "pair": "L1-L2",
+          "var": "length",
+          "p": 0.018242801718174675,
+          "holm6": 0.054728405154524026
+        },
+        {
+          "pair": "L1-L2",
+          "var": "ratio",
+          "p": 0.5442277097478369,
+          "holm6": 0.5442277097478369
+        },
+        {
+          "pair": "L1-L3",
+          "var": "length",
+          "p": 1.469168346484954e-07,
+          "holm6": 8.815010078909725e-07
+        },
+        {
+          "pair": "L1-L3",
+          "var": "ratio",
+          "p": 0.027825226400555944,
+          "holm6": 0.05565045280111189
+        },
+        {
+          "pair": "L2-L3",
+          "var": "length",
+          "p": 0.004860897910726362,
+          "holm6": 0.02430448955363181
+        },
+        {
+          "pair": "L2-L3",
+          "var": "ratio",
+          "p": 0.010272038376143365,
+          "holm6": 0.04108815350457346
+        }
+      ]
+    },
+    {
+      "scenario": "unique_pairs",
+      "L2_rows_removed": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "L2_n": 71,
+      "L2_log10_rma_slope": 0.9765259484987477,
+      "tests": [
+        {
+          "pair": "L1-L2",
+          "var": "length",
+          "p": 0.023918149920112274,
+          "holm6": 0.07175444976033682
+        },
+        {
+          "pair": "L1-L2",
+          "var": "ratio",
+          "p": 0.5752251094063277,
+          "holm6": 0.5752251094063277
+        },
+        {
+          "pair": "L1-L3",
+          "var": "length",
+          "p": 1.469168346484954e-07,
+          "holm6": 8.815010078909725e-07
+        },
+        {
+          "pair": "L1-L3",
+          "var": "ratio",
+          "p": 0.027825226400555944,
+          "holm6": 0.07175444976033682
+        },
+        {
+          "pair": "L2-L3",
+          "var": "length",
+          "p": 0.003658980687693072,
+          "holm6": 0.01829490343846536
+        },
+        {
+          "pair": "L2-L3",
+          "var": "ratio",
+          "p": 0.010995778105077559,
+          "holm6": 0.043983112420310236
+        }
+      ]
+    }
+  ]
+}
