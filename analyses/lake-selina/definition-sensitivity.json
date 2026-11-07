@@ -1,0 +1,632 @@
+{
+ "adjacent_bc_spearman": 0.9940643863179073,
+ "adjacent_lt_005": {
+  "66": 41,
+  "60": 41
+ },
+ "monte_carlo_sensitive": {
+  "66": 1,
+  "60": 4
+ },
+ "steps_changing_classification": [
+  {
+   "step_cm": [
+    345,
+    350
+   ],
+   "holm_66": 0.054,
+   "holm_60": 0.03264,
+   "bc_66": 0.19485195420450058,
+   "bc_60": 0.20319535221496005,
+   "monte_carlo_sensitive_60": false
+  },
+  {
+   "step_cm": [
+    360,
+    365
+   ],
+   "holm_66": 0.03286,
+   "holm_60": 0.05684,
+   "bc_66": 0.19956968645219042,
+   "bc_60": 0.18938731755586707,
+   "monte_carlo_sensitive_60": true
+  }
+ ],
+ "top6_steps_66": [
+  [
+   155,
+   160
+  ],
+  [
+   275,
+   280
+  ],
+  [
+   315,
+   320
+  ],
+  [
+   290,
+   295
+  ],
+  [
+   280,
+   285
+  ],
+  [
+   150,
+   155
+  ]
+ ],
+ "top6_steps_60": [
+  [
+   155,
+   160
+  ],
+  [
+   315,
+   320
+  ],
+  [
+   275,
+   280
+  ],
+  [
+   290,
+   295
+  ],
+  [
+   280,
+   285
+  ],
+  [
+   150,
+   155
+  ]
+ ],
+ "median_adjacent_bc": {
+  "66": 0.20602278046497116,
+  "60": 0.20319535221496005
+ },
+ "richness_spearman": 0.9930863721139626,
+ "min_coverage_272_60": 0.953402749924006,
+ "named_primary": {
+  "historical_45_38ka": {
+   "bc_66": 0.1961973278520041,
+   "bc_60": 0.19744792248235132,
+   "holm_66": 0.005549999999999999,
+   "holm_60": 0.0032400000000000003,
+   "taxa_60": []
+  },
+  "benchmark_mis3_lgm": {
+   "bc_66": 0.7265778108020248,
+   "bc_60": 0.6959280803807509,
+   "holm_66": 0.0007700000000000001,
+   "holm_60": 0.0007700000000000001,
+   "taxa_60": [
+    "Poaceae",
+    "Apiaceae cf. Dichosciadium",
+    "Phyllocladus aspleniifolius",
+    "Asteraceae",
+    "Nothofagus cunninghamii",
+    "Leptospermum",
+    "Spyridium"
+   ]
+  },
+  "benchmark_lateglacial_holocene": {
+   "bc_66": 0.2890826873385013,
+   "bc_60": 0.3049718797515892,
+   "holm_66": 0.0007700000000000001,
+   "holm_60": 0.0007700000000000001,
+   "taxa_60": [
+    "Asteraceae"
+   ]
+  }
+ },
+ "richness": [
+  {
+   "sample_id": "531306",
+   "depth_cm": 80,
+   "expected_richness_282_66": 33.69498112464961,
+   "expected_richness_272_60": 30.929447090181714,
+   "coverage_272_60": 0.953402749924006
+  },
+  {
+   "sample_id": "531305",
+   "depth_cm": 85,
+   "expected_richness_282_66": 23.21421211298549,
+   "expected_richness_272_60": 21.5441628139063,
+   "coverage_272_60": 0.9812626530273297
+  },
+  {
+   "sample_id": "531304",
+   "depth_cm": 90,
+   "expected_richness_282_66": 28.471487330471724,
+   "expected_richness_272_60": 26.850435616895098,
+   "coverage_272_60": 0.9684525874175396
+  },
+  {
+   "sample_id": "531329",
+   "depth_cm": 95,
+   "expected_richness_282_66": 21.865685295462708,
+   "expected_richness_272_60": 19.9552924102248,
+   "coverage_272_60": 0.9861092614574535
+  },
+  {
+   "sample_id": "531321",
+   "depth_cm": 100,
+   "expected_richness_282_66": 21.548127322752244,
+   "expected_richness_272_60": 19.90186143741523,
+   "coverage_272_60": 0.9813522273884672
+  },
+  {
+   "sample_id": "531323",
+   "depth_cm": 105,
+   "expected_richness_282_66": 22.705306577141265,
+   "expected_richness_272_60": 20.835525741312008,
+   "coverage_272_60": 0.9809028033906466
+  },
+  {
+   "sample_id": "531327",
+   "depth_cm": 110,
+   "expected_richness_282_66": 25.25518357430729,
+   "expected_richness_272_60": 23.37419903651283,
+   "coverage_272_60": 0.9781061703715863
+  },
+  {
+   "sample_id": "531328",
+   "depth_cm": 115,
+   "expected_richness_282_66": 28.10962250881826,
+   "expected_richness_272_60": 26.624383678381886,
+   "coverage_272_60": 0.9727455258686953
+  },
+  {
+   "sample_id": "531332",
+   "depth_cm": 120,
+   "expected_richness_282_66": 27.15278690376331,
+   "expected_richness_272_60": 26.275005981555786,
+   "coverage_272_60": 0.9835397395073131
+  },
+  {
+   "sample_id": "531330",
+   "depth_cm": 125,
+   "expected_richness_282_66": 20.918464192844567,
+   "expected_richness_272_60": 19.937199513863618,
+   "coverage_272_60": 0.9819766428166804
+  },
+  {
+   "sample_id": "531307",
+   "depth_cm": 130,
+   "expected_richness_282_66": 22.897263448078,
+   "expected_richness_272_60": 21.91109165169891,
+   "coverage_272_60": 0.983280232467679
+  },
+  {
+   "sample_id": "531308",
+   "depth_cm": 135,
+   "expected_richness_282_66": 21.390354171557494,
+   "expected_richness_272_60": 20.432822631857917,
+   "coverage_272_60": 0.9872240244275602
+  },
+  {
+   "sample_id": "531309",
+   "depth_cm": 140,
+   "expected_richness_282_66": 25.650607436195976,
+   "expected_richness_272_60": 25.265658182185234,
+   "coverage_272_60": 0.9702351029641484
+  },
+  {
+   "sample_id": "531310",
+   "depth_cm": 145,
+   "expected_richness_282_66": 28.514204118914108,
+   "expected_richness_272_60": 27.242171433681673,
+   "coverage_272_60": 0.979245609689329
+  },
+  {
+   "sample_id": "531311",
+   "depth_cm": 150,
+   "expected_richness_282_66": 28.917634398817224,
+   "expected_richness_272_60": 27.78074064405544,
+   "coverage_272_60": 0.9735354156354804
+  },
+  {
+   "sample_id": "531312",
+   "depth_cm": 155,
+   "expected_richness_282_66": 23.976840912739352,
+   "expected_richness_272_60": 23.142072781582485,
+   "coverage_272_60": 0.9801007628207264
+  },
+  {
+   "sample_id": "531313",
+   "depth_cm": 160,
+   "expected_richness_282_66": 30.405950912636477,
+   "expected_richness_272_60": 28.37358026173092,
+   "coverage_272_60": 0.9645620752263658
+  },
+  {
+   "sample_id": "531314",
+   "depth_cm": 165,
+   "expected_richness_282_66": 15.766568113358419,
+   "expected_richness_272_60": 14.782647790383981,
+   "coverage_272_60": 0.9940215033076055
+  },
+  {
+   "sample_id": "531315",
+   "depth_cm": 170,
+   "expected_richness_282_66": 18.43507377058095,
+   "expected_richness_272_60": 17.45352064670122,
+   "coverage_272_60": 0.9874464515039596
+  },
+  {
+   "sample_id": "531316",
+   "depth_cm": 175,
+   "expected_richness_282_66": 17.17476811759637,
+   "expected_richness_272_60": 16.127017993099827,
+   "coverage_272_60": 0.9766204329984285
+  },
+  {
+   "sample_id": "531317",
+   "depth_cm": 180,
+   "expected_richness_282_66": 17.608020903900435,
+   "expected_richness_272_60": 16.45528916166686,
+   "coverage_272_60": 0.9802307766430327
+  },
+  {
+   "sample_id": "531318",
+   "depth_cm": 185,
+   "expected_richness_282_66": 17.396672542185836,
+   "expected_richness_272_60": 16.258388555596344,
+   "coverage_272_60": 0.9794975948325513
+  },
+  {
+   "sample_id": "531319",
+   "depth_cm": 190,
+   "expected_richness_282_66": 17.685856436142174,
+   "expected_richness_272_60": 17.53941555571977,
+   "coverage_272_60": 0.9850372466044365
+  },
+  {
+   "sample_id": "531320",
+   "depth_cm": 195,
+   "expected_richness_282_66": 22.44602932148874,
+   "expected_richness_272_60": 21.37434445708614,
+   "coverage_272_60": 0.9713746682951325
+  },
+  {
+   "sample_id": "531322",
+   "depth_cm": 200,
+   "expected_richness_282_66": 21.36612691829309,
+   "expected_richness_272_60": 20.25840442355168,
+   "coverage_272_60": 0.9782629417254385
+  },
+  {
+   "sample_id": "531324",
+   "depth_cm": 205,
+   "expected_richness_282_66": 19.76565612517093,
+   "expected_richness_272_60": 18.75398820386453,
+   "coverage_272_60": 0.9811654402698642
+  },
+  {
+   "sample_id": "531325",
+   "depth_cm": 210,
+   "expected_richness_282_66": 22.691906867783626,
+   "expected_richness_272_60": 21.002713400742685,
+   "coverage_272_60": 0.9673713608194554
+  },
+  {
+   "sample_id": "531326",
+   "depth_cm": 215,
+   "expected_richness_282_66": 22.059152212627506,
+   "expected_richness_272_60": 20.363149446264966,
+   "coverage_272_60": 0.9699721939475549
+  },
+  {
+   "sample_id": "531331",
+   "depth_cm": 220,
+   "expected_richness_282_66": 24.521916103287612,
+   "expected_richness_272_60": 22.81627224390144,
+   "coverage_272_60": 0.9721932627656888
+  },
+  {
+   "sample_id": "531333",
+   "depth_cm": 225,
+   "expected_richness_282_66": 25.30202626997608,
+   "expected_richness_272_60": 24.30696596959591,
+   "coverage_272_60": 0.9667949730192719
+  },
+  {
+   "sample_id": "531334",
+   "depth_cm": 230,
+   "expected_richness_282_66": 23.43982183829926,
+   "expected_richness_272_60": 22.465761580142235,
+   "coverage_272_60": 0.9763274297013806
+  },
+  {
+   "sample_id": "531335",
+   "depth_cm": 235,
+   "expected_richness_282_66": 23.4081845670277,
+   "expected_richness_272_60": 22.39777634434211,
+   "coverage_272_60": 0.9777090402474303
+  },
+  {
+   "sample_id": "531336",
+   "depth_cm": 240,
+   "expected_richness_282_66": 27.769381533101047,
+   "expected_richness_272_60": 26.761031607926654,
+   "coverage_272_60": 0.959912214632626
+  },
+  {
+   "sample_id": "531337",
+   "depth_cm": 245,
+   "expected_richness_282_66": 26.862271182746852,
+   "expected_richness_272_60": 25.042526053608437,
+   "coverage_272_60": 0.9745304041375925
+  },
+  {
+   "sample_id": "531338",
+   "depth_cm": 247,
+   "expected_richness_282_66": 22.317132195137685,
+   "expected_richness_272_60": 21.31579527901552,
+   "coverage_272_60": 0.9823441741150648
+  },
+  {
+   "sample_id": "531339",
+   "depth_cm": 255,
+   "expected_richness_282_66": 26.992922183072807,
+   "expected_richness_272_60": 25.857819322422724,
+   "coverage_272_60": 0.9783595192892777
+  },
+  {
+   "sample_id": "531340",
+   "depth_cm": 260,
+   "expected_richness_282_66": 25.63160282569391,
+   "expected_richness_272_60": 24.523868439228433,
+   "coverage_272_60": 0.9758874212704096
+  },
+  {
+   "sample_id": "531341",
+   "depth_cm": 265,
+   "expected_richness_282_66": 29.847113132288193,
+   "expected_richness_272_60": 28.269477793721496,
+   "coverage_272_60": 0.9662253869819327
+  },
+  {
+   "sample_id": "531342",
+   "depth_cm": 270,
+   "expected_richness_282_66": 21.83318532218703,
+   "expected_richness_272_60": 21.07346235002357,
+   "coverage_272_60": 0.9730484669161852
+  },
+  {
+   "sample_id": "531343",
+   "depth_cm": 275,
+   "expected_richness_282_66": 19.686639521028514,
+   "expected_richness_272_60": 18.716495465800104,
+   "coverage_272_60": 0.985317153426892
+  },
+  {
+   "sample_id": "531345",
+   "depth_cm": 280,
+   "expected_richness_282_66": 23.610463111989596,
+   "expected_richness_272_60": 21.5083911654701,
+   "coverage_272_60": 0.9775672272291301
+  },
+  {
+   "sample_id": "531344",
+   "depth_cm": 285,
+   "expected_richness_282_66": 24.230303689598912,
+   "expected_richness_272_60": 22.252638925040134,
+   "coverage_272_60": 0.9777866650033248
+  },
+  {
+   "sample_id": "531346",
+   "depth_cm": 290,
+   "expected_richness_282_66": 26.440533241804,
+   "expected_richness_272_60": 24.47238293896243,
+   "coverage_272_60": 0.9679523770187516
+  },
+  {
+   "sample_id": "531347",
+   "depth_cm": 295,
+   "expected_richness_282_66": 26.55499765432322,
+   "expected_richness_272_60": 25.469463833351288,
+   "coverage_272_60": 0.9763993926218126
+  },
+  {
+   "sample_id": "531348",
+   "depth_cm": 300,
+   "expected_richness_282_66": 29.040022971378107,
+   "expected_richness_272_60": 28.010972125121963,
+   "coverage_272_60": 0.9771830165381662
+  },
+  {
+   "sample_id": "531349",
+   "depth_cm": 305,
+   "expected_richness_282_66": 28.38963740279242,
+   "expected_richness_272_60": 27.284838403204304,
+   "coverage_272_60": 0.9784301721246956
+  },
+  {
+   "sample_id": "531350",
+   "depth_cm": 310,
+   "expected_richness_282_66": 27.561864843922603,
+   "expected_richness_272_60": 26.41327375018398,
+   "coverage_272_60": 0.9670311984252742
+  },
+  {
+   "sample_id": "531351",
+   "depth_cm": 315,
+   "expected_richness_282_66": 26.632539557852088,
+   "expected_richness_272_60": 25.572727352001976,
+   "coverage_272_60": 0.979379264684882
+  },
+  {
+   "sample_id": "531352",
+   "depth_cm": 320,
+   "expected_richness_282_66": 28.30848104921868,
+   "expected_richness_272_60": 27.240468887286752,
+   "coverage_272_60": 0.9841564963778221
+  },
+  {
+   "sample_id": "531353",
+   "depth_cm": 325,
+   "expected_richness_282_66": 23.452011802044957,
+   "expected_richness_272_60": 22.35075994432027,
+   "coverage_272_60": 0.9841439393625695
+  },
+  {
+   "sample_id": "531354",
+   "depth_cm": 330,
+   "expected_richness_282_66": 25.75014159413163,
+   "expected_richness_272_60": 24.141322845596225,
+   "coverage_272_60": 0.975222081357271
+  },
+  {
+   "sample_id": "531355",
+   "depth_cm": 335,
+   "expected_richness_282_66": 32.028230794492046,
+   "expected_richness_272_60": 30.332277048857012,
+   "coverage_272_60": 0.9684681888108548
+  },
+  {
+   "sample_id": "531356",
+   "depth_cm": 340,
+   "expected_richness_282_66": 30.029609351974983,
+   "expected_richness_272_60": 29.121652051990324,
+   "coverage_272_60": 0.9703030353012175
+  },
+  {
+   "sample_id": "531357",
+   "depth_cm": 345,
+   "expected_richness_282_66": 31.006466933722766,
+   "expected_richness_272_60": 30.145714946266917,
+   "coverage_272_60": 0.9646020592507293
+  },
+  {
+   "sample_id": "531358",
+   "depth_cm": 350,
+   "expected_richness_282_66": 26.251904853353707,
+   "expected_richness_272_60": 25.331717291143207,
+   "coverage_272_60": 0.9758388577010343
+  },
+  {
+   "sample_id": "531359",
+   "depth_cm": 355,
+   "expected_richness_282_66": 27.98269992476169,
+   "expected_richness_272_60": 27.142532472756248,
+   "coverage_272_60": 0.9677385297260402
+  },
+  {
+   "sample_id": "531360",
+   "depth_cm": 360,
+   "expected_richness_282_66": 30.34636256036864,
+   "expected_richness_272_60": 29.339214280285688,
+   "coverage_272_60": 0.9708243232751768
+  },
+  {
+   "sample_id": "531361",
+   "depth_cm": 365,
+   "expected_richness_282_66": 27.937328567287903,
+   "expected_richness_272_60": 26.765223875476334,
+   "coverage_272_60": 0.9717009816677894
+  },
+  {
+   "sample_id": "531362",
+   "depth_cm": 370,
+   "expected_richness_282_66": 26.0,
+   "expected_richness_272_60": 25.0,
+   "coverage_272_60": 0.9743458471144633
+  },
+  {
+   "sample_id": "531363",
+   "depth_cm": 375,
+   "expected_richness_282_66": 27.024200042145612,
+   "expected_richness_272_60": 25.163986414196465,
+   "coverage_272_60": 0.9773547527425531
+  },
+  {
+   "sample_id": "531365",
+   "depth_cm": 380,
+   "expected_richness_282_66": 23.299078714879922,
+   "expected_richness_272_60": 22.412024932902643,
+   "coverage_272_60": 0.9799558056791744
+  },
+  {
+   "sample_id": "531364",
+   "depth_cm": 382,
+   "expected_richness_282_66": 27.685032877590682,
+   "expected_richness_272_60": 26.740465954254322,
+   "coverage_272_60": 0.9702063590663539
+  },
+  {
+   "sample_id": "531366",
+   "depth_cm": 385,
+   "expected_richness_282_66": 26.266694171153734,
+   "expected_richness_272_60": 25.460070474921604,
+   "coverage_272_60": 0.9760040023122051
+  },
+  {
+   "sample_id": "531367",
+   "depth_cm": 390,
+   "expected_richness_282_66": 21.480587077112475,
+   "expected_richness_272_60": 20.47510452071303,
+   "coverage_272_60": 0.9797187435908516
+  },
+  {
+   "sample_id": "531368",
+   "depth_cm": 395,
+   "expected_richness_282_66": 19.98316566941405,
+   "expected_richness_272_60": 18.896049819958257,
+   "coverage_272_60": 0.9851068628073278
+  },
+  {
+   "sample_id": "531369",
+   "depth_cm": 400,
+   "expected_richness_282_66": 19.99137648331266,
+   "expected_richness_272_60": 19.087579732864793,
+   "coverage_272_60": 0.9800253152289331
+  },
+  {
+   "sample_id": "531370",
+   "depth_cm": 405,
+   "expected_richness_282_66": 18.452554026201273,
+   "expected_richness_272_60": 18.35212667089844,
+   "coverage_272_60": 0.9895722186564229
+  },
+  {
+   "sample_id": "531371",
+   "depth_cm": 410,
+   "expected_richness_282_66": 17.942854801191025,
+   "expected_richness_272_60": 17.793809914648296,
+   "coverage_272_60": 0.9849884135307204
+  },
+  {
+   "sample_id": "531373",
+   "depth_cm": 415,
+   "expected_richness_282_66": 20.414225947645452,
+   "expected_richness_272_60": 19.45930023207258,
+   "coverage_272_60": 0.9799027106361179
+  },
+  {
+   "sample_id": "531372",
+   "depth_cm": 420,
+   "expected_richness_282_66": 19.693660474809242,
+   "expected_richness_272_60": 18.58266135688081,
+   "coverage_272_60": 0.9809512505146363
+  },
+  {
+   "sample_id": "531374",
+   "depth_cm": 425,
+   "expected_richness_282_66": 19.48007272457351,
+   "expected_richness_272_60": 18.372005670658442,
+   "coverage_272_60": 0.9830543619837064
+  },
+  {
+   "sample_id": "531375",
+   "depth_cm": 427,
+   "expected_richness_282_66": 22.871407296467417,
+   "expected_richness_272_60": 21.788485918167243,
+   "coverage_272_60": 0.9809772290740133
+  }
+ ]
+}

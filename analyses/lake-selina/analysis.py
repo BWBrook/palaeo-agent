@@ -81,7 +81,8 @@ def main(design_name="design.json"):
                   "p_value": t["p_value"], "p_value_holm": t["p_value_holm"]} for t in p["taxon_tests"]]
         significant = sorted([t for t in tests if t["p_value_holm"] < ALPHA],
                              key=lambda t: -abs(t["forward_change_younger_minus_older"]))
-        return {"younger": a, "older": b, "provenance_flagged": a in flagged or b in flagged, "depths_cm": [levels[a]["depth_cm"], levels[b]["depth_cm"]],
+        flag = {"provenance_flagged": a in flagged or b in flagged} if flagged else {}
+        return {"younger": a, "older": b, **flag, "depths_cm": [levels[a]["depth_cm"], levels[b]["depth_cm"]],
                 "ages_ippd2": [levels[a]["age_ippd2"], levels[b]["age_ippd2"]],
                 "elapsed_ippd2_years": None if levels[b]["age_ippd2"] is None or levels[a]["age_ippd2"] is None
                 else levels[b]["age_ippd2"] - levels[a]["age_ippd2"],
@@ -123,7 +124,9 @@ def main(design_name="design.json"):
     report = comparison["report"]
     results = {
         "design_sha256_inputs": {"counts_sha256": design["counts_sha256"],
-                                 "intake_script_sha256": design["intake_script_sha256"]},
+                                 **({"intake_script_sha256": design["intake_script_sha256"]} if original else
+                                    {"amend_script_sha256": design["amend_script_sha256"],
+                                     "base_design_counts_sha256": design["base_design_counts_sha256"]})},
         "environment": runs["count_homogeneity"]["environment"],
         "primer": {k: pa.primer()[k] for k in ("version", "sha256")},
         "levels": per_level,

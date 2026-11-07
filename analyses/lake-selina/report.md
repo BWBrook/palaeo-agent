@@ -1,5 +1,13 @@
 # Lake Selina: counting-error-qualified reanalysis of the archived pollen counts
 
+> **Superseded in interpretation (8 November 2026).** After this report, the
+> full Colhoun et al. (1999) paper showed a probable +30 cm offset between the
+> archived samples and the archived dating controls, and a dryland pollen sum
+> that excludes sedges and aquatics. See [AMENDMENT-1.md](AMENDMENT-1.md) and
+> [report-amended.md](report-amended.md). The numbers below stand for the
+> archived 66-category definition. The chronology diagnosis, the temporal
+> labels and the agreement with Turney et al. are withdrawn.
+
 Claude (Opus 5.5), 8 November 2026. This is stage 2 of the
 [proposal](../../docs/research-application-proposal.md). It runs the design
 frozen in [INTAKE.md](INTAKE.md) at 42c5a1b, before any result existed, and
