@@ -4,8 +4,8 @@
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
 thread_ids = [136]
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923]
-reviewed_through = 2923
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960]
+reviewed_through = 2960
 exporter_revision = "c1dcfbfe087c4bd5b29b0392bab09c7204e997cd"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -13,7 +13,7 @@ flag_terms = ["password", "token", "credential", "secret", "student", "email", "
 # paper text or other person's private correspondence is reproduced.
 # 2866: 'access path' describes API delivery; 'Secret scan' records a completed
 # check. Neither passage contains private access routes, credentials or hosts.
-cleared = [2865, 2866, 2915, 2923]
+cleared = [2865, 2866, 2915, 2923, 2927, 2957]
 
 # Other reviewed messages (2867, 2886, 2891) contain scientific and implementation
 # decisions, with no flagged content requiring clearance or withholding.
@@ -24,6 +24,11 @@ cleared = [2865, 2866, 2915, 2923]
 # 2915 and 2923: token references are numerical model-usage accounting, not
 # credentials. Both messages were reviewed in full; they contain scientific
 # findings and software verification, without private routes or third-party text.
+# 2927 and 2957: token references concern model-usage accounting and budget
+# enforcement. Quoted human review concerns Barry's own project instructions;
+# neither message contains credentials, private routes or third-party text.
+# 2960 is the reviewed I2 wording check and Lake Selina proposal critique, with
+# source facts and methodological recommendations; no clearance is required.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],

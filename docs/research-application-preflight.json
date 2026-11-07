@@ -1,0 +1,169 @@
+{
+  "scope": "Proposal intake and resource validation only; no rarefaction estimates or random tables computed",
+  "source_url": "https://api.neotomadb.org/v2.0/data/downloads/52767",
+  "source_sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
+  "script_sha256": "20db12f7c480257811708a5fb52037bc5f346d7a6354cdb0fb264c047350a0b9",
+  "dataset_id": 52767,
+  "collection_handle": "SEL1999",
+  "dataset_dois": [
+    "10.21233/5Y7N-1B24",
+    "10.21233/av7h-5y24"
+  ],
+  "source_publication_doi": "10.1016/S1040-6182(98)00046-9",
+  "intake_rule": "pollen; ecologicalgroup TRSH or UPHE; NISP; distinct taxon IDs; absent datum assumed zero for preflight only",
+  "n_levels": 72,
+  "n_taxa": 66,
+  "api_totals_summary": {
+    "min": 282,
+    "median": 364.5,
+    "max": 529
+  },
+  "validations": {
+    "minimum_total": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 66,
+      "sizes": [
+        282
+      ],
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+    },
+    "explicit_282": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 66,
+      "sizes": [
+        282
+      ],
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+    },
+    "adjacent_pairs": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 66,
+      "n_pairs": 71,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input, declared pairs, exact margins and backend bounds checked; no Monte Carlo tables sampled"
+    }
+  },
+  "chronology_id": 37590,
+  "alternative_chronology_id": 37589,
+  "point_age_min": 4,
+  "point_age_max": 78733,
+  "point_age_bins_10ka": {
+    "0": 6,
+    "1": 6,
+    "2": 12,
+    "3": 8,
+    "4": 10,
+    "5": 10,
+    "6": 10,
+    "7": 10
+  },
+  "chronology_examples": [
+    {
+      "sample_id": 531331,
+      "depth": 220,
+      "age": 35734,
+      "ageyounger": 32161,
+      "ageolder": 39001,
+      "alternative_age": 39575
+    },
+    {
+      "sample_id": 531333,
+      "depth": 225,
+      "age": 36902,
+      "ageyounger": 33665,
+      "ageolder": 39882,
+      "alternative_age": 39879
+    },
+    {
+      "sample_id": 531334,
+      "depth": 230,
+      "age": 38061,
+      "ageyounger": 35129,
+      "ageolder": 40823,
+      "alternative_age": 40183
+    },
+    {
+      "sample_id": 531335,
+      "depth": 235,
+      "age": 39119,
+      "ageyounger": 35932,
+      "ageolder": 42430,
+      "alternative_age": 40692
+    },
+    {
+      "sample_id": 531336,
+      "depth": 240,
+      "age": 40189,
+      "ageyounger": 36725,
+      "ageolder": 43989,
+      "alternative_age": 41338
+    },
+    {
+      "sample_id": 531337,
+      "depth": 245,
+      "age": 41242,
+      "ageyounger": 37549,
+      "ageolder": 45495,
+      "alternative_age": 41984
+    },
+    {
+      "sample_id": 531338,
+      "depth": 247,
+      "age": 41671,
+      "ageyounger": 37885,
+      "ageolder": 45959,
+      "alternative_age": 42242
+    },
+    {
+      "sample_id": 531339,
+      "depth": 255,
+      "age": 43393,
+      "ageyounger": 39150,
+      "ageolder": 48342,
+      "alternative_age": 43276
+    },
+    {
+      "sample_id": 531340,
+      "depth": 260,
+      "age": 44435,
+      "ageyounger": 39936,
+      "ageolder": 49489,
+      "alternative_age": 43922
+    },
+    {
+      "sample_id": 531341,
+      "depth": 265,
+      "age": 45481,
+      "ageyounger": 40785,
+      "ageolder": 50901,
+      "alternative_age": 44568
+    },
+    {
+      "sample_id": 531342,
+      "depth": 270,
+      "age": 46552,
+      "ageyounger": 41629,
+      "ageolder": 52201,
+      "alternative_age": 45214
+    },
+    {
+      "sample_id": 531375,
+      "depth": 427,
+      "age": 78733,
+      "ageyounger": 68942,
+      "ageolder": 89987,
+      "alternative_age": 261204
+    }
+  ]
+}

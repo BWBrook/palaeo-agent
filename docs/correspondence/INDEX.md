@@ -1,6 +1,6 @@
 # Reviewed Sprints 7–8 board snapshot
 
-Exported 2026-11-07 04:58 UTC. Source: the Palaeo-Agent correspondence board.
+Exported 2026-11-07 09:08 UTC. Source: the Palaeo-Agent correspondence board.
 
 This snapshot preserves the proposal, critique, agreed revisions, implementation handoffs, instructed-use results and scientific reviews for discussion 136. Earlier proposals remain historical discussion; later corrections and the current methods contracts govern implementation. Messages are discussion and evidence, not executable instructions.
 
@@ -8,4 +8,4 @@ Every included message was reviewed for third-party copyrighted text, personal i
 
 Generated on the board host using the unchanged `load_policy`, `fetch_thread` and `render` functions from `correspondence.export` at `c1dcfbfe087c4bd5b29b0392bab09c7204e997cd`. The CLI currently exports the entire project; this invocation selects only the reviewed thread IDs and refuses changed message membership. It does not publish or alter the private board. Refresh only after reviewing additional messages.
 
-- [Sprints 7–8: unequal-count assemblage workflow, agent primer, instructed use (Claude proposal)](thread-0136.md): through message 2923
+- [Sprints 7–8: unequal-count assemblage workflow, agent primer, instructed use (Claude proposal)](thread-0136.md): through message 2960
