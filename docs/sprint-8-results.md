@@ -5,7 +5,9 @@ Claude (Opus 5.5), 6 November 2026. Analyst sessions: Claude Sonnet 5.5
 subscription login. Checks fixed before launch in
 [`evaluation/sprint8/checks.md`](../evaluation/sprint8/checks.md) (e750964).
 Records: [`evaluation/authentic/run-records/sprint8-instructed-20261106/`](../evaluation/authentic/run-records/sprint8-instructed-20261106/).
-Codex has not yet reviewed these records or the science.
+Codex's independent review ([`sprint-8-review.md`](sprint-8-review.md),
+8c9fc3c) corrected parts of this summary; the corrections are applied below
+and carried into the [joint report](sprints-7-8-report.md).
 
 **What this can show.** Two sessions, one model, one client: descriptive
 evidence that delivery and instructed compliance *can* work on the two
@@ -32,7 +34,8 @@ cannot identify a causal effect of the bootstrap.
 | 1. Primer available in runtime | yes | yes |
 | 2. Full body in a tool result before the first analytical call | yes: its first tool call was `primer`, unprompted | yes: call 0 |
 | 2. Body visible in the transcript | yes | yes |
-| Supported subtasks through the API | `community` (3 representations + `compare`), `rarefaction`, `count_homogeneity` | `validate`, `rma` (log10 and raw, three localities) |
+| Supported subtasks through the API (final package) | `community` (3 representations + `compare`), `rarefaction`, `count_homogeneity` | `validate`, `rma` (log10 and raw, three localities) |
+| Whole-session compliance | partial: horizon totals computed with pandas during exploration | partial: unique-pairs point slope computed outside the API |
 | Unsupported-parts table | present | present, four rows with reasons and checks |
 | Primer SHA-256 in report | truncated (`47cab284…913d3`) | full |
 | Unsuitable design forced | no; declined PERMANOVA on horizons, with the primer's reason | no; descriptive `rma` never presented as inference; intervals labelled as its own bootstrap |
@@ -46,14 +49,21 @@ The old A2 record, run as a negative control, scores no delivery.
 
 ## Judged findings
 
-**I1.** No bespoke analytical computation: `analysis.py` is API calls plus
-glue. The science is careful. 5→6 is the robust major change in every
+**I1.** The final `analysis.py` is API calls plus glue. During exploration,
+though, it summed horizon totals with pandas (worker audit line 9), which
+`community` and `rarefaction` provide: a small whole-session breach (found
+by Codex). The science is careful. 5→6 is the robust major change in every
 representation. 6→7 is large but resolved only by Basil's absence at 26
 specimens, and confounded with the unconformity. Zero-count limits are used
 correctly (Basil ≤ 0.109 at horizon 7, compatible with ~10 % but not 47 %).
 Raw-count Bray–Curtis is identified as count-total confounded. It also
-stated what the data cannot establish (effort, time, cause, absence). Two
-small lapses:
+stated what the data cannot establish (effort, time, cause, absence).
+Codex's review corrects four report statements: the omnibus is a Monte
+Carlo conditional test, not an exact one; non-rejection at 1–2 and 2–3 does
+not make horizons 1–3 indistinguishable (1–3 was untested) or equivalent;
+Sower is not the most abundant taxon at horizon 6, rather than uniquely
+non-dominant; conditional expected richness at size 13 is not a population
+richness claim. Two further lapses:
 - it reported a truncated SHA-256;
 - after passing the `compare` result dict where `inspect_comparison` wanted
   a path, it read `report.json` from the comparison bundle directly. The
@@ -64,9 +74,14 @@ small lapses:
 inferential step is declared as unsupported, with a reason: bootstrap
 slope intervals and differences, Kruskal–Wallis, Mann–Whitney and KS. Its
 own RMA, needed inside the bootstrap, is cross-checked against the API to
-1e-9, as primer §7 allows. It reports the L2 block and keeps all three
-scenarios' consequences visible. The unique-pairs slope, 0.977, matches the
-corrected analysis's 0.97653. Two lapses:
+1e-9, as primer §7 allows. It reports the L2 block. It computed only the archived results and a
+unique-pairs slope (0.977, matching the corrected analysis's 0.97653); my
+earlier statement that it kept all three scenarios' consequences visible
+was wrong. Codex reran its six-test Mann–Whitney/Holm family under the
+removal scenarios: L1–L2 length goes from Holm p 0.023 (archived) to 0.055
+(block removed) and 0.072 (unique pairs), so "all three pairs differ" is not
+robust to the unresolved record problem; the L3 contrasts stay below 0.05.
+Two further lapses:
 - **A minor rule breach.** The unique-pairs *point* slope was computed with
   its own `rma()` on a deduplicated array. `study` exclusion plus `rma` is
   the supported route, and the step is not in its unsupported-parts table.
@@ -102,8 +117,10 @@ exercised live.
 
 ## Recommendation on primer and delivery
 
-- **Both paths delivered the full primer before analysis, and both agents
-  then used the API for every supported subtask (one small lapse in I2).**
+- **Both paths delivered the full primer before analysis, and both final
+  packages used the API for every supported subtask; whole-session
+  compliance was partial in both** (I1 exploratory totals, I2 deduplicated
+  slope).
   This is consistent with Barry's hypothesis that A1 and A2 ignored the API
   because they were not firmly told to use it. Two sessions cannot establish
   it.
@@ -112,14 +129,15 @@ exercised live.
   worked here with only "use the toolkit": the server instructions led the
   agent to call `primer` first. One session cannot show that it does so
   reliably, and it fails under `--bare`.
-- **Primer edits worth making** (a small follow-up; none was needed for
-  these runs):
+- **Primer clarifications, applied after the runs** (primer SHA-256 now
+  `cdec09d1…`; the sessions used `47cab284…`):
   - add `inspect_comparison(dir)["report"]` to the §4 table;
   - ask for the full, untruncated SHA-256 in §9;
   - in §3, name `study` exclusion plus `rma` as the route for a
-    deduplicated sensitivity.
+    deduplicated sensitivity;
+  - in §1, list exploratory checks of supported quantities among the
+    non-grounds for bypassing the API.
 
 ## Next
 
-Codex reviews the records and the science (proposal §8). The joint report
-follows that review.
+Reviewed by Codex; see the [joint report](sprints-7-8-report.md).

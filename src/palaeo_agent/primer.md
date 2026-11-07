@@ -23,7 +23,9 @@ an unsuitable design.
 - wanting a different output layout (read the result fields instead);
 - writing your own version "to double-check" and then reporting it. You may
   cross-check (§7), but you report the API's result unless you have shown
-  that it is wrong.
+  that it is wrong;
+- exploration: totals, richness and other supported quantities you check
+  while inspecting the data also come from the API.
 
 **Grounds** for other code, declared in §5:
 - no operation computes the quantity;
@@ -67,6 +69,9 @@ exchangeability, so do not run it there.
   analyses they concern. A study reports `row_filter_removes_pairs` when a
   filter removes complete pairs from an `rma` analysis's columns; confirm
   that each such filter applies to that analysis.
+- A sensitivity analysis that removes suspect records (for example
+  duplicated rows) is a declared `study` exclusion followed by the same
+  operation. Do not recompute a supported quantity on an edited array.
 - **Never coerce data to pass a check.** Never convert percentages into
   integer counts, round values, or delete observations merely so that an
   operation accepts the input.
@@ -94,7 +99,7 @@ use the names advertised by your client.
 | Verify a run's integrity and read it | `inspect`, then `result` for one field | `palaeo_agent.inspect_run(run_dir)["result"]` |
 | Verify a study's integrity or recompute its analyses | `study_inspect`, `study_reproduce` | `palaeo_agent.inspect_study`, `palaeo_agent.reproduce_study` |
 | Recompute a run and compare its numbers | `reproduce` | `palaeo_agent.reproduce(run_dir, output_root)` |
-| Compare two community runs | `compare` | `palaeo_agent.compare_community_runs(a, b, output_root)` |
+| Compare two community runs | `compare`, then `inspect_comparison` | `palaeo_agent.compare_community_runs(a, b, output_root)`, then `palaeo_agent.inspect_comparison(out["comparison_dir"])["report"]` |
 
 - **Reproducibility.** Your `analysis.py` calls the Python API with
   specifications saved under `specs/`, and reads the numbers it reports from
@@ -170,7 +175,7 @@ Example: taxon counts in ten horizons of one section, with totals from 13 to
 
 ## 9. What to report
 
-- The primer version and SHA-256.
+- The primer version and its full 64-character SHA-256.
 - The bundle IDs, and the field behind every number.
 - The unsupported-parts table (§5).
 - Warnings, limitations and multiplicity families, and what the data cannot

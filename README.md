@@ -76,8 +76,9 @@ The tools discover methods, validate specifications, execute analyses, inspect
 and reproduce bundles, and retrieve selected results. See the [MCP guide](docs/mcp.md)
 for the tool contract and runnable examples. This local product server is
 separate from the confined evaluation worker. The earlier comparative
-evaluation is closed; the [sprint-7 implementation report](docs/sprint-7-results.md)
-records readiness and limitations for the next instructed-use demonstrations.
+evaluation is closed. The [sprints 7–8 joint report](docs/sprints-7-8-report.md)
+covers the unequal-count workflow, primer delivery and the instructed-use
+demonstration.
 
 ## Run the first workflow
 
