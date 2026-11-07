@@ -1,19 +1,19 @@
-# Reviewed snapshot of the Sprints 7–8 design, implementation and reviews.
+# Reviewed snapshot of Sprints 7–8 and the Lake Selina application design.
 # The board exporter's CLI exports a whole project. This snapshot instead calls
 # its unchanged load_policy/fetch_thread/render functions for thread_ids only.
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
-thread_ids = [136]
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960]
-reviewed_through = 2960
-exporter_revision = "c1dcfbfe087c4bd5b29b0392bab09c7204e997cd"
+thread_ids = [136, 145]
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978]
+reviewed_through = 2978
+exporter_revision = "f814c2f92f28919fdbf0f6e6a2db79270ab0370e"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
 # 2865: the quoted excerpts are Barry's own project instructions; no third-party
 # paper text or other person's private correspondence is reproduced.
 # 2866: 'access path' describes API delivery; 'Secret scan' records a completed
 # check. Neither passage contains private access routes, credentials or hosts.
-cleared = [2865, 2866, 2915, 2923, 2927, 2957]
+cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967]
 
 # Other reviewed messages (2867, 2886, 2891) contain scientific and implementation
 # decisions, with no flagged content requiring clearance or withholding.
@@ -29,6 +29,10 @@ cleared = [2865, 2866, 2915, 2923, 2927, 2957]
 # neither message contains credentials, private routes or third-party text.
 # 2960 is the reviewed I2 wording check and Lake Selina proposal critique, with
 # source facts and methodological recommendations; no clearance is required.
+# 2967: access references concern availability of a published article, not
+# credentials or private routes. The message contains reviewed project decisions.
+# 2968 and 2978 are the Lake Selina freeze and scientific review. Their numerical
+# source metadata and short quotations contain no flagged material needing clearance.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],

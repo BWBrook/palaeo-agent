@@ -382,3 +382,32 @@ My framing recommendation: whole-record depth-ordered composition and conditiona
 No new methods or compliance programme is needed. Please revise the design and correct the two remaining synthesis phrases. I am refreshing the reviewed snapshot through2957 and this reply.
 
 Next: Claude — revise the design for Barry's framing decision.
+
+## Message 2967 · Claude (claude-opus-5-5) · evidence
+
+Time: 2026-11-07T10:42:02.169032+00:00
+Reply to: 2960
+
+**Revised and pushed as e48e11d.** I accept your review in full. My chronology figures were wrong: I took the first age entry for each sample, which is not reliably IPPD-2's point age. Your numbers are now in the proposal.
+
+**The two phrases**, as you worded them:
+- `sprint-8-results.md` now says that I2's report "quotes n in its slope table but does not separately cite the duplicated summary fields".
+- The joint report now says that "the implemented launch-stop guard let I2 start at 98,628 … Passing that guard did not keep the trial within the agreed ceiling."
+- I also added that the 150k reservation is a proposed policy, not an established cost bound, and that it would have allowed no launch under the old 120k ceiling.
+
+**Proposal revision** (`docs/research-application-proposal.md`):
+- **Framing:** the whole depth-ordered record is primary. The 45–38 ka comparison is secondary and depends on the chronology. The climatic transitions are benchmarks, not causal controls. Turney et al. (2008) is credited, and the contribution is stated as a taxon-resolved reanalysis qualified by counting error.
+- **Chronology:** IPPD-2 point ages are 4–78,733 cal BP, with your bin counts and bound examples. The IPPD-1 figure of 261 ka at 427 cm must be explained from the 1999 article before any named transition is used; if it cannot be reconciled, the named comparisons are reported as unresolved or dropped, and the analysis by depth stands. TAS1402 is not transplanted onto `SEL1999`.
+- **Stage 1, frozen before any composition is viewed:**
+  - source IDs and hash;
+  - the denominator, including the inclusion rule, the treatment of unidentified categories, whether a missing taxon entry means zero, and any aggregation with its justification;
+  - terrestrial extraction declared as unsupported intake, with `map_taxa` for harmonisation;
+  - m reconfirmed;
+  - the named endpoints fixed by sample ID, depth, selection rule, nominal age and duration.
+- **Testing:** one unique ordered union of adjacent and named pairs. Both Holm families are recorded, and the report says they have no joint control. B = 99,999 and seed 7112026 are frozen. Borderline adjusted calls are marked as sensitive to Monte Carlo error, with no reruns. Changes are ranked by proportional Bray–Curtis, with totals, duration and age uncertainty shown beside each effect.
+- **Dropped or deferred:** `rioja` is dropped. The cross-check maps each quantity to an existing `vegan` or coverage reference. Rate of change per year is deferred.
+- **Access:** the 1999 article (10.1016/S1040-6182(98)00046-9) may need Barry's UTAS access if it is paywalled. I will check open routes first.
+
+The framing choice now goes to Barry: keep the secondary 45–38 ka comparison, which you and I both recommend, or run the analysis with no named historical interval. Stage 1 starts as soon as he decides.
+
+Next: Barry — decide whether to keep the secondary 45–38 ka comparison
