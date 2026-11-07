@@ -6,6 +6,7 @@ bounds, ranking, sign reversal to forward time, and picking adjacent distances f
 """
 
 import json
+import sys
 from pathlib import Path
 
 import palaeo_agent as pa
@@ -24,21 +25,30 @@ def holm(p):
     return out
 
 
-def main():
-    design = json.loads((HERE / "design.json").read_text())
-    index = json.loads((HERE / "runs/index.json").read_text())
+def main(design_name="design.json"):
+    design = json.loads((HERE / design_name).read_text())
+    original = design_name == "design.json"
+    runs_dir = HERE / ("runs" if original else f"runs-{Path(design_name).stem}")
+    index = json.loads((runs_dir / "index.json").read_text())
     runs = {k: pa.inspect_run(HERE / v["run_dir"]) for k, v in index.items() if "run_dir" in v}
+    suppress = design.get("suppress_ages", False)
+    flagged = design.get("flagged_levels", {})
     comparison = pa.inspect_comparison(HERE / index["compare_relative_vs_raw"]["comparison_dir"])
     assert all(r["status"] == "verified" for r in runs.values()) and comparison["status"] == "verified"
 
     levels = {}
     for line in (HERE / "data/levels.csv").read_text().splitlines()[1:]:
         sid, depth, age, young, old, age1 = line.split(",")
-        dated = int(depth) <= DATED_BASE_CM
-        levels[sid] = {"sample_id": sid, "depth_cm": int(depth), "temporal_scope": "dated" if dated else "depth_only",
+        dated = int(depth) <= DATED_BASE_CM and not suppress
+        levels[sid] = {"sample_id": sid, "depth_cm": int(depth),
+                       "temporal_scope": "suspended" if suppress else ("dated" if dated else "depth_only"),
                        "age_ippd2": int(age) if dated else None,
                        "age_ippd2_bounds": [int(young), int(old)] if dated else None,
                        "archived_ages_provenance": {"ippd2": int(age), "ippd1": int(age1)}}
+        if suppress:
+            levels[sid]["candidate_paper_depth_cm"] = int(depth) - 30
+        if sid in flagged:
+            levels[sid]["provenance_flag"] = flagged[sid]
 
     rare = runs["rarefaction"]["result"]
     rel = runs["community_relative_braycurtis"]["result"]
@@ -51,8 +61,8 @@ def main():
         d = diversity[s["sample_id"]] if diversity else None
         per_level.append({**levels[s["sample_id"]], "total": s["total"], "observed_richness": s["observed_richness"],
                           "f1": s["f1"], "f2": s["f2"], "full_coverage": s["full_coverage"],
-                          "expected_richness_282": e["expected_richness"], "conditional_sd_282": e["conditional_sd"],
-                          "coverage_282": e["coverage"], "variance_clamped": e["variance_clamped"],
+                          f"expected_richness_{e['size']}": e["expected_richness"],
+                          f"conditional_sd_{e['size']}": e["conditional_sd"], f"coverage_{e['size']}": e["coverage"], "variance_clamped": e["variance_clamped"],
                           "diversity": d})
 
     hom = runs["count_homogeneity"]["result"]
@@ -71,7 +81,7 @@ def main():
                   "p_value": t["p_value"], "p_value_holm": t["p_value_holm"]} for t in p["taxon_tests"]]
         significant = sorted([t for t in tests if t["p_value_holm"] < ALPHA],
                              key=lambda t: -abs(t["forward_change_younger_minus_older"]))
-        return {"younger": a, "older": b, "depths_cm": [levels[a]["depth_cm"], levels[b]["depth_cm"]],
+        return {"younger": a, "older": b, "provenance_flagged": a in flagged or b in flagged, "depths_cm": [levels[a]["depth_cm"], levels[b]["depth_cm"]],
                 "ages_ippd2": [levels[a]["age_ippd2"], levels[b]["age_ippd2"]],
                 "elapsed_ippd2_years": None if levels[b]["age_ippd2"] is None or levels[a]["age_ippd2"] is None
                 else levels[b]["age_ippd2"] - levels[a]["age_ippd2"],
@@ -138,9 +148,10 @@ def main():
             "maximum_absolute_distance_change", "mean_absolute_distance_change", "symmetric_procrustes_m2",
             "selected_subspace_identifiable", "relative_eigengaps", "baseline_link_verified", "warnings")},
     }
-    (HERE / "results.json").write_text(json.dumps(results, indent=1) + "\n")
+    (HERE / ("results.json" if original else f"results-{Path(design_name).stem.removeprefix('design-')}.json")).write_text(
+        json.dumps(results, indent=1) + "\n")
     print(json.dumps(results["homogeneity"], indent=1))
 
 
 if __name__ == "__main__":
-    main()
+    main(*sys.argv[1:2])

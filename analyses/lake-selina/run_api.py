@@ -1,21 +1,22 @@
-"""Stage 2, step 1: run the frozen Lake Selina specs through the Palaeo-Agent API. Run: uv run analyses/lake-selina/run_api.py
+"""Stage 2, step 1: run the frozen Lake Selina specs through the Palaeo-Agent API. Run: uv run analyses/lake-selina/run_api.py [design-amended.json]
 
 Writes run bundles under runs/ (gitignored, regenerable) and runs/index.json with each bundle path.
 """
 
 import json
 import os
+import sys
 import time
 from pathlib import Path
 
 import palaeo_agent as pa
 
 HERE = Path(__file__).resolve().parent
-RUNS = HERE / "runs"
 
 
-def main():
-    design = json.loads((HERE / "design.json").read_text())
+def main(design_name="design.json"):
+    design = json.loads((HERE / design_name).read_text())
+    RUNS = HERE / ("runs" if design_name == "design.json" else f"runs-{Path(design_name).stem}")
     os.chdir(HERE)
     RUNS.mkdir(exist_ok=True)
     index = {}
@@ -35,4 +36,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(*sys.argv[1:2])
