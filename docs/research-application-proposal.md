@@ -1,111 +1,165 @@
-# Proposal: first genuine research application
+# Proposal: first genuine research application (revised)
 
-Claude (Opus 5.5), 7 November 2026, for Barry and Codex. Barry asked that
+Claude (Opus 5.5), 7 November 2026, revised the same day after Codex's
+[review](research-application-review.md) (`ca27725`). Barry asked that
 Palaeo-Agent next be applied to a genuine research question that matches the
 statistical tooling already built, using the tools to check results and to
 fix problems found along the way. This is not a compliance trial.
 
-## Recommendation
+## Question and framing
 
-**Question.** In the Lake Selina pollen record from western Tasmania (about
-90 ka to the present), where do successive pollen spectra differ by more than
-counting noise? Which taxa carry each change? How does palynological
-richness at a common count change through the last glacial cycle? In
-particular, is the change between the levels that bracket about 45–38 ka
-(the interval of human arrival in Tasmania and of the last dated megafauna)
-larger than counting noise, and how does it rank against the changes at two
-climatic transitions declared as references: MIS 3 to the Last Glacial
-Maximum, and the Late Glacial to the Holocene?
+**Primary: the whole depth-ordered record.** In the archived Lake Selina
+pollen counts from western Tasmania (`SEL1999`), where do successive spectra
+differ by more than counting noise? Which taxa carry each change? How do
+expected pollen-category richness at a common count, and abundance
+coverage, vary down the core? The answers are reported by depth and sample
+ID first, with ages as annotations.
 
-**Data.** Neotoma dataset 52767, Lake Selina (Colhoun, PI). Checked today
-through the Neotoma API:
-- 72 levels, of raw counts, not percentages;
-- 66 terrestrial pollen taxa;
-- terrestrial sums of 282 to 529 per level, median 365;
-- a published chronology (IPPD-2) running from −133 to 89,987 cal BP;
-- 8 to 12 levels per 10 ka, including 8 at 30–40 ka and 11 at 40–50 ka.
+**Secondary: one interval comparison that depends on the chronology.**
+- Under the archived IPPD-2 ages, compare the levels bracketing about
+  45–38 ka with two climatic benchmarks: MIS 3 to the Last Glacial Maximum,
+  and the Late Glacial to the Holocene.
+- The benchmarks give context. They are not controls that identify cause.
+- The comparison is motivated by the debate over human arrival and
+  megafaunal extinction. It cannot identify an effect of either.
 
-Neotoma distributes its data under CC BY 4.0; I will confirm that on the
-record before committing a derived table. The table is small (well under
-1 MB). It will be fetched by a script and stored with its SHA-256, with
-Colhoun et al. and Neotoma cited.
+Codex and I both recommend this framing. The choice left to Barry is below.
 
-**Why this one.**
-- The sprint-7 workflow was built for exactly this data structure: unequal
-  counts of many taxa in many samples.
-- Rarefied richness at a common pollen count is standard palynology (Birks
-  and Line 1992), and estimated coverage tells us whether that comparison is
-  well posed.
-- Testing declared adjacent pairs for homogeneity asks a question that
-  zonation by eye cannot: whether a change exceeds what recounting the same
-  assemblage would produce, and which taxa carry it. Zero-count limits
-  bound "absences".
-- `community` and `compare` give Bray–Curtis on proportions, PCoA, and how
-  sensitive the picture is to the choice of representation.
-- The record also contains a design the toolkit must not be forced onto.
-  Levels in a core are not exchangeable, so `permanova` across zones is
-  unsuitable, and declining it is part of the analysis.
-- It is real Tasmanian palaeoecology on a question of standing interest,
-  and the record is long enough for the 40 ka contrast to be judged against
-  the record's own background of change, not in isolation.
+**What this adds.** This is a reanalysis of an existing argument. Turney
+et al. (2008, PNAS) already used the Lake Selina pollen and charcoal record
+around human arrival and reported little change near 41 ka. The new
+contribution is a taxon-resolved assessment of the archived counts,
+qualified by counting error. It is not a new pollen record and not a causal
+test.
 
-## Analytical scope
+## Data
 
-**Through the API (primer rule applies throughout):**
-- `community`: diversity, Bray–Curtis on proportions and Jaccard, PCoA;
-  `compare` against raw counts;
-- `rarefaction`: expected richness and conditional SD at m = 282 (the
-  smallest terrestrial sum) for all 72 levels, coverage at that size, and
-  full-sample coverage with singleton and doubleton diagnostics;
-- `count_homogeneity`: all 71 adjacent pairs as the declared family (Holm
-  across pairs; taxon Fisher tests in the second Holm family), plus the
-  three pre-declared bracket contrasts reported separately;
-- the study layer for building the terrestrial pollen sum and harmonising
-  taxa, where it supports the step.
+**Source.** Neotoma dataset 52767 (`SEL1999`, Colhoun; Indo-Pacific Pollen
+Database).
+- The source publication is [10.1016/S1040-6182(98)00046-9](https://doi.org/10.1016/S1040-6182(98)00046-9).
+- Neotoma's policy permits reuse under CC BY 4.0, with attribution to
+  Neotoma, the constituent database, the investigators and the publication,
+  and the dataset DOI.
+- The record returns two DOIs (`10.21233/5Y7N-1B24` and
+  `10.21233/av7h-5y24`). Which version each names will be resolved, not
+  chosen silently.
 
-**Unsupported, to be declared with reasons:**
-- **The age model.** The published IPPD-2 ages are used as given. Ages near
-  and beyond the radiocarbon limit are the weakest part of the record, and
-  this matters most for the 40 ka contrast.
-- **Zonation and changepoints.** There is no constrained clustering or
-  broken-stick test in the toolkit. Published zones are cited, not
-  recomputed.
-- **Rate of change.** Adjacent Bray–Curtis distances from `community`
-  divided by the age gap is arithmetic on API output. It is reported as
-  descriptive.
-- **Inference about trends.** Levels are autocorrelated, and nothing here
-  tests a trend.
+**Codex's preflight** ([receipt](research-application-preflight.json),
+`scripts/check_selina_intake.py`) found:
+- 72 levels and 66 terrestrial pollen taxa (`TRSH` or `UPHE`, NISP);
+- terrestrial totals of 282–529, median 364.5;
+- that the toolkit accepts m = 282 for all 72 levels, and all 71 adjacent
+  pairs at B = 99,999;
+- that no engine limit needs changing.
 
-**What the record cannot establish:** cause. A compositional change at
-about 40 ka would be consistent with fire, climate or herbivore release, and
-one site cannot separate them. Charcoal and *Sporormiella* are not in this
-dataset. Pollen richness is not plant species richness. The analysis can
-say whether, and in which taxa, the spectra change beyond counting noise,
-and how that change compares with the climatic transitions.
+**Chronology**, corrected from my first draft:
+- **IPPD-2 (37590)** is a Bacon model. Sample point ages run from 4 to
+  78,733 cal BP. The figures −133 and 89,987 that I first quoted are the
+  extreme bounds. Per 10 ka of point age there are 6, 6, 12, 8, 10, 10, 10
+  and 10 levels.
+- **The age bounds are broad and overlap.** For example, 40,189 at 240 cm
+  has bounds 36,725–43,989, and 45,481 at 265 cm has bounds 40,785–50,901.
+- **IPPD-1 (37589)**, from an older best-fit curve, gives 261,204 against
+  IPPD-2's 78,733 at 427 cm. That is a disagreement about what the core
+  spans, not an error bar. It must be explained from the 1999 article
+  before any named transition is used.
+- **Newer TAS1402 cores** have their own chronostratigraphy. It is not
+  transplanted onto `SEL1999` without a supported core correlation.
 
-**Working method.**
-- Each problem the tools show is fixed contract-first with tests. Expect
-  pressure from 71 declared pairs in one homogeneity run, 72 × 66
-  rarefaction, sparse taxa and negative PCoA eigenvalues. Codex reviews the
-  fixes and the science.
-- An independent cross-check in the style of primer §7 is run against `vegan`
-  and `rioja` in R.
-- The analysis lives in `analyses/lake-selina/`. If the result warrants it,
-  it becomes a living-paper snapshot: the article, a two-page brief and an
-  agent guide.
-- No live agent sessions are involved, so no trial budget applies.
+## Stages
+
+**1. Intake, frozen before any composition is viewed.**
+- **The source:** save the response and its hash, the sample and depth IDs,
+  and the source taxon IDs and labels.
+- **The pollen sum:**
+  - fix the inclusion rule, the treatment of unidentified categories, and
+    any aggregation with its justification;
+  - confirm whether an absent taxon entry means zero;
+  - harmonise taxa with `map_taxa`. Terrestrial-only extraction is declared
+    as unsupported intake, because the study layer can rename and merge
+    taxa but not delete them;
+  - keep the source labels and counts, and reconfirm m against the final
+    sum.
+- **The chronology:**
+  - read the 1999 article;
+  - explain why IPPD-2 is primary, or whether it can be;
+  - reconcile the IPPD-1 disagreement;
+  - check how the age bounds are defined before calling them any kind of
+    interval.
+
+  If the chronology cannot be reconciled, the primary analysis by depth
+  stands, and the named comparisons are reported as unresolved or dropped.
+- **The named endpoints:** fix each one by sample ID and depth, with its
+  selection rule, nominal ages and elapsed duration. A pair spanning about
+  seven millennia is not one adjacent step. Where the benchmarks cannot be
+  given comparable temporal support, report the unequal support.
+
+**2. Analysis through the API** (the primer rule applies throughout).
+- **`count_homogeneity`.** One ordered list of declared pairs: the union of
+  the 71 adjacent pairs and the named non-adjacent pairs, with no
+  duplicates and none reversed. One call gives:
+  - Holm across all omnibus pairs;
+  - a separate global Holm family across the pair × taxon Fisher tests.
+
+  The two families do not jointly control one error rate, and the report
+  will say so.
+  - **Monte Carlo:** B = 99,999 and seed 7112026, frozen. Simulation
+    uncertainty is reported, and adjusted calls near the Holm threshold are
+    marked as sensitive to Monte Carlo error. No reruns in search of
+    significance.
+  - **Ranking:** changes are ranked by effect size (proportional
+    Bray–Curtis), not by p. Count totals, elapsed time and age uncertainty
+    are shown beside each effect.
+  - **What the test claims:** that counts are allocated as the stated
+    counting model predicts. That claim stays coherent despite serial
+    dependence in the core, and Holm tolerates dependence among the pair
+    tests. It establishes neither ecological replication, abruptness nor
+    cause.
+- **`rarefaction`.** At m = 282 for every level:
+  - expected observed pollen-category richness and its subsampling SD,
+    conditional on the retained table;
+  - abundance coverage and full-sample diagnostics.
+
+  This is not plant species richness, and equal counts do not mean equal
+  completeness.
+- **`community` and `compare`.** Bray–Curtis on proportions and Jaccard,
+  PCoA, and the sensitivity of the picture to raw counts.
+- **`permanova` is declined.** Levels in a core are not exchangeable.
+
+**Declared unsupported:**
+- the intake filtering above;
+- the age model, whose archived ages are used as annotations;
+- zonation and changepoints, where published zones are cited, not
+  recomputed;
+- inference about trends.
+
+Rate of change per year is deferred, because it is a descriptive index
+that depends on the age model.
+
+**3. Independent check and fixes.**
+- **Cross-check:** a primer §7 check of the main quantities against the
+  established `vegan` and coverage references, stating which reference
+  checks which quantity. `rioja` is dropped, because it adds no independent
+  check.
+- **Fixes:** each tool problem is fixed contract-first with tests, and
+  Codex reviews the fixes and the science.
+- **Where the work lives:** `analyses/lake-selina/`. If the result warrants
+  it, it becomes a living-paper snapshot.
+- **Budget:** no live agent sessions, so no trial budget applies.
 
 **Possible second phase**, not part of this proposal: Hazards Lagoon
-(Neotoma 59906, eastern Tasmania, 22.6 ka to the present, 32 levels) and
-Melaleuca Inlet (57982, the Holocene), for a west–east comparison of the Late
-Glacial to Holocene transition.
+(Neotoma 59906) and Melaleuca Inlet (57982), for a west–east comparison of
+the Late Glacial to Holocene transition.
 
-## The one choice that needs Barry
+## The one choice for Barry
 
-Whether to frame the analysis around the 45–38 ka contrast at all. The
-chronology is weakest there, and both human arrival and megafaunal
-extinction are contested topics where a single-site pollen result could be
-over-read. My recommendation is to include it as one of three pre-declared
-contrasts, with the two climatic transitions as references and the
-chronological caveat stated up front. The alternative is a neutral analysis
-of the whole record with no named contrast.
+Whether to keep the secondary 45–38 ka comparison:
+- **Recommended:** keep it as a secondary comparison that depends on the
+  chronology, beneath the whole-record primary analysis. It is the question
+  readers will ask of this record, and it is better answered with the
+  limits stated than left implicit.
+- **Alternative:** a neutral whole-record analysis with no named historical
+  interval.
+
+Either way the intake and design amendments above apply, and stage 1 may
+still drop the named comparisons if the chronology cannot be reconciled.

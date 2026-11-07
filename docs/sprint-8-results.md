@@ -93,7 +93,8 @@ Further lapses, all in the saved `analysis.py` and so in the final package
   and SD of length, and mean width, from its own parse of the file. The
   raw-scale `rma` results it had just saved hold the same quantities
   (`n`, `mean_x`, `sd_x`, `mean_y`), and the two agree exactly. The report
-  quotes neither set, but `results.json` carries both. It also counts the
+  quotes n in its slope table but does not separately cite the duplicated
+  summary fields; `results.json` carries both sets. It also counts the
   eight L2 duplicate pairs from the raw array, where the `repeated_pairs`
   groups the API returned give the same count.
 - **Undeclared bespoke descriptives.** Medians, ranges, skewness, length

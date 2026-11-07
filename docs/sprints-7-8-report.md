@@ -158,13 +158,18 @@ there.
     5 minutes for the retrospective.
 
   It does not stop a session on tokens while it runs, and it does not
-  project what the next session will cost. That gap allowed the overrun: I2
-  started legitimately at 98,628 and then spent 81,318. Before any future
+  project what the next session will cost. That gap allowed the overrun: the
+  implemented launch-stop guard let I2 start at 98,628, and it then spent
+  81,318. Passing that guard did not keep the trial within the agreed
+  ceiling. Before any future
   trial with a ceiling, two additions would close the gap:
   - **a reservation check:** launch only if spend so far plus a generous
     reserve for the session *and* its retrospective fits under the ceiling
     (on this evidence, 150,000 per session, about 1.5 times the largest
-    observed pair, I1's 98,628);
+    observed pair, I1's 98,628). This is a proposed policy, not current
+    enforcement or an established cost bound. It would have allowed no
+    launch under the old 120,000 ceiling, so any future trial needs a
+    ceiling agreed with it in view;
   - **an in-run stop:** kill a session whose running counted tokens exceed
     its reserve. The client's stream reports usage for each model call, but
     this must be confirmed on the frozen client before it is relied on.
