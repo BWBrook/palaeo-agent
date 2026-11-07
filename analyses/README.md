@@ -16,6 +16,7 @@ Both runs are deterministic: they use fixed seeds and reproduce
 | --- | --- |
 | [coed-duon-llanvirn](coed-duon-llanvirn/report.md) | How does Upper Llanvirn shelly-fauna composition change through the Coed Duon section, and which interpretations survive differences in counting totals and in how abundance is represented? |
 | [dielasma](dielasma/report.md) | Is *Dielasma* growth isometric, and do three Ford Formation localities differ in shape or size structure? Every result is computed under three treatments of a repeated block in the archived data. |
+| [lake-selina](lake-selina/report.md) | Where do successive Lake Selina (western Tasmania) pollen spectra differ beyond counting noise, which taxa carry the changes, and how does rarefied pollen-category richness vary? First genuine research application; design frozen in [INTAKE.md](lake-selina/INTAKE.md) before results. |
 
 **Provenance.**
 - Both analyses are corrected versions of the analyst packages from authentic

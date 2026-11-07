@@ -1,0 +1,6743 @@
+{
+ "design_sha256_inputs": {
+  "counts_sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6",
+  "intake_script_sha256": "9c3a4091f98772f6a3cd622646026f3970f04956a1086aa94967e931ea5be9a9"
+ },
+ "environment": {
+  "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "packages": {
+   "annotated-types": "0.8.0",
+   "anyio": "4.15.1",
+   "attrs": "26.1.0",
+   "cffi": "2.1.1",
+   "click": "8.5.0",
+   "contourpy": "1.4.0",
+   "cryptography": "50.0.2",
+   "cycler": "0.12.1",
+   "fonttools": "4.68.0",
+   "h11": "0.16.0",
+   "httpcore2": "2.16.0",
+   "httpx2": "2.16.0",
+   "idna": "3.20",
+   "iniconfig": "2.3.1",
+   "jsonschema": "4.26.0",
+   "jsonschema-specifications": "2025.9.1",
+   "kiwisolver": "1.5.1",
+   "matplotlib": "3.11.2",
+   "mcp": "2.3.0",
+   "mcp-types": "2.3.0",
+   "numpy": "2.5.4",
+   "opentelemetry-api": "1.45.2",
+   "packaging": "26.3",
+   "palaeo-agent": "0.2.0.dev0",
+   "pillow": "13.0.0",
+   "pluggy": "1.7.0",
+   "pycparser": "3.12",
+   "pydantic": "2.14.2",
+   "pydantic-core": "2.50.2",
+   "pygments": "2.21.0",
+   "pyjwt": "2.15.1",
+   "pyparsing": "3.3.3",
+   "pytest": "9.2.0",
+   "python-dateutil": "3.0.0",
+   "python-multipart": "0.0.32",
+   "referencing": "0.37.0",
+   "rpds-py": "2026.9.1",
+   "scipy": "1.18.1",
+   "six": "1.17.0",
+   "sse-starlette": "3.6.0",
+   "starlette": "1.10.0",
+   "truststore": "0.10.5",
+   "typing-extensions": "4.16.0",
+   "typing-inspection": "0.4.4",
+   "tzdata": "2026.6",
+   "uvicorn": "0.54.0"
+  },
+  "distributions": [
+   {
+    "name": "annotated-types",
+    "version": "0.8.0"
+   },
+   {
+    "name": "anyio",
+    "version": "4.15.1"
+   },
+   {
+    "name": "attrs",
+    "version": "26.1.0"
+   },
+   {
+    "name": "cffi",
+    "version": "2.1.1"
+   },
+   {
+    "name": "click",
+    "version": "8.5.0"
+   },
+   {
+    "name": "contourpy",
+    "version": "1.4.0"
+   },
+   {
+    "name": "cryptography",
+    "version": "50.0.2"
+   },
+   {
+    "name": "cycler",
+    "version": "0.12.1"
+   },
+   {
+    "name": "fonttools",
+    "version": "4.68.0"
+   },
+   {
+    "name": "h11",
+    "version": "0.16.0"
+   },
+   {
+    "name": "httpcore2",
+    "version": "2.16.0"
+   },
+   {
+    "name": "httpx2",
+    "version": "2.16.0"
+   },
+   {
+    "name": "idna",
+    "version": "3.20"
+   },
+   {
+    "name": "iniconfig",
+    "version": "2.3.1"
+   },
+   {
+    "name": "jsonschema",
+    "version": "4.26.0"
+   },
+   {
+    "name": "jsonschema-specifications",
+    "version": "2025.9.1"
+   },
+   {
+    "name": "kiwisolver",
+    "version": "1.5.1"
+   },
+   {
+    "name": "matplotlib",
+    "version": "3.11.2"
+   },
+   {
+    "name": "mcp",
+    "version": "2.3.0"
+   },
+   {
+    "name": "mcp-types",
+    "version": "2.3.0"
+   },
+   {
+    "name": "numpy",
+    "version": "2.5.4"
+   },
+   {
+    "name": "opentelemetry-api",
+    "version": "1.45.2"
+   },
+   {
+    "name": "packaging",
+    "version": "26.3"
+   },
+   {
+    "name": "palaeo-agent",
+    "version": "0.2.0.dev0"
+   },
+   {
+    "name": "pillow",
+    "version": "13.0.0"
+   },
+   {
+    "name": "pluggy",
+    "version": "1.7.0"
+   },
+   {
+    "name": "pycparser",
+    "version": "3.12"
+   },
+   {
+    "name": "pydantic",
+    "version": "2.14.2"
+   },
+   {
+    "name": "pydantic-core",
+    "version": "2.50.2"
+   },
+   {
+    "name": "pygments",
+    "version": "2.21.0"
+   },
+   {
+    "name": "pyjwt",
+    "version": "2.15.1"
+   },
+   {
+    "name": "pyparsing",
+    "version": "3.3.3"
+   },
+   {
+    "name": "pytest",
+    "version": "9.2.0"
+   },
+   {
+    "name": "python-dateutil",
+    "version": "3.0.0"
+   },
+   {
+    "name": "python-multipart",
+    "version": "0.0.32"
+   },
+   {
+    "name": "referencing",
+    "version": "0.37.0"
+   },
+   {
+    "name": "rpds-py",
+    "version": "2026.9.1"
+   },
+   {
+    "name": "scipy",
+    "version": "1.18.1"
+   },
+   {
+    "name": "six",
+    "version": "1.17.0"
+   },
+   {
+    "name": "sse-starlette",
+    "version": "3.6.0"
+   },
+   {
+    "name": "starlette",
+    "version": "1.10.0"
+   },
+   {
+    "name": "truststore",
+    "version": "0.10.5"
+   },
+   {
+    "name": "typing-extensions",
+    "version": "4.16.0"
+   },
+   {
+    "name": "typing-inspection",
+    "version": "0.4.4"
+   },
+   {
+    "name": "tzdata",
+    "version": "2026.6"
+   },
+   {
+    "name": "uvicorn",
+    "version": "0.54.0"
+   }
+  ],
+  "implementation_sha256": "0190b537ed67547dc23d255eafffeec07056bffc05055be6ca29867731a91277",
+  "source_files_sha256": {
+   "__init__.py": "9630a61e8a845235298a93597d6150261035772846e4afc4d10c71bbc909fecc",
+   "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+   "cli.py": "7ed088179ab8a1437233a411b99120b3bd7b29b79bce783961b76bea3d97e662",
+   "community.py": "9bdebfad5425112c25170b2d86ef27f198519bdebb6d7885846240aa975e9c95",
+   "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
+   "count_homogeneity.py": "355c9aeda2113c5d4df0adf10f4136fe4a65937024b17d7e960013e400a97717",
+   "mcp_server.py": "6d4dd38a95650b56ac4611ae71d6d72c5cd7f91eece92b6567f7e26a2e90dc22",
+   "methods.py": "6942431ed51f58d6ac80c21b79b31152806096057f783eb5041b44be9fde974c",
+   "permanova.py": "80a76a14218a294baac00fdc6f6c497fabd2404c611b2334b7d483e59de80574",
+   "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
+   "rarefaction.py": "be6562d5efb74bbd32afe88fd518f16db2ddccc41b4be636cb6d86cdc0c3ce79",
+   "runs.py": "d1d8fe2ca81080ea827cdd52230459284b84ca8a60dbdd1680d6cec730c5fcb2",
+   "sensitivity.py": "ece841ec910663b2c0b34193c24bd8940d3267ec40447b2a1fb6ef21e0ba11d6",
+   "study.py": "12ec233dd0cd9056f0176f43be39cec7d63f48dd5c0d13d6bd5a6a4432d20fe8"
+  },
+  "lockfile": {
+   "available": true,
+   "path": "uv.lock",
+   "reason": "Project checkout lockfile captured"
+  },
+  "rng": "NumPy Generator(PCG64), seed=7112026; SeedSequence.spawn in declared pair order; SciPy random_table patefield; settings saved in randomization.json"
+ },
+ "primer": {
+  "version": "0.2.0.dev0",
+  "sha256": "cdec09d1ab058224869120b2ac6de406be62df6ed112373dfa1057492971f765"
+ },
+ "levels": [
+  {
+   "sample_id": "531306",
+   "depth_cm": 80,
+   "temporal_scope": "dated",
+   "age_ippd2": 4,
+   "age_ippd2_bounds": [
+    -133,
+    149
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 4,
+    "ippd1": 132
+   },
+   "total": 428,
+   "observed_richness": 40,
+   "f1": 18,
+   "f2": 1,
+   "full_coverage": 0.9579548659398796,
+   "expected_richness_282": 33.69498112464961,
+   "conditional_sd_282": 2.0028411492368416,
+   "coverage_282": 0.9551672610885218,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531306",
+    "total": 428.0,
+    "richness": 40,
+    "shannon": 2.8015480324166435,
+    "simpson": 0.9010939820071622
+   }
+  },
+  {
+   "sample_id": "531305",
+   "depth_cm": 85,
+   "temporal_scope": "dated",
+   "age_ippd2": 1867,
+   "age_ippd2_bounds": [
+    128,
+    5577
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 1867,
+    "ippd1": 2151
+   },
+   "total": 392,
+   "observed_richness": 25,
+   "f1": 6,
+   "f2": 1,
+   "full_coverage": 0.9847069151340263,
+   "expected_richness_282": 23.21421211298549,
+   "conditional_sd_282": 1.133978658354107,
+   "coverage_282": 0.9825721337862515,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531305",
+    "total": 392.0,
+    "richness": 25,
+    "shannon": 2.573185154403663,
+    "simpson": 0.8907486463973344
+   }
+  },
+  {
+   "sample_id": "531304",
+   "depth_cm": 90,
+   "temporal_scope": "dated",
+   "age_ippd2": 3974,
+   "age_ippd2_bounds": [
+    867,
+    8344
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 3974,
+    "ippd1": 4169
+   },
+   "total": 336,
+   "observed_richness": 30,
+   "f1": 9,
+   "f2": 3,
+   "full_coverage": 0.9732674847496099,
+   "expected_richness_282": 28.471487330471724,
+   "conditional_sd_282": 1.1211561151263858,
+   "coverage_282": 0.9700314239228953,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531304",
+    "total": 336.0,
+    "richness": 30,
+    "shannon": 2.711945839942572,
+    "simpson": 0.9051339285714286
+   }
+  },
+  {
+   "sample_id": "531329",
+   "depth_cm": 95,
+   "temporal_scope": "dated",
+   "age_ippd2": 5758,
+   "age_ippd2_bounds": [
+    1921,
+    10145
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 5758,
+    "ippd1": 6188
+   },
+   "total": 389,
+   "observed_richness": 23,
+   "f1": 3,
+   "f2": 4,
+   "full_coverage": 0.9923405599375312,
+   "expected_richness_282": 21.865685295462708,
+   "conditional_sd_282": 0.9339662470019917,
+   "coverage_282": 0.9863199783972684,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531329",
+    "total": 389.0,
+    "richness": 23,
+    "shannon": 2.5309236963216932,
+    "simpson": 0.890966884966396
+   }
+  },
+  {
+   "sample_id": "531321",
+   "depth_cm": 100,
+   "temporal_scope": "dated",
+   "age_ippd2": 7532,
+   "age_ippd2_bounds": [
+    3369,
+    11806
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 7532,
+    "ippd1": 8207
+   },
+   "total": 360,
+   "observed_richness": 23,
+   "f1": 6,
+   "f2": 3,
+   "full_coverage": 0.9833796296296297,
+   "expected_richness_282": 21.548127322752244,
+   "conditional_sd_282": 1.067846201942676,
+   "coverage_282": 0.9792384099678314,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531321",
+    "total": 360.0,
+    "richness": 23,
+    "shannon": 2.339054643277253,
+    "simpson": 0.8622067901234568
+   }
+  },
+  {
+   "sample_id": "531323",
+   "depth_cm": 105,
+   "temporal_scope": "dated",
+   "age_ippd2": 9384,
+   "age_ippd2_bounds": [
+    5017,
+    13572
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 9384,
+    "ippd1": 10226
+   },
+   "total": 344,
+   "observed_richness": 24,
+   "f1": 7,
+   "f2": 1,
+   "full_coverage": 0.9796680989847961,
+   "expected_richness_282": 22.705306577141265,
+   "conditional_sd_282": 1.022687047043178,
+   "coverage_282": 0.9785503682515398,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531323",
+    "total": 344.0,
+    "richness": 24,
+    "shannon": 2.459601303569806,
+    "simpson": 0.877197133585722
+   }
+  },
+  {
+   "sample_id": "531327",
+   "depth_cm": 110,
+   "temporal_scope": "dated",
+   "age_ippd2": 11267,
+   "age_ippd2_bounds": [
+    6861,
+    15107
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 11267,
+    "ippd1": 12244
+   },
+   "total": 314,
+   "observed_richness": 26,
+   "f1": 7,
+   "f2": 3,
+   "full_coverage": 0.9777678884640028,
+   "expected_richness_282": 25.25518357430729,
+   "conditional_sd_282": 0.8104675888151069,
+   "coverage_282": 0.9756994684323758,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531327",
+    "total": 314.0,
+    "richness": 26,
+    "shannon": 2.475322413126915,
+    "simpson": 0.872956306543876
+   }
+  },
+  {
+   "sample_id": "531328",
+   "depth_cm": 115,
+   "temporal_scope": "dated",
+   "age_ippd2": 13213,
+   "age_ippd2_bounds": [
+    8889,
+    16399
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 13213,
+    "ippd1": 14263
+   },
+   "total": 363,
+   "observed_richness": 30,
+   "f1": 7,
+   "f2": 6,
+   "full_coverage": 0.9808071430580892,
+   "expected_richness_282": 28.10962250881826,
+   "conditional_sd_282": 1.2173782499035812,
+   "coverage_282": 0.9722004045898245,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531328",
+    "total": 363.0,
+    "richness": 30,
+    "shannon": 2.611693811899453,
+    "simpson": 0.8908923950246264
+   }
+  },
+  {
+   "sample_id": "531332",
+   "depth_cm": 120,
+   "temporal_scope": "dated",
+   "age_ippd2": 15176,
+   "age_ippd2_bounds": [
+    11524,
+    17350
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 15176,
+    "ippd1": 16071
+   },
+   "total": 344,
+   "observed_richness": 28,
+   "f1": 4,
+   "f2": 3,
+   "full_coverage": 0.9884227225166233,
+   "expected_richness_282": 27.15278690376331,
+   "conditional_sd_282": 0.8381591621605918,
+   "coverage_282": 0.983778136881633,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531332",
+    "total": 344.0,
+    "richness": 28,
+    "shannon": 2.7195127801381536,
+    "simpson": 0.9094442942130881
+   }
+  },
+  {
+   "sample_id": "531330",
+   "depth_cm": 125,
+   "temporal_scope": "dated",
+   "age_ippd2": 17130,
+   "age_ippd2_bounds": [
+    16029,
+    18088
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 17130,
+    "ippd1": 17562
+   },
+   "total": 358,
+   "observed_richness": 22,
+   "f1": 4,
+   "f2": 5,
+   "full_coverage": 0.9889045151164326,
+   "expected_richness_282": 20.918464192844567,
+   "conditional_sd_282": 0.9355724025022203,
+   "coverage_282": 0.9825835872208043,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531330",
+    "total": 358.0,
+    "richness": 22,
+    "shannon": 2.271601586347768,
+    "simpson": 0.8423114135014513
+   }
+  },
+  {
+   "sample_id": "531307",
+   "depth_cm": 130,
+   "temporal_scope": "dated",
+   "age_ippd2": 18135,
+   "age_ippd2_bounds": [
+    16748,
+    19795
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 18135,
+    "ippd1": 19053
+   },
+   "total": 365,
+   "observed_richness": 24,
+   "f1": 4,
+   "f2": 3,
+   "full_coverage": 0.9890860708730769,
+   "expected_richness_282": 22.897263448078,
+   "conditional_sd_282": 0.9343852640447596,
+   "coverage_282": 0.9838460477372463,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531307",
+    "total": 365.0,
+    "richness": 24,
+    "shannon": 2.4358820641220724,
+    "simpson": 0.8737098892850441
+   }
+  },
+  {
+   "sample_id": "531308",
+   "depth_cm": 135,
+   "temporal_scope": "dated",
+   "age_ippd2": 19097,
+   "age_ippd2_bounds": [
+    17458,
+    20850
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 19097,
+    "ippd1": 20544
+   },
+   "total": 340,
+   "observed_richness": 22,
+   "f1": 3,
+   "f2": 3,
+   "full_coverage": 0.9912282214938761,
+   "expected_richness_282": 21.390354171557494,
+   "conditional_sd_282": 0.7167638975731863,
+   "coverage_282": 0.9875570501636176,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531308",
+    "total": 340.0,
+    "richness": 22,
+    "shannon": 2.394382276632945,
+    "simpson": 0.874515570934256
+   }
+  },
+  {
+   "sample_id": "531309",
+   "depth_cm": 140,
+   "temporal_scope": "dated",
+   "age_ippd2": 20025,
+   "age_ippd2_bounds": [
+    18250,
+    21548
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 20025,
+    "ippd1": 22035
+   },
+   "total": 377,
+   "observed_richness": 28,
+   "f1": 8,
+   "f2": 5,
+   "full_coverage": 0.9788501528406923,
+   "expected_richness_282": 25.650607436195976,
+   "conditional_sd_282": 1.3296762622391969,
+   "coverage_282": 0.971503104417501,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531309",
+    "total": 377.0,
+    "richness": 28,
+    "shannon": 2.44544810204226,
+    "simpson": 0.8629765916878329
+   }
+  },
+  {
+   "sample_id": "531310",
+   "depth_cm": 145,
+   "temporal_scope": "dated",
+   "age_ippd2": 20928,
+   "age_ippd2_bounds": [
+    19263,
+    22141
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 20928,
+    "ippd1": 23526
+   },
+   "total": 353,
+   "observed_richness": 30,
+   "f1": 7,
+   "f2": 1,
+   "full_coverage": 0.9801860544194243,
+   "expected_richness_282": 28.514204118914108,
+   "conditional_sd_282": 1.0838994932254462,
+   "coverage_282": 0.9773483830047548,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531310",
+    "total": 353.0,
+    "richness": 30,
+    "shannon": 2.81403598820816,
+    "simpson": 0.9214101710149347
+   }
+  },
+  {
+   "sample_id": "531311",
+   "depth_cm": 150,
+   "temporal_scope": "dated",
+   "age_ippd2": 21876,
+   "age_ippd2_bounds": [
+    21015,
+    22621
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 21876,
+    "ippd1": 25017
+   },
+   "total": 408,
+   "observed_richness": 32,
+   "f1": 9,
+   "f2": 3,
+   "full_coverage": 0.9779772497715358,
+   "expected_richness_282": 28.917634398817224,
+   "conditional_sd_282": 1.4619695522396703,
+   "coverage_282": 0.9727496094775269,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531311",
+    "total": 408.0,
+    "richness": 32,
+    "shannon": 2.8246714925001006,
+    "simpson": 0.9213283352556709
+   }
+  },
+  {
+   "sample_id": "531312",
+   "depth_cm": 155,
+   "temporal_scope": "dated",
+   "age_ippd2": 22307,
+   "age_ippd2_bounds": [
+    21428,
+    23236
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 22307,
+    "ippd1": 26508
+   },
+   "total": 403,
+   "observed_richness": 26,
+   "f1": 6,
+   "f2": 2,
+   "full_coverage": 0.9851363120963633,
+   "expected_richness_282": 23.976840912739352,
+   "conditional_sd_282": 1.1992176549401106,
+   "coverage_282": 0.9809620249488576,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531312",
+    "total": 403.0,
+    "richness": 26,
+    "shannon": 2.7394256216781674,
+    "simpson": 0.9204908594967027
+   }
+  },
+  {
+   "sample_id": "531313",
+   "depth_cm": 160,
+   "temporal_scope": "dated",
+   "age_ippd2": 22727,
+   "age_ippd2_bounds": [
+    21903,
+    23676
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 22727,
+    "ippd1": 27984
+   },
+   "total": 327,
+   "observed_richness": 32,
+   "f1": 11,
+   "f2": 4,
+   "full_coverage": 0.9664357347192654,
+   "expected_richness_282": 30.405950912636477,
+   "conditional_sd_282": 1.1550188051247743,
+   "coverage_282": 0.9626326570700692,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531313",
+    "total": 327.0,
+    "richness": 32,
+    "shannon": 2.3405802369522144,
+    "simpson": 0.8244723134042216
+   }
+  },
+  {
+   "sample_id": "531314",
+   "depth_cm": 165,
+   "temporal_scope": "dated",
+   "age_ippd2": 23132,
+   "age_ippd2_bounds": [
+    22473,
+    24092
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 23132,
+    "ippd1": 29457
+   },
+   "total": 335,
+   "observed_richness": 16,
+   "f1": 1,
+   "f2": 3,
+   "full_coverage": 0.9970676031606672,
+   "expected_richness_282": 15.766568113358419,
+   "conditional_sd_282": 0.4533743087428679,
+   "coverage_282": 0.9941220789667305,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531314",
+    "total": 335.0,
+    "richness": 16,
+    "shannon": 1.9179466245528385,
+    "simpson": 0.7907863666740922
+   }
+  },
+  {
+   "sample_id": "531315",
+   "depth_cm": 170,
+   "temporal_scope": "dated",
+   "age_ippd2": 24219,
+   "age_ippd2_bounds": [
+    22906,
+    26528
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 24219,
+    "ippd1": 30929
+   },
+   "total": 345,
+   "observed_richness": 19,
+   "f1": 2,
+   "f2": 6,
+   "full_coverage": 0.9943022774327123,
+   "expected_richness_282": 18.43507377058095,
+   "conditional_sd_282": 0.6965839241717071,
+   "coverage_282": 0.987788857102872,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531315",
+    "total": 345.0,
+    "richness": 19,
+    "shannon": 2.0165131162587517,
+    "simpson": 0.809880277252678
+   }
+  },
+  {
+   "sample_id": "531316",
+   "depth_cm": 175,
+   "temporal_scope": "dated",
+   "age_ippd2": 25362,
+   "age_ippd2_bounds": [
+    23439,
+    28289
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 25362,
+    "ippd1": 32401
+   },
+   "total": 319,
+   "observed_richness": 18,
+   "f1": 7,
+   "f2": 1,
+   "full_coverage": 0.9780761243337854,
+   "expected_richness_282": 17.17476811759637,
+   "conditional_sd_282": 0.8463381291846571,
+   "coverage_282": 0.9773253183637112,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531316",
+    "total": 319.0,
+    "richness": 18,
+    "shannon": 1.765427495416858,
+    "simpson": 0.7399691433849903
+   }
+  },
+  {
+   "sample_id": "531317",
+   "depth_cm": 180,
+   "temporal_scope": "dated",
+   "age_ippd2": 26515,
+   "age_ippd2_bounds": [
+    24117,
+    29836
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 26515,
+    "ippd1": 33874
+   },
+   "total": 304,
+   "observed_richness": 18,
+   "f1": 5,
+   "f2": 6,
+   "full_coverage": 0.9836818839830421,
+   "expected_richness_282": 17.608020903900435,
+   "conditional_sd_282": 0.5993583765292909,
+   "coverage_282": 0.9808089214127019,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531317",
+    "total": 304.0,
+    "richness": 18,
+    "shannon": 1.670422200036296,
+    "simpson": 0.7426419667590027
+   }
+  },
+  {
+   "sample_id": "531318",
+   "depth_cm": 185,
+   "temporal_scope": "dated",
+   "age_ippd2": 27662,
+   "age_ippd2_bounds": [
+    24877,
+    31190
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 27662,
+    "ippd1": 35346
+   },
+   "total": 372,
+   "observed_richness": 19,
+   "f1": 6,
+   "f2": 2,
+   "full_coverage": 0.9838998987415015,
+   "expected_richness_282": 17.396672542185836,
+   "conditional_sd_282": 1.1049040441266862,
+   "coverage_282": 0.9799974325662975,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531318",
+    "total": 372.0,
+    "richness": 19,
+    "shannon": 1.7681994449596383,
+    "simpson": 0.7525870042779512
+   }
+  },
+  {
+   "sample_id": "531319",
+   "depth_cm": 190,
+   "temporal_scope": "dated",
+   "age_ippd2": 28830,
+   "age_ippd2_bounds": [
+    25782,
+    32458
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 28830,
+    "ippd1": 36818
+   },
+   "total": 305,
+   "observed_richness": 18,
+   "f1": 4,
+   "f2": 2,
+   "full_coverage": 0.9869282450954044,
+   "expected_richness_282": 17.685856436142174,
+   "conditional_sd_282": 0.5365767405287697,
+   "coverage_282": 0.9857254031129764,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531319",
+    "total": 305.0,
+    "richness": 18,
+    "shannon": 1.7100735822707234,
+    "simpson": 0.7392206396130072
+   }
+  },
+  {
+   "sample_id": "531320",
+   "depth_cm": 195,
+   "temporal_scope": "dated",
+   "age_ippd2": 29963,
+   "age_ippd2_bounds": [
+    26721,
+    33722
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 29963,
+    "ippd1": 38057
+   },
+   "total": 414,
+   "observed_richness": 26,
+   "f1": 11,
+   "f2": 0,
+   "full_coverage": 0.9734428123143978,
+   "expected_richness_282": 22.44602932148874,
+   "conditional_sd_282": 1.53972037332221,
+   "coverage_282": 0.9722005834199292,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531320",
+    "total": 414.0,
+    "richness": 26,
+    "shannon": 2.2168538055349147,
+    "simpson": 0.8365422763658428
+   }
+  },
+  {
+   "sample_id": "531322",
+   "depth_cm": 200,
+   "temporal_scope": "dated",
+   "age_ippd2": 31082,
+   "age_ippd2_bounds": [
+    27621,
+    34812
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 31082,
+    "ippd1": 38361
+   },
+   "total": 309,
+   "observed_richness": 22,
+   "f1": 7,
+   "f2": 3,
+   "full_coverage": 0.9774091471099815,
+   "expected_richness_282": 21.36612691829309,
+   "conditional_sd_282": 0.7533179988451635,
+   "coverage_282": 0.9756931774113472,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531322",
+    "total": 309.0,
+    "richness": 22,
+    "shannon": 2.19832642051551,
+    "simpson": 0.8354332275531258
+   }
+  },
+  {
+   "sample_id": "531324",
+   "depth_cm": 205,
+   "temporal_scope": "dated",
+   "age_ippd2": 32255,
+   "age_ippd2_bounds": [
+    28648,
+    35932
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 32255,
+    "ippd1": 38664
+   },
+   "total": 421,
+   "observed_richness": 22,
+   "f1": 6,
+   "f2": 2,
+   "full_coverage": 0.9857708045518369,
+   "expected_richness_282": 19.76565612517093,
+   "conditional_sd_282": 1.236227245467096,
+   "coverage_282": 0.9818138161936414,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531324",
+    "total": 421.0,
+    "richness": 22,
+    "shannon": 2.248828789149038,
+    "simpson": 0.8440710670781592
+   }
+  },
+  {
+   "sample_id": "531325",
+   "depth_cm": 210,
+   "temporal_scope": "dated",
+   "age_ippd2": 33419,
+   "age_ippd2_bounds": [
+    29675,
+    37050
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 33419,
+    "ippd1": 38968
+   },
+   "total": 422,
+   "observed_richness": 27,
+   "f1": 12,
+   "f2": 2,
+   "full_coverage": 0.9715864778930949,
+   "expected_richness_282": 22.691906867783626,
+   "conditional_sd_282": 1.6907650843858746,
+   "coverage_282": 0.966119820900309,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531325",
+    "total": 422.0,
+    "richness": 27,
+    "shannon": 2.22148188169452,
+    "simpson": 0.8391994788975989
+   }
+  },
+  {
+   "sample_id": "531326",
+   "depth_cm": 215,
+   "temporal_scope": "dated",
+   "age_ippd2": 34575,
+   "age_ippd2_bounds": [
+    30935,
+    38040
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 34575,
+    "ippd1": 39272
+   },
+   "total": 413,
+   "observed_richness": 26,
+   "f1": 12,
+   "f2": 1,
+   "full_coverage": 0.9709560590943938,
+   "expected_richness_282": 22.059152212627506,
+   "conditional_sd_282": 1.6249655980722078,
+   "coverage_282": 0.9685799661899132,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531326",
+    "total": 413.0,
+    "richness": 26,
+    "shannon": 2.266682764011275,
+    "simpson": 0.8428729722282478
+   }
+  },
+  {
+   "sample_id": "531331",
+   "depth_cm": 220,
+   "temporal_scope": "dated",
+   "age_ippd2": 35734,
+   "age_ippd2_bounds": [
+    32161,
+    39001
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 35734,
+    "ippd1": 39575
+   },
+   "total": 421,
+   "observed_richness": 28,
+   "f1": 9,
+   "f2": 4,
+   "full_coverage": 0.978667475989937,
+   "expected_richness_282": 24.521916103287612,
+   "conditional_sd_282": 1.5405564860881902,
+   "coverage_282": 0.9707690288511523,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531331",
+    "total": 421.0,
+    "richness": 28,
+    "shannon": 2.4756495892570243,
+    "simpson": 0.8783182220817982
+   }
+  },
+  {
+   "sample_id": "531333",
+   "depth_cm": 225,
+   "temporal_scope": "dated",
+   "age_ippd2": 36902,
+   "age_ippd2_bounds": [
+    33665,
+    39882
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 36902,
+    "ippd1": 39879
+   },
+   "total": 417,
+   "observed_richness": 29,
+   "f1": 10,
+   "f2": 3,
+   "full_coverage": 0.9760537225524429,
+   "expected_richness_282": 25.30202626997608,
+   "conditional_sd_282": 1.5889618781945452,
+   "coverage_282": 0.9679727992433459,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531333",
+    "total": 417.0,
+    "richness": 29,
+    "shannon": 2.42087411488725,
+    "simpson": 0.8653796387350552
+   }
+  },
+  {
+   "sample_id": "531334",
+   "depth_cm": 230,
+   "temporal_scope": "dated",
+   "age_ippd2": 38061,
+   "age_ippd2_bounds": [
+    35129,
+    40823
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 38061,
+    "ippd1": 40183
+   },
+   "total": 356,
+   "observed_richness": 25,
+   "f1": 7,
+   "f2": 2,
+   "full_coverage": 0.9803686783645794,
+   "expected_richness_282": 23.43982183829926,
+   "conditional_sd_282": 1.1075765793074444,
+   "coverage_282": 0.977191332735576,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531334",
+    "total": 356.0,
+    "richness": 25,
+    "shannon": 2.4561375895135775,
+    "simpson": 0.8791503598030552
+   }
+  },
+  {
+   "sample_id": "531335",
+   "depth_cm": 235,
+   "temporal_scope": "dated",
+   "age_ippd2": 39119,
+   "age_ippd2_bounds": [
+    35932,
+    42430
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 39119,
+    "ippd1": 40692
+   },
+   "total": 444,
+   "observed_richness": 26,
+   "f1": 5,
+   "f2": 5,
+   "full_coverage": 0.9887893511489018,
+   "expected_richness_282": 23.4081845670277,
+   "conditional_sd_282": 1.3379140609050328,
+   "coverage_282": 0.97849921302965,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531335",
+    "total": 444.0,
+    "richness": 26,
+    "shannon": 2.48221074169522,
+    "simpson": 0.8762985958931905
+   }
+  },
+  {
+   "sample_id": "531336",
+   "depth_cm": 240,
+   "temporal_scope": "dated",
+   "age_ippd2": 40189,
+   "age_ippd2_bounds": [
+    36725,
+    43989
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 40189,
+    "ippd1": 41338
+   },
+   "total": 288,
+   "observed_richness": 28,
+   "f1": 11,
+   "f2": 4,
+   "full_coverage": 0.9619020975952256,
+   "expected_richness_282": 27.769381533101047,
+   "conditional_sd_282": 0.46669630915955274,
+   "coverage_282": 0.9613216221447929,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531336",
+    "total": 288.0,
+    "richness": 28,
+    "shannon": 2.678110756743676,
+    "simpson": 0.9128568672839507
+   }
+  },
+  {
+   "sample_id": "531337",
+   "depth_cm": 245,
+   "temporal_scope": "dated",
+   "age_ippd2": 41242,
+   "age_ippd2_bounds": [
+    37549,
+    45495
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 41242,
+    "ippd1": 41984
+   },
+   "total": 529,
+   "observed_richness": 32,
+   "f1": 9,
+   "f2": 3,
+   "full_coverage": 0.9830082217512879,
+   "expected_richness_282": 26.862271182746852,
+   "conditional_sd_282": 1.7101866760728062,
+   "coverage_282": 0.9736313907036498,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531337",
+    "total": 529.0,
+    "richness": 32,
+    "shannon": 2.529616783748036,
+    "simpson": 0.8683216540821395
+   }
+  },
+  {
+   "sample_id": "531338",
+   "depth_cm": 247,
+   "temporal_scope": "dated",
+   "age_ippd2": 41671,
+   "age_ippd2_bounds": [
+    37885,
+    45959
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 41671,
+    "ippd1": 42242
+   },
+   "total": 398,
+   "observed_richness": 24,
+   "f1": 5,
+   "f2": 2,
+   "full_coverage": 0.9874624505129974,
+   "expected_richness_282": 22.317132195137685,
+   "conditional_sd_282": 1.1053176031764118,
+   "coverage_282": 0.9829678628546188,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531338",
+    "total": 398.0,
+    "richness": 24,
+    "shannon": 2.4082281992409262,
+    "simpson": 0.858816696548067
+   }
+  },
+  {
+   "sample_id": "531339",
+   "depth_cm": 255,
+   "temporal_scope": "dated",
+   "age_ippd2": 43393,
+   "age_ippd2_bounds": [
+    39150,
+    48342
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 43393,
+    "ippd1": 43276
+   },
+   "total": 386,
+   "observed_richness": 29,
+   "f1": 7,
+   "f2": 1,
+   "full_coverage": 0.9818787330386286,
+   "expected_richness_282": 26.992922183072807,
+   "conditional_sd_282": 1.2094665410520216,
+   "coverage_282": 0.9789051166118538,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531339",
+    "total": 386.0,
+    "richness": 29,
+    "shannon": 2.6961110872404803,
+    "simpson": 0.9001181239764826
+   }
+  },
+  {
+   "sample_id": "531340",
+   "depth_cm": 260,
+   "temporal_scope": "dated",
+   "age_ippd2": 44435,
+   "age_ippd2_bounds": [
+    39936,
+    49489
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 44435,
+    "ippd1": 43922
+   },
+   "total": 513,
+   "observed_richness": 30,
+   "f1": 8,
+   "f2": 3,
+   "full_coverage": 0.9844282682436086,
+   "expected_richness_282": 25.63160282569391,
+   "conditional_sd_282": 1.5965002168432834,
+   "coverage_282": 0.9766019027019786,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531340",
+    "total": 513.0,
+    "richness": 30,
+    "shannon": 2.704339033500349,
+    "simpson": 0.9103579828931219
+   }
+  },
+  {
+   "sample_id": "531341",
+   "depth_cm": 265,
+   "temporal_scope": "dated",
+   "age_ippd2": 45481,
+   "age_ippd2_bounds": [
+    40785,
+    50901
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 45481,
+    "ippd1": 44568
+   },
+   "total": 420,
+   "observed_richness": 34,
+   "f1": 11,
+   "f2": 4,
+   "full_coverage": 0.9738549047515909,
+   "expected_richness_282": 29.847113132288193,
+   "conditional_sd_282": 1.6760746905236183,
+   "coverage_282": 0.9651228631052752,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531341",
+    "total": 420.0,
+    "richness": 34,
+    "shannon": 2.6689083065039814,
+    "simpson": 0.8900453514739229
+   }
+  },
+  {
+   "sample_id": "531342",
+   "depth_cm": 270,
+   "temporal_scope": "dated",
+   "age_ippd2": 46552,
+   "age_ippd2_bounds": [
+    41629,
+    52201
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 46552,
+    "ippd1": 45214
+   },
+   "total": 329,
+   "observed_richness": 23,
+   "f1": 8,
+   "f2": 1,
+   "full_coverage": 0.9757024100820183,
+   "expected_richness_282": 21.83318532218703,
+   "conditional_sd_282": 0.9899425660450011,
+   "coverage_282": 0.9745551116778602,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531342",
+    "total": 329.0,
+    "richness": 23,
+    "shannon": 2.2325453430962323,
+    "simpson": 0.8348038174074519
+   }
+  },
+  {
+   "sample_id": "531343",
+   "depth_cm": 275,
+   "temporal_scope": "dated",
+   "age_ippd2": 47601,
+   "age_ippd2_bounds": [
+    42447,
+    53429
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 47601,
+    "ippd1": 46288
+   },
+   "total": 305,
+   "observed_richness": 20,
+   "f1": 4,
+   "f2": 2,
+   "full_coverage": 0.9869282450954044,
+   "expected_richness_282": 19.686639521028514,
+   "conditional_sd_282": 0.5359054346804905,
+   "coverage_282": 0.9858287710316813,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531343",
+    "total": 305.0,
+    "richness": 20,
+    "shannon": 2.133648617332063,
+    "simpson": 0.805697393173878
+   }
+  },
+  {
+   "sample_id": "531345",
+   "depth_cm": 280,
+   "temporal_scope": "dated",
+   "age_ippd2": 48680,
+   "age_ippd2_bounds": [
+    43403,
+    54831
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 48680,
+    "ippd1": 47363
+   },
+   "total": 298,
+   "observed_richness": 24,
+   "f1": 7,
+   "f2": 5,
+   "full_coverage": 0.9766225129393017,
+   "expected_richness_282": 23.610463111989596,
+   "conditional_sd_282": 0.6007224416791385,
+   "coverage_282": 0.9747883929529528,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531345",
+    "total": 298.0,
+    "richness": 24,
+    "shannon": 2.3237747053993347,
+    "simpson": 0.8592405747488852
+   }
+  },
+  {
+   "sample_id": "531344",
+   "depth_cm": 285,
+   "temporal_scope": "dated",
+   "age_ippd2": 49742,
+   "age_ippd2_bounds": [
+    44310,
+    56065
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 49742,
+    "ippd1": 48438
+   },
+   "total": 315,
+   "observed_richness": 25,
+   "f1": 7,
+   "f2": 3,
+   "full_coverage": 0.9778382738455333,
+   "expected_richness_282": 24.230303689598912,
+   "conditional_sd_282": 0.8226577859089138,
+   "coverage_282": 0.9754393173445794,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531344",
+    "total": 315.0,
+    "richness": 25,
+    "shannon": 2.307134301450605,
+    "simpson": 0.8492214663643235
+   }
+  },
+  {
+   "sample_id": "531346",
+   "depth_cm": 290,
+   "temporal_scope": "dated",
+   "age_ippd2": 50805,
+   "age_ippd2_bounds": [
+    45249,
+    57323
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 50805,
+    "ippd1": 49512
+   },
+   "total": 364,
+   "observed_richness": 29,
+   "f1": 10,
+   "f2": 6,
+   "full_coverage": 0.9726179915636258,
+   "expected_richness_282": 26.440533241804,
+   "conditional_sd_282": 1.4013200664161978,
+   "coverage_282": 0.9649154362588414,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531346",
+    "total": 364.0,
+    "richness": 29,
+    "shannon": 2.335605708336164,
+    "simpson": 0.8474972829368433
+   }
+  },
+  {
+   "sample_id": "531347",
+   "depth_cm": 295,
+   "temporal_scope": "dated",
+   "age_ippd2": 51836,
+   "age_ippd2_bounds": [
+    46071,
+    58578
+   ],
+   "archived_ages_provenance": {
+    "ippd2": 51836,
+    "ippd1": 50587
+   },
+   "total": 355,
+   "observed_richness": 28,
+   "f1": 6,
+   "f2": 5,
+   "full_coverage": 0.9831777921512204,
+   "expected_richness_282": 26.55499765432322,
+   "conditional_sd_282": 1.0749684068610832,
+   "coverage_282": 0.9772484021086103,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531347",
+    "total": 355.0,
+    "richness": 28,
+    "shannon": 2.652595391665958,
+    "simpson": 0.8968696687165245
+   }
+  },
+  {
+   "sample_id": "531348",
+   "depth_cm": 300,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 52863,
+    "ippd1": 51662
+   },
+   "total": 388,
+   "observed_richness": 31,
+   "f1": 6,
+   "f2": 4,
+   "full_coverage": 0.9845891774700235,
+   "expected_richness_282": 29.040022971378107,
+   "conditional_sd_282": 1.206774755264035,
+   "coverage_282": 0.9779948528186461,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531348",
+    "total": 388.0,
+    "richness": 31,
+    "shannon": 2.8823710738342054,
+    "simpson": 0.9270113720905516
+   }
+  },
+  {
+   "sample_id": "531349",
+   "depth_cm": 305,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 53893,
+    "ippd1": 52737
+   },
+   "total": 389,
+   "observed_richness": 30,
+   "f1": 4,
+   "f2": 6,
+   "full_coverage": 0.9897961196326077,
+   "expected_richness_282": 28.38963740279242,
+   "conditional_sd_282": 1.1148962048414626,
+   "coverage_282": 0.9794323415313202,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531349",
+    "total": 389.0,
+    "richness": 30,
+    "shannon": 2.815580500798728,
+    "simpson": 0.9222249390368819
+   }
+  },
+  {
+   "sample_id": "531350",
+   "depth_cm": 310,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 54912,
+    "ippd1": 53741
+   },
+   "total": 360,
+   "observed_richness": 30,
+   "f1": 11,
+   "f2": 1,
+   "full_coverage": 0.9694599116960545,
+   "expected_richness_282": 27.561864843922603,
+   "conditional_sd_282": 1.3643319617271437,
+   "coverage_282": 0.9678240926667309,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531350",
+    "total": 360.0,
+    "richness": 30,
+    "shannon": 2.682560678324856,
+    "simpson": 0.9046296296296297
+   }
+  },
+  {
+   "sample_id": "531351",
+   "depth_cm": 315,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 55932,
+    "ippd1": 54641
+   },
+   "total": 438,
+   "observed_richness": 29,
+   "f1": 5,
+   "f2": 4,
+   "full_coverage": 0.9886261183883132,
+   "expected_richness_282": 26.632539557852088,
+   "conditional_sd_282": 1.2771112647965757,
+   "coverage_282": 0.9801382230585444,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531351",
+    "total": 438.0,
+    "richness": 29,
+    "shannon": 2.70613535836933,
+    "simpson": 0.9061946164592064
+   }
+  },
+  {
+   "sample_id": "531352",
+   "depth_cm": 320,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 56937,
+    "ippd1": 55541
+   },
+   "total": 351,
+   "observed_richness": 29,
+   "f1": 2,
+   "f2": 7,
+   "full_coverage": 0.994413719903916,
+   "expected_richness_282": 28.30848104921868,
+   "conditional_sd_282": 0.770048175961844,
+   "coverage_282": 0.9851753790985972,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531352",
+    "total": 351.0,
+    "richness": 29,
+    "shannon": 2.733955260793358,
+    "simpson": 0.9032718890268747
+   }
+  },
+  {
+   "sample_id": "531353",
+   "depth_cm": 325,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 57970,
+    "ippd1": 56440
+   },
+   "total": 322,
+   "observed_richness": 24,
+   "f1": 4,
+   "f2": 3,
+   "full_coverage": 0.9876354181713131,
+   "expected_richness_282": 23.452011802044957,
+   "conditional_sd_282": 0.6920486700075432,
+   "coverage_282": 0.9848659786800583,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531353",
+    "total": 322.0,
+    "richness": 24,
+    "shannon": 2.5833169595624397,
+    "simpson": 0.8999845684965858
+   }
+  },
+  {
+   "sample_id": "531354",
+   "depth_cm": 330,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 58969,
+    "ippd1": 57340
+   },
+   "total": 413,
+   "observed_richness": 29,
+   "f1": 10,
+   "f2": 0,
+   "full_coverage": 0.9757999778101198,
+   "expected_richness_282": 25.75014159413163,
+   "conditional_sd_282": 1.478360843366716,
+   "coverage_282": 0.9738248365955492,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531354",
+    "total": 413.0,
+    "richness": 29,
+    "shannon": 2.636838406308742,
+    "simpson": 0.9041385011344383
+   }
+  },
+  {
+   "sample_id": "531355",
+   "depth_cm": 335,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 59979,
+    "ippd1": 58240
+   },
+   "total": 512,
+   "observed_richness": 37,
+   "f1": 7,
+   "f2": 7,
+   "full_coverage": 0.9863814266569201,
+   "expected_richness_282": 32.028230794492046,
+   "conditional_sd_282": 1.7665980259814942,
+   "coverage_282": 0.9677961358745013,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531355",
+    "total": 512.0,
+    "richness": 37,
+    "shannon": 2.932127529703787,
+    "simpson": 0.9303207397460938
+   }
+  },
+  {
+   "sample_id": "531356",
+   "depth_cm": 340,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 60975,
+    "ippd1": 59139
+   },
+   "total": 475,
+   "observed_richness": 34,
+   "f1": 7,
+   "f2": 5,
+   "full_coverage": 0.9853074392712551,
+   "expected_richness_282": 30.029609351974983,
+   "conditional_sd_282": 1.6045616041864006,
+   "coverage_282": 0.971293905717983,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531356",
+    "total": 475.0,
+    "richness": 34,
+    "shannon": 2.780535885404654,
+    "simpson": 0.9117872576177285
+   }
+  },
+  {
+   "sample_id": "531357",
+   "depth_cm": 345,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 61967,
+    "ippd1": 60039
+   },
+   "total": 447,
+   "observed_richness": 35,
+   "f1": 7,
+   "f2": 9,
+   "full_coverage": 0.9844298151868792,
+   "expected_richness_282": 31.006466933722766,
+   "conditional_sd_282": 1.6582588300140262,
+   "coverage_282": 0.9657392633898495,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531357",
+    "total": 447.0,
+    "richness": 35,
+    "shannon": 2.617195383404724,
+    "simpson": 0.8796000180172064
+   }
+  },
+  {
+   "sample_id": "531358",
+   "depth_cm": 350,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 62965,
+    "ippd1": 63527
+   },
+   "total": 425,
+   "observed_richness": 29,
+   "f1": 7,
+   "f2": 2,
+   "full_coverage": 0.9835515794473914,
+   "expected_richness_282": 26.251904853353707,
+   "conditional_sd_282": 1.3700691638536042,
+   "coverage_282": 0.9767017689515278,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531358",
+    "total": 425.0,
+    "richness": 29,
+    "shannon": 2.6234371545987125,
+    "simpson": 0.8953467128027681
+   }
+  },
+  {
+   "sample_id": "531359",
+   "depth_cm": 355,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 63979,
+    "ippd1": 67662
+   },
+   "total": 492,
+   "observed_richness": 33,
+   "f1": 9,
+   "f2": 5,
+   "full_coverage": 0.9817486191344189,
+   "expected_richness_282": 27.98269992476169,
+   "conditional_sd_282": 1.7562196635682974,
+   "coverage_282": 0.9689951134326009,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531359",
+    "total": 492.0,
+    "richness": 33,
+    "shannon": 2.6024994486027357,
+    "simpson": 0.88931026505387
+   }
+  },
+  {
+   "sample_id": "531360",
+   "depth_cm": 360,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 65012,
+    "ippd1": 71798
+   },
+   "total": 347,
+   "observed_richness": 32,
+   "f1": 8,
+   "f2": 4,
+   "full_coverage": 0.9770116851730353,
+   "expected_richness_282": 30.34636256036864,
+   "conditional_sd_282": 1.153171735414188,
+   "coverage_282": 0.9718547234463969,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531360",
+    "total": 347.0,
+    "richness": 32,
+    "shannon": 2.8396635516158897,
+    "simpson": 0.9233695155677731
+   }
+  },
+  {
+   "sample_id": "531361",
+   "depth_cm": 365,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 66036,
+    "ippd1": 75933
+   },
+   "total": 367,
+   "observed_richness": 30,
+   "f1": 8,
+   "f2": 3,
+   "full_coverage": 0.9782462123111728,
+   "expected_richness_282": 27.937328567287903,
+   "conditional_sd_282": 1.2568114164129842,
+   "coverage_282": 0.9726232638061784,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531361",
+    "total": 367.0,
+    "richness": 30,
+    "shannon": 2.658344423548006,
+    "simpson": 0.904647001611119
+   }
+  },
+  {
+   "sample_id": "531362",
+   "depth_cm": 370,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 67067,
+    "ippd1": 80068
+   },
+   "total": 282,
+   "observed_richness": 26,
+   "f1": 7,
+   "f2": 3,
+   "full_coverage": 0.9752527921263295,
+   "expected_richness_282": 26.0,
+   "conditional_sd_282": 0.0,
+   "coverage_282": 0.9752527921263295,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531362",
+    "total": 282.0,
+    "richness": 26,
+    "shannon": 2.7446987960614098,
+    "simpson": 0.919722347970424
+   }
+  },
+  {
+   "sample_id": "531363",
+   "depth_cm": 375,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 68084,
+    "ippd1": 84204
+   },
+   "total": 324,
+   "observed_richness": 28,
+   "f1": 7,
+   "f2": 4,
+   "full_coverage": 0.9784712360369772,
+   "expected_richness_282": 27.024200042145612,
+   "conditional_sd_282": 0.9147700481915649,
+   "coverage_282": 0.9750634299196752,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531363",
+    "total": 324.0,
+    "richness": 28,
+    "shannon": 2.6770224393592046,
+    "simpson": 0.9093507087334248
+   }
+  },
+  {
+   "sample_id": "531365",
+   "depth_cm": 380,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 69120,
+    "ippd1": 88339
+   },
+   "total": 380,
+   "observed_richness": 25,
+   "f1": 6,
+   "f2": 2,
+   "full_coverage": 0.9842382514671226,
+   "expected_richness_282": 23.299078714879922,
+   "conditional_sd_282": 1.12660924820883,
+   "coverage_282": 0.980796151782588,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531365",
+    "total": 380.0,
+    "richness": 25,
+    "shannon": 2.6061999474840025,
+    "simpson": 0.9029639889196676
+   }
+  },
+  {
+   "sample_id": "531364",
+   "depth_cm": 382,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 69522,
+    "ippd1": 89993
+   },
+   "total": 381,
+   "observed_richness": 30,
+   "f1": 7,
+   "f2": 7,
+   "full_coverage": 0.9817234887523876,
+   "expected_richness_282": 27.685032877590682,
+   "conditional_sd_282": 1.3244412681803417,
+   "coverage_282": 0.9712215634610983,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531364",
+    "total": 381.0,
+    "richness": 30,
+    "shannon": 2.4871563525931966,
+    "simpson": 0.8667755113288005
+   }
+  },
+  {
+   "sample_id": "531366",
+   "depth_cm": 385,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 70126,
+    "ippd1": 96032
+   },
+   "total": 425,
+   "observed_richness": 29,
+   "f1": 7,
+   "f2": 2,
+   "full_coverage": 0.9835515794473914,
+   "expected_richness_282": 26.266694171153734,
+   "conditional_sd_282": 1.3652929662848872,
+   "coverage_282": 0.976848597979076,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531366",
+    "total": 425.0,
+    "richness": 29,
+    "shannon": 2.450111510079941,
+    "simpson": 0.8554519031141868
+   }
+  },
+  {
+   "sample_id": "531367",
+   "depth_cm": 390,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 71151,
+    "ippd1": 117958
+   },
+   "total": 377,
+   "observed_richness": 23,
+   "f1": 5,
+   "f2": 3,
+   "full_coverage": 0.9867795933177876,
+   "expected_richness_282": 21.480587077112475,
+   "conditional_sd_282": 1.0791967928119792,
+   "coverage_282": 0.9804420821917829,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531367",
+    "total": 377.0,
+    "richness": 23,
+    "shannon": 2.0067375991752674,
+    "simpson": 0.7886919629350801
+   }
+  },
+  {
+   "sample_id": "531368",
+   "depth_cm": 395,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 72172,
+    "ippd1": 139883
+   },
+   "total": 350,
+   "observed_richness": 21,
+   "f1": 5,
+   "f2": 1,
+   "full_coverage": 0.9857306402812985,
+   "expected_richness_282": 19.98316566941405,
+   "conditional_sd_282": 0.9029374312979858,
+   "coverage_282": 0.9842282850173124,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531368",
+    "total": 350.0,
+    "richness": 21,
+    "shannon": 2.030719529071828,
+    "simpson": 0.7788571428571429
+   }
+  },
+  {
+   "sample_id": "531369",
+   "depth_cm": 400,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 73202,
+    "ippd1": 161809
+   },
+   "total": 391,
+   "observed_richness": 22,
+   "f1": 6,
+   "f2": 4,
+   "full_coverage": 0.9847070151666325,
+   "expected_richness_282": 19.99137648331266,
+   "conditional_sd_282": 1.2182771346398822,
+   "coverage_282": 0.9781806509198526,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531369",
+    "total": 391.0,
+    "richness": 22,
+    "shannon": 2.0478025709640764,
+    "simpson": 0.8117686305034635
+   }
+  },
+  {
+   "sample_id": "531370",
+   "depth_cm": 405,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 74234,
+    "ippd1": 183735
+   },
+   "total": 357,
+   "observed_richness": 19,
+   "f1": 2,
+   "f2": 2,
+   "full_coverage": 0.9944290565388166,
+   "expected_richness_282": 18.452554026201273,
+   "conditional_sd_282": 0.6713332988056855,
+   "coverage_282": 0.990412651964244,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531370",
+    "total": 357.0,
+    "richness": 19,
+    "shannon": 2.0531526843155197,
+    "simpson": 0.810331975927626
+   }
+  },
+  {
+   "sample_id": "531371",
+   "depth_cm": 410,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 75264,
+    "ippd1": 205660
+   },
+   "total": 356,
+   "observed_richness": 19,
+   "f1": 5,
+   "f2": 0,
+   "full_coverage": 0.9859748099685519,
+   "expected_richness_282": 17.942854801191025,
+   "conditional_sd_282": 0.9112844017454839,
+   "coverage_282": 0.985219589835761,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531371",
+    "total": 356.0,
+    "richness": 19,
+    "shannon": 2.1846832984092956,
+    "simpson": 0.8438328493877036
+   }
+  },
+  {
+   "sample_id": "531373",
+   "depth_cm": 415,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 76295,
+    "ippd1": 227586
+   },
+   "total": 365,
+   "observed_richness": 22,
+   "f1": 6,
+   "f2": 4,
+   "full_coverage": 0.9836216378362164,
+   "expected_richness_282": 20.414225947645452,
+   "conditional_sd_282": 1.1121715397180763,
+   "coverage_282": 0.97796747086855,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531373",
+    "total": 365.0,
+    "richness": 22,
+    "shannon": 2.2578003130512645,
+    "simpson": 0.8554100206417714
+   }
+  },
+  {
+   "sample_id": "531372",
+   "depth_cm": 420,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 77325,
+    "ippd1": 249511
+   },
+   "total": 361,
+   "observed_richness": 21,
+   "f1": 5,
+   "f2": 4,
+   "full_coverage": 0.986210869511926,
+   "expected_richness_282": 19.693660474809242,
+   "conditional_sd_282": 1.0182313607497433,
+   "coverage_282": 0.9804664107119543,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531372",
+    "total": 361.0,
+    "richness": 21,
+    "shannon": 2.3269609111824883,
+    "simpson": 0.8780779766883311
+   }
+  },
+  {
+   "sample_id": "531374",
+   "depth_cm": 425,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 78325,
+    "ippd1": 260033
+   },
+   "total": 314,
+   "observed_richness": 20,
+   "f1": 5,
+   "f2": 1,
+   "full_coverage": 0.9840967567545597,
+   "expected_richness_282": 19.48007272457351,
+   "conditional_sd_282": 0.6792886329014143,
+   "coverage_282": 0.9834103678496351,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531374",
+    "total": 314.0,
+    "richness": 20,
+    "shannon": 2.352408303067266,
+    "simpson": 0.8749645016024991
+   }
+  },
+  {
+   "sample_id": "531375",
+   "depth_cm": 427,
+   "temporal_scope": "depth_only",
+   "age_ippd2": null,
+   "age_ippd2_bounds": null,
+   "archived_ages_provenance": {
+    "ippd2": 78733,
+    "ippd1": 261204
+   },
+   "total": 352,
+   "observed_richness": 24,
+   "f1": 5,
+   "f2": 3,
+   "full_coverage": 0.9858438516338857,
+   "expected_richness_282": 22.871407296467417,
+   "conditional_sd_282": 0.9538139181679807,
+   "coverage_282": 0.9816841939299319,
+   "variance_clamped": false,
+   "diversity": {
+    "sample_id": "531375",
+    "total": 352.0,
+    "richness": 24,
+    "shannon": 2.416838827133885,
+    "simpson": 0.8722559400826446
+   }
+  }
+ ],
+ "rarefaction_warnings": [],
+ "homogeneity": {
+  "multiplicity": {
+   "omnibus": {
+    "method": "holm",
+    "size": 77
+   },
+   "taxon": {
+    "method": "holm",
+    "size": 2465
+   },
+   "joint_control": false
+  },
+  "warnings": [],
+  "randomization": {
+   "seed": 7112026,
+   "simulations": 99999,
+   "bit_generator": "PCG64",
+   "sampler": "scipy.stats.random_table",
+   "algorithm": "patefield",
+   "numpy_version": "2.5.4",
+   "scipy_version": "1.18.1",
+   "chunk_size": 256,
+   "max_pooled_total": 3037000499,
+   "tie_relative_tolerance": 1.4210854715202004e-14,
+   "stream_policy": "SeedSequence.spawn_declared_pair_order"
+  },
+  "holm_recomputed_matches_api": true,
+  "n_monte_carlo_sensitive": 1,
+  "n_pairs_holm_lt_005": 47,
+  "adjacent_lt_005": 41
+ },
+ "adjacent_steps": [
+  {
+   "younger": "531306",
+   "older": "531305",
+   "depths_cm": [
+    80,
+    85
+   ],
+   "ages_ippd2": [
+    4,
+    1867
+   ],
+   "elapsed_ippd2_years": 1863,
+   "totals": [
+    428,
+    392
+   ],
+   "braycurtis_proportions": 0.26804787335494945,
+   "community_relative_braycurtis": 0.26804787335494945,
+   "community_raw_braycurtis": 0.275609756097561,
+   "community_binary_jaccard": 0.45238095238095233,
+   "pearson_chi_squared": 104.57422148927122,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 42,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 16
+  },
+  {
+   "younger": "531305",
+   "older": "531304",
+   "depths_cm": [
+    85,
+    90
+   ],
+   "ages_ippd2": [
+    1867,
+    3974
+   ],
+   "elapsed_ippd2_years": 2107,
+   "totals": [
+    392,
+    336
+   ],
+   "braycurtis_proportions": 0.25170068027210885,
+   "community_relative_braycurtis": 0.25170068027210885,
+   "community_raw_braycurtis": 0.26373626373626374,
+   "community_binary_jaccard": 0.4285714285714286,
+   "pearson_chi_squared": 89.38038930494838,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Monotoca",
+     "counts_younger_older": [
+      0,
+      15
+     ],
+     "forward_change_younger_minus_older": -0.044642857142857144,
+     "p_value": 7.735077259392714e-06,
+     "p_value_holm": 0.018687946658692795
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 22
+  },
+  {
+   "younger": "531304",
+   "older": "531329",
+   "depths_cm": [
+    90,
+    95
+   ],
+   "ages_ippd2": [
+    3974,
+    5758
+   ],
+   "elapsed_ippd2_years": 1784,
+   "totals": [
+    336,
+    389
+   ],
+   "braycurtis_proportions": 0.21924348145427835,
+   "community_relative_braycurtis": 0.21924348145427835,
+   "community_raw_braycurtis": 0.2303448275862069,
+   "community_binary_jaccard": 0.34375,
+   "pearson_chi_squared": 80.97091419813779,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Eucryphia",
+     "counts_younger_older": [
+      20,
+      0
+     ],
+     "forward_change_younger_minus_older": 0.05952380952380952,
+     "p_value": 1.5289668240397779e-07,
+     "p_value_holm": 0.000371844731606474
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 30
+  },
+  {
+   "younger": "531329",
+   "older": "531321",
+   "depths_cm": [
+    95,
+    100
+   ],
+   "ages_ippd2": [
+    5758,
+    7532
+   ],
+   "elapsed_ippd2_years": 1774,
+   "totals": [
+    389,
+    360
+   ],
+   "braycurtis_proportions": 0.1772707797772065,
+   "community_relative_braycurtis": 0.1772707797772065,
+   "community_raw_braycurtis": 0.16154873164218958,
+   "community_binary_jaccard": 0.23076923076923073,
+   "pearson_chi_squared": 48.87027089203837,
+   "p_value": 0.00096,
+   "p_value_holm": 0.03072,
+   "tail_probability_interval": [
+    0.000768680304959109,
+    0.0011612146185560296
+   ],
+   "holm_envelope": [
+    0.024597769758691487,
+    0.037158867793792946
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 26,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 46
+  },
+  {
+   "younger": "531321",
+   "older": "531323",
+   "depths_cm": [
+    100,
+    105
+   ],
+   "ages_ippd2": [
+    7532,
+    9384
+   ],
+   "elapsed_ippd2_years": 1852,
+   "totals": [
+    360,
+    344
+   ],
+   "braycurtis_proportions": 0.2238372093023256,
+   "community_relative_braycurtis": 0.22383720930232562,
+   "community_raw_braycurtis": 0.23011363636363635,
+   "community_binary_jaccard": 0.2592592592592593,
+   "pearson_chi_squared": 73.29099187095639,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 27,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 29
+  },
+  {
+   "younger": "531323",
+   "older": "531327",
+   "depths_cm": [
+    105,
+    110
+   ],
+   "ages_ippd2": [
+    9384,
+    11267
+   ],
+   "elapsed_ippd2_years": 1883,
+   "totals": [
+    344,
+    314
+   ],
+   "braycurtis_proportions": 0.16008739446008,
+   "community_relative_braycurtis": 0.16008739446007997,
+   "community_raw_braycurtis": 0.16109422492401215,
+   "community_binary_jaccard": 0.27586206896551724,
+   "pearson_chi_squared": 37.21048180681213,
+   "p_value": 0.07227,
+   "p_value_holm": 0.9395100000000001,
+   "tail_probability_interval": [
+    0.07066336897158704,
+    0.07388293851771252
+   ],
+   "holm_envelope": [
+    0.9186237966306314,
+    0.9604782007302628
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 29,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 51
+  },
+  {
+   "younger": "531327",
+   "older": "531328",
+   "depths_cm": [
+    110,
+    115
+   ],
+   "ages_ippd2": [
+    11267,
+    13213
+   ],
+   "elapsed_ippd2_years": 1946,
+   "totals": [
+    314,
+    363
+   ],
+   "braycurtis_proportions": 0.18075661069291643,
+   "community_relative_braycurtis": 0.18075661069291643,
+   "community_raw_braycurtis": 0.18463810930576072,
+   "community_binary_jaccard": 0.25,
+   "pearson_chi_squared": 46.494635768633586,
+   "p_value": 0.01737,
+   "p_value_holm": 0.31266,
+   "tail_probability_interval": [
+    0.016559680679422924,
+    0.018188832789486745
+   ],
+   "holm_envelope": [
+    0.29807425222961265,
+    0.3273989902107614
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 44
+  },
+  {
+   "younger": "531328",
+   "older": "531332",
+   "depths_cm": [
+    115,
+    120
+   ],
+   "ages_ippd2": [
+    13213,
+    15176
+   ],
+   "elapsed_ippd2_years": 1963,
+   "totals": [
+    363,
+    344
+   ],
+   "braycurtis_proportions": 0.19147607149721316,
+   "community_relative_braycurtis": 0.19147607149721318,
+   "community_raw_braycurtis": 0.19943422913719944,
+   "community_binary_jaccard": 0.1875,
+   "pearson_chi_squared": 48.55984924355289,
+   "p_value": 0.01139,
+   "p_value_holm": 0.2676,
+   "tail_probability_interval": [
+    0.010731902633603631,
+    0.012056893447276578
+   ],
+   "holm_envelope": [
+    0.25197114979204266,
+    0.28344024970416093
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 40
+  },
+  {
+   "younger": "531332",
+   "older": "531330",
+   "depths_cm": [
+    120,
+    125
+   ],
+   "ages_ippd2": [
+    15176,
+    17130
+   ],
+   "elapsed_ippd2_years": 1954,
+   "totals": [
+    344,
+    358
+   ],
+   "braycurtis_proportions": 0.2156522021566844,
+   "community_relative_braycurtis": 0.21565220215668443,
+   "community_raw_braycurtis": 0.21937321937321938,
+   "community_binary_jaccard": 0.27586206896551724,
+   "pearson_chi_squared": 64.58408517452008,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 29,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Phyllocladus aspleniifolius",
+     "counts_younger_older": [
+      41,
+      111
+     ],
+     "forward_change_younger_minus_older": -0.1908698194101598,
+     "p_value": 5.543764975928127e-10,
+     "p_value_holm": 1.3560049131120198e-06
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 33
+  },
+  {
+   "younger": "531330",
+   "older": "531307",
+   "depths_cm": [
+    125,
+    130
+   ],
+   "ages_ippd2": [
+    17130,
+    18135
+   ],
+   "elapsed_ippd2_years": 1005,
+   "totals": [
+    358,
+    365
+   ],
+   "braycurtis_proportions": 0.17304660595392973,
+   "community_relative_braycurtis": 0.17304660595392973,
+   "community_raw_braycurtis": 0.17012448132780084,
+   "community_binary_jaccard": 0.3571428571428571,
+   "pearson_chi_squared": 46.51056512933768,
+   "p_value": 0.00288,
+   "p_value_holm": 0.08064,
+   "tail_probability_interval": [
+    0.0025479554604392004,
+    0.0032214496516532838
+   ],
+   "holm_envelope": [
+    0.0713427528922976,
+    0.09020059024629194
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 28,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 48
+  },
+  {
+   "younger": "531307",
+   "older": "531308",
+   "depths_cm": [
+    130,
+    135
+   ],
+   "ages_ippd2": [
+    18135,
+    19097
+   ],
+   "elapsed_ippd2_years": 962,
+   "totals": [
+    365,
+    340
+   ],
+   "braycurtis_proportions": 0.13186946011281228,
+   "community_relative_braycurtis": 0.13186946011281228,
+   "community_raw_braycurtis": 0.1375886524822695,
+   "community_binary_jaccard": 0.2962962962962963,
+   "pearson_chi_squared": 28.40287717239512,
+   "p_value": 0.31926,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.3163640480003166,
+    0.3221528237570555
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 27,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 64
+  },
+  {
+   "younger": "531308",
+   "older": "531309",
+   "depths_cm": [
+    135,
+    140
+   ],
+   "ages_ippd2": [
+    19097,
+    20025
+   ],
+   "elapsed_ippd2_years": 928,
+   "totals": [
+    340,
+    377
+   ],
+   "braycurtis_proportions": 0.25448587923232957,
+   "community_relative_braycurtis": 0.2544858792323295,
+   "community_raw_braycurtis": 0.26359832635983266,
+   "community_binary_jaccard": 0.3870967741935484,
+   "pearson_chi_squared": 68.75385289473193,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 31,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 20
+  },
+  {
+   "younger": "531309",
+   "older": "531310",
+   "depths_cm": [
+    140,
+    145
+   ],
+   "ages_ippd2": [
+    20025,
+    20928
+   ],
+   "elapsed_ippd2_years": 903,
+   "totals": [
+    377,
+    353
+   ],
+   "braycurtis_proportions": 0.3026352371863752,
+   "community_relative_braycurtis": 0.3026352371863752,
+   "community_raw_braycurtis": 0.3095890410958904,
+   "community_binary_jaccard": 0.34285714285714286,
+   "pearson_chi_squared": 132.96202078964714,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 3,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Phyllocladus aspleniifolius",
+     "counts_younger_older": [
+      112,
+      52
+     ],
+     "forward_change_younger_minus_older": 0.1497734462470225,
+     "p_value": 1.4048031665372882e-06,
+     "p_value_holm": 0.0034052428756863864
+    },
+    {
+     "taxon": "Poaceae",
+     "counts_younger_older": [
+      2,
+      35
+     ],
+     "forward_change_younger_minus_older": -0.09384510185526108,
+     "p_value": 1.1273967513071994e-09,
+     "p_value_holm": 2.7564850569461026e-06
+    },
+    {
+     "taxon": "Spyridium",
+     "counts_younger_older": [
+      0,
+      17
+     ],
+     "forward_change_younger_minus_older": -0.04815864022662889,
+     "p_value": 3.5254758092869847e-06,
+     "p_value_holm": 0.00853517693428379
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 8
+  },
+  {
+   "younger": "531310",
+   "older": "531311",
+   "depths_cm": [
+    145,
+    150
+   ],
+   "ages_ippd2": [
+    20928,
+    21876
+   ],
+   "elapsed_ippd2_years": 948,
+   "totals": [
+    353,
+    408
+   ],
+   "braycurtis_proportions": 0.2708923512747875,
+   "community_relative_braycurtis": 0.2708923512747875,
+   "community_raw_braycurtis": 0.27463863337713534,
+   "community_binary_jaccard": 0.368421052631579,
+   "pearson_chi_squared": 100.94592534058292,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 38,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Nothofagus gunnii",
+     "counts_younger_older": [
+      12,
+      56
+     ],
+     "forward_change_younger_minus_older": -0.10326056768316393,
+     "p_value": 3.427551979311709e-07,
+     "p_value_holm": 0.000832552375774814
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 14
+  },
+  {
+   "younger": "531311",
+   "older": "531312",
+   "depths_cm": [
+    150,
+    155
+   ],
+   "ages_ippd2": [
+    21876,
+    22307
+   ],
+   "elapsed_ippd2_years": 431,
+   "totals": [
+    408,
+    403
+   ],
+   "braycurtis_proportions": 0.3399138811852284,
+   "community_relative_braycurtis": 0.3399138811852284,
+   "community_raw_braycurtis": 0.33908754623921084,
+   "community_binary_jaccard": 0.38888888888888884,
+   "pearson_chi_squared": 163.96850511574917,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 36,
+   "n_taxa_holm_lt_005": 3,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Pherosphaera hookeriana",
+     "counts_younger_older": [
+      6,
+      39
+     ],
+     "forward_change_younger_minus_older": -0.08206831119544591,
+     "p_value": 1.3129142737996256e-07,
+     "p_value_holm": 0.0003194320428154489
+    },
+    {
+     "taxon": "Phyllocladus aspleniifolius",
+     "counts_younger_older": [
+      29,
+      4
+     ],
+     "forward_change_younger_minus_older": 0.061152873059893934,
+     "p_value": 7.494795135393001e-06,
+     "p_value_holm": 0.01811491984224488
+    },
+    {
+     "taxon": "Microcachrys tetragona",
+     "counts_younger_older": [
+      0,
+      19
+     ],
+     "forward_change_younger_minus_older": -0.04714640198511166,
+     "p_value": 1.3630449970063644e-06,
+     "p_value_holm": 0.0033053841177404335
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 6
+  },
+  {
+   "younger": "531312",
+   "older": "531313",
+   "depths_cm": [
+    155,
+    160
+   ],
+   "ages_ippd2": [
+    22307,
+    22727
+   ],
+   "elapsed_ippd2_years": 420,
+   "totals": [
+    403,
+    327
+   ],
+   "braycurtis_proportions": 0.4623731797451833,
+   "community_relative_braycurtis": 0.4623731797451833,
+   "community_raw_braycurtis": 0.4657534246575342,
+   "community_binary_jaccard": 0.4736842105263158,
+   "pearson_chi_squared": 207.6727344056609,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 38,
+   "n_taxa_holm_lt_005": 2,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Poaceae",
+     "counts_younger_older": [
+      28,
+      105
+     ],
+     "forward_change_younger_minus_older": -0.2516220092426071,
+     "p_value": 1.3630842804819198e-18,
+     "p_value_holm": 3.353187329985523e-15
+    },
+    {
+     "taxon": "Nothofagus gunnii",
+     "counts_younger_older": [
+      59,
+      4
+     ],
+     "forward_change_younger_minus_older": 0.13416956920952186,
+     "p_value": 5.321450371623987e-12,
+     "p_value_holm": 1.3042874860850392e-08
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 1
+  },
+  {
+   "younger": "531313",
+   "older": "531314",
+   "depths_cm": [
+    160,
+    165
+   ],
+   "ages_ippd2": [
+    22727,
+    23132
+   ],
+   "elapsed_ippd2_years": 405,
+   "totals": [
+    327,
+    335
+   ],
+   "braycurtis_proportions": 0.2756218905472637,
+   "community_relative_braycurtis": 0.27562189054726377,
+   "community_raw_braycurtis": 0.27492447129909364,
+   "community_binary_jaccard": 0.5882352941176471,
+   "pearson_chi_squared": 122.75372057866568,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 34,
+   "n_taxa_holm_lt_005": 2,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Apiaceae cf. Dichosciadium",
+     "counts_younger_older": [
+      4,
+      55
+     ],
+     "forward_change_younger_minus_older": -0.15194668857547128,
+     "p_value": 2.5112545669897673e-13,
+     "p_value_holm": 6.167641216526868e-10
+    },
+    {
+     "taxon": "Epacrideae",
+     "counts_younger_older": [
+      16,
+      0
+     ],
+     "forward_change_younger_minus_older": 0.04892966360856269,
+     "p_value": 1.0385522584365295e-05,
+     "p_value_holm": 0.025060265996073458
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 13
+  },
+  {
+   "younger": "531314",
+   "older": "531315",
+   "depths_cm": [
+    165,
+    170
+   ],
+   "ages_ippd2": [
+    23132,
+    24219
+   ],
+   "elapsed_ippd2_years": 1087,
+   "totals": [
+    335,
+    345
+   ],
+   "braycurtis_proportions": 0.14609560891196194,
+   "community_relative_braycurtis": 0.14609560891196194,
+   "community_raw_braycurtis": 0.14411764705882352,
+   "community_binary_jaccard": 0.4782608695652174,
+   "pearson_chi_squared": 48.37023545186123,
+   "p_value": 0.00015,
+   "p_value_holm": 0.005549999999999999,
+   "tail_probability_interval": [
+    7.654211423810707e-05,
+    0.00023488741459066548
+   ],
+   "holm_envelope": [
+    0.0028320582268099616,
+    0.008690834339854623
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 23,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 59
+  },
+  {
+   "younger": "531315",
+   "older": "531316",
+   "depths_cm": [
+    170,
+    175
+   ],
+   "ages_ippd2": [
+    24219,
+    25362
+   ],
+   "elapsed_ippd2_years": 1143,
+   "totals": [
+    345,
+    319
+   ],
+   "braycurtis_proportions": 0.18478942347008315,
+   "community_relative_braycurtis": 0.18478942347008315,
+   "community_raw_braycurtis": 0.18674698795180722,
+   "community_binary_jaccard": 0.31818181818181823,
+   "pearson_chi_squared": 37.281788073806005,
+   "p_value": 0.00502,
+   "p_value_holm": 0.13052,
+   "tail_probability_interval": [
+    0.00458185487404589,
+    0.005467329928049508
+   ],
+   "holm_envelope": [
+    0.11912822672519315,
+    0.1421505781292872
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 22,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 43
+  },
+  {
+   "younger": "531316",
+   "older": "531317",
+   "depths_cm": [
+    175,
+    180
+   ],
+   "ages_ippd2": [
+    25362,
+    26515
+   ],
+   "elapsed_ippd2_years": 1153,
+   "totals": [
+    319,
+    304
+   ],
+   "braycurtis_proportions": 0.25838351757135786,
+   "community_relative_braycurtis": 0.25838351757135786,
+   "community_raw_braycurtis": 0.25842696629213485,
+   "community_binary_jaccard": 0.4347826086956522,
+   "pearson_chi_squared": 66.45808244230516,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 23,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Apiaceae cf. Dichosciadium",
+     "counts_younger_older": [
+      48,
+      109
+     ],
+     "forward_change_younger_minus_older": -0.20808241214321066,
+     "p_value": 2.3733464752522793e-09,
+     "p_value_holm": 5.80045878551657e-06
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 18
+  },
+  {
+   "younger": "531317",
+   "older": "531318",
+   "depths_cm": [
+    180,
+    185
+   ],
+   "ages_ippd2": [
+    26515,
+    27662
+   ],
+   "elapsed_ippd2_years": 1147,
+   "totals": [
+    304,
+    372
+   ],
+   "braycurtis_proportions": 0.26634125636672323,
+   "community_relative_braycurtis": 0.2663412563667233,
+   "community_raw_braycurtis": 0.3076923076923077,
+   "community_binary_jaccard": 0.6296296296296297,
+   "pearson_chi_squared": 77.00327211783771,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 27,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Apiaceae cf. Dichosciadium",
+     "counts_younger_older": [
+      109,
+      51
+     ],
+     "forward_change_younger_minus_older": 0.22145585738539897,
+     "p_value": 1.7668082967684035e-11,
+     "p_value_holm": 4.3286803270825883e-08
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 17
+  },
+  {
+   "younger": "531318",
+   "older": "531319",
+   "depths_cm": [
+    185,
+    190
+   ],
+   "ages_ippd2": [
+    27662,
+    28830
+   ],
+   "elapsed_ippd2_years": 1168,
+   "totals": [
+    372,
+    305
+   ],
+   "braycurtis_proportions": 0.14341618191433106,
+   "community_relative_braycurtis": 0.14341618191433103,
+   "community_raw_braycurtis": 0.18759231905465287,
+   "community_binary_jaccard": 0.52,
+   "pearson_chi_squared": 44.969212195725206,
+   "p_value": 0.0006,
+   "p_value_holm": 0.019799999999999998,
+   "tail_probability_interval": [
+    0.0004491692220075536,
+    0.0007609995253827395
+   ],
+   "holm_envelope": [
+    0.014822584326249269,
+    0.025112984337630404
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 25,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 60
+  },
+  {
+   "younger": "531319",
+   "older": "531320",
+   "depths_cm": [
+    190,
+    195
+   ],
+   "ages_ippd2": [
+    28830,
+    29963
+   ],
+   "elapsed_ippd2_years": 1133,
+   "totals": [
+    305,
+    414
+   ],
+   "braycurtis_proportions": 0.2837570285895304,
+   "community_relative_braycurtis": 0.2837570285895304,
+   "community_raw_braycurtis": 0.3157162726008345,
+   "community_binary_jaccard": 0.48275862068965514,
+   "pearson_chi_squared": 93.74322128158818,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 29,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Poaceae",
+     "counts_younger_older": [
+      121,
+      68
+     ],
+     "forward_change_younger_minus_older": 0.23247010374594124,
+     "p_value": 3.920404291570501e-12,
+     "p_value_holm": 9.612831322930868e-09
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 11
+  },
+  {
+   "younger": "531320",
+   "older": "531322",
+   "depths_cm": [
+    195,
+    200
+   ],
+   "ages_ippd2": [
+    29963,
+    31082
+   ],
+   "elapsed_ippd2_years": 1119,
+   "totals": [
+    414,
+    309
+   ],
+   "braycurtis_proportions": 0.15168144083298157,
+   "community_relative_braycurtis": 0.15168144083298157,
+   "community_raw_braycurtis": 0.20885200553250347,
+   "community_binary_jaccard": 0.4,
+   "pearson_chi_squared": 44.09968348569839,
+   "p_value": 0.01176,
+   "p_value_holm": 0.2676,
+   "tail_probability_interval": [
+    0.011091418191192498,
+    0.012437359219871399
+   ],
+   "holm_envelope": [
+    0.25197114979204266,
+    0.28344024970416093
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 30,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 54
+  },
+  {
+   "younger": "531322",
+   "older": "531324",
+   "depths_cm": [
+    200,
+    205
+   ],
+   "ages_ippd2": [
+    31082,
+    32255
+   ],
+   "elapsed_ippd2_years": 1173,
+   "totals": [
+    309,
+    421
+   ],
+   "braycurtis_proportions": 0.12492985571416491,
+   "community_relative_braycurtis": 0.12492985571416491,
+   "community_raw_braycurtis": 0.2,
+   "community_binary_jaccard": 0.48275862068965514,
+   "pearson_chi_squared": 42.99237333672812,
+   "p_value": 0.01115,
+   "p_value_holm": 0.2676,
+   "tail_probability_interval": [
+    0.010498797908001777,
+    0.011810010404340038
+   ],
+   "holm_envelope": [
+    0.25197114979204266,
+    0.28344024970416093
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 29,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 68
+  },
+  {
+   "younger": "531324",
+   "older": "531325",
+   "depths_cm": [
+    205,
+    210
+   ],
+   "ages_ippd2": [
+    32255,
+    33419
+   ],
+   "elapsed_ippd2_years": 1164,
+   "totals": [
+    421,
+    422
+   ],
+   "braycurtis_proportions": 0.11986243541106147,
+   "community_relative_braycurtis": 0.11986243541106148,
+   "community_raw_braycurtis": 0.11981020166073547,
+   "community_binary_jaccard": 0.46875,
+   "pearson_chi_squared": 45.58264015418783,
+   "p_value": 0.01312,
+   "p_value_holm": 0.2676,
+   "tail_probability_interval": [
+    0.012414281651996595,
+    0.01383442883731513
+   ],
+   "holm_envelope": [
+    0.2523204065523757,
+    0.28344024970416093
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 69
+  },
+  {
+   "younger": "531325",
+   "older": "531326",
+   "depths_cm": [
+    210,
+    215
+   ],
+   "ages_ippd2": [
+    33419,
+    34575
+   ],
+   "elapsed_ippd2_years": 1156,
+   "totals": [
+    422,
+    413
+   ],
+   "braycurtis_proportions": 0.09373099388361657,
+   "community_relative_braycurtis": 0.09373099388361658,
+   "community_raw_braycurtis": 0.09461077844311377,
+   "community_binary_jaccard": 0.34375,
+   "pearson_chi_squared": 27.800886309459017,
+   "p_value": 0.69761,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.6947495755202507,
+    0.7004529113272978
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 71
+  },
+  {
+   "younger": "531326",
+   "older": "531331",
+   "depths_cm": [
+    215,
+    220
+   ],
+   "ages_ippd2": [
+    34575,
+    35734
+   ],
+   "elapsed_ippd2_years": 1159,
+   "totals": [
+    413,
+    421
+   ],
+   "braycurtis_proportions": 0.15710317300558455,
+   "community_relative_braycurtis": 0.15710317300558452,
+   "community_raw_braycurtis": 0.15347721822541965,
+   "community_binary_jaccard": 0.4571428571428572,
+   "pearson_chi_squared": 48.352177432834075,
+   "p_value": 0.018,
+   "p_value_holm": 0.31266,
+   "tail_probability_interval": [
+    0.017175374575453463,
+    0.018833110786102992
+   ],
+   "holm_envelope": [
+    0.29807425222961265,
+    0.3273989902107614
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 52
+  },
+  {
+   "younger": "531331",
+   "older": "531333",
+   "depths_cm": [
+    220,
+    225
+   ],
+   "ages_ippd2": [
+    35734,
+    36902
+   ],
+   "elapsed_ippd2_years": 1168,
+   "totals": [
+    421,
+    417
+   ],
+   "braycurtis_proportions": 0.09652705389132872,
+   "community_relative_braycurtis": 0.09652705389132873,
+   "community_raw_braycurtis": 0.0954653937947494,
+   "community_binary_jaccard": 0.41666666666666663,
+   "pearson_chi_squared": 30.318106509781423,
+   "p_value": 0.77118,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.7685612533135213,
+    0.7737784329146695
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 36,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 70
+  },
+  {
+   "younger": "531333",
+   "older": "531334",
+   "depths_cm": [
+    225,
+    230
+   ],
+   "ages_ippd2": [
+    36902,
+    38061
+   ],
+   "elapsed_ippd2_years": 1159,
+   "totals": [
+    417,
+    356
+   ],
+   "braycurtis_proportions": 0.1404898553067658,
+   "community_relative_braycurtis": 0.1404898553067658,
+   "community_raw_braycurtis": 0.1539456662354463,
+   "community_binary_jaccard": 0.3125,
+   "pearson_chi_squared": 33.362024713957126,
+   "p_value": 0.32677,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.3238562872813805,
+    0.3296802988134332
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 62
+  },
+  {
+   "younger": "531334",
+   "older": "531335",
+   "depths_cm": [
+    230,
+    235
+   ],
+   "ages_ippd2": [
+    38061,
+    39119
+   ],
+   "elapsed_ippd2_years": 1058,
+   "totals": [
+    356,
+    444
+   ],
+   "braycurtis_proportions": 0.15140702500253062,
+   "community_relative_braycurtis": 0.15140702500253062,
+   "community_raw_braycurtis": 0.18,
+   "community_binary_jaccard": 0.40625,
+   "pearson_chi_squared": 43.343484165848395,
+   "p_value": 0.03539,
+   "p_value_holm": 0.56048,
+   "tail_probability_interval": [
+    0.03424383564171107,
+    0.03654392237759242
+   ],
+   "holm_envelope": [
+    0.5422315239943986,
+    0.5788528367347975
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 55
+  },
+  {
+   "younger": "531335",
+   "older": "531336",
+   "depths_cm": [
+    235,
+    240
+   ],
+   "ages_ippd2": [
+    39119,
+    40189
+   ],
+   "elapsed_ippd2_years": 1070,
+   "totals": [
+    444,
+    288
+   ],
+   "braycurtis_proportions": 0.2352665165165165,
+   "community_relative_braycurtis": 0.23526651651651656,
+   "community_raw_braycurtis": 0.31420765027322406,
+   "community_binary_jaccard": 0.4571428571428572,
+   "pearson_chi_squared": 85.1387997329659,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Asteraceae",
+     "counts_younger_older": [
+      118,
+      34
+     ],
+     "forward_change_younger_minus_older": 0.14771021021021022,
+     "p_value": 1.0181024919501034e-06,
+     "p_value_holm": 0.002469916645470951
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 26
+  },
+  {
+   "younger": "531336",
+   "older": "531337",
+   "depths_cm": [
+    240,
+    245
+   ],
+   "ages_ippd2": [
+    40189,
+    41242
+   ],
+   "elapsed_ippd2_years": 1053,
+   "totals": [
+    288,
+    529
+   ],
+   "braycurtis_proportions": 0.2549162465868515,
+   "community_relative_braycurtis": 0.2549162465868515,
+   "community_raw_braycurtis": 0.35128518971848227,
+   "community_binary_jaccard": 0.42105263157894735,
+   "pearson_chi_squared": 83.73868650457068,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 38,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Asteraceae",
+     "counts_younger_older": [
+      34,
+      149
+     ],
+     "forward_change_younger_minus_older": -0.1636079605124974,
+     "p_value": 3.8918354314698077e-08,
+     "p_value_holm": 9.484402946491921e-05
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 19
+  },
+  {
+   "younger": "531337",
+   "older": "531338",
+   "depths_cm": [
+    245,
+    247
+   ],
+   "ages_ippd2": [
+    41242,
+    41671
+   ],
+   "elapsed_ippd2_years": 429,
+   "totals": [
+    529,
+    398
+   ],
+   "braycurtis_proportions": 0.14684006041549905,
+   "community_relative_braycurtis": 0.14684006041549907,
+   "community_raw_braycurtis": 0.21467098166127294,
+   "community_binary_jaccard": 0.4444444444444444,
+   "pearson_chi_squared": 54.197665060781254,
+   "p_value": 0.00559,
+   "p_value_holm": 0.13975,
+   "tail_probability_interval": [
+    0.005127749653454559,
+    0.006061390704831279
+   ],
+   "holm_envelope": [
+    0.12819374133636396,
+    0.15153476762078197
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 36,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 57
+  },
+  {
+   "younger": "531338",
+   "older": "531339",
+   "depths_cm": [
+    247,
+    255
+   ],
+   "ages_ippd2": [
+    41671,
+    43393
+   ],
+   "elapsed_ippd2_years": 1722,
+   "totals": [
+    398,
+    386
+   ],
+   "braycurtis_proportions": 0.2425469315489364,
+   "community_relative_braycurtis": 0.24254693154893636,
+   "community_raw_braycurtis": 0.24744897959183673,
+   "community_binary_jaccard": 0.29032258064516125,
+   "pearson_chi_squared": 69.6425215990289,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 31,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 24
+  },
+  {
+   "younger": "531339",
+   "older": "531340",
+   "depths_cm": [
+    255,
+    260
+   ],
+   "ages_ippd2": [
+    43393,
+    44435
+   ],
+   "elapsed_ippd2_years": 1042,
+   "totals": [
+    386,
+    513
+   ],
+   "braycurtis_proportions": 0.1801098889999899,
+   "community_relative_braycurtis": 0.18010988899998995,
+   "community_raw_braycurtis": 0.21023359288097887,
+   "community_binary_jaccard": 0.21212121212121215,
+   "pearson_chi_squared": 55.03934728047545,
+   "p_value": 0.00247,
+   "p_value_holm": 0.07163,
+   "tail_probability_interval": [
+    0.0021625029893939268,
+    0.0027869633145001503
+   ],
+   "holm_envelope": [
+    0.06271258669242388,
+    0.08082193612050435
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 33,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 45
+  },
+  {
+   "younger": "531340",
+   "older": "531341",
+   "depths_cm": [
+    260,
+    265
+   ],
+   "ages_ippd2": [
+    44435,
+    45481
+   ],
+   "elapsed_ippd2_years": 1046,
+   "totals": [
+    513,
+    420
+   ],
+   "braycurtis_proportions": 0.2850320245057087,
+   "community_relative_braycurtis": 0.28503202450570875,
+   "community_raw_braycurtis": 0.2797427652733119,
+   "community_binary_jaccard": 0.2702702702702703,
+   "pearson_chi_squared": 109.45944969643308,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 37,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Nothofagus gunnii",
+     "counts_younger_older": [
+      62,
+      6
+     ],
+     "forward_change_younger_minus_older": 0.10657198551935393,
+     "p_value": 2.8856299811844384e-11,
+     "p_value_holm": 7.064022193939506e-08
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 10
+  },
+  {
+   "younger": "531341",
+   "older": "531342",
+   "depths_cm": [
+    265,
+    270
+   ],
+   "ages_ippd2": [
+    45481,
+    46552
+   ],
+   "elapsed_ippd2_years": 1071,
+   "totals": [
+    420,
+    329
+   ],
+   "braycurtis_proportions": 0.2531408308004053,
+   "community_relative_braycurtis": 0.2531408308004053,
+   "community_raw_braycurtis": 0.23097463284379172,
+   "community_binary_jaccard": 0.37142857142857144,
+   "pearson_chi_squared": 69.87985192821439,
+   "p_value": 3e-05,
+   "p_value_holm": 0.00126,
+   "tail_probability_interval": [
+    2.4221261840567683e-06,
+    7.224571180329286e-05
+   ],
+   "holm_envelope": [
+    0.00010172929973038427,
+    0.0030343198957383
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 21
+  },
+  {
+   "younger": "531342",
+   "older": "531343",
+   "depths_cm": [
+    270,
+    275
+   ],
+   "ages_ippd2": [
+    46552,
+    47601
+   ],
+   "elapsed_ippd2_years": 1049,
+   "totals": [
+    329,
+    305
+   ],
+   "braycurtis_proportions": 0.1433255269320843,
+   "community_relative_braycurtis": 0.1433255269320843,
+   "community_raw_braycurtis": 0.13249211356466878,
+   "community_binary_jaccard": 0.34615384615384615,
+   "pearson_chi_squared": 29.53363843644076,
+   "p_value": 0.20469,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.20218494463372022,
+    0.20719628905952286
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 26,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 61
+  },
+  {
+   "younger": "531343",
+   "older": "531345",
+   "depths_cm": [
+    275,
+    280
+   ],
+   "ages_ippd2": [
+    47601,
+    48680
+   ],
+   "elapsed_ippd2_years": 1079,
+   "totals": [
+    305,
+    298
+   ],
+   "braycurtis_proportions": 0.4023214875123776,
+   "community_relative_braycurtis": 0.4023214875123776,
+   "community_raw_braycurtis": 0.3996683250414594,
+   "community_binary_jaccard": 0.37037037037037035,
+   "pearson_chi_squared": 120.96266023029662,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 27,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Asteraceae",
+     "counts_younger_older": [
+      116,
+      38
+     ],
+     "forward_change_younger_minus_older": 0.2528110903289691,
+     "p_value": 5.929848733882285e-13,
+     "p_value_holm": 1.4551848792947129e-09
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 2
+  },
+  {
+   "younger": "531345",
+   "older": "531344",
+   "depths_cm": [
+    280,
+    285
+   ],
+   "ages_ippd2": [
+    48680,
+    49742
+   ],
+   "elapsed_ippd2_years": 1062,
+   "totals": [
+    298,
+    315
+   ],
+   "braycurtis_proportions": 0.36963886225631193,
+   "community_relative_braycurtis": 0.36963886225631193,
+   "community_raw_braycurtis": 0.367047308319739,
+   "community_binary_jaccard": 0.4193548387096774,
+   "pearson_chi_squared": 111.93432967102542,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 31,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Asteraceae",
+     "counts_younger_older": [
+      38,
+      92
+     ],
+     "forward_change_younger_minus_older": -0.16454671354000214,
+     "p_value": 6.165492770619911e-07,
+     "p_value_holm": 0.0014963650954294525
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 5
+  },
+  {
+   "younger": "531344",
+   "older": "531346",
+   "depths_cm": [
+    285,
+    290
+   ],
+   "ages_ippd2": [
+    49742,
+    50805
+   ],
+   "elapsed_ippd2_years": 1063,
+   "totals": [
+    315,
+    364
+   ],
+   "braycurtis_proportions": 0.12887667887667886,
+   "community_relative_braycurtis": 0.12887667887667886,
+   "community_raw_braycurtis": 0.15169366715758467,
+   "community_binary_jaccard": 0.25806451612903225,
+   "pearson_chi_squared": 35.81361484987019,
+   "p_value": 0.17159,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.1692495239048057,
+    0.173932972434068
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 31,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 65
+  },
+  {
+   "younger": "531346",
+   "older": "531347",
+   "depths_cm": [
+    290,
+    295
+   ],
+   "ages_ippd2": [
+    50805,
+    51836
+   ],
+   "elapsed_ippd2_years": 1031,
+   "totals": [
+    364,
+    355
+   ],
+   "braycurtis_proportions": 0.38112521281535366,
+   "community_relative_braycurtis": 0.3811252128153536,
+   "community_raw_braycurtis": 0.38247566063977745,
+   "community_binary_jaccard": 0.32352941176470584,
+   "pearson_chi_squared": 157.27539131345463,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 34,
+   "n_taxa_holm_lt_005": 3,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Apiaceae cf. Dichosciadium",
+     "counts_younger_older": [
+      60,
+      4
+     ],
+     "forward_change_younger_minus_older": 0.153567559201362,
+     "p_value": 9.097569970769916e-15,
+     "p_value_holm": 2.2352729418181686e-11
+    },
+    {
+     "taxon": "Nothofagus gunnii",
+     "counts_younger_older": [
+      12,
+      45
+     ],
+     "forward_change_younger_minus_older": -0.09379353041324873,
+     "p_value": 2.9100137761650402e-06,
+     "p_value_holm": 0.0070509633796478925
+    },
+    {
+     "taxon": "Pherosphaera hookeriana",
+     "counts_younger_older": [
+      46,
+      12
+     ],
+     "forward_change_younger_minus_older": 0.09257080947221792,
+     "p_value": 3.838464442892656e-06,
+     "p_value_holm": 0.009289083951800227
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 4
+  },
+  {
+   "younger": "531347",
+   "older": "531348",
+   "depths_cm": [
+    295,
+    300
+   ],
+   "ages_ippd2": [
+    51836,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    355,
+    388
+   ],
+   "braycurtis_proportions": 0.3104326992885146,
+   "community_relative_braycurtis": 0.3104326992885146,
+   "community_raw_braycurtis": 0.31090174966352624,
+   "community_binary_jaccard": 0.525,
+   "pearson_chi_squared": 108.1278372551287,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 40,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 7
+  },
+  {
+   "younger": "531348",
+   "older": "531349",
+   "depths_cm": [
+    300,
+    305
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    388,
+    389
+   ],
+   "braycurtis_proportions": 0.2691013171494448,
+   "community_relative_braycurtis": 0.2691013171494448,
+   "community_raw_braycurtis": 0.26898326898326896,
+   "community_binary_jaccard": 0.3513513513513513,
+   "pearson_chi_squared": 112.18549819856497,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 37,
+   "n_taxa_holm_lt_005": 2,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Phyllocladus aspleniifolius",
+     "counts_younger_older": [
+      13,
+      56
+     ],
+     "forward_change_younger_minus_older": -0.1104537142554263,
+     "p_value": 4.6408411344331886e-08,
+     "p_value_holm": 0.00011295807321210382
+    },
+    {
+     "taxon": "Lagarostrobos franklinii",
+     "counts_younger_older": [
+      0,
+      35
+     ],
+     "forward_change_younger_minus_older": -0.08997429305912596,
+     "p_value": 2.6139850004415726e-11,
+     "p_value_holm": 6.401649266081411e-08
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 15
+  },
+  {
+   "younger": "531349",
+   "older": "531350",
+   "depths_cm": [
+    305,
+    310
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    389,
+    360
+   ],
+   "braycurtis_proportions": 0.20721936589545842,
+   "community_relative_braycurtis": 0.20721936589545842,
+   "community_raw_braycurtis": 0.20427236315086783,
+   "community_binary_jaccard": 0.18181818181818177,
+   "pearson_chi_squared": 45.27131028324147,
+   "p_value": 0.03503,
+   "p_value_holm": 0.56048,
+   "tail_probability_interval": [
+    0.03388947024964991,
+    0.03617830229592484
+   ],
+   "holm_envelope": [
+    0.5422315239943986,
+    0.5788528367347975
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 33,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 35
+  },
+  {
+   "younger": "531350",
+   "older": "531351",
+   "depths_cm": [
+    310,
+    315
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    360,
+    438
+   ],
+   "braycurtis_proportions": 0.16232876712328767,
+   "community_relative_braycurtis": 0.1623287671232877,
+   "community_raw_braycurtis": 0.18796992481203006,
+   "community_binary_jaccard": 0.2647058823529411,
+   "pearson_chi_squared": 41.327193729130364,
+   "p_value": 0.1122,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.11024129698746968,
+    0.11416347154166445
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 34,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 49
+  },
+  {
+   "younger": "531351",
+   "older": "531352",
+   "depths_cm": [
+    315,
+    320
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    438,
+    351
+   ],
+   "braycurtis_proportions": 0.3920891386644811,
+   "community_relative_braycurtis": 0.39208913866448114,
+   "community_raw_braycurtis": 0.4017743979721166,
+   "community_binary_jaccard": 0.34285714285714286,
+   "pearson_chi_squared": 158.73944133789573,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 35,
+   "n_taxa_holm_lt_005": 2,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Asteraceae",
+     "counts_younger_older": [
+      28,
+      78
+     ],
+     "forward_change_younger_minus_older": -0.1582952815829528,
+     "p_value": 1.0279065454208921e-10,
+     "p_value_holm": 2.515287316644923e-07
+    },
+    {
+     "taxon": "Phyllocladus aspleniifolius",
+     "counts_younger_older": [
+      87,
+      22
+     ],
+     "forward_change_younger_minus_older": 0.1359520743082387,
+     "p_value": 2.106067824352595e-08,
+     "p_value_holm": 5.134593355771626e-05
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 3
+  },
+  {
+   "younger": "531352",
+   "older": "531353",
+   "depths_cm": [
+    320,
+    325
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    351,
+    322
+   ],
+   "braycurtis_proportions": 0.207552511900338,
+   "community_relative_braycurtis": 0.207552511900338,
+   "community_raw_braycurtis": 0.21545319465081725,
+   "community_binary_jaccard": 0.34375,
+   "pearson_chi_squared": 58.49883822578954,
+   "p_value": 0.00052,
+   "p_value_holm": 0.017679999999999998,
+   "tail_probability_interval": [
+    0.00037975513535018176,
+    0.0006705086837987135
+   ],
+   "holm_envelope": [
+    0.01291167460190618,
+    0.02279729524915626
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 34
+  },
+  {
+   "younger": "531353",
+   "older": "531354",
+   "depths_cm": [
+    325,
+    330
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    322,
+    413
+   ],
+   "braycurtis_proportions": 0.23112959258869356,
+   "community_relative_braycurtis": 0.2311295925886936,
+   "community_raw_braycurtis": 0.25170068027210885,
+   "community_binary_jaccard": 0.34375,
+   "pearson_chi_squared": 67.17227055092172,
+   "p_value": 2e-05,
+   "p_value_holm": 0.00088,
+   "tail_probability_interval": [
+    2.531805795988069e-07,
+    5.57157174921821e-05
+   ],
+   "holm_envelope": [
+    1.1139945502347504e-05,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 27
+  },
+  {
+   "younger": "531354",
+   "older": "531355",
+   "depths_cm": [
+    330,
+    335
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    413,
+    512
+   ],
+   "braycurtis_proportions": 0.2491061970338983,
+   "community_relative_braycurtis": 0.2491061970338983,
+   "community_raw_braycurtis": 0.23891891891891892,
+   "community_binary_jaccard": 0.3902439024390244,
+   "pearson_chi_squared": 99.3950304163077,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 41,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Pherosphaera hookeriana",
+     "counts_younger_older": [
+      65,
+      33
+     ],
+     "forward_change_younger_minus_older": 0.09293186289346247,
+     "p_value": 7.984803497395934e-06,
+     "p_value_holm": 0.019283300446211182
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 23
+  },
+  {
+   "younger": "531355",
+   "older": "531356",
+   "depths_cm": [
+    335,
+    340
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    512,
+    475
+   ],
+   "braycurtis_proportions": 0.1540296052631579,
+   "community_relative_braycurtis": 0.1540296052631579,
+   "community_raw_braycurtis": 0.15704154002026344,
+   "community_binary_jaccard": 0.22499999999999998,
+   "pearson_chi_squared": 46.51035701281455,
+   "p_value": 0.15595,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.15369793382661434,
+    0.15820515983235264
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 40,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 53
+  },
+  {
+   "younger": "531356",
+   "older": "531357",
+   "depths_cm": [
+    340,
+    345
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    475,
+    447
+   ],
+   "braycurtis_proportions": 0.19021782644530788,
+   "community_relative_braycurtis": 0.19021782644530788,
+   "community_raw_braycurtis": 0.18655097613882862,
+   "community_binary_jaccard": 0.31707317073170727,
+   "pearson_chi_squared": 57.8600765005219,
+   "p_value": 0.01271,
+   "p_value_holm": 0.2676,
+   "tail_probability_interval": [
+    0.012015257454875033,
+    0.013413472951998748
+   ],
+   "holm_envelope": [
+    0.2523204065523757,
+    0.28344024970416093
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 41,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 41
+  },
+  {
+   "younger": "531357",
+   "older": "531358",
+   "depths_cm": [
+    345,
+    350
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    447,
+    425
+   ],
+   "braycurtis_proportions": 0.19485195420450058,
+   "community_relative_braycurtis": 0.19485195420450058,
+   "community_raw_braycurtis": 0.18807339449541285,
+   "community_binary_jaccard": 0.3589743589743589,
+   "pearson_chi_squared": 61.96955566238412,
+   "p_value": 0.0018,
+   "p_value_holm": 0.054,
+   "tail_probability_interval": [
+    0.0015375727776741532,
+    0.002072024586850531
+   ],
+   "holm_envelope": [
+    0.0461271833302246,
+    0.06216073760551592
+   ],
+   "monte_carlo_sensitive": true,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 39,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 39
+  },
+  {
+   "younger": "531358",
+   "older": "531359",
+   "depths_cm": [
+    350,
+    355
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    425,
+    492
+   ],
+   "braycurtis_proportions": 0.18525585844093737,
+   "community_relative_braycurtis": 0.18525585844093734,
+   "community_raw_braycurtis": 0.18865866957470012,
+   "community_binary_jaccard": 0.32432432432432434,
+   "pearson_chi_squared": 73.93475505028634,
+   "p_value": 2e-05,
+   "p_value_holm": 0.00088,
+   "tail_probability_interval": [
+    2.531805795988069e-07,
+    5.57157174921821e-05
+   ],
+   "holm_envelope": [
+    1.1139945502347504e-05,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 37,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Melaleuca",
+     "counts_younger_older": [
+      20,
+      0
+     ],
+     "forward_change_younger_minus_older": 0.047058823529411764,
+     "p_value": 1.6361633205756967e-07,
+     "p_value_holm": 0.00039775130323195187
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 42
+  },
+  {
+   "younger": "531359",
+   "older": "531360",
+   "depths_cm": [
+    355,
+    360
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    492,
+    347
+   ],
+   "braycurtis_proportions": 0.3017970525526581,
+   "community_relative_braycurtis": 0.3017970525526581,
+   "community_raw_braycurtis": 0.35876042908224076,
+   "community_binary_jaccard": 0.4883720930232558,
+   "pearson_chi_squared": 146.0092568419166,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 43,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Melaleuca",
+     "counts_younger_older": [
+      0,
+      31
+     ],
+     "forward_change_younger_minus_older": -0.0893371757925072,
+     "p_value": 5.720596748691958e-13,
+     "p_value_holm": 1.4044065018038758e-09
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 9
+  },
+  {
+   "younger": "531360",
+   "older": "531361",
+   "depths_cm": [
+    360,
+    365
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    347,
+    367
+   ],
+   "braycurtis_proportions": 0.19956968645219042,
+   "community_relative_braycurtis": 0.19956968645219042,
+   "community_raw_braycurtis": 0.21008403361344538,
+   "community_binary_jaccard": 0.368421052631579,
+   "pearson_chi_squared": 62.6030340196008,
+   "p_value": 0.00106,
+   "p_value_holm": 0.03286,
+   "tail_probability_interval": [
+    0.0008588823971376235,
+    0.0012709611895515768
+   ],
+   "holm_envelope": [
+    0.02662535431126633,
+    0.03939979687609888
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 38,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 38
+  },
+  {
+   "younger": "531361",
+   "older": "531362",
+   "depths_cm": [
+    365,
+    370
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    367,
+    282
+   ],
+   "braycurtis_proportions": 0.21625408236226254,
+   "community_relative_braycurtis": 0.21625408236226254,
+   "community_raw_braycurtis": 0.26348228043143296,
+   "community_binary_jaccard": 0.303030303030303,
+   "pearson_chi_squared": 65.98178689797275,
+   "p_value": 9e-05,
+   "p_value_holm": 0.00351,
+   "tail_probability_interval": [
+    3.4539279579803084e-05,
+    0.00015762734982968172
+   ],
+   "holm_envelope": [
+    0.0013470319036123202,
+    0.006147466643357587
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 33,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 31
+  },
+  {
+   "younger": "531362",
+   "older": "531363",
+   "depths_cm": [
+    370,
+    375
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    282,
+    324
+   ],
+   "braycurtis_proportions": 0.24120042027843447,
+   "community_relative_braycurtis": 0.24120042027843447,
+   "community_raw_braycurtis": 0.24752475247524752,
+   "community_binary_jaccard": 0.3125,
+   "pearson_chi_squared": 60.97750089040565,
+   "p_value": 0.00015,
+   "p_value_holm": 0.005549999999999999,
+   "tail_probability_interval": [
+    7.654211423810707e-05,
+    0.00023488741459066548
+   ],
+   "holm_envelope": [
+    0.0028320582268099616,
+    0.008690834339854623
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 25
+  },
+  {
+   "younger": "531363",
+   "older": "531365",
+   "depths_cm": [
+    375,
+    380
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    324,
+    380
+   ],
+   "braycurtis_proportions": 0.14610136452241715,
+   "community_relative_braycurtis": 0.14610136452241715,
+   "community_raw_braycurtis": 0.17045454545454544,
+   "community_binary_jaccard": 0.23333333333333328,
+   "pearson_chi_squared": 35.939279436710414,
+   "p_value": 0.14546,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.14327162756884623,
+    0.14765186706239614
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 30,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 58
+  },
+  {
+   "younger": "531365",
+   "older": "531364",
+   "depths_cm": [
+    380,
+    382
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    380,
+    381
+   ],
+   "braycurtis_proportions": 0.27956900124326567,
+   "community_relative_braycurtis": 0.27956900124326567,
+   "community_raw_braycurtis": 0.27989487516425754,
+   "community_binary_jaccard": 0.33333333333333337,
+   "pearson_chi_squared": 96.42769259538471,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 33,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Pherosphaera hookeriana",
+     "counts_younger_older": [
+      38,
+      4
+     ],
+     "forward_change_younger_minus_older": 0.08950131233595801,
+     "p_value": 1.3526401968808338e-08,
+     "p_value_holm": 3.3004420803892346e-05
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 12
+  },
+  {
+   "younger": "531364",
+   "older": "531366",
+   "depths_cm": [
+    382,
+    385
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    381,
+    425
+   ],
+   "braycurtis_proportions": 0.13697699552261847,
+   "community_relative_braycurtis": 0.1369769955226185,
+   "community_raw_braycurtis": 0.1488833746898263,
+   "community_binary_jaccard": 0.36111111111111116,
+   "pearson_chi_squared": 41.97632700123603,
+   "p_value": 0.15626,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.15400610738004544,
+    0.15851697443389917
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 36,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 63
+  },
+  {
+   "younger": "531366",
+   "older": "531367",
+   "depths_cm": [
+    385,
+    390
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    425,
+    377
+   ],
+   "braycurtis_proportions": 0.20602278046497116,
+   "community_relative_braycurtis": 0.20602278046497116,
+   "community_raw_braycurtis": 0.19201995012468828,
+   "community_binary_jaccard": 0.375,
+   "pearson_chi_squared": 63.73755274545299,
+   "p_value": 5e-05,
+   "p_value_holm": 0.002,
+   "tail_probability_interval": [
+    1.0898866817167697e-05,
+    0.000102413714707977
+   ],
+   "holm_envelope": [
+    0.0004359546726867079,
+    0.00409654858831908
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 32,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 36
+  },
+  {
+   "younger": "531367",
+   "older": "531368",
+   "depths_cm": [
+    390,
+    395
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    377,
+    350
+   ],
+   "braycurtis_proportions": 0.21620310723759,
+   "community_relative_braycurtis": 0.21620310723759,
+   "community_raw_braycurtis": 0.21595598349381018,
+   "community_binary_jaccard": 0.37037037037037035,
+   "pearson_chi_squared": 78.14031033068464,
+   "p_value": 1e-05,
+   "p_value_holm": 0.0007700000000000001,
+   "tail_probability_interval": [
+    0.0,
+    3.6888483035950746e-05
+   ],
+   "holm_envelope": [
+    0.0,
+    0.0028404131937682076
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 27,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Lagarostrobos franklinii",
+     "counts_younger_older": [
+      2,
+      22
+     ],
+     "forward_change_younger_minus_older": -0.057552103069344454,
+     "p_value": 8.651309515773128e-06,
+     "p_value_holm": 0.02088426117107633
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 32
+  },
+  {
+   "younger": "531368",
+   "older": "531369",
+   "depths_cm": [
+    395,
+    400
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    350,
+    391
+   ],
+   "braycurtis_proportions": 0.20132261600292295,
+   "community_relative_braycurtis": 0.20132261600292295,
+   "community_raw_braycurtis": 0.20107962213225372,
+   "community_binary_jaccard": 0.28,
+   "pearson_chi_squared": 53.20999253935794,
+   "p_value": 0.0001,
+   "p_value_holm": 0.0038,
+   "tail_probability_interval": [
+    4.115494189473072e-05,
+    0.00017084283655313776
+   ],
+   "holm_envelope": [
+    0.0015638877919997673,
+    0.0064920277890192345
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 25,
+   "n_taxa_holm_lt_005": 1,
+   "taxa_holm_lt_005_by_forward_change": [
+    {
+     "taxon": "Lagarostrobos franklinii",
+     "counts_younger_older": [
+      22,
+      78
+     ],
+     "forward_change_younger_minus_older": -0.13663134819145048,
+     "p_value": 4.062691882608216e-08,
+     "p_value_holm": 9.892654734151005e-05
+    }
+   ],
+   "adjacent_rank_by_braycurtis": 37
+  },
+  {
+   "younger": "531369",
+   "older": "531370",
+   "depths_cm": [
+    400,
+    405
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    391,
+    357
+   ],
+   "braycurtis_proportions": 0.1269029350870783,
+   "community_relative_braycurtis": 0.1269029350870783,
+   "community_raw_braycurtis": 0.13101604278074866,
+   "community_binary_jaccard": 0.36,
+   "pearson_chi_squared": 27.390505678779004,
+   "p_value": 0.25086,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.2481679159032599,
+    0.2535515588511128
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 25,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 67
+  },
+  {
+   "younger": "531370",
+   "older": "531371",
+   "depths_cm": [
+    405,
+    410
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    357,
+    356
+   ],
+   "braycurtis_proportions": 0.1499228905045164,
+   "community_relative_braycurtis": 0.1499228905045164,
+   "community_raw_braycurtis": 0.15007012622720897,
+   "community_binary_jaccard": 0.2727272727272727,
+   "pearson_chi_squared": 31.567076028854054,
+   "p_value": 0.03978,
+   "p_value_holm": 0.56048,
+   "tail_probability_interval": [
+    0.03856755673597465,
+    0.04100002509503681
+   ],
+   "holm_envelope": [
+    0.5422315239943986,
+    0.5788528367347975
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 22,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 56
+  },
+  {
+   "younger": "531371",
+   "older": "531373",
+   "depths_cm": [
+    410,
+    415
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    356,
+    365
+   ],
+   "braycurtis_proportions": 0.1285747267969832,
+   "community_relative_braycurtis": 0.1285747267969832,
+   "community_raw_braycurtis": 0.13453536754507628,
+   "community_binary_jaccard": 0.29166666666666663,
+   "pearson_chi_squared": 27.612928918551752,
+   "p_value": 0.18442,
+   "p_value_holm": 1.0,
+   "tail_probability_interval": [
+    0.18201232298968617,
+    0.18682968372006664
+   ],
+   "holm_envelope": [
+    1.0,
+    1.0
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 24,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 66
+  },
+  {
+   "younger": "531373",
+   "older": "531372",
+   "depths_cm": [
+    415,
+    420
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    365,
+    361
+   ],
+   "braycurtis_proportions": 0.2273213675862331,
+   "community_relative_braycurtis": 0.2273213675862331,
+   "community_raw_braycurtis": 0.22865013774104684,
+   "community_binary_jaccard": 0.34615384615384615,
+   "pearson_chi_squared": 56.45506062504219,
+   "p_value": 3e-05,
+   "p_value_holm": 0.00126,
+   "tail_probability_interval": [
+    2.4221261840567683e-06,
+    7.224571180329286e-05
+   ],
+   "holm_envelope": [
+    0.00010172929973038427,
+    0.0030343198957383
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 26,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 28
+  },
+  {
+   "younger": "531372",
+   "older": "531374",
+   "depths_cm": [
+    420,
+    425
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    361,
+    314
+   ],
+   "braycurtis_proportions": 0.17710888014538526,
+   "community_relative_braycurtis": 0.17710888014538526,
+   "community_raw_braycurtis": 0.17037037037037037,
+   "community_binary_jaccard": 0.36,
+   "pearson_chi_squared": 41.544349022559786,
+   "p_value": 0.00399,
+   "p_value_holm": 0.10772999999999999,
+   "tail_probability_interval": [
+    0.003599249491691216,
+    0.004390027327848398
+   ],
+   "holm_envelope": [
+    0.09717973627566283,
+    0.11853073785190675
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 25,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 47
+  },
+  {
+   "younger": "531374",
+   "older": "531375",
+   "depths_cm": [
+    425,
+    427
+   ],
+   "ages_ippd2": [
+    null,
+    null
+   ],
+   "elapsed_ippd2_years": null,
+   "totals": [
+    314,
+    352
+   ],
+   "braycurtis_proportions": 0.16106325998841922,
+   "community_relative_braycurtis": 0.16106325998841925,
+   "community_raw_braycurtis": 0.18018018018018017,
+   "community_binary_jaccard": 0.3076923076923077,
+   "pearson_chi_squared": 39.566866295969014,
+   "p_value": 0.01555,
+   "p_value_holm": 0.29545,
+   "tail_probability_interval": [
+    0.014782616724650484,
+    0.01632597933002152
+   ],
+   "holm_envelope": [
+    0.2808697177683592,
+    0.3101936072704089
+   ],
+   "monte_carlo_sensitive": false,
+   "monte_carlo_unresolved_raw": false,
+   "n_taxa_tested": 26,
+   "n_taxa_holm_lt_005": 0,
+   "taxa_holm_lt_005_by_forward_change": [],
+   "adjacent_rank_by_braycurtis": 50
+  }
+ ],
+ "named_comparisons": {
+  "historical_45_38ka": {
+   "primary": {
+    "younger": "531333",
+    "older": "531341",
+    "depths_cm": [
+     225,
+     265
+    ],
+    "ages_ippd2": [
+     36902,
+     45481
+    ],
+    "elapsed_ippd2_years": 8579,
+    "totals": [
+     417,
+     420
+    ],
+    "braycurtis_proportions": 0.1961973278520041,
+    "community_relative_braycurtis": 0.1961973278520041,
+    "community_raw_braycurtis": 0.19474313022700118,
+    "community_binary_jaccard": 0.42500000000000004,
+    "pearson_chi_squared": 69.83673390730108,
+    "p_value": 0.00015,
+    "p_value_holm": 0.005549999999999999,
+    "tail_probability_interval": [
+     7.654211423810707e-05,
+     0.00023488741459066548
+    ],
+    "holm_envelope": [
+     0.0028320582268099616,
+     0.008690834339854623
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 40,
+    "n_taxa_holm_lt_005": 0,
+    "taxa_holm_lt_005_by_forward_change": []
+   },
+   "ippd1_sensitivity": {
+    "younger": "531319",
+    "older": "531342",
+    "depths_cm": [
+     190,
+     270
+    ],
+    "ages_ippd2": [
+     28830,
+     46552
+    ],
+    "elapsed_ippd2_years": 17722,
+    "totals": [
+     305,
+     329
+    ],
+    "braycurtis_proportions": 0.34898599830584487,
+    "community_relative_braycurtis": 0.34898599830584487,
+    "community_raw_braycurtis": 0.3501577287066246,
+    "community_binary_jaccard": 0.4814814814814815,
+    "pearson_chi_squared": 106.400471410359,
+    "p_value": 1e-05,
+    "p_value_holm": 0.0007700000000000001,
+    "tail_probability_interval": [
+     0.0,
+     3.6888483035950746e-05
+    ],
+    "holm_envelope": [
+     0.0,
+     0.0028404131937682076
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 27,
+    "n_taxa_holm_lt_005": 2,
+    "taxa_holm_lt_005_by_forward_change": [
+     {
+      "taxon": "Poaceae",
+      "counts_younger_older": [
+       121,
+       61
+      ],
+      "forward_change_younger_minus_older": 0.2113109771289053,
+      "p_value": 5.044899176837382e-09,
+      "p_value_holm": 1.2319643789836887e-05
+     },
+     {
+      "taxon": "Restionaceae",
+      "counts_younger_older": [
+       0,
+       22
+      ],
+      "forward_change_younger_minus_older": -0.0668693009118541,
+      "p_value": 4.4860000299146873e-07,
+      "p_value_holm": 0.001089200807263286
+     }
+    ]
+   },
+   "adjacent_steps_within": [
+    {
+     "younger": "531333",
+     "older": "531334",
+     "braycurtis_proportions": 0.1404898553067658,
+     "p_value_holm": 1.0,
+     "adjacent_rank_by_braycurtis": 62
+    },
+    {
+     "younger": "531334",
+     "older": "531335",
+     "braycurtis_proportions": 0.15140702500253062,
+     "p_value_holm": 0.56048,
+     "adjacent_rank_by_braycurtis": 55
+    },
+    {
+     "younger": "531335",
+     "older": "531336",
+     "braycurtis_proportions": 0.2352665165165165,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 26
+    },
+    {
+     "younger": "531336",
+     "older": "531337",
+     "braycurtis_proportions": 0.2549162465868515,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 19
+    },
+    {
+     "younger": "531337",
+     "older": "531338",
+     "braycurtis_proportions": 0.14684006041549905,
+     "p_value_holm": 0.13975,
+     "adjacent_rank_by_braycurtis": 57
+    },
+    {
+     "younger": "531338",
+     "older": "531339",
+     "braycurtis_proportions": 0.2425469315489364,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 24
+    },
+    {
+     "younger": "531339",
+     "older": "531340",
+     "braycurtis_proportions": 0.1801098889999899,
+     "p_value_holm": 0.07163,
+     "adjacent_rank_by_braycurtis": 45
+    },
+    {
+     "younger": "531340",
+     "older": "531341",
+     "braycurtis_proportions": 0.2850320245057087,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 10
+    }
+   ]
+  },
+  "benchmark_mis3_lgm": {
+   "primary": {
+    "younger": "531310",
+    "older": "531319",
+    "depths_cm": [
+     145,
+     190
+    ],
+    "ages_ippd2": [
+     20928,
+     28830
+    ],
+    "elapsed_ippd2_years": 7902,
+    "totals": [
+     353,
+     305
+    ],
+    "braycurtis_proportions": 0.7265778108020248,
+    "community_relative_braycurtis": 0.7265778108020248,
+    "community_raw_braycurtis": 0.7142857142857143,
+    "community_binary_jaccard": 0.6666666666666667,
+    "pearson_chi_squared": 382.23846795118016,
+    "p_value": 1e-05,
+    "p_value_holm": 0.0007700000000000001,
+    "tail_probability_interval": [
+     0.0,
+     3.6888483035950746e-05
+    ],
+    "holm_envelope": [
+     0.0,
+     0.0028404131937682076
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 36,
+    "n_taxa_holm_lt_005": 7,
+    "taxa_holm_lt_005_by_forward_change": [
+     {
+      "taxon": "Poaceae",
+      "counts_younger_older": [
+       35,
+       121
+      ],
+      "forward_change_younger_minus_older": -0.2975711698323503,
+      "p_value": 1.3479331214541895e-19,
+      "p_value_holm": 3.3186113450202147e-16
+     },
+     {
+      "taxon": "Apiaceae cf. Dichosciadium",
+      "counts_younger_older": [
+       1,
+       66
+      ],
+      "forward_change_younger_minus_older": -0.21356058143314913,
+      "p_value": 5.395500523201585e-23,
+      "p_value_holm": 1.3294513289168705e-19
+     },
+     {
+      "taxon": "Asteraceae",
+      "counts_younger_older": [
+       30,
+       71
+      ],
+      "forward_change_younger_minus_older": -0.14780104955185064,
+      "p_value": 2.221874641849874e-07,
+      "p_value_holm": 0.0005399155379695194
+     },
+     {
+      "taxon": "Phyllocladus aspleniifolius",
+      "counts_younger_older": [
+       52,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.14730878186968838,
+      "p_value": 2.2011915512538265e-15,
+      "p_value_holm": 5.410528832981906e-12
+     },
+     {
+      "taxon": "Restionaceae",
+      "counts_younger_older": [
+       42,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.11898016997167139,
+      "p_value": 1.419377125231305e-12,
+      "p_value_holm": 3.481732088192391e-09
+     },
+     {
+      "taxon": "Nothofagus cunninghamii",
+      "counts_younger_older": [
+       30,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.08498583569405099,
+      "p_value": 5.930889644106906e-09,
+      "p_value_holm": 1.4477301621264959e-05
+     },
+     {
+      "taxon": "Leptospermum",
+      "counts_younger_older": [
+       29,
+       3
+      ],
+      "forward_change_younger_minus_older": 0.0723169089304788,
+      "p_value": 6.036188602908679e-06,
+      "p_value_holm": 0.014595504041833187
+     }
+    ]
+   },
+   "ippd1_sensitivity": {
+    "younger": "531308",
+    "older": "531314",
+    "depths_cm": [
+     135,
+     165
+    ],
+    "ages_ippd2": [
+     19097,
+     23132
+    ],
+    "elapsed_ippd2_years": 4035,
+    "totals": [
+     340,
+     335
+    ],
+    "braycurtis_proportions": 0.7189640035118525,
+    "community_relative_braycurtis": 0.7189640035118525,
+    "community_raw_braycurtis": 0.7185185185185186,
+    "community_binary_jaccard": 0.6428571428571428,
+    "pearson_chi_squared": 416.1282625190234,
+    "p_value": 1e-05,
+    "p_value_holm": 0.0007700000000000001,
+    "tail_probability_interval": [
+     0.0,
+     3.6888483035950746e-05
+    ],
+    "holm_envelope": [
+     0.0,
+     0.0028404131937682076
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 28,
+    "n_taxa_holm_lt_005": 7,
+    "taxa_holm_lt_005_by_forward_change": [
+     {
+      "taxon": "Poaceae",
+      "counts_younger_older": [
+       1,
+       100
+      ],
+      "forward_change_younger_minus_older": -0.2955662862159789,
+      "p_value": 3.600235724692294e-33,
+      "p_value_holm": 8.874581061366506e-30
+     },
+     {
+      "taxon": "Phyllocladus aspleniifolius",
+      "counts_younger_older": [
+       69,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.20294117647058824,
+      "p_value": 8.17846134493087e-23,
+      "p_value_holm": 2.0143550292564731e-19
+     },
+     {
+      "taxon": "Asteraceae",
+      "counts_younger_older": [
+       40,
+       98
+      ],
+      "forward_change_younger_minus_older": -0.17489025460930643,
+      "p_value": 2.0963216984119942e-08,
+      "p_value_holm": 5.112928622426854e-05
+     },
+     {
+      "taxon": "Nothofagus cunninghamii",
+      "counts_younger_older": [
+       57,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.1676470588235294,
+      "p_value": 1.1588103478268862e-18,
+      "p_value_holm": 2.851832266001967e-15
+     },
+     {
+      "taxon": "Apiaceae cf. Dichosciadium",
+      "counts_younger_older": [
+       0,
+       55
+      ],
+      "forward_change_younger_minus_older": -0.16417910447761194,
+      "p_value": 1.618204077481736e-18,
+      "p_value_holm": 3.979163826527589e-15
+     },
+     {
+      "taxon": "Leptospermum",
+      "counts_younger_older": [
+       60,
+       13
+      ],
+      "forward_change_younger_minus_older": 0.1376646180860404,
+      "p_value": 4.047784870794954e-09,
+      "p_value_holm": 9.888738439352073e-06
+     },
+     {
+      "taxon": "Epacrideae",
+      "counts_younger_older": [
+       19,
+       0
+      ],
+      "forward_change_younger_minus_older": 0.05588235294117647,
+      "p_value": 2.969008783090812e-06,
+      "p_value_holm": 0.007190939272645947
+     }
+    ]
+   },
+   "adjacent_steps_within": [
+    {
+     "younger": "531310",
+     "older": "531311",
+     "braycurtis_proportions": 0.2708923512747875,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 14
+    },
+    {
+     "younger": "531311",
+     "older": "531312",
+     "braycurtis_proportions": 0.3399138811852284,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 6
+    },
+    {
+     "younger": "531312",
+     "older": "531313",
+     "braycurtis_proportions": 0.4623731797451833,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 1
+    },
+    {
+     "younger": "531313",
+     "older": "531314",
+     "braycurtis_proportions": 0.2756218905472637,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 13
+    },
+    {
+     "younger": "531314",
+     "older": "531315",
+     "braycurtis_proportions": 0.14609560891196194,
+     "p_value_holm": 0.005549999999999999,
+     "adjacent_rank_by_braycurtis": 59
+    },
+    {
+     "younger": "531315",
+     "older": "531316",
+     "braycurtis_proportions": 0.18478942347008315,
+     "p_value_holm": 0.13052,
+     "adjacent_rank_by_braycurtis": 43
+    },
+    {
+     "younger": "531316",
+     "older": "531317",
+     "braycurtis_proportions": 0.25838351757135786,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 18
+    },
+    {
+     "younger": "531317",
+     "older": "531318",
+     "braycurtis_proportions": 0.26634125636672323,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 17
+    },
+    {
+     "younger": "531318",
+     "older": "531319",
+     "braycurtis_proportions": 0.14341618191433106,
+     "p_value_holm": 0.019799999999999998,
+     "adjacent_rank_by_braycurtis": 60
+    }
+   ]
+  },
+  "benchmark_lateglacial_holocene": {
+   "primary": {
+    "younger": "531321",
+    "older": "531332",
+    "depths_cm": [
+     100,
+     120
+    ],
+    "ages_ippd2": [
+     7532,
+     15176
+    ],
+    "elapsed_ippd2_years": 7644,
+    "totals": [
+     360,
+     344
+    ],
+    "braycurtis_proportions": 0.2890826873385013,
+    "community_relative_braycurtis": 0.28908268733850134,
+    "community_raw_braycurtis": 0.29261363636363635,
+    "community_binary_jaccard": 0.40625,
+    "pearson_chi_squared": 104.67267598673092,
+    "p_value": 1e-05,
+    "p_value_holm": 0.0007700000000000001,
+    "tail_probability_interval": [
+     0.0,
+     3.6888483035950746e-05
+    ],
+    "holm_envelope": [
+     0.0,
+     0.0028404131937682076
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 32,
+    "n_taxa_holm_lt_005": 1,
+    "taxa_holm_lt_005_by_forward_change": [
+     {
+      "taxon": "Asteraceae",
+      "counts_younger_older": [
+       1,
+       27
+      ],
+      "forward_change_younger_minus_older": -0.07571059431524547,
+      "p_value": 3.984766143948324e-08,
+      "p_value_holm": 9.706890326658117e-05
+     }
+    ]
+   },
+   "ippd1_sensitivity": {
+    "younger": "531329",
+    "older": "531332",
+    "depths_cm": [
+     95,
+     120
+    ],
+    "ages_ippd2": [
+     5758,
+     15176
+    ],
+    "elapsed_ippd2_years": 9418,
+    "totals": [
+     389,
+     344
+    ],
+    "braycurtis_proportions": 0.3121674538171818,
+    "community_relative_braycurtis": 0.3121674538171818,
+    "community_raw_braycurtis": 0.31241473396998637,
+    "community_binary_jaccard": 0.40625,
+    "pearson_chi_squared": 129.21177495421432,
+    "p_value": 1e-05,
+    "p_value_holm": 0.0007700000000000001,
+    "tail_probability_interval": [
+     0.0,
+     3.6888483035950746e-05
+    ],
+    "holm_envelope": [
+     0.0,
+     0.0028404131937682076
+    ],
+    "monte_carlo_sensitive": false,
+    "monte_carlo_unresolved_raw": false,
+    "n_taxa_tested": 32,
+    "n_taxa_holm_lt_005": 1,
+    "taxa_holm_lt_005_by_forward_change": [
+     {
+      "taxon": "Melaleuca",
+      "counts_younger_older": [
+       37,
+       6
+      ],
+      "forward_change_younger_minus_older": 0.07767382076881688,
+      "p_value": 4.83697871766379e-06,
+      "p_value_holm": 0.011700651518028708
+     }
+    ]
+   },
+   "adjacent_steps_within": [
+    {
+     "younger": "531321",
+     "older": "531323",
+     "braycurtis_proportions": 0.2238372093023256,
+     "p_value_holm": 0.0007700000000000001,
+     "adjacent_rank_by_braycurtis": 29
+    },
+    {
+     "younger": "531323",
+     "older": "531327",
+     "braycurtis_proportions": 0.16008739446008,
+     "p_value_holm": 0.9395100000000001,
+     "adjacent_rank_by_braycurtis": 51
+    },
+    {
+     "younger": "531327",
+     "older": "531328",
+     "braycurtis_proportions": 0.18075661069291643,
+     "p_value_holm": 0.31266,
+     "adjacent_rank_by_braycurtis": 44
+    },
+    {
+     "younger": "531328",
+     "older": "531332",
+     "braycurtis_proportions": 0.19147607149721316,
+     "p_value_holm": 0.2676,
+     "adjacent_rank_by_braycurtis": 40
+    }
+   ]
+  }
+ },
+ "zero_count_limits": {
+  "531306": {
+   "n": 428,
+   "upper_limit": 0.006974935900904944,
+   "n_absent_taxa": 26
+  },
+  "531305": {
+   "n": 392,
+   "upper_limit": 0.007613046999752984,
+   "n_absent_taxa": 41
+  },
+  "531304": {
+   "n": 336,
+   "upper_limit": 0.008876241355725636,
+   "n_absent_taxa": 36
+  },
+  "531329": {
+   "n": 389,
+   "upper_limit": 0.00767153366133107,
+   "n_absent_taxa": 43
+  },
+  "531321": {
+   "n": 360,
+   "upper_limit": 0.00828695087523565,
+   "n_absent_taxa": 43
+  },
+  "531323": {
+   "n": 344,
+   "upper_limit": 0.0086707146896368,
+   "n_absent_taxa": 42
+  },
+  "531327": {
+   "n": 314,
+   "upper_limit": 0.009495181996557973,
+   "n_absent_taxa": 40
+  },
+  "531328": {
+   "n": 363,
+   "upper_limit": 0.008218745894791959,
+   "n_absent_taxa": 36
+  },
+  "531332": {
+   "n": 344,
+   "upper_limit": 0.0086707146896368,
+   "n_absent_taxa": 38
+  },
+  "531330": {
+   "n": 358,
+   "upper_limit": 0.008333053260890996,
+   "n_absent_taxa": 44
+  },
+  "531307": {
+   "n": 365,
+   "upper_limit": 0.008173896228170283,
+   "n_absent_taxa": 42
+  },
+  "531308": {
+   "n": 340,
+   "upper_limit": 0.008772274368443987,
+   "n_absent_taxa": 44
+  },
+  "531309": {
+   "n": 377,
+   "upper_limit": 0.007914751550349658,
+   "n_absent_taxa": 38
+  },
+  "531310": {
+   "n": 353,
+   "upper_limit": 0.008450585056457679,
+   "n_absent_taxa": 36
+  },
+  "531311": {
+   "n": 408,
+   "upper_limit": 0.007315590902302243,
+   "n_absent_taxa": 34
+  },
+  "531312": {
+   "n": 403,
+   "upper_limit": 0.007406018129223199,
+   "n_absent_taxa": 40
+  },
+  "531313": {
+   "n": 327,
+   "upper_limit": 0.009119424281715922,
+   "n_absent_taxa": 34
+  },
+  "531314": {
+   "n": 335,
+   "upper_limit": 0.008902619304553331,
+   "n_absent_taxa": 50
+  },
+  "531315": {
+   "n": 345,
+   "upper_limit": 0.008645691142152051,
+   "n_absent_taxa": 47
+  },
+  "531316": {
+   "n": 319,
+   "upper_limit": 0.009347052435473017,
+   "n_absent_taxa": 48
+  },
+  "531317": {
+   "n": 304,
+   "upper_limit": 0.009805987150926182,
+   "n_absent_taxa": 48
+  },
+  "531318": {
+   "n": 372,
+   "upper_limit": 0.008020704856380689,
+   "n_absent_taxa": 47
+  },
+  "531319": {
+   "n": 305,
+   "upper_limit": 0.009773994009397307,
+   "n_absent_taxa": 48
+  },
+  "531320": {
+   "n": 414,
+   "upper_limit": 0.007209950984945167,
+   "n_absent_taxa": 40
+  },
+  "531322": {
+   "n": 309,
+   "upper_limit": 0.009648082158397903,
+   "n_absent_taxa": 44
+  },
+  "531324": {
+   "n": 421,
+   "upper_limit": 0.007090496587222647,
+   "n_absent_taxa": 44
+  },
+  "531325": {
+   "n": 422,
+   "upper_limit": 0.0070737540304455625,
+   "n_absent_taxa": 39
+  },
+  "531326": {
+   "n": 413,
+   "upper_limit": 0.007227345255314755,
+   "n_absent_taxa": 40
+  },
+  "531331": {
+   "n": 421,
+   "upper_limit": 0.007090496587222647,
+   "n_absent_taxa": 38
+  },
+  "531333": {
+   "n": 417,
+   "upper_limit": 0.007158266930348477,
+   "n_absent_taxa": 37
+  },
+  "531334": {
+   "n": 356,
+   "upper_limit": 0.008379671471432974,
+   "n_absent_taxa": 41
+  },
+  "531335": {
+   "n": 444,
+   "upper_limit": 0.00672443388560798,
+   "n_absent_taxa": 40
+  },
+  "531336": {
+   "n": 288,
+   "upper_limit": 0.01034793603989076,
+   "n_absent_taxa": 38
+  },
+  "531337": {
+   "n": 529,
+   "upper_limit": 0.005647005353641,
+   "n_absent_taxa": 34
+  },
+  "531338": {
+   "n": 398,
+   "upper_limit": 0.007498708846630895,
+   "n_absent_taxa": 42
+  },
+  "531339": {
+   "n": 386,
+   "upper_limit": 0.007730925914285606,
+   "n_absent_taxa": 37
+  },
+  "531340": {
+   "n": 513,
+   "upper_limit": 0.005822616540002386,
+   "n_absent_taxa": 36
+  },
+  "531341": {
+   "n": 420,
+   "upper_limit": 0.007107318586130681,
+   "n_absent_taxa": 32
+  },
+  "531342": {
+   "n": 329,
+   "upper_limit": 0.009064239065107034,
+   "n_absent_taxa": 43
+  },
+  "531343": {
+   "n": 305,
+   "upper_limit": 0.009773994009397307,
+   "n_absent_taxa": 46
+  },
+  "531345": {
+   "n": 298,
+   "upper_limit": 0.010002432437677691,
+   "n_absent_taxa": 42
+  },
+  "531344": {
+   "n": 315,
+   "upper_limit": 0.009465181671144483,
+   "n_absent_taxa": 41
+  },
+  "531346": {
+   "n": 364,
+   "upper_limit": 0.008196259708308755,
+   "n_absent_taxa": 37
+  },
+  "531347": {
+   "n": 355,
+   "upper_limit": 0.008403176723952554,
+   "n_absent_taxa": 38
+  },
+  "531348": {
+   "n": 388,
+   "upper_limit": 0.007691229424395649,
+   "n_absent_taxa": 35
+  },
+  "531349": {
+   "n": 389,
+   "upper_limit": 0.00767153366133107,
+   "n_absent_taxa": 36
+  },
+  "531350": {
+   "n": 360,
+   "upper_limit": 0.00828695087523565,
+   "n_absent_taxa": 36
+  },
+  "531351": {
+   "n": 438,
+   "upper_limit": 0.006816234766836907,
+   "n_absent_taxa": 37
+  },
+  "531352": {
+   "n": 351,
+   "upper_limit": 0.008498531349371695,
+   "n_absent_taxa": 37
+  },
+  "531353": {
+   "n": 322,
+   "upper_limit": 0.009260372569046865,
+   "n_absent_taxa": 42
+  },
+  "531354": {
+   "n": 413,
+   "upper_limit": 0.007227345255314755,
+   "n_absent_taxa": 37
+  },
+  "531355": {
+   "n": 512,
+   "upper_limit": 0.005833955600556271,
+   "n_absent_taxa": 29
+  },
+  "531356": {
+   "n": 475,
+   "upper_limit": 0.006286958636970969,
+   "n_absent_taxa": 32
+  },
+  "531357": {
+   "n": 447,
+   "upper_limit": 0.006679454518014646,
+   "n_absent_taxa": 31
+  },
+  "531358": {
+   "n": 425,
+   "upper_limit": 0.0070239974250077865,
+   "n_absent_taxa": 37
+  },
+  "531359": {
+   "n": 492,
+   "upper_limit": 0.006070387030609589,
+   "n_absent_taxa": 33
+  },
+  "531360": {
+   "n": 347,
+   "upper_limit": 0.00859607486323134,
+   "n_absent_taxa": 34
+  },
+  "531361": {
+   "n": 367,
+   "upper_limit": 0.00812953339112921,
+   "n_absent_taxa": 36
+  },
+  "531362": {
+   "n": 282,
+   "upper_limit": 0.010566937560320233,
+   "n_absent_taxa": 40
+  },
+  "531363": {
+   "n": 324,
+   "upper_limit": 0.009203473636780323,
+   "n_absent_taxa": 38
+  },
+  "531365": {
+   "n": 380,
+   "upper_limit": 0.0078525126486018,
+   "n_absent_taxa": 41
+  },
+  "531364": {
+   "n": 381,
+   "upper_limit": 0.00783198330063873,
+   "n_absent_taxa": 36
+  },
+  "531366": {
+   "n": 425,
+   "upper_limit": 0.0070239974250077865,
+   "n_absent_taxa": 37
+  },
+  "531367": {
+   "n": 377,
+   "upper_limit": 0.007914751550349658,
+   "n_absent_taxa": 43
+  },
+  "531368": {
+   "n": 350,
+   "upper_limit": 0.008522709100562015,
+   "n_absent_taxa": 45
+  },
+  "531369": {
+   "n": 391,
+   "upper_limit": 0.007632443214129579,
+   "n_absent_taxa": 44
+  },
+  "531370": {
+   "n": 357,
+   "upper_limit": 0.008356297348494829,
+   "n_absent_taxa": 47
+  },
+  "531371": {
+   "n": 356,
+   "upper_limit": 0.008379671471432974,
+   "n_absent_taxa": 47
+  },
+  "531373": {
+   "n": 365,
+   "upper_limit": 0.008173896228170283,
+   "n_absent_taxa": 44
+  },
+  "531372": {
+   "n": 361,
+   "upper_limit": 0.008264090448726766,
+   "n_absent_taxa": 45
+  },
+  "531374": {
+   "n": 314,
+   "upper_limit": 0.009495181996557973,
+   "n_absent_taxa": 46
+  },
+  "531375": {
+   "n": 352,
+   "upper_limit": 0.00847449038719455,
+   "n_absent_taxa": 42
+  }
+ },
+ "ordination": {
+  "relative_braycurtis": {
+   "eigenvalues": [
+    6.913281620306377,
+    1.6747923614948537,
+    1.1187982740536355,
+    0.4844412895112069,
+    0.3683529295566928
+   ],
+   "axis_positive_inertia": [
+    0.5310880828483165,
+    0.12865992061175255,
+    0.08594766756150436
+   ],
+   "negative_to_positive_inertia": 0.07376906926204958,
+   "coordinates_axis1_2": {
+    "531306": [
+     0.18183041452473722,
+     -0.24264868010633597
+    ],
+    "531305": [
+     0.17028789726922508,
+     -0.3359608997562037
+    ],
+    "531304": [
+     0.2627766771573814,
+     -0.29045894293541064
+    ],
+    "531329": [
+     0.28220773827794343,
+     -0.258501627606445
+    ],
+    "531321": [
+     0.32177799948946195,
+     -0.23922725119141217
+    ],
+    "531323": [
+     0.24555754213502123,
+     -0.22302210768187494
+    ],
+    "531327": [
+     0.20872061779681197,
+     -0.2215525730774938
+    ],
+    "531328": [
+     0.24644545316628455,
+     -0.1995457773856945
+    ],
+    "531332": [
+     0.2642491383504926,
+     -0.13551350383086316
+    ],
+    "531330": [
+     0.3047008978986826,
+     0.023153282192577486
+    ],
+    "531307": [
+     0.281914745372691,
+     -0.039751410319777934
+    ],
+    "531308": [
+     0.24753377956229822,
+     -0.05946801954720078
+    ],
+    "531309": [
+     0.18515649493979855,
+     0.016103170508809522
+    ],
+    "531310": [
+     0.11843044334798436,
+     -0.07860288786295562
+    ],
+    "531311": [
+     -0.031224982726669064,
+     -0.15136631963945676
+    ],
+    "531312": [
+     -0.12628496653420396,
+     -0.19655830866307591
+    ],
+    "531313": [
+     -0.34260475048151173,
+     0.06331751977435576
+    ],
+    "531314": [
+     -0.4207253659522091,
+     0.09717006958531764
+    ],
+    "531315": [
+     -0.4404793795834241,
+     0.1322642090802314
+    ],
+    "531316": [
+     -0.4396122744473902,
+     0.17082550799176024
+    ],
+    "531317": [
+     -0.44472554830768585,
+     0.22645260408968818
+    ],
+    "531318": [
+     -0.4592208054158091,
+     0.18224746640696632
+    ],
+    "531319": [
+     -0.4310838083846471,
+     0.230855806221529
+    ],
+    "531320": [
+     -0.39824287578505513,
+     0.06216787524222864
+    ],
+    "531322": [
+     -0.40589041263151004,
+     0.12250280685596976
+    ],
+    "531324": [
+     -0.38730662529410687,
+     0.08005208018416093
+    ],
+    "531325": [
+     -0.40534181529685037,
+     0.056301602722897484
+    ],
+    "531326": [
+     -0.3761363305007495,
+     0.02728241712793587
+    ],
+    "531331": [
+     -0.34933899460005396,
+     -0.05589057735727903
+    ],
+    "531333": [
+     -0.34828773578578026,
+     -0.06399871687788898
+    ],
+    "531334": [
+     -0.3173193948944104,
+     -0.06750754112901455
+    ],
+    "531335": [
+     -0.32075061228487445,
+     -0.025987652853738906
+    ],
+    "531336": [
+     -0.28546378517055176,
+     -0.1327611934580512
+    ],
+    "531337": [
+     -0.34620148270197654,
+     0.041891037775802636
+    ],
+    "531338": [
+     -0.3403693402260729,
+     0.03234965109278618
+    ],
+    "531339": [
+     -0.26647901571511373,
+     -0.08541403481480199
+    ],
+    "531340": [
+     -0.18377974079021628,
+     -0.11889299071418666
+    ],
+    "531341": [
+     -0.2721993640032777,
+     -0.07757153517084682
+    ],
+    "531342": [
+     -0.3736473796405722,
+     0.03201564266130747
+    ],
+    "531343": [
+     -0.36083674376086394,
+     0.03927940271537872
+    ],
+    "531345": [
+     -0.2995795041292521,
+     0.07548688271024254
+    ],
+    "531344": [
+     -0.3897311587236428,
+     0.044191947015586895
+    ],
+    "531346": [
+     -0.3706977613632905,
+     0.029358575440452003
+    ],
+    "531347": [
+     -0.18801447917155473,
+     -0.08946847463301268
+    ],
+    "531348": [
+     -0.05514564949639766,
+     -0.18850986326405317
+    ],
+    "531349": [
+     0.09439798398344461,
+     -0.0016046927510379985
+    ],
+    "531350": [
+     0.23184821636385897,
+     0.06317780906017792
+    ],
+    "531351": [
+     0.2541243351781412,
+     0.03423859602326981
+    ],
+    "531352": [
+     -0.04820436701340436,
+     -0.06078845059428771
+    ],
+    "531353": [
+     0.08154503596975646,
+     -0.05060639842578934
+    ],
+    "531354": [
+     0.0816649029823227,
+     -0.057553013498004214
+    ],
+    "531355": [
+     0.08899191590878575,
+     -0.09519735433831121
+    ],
+    "531356": [
+     0.17324184477594462,
+     -0.08111036029814403
+    ],
+    "531357": [
+     0.24581236263995798,
+     -0.012031456578481455
+    ],
+    "531358": [
+     0.2510300311402202,
+     -0.01199168470653842
+    ],
+    "531359": [
+     0.2843679706195387,
+     -0.013315468569720847
+    ],
+    "531360": [
+     0.11166769772988104,
+     -0.14278429122943317
+    ],
+    "531361": [
+     0.16994509642538014,
+     -0.05919861975624015
+    ],
+    "531362": [
+     0.059013732229216506,
+     -0.1526451966821732
+    ],
+    "531363": [
+     0.09564285078461998,
+     -0.06484387786138071
+    ],
+    "531365": [
+     0.12519771529527163,
+     0.020708488525292022
+    ],
+    "531364": [
+     0.2873023572251476,
+     0.0825627284160036
+    ],
+    "531366": [
+     0.3187065435089193,
+     0.060732634644739845
+    ],
+    "531367": [
+     0.36673510583073177,
+     0.1491532898205972
+    ],
+    "531368": [
+     0.43498015976254195,
+     0.23283706149482425
+    ],
+    "531369": [
+     0.4659129236656356,
+     0.2948163726698109
+    ],
+    "531370": [
+     0.46299561345803764,
+     0.3113539995014167
+    ],
+    "531371": [
+     0.4494374036402278,
+     0.2938949405241278
+    ],
+    "531373": [
+     0.46874949761516765,
+     0.3031836632037312
+    ],
+    "531372": [
+     0.4594879322427144,
+     0.28068108787526047
+    ],
+    "531374": [
+     0.42533926437682623,
+     0.2597264256073878
+    ],
+    "531375": [
+     0.41519811817202407,
+     0.20951510040399376
+    ]
+   },
+   "warnings": [
+    {
+     "code": "negative_eigenvalues",
+     "message": "Dissimilarities have material negative PCoA eigenvalues; no correction applied",
+     "details": {
+      "count": 29,
+      "threshold": 1.1052409580038151e-13,
+      "negative_inertia_magnitude": 0.9602669823455484
+     }
+    }
+   ]
+  },
+  "raw_warnings": [
+   {
+    "code": "negative_eigenvalues",
+    "message": "Dissimilarities have material negative PCoA eigenvalues; no correction applied",
+    "details": {
+     "count": 30,
+     "threshold": 1.0951267518775304e-13,
+     "negative_inertia_magnitude": 1.0098711014190362
+    }
+   }
+  ],
+  "jaccard_warnings": [
+   {
+    "code": "negative_eigenvalues",
+    "message": "Dissimilarities have material negative PCoA eigenvalues; no correction applied",
+    "details": {
+     "count": 34,
+     "threshold": 3.904380678851407e-14,
+     "negative_inertia_magnitude": 1.3253682944194758
+    }
+   }
+  ]
+ },
+ "compare_relative_vs_raw": {
+  "settings_changed": [
+   "transform"
+  ],
+  "pearson_distance_correlation": 0.9973566270042149,
+  "spearman_distance_correlation": 0.9976881250277411,
+  "maximum_absolute_distance_change": 0.10086470011364645,
+  "mean_absolute_distance_change": 0.009319858131198615,
+  "symmetric_procrustes_m2": 0.0012456795683899458,
+  "selected_subspace_identifiable": true,
+  "relative_eigengaps": {
+   "baseline": 0.09175917015721337,
+   "sensitivity": 0.08673767364964573
+  },
+  "baseline_link_verified": false,
+  "warnings": []
+ }
+}

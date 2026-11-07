@@ -1,0 +1,25 @@
+{
+ "reference": {
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "vegan_version": "2.7.6",
+  "inext_source_sha256": "ebda76c6f9477c44141900314e94aa0a20498be015afe21877d6d26f170f7619",
+  "settings": {
+   "rarefaction": "vegan::rarefy(x, sample=m, se=TRUE)",
+   "coverage": "iNEXT Chat.Ind(x, m) from pinned source",
+   "relative_braycurtis": "vegdist(decostand(x, 'total'), 'bray')",
+   "jaccard": "vegdist(x, 'jaccard', binary=TRUE)",
+   "fisher": "fisher.test(2x2 taxon vs rest, two.sided)"
+  }
+ },
+ "tolerances": {
+  "default_relative": 1e-10,
+  "conditional_sd_relative": 1e-08,
+  "fisher_relative": 1e-07,
+  "absolute": 1e-12,
+  "distance_absolute": 1e-12
+ },
+ "n_checks": 687,
+ "n_agree": 687,
+ "max_abs_difference": 3.517186542012496e-13,
+ "disagreements": []
+}
