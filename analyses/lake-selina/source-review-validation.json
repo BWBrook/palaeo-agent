@@ -1,0 +1,38 @@
+{
+  "purpose": "Source-protocol preflight only; candidate dryland denominator, not exact Fig6 reconstruction. No analytical estimates or tests computed.",
+  "source_table_sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6",
+  "excluded_taxa": [
+    "Cyperaceae",
+    "Gymnoschoenus sphaerocephalus",
+    "Restionaceae",
+    "Xyridaceae",
+    "Portulacaceae",
+    "Ranunculus"
+  ],
+  "candidate_table_sha256": "3ab89275221f80b190dbf34b83cc5eebd1f339378b28e402df6b93f8d4d6bfe1",
+  "api": "palaeo_agent.validate_rarefaction",
+  "spec": {
+    "method": "rarefaction",
+    "input": "unused",
+    "format": "delimited",
+    "delimiter": "tab",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "metadata": null,
+    "sizes": "minimum_total"
+  },
+  "validation": {
+    "status": "valid",
+    "n_input": 72,
+    "n": 72,
+    "n_taxa": 60,
+    "sizes": [
+      272
+    ],
+    "excluded": [],
+    "warnings": [],
+    "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+  }
+}
