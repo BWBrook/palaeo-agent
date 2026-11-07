@@ -52,8 +52,8 @@ exchange is in [thread 136](correspondence/thread-0136.md).
 | --- | --- | --- |
 | Delivery path | MCP: server instructions and `primer` tool; the user said only "use the toolkit" | Python: the user asked the agent to print the whole `primer()` object first |
 | Full primer read before analysis | yes (first model-requested call) | yes (first call) |
-| Final package through the API | yes: `community`, `compare`, `rarefaction`, `count_homogeneity` | yes: `validate`, `rma`; inference declared unsupported |
-| Whole-session compliance | partial: exploratory horizon totals computed with pandas | partial: deduplicated point slope computed outside the API, undeclared |
+| Final package through the API | yes: `community`, `compare`, `rarefaction`, `count_homogeneity`; glue only | partial: `validate`, `rma`, inference declared unsupported; but the reported deduplicated L2 slope is its own, undeclared, and n, means and SDs are recomputed |
+| Whole-session compliance | partial: exploratory horizon totals computed with pandas | partial: as for the final package |
 | Unsuitable design forced | no (declined PERMANOVA on horizons) | no (descriptive RMA never presented as inference) |
 | Package replays | byte-identical | byte-identical |
 
@@ -80,10 +80,15 @@ exchange is in [thread 136](correspondence/thread-0136.md).
   an intercept.
 
 **What this shows.** In these two sessions, when told to use the toolkit,
-both agents obtained the full primer before analysing. They built their
-final analyses on the API, declared what it could not do, and avoided
-forcing unsuitable designs. They also made small bypasses during the
-session and some scientific overstatements that independent review caught.
+both agents obtained the full primer before analysing. Both built their
+main results on the API, declared the main things it could not do, and
+avoided forcing unsuitable designs. Neither complied fully. I1's final
+package is API calls plus glue, but its session summed totals itself. I2's
+final package computes and reports one supported quantity itself (the
+deduplicated slope), recomputes n, means and SDs that its API results
+already hold, and leaves its bespoke descriptive summaries out of the
+unsupported-parts table. Independent review also caught scientific
+overstatements in both.
 This is consistent with Barry's hypothesis that A1 and A2 ignored the API
 partly because they were not firmly told. Two sessions in one model and
 client establish no compliance rate and no causal explanation of the
@@ -112,7 +117,12 @@ there.
    review:
    - it said I1 had no bespoke computation, which is true of the final
      package only;
-   - it said I2 kept all three duplicate scenarios visible, which is wrong.
+   - it said I2 kept all three duplicate scenarios visible, which is wrong;
+   - it, and the first version of this report, said both final packages
+     used the API for every supported subtask. Barry's review found that
+     I2's `analysis.py` computes the deduplicated slope and recomputes
+     summary statistics itself; both documents now say so. The mechanical
+     check passed because it tests only that the listed operations occur.
 4. **No live evidence on the row-filter warning.** Neither session used
    `study`.
 5. **A review-side replay created import caches in the frozen runtime.**
@@ -140,6 +150,28 @@ there.
   Codex's independent reading of the whole record found the I1 bypass and
   the I2 robustness problem. Neither a primer nor scripted checks replace
   that.
+- **Budgets for any future trial.** What the launcher
+  (`evaluation/authentic/session.py`) enforces today:
+  - **launch-stop:** no session starts once counted spend (sessions plus
+    retrospectives) has reached the ceiling;
+  - **per session:** at most 80 turns and 30 minutes' wall time, and
+    5 minutes for the retrospective.
+
+  It does not stop a session on tokens while it runs, and it does not
+  project what the next session will cost. That gap allowed the overrun: I2
+  started legitimately at 98,628 and then spent 81,318. Before any future
+  trial with a ceiling, two additions would close the gap:
+  - **a reservation check:** launch only if spend so far plus a generous
+    reserve for the session *and* its retrospective fits under the ceiling
+    (on this evidence, 150,000 per session, about 1.5 times the largest
+    observed pair, I1's 98,628);
+  - **an in-run stop:** kill a session whose running counted tokens exceed
+    its reserve. The client's stream reports usage for each model call, but
+    this must be confirmed on the frozen client before it is relied on.
+
+  Alternatively, omit the retrospective. The ceiling would then cover main
+  sessions and follow-ups by construction, and the stated enforcement
+  would be launch-stop, the reservation check and the in-run stop.
 - **No further trials are proposed on this evidence.**
   - A later tranche could measure compliance properly: more sessions,
     models and clients, with budgets that include retrospectives.
@@ -165,4 +197,9 @@ there.
 
 Agreement between the model families is not independent validation. The
 reference implementations (R, iNEXT, PAST) and exact enumerations carry the
-numerical checks. Barry reviews this report before anything is released.
+numerical checks.
+
+Barry reviewed this report on 7 November 2026 (relayed through the board):
+"keep the primer rule as written, retain the partial-compliance and
+scientific qualifications, and treat the two sessions as descriptive
+evidence." His review found the I2 final-package error corrected above.

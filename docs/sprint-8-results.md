@@ -34,8 +34,9 @@ cannot identify a causal effect of the bootstrap.
 | 1. Primer available in runtime | yes | yes |
 | 2. Full body in a tool result before the first analytical call | yes: its first tool call was `primer`, unprompted | yes: call 0 |
 | 2. Body visible in the transcript | yes | yes |
-| Supported subtasks through the API (final package) | `community` (3 representations + `compare`), `rarefaction`, `count_homogeneity` | `validate`, `rma` (log10 and raw, three localities) |
-| Whole-session compliance | partial: horizon totals computed with pandas during exploration | partial: unique-pairs point slope computed outside the API |
+| Listed operations called (final package) | `community` (3 representations + `compare`), `rarefaction`, `count_homogeneity` | `validate`, `rma` (log10 and raw, three localities) |
+| Final-package compliance | yes: API calls plus glue; no supported quantity computed by its own code | partial: computes and reports the unique-pairs L2 slope itself; recomputes n, means and SDs that its raw-scale `rma` results already hold |
+| Whole-session compliance | partial: horizon totals computed with pandas during exploration | partial: as for the final package |
 | Unsupported-parts table | present | present, four rows with reasons and checks |
 | Primer SHA-256 in report | truncated (`47cab284…913d3`) | full |
 | Unsuitable design forced | no; declined PERMANOVA on horizons, with the primer's reason | no; descriptive `rma` never presented as inference; intervals labelled as its own bootstrap |
@@ -81,11 +82,24 @@ was wrong. Codex reran its six-test Mann–Whitney/Holm family under the
 removal scenarios: L1–L2 length goes from Holm p 0.023 (archived) to 0.055
 (block removed) and 0.072 (unique pairs), so "all three pairs differ" is not
 robust to the unresolved record problem; the L3 contrasts stay below 0.05.
-Two further lapses:
-- **A minor rule breach.** The unique-pairs *point* slope was computed with
-  its own `rma()` on a deduplicated array. `study` exclusion plus `rma` is
-  the supported route, and the step is not in its unsupported-parts table.
-  The bootstrap around it is legitimately bespoke.
+Further lapses, all in the saved `analysis.py` and so in the final package
+(rechecked after Barry's review of the joint report, 7 November):
+- **A rule breach in the reported results.** The unique-pairs *point* slope
+  (0.977, quoted in the report) was computed with its own `rma()` on a
+  deduplicated array. `study` exclusion plus `rma` is the supported route,
+  and the step is not in its unsupported-parts table. The bootstrap interval
+  around it is legitimately bespoke.
+- **Recomputed supported quantities.** Its `summary` block recomputes n, mean
+  and SD of length, and mean width, from its own parse of the file. The
+  raw-scale `rma` results it had just saved hold the same quantities
+  (`n`, `mean_x`, `sd_x`, `mean_y`), and the two agree exactly. The report
+  quotes neither set, but `results.json` carries both. It also counts the
+  eight L2 duplicate pairs from the raw array, where the `repeated_pairs`
+  groups the API returned give the same count.
+- **Undeclared bespoke descriptives.** Medians, ranges, skewness, length
+  histograms, the share of shells under 10, width/length ratios and an OLS
+  slope have no toolkit operation, so code is allowed for them, but they are
+  missing from the unsupported-parts table, which the rule requires.
 - **One scientific error.** It said raw-scale slopes (0.82–0.91) are below 1
   "only because the intercept is not zero". In fact the raw slope of width on
   length is near the width/length ratio (≈ 0.84) because widths are smaller
@@ -117,10 +131,16 @@ exercised live.
 
 ## Recommendation on primer and delivery
 
-- **Both paths delivered the full primer before analysis, and both final
-  packages used the API for every supported subtask; whole-session
-  compliance was partial in both** (I1 exploratory totals, I2 deduplicated
-  slope).
+- **Both paths delivered the full primer before analysis.** I1's final
+  package used the API for every supported quantity; its session did not
+  (exploratory totals). I2's final package called `validate` and `rma` but
+  also computed and reported one supported quantity itself (the
+  deduplicated slope) and recomputed others (n, means, SDs). An earlier
+  version of this summary said both final packages used the API for every
+  supported subtask; that was wrong for I2. The mechanical check
+  (`supported_subtasks_through_api`) tests only that each listed operation
+  occurs in the package, so it cannot detect recomputation; only a reading
+  of the code can.
   This is consistent with Barry's hypothesis that A1 and A2 ignored the API
   because they were not firmly told to use it. Two sessions cannot establish
   it.
