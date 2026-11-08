@@ -4,8 +4,8 @@
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
 thread_ids = [136, 145]
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024]
-reviewed_through = 3024
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031]
+reviewed_through = 3031
 exporter_revision = "5ca82a5ad2114960f19ab42cc7f3ff157ac32ce8"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -13,7 +13,7 @@ flag_terms = ["password", "token", "credential", "secret", "student", "email", "
 # paper text or other person's private correspondence is reproduced.
 # 2866: 'access path' describes API delivery; 'Secret scan' records a completed
 # check. Neither passage contains private access routes, credentials or hosts.
-cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967]
+cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026]
 
 # Other reviewed messages (2867, 2886, 2891) contain scientific and implementation
 # decisions, with no flagged content requiring clearance or withholding.
@@ -50,6 +50,9 @@ cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967]
 # 3022 and 3024 propose and review the surface-pollen example and fractional
 # abundance support. Metadata facts, methodological paraphrases and primary
 # documentation links contain no flagged material needing clearance.
+# 3026 and 3031 record sprint-10/application delivery and the independent review.
+# 3026's token references are numeric matrix cells and parser precision checks,
+# not authentication material. 3031 needs no flag clearance or withholding.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],
