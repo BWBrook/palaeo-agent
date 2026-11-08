@@ -1,0 +1,490 @@
+{
+  "reviewed_commit": "7642a7b737c1e6c55e7593823afa9ffc063ce351",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac"
+  },
+  "full_suite": {
+    "passed": 787,
+    "skipped": 11,
+    "seconds": 81.05,
+    "optional_native_confinement": false
+  },
+  "original_input_probes": [
+    {
+      "case": "baseline",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      }
+    },
+    {
+      "case": "all_mixed_units",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "mixed_units",
+      "message": "A kept datum has other units than declared"
+    },
+    {
+      "case": "unknown_dataset",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "unknown_dataset",
+      "message": "Declared datasets are absent from the download"
+    },
+    {
+      "case": "duplicate_sample",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "duplicate_sample",
+      "message": "A sample ID repeats"
+    },
+    {
+      "case": "repeated_label",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "repeated_label",
+      "message": "One sample has two kept data with the same label"
+    },
+    {
+      "case": "label_collision",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "label_collision",
+      "message": "One label maps to more than one taxon identity"
+    },
+    {
+      "case": "wrong_data_shape",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type"
+    },
+    {
+      "case": "wrong_ages_shape",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type"
+    },
+    {
+      "case": "wrong_element_type",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type"
+    },
+    {
+      "case": "wrong_group_type",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type"
+    },
+    {
+      "case": "wrong_taxonid_type",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type"
+    },
+    {
+      "case": "tab_label",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "unsupported_label",
+      "message": "Taxon labels with control characters (tab, newline) cannot pass through toolkit tables"
+    },
+    {
+      "case": "newline_label",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "unsupported_label",
+      "message": "Taxon labels with control characters (tab, newline) cannot pass through toolkit tables"
+    },
+    {
+      "case": "quoted_label",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "parsed_taxon_ids": [
+        "\"Pinus\"",
+        "Poaceae"
+      ]
+    },
+    {
+      "case": "age_duplicate",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "duplicate_age",
+      "message": "A sample has two ages for one chronology"
+    },
+    {
+      "case": "depth_order",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      }
+    },
+    {
+      "case": "depth_tie",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "depth_order",
+      "message": "Depth ordering needs a distinct finite numeric depth for every sample"
+    },
+    {
+      "case": "depth_infinite",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "depth_order",
+      "message": "Depth ordering needs a distinct finite numeric depth for every sample"
+    },
+    {
+      "case": "percent_underflow",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be finite, nonnegative and representable in float64; a positive value may not underflow to zero"
+    },
+    {
+      "case": "percent_huge_integer",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be finite, nonnegative and representable in float64; a positive value may not underflow to zero"
+    }
+  ],
+  "ordinary_derived_bytes_unchanged": {
+    "table.tsv": true,
+    "samples.csv": true,
+    "ages.csv": true,
+    "taxa.csv": true,
+    "extract.json": true
+  },
+  "quoted_labels": {
+    "taxa_csv": "\"Pinus\"",
+    "analytical_taxon_ids": [
+      "\"Pinus\"",
+      "Poaceae"
+    ]
+  },
+  "small_positive": {
+    "case": "small_positive",
+    "status": "complete",
+    "table": "sample_id\tPinus\tPoaceae\n10\t1e-300\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+    "validation": {
+      "status": "valid",
+      "n_input": 4,
+      "n": 3,
+      "n_taxa": 2,
+      "excluded": [
+        {
+          "sample_id": "12",
+          "reason": "empty_sample"
+        }
+      ],
+      "warnings": [],
+      "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed"
+    }
+  },
+  "transport_and_bundle": {
+    "reviewed_commit": "7642a7b737c1e6c55e7593823afa9ffc063ce351",
+    "primer": {
+      "version": "0.2.0.dev0",
+      "sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac"
+    },
+    "live_tool_schema": {
+      "type": "object",
+      "$defs": {
+        "NeotomaSpec": {
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "format": "path",
+              "title": "Source",
+              "type": "string"
+            },
+            "source_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "title": "Source Sha256",
+              "type": "string"
+            },
+            "datasets": {
+              "anyOf": [
+                {
+                  "const": "all",
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "'all' or explicit dataset IDs; units validate, never filter",
+              "title": "Datasets"
+            },
+            "units": {
+              "description": "NISP gives table kind counts; percent gives abundance",
+              "enum": [
+                "NISP",
+                "percent"
+              ],
+              "title": "Units",
+              "type": "string"
+            },
+            "elements": {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Elements",
+              "type": "array"
+            },
+            "ecological_groups": {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Ecological Groups",
+              "type": "array"
+            },
+            "absent_taxa": {
+              "const": "zero",
+              "description": "Declares that a taxon absent from a sample's kept data is zero",
+              "title": "Absent Taxa",
+              "type": "string"
+            },
+            "row_order": {
+              "enum": [
+                "source",
+                "depth"
+              ],
+              "title": "Row Order",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "source_sha256",
+            "datasets",
+            "units",
+            "elements",
+            "ecological_groups",
+            "absent_taxa",
+            "row_order"
+          ],
+          "title": "NeotomaSpec",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "spec": {
+          "$ref": "#/$defs/NeotomaSpec"
+        },
+        "output": {
+          "default": "extractions",
+          "minLength": 1,
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "title": "NeotomaExtractRequest"
+    },
+    "valid_call": {
+      "status": "complete",
+      "kind": "counts",
+      "n_samples": 72,
+      "n_labels": 66
+    },
+    "call_with_advertised_method": {
+      "status": "error",
+      "code": "invalid_request",
+      "message": "Request does not match the tool schema",
+      "details": [
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "spec",
+            "method"
+          ],
+          "msg": "Extra inputs are not permitted"
+        }
+      ]
+    },
+    "inspection_before_source_move": "verified",
+    "inspection_after_source_move": "verified",
+    "reproduction": {
+      "status": "reproduced",
+      "differences": [],
+      "environment_identical": true
+    },
+    "outside_root": {
+      "status": "error",
+      "code": "path_outside_root"
+    },
+    "lockfile_record": {
+      "available": true,
+      "path": "uv.lock",
+      "reason": "Project checkout lockfile captured"
+    },
+    "lockfile_in_bundle": true,
+    "lockfile_in_manifest": true,
+    "bundle_files": [
+      "ages.csv",
+      "environment.json",
+      "extract.json",
+      "samples.csv",
+      "source.json",
+      "spec.json",
+      "table.tsv",
+      "taxa.csv",
+      "uv.lock"
+    ],
+    "manifest_probes": [
+      {
+        "case": "list",
+        "exception": "AnalysisError",
+        "code": "invalid_bundle",
+        "message": "Extraction bundle could not be verified"
+      },
+      {
+        "case": "bool_schema",
+        "exception": "AnalysisError",
+        "code": "invalid_bundle",
+        "message": "Extraction bundle could not be verified"
+      },
+      {
+        "case": "external_manifest_symlink",
+        "exception": "AnalysisError",
+        "code": "invalid_bundle"
+      }
+    ]
+  },
+  "demonstrations": {
+    "files": {
+      "tas-surface/data/percent.tsv": {
+        "byte_identical": true,
+        "sha256": "f431fa06b79220c212fdfae6f9f5d39481678951796ba08c5594e6698e7ff201"
+      },
+      "tas-surface/data/samples.csv": {
+        "byte_identical": true,
+        "sha256": "82e855b2b6db19828fd73b500d4668a7dbcf2b6a713f9cdb92bfe9892e8137b2"
+      },
+      "tas-surface/study.json": {
+        "byte_identical": true,
+        "sha256": "cbbdcf6cb86d9043892b27db7c28a13b08374cafc67e6cd83776401bd733494b"
+      },
+      "tas-surface/results.json": {
+        "byte_identical": true,
+        "sha256": "8aaa8a5d3ac55f9b430f68c1300f157040035056c0c9254ac90a504bd8edd538"
+      },
+      "lake-selina/extract-check.json": {
+        "byte_identical": true,
+        "sha256": "3dea43a4611ca1f427a0dde961afccb1a0907412aa87575e46b1e3282750c8fb"
+      }
+    },
+    "selina": {
+      "extraction_status": "verified",
+      "shape": [
+        72,
+        66
+      ],
+      "table_byte_identical_to_frozen_counts": true,
+      "age_rows": 144,
+      "default_chronology_rows": 72,
+      "ages_match_levels": true,
+      "dropped": [
+        {
+          "element": "pollen",
+          "ecologicalgroup": "AQVP",
+          "units": "NISP",
+          "n": 48
+        },
+        {
+          "element": "spore",
+          "ecologicalgroup": "AQBR",
+          "units": "NISP",
+          "n": 2
+        },
+        {
+          "element": "spore",
+          "ecologicalgroup": "AQVP",
+          "units": "NISP",
+          "n": 61
+        },
+        {
+          "element": "spore",
+          "ecologicalgroup": "VACR",
+          "units": "NISP",
+          "n": 193
+        }
+      ]
+    }
+  },
+  "remaining_regression": [
+    {
+      "case": "null",
+      "exception": "TypeError",
+      "code": null,
+      "message": "conversion from NoneType to Decimal is not supported"
+    },
+    {
+      "case": "object",
+      "exception": "TypeError",
+      "code": null,
+      "message": "conversion from dict to Decimal is not supported"
+    },
+    {
+      "case": "list",
+      "exception": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be finite, nonnegative and representable in float64; a positive value may not underflow to zero"
+    }
+  ],
+  "reproducer": {
+    "path": "probe_percent_types.py",
+    "sha256": "19a0d6b15568dd5f1b570110690b9f6d0f5e1f05aa85e2358c3426733c3335b6"
+  },
+  "scope": "Confirmation of the six original repairs and one introduced refusal regression; no new ecological claim."
+}

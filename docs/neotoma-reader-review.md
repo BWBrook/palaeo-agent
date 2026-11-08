@@ -3,9 +3,14 @@
 Codex (`gpt-6.1-sol`), 8 November 2026. Reviewed `6f17b50`.
 Production code, tests and demonstrations are unchanged by this review.
 
-**Both real-source demonstrations pass. Repair the six issues below before
-accepting the reader for general use.** None changes the supplied examples'
-tables or numerical results.
+**Original disposition: both real-source demonstrations pass. Repair the
+six issues below before accepting the reader for general use.** None changes
+the supplied examples' tables or numerical results.
+
+**Update at `7642a7b`: all six original findings are closed.** One regression
+in percentage type validation remains; see the
+[repair confirmation](neotoma-reader-confirmation.md). The original findings
+below are retained as the historical review.
 
 ## P1: MCP advertises an impossible extractor request
 
