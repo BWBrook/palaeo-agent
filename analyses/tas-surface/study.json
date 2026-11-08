@@ -1,0 +1,135 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "percent": {
+   "kind": "abundance",
+   "path": "data/percent.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa"
+  },
+  "samples": {
+   "kind": "metadata",
+   "path": "data/samples.csv",
+   "id_column": "sample_id"
+  }
+ },
+ "datasets": {
+  "surface": {
+   "source": "percent",
+   "metadata": "samples",
+   "operations": [
+    {
+     "op": "select",
+     "samples": [
+      "1468412",
+      "1490011",
+      "1480883",
+      "1476649",
+      "1477748",
+      "1478920",
+      "1477741",
+      "1477443",
+      "1463448",
+      "1462954",
+      "1466024",
+      "1477256",
+      "1472789",
+      "1474850",
+      "1477263",
+      "1477749",
+      "1461835",
+      "1477740",
+      "1466023",
+      "1462953",
+      "1490001",
+      "1476653",
+      "1478923",
+      "1477445",
+      "1489992"
+     ],
+     "reason": "one record per archived dataset: sample 1 (archive depth field is a sample index)"
+    },
+    {
+     "op": "exclude_taxa",
+     "taxa": [
+      "Cyperaceae",
+      "Restionaceae",
+      "Gymnoschoenus"
+     ],
+     "reason": "sedge and rush categories excluded from the dryland comparison, as at Lake Selina"
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "composition",
+   "dataset": "surface",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "abundance",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "transform": "relative_abundance",
+    "distance": "braycurtis",
+    "dimensions": 2
+   }
+  },
+  {
+   "id": "occurrence",
+   "dataset": "surface",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "abundance",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "transform": "none",
+    "distance": "jaccard",
+    "dimensions": 2
+   }
+  },
+  {
+   "id": "association_braycurtis",
+   "dataset": "surface",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "abundance",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "permanova",
+    "group_column": "band",
+    "design": "independent",
+    "permutation_scheme": "free",
+    "permutations": 9999,
+    "seed": 8112026,
+    "transform": "relative_abundance",
+    "distance": "braycurtis"
+   }
+  },
+  {
+   "id": "association_jaccard",
+   "dataset": "surface",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "abundance",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "permanova",
+    "group_column": "band",
+    "design": "independent",
+    "permutation_scheme": "free",
+    "permutations": 9999,
+    "seed": 8112026,
+    "transform": "none",
+    "distance": "jaccard"
+   }
+  }
+ ]
+}

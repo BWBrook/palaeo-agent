@@ -20,3 +20,4 @@ benchmarks/past/legacy-data/*
 /references/past/captures/sprint7-rarefaction/
 /analyses/lake-selina/runs/
 /analyses/lake-selina/runs-*/
+/analyses/tas-surface/runs-*/

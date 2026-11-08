@@ -1,0 +1,26 @@
+sample_id,site,datasetid,altitude_m,altitude_source,band,environment,source_pi,lon,lat,shares_coordinates_with
+1468412,Lake Chisholm,74429,120,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn",145.06,-41.13,
+1490011,Forester Marsh,75430,60,site altitude,low,Marsh,"Thomas, Ian",147.4928,-41.0049,
+1480883,Vale of Belvoir,74914,820,site altitude,high,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",145.89,-41.54,Cradle Link Road
+1476649,Moxon Saddle Lagoon,74643,760,site altitude,high,Coastal lagoon,"Fletcher, Michael-Shawn",145.62,-41.9,
+1477748,Phil's Hill,74779,30,site altitude,low,Swamp,"Hope, Geoffrey Scotford",148.2667,-40.3667,
+1478920,Snow Hill Marshes,74795,885,site altitude,high,Marsh,"Becker, Christiane",147.8472,-41.8993,
+1477741,Perched Lake,74778,35,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn",145.6861,-42.5645,
+1477443,Naracoopa,74764,2,site altitude,low,Swamp,"Grindrod, John",144.1098,-39.9138,
+1463448,Cradle Link Road,74160,820,site altitude,high,Moss Polster,"Fletcher, Michael-Shawn",145.89,-41.54,Vale of Belvoir
+1462954,Burns Plains,74142,730,site altitude,high,Moss Polster,"Fletcher, Michael-Shawn",146.21,-42.1,
+1466024,Harlequin Hill,74304,320,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",146.31,-42.95,Hardwood River Valley
+1477256,Mount Arrowsmith,74699,450,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn",146.0669,-42.2093,
+1472789,Lake Flannigan,74569,40,site altitude,low,Natural Lake,"D'Costa, Donna; Kershaw, A. Peter",143.9547,-39.6147,
+1474850,Mill Bay,74618,5,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",145.3,-42.14,
+1477263,Mount Read,74701,800,sample note,high,Moss Polster,"Fletcher, Michael-Shawn",145.5399,-41.8413,
+1477749,Piney Creek,74780,172,sample note,low,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",145.2596,-41.882,
+1461835,Above Lake Johnson,73988,900,site altitude,high,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",145.55,-41.9,
+1477740,Peppertree Marsh,74777,890,site altitude,high,Swamp,"Becker, Christiane",147.8289,-41.8887,
+1466023,Hardwood River Valley,74303,50,site altitude,low,Natural Lake,"Thomas, Ian; Fletcher, Michael-Shawn",146.31,-42.95,Harlequin Hill
+1462953,Boco Valley,74141,450,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn",145.6,-41.65,
+1490001,Big Heathy Swamp,75423,860,site altitude,high,Swamp,"Thomas, Ian",145.6243,-41.3906,
+1476653,Mount Anne,74644,400,sample note,low,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",146.4199,-42.9404,
+1478923,Stonehaven Creek,74798,380,site altitude,low,Moss Polster,"Fletcher, Michael-Shawn; Thomas, Ian",145.9845,-42.2036,
+1477445,Northwest Moorland,74766,800,site altitude,high,Moss Polster,"Fletcher, Michael-Shawn",145.6164,-41.4399,
+1489992,Big Dam Marsh,75421,710,site altitude,high,Marsh,"Becker, Christiane",147.6884,-41.6765,

@@ -1,0 +1,138 @@
+{
+ "study_status": "verified",
+ "primer": {
+  "version": "0.2.0.dev0",
+  "sha256": "f45b76b868bd1c317bb0c803935784bb9040a9d3f763ee8dc5cec7952d661e7b"
+ },
+ "n_selected": 25,
+ "n_categories": 89,
+ "association": {
+  "association_braycurtis": {
+   "pseudo_f": 1.9756573768673862,
+   "r_squared": 0.07910331836539576,
+   "p_value": 0.0688,
+   "permutation": {
+    "mode": "monte_carlo",
+    "draws": 9999,
+    "count_extreme": 687,
+    "denominator": 10000,
+    "seed": 8112026
+   },
+   "group_sizes": {
+    "low": 14,
+    "high": 11
+   },
+   "mean_centroid_distance": {
+    "low": 0.5078933853797941,
+    "high": 0.44216192796201276
+   },
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ]
+  },
+  "association_jaccard": {
+   "pseudo_f": 1.3597399144253384,
+   "r_squared": 0.055819147462248905,
+   "p_value": 0.1633,
+   "permutation": {
+    "mode": "monte_carlo",
+    "draws": 9999,
+    "count_extreme": 1632,
+    "denominator": 10000,
+    "seed": 8112026
+   },
+   "group_sizes": {
+    "low": 14,
+    "high": 11
+   },
+   "mean_centroid_distance": {
+    "low": 0.47736024870939325,
+    "high": 0.4854505764564445
+   },
+   "warnings": [
+    "unequal_group_sizes",
+    "negative_eigenvalues"
+   ]
+  }
+ },
+ "ordination": {
+  "axis_positive_inertia": [
+   0.3653124282395313,
+   0.13837985940289713
+  ],
+  "negative_to_positive_inertia": 0.03393499112131957,
+  "axis1_band_mean": {
+   "high": -0.0640597267287454,
+   "low": 0.05033264242972862
+  }
+ },
+ "band_median_diversity": {
+  "high": {
+   "richness": 20,
+   "shannon": 1.7815643985140381,
+   "simpson": 0.7381772705627907
+  },
+  "low": {
+   "richness": 16.5,
+   "shannon": 1.8786759118969578,
+   "simpson": 0.7611179947539815
+  }
+ },
+ "weight_sum_range": [
+  17.058349999999997,
+  242.53999999999996
+ ],
+ "largest_band_mean_differences": [
+  {
+   "taxon": "Eucalyptus",
+   "high": 0.27975382901077217,
+   "low": 0.15683414732009157
+  },
+  {
+   "taxon": "Poaceae",
+   "high": 0.1508571990527991,
+   "low": 0.04315190648073415
+  },
+  {
+   "taxon": "Lagarostrobos",
+   "high": 0.0006069293783188452,
+   "low": 0.08950475926172886
+  },
+  {
+   "taxon": "Ericaceae",
+   "high": 0.06780399989285678,
+   "low": 0.12089749974214554
+  },
+  {
+   "taxon": "Nothofagus cunninghamii",
+   "high": 0.16656451987131893,
+   "low": 0.11880612491392413
+  },
+  {
+   "taxon": "Haloragis",
+   "high": 0.0411783427170852,
+   "low": 0.0013360047295358658
+  },
+  {
+   "taxon": "Melaleuca squamea",
+   "high": 0.00775585270453438,
+   "low": 0.046185447426886114
+  },
+  {
+   "taxon": "Leptospermum",
+   "high": 0.011241656626430374,
+   "low": 0.04834349128753329
+  },
+  {
+   "taxon": "Monotoca",
+   "high": 0.006102739334494528,
+   "low": 0.03679528973033779
+  },
+  {
+   "taxon": "Melastomataceae/Myrtaceae",
+   "high": 0.00804148259955889,
+   "low": 0.034728124685540256
+  }
+ ]
+}
