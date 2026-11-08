@@ -222,3 +222,27 @@ def test_primer_instructions_and_schemas(tmp_path):
         assert "Read the primer first" in definitions[name]["description"]
     assert {"rarefaction", "count_homogeneity"} <= set(
         definitions["run"]["inputSchema"]["properties"]["spec"]["properties"]["method"]["enum"])
+
+
+def test_stdio_neotoma_schema_agrees_with_accepted_requests(tmp_path):
+    jsonschema = pytest.importorskip("jsonschema")
+    import hashlib
+    from test_neotoma import _download, _spec
+    data = json.dumps(_download()).encode()
+    (tmp_path / "download.json").write_bytes(data)
+    request = {"spec": _spec("download.json", hashlib.sha256(data).hexdigest()), "output": "extractions"}
+
+    async def scenario():
+        async with client(tmp_path) as session:
+            tools = {tool.name: tool for tool in (await session.list_tools()).tools}
+            advertised = tools["neotoma_extract"].input_schema
+            jsonschema.validate(request, advertised)
+            extracted = unpack(await session.call_tool("neotoma_extract", request))
+            assert extracted["status"] == "complete"
+            assert unpack(await session.call_tool("neotoma_inspect", {"bundle": extracted["bundle"]}))["status"] == "verified"
+            wrong = {**request, "spec": {**request["spec"], "method": "community"}}
+            with pytest.raises(jsonschema.ValidationError):
+                jsonschema.validate(wrong, advertised)
+            assert unpack(await session.call_tool("neotoma_extract", wrong))["code"] == "invalid_request"
+
+    asyncio.run(scenario())

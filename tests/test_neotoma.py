@@ -138,6 +138,8 @@ def _mutate(change):
      "depth_order"),
     (lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1].update(depth=None), {"row_order": "depth"},
      "depth_order"),
+    (lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1].update(depth=float("inf")),
+     {"row_order": "depth"}, "depth_order"),
     (lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["ages"].append(
         {"chronologyid": 10, "age": 1}), {}, "duplicate_age"),
     (lambda d: None, {"ecological_groups": ["AQVP"]}, "empty_selection"),
@@ -237,3 +239,108 @@ def test_selina_download_reproduces_the_count_table_and_ages(tmp_path):
     assert all(by[(lv["sample_id"], "37590")] == lv["age_ippd2"] and by[(lv["sample_id"], "37589")] == lv["age_ippd1"]
                for lv in levels)
     assert {row["geometry_type"] for row in _rows(bundle / "samples.csv")} == {"Polygon"}
+
+
+def _raw(tmp_path, text, **changes):
+    path = tmp_path / "raw.json"
+    path.write_text(text)
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    return neotoma_extract(_spec(path, digest, **changes), tmp_path / "out")
+
+
+@pytest.mark.parametrize("token", ["1e-400", "1e400", "1" + "0" * 400])
+def test_percent_values_lost_or_overflowing_in_conversion_are_refused(tmp_path, token):
+    text = json.dumps(_download()).replace('"value": 1.5', f'"value": {token}')
+    assert token in text
+    with pytest.raises(AnalysisError) as error:
+        _raw(tmp_path, text, datasets=[3], units="percent")
+    assert error.value.code == "invalid_abundance"
+
+
+def test_tiny_but_representable_percent_is_kept_exactly(tmp_path):
+    text = json.dumps(_download()).replace('"value": 1.5', '"value": 1e-300')
+    out = _raw(tmp_path, text, datasets=[3], units="percent")
+    assert (Path(out["bundle"]) / "table.tsv").read_text().splitlines()[1] == "31\t1e-300"
+
+
+def test_nisp_beyond_exact_float_range_is_refused(tmp_path):
+    with pytest.raises(AnalysisError) as error:
+        _extract(tmp_path, _mutate(lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["datum"][0]
+                                   .update(value=2**53)))
+    assert error.value.code == "invalid_count"
+
+
+def test_quoted_label_survives_the_toolkit_table_reader(tmp_path):
+    from palaeo_agent.community import parse_table
+    document = _mutate(lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["datum"][0]
+                       .update(variablename='"Pinus"', taxonid=8))
+    bundle = Path(_extract(tmp_path, document)["bundle"])
+    header = parse_table((bundle / "table.tsv").read_text(), "delimited", "tab")[0]
+    assert header == ["sample_id", '"Pinus"', "Pinus", "Poaceae"]
+    assert '"Pinus"' in [row["label"] for row in _rows(bundle / "taxa.csv")]
+    assert inspect_neotoma(bundle)["status"] == "verified"
+
+
+@pytest.mark.parametrize("label", ["Pi\tnus", "Pi\nnus", "Pi\rnus"])
+def test_control_characters_in_labels_are_refused(tmp_path, label):
+    with pytest.raises(AnalysisError) as error:
+        _extract(tmp_path, _mutate(lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["datum"][0]
+                                   .update(variablename=label)))
+    assert error.value.code == "unsupported_label"
+
+
+@pytest.mark.parametrize("field,value", [("element", []), ("ecologicalgroup", {}), ("taxonid", {"bad": 1}),
+                                         ("taxonid", True), ("units", None), ("elementtype", 5), ("taxongroup", [])])
+def test_required_and_nullable_datum_types_are_checked(tmp_path, field, value):
+    with pytest.raises(AnalysisError) as error:
+        _extract(tmp_path, _mutate(lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["datum"][0]
+                                   .update({field: value})))
+    assert error.value.code == "invalid_source"
+
+
+@pytest.mark.parametrize("attack", ["symlink", "list", "bool_version"])
+def test_malformed_or_external_manifests_are_invalid(tmp_path, attack):
+    bundle = Path(_extract(tmp_path)["bundle"])
+    manifest = bundle / "manifest.json"
+    record = json.loads(manifest.read_text())
+    if attack == "symlink":
+        outside = tmp_path / "outside.json"
+        outside.write_text(manifest.read_text())
+        manifest.unlink()
+        manifest.symlink_to(outside)
+    elif attack == "list":
+        manifest.write_text(json.dumps([record]))
+    else:
+        manifest.write_text(json.dumps(dict(record, schema_version=True)))
+    with pytest.raises(AnalysisError) as error:
+        inspect_neotoma(bundle)
+    assert error.value.code == "invalid_bundle"
+
+
+def test_lockfile_is_captured_when_declared(tmp_path):
+    bundle = Path(_extract(tmp_path)["bundle"])
+    environment = json.loads((bundle / "environment.json").read_text())
+    manifest = json.loads((bundle / "manifest.json").read_text())
+    assert environment["lockfile"]["available"] == ("uv.lock" in manifest["files"]) == (bundle / "uv.lock").is_file()
+    if environment["lockfile"]["available"]:
+        assert (bundle / "uv.lock").read_bytes() == (ROOT / "uv.lock").read_bytes()
+        (bundle / "uv.lock").unlink()
+        del manifest["files"]["uv.lock"]
+        (bundle / "manifest.json").write_text(json.dumps(manifest))
+        with pytest.raises(AnalysisError) as error:
+            inspect_neotoma(bundle)
+        assert "Lockfile" in str(error.value.details)
+
+
+def test_advertised_mcp_schema_accepts_the_real_extractor_request(tmp_path):
+    jsonschema = pytest.importorskip("jsonschema")
+    from palaeo_agent.mcp_server import Transport, tool_definitions
+    schemas = {tool["name"]: tool["inputSchema"] for tool in tool_definitions()}
+    assert "method" not in json.dumps(schemas["neotoma_extract"]["properties"]["spec"])
+    assert schemas["validate"]["properties"]["spec"]["required"] == ["method"]
+    path, digest = _write(tmp_path, _download())
+    request = {"spec": _spec("download.json", digest), "output": "out"}
+    jsonschema.validate(request, schemas["neotoma_extract"])
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate({**request, "spec": {**request["spec"], "method": "community"}}, schemas["neotoma_extract"])
+    assert Transport(tmp_path).dispatch("neotoma_extract", request)["status"] == "complete"

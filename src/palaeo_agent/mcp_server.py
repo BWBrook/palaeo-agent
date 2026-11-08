@@ -111,7 +111,7 @@ def _schema(model):
     """Advertised input schema. The method spec union is replaced by a reference to discovery; the
     server still validates every call against the full typed model."""
     schema = model.model_json_schema()
-    if "spec" in schema.get("properties", {}):
+    if issubclass(model, ValidateRequest):
         schema["properties"]["spec"] = COMPACT_SPEC
         schema.pop("$defs", None)
     return schema

@@ -61,9 +61,12 @@ download's two NISP datasets, 74305 and 74913, are left out:
 | `absent_taxa` | Must be `"zero"`. Neotoma omits zero cells, so this declares that absence from a sample's kept data means zero. There is no silent default. |
 | `row_order` | `"source"`: file order of datasets and samples. `"depth"`: datasets in file order, then samples by increasing archived depth; a missing or tied depth within a dataset is refused (`depth_order`). It matters because `pairs: "adjacent"` reads table order. Reordering selected samples is done with study `select`. |
 
-**No inferred counts.** NISP values must be integers of at least zero
-(`invalid_count`). Percent values must be finite and nonnegative
-(`invalid_abundance`). Units are never converted, values never rescaled,
+**No inferred counts.** NISP values must be integers from 0 to 2⁵³ − 1
+(`invalid_count`). Percent values must be finite, nonnegative and
+representable in float64 (`invalid_abundance`). The source is parsed with
+each number's JSON text kept, so a positive value that would underflow to
+zero (for example `1e-400`), or overflow, is refused rather than silently
+changed. Units are never converted, values never rescaled,
 and percentages never turned into counts.
 
 ## Source structure
@@ -79,9 +82,10 @@ is refused as `invalid_source`:
 | collection unit | `collectionunitid`, `dataset` (object) |
 | dataset | `datasetid`, `samples` (list) |
 | sample | `sampleid`, `datum` (list), `ages` (list, may be empty) |
-| datum | `variablename` (non-empty string), `value`, `units`, `element`, `ecologicalgroup`, `taxonid` |
+| datum | `variablename` (non-blank string), `value`, `units`, `element`, `ecologicalgroup` (strings), `taxonid` (integer) |
 
-Every other field is nullable metadata, copied when present.
+Every other field is nullable metadata, copied when present. The taxon
+identity fields `elementtype` and `taxongroup` must be strings or null.
 
 ## Outputs
 
@@ -92,12 +96,13 @@ Each extraction writes a self-contained bundle:
 | --- | --- |
 | `source.json` | The exact source bytes |
 | `spec.json` | The specification, with `source` resolved to `source.json` |
-| `table.tsv` | Delimited, `samples_by_taxa`. `sample_id` is Neotoma `sampleid` written as a string. Taxon columns use the source `variablename` labels, sorted by code point. Each cell is the source value written with Python `repr`, or `0` when absent. |
+| `table.tsv` | Delimited, `samples_by_taxa`, written with CSV quoting (tab delimiter). `sample_id` is Neotoma `sampleid` written as a string. Taxon columns use the source `variablename` labels, sorted by code point; the header must read back unchanged through the toolkit's delimited reader. Each cell is the source value written with Python `repr`, or `0` when absent. |
 | `samples.csv` | One row per table row, in table order (columns below) |
 | `ages.csv` | One row per archived `ages` entry (mapping below) |
 | `taxa.csv` | `label`, `taxonid`, `taxongroup`, `ecologicalgroup`, `element`, `elementtype`, `units`, `n_samples_positive` |
 | `extract.json` | The derived record. Specification, source hash, table `kind`, counts seen and kept, dropped-datum tallies by `(element, ecologicalgroup, units)`, `all_zero_samples`. It holds no environment data. |
 | `environment.json` | The same environment record as run bundles |
+| `uv.lock` | Present exactly when `environment.json` records an available checkout lockfile, as in run bundles. It is not part of the derived-file comparison. |
 | `manifest.json` | Schema 1, kind `neotoma_extraction`; SHA-256 and bytes for every other file |
 
 ### `samples.csv` encoding
@@ -156,7 +161,8 @@ Each extraction writes a self-contained bundle:
 | `label_collision` | One label maps to more than one combination of (`taxonid`, `element`, `elementtype`, `ecologicalgroup`, `taxongroup`). The extractor never merges; harmonise later with `map_taxa`. |
 | `mixed_units` | A kept datum has other units than declared |
 | `invalid_count` / `invalid_abundance` | Value refusals, as above |
-| `depth_order` | `row_order: "depth"` with a missing or tied depth within a dataset |
+| `depth_order` | `row_order: "depth"` with a missing, non-finite or tied depth within a dataset |
+| `unsupported_label` | A label contains a control character (tab, newline, carriage return), or does not read back unchanged through the delimited table reader |
 | `duplicate_age` | A repeated `(sampleid, chronologyid)` key |
 | `empty_selection` | No kept datum remains |
 
@@ -185,7 +191,10 @@ row. Each analysis's `empty_samples` policy then governs it, and
 - **Separate from the method results.** The extractor is not added to the
   scientific method-result union or to `inspect_run`.
 - **Inspection:**
-  - verifies the file set and every hash;
+  - refuses a symbolic-link or malformed manifest (it must be an object
+    with integer `schema_version` 1);
+  - verifies the file set and every hash, and that `uv.lock` is present
+    exactly when the environment declares it;
   - checks that `spec.json` points to `source.json` and that the snapshot
     matches `source_sha256`;
   - re-derives `table.tsv`, `samples.csv`, `ages.csv`, `taxa.csv` and

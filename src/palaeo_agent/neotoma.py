@@ -4,18 +4,21 @@ import csv
 import io
 import json
 import math
+from decimal import Decimal
 from pathlib import Path, PurePosixPath
 import uuid
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
+from .community import MAX_EXACT_COUNT, parse_table
 from .core import AnalysisError
 from .runs import RunEnvironment, _environment, _find_lockfile, _json, _sha
 
 EXTRACTOR_VERSION = 1
 DERIVED = ("table.tsv", "samples.csv", "ages.csv", "taxa.csv", "extract.json")
 BUNDLE_FILES = {"source.json", "spec.json", *DERIVED, "environment.json"}
+OPTIONAL_FILES = {"uv.lock"}
 SAMPLE_COLUMNS = ["sample_id", "datasetid", "datasetname", "doi", "siteid", "sitename", "collectionunitid", "handle",
                   "collunittype", "depositionalenvironment", "depth", "thickness", "samplename", "analysisunitname",
                   "geometry_type", "lon", "lat", "site_altitude", "collectionunit_notes", "sample_notes", "dataset_pi",
@@ -45,6 +48,16 @@ class NeotomaSpec(BaseModel):
     def unique(cls, value):
         if isinstance(value, list) and (not value or len(set(value)) != len(value)):
             raise ValueError("Lists must be non-empty and free of repeats")
+        return value
+
+
+class _Number(float):
+    """A float that remembers its JSON text, so positive values lost in conversion can be refused."""
+    text: str
+
+    def __new__(cls, text):
+        value = super().__new__(cls, text)
+        value.text = text
         return value
 
 
@@ -92,13 +105,21 @@ def _geometry(site):
 def _value(datum, units, sample_id, label):
     value = datum["value"]
     if units == "NISP":
-        if type(value) is not int or value < 0:
-            raise AnalysisError("invalid_count", "NISP values must be integers of at least zero",
+        if type(value) is not int or not 0 <= value <= MAX_EXACT_COUNT:
+            raise AnalysisError("invalid_count", "NISP values must be integers from zero to 2**53 - 1",
                                 sample_id=sample_id, label=label)
-    elif isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
-        raise AnalysisError("invalid_abundance", "Percent values must be finite and nonnegative",
-                            sample_id=sample_id, label=label)
-    return value
+        return value
+    try:
+        exact = Decimal(value.text) if isinstance(value, _Number) else Decimal(value)
+        number = float(value) if isinstance(value, _Number) else float(exact)
+        valid = (not isinstance(value, bool) and isinstance(value, (int, float)) and exact.is_finite() and exact >= 0
+                 and math.isfinite(number) and not (exact > 0 and number == 0))
+    except (OverflowError, ValueError, ArithmeticError):
+        valid = False
+    if not valid:
+        raise AnalysisError("invalid_abundance", "Percent values must be finite, nonnegative and representable in "
+                            "float64; a positive value may not underflow to zero", sample_id=sample_id, label=label)
+    return value if isinstance(value, int) else number
 
 
 def extract(spec, source_bytes):
@@ -108,7 +129,7 @@ def extract(spec, source_bytes):
         raise AnalysisError("source_hash", "Source bytes do not match the declared SHA-256",
                             declared=spec.source_sha256, actual=_sha(source_bytes))
     try:
-        document = json.loads(source_bytes.decode("utf-8"))
+        document = json.loads(source_bytes.decode("utf-8"), parse_float=_Number)
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise AnalysisError("invalid_source", "Saved download is not UTF-8 JSON") from exc
     records = _require(document, "data", list, "top")
@@ -148,13 +169,22 @@ def extract(spec, source_bytes):
             sample_ids.add(sample_id)
             values = {}
             for datum in sample["datum"]:
-                label = _require(datum, "variablename", str, f"sample {sample_id}")
-                if not label:
-                    raise AnalysisError("invalid_source", "Empty variablename", where=f"sample {sample_id}")
-                for key in ("value", "units", "element", "ecologicalgroup", "taxonid"):
-                    if key not in datum:
-                        raise AnalysisError("invalid_source", "Datum lacks a required key", key=key,
-                                            where=f"sample {sample_id}")
+                where = f"sample {sample_id}"
+                label = _require(datum, "variablename", str, where)
+                if not label.strip():
+                    raise AnalysisError("invalid_source", "Blank variablename", where=where)
+                for key in ("units", "element", "ecologicalgroup"):
+                    _require(datum, key, str, where)
+                _require(datum, "taxonid", int, where)
+                if "value" not in datum:
+                    raise AnalysisError("invalid_source", "Datum lacks a required key", key="value", where=where)
+                for key in ("elementtype", "taxongroup"):
+                    if datum.get(key) is not None and not isinstance(datum[key], str):
+                        raise AnalysisError("invalid_source", "Nullable taxon field must be a string or null",
+                                            key=key, where=where)
+                if any(ord(char) < 32 or char == "\x7f" for char in label):
+                    raise AnalysisError("unsupported_label", "Taxon labels with control characters (tab, newline) "
+                                        "cannot pass through toolkit tables", label=label, sample_id=sample_id)
                 data_seen += 1
                 if datum["element"] not in elements or datum["ecologicalgroup"] not in groups:
                     key = (str(datum["element"]), str(datum["ecologicalgroup"]), str(datum["units"]))
@@ -176,8 +206,9 @@ def extract(spec, source_bytes):
             samples.append((sample, values))
         if spec.row_order == "depth":
             depths = [s.get("depth") for s, _ in samples]
-            if any(isinstance(d, bool) or not isinstance(d, (int, float)) for d in depths) or len(set(depths)) != len(depths):
-                raise AnalysisError("depth_order", "Depth ordering needs a distinct numeric depth for every sample",
+            if (any(isinstance(d, bool) or not isinstance(d, (int, float)) or not math.isfinite(d) for d in depths)
+                    or len(set(depths)) != len(depths)):
+                raise AnalysisError("depth_order", "Depth ordering needs a distinct finite numeric depth for every sample",
                                     datasetid=dataset["datasetid"])
             samples.sort(key=lambda item: item[0]["depth"])
         rows.extend((site, unit, dataset, sample, values) for sample, values in samples)
@@ -185,9 +216,14 @@ def extract(spec, source_bytes):
         raise AnalysisError("empty_selection", "No kept datum remains after the declared filters")
 
     labels = sorted(taxa)
-    table = ["\t".join(["sample_id", *labels])]
-    table += ["\t".join([str(sample["sampleid"]), *[repr(values[n]) if n in values else "0" for n in labels]])
-              for _, _, _, sample, values in rows]
+    stream = io.StringIO()
+    writer = csv.writer(stream, delimiter="\t", lineterminator="\n")
+    writer.writerow(["sample_id", *labels])
+    writer.writerows([str(sample["sampleid"]), *[repr(values[n]) if n in values else "0" for n in labels]]
+                     for _, _, _, sample, values in rows)
+    table_text = stream.getvalue()
+    if parse_table(table_text, "delimited", "tab")[0] != ["sample_id", *labels]:
+        raise AnalysisError("unsupported_label", "A taxon label does not survive the toolkit's delimited table reader")
 
     points = {}
     for site, _, _, _, _ in rows:
@@ -231,7 +267,7 @@ def extract(spec, source_bytes):
         "all_zero_samples": all_zero, "scope": SCOPE,
     }
     return {
-        "table.tsv": ("\n".join(table) + "\n").encode("utf-8"),
+        "table.tsv": table_text.encode("utf-8"),
         "samples.csv": _csv(SAMPLE_COLUMNS, sample_rows),
         "ages.csv": _csv(AGE_COLUMNS, age_rows),
         "taxa.csv": _csv(TAXA_COLUMNS, taxa_rows),
@@ -254,7 +290,10 @@ def neotoma_extract(spec, output_root: str | Path):
     _json(directory / "spec.json", spec.model_copy(update={"source": Path("source.json")}).model_dump(mode="json"))
     for name, data in derived.items():
         (directory / name).write_bytes(data)
-    _json(directory / "environment.json", _environment(_find_lockfile()))
+    lock = _find_lockfile()
+    if lock is not None:
+        (directory / "uv.lock").write_bytes(lock.read_bytes())
+    _json(directory / "environment.json", _environment(lock))
     files = {path.name: {"sha256": _sha(path.read_bytes()), "bytes": path.stat().st_size}
              for path in sorted(directory.iterdir())}
     _json(directory / "manifest.json", {"schema_version": 1, "kind": "neotoma_extraction", "files": files})
@@ -268,12 +307,21 @@ def inspect_neotoma(bundle: str | Path):
     """Verify an extraction bundle from its own snapshot: hashes, then byte-for-byte re-derivation."""
     directory = Path(bundle).resolve()
     try:
-        manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
-        if manifest.get("schema_version") != 1 or manifest.get("kind") != "neotoma_extraction":
-            raise ValueError("Not a schema-1 Neotoma extraction bundle")
-        if set(manifest["files"]) != BUNDLE_FILES:
+        path = directory / "manifest.json"
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("Manifest must be a regular file inside the bundle")
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        if (not isinstance(manifest, dict) or set(manifest) != {"schema_version", "kind", "files"}
+                or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+                or manifest["kind"] != "neotoma_extraction" or not isinstance(manifest["files"], dict)):
+            raise ValueError("Not a schema-1 Neotoma extraction manifest")
+        if any(not isinstance(item, dict) or set(item) != {"sha256", "bytes"} or not isinstance(item["sha256"], str)
+               or type(item["bytes"]) is not int for item in manifest["files"].values()):
+            raise ValueError("Malformed manifest file record")
+        names = set(manifest["files"])
+        if not BUNDLE_FILES <= names or not names <= BUNDLE_FILES | OPTIONAL_FILES:
             raise ValueError("Manifest file set differs from the extraction layout")
-        if {item.name for item in directory.iterdir()} != BUNDLE_FILES | {"manifest.json"}:
+        if {item.name for item in directory.iterdir()} != names | {"manifest.json"}:
             raise ValueError("Bundle file set differs from manifest")
         for name, expected in manifest["files"].items():
             path = directory / name
@@ -290,10 +338,12 @@ def inspect_neotoma(bundle: str | Path):
         if changed:
             raise ValueError(f"Derived files differ from re-extraction: {', '.join(changed)}")
         environment = RunEnvironment.model_validate_json((directory / "environment.json").read_bytes())
+        if environment.lockfile.available != ("uv.lock" in names):
+            raise ValueError("Lockfile provenance differs from the bundled files")
     except AnalysisError as exc:
         raise AnalysisError("invalid_bundle", "Extraction failed re-derivation", bundle=str(directory),
                             reason=str(exc), extraction_error=exc.code) from exc
-    except (OSError, ValueError, KeyError, TypeError) as exc:
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         raise AnalysisError("invalid_bundle", "Extraction bundle could not be verified", bundle=str(directory),
                             reason=str(exc)) from exc
     return {"status": "verified", "bundle": str(directory), "extract": json.loads(derived["extract.json"]),
