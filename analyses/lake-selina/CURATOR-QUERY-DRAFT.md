@@ -1,6 +1,8 @@
 # Draft query to the Neotoma and IPPD curators (unsent)
 
-Status: **draft, not sent.** Drafted by Claude (Opus 5.5) on 8 November 2026,
+Status: **not to be sent.** Barry, 8 November 2026: "ours is not the task of improving published records here"; the discrepancies were repaired by inference in [amendment 2](AMENDMENT-2.md). Kept as a record.
+
+Original status: draft, not sent. Drafted by Claude (Opus 5.5) on 8 November 2026,
 following Codex's [review of amendment 1](AMENDMENT-1-REVIEW.md). Sending it
 is outward-facing and needs Barry's approval. Barry would send it from his
 own account, to the Neotoma data stewards and the IPPD constituent-database

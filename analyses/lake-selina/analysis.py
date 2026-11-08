@@ -33,20 +33,26 @@ def main(design_name="design.json"):
     runs = {k: pa.inspect_run(HERE / v["run_dir"]) for k, v in index.items() if "run_dir" in v}
     suppress = design.get("suppress_ages", False)
     flagged = design.get("flagged_levels", {})
+    labels = design.get("age_labels", {})
+    lp, la = labels.get("primary", "ippd2"), labels.get("alternative", "ippd1")
+    offset = 30 if suppress else design.get("candidate_offset_cm")
     comparison = pa.inspect_comparison(HERE / index["compare_relative_vs_raw"]["comparison_dir"])
     assert all(r["status"] == "verified" for r in runs.values()) and comparison["status"] == "verified"
 
     levels = {}
-    for line in (HERE / "data/levels.csv").read_text().splitlines()[1:]:
+    for line in (HERE / design.get("levels_file", "data/levels.csv")).read_text().splitlines()[1:]:
         sid, depth, age, young, old, age1 = line.split(",")
-        dated = int(depth) <= DATED_BASE_CM and not suppress
+        dated = age != "" and (int(depth) <= DATED_BASE_CM or "levels_file" in design) and not suppress
         levels[sid] = {"sample_id": sid, "depth_cm": int(depth),
                        "temporal_scope": "suspended" if suppress else ("dated" if dated else "depth_only"),
-                       "age_ippd2": int(age) if dated else None,
-                       "age_ippd2_bounds": [int(young), int(old)] if dated else None,
-                       "archived_ages_provenance": {"ippd2": int(age), "ippd1": int(age1)}}
-        if suppress:
-            levels[sid]["candidate_paper_depth_cm"] = int(depth) - 30
+                       f"age_{lp}": int(age) if dated else None,
+                       f"age_{lp}_bounds": [int(young), int(old)] if dated else None}
+        if lp == "ippd2":
+            levels[sid]["archived_ages_provenance"] = {"ippd2": int(age), "ippd1": int(age1)}
+        else:
+            levels[sid][f"age_{la}"] = int(age1) if dated else None
+        if offset:
+            levels[sid]["candidate_paper_depth_cm"] = int(depth) - offset
         if sid in flagged:
             levels[sid]["provenance_flag"] = flagged[sid]
 
@@ -83,9 +89,9 @@ def main(design_name="design.json"):
                              key=lambda t: -abs(t["forward_change_younger_minus_older"]))
         flag = {"provenance_flagged": a in flagged or b in flagged} if flagged else {}
         return {"younger": a, "older": b, **flag, "depths_cm": [levels[a]["depth_cm"], levels[b]["depth_cm"]],
-                "ages_ippd2": [levels[a]["age_ippd2"], levels[b]["age_ippd2"]],
-                "elapsed_ippd2_years": None if levels[b]["age_ippd2"] is None or levels[a]["age_ippd2"] is None
-                else levels[b]["age_ippd2"] - levels[a]["age_ippd2"],
+                f"ages_{lp}": [levels[a][f"age_{lp}"], levels[b][f"age_{lp}"]],
+                f"elapsed_{lp}_years": None if levels[b][f"age_{lp}"] is None or levels[a][f"age_{lp}"] is None
+                else levels[b][f"age_{lp}"] - levels[a][f"age_{lp}"],
                 "totals": p["sample_totals"], "braycurtis_proportions": p["braycurtis_proportions"],
                 "community_relative_braycurtis": rel["distances"][pos[a]][pos[b]],
                 "community_raw_braycurtis": raw["distances"][pos[a]][pos[b]],
@@ -107,12 +113,13 @@ def main(design_name="design.json"):
     named = {}
     for name, spec in design["named_comparisons"].items():
         ids = tuple(e["sample_id"] for e in spec["endpoints"])
-        sens = design["chronology_sensitivity"][name]["ippd1_endpoints"]
+        sens_spec = design["chronology_sensitivity"][name]
+        sens = sens_spec.get("ippd1_endpoints") or sens_spec["alternative_endpoints"]
         sens_ids = tuple(e["sample_id"] for e in sens)
         between = [s for s in adjacent
                    if ids[0] and levels[ids[0]]["depth_cm"] <= levels[s["younger"]]["depth_cm"]
                    and levels[s["older"]]["depth_cm"] <= levels[ids[1]]["depth_cm"]]
-        named[name] = {"primary": by_ids[ids], "ippd1_sensitivity": by_ids[sens_ids],
+        named[name] = {"primary": by_ids[ids], f"{la}_sensitivity": by_ids[sens_ids],
                        "adjacent_steps_within": [{"younger": s["younger"], "older": s["older"],
                                                   "braycurtis_proportions": s["braycurtis_proportions"],
                                                   "p_value_holm": s["p_value_holm"],

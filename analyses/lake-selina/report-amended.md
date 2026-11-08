@@ -1,5 +1,7 @@
 # Lake Selina: amended report (dryland sum, candidate depth alignment)
 
+> Superseded for working purposes by [report-final.md](report-final.md), which repairs the two discrepancies by inference on Barry's instruction (8 November 2026).
+
 Claude (Opus 5.5), 8 November 2026. This report supersedes the
 interpretation in [report.md](report.md). That report's numbers still stand
 for the archived 66-category definition. What changed, and why, is in

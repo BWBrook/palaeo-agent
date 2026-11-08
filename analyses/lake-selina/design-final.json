@@ -1,0 +1,594 @@
+{
+ "stage": "amendment 2: working case-study repairs on Barry's instruction; see AMENDMENT-2.md",
+ "base_design_counts_sha256": "3ab89275221f80b190dbf34b83cc5eebd1f339378b28e402df6b93f8d4d6bfe1",
+ "imputed": {
+  "sample_id": "531331",
+  "taxon": "Lagarostrobos franklinii",
+  "count": 72
+ },
+ "chronology": {
+  "model": "linear interpolation on paper depth (archive - 30 cm) through the surface (0 cm, 0 cal BP) and the five radiocarbon controls, each at the calibrated age the archived model gives at its depth label",
+  "primary_controls_cal_bp": {
+   "0": 0,
+   "125": 17130,
+   "150": 21876,
+   "165": 23132,
+   "230": 38061,
+   "295": 51836
+  },
+  "alternative_controls_cal_bp": {
+   "0": 0,
+   "125": 17562,
+   "150": 25017,
+   "165": 29457,
+   "230": 40183,
+   "295": 50587
+  },
+  "alternative": "same rule on the IPPD-1 (IntCal09 best-fit) control ages",
+  "dated_base_archive_cm": 325
+ },
+ "levels_file": "data/levels-final.csv",
+ "age_labels": {
+  "primary": "inferred",
+  "alternative": "alternative"
+ },
+ "candidate_offset_cm": 30,
+ "named_comparisons": {
+  "historical_45_38ka": {
+   "window_cal_bp": [
+    38000,
+    45000
+   ],
+   "rule": "stage-1 bracket rule on the inferred ages",
+   "endpoints": [
+    {
+     "sample_id": "531339",
+     "depth_cm": 255,
+     "age_inferred": 36913,
+     "age_alternative": 39358
+    },
+    {
+     "sample_id": "531347",
+     "depth_cm": 295,
+     "age_inferred": 45478,
+     "age_alternative": 45785
+    }
+   ],
+   "elapsed_years": 8565
+  },
+  "benchmark_mis3_lgm": {
+   "window_cal_bp": [
+    21000,
+    28000
+   ],
+   "rule": "stage-1 bracket rule on the inferred ages",
+   "endpoints": [
+    {
+     "sample_id": "531316",
+     "depth_cm": 175,
+     "age_inferred": 20927,
+     "age_alternative": 23526
+    },
+    {
+     "sample_id": "531331",
+     "depth_cm": 220,
+     "age_inferred": 28874,
+     "age_alternative": 33582
+    }
+   ],
+   "elapsed_years": 7947
+  },
+  "benchmark_lateglacial_holocene": {
+   "window_cal_bp": [
+    8000,
+    15000
+   ],
+   "rule": "stage-1 bracket rule on the inferred ages",
+   "endpoints": [
+    {
+     "sample_id": "531305",
+     "depth_cm": 85,
+     "age_inferred": 7537,
+     "age_alternative": 7727
+    },
+    {
+     "sample_id": "531309",
+     "depth_cm": 140,
+     "age_inferred": 15074,
+     "age_alternative": 15455
+    }
+   ],
+   "elapsed_years": 7537
+  }
+ },
+ "chronology_sensitivity": {
+  "historical_45_38ka": {
+   "alternative_selects_same_endpoints": false,
+   "alternative_endpoints": [
+    {
+     "sample_id": "531337",
+     "depth_cm": 245,
+     "age_inferred": 34616,
+     "age_alternative": 37708
+    },
+    {
+     "sample_id": "531347",
+     "depth_cm": 295,
+     "age_inferred": 45478,
+     "age_alternative": 45785
+    }
+   ]
+  },
+  "benchmark_mis3_lgm": {
+   "alternative_selects_same_endpoints": false,
+   "alternative_endpoints": [
+    {
+     "sample_id": "531314",
+     "depth_cm": 165,
+     "age_inferred": 19028,
+     "age_alternative": 20544
+    },
+    {
+     "sample_id": "531320",
+     "depth_cm": 195,
+     "age_inferred": 23132,
+     "age_alternative": 29457
+    }
+   ]
+  },
+  "benchmark_lateglacial_holocene": {
+   "alternative_selects_same_endpoints": true,
+   "alternative_endpoints": [
+    {
+     "sample_id": "531305",
+     "depth_cm": 85,
+     "age_inferred": 7537,
+     "age_alternative": 7727
+    },
+    {
+     "sample_id": "531309",
+     "depth_cm": 140,
+     "age_inferred": 15074,
+     "age_alternative": 15455
+    }
+   ]
+  }
+ },
+ "declared_pairs": {
+  "n": 76,
+  "adjacent": 71,
+  "named_or_sensitivity": 5
+ },
+ "reporting_rules": {
+  "primary_p": "API plus-one Monte Carlo p-values and their API Holm adjustment across all 77 pairs; taxon tests in the API's global pair x taxon Holm family; the two families do not jointly control one error rate",
+  "monte_carlo_sensitivity": "apply Holm separately to the 77 lower and the 77 upper Clopper-Pearson bounds of the exact conditional tail probabilities; flag pair i when Holm(lower)[i] <= 0.05 <= Holm(upper)[i]; a sensitivity envelope, not a simultaneous interval or a new significance rule (unsupported postprocessing)",
+  "ranks": "rank the 71 adjacent steps by proportional Bray-Curtis among themselves; report the three primary long-interval comparisons separately, each beside its IPPD-1 sensitivity pair; no pooled rank over 77 pairs",
+  "direction": "pairs run shallow/younger (a) to deep/older (b); the API taxon effect is b - a; forward-time change is reported as younger minus older = -(b - a), labelled with both sample IDs",
+  "no_reruns": "B and seed fixed; no rerun for significance"
+ },
+ "specs": {
+  "rarefaction": {
+   "input": "data/counts-final.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "rarefaction",
+   "sizes": [
+    272
+   ]
+  },
+  "count_homogeneity": {
+   "input": "data/counts-final.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "count_homogeneity",
+   "pairs": [
+    [
+     "531306",
+     "531305"
+    ],
+    [
+     "531305",
+     "531304"
+    ],
+    [
+     "531304",
+     "531329"
+    ],
+    [
+     "531329",
+     "531321"
+    ],
+    [
+     "531321",
+     "531323"
+    ],
+    [
+     "531323",
+     "531327"
+    ],
+    [
+     "531327",
+     "531328"
+    ],
+    [
+     "531328",
+     "531332"
+    ],
+    [
+     "531332",
+     "531330"
+    ],
+    [
+     "531330",
+     "531307"
+    ],
+    [
+     "531307",
+     "531308"
+    ],
+    [
+     "531308",
+     "531309"
+    ],
+    [
+     "531309",
+     "531310"
+    ],
+    [
+     "531310",
+     "531311"
+    ],
+    [
+     "531311",
+     "531312"
+    ],
+    [
+     "531312",
+     "531313"
+    ],
+    [
+     "531313",
+     "531314"
+    ],
+    [
+     "531314",
+     "531315"
+    ],
+    [
+     "531315",
+     "531316"
+    ],
+    [
+     "531316",
+     "531317"
+    ],
+    [
+     "531317",
+     "531318"
+    ],
+    [
+     "531318",
+     "531319"
+    ],
+    [
+     "531319",
+     "531320"
+    ],
+    [
+     "531320",
+     "531322"
+    ],
+    [
+     "531322",
+     "531324"
+    ],
+    [
+     "531324",
+     "531325"
+    ],
+    [
+     "531325",
+     "531326"
+    ],
+    [
+     "531326",
+     "531331"
+    ],
+    [
+     "531331",
+     "531333"
+    ],
+    [
+     "531333",
+     "531334"
+    ],
+    [
+     "531334",
+     "531335"
+    ],
+    [
+     "531335",
+     "531336"
+    ],
+    [
+     "531336",
+     "531337"
+    ],
+    [
+     "531337",
+     "531338"
+    ],
+    [
+     "531338",
+     "531339"
+    ],
+    [
+     "531339",
+     "531340"
+    ],
+    [
+     "531340",
+     "531341"
+    ],
+    [
+     "531341",
+     "531342"
+    ],
+    [
+     "531342",
+     "531343"
+    ],
+    [
+     "531343",
+     "531345"
+    ],
+    [
+     "531345",
+     "531344"
+    ],
+    [
+     "531344",
+     "531346"
+    ],
+    [
+     "531346",
+     "531347"
+    ],
+    [
+     "531347",
+     "531348"
+    ],
+    [
+     "531348",
+     "531349"
+    ],
+    [
+     "531349",
+     "531350"
+    ],
+    [
+     "531350",
+     "531351"
+    ],
+    [
+     "531351",
+     "531352"
+    ],
+    [
+     "531352",
+     "531353"
+    ],
+    [
+     "531353",
+     "531354"
+    ],
+    [
+     "531354",
+     "531355"
+    ],
+    [
+     "531355",
+     "531356"
+    ],
+    [
+     "531356",
+     "531357"
+    ],
+    [
+     "531357",
+     "531358"
+    ],
+    [
+     "531358",
+     "531359"
+    ],
+    [
+     "531359",
+     "531360"
+    ],
+    [
+     "531360",
+     "531361"
+    ],
+    [
+     "531361",
+     "531362"
+    ],
+    [
+     "531362",
+     "531363"
+    ],
+    [
+     "531363",
+     "531365"
+    ],
+    [
+     "531365",
+     "531364"
+    ],
+    [
+     "531364",
+     "531366"
+    ],
+    [
+     "531366",
+     "531367"
+    ],
+    [
+     "531367",
+     "531368"
+    ],
+    [
+     "531368",
+     "531369"
+    ],
+    [
+     "531369",
+     "531370"
+    ],
+    [
+     "531370",
+     "531371"
+    ],
+    [
+     "531371",
+     "531373"
+    ],
+    [
+     "531373",
+     "531372"
+    ],
+    [
+     "531372",
+     "531374"
+    ],
+    [
+     "531374",
+     "531375"
+    ],
+    [
+     "531339",
+     "531347"
+    ],
+    [
+     "531316",
+     "531331"
+    ],
+    [
+     "531305",
+     "531309"
+    ],
+    [
+     "531337",
+     "531347"
+    ],
+    [
+     "531314",
+     "531320"
+    ]
+   ],
+   "simulations": 99999,
+   "seed": 7112026
+  },
+  "community_relative_braycurtis": {
+   "input": "data/counts-final.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "braycurtis",
+   "transform": "relative_abundance",
+   "dimensions": 3
+  },
+  "community_raw_braycurtis": {
+   "input": "data/counts-final.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "braycurtis",
+   "transform": "none",
+   "dimensions": 3
+  },
+  "community_jaccard": {
+   "input": "data/counts-final.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa",
+   "value_type": "count",
+   "missing": "error",
+   "empty_samples": "error",
+   "method": "community",
+   "distance": "jaccard",
+   "transform": "none",
+   "dimensions": 3
+  }
+ },
+ "validation": {
+  "rarefaction": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 60,
+   "sizes": [
+    272
+   ],
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input counts, subsample sizes and operation resource bounds checked; no rarefaction estimates computed"
+  },
+  "count_homogeneity": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 60,
+   "n_pairs": 76,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input, declared pairs, exact margins and backend bounds checked; no Monte Carlo tables sampled"
+  },
+  "community_relative_braycurtis": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 60,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  },
+  "community_raw_braycurtis": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 60,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  },
+  "community_jaccard": {
+   "status": "valid",
+   "n_input": 72,
+   "n": 72,
+   "n_taxa": 60,
+   "excluded": [],
+   "warnings": [],
+   "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+  }
+ },
+ "amend_script_sha256": "80de6dfa15e81654bbf21ecca13ea60c708d8e59c0555aad00131b209d404b51",
+ "counts_sha256": "a15f912401a46242a38b48d51211acfb731d70743190cefa27c75474c429d429"
+}
