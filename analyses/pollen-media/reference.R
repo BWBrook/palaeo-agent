@@ -25,7 +25,7 @@ checks <- list()
 check <- function(name, api, reference, relative = 1e-10, absolute = 1e-12) {
   a <- as.numeric(vec(api)); b <- as.numeric(vec(reference))
   stopifnot(length(a) == length(b), length(a) > 0L, all(is.finite(a)), all(is.finite(b)))
-  error <- abs(a - b); passed <- error <= absolute + relative * abs(b)
+  error <- abs(a - b); passed <- error <= pmax(absolute, relative * abs(b))
   checks[[name]] <<- list(n_fields = length(a), n_agree = sum(passed), max_abs_difference = max(error),
                          relative_tolerance = relative, absolute_tolerance = absolute,
                          disagreements = if (all(passed)) list() else lapply(which(!passed), function(i)
@@ -113,8 +113,7 @@ rare_ref <- lapply(seq_len(nrow(primary)), function(i) {
 exact("rarefaction/sample_ids", lapply(rare$samples, function(s) s$sample_id), ids)
 for (field in c("total", "observed_richness", "f1", "f2", "full_coverage", "expected_richness", "conditional_sd", "variance", "coverage")) {
   api <- lapply(rare$samples, function(s) if (field %in% c("total", "observed_richness", "f1", "f2", "full_coverage")) s[[field]] else s$estimates[[1L]][[field]])
-  check(paste0("rarefaction/", field), api, lapply(rare_ref, function(s) s[[field]]),
-        if (field %in% c("conditional_sd", "variance")) 1e-8 else 1e-10)
+  check(paste0("rarefaction/", field), api, lapply(rare_ref, function(s) s[[field]]))
 }
 
 families <- list()
@@ -169,6 +168,7 @@ receipt <- list(status = if (all(vapply(checks, function(c) c$n_fields == c$n_ag
   methods = list(community = "vegan specnumber/diversity/decostand/vegdist", rarefaction = "vegan rarefy(se=TRUE); variance is its squared conditional SD",
                  coverage = "pinned iNEXT Chat.Ind", taxon = "R fisher.test(two.sided) and p.adjust(holm)",
                  omnibus = "plus-one arithmetic from saved exceedances; binom.test CP; p.adjust(holm) separately on bounds"),
+  tolerance_rule = "maximum of absolute tolerance and relative tolerance times absolute reference value",
   scope = "Arithmetic and frozen source/design checks only. Does not resample multivariate Monte Carlo tables, test scientific assumptions or independently check PCoA geometry. Fresh API replay is separate.",
   code_audit_scope = "Code hashes are recorded for the separate manual API-use review; this R script does not perform static code analysis",
   reference_warnings = reference_warnings,

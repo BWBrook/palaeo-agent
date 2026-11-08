@@ -20,6 +20,7 @@
     "taxon": "R fisher.test(two.sided) and p.adjust(holm)",
     "omnibus": "plus-one arithmetic from saved exceedances; binom.test CP; p.adjust(holm) separately on bounds"
   },
+  "tolerance_rule": "maximum of absolute tolerance and relative tolerance times absolute reference value",
   "scope": "Arithmetic and frozen source/design checks only. Does not resample multivariate Monte Carlo tables, test scientific assumptions or independently check PCoA geometry. Fresh API replay is separate.",
   "code_audit_scope": "Code hashes are recorded for the separate manual API-use review; this R script does not perform static code analysis",
   "reference_warnings": {
@@ -312,7 +313,7 @@
       "n_fields": 7,
       "n_agree": 7,
       "max_abs_difference": 1.10547127007976e-11,
-      "relative_tolerance": 1e-08,
+      "relative_tolerance": 1e-10,
       "absolute_tolerance": 1e-12,
       "disagreements": []
     },
@@ -320,7 +321,7 @@
       "n_fields": 7,
       "n_agree": 7,
       "max_abs_difference": 5.97655258616214e-11,
-      "relative_tolerance": 1e-08,
+      "relative_tolerance": 1e-10,
       "absolute_tolerance": 1e-12,
       "disagreements": []
     },

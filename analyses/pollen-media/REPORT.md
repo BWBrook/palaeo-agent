@@ -162,6 +162,8 @@ Regenerable source snapshots and run bundles are ignored by Git.
 - Independent R **4.6.1**, vegan **2.7.6** and pinned iNEXT coverage agree on
   **5,540/5,540 fields** across 149 check groups. The maximum absolute error
   is **5.98 × 10⁻¹¹**, in rarefaction variance, within its declared tolerance.
+  All 14 rarefaction SD/variance values pass the original method contract's
+  stricter rule: absolute error at most max(10⁻¹², 10⁻¹⁰ × |reference|).
   Bray–Curtis differs by at most **3.33 × 10⁻¹⁶** and Fisher/Holm values by
   less than **2.34 × 10⁻¹⁵**. Input identities, count cells, exclusions,
   media mappings and family sizes also match: [reference receipt](reference-check.json).
