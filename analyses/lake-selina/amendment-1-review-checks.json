@@ -1,0 +1,67 @@
+{
+  "reviewed_commit": "6c934f994429c08227ac35dcca351a170d4bba33",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "cdec09d1ab058224869120b2ac6de406be62df6ed112373dfa1057492971f765"
+  },
+  "mechanical_integrity": {
+    "amendment_byte_identical": true,
+    "six_columns_only": true,
+    "preserved_row_and_pair_order": true,
+    "api_validations_match": true,
+    "existing_bundles_verified": true,
+    "source_commit": "6c934f9",
+    "fresh_api_replay": true,
+    "full_results_byte_identical": true,
+    "results_sha256": "3b2779413c464a7b4f42ed2cb403efff1554ccb9f1dd1c81ced4ca7e07fd8a47",
+    "core_observed": {
+      "n_levels": 72,
+      "n_taxa": 60,
+      "rarefaction_m": 272,
+      "omnibus_family": 77,
+      "taxon_family": 2350,
+      "adjacent_holm_lt_005": 41,
+      "monte_carlo_sensitive_pairs": 4
+    }
+  },
+  "independent_r": {
+    "reference": {
+      "r_version": "R version 4.6.1 (2026-06-24)",
+      "vegan_version": "2.7.6",
+      "inext_source_sha256": "ebda76c6f9477c44141900314e94aa0a20498be015afe21877d6d26f170f7619",
+      "settings": {
+        "rarefaction": "vegan::rarefy(x, sample=m, se=TRUE)",
+        "coverage": "iNEXT Chat.Ind(x, m) from pinned source",
+        "relative_braycurtis": "vegdist(decostand(x, 'total'), 'bray')",
+        "jaccard": "vegdist(x, 'jaccard', binary=TRUE)",
+        "fisher": "fisher.test(2x2 taxon vs rest, two.sided)"
+      }
+    },
+    "tolerances": {
+      "default_relative": 1e-10,
+      "conditional_sd_relative": 1e-08,
+      "fisher_relative": 1e-07,
+      "absolute": 1e-12,
+      "distance_absolute": 1e-12
+    },
+    "n_checks": 681,
+    "n_agree": 681,
+    "max_abs_difference": 6.24389429049188e-13,
+    "disagreements": [],
+    "reviewed_commit": "6c934f994429c08227ac35dcca351a170d4bba33",
+    "input_sha256": "3ab89275221f80b190dbf34b83cc5eebd1f339378b28e402df6b93f8d4d6bfe1",
+    "rarefaction_size": 272,
+    "reference_script_sha256": "24fd36018f462011264093cbbb2ad9a595c0f974908a74c583c25d48aedcad75",
+    "crosscheck_script_sha256": "2ebe7eef5b16fbfd793b3b525c8326c3cb38ef91fb8785c1ddabddd37519bde0",
+    "scripts_unmodified": true,
+    "scope": "Independent arithmetic cross-check on the amended 60-category table: per-sample summaries, rarefaction and coverage, all three distance matrices, and named-pair Fisher tests; not an independent check of omnibus Monte Carlo p-values or scientific validity."
+  },
+  "definition_sensitivity_byte_identical": true,
+  "adjacent_monte_carlo_diagnostic": {
+    "holm_point_estimate_below_005": 41,
+    "entire_envelope_below_005": 40,
+    "envelope_contains_005": 4,
+    "entire_envelope_above_005": 27,
+    "scope": "Predeclared exact-tail sensitivity diagnostic; not a simultaneous confidence statement or a new rejection rule."
+  }
+}
