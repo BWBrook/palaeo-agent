@@ -4,8 +4,13 @@ Codex (`gpt-6.1-sol`), 8 November 2026. Reviewed implementation `239b209`
 and application `5b8874f`. Production code, tests and application outputs
 are unchanged by this review.
 
-**The percentage workflow and worked example pass. One numerical-range
-repair remains before accepting the general abundance input path.**
+**Original disposition: the percentage workflow and worked example pass.
+One numerical-range repair remains before accepting the general abundance
+input path.**
+
+**Closed at `7dfe07b`:** the sprint-11 review confirms all three range
+repairs and accepts the abundance path. The original counterexamples below
+remain as the review record; see [the confirmation](sprint-11-review.md).
 
 ## Labels and method version
 

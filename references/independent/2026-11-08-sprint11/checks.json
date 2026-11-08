@@ -1,0 +1,173 @@
+{
+  "reviewed_commit": "7dfe07b66d3724f7f70b11e073577704a81ce9f8",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "343bda600f9c0dd136d310efb1bcbb369c74d699b954beaeafa7f74214d3bc46"
+  },
+  "full_suite": {
+    "passed": 736,
+    "skipped": 11,
+    "seconds": 114.75,
+    "optional_native_confinement": false
+  },
+  "interval_reference": {
+    "reference": "R 4.6.1 stats::binom.test and stats::qbeta",
+    "cases": 10,
+    "fields": 30,
+    "absolute_tolerance": 1e-12,
+    "maximum_interval_error": 1.1102230246251565e-16
+  },
+  "unchanged_fixtures": {
+    "mc0": {
+      "point_fields_exact": true,
+      "old_permutation_fields_exact": true
+    },
+    "exact": {
+      "point_fields_exact": true,
+      "old_permutation_fields_exact": true
+    }
+  },
+  "native_range_refusals": [
+    {
+      "case": "native_underflow",
+      "rejected": true,
+      "code": "invalid_abundance"
+    },
+    {
+      "case": "pair_overflow",
+      "rejected": true,
+      "code": "abundance_range"
+    },
+    {
+      "case": "row_overflow",
+      "rejected": true,
+      "code": "abundance_range"
+    }
+  ],
+  "rehashed_semantic_attacks": [
+    {
+      "attack": "lower",
+      "rejected": true,
+      "code": "invalid_bundle"
+    },
+    {
+      "attack": "flag",
+      "rejected": true,
+      "code": "invalid_bundle"
+    },
+    {
+      "attack": "status",
+      "rejected": true,
+      "code": "invalid_bundle"
+    },
+    {
+      "attack": "exact_nonnull",
+      "rejected": true,
+      "code": "invalid_bundle"
+    }
+  ],
+  "mcp": {
+    "catalogue_version": 2,
+    "schema_version": 2,
+    "inspection": "verified",
+    "fields": {
+      "method_version": 2,
+      "permutation.tail_probability_interval": [
+        0.0,
+        0.40961639722500337
+      ],
+      "permutation.interval_status": "clopper_pearson_draw_exceedances",
+      "permutation.confidence": 0.95,
+      "permutation.reporting_alpha": 0.05,
+      "permutation.monte_carlo_unresolved": true
+    },
+    "exact_fields": {
+      "permutation.tail_probability_interval": null,
+      "permutation.monte_carlo_unresolved": null,
+      "permutation.interval_status": "not_applicable_exact_enumeration"
+    }
+  },
+  "application": {
+    "application_results_byte_identical": true,
+    "study_status": "verified",
+    "association": {
+      "association_braycurtis": {
+        "pseudo_f": 1.9756573768673862,
+        "r_squared": 0.07910331836539576,
+        "p_value": 0.0688,
+        "permutation": {
+          "mode": "monte_carlo",
+          "draws": 9999,
+          "count_extreme": 687,
+          "denominator": 10000,
+          "seed": 8112026,
+          "tail_probability_interval": [
+            0.06382495537707157,
+            0.07384175661186007
+          ],
+          "monte_carlo_unresolved": false
+        },
+        "group_sizes": {
+          "low": 14,
+          "high": 11
+        },
+        "mean_centroid_distance": {
+          "low": 0.5078933853797941,
+          "high": 0.44216192796201276
+        },
+        "warnings": [
+          "unequal_group_sizes",
+          "negative_eigenvalues"
+        ]
+      },
+      "association_jaccard": {
+        "pseudo_f": 1.3597399144253384,
+        "r_squared": 0.055819147462248905,
+        "p_value": 0.1633,
+        "permutation": {
+          "mode": "monte_carlo",
+          "draws": 9999,
+          "count_extreme": 1632,
+          "denominator": 10000,
+          "seed": 8112026,
+          "tail_probability_interval": [
+            0.15602151600921552,
+            0.17060784903644668
+          ],
+          "monte_carlo_unresolved": false
+        },
+        "group_sizes": {
+          "low": 14,
+          "high": 11
+        },
+        "mean_centroid_distance": {
+          "low": 0.47736024870939325,
+          "high": 0.4854505764564445
+        },
+        "warnings": [
+          "unequal_group_sizes",
+          "negative_eigenvalues"
+        ]
+      }
+    }
+  },
+  "reference_files": [
+    {
+      "path": "generate.py",
+      "sha256": "735c858d886960a6f23c40537d8e0c7755b28a8a58d878eb67d1aa7ca58f860a"
+    },
+    {
+      "path": "cp.csv",
+      "sha256": "aa8facb0cc621099dcad4666e270f3d40c0c9579d3c567a68c6ddae92c59b33d"
+    },
+    {
+      "path": "reference.R",
+      "sha256": "1f41634f4d63b767ed9fa8dfa44c90ffa5bb09537116a663c45f3c00a246e4be"
+    },
+    {
+      "path": "r-reference.csv",
+      "sha256": "815d215ffedeb0c9efeeaee53b66a577a476b0a79774b67afeb4de92837adb4a"
+    }
+  ],
+  "scope": "Arithmetic, range refusals, semantic consistency, transport and replay; no new ecological validity claim."
+}
