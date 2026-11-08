@@ -307,6 +307,11 @@ def _metadata(rows, ids):
     return [lookup[name] for name in ids]
 
 
+def _table_warnings(input_ids, taxon_ids, counts, retained_ids):
+    return (_near_duplicates(input_ids, "sample") + _near_duplicates(taxon_ids, "taxon")
+            + repeated_warnings([tuple(row) for row in counts], retained_ids, "samples"))
+
+
 def _prepare_counts(matrix, *, sample_ids, taxon_ids, empty_samples, metadata, value_type="count"):
     samples, taxa = _ids(sample_ids, "sample"), _ids(taxon_ids, "taxon")
     if not isinstance(empty_samples, str) or empty_samples not in {"error", "drop"}:
@@ -365,8 +370,7 @@ def _prepare_counts(matrix, *, sample_ids, taxon_ids, empty_samples, metadata, v
     return {"counts": counts[keep], "input_sample_ids": samples, "sample_ids": retained_ids,
             "taxon_ids": taxa, "excluded": excluded,
             "metadata": None if aligned is None else [row for row, flag in zip(aligned, keep) if flag],
-            "warnings": _near_duplicates(samples, "sample") + _near_duplicates(taxa, "taxon")
-            + repeated_warnings([tuple(row) for row in counts[keep].tolist()], retained_ids, "samples")}
+            "warnings": _table_warnings(samples, taxa, counts[keep].tolist(), retained_ids)}
 
 
 def _prepare(matrix, *, sample_ids, taxon_ids, dimensions, empty_samples, metadata, value_type="count"):

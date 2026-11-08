@@ -11,7 +11,7 @@ from scipy.special import logsumexp
 from scipy.stats import beta, fisher_exact, hypergeom, random_table
 
 from .community import (FORMAT_HELP, MAX_EXACT_COUNT, CommunityExclusion, CommunityWarning,
-                        _prepare_counts, _read_inputs, check_delimiter)
+                        _prepare_counts, _read_inputs, _table_warnings, check_delimiter)
 from .core import AnalysisError, ResultItem
 
 
@@ -246,7 +246,12 @@ def _fisher(xa, na, xb, nb):
     if p > 0:
         return p, False, None
     total, column = na + nb, xa + xb
-    support = np.arange(max(0, na - (total - column)), min(column, na) + 1)
+    lower, upper = max(0, na - (total - column)), min(column, na)
+    estimated = (upper - lower + 1) * 8 * 4
+    if estimated > MAX_CHUNK_BYTES:
+        raise AnalysisError("resource_limit", "Fisher underflow tail reconstruction exceeds the temporary allocation budget",
+                            estimated_bytes=estimated, limit_bytes=MAX_CHUNK_BYTES)
+    support = np.arange(lower, upper + 1)
     masses = hypergeom.logpmf(support, total, column, na)
     observed = float(hypergeom.logpmf(xa, total, column, na))
     return p, True, float(logsumexp(masses[masses <= observed + math.log1p(1e-7)])) / math.log(10)
@@ -423,6 +428,9 @@ def _validate_saved_result(result):
         raise ValueError("Retained counts must be nonnegative exact counts with positive exact totals")
     if result.metadata is not None and [row.get("sample_id") for row in result.metadata] != result.sample_ids:
         raise ValueError("Metadata must align exactly with retained samples")
+    expected_warnings = _table_warnings(result.input_sample_ids, result.taxon_ids, result.retained_counts, result.sample_ids)
+    if [warning.model_dump(mode="json") for warning in result.warnings] != expected_warnings:
+        raise ValueError("Input diagnostics disagree with the retained counts and declared labels")
     pairs = [pair.sample_ids for pair in result.pairs]
     _check_pairs(pairs)
     if result.randomization.tie_relative_tolerance != TIE_RELATIVE_TOLERANCE:

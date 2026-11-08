@@ -6,10 +6,12 @@ from pathlib import Path
 import numpy as np
 import pytest
 from pydantic import ValidationError
+from scipy.stats import binom
 
 from palaeo_agent.core import AnalysisError
 from palaeo_agent.permanova import (
-    PermanovaResult, PermanovaSpec, TIE_TOLERANCE, calculate_permanova, validate_permanova,
+    PermanovaResult, PermanovaSpec, TIE_TOLERANCE, _monte_carlo_fields,
+    calculate_permanova, validate_permanova,
 )
 
 
@@ -286,3 +288,27 @@ def test_high_f_exact_ties_are_invariant_to_group_block_and_sample_order(order):
     assert result["permutation"]["draws"] == result["permutation"]["space_size"] == 90
     assert result["permutation"]["count_extreme"] == 6
     assert result["p_value"] == float(Fraction(1, 15))
+
+
+@pytest.mark.parametrize("b,draws", [(0, 999), (999, 999), (49, 999), (687, 9999), (3, 99)])
+def test_interval_meets_the_clopper_pearson_defining_tails(b, draws):
+    fields = _monte_carlo_fields("monte_carlo", b, draws)
+    lower, upper = fields["tail_probability_interval"]
+    assert fields["interval_status"] == "clopper_pearson_draw_exceedances"
+    assert lower == 0.0 if b == 0 else binom.sf(b - 1, draws, lower) == pytest.approx(0.025, rel=1e-9)
+    assert upper == 1.0 if b == draws else binom.cdf(b, draws, upper) == pytest.approx(0.025, rel=1e-9)
+    assert fields["monte_carlo_unresolved"] == (lower <= 0.05 <= upper)
+
+
+def test_reported_application_interval_and_threshold_flags():
+    assert _monte_carlo_fields("monte_carlo", 687, 9999)["tail_probability_interval"] == pytest.approx(
+        [0.0638249554, 0.0738417566], abs=1e-10)
+    assert _monte_carlo_fields("monte_carlo", 49, 999)["monte_carlo_unresolved"] is True
+    assert _monte_carlo_fields("monte_carlo", 10, 999)["monte_carlo_unresolved"] is False
+    assert _monte_carlo_fields("monte_carlo", 200, 999)["monte_carlo_unresolved"] is False
+
+
+def test_exact_enumeration_marks_the_interval_inapplicable():
+    fields = _monte_carlo_fields("exact", 3, 20)
+    assert fields["tail_probability_interval"] is None and fields["monte_carlo_unresolved"] is None
+    assert fields["interval_status"] == "not_applicable_exact_enumeration"

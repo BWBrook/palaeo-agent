@@ -51,7 +51,7 @@ The statistic, schedule, seed, B and p are unchanged.
 
 ## Evidence
 
-- **Range-guard regressions,** 7 cases in `tests/test_sprint10.py`:
+- **Range-guard regressions,** 7 cases now in `tests/test_community.py`:
   - the overflow and row-overflow tables, refused through `validate` and
     `run` for both methods;
   - the rescaled table, which gives exactly 1/21;
@@ -59,7 +59,8 @@ The statistic, schedule, seed, B and p are unchanged.
   - native `Fraction` underflow and overflow, a native row overflow, and a
     native 10⁻³⁰⁰ weight, which is kept and gives richness 2 and Jaccard
     0.5.
-- **Interval checks,** in `tests/test_sprint11.py`:
+- **Interval checks,** now in `tests/test_permanova.py` and
+  `tests/test_permanova_runs.py`:
   - the defining binomial tails, checked with `scipy.stats.binom` rather
     than the beta quantiles used in the implementation, for b = 0, b = B,
     a case near the threshold, and the application case;

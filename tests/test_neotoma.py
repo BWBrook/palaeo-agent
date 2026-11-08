@@ -110,6 +110,28 @@ def test_depth_order_and_polygon_geometry(tmp_path):
     assert poly["kind"] == "abundance"
 
 
+def test_inspection_parses_only_the_environment_bytes_it_verified(tmp_path, monkeypatch):
+    bundle = Path(_extract(tmp_path)["bundle"])
+    path = bundle / "environment.json"
+    verified = path.read_bytes()
+    changed = json.loads(verified)
+    changed["python"] = "unhashed replacement"
+    read_bytes = Path.read_bytes
+    reads = []
+
+    def change_after_read(self):
+        data = read_bytes(self)
+        if self == path:
+            reads.append(data)
+            self.write_text(json.dumps(changed))
+        return data
+
+    monkeypatch.setattr(Path, "read_bytes", change_after_read)
+    inspected = inspect_neotoma(bundle)
+    assert inspected["environment"] == json.loads(verified)
+    assert reads == [verified]
+
+
 def _mutate(change):
     document = _download()
     change(document)

@@ -53,7 +53,7 @@ def source_commit(value):
 def source_files():
     paths = [REPO / name for name in (
         "pyproject.toml", "uv.lock", "docs/permanova-contract.md", "docs/sprints-1-2.md",
-        "tests/test_sprint2_items.py", "evaluation/score.py", "evaluation/SCORING.md",
+        "tests/test_evaluation_permanova.py", "evaluation/score.py", "evaluation/SCORING.md",
         "evaluation/answer.schema.json", "evaluation/items/MANIFEST.json", "evaluation/runtime/requirements.txt")]
     paths += sorted((REPO / "src").rglob("*.py"))
     paths += [p for p in sorted((REPO / "evaluation/harness").iterdir()) if p.suffix in {".py", ".md"}]

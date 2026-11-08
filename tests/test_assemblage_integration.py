@@ -1,5 +1,4 @@
 import csv
-import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -12,6 +11,9 @@ from palaeo_agent import (
     run, run_study, validate,
 )
 from palaeo_agent.methods import compare_results
+
+from bundle_helpers import rehash as _rehash
+from count_homogeneity_helpers import PAIR_BASE, pair_spec
 
 
 METHODS = ("rarefaction", "count_homogeneity")
@@ -45,11 +47,7 @@ def replace_json_with_checksum(directory, filename, mutate):
     payload = json.loads(path.read_text())
     mutate(payload)
     path.write_text(json.dumps(payload))
-    manifest_path = directory / "manifest.json"
-    manifest = json.loads(manifest_path.read_text())
-    data = path.read_bytes()
-    manifest["files"][filename].update(sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
-    manifest_path.write_text(json.dumps(manifest))
+    _rehash(directory, filename)
 
 
 def cli(*arguments):
@@ -218,3 +216,64 @@ def test_validate_new_methods_does_not_compute_rarefaction_or_random_tables(tmp_
     monkeypatch.setattr(homogeneity, "random_table", forbidden)
     spec = request(tmp_path, method)
     assert validate(spec)["status"] == "valid"
+
+
+def test_adjacent_run_inspects_and_saves_resolved_pairs(tmp_path):
+    outcome = run(pair_spec(tmp_path, pairs="adjacent", extra_pairs=[["S1", "S5"]]), tmp_path / "run")
+    inspected = inspect_run(outcome["run_dir"])
+    assert inspected["status"] == "verified"
+    assert [p["sample_ids"] for p in inspected["result"]["pairs"]][-1] == ["S1", "S5"]
+    assert "holm_envelope_lower" in (Path(outcome["run_dir"]) / "count_homogeneity.csv").read_text()
+
+
+@pytest.mark.parametrize("declared, forged", [
+    ("adjacent", {"mode": "explicit", "n_adjacent": 0, "n_extra": 2}),
+    ([["S1", "S2"], ["S2", "S3"]], {"mode": "adjacent", "n_adjacent": 2, "n_extra": 0}),
+])
+def test_inspection_binds_pair_declaration_to_the_specification(tmp_path, declared, forged):
+    (tmp_path / "t.dat").write_text(".\tA\tB\nS1\t10\t5\nS2\t8\t7\nS3\t2\t12\n")
+    spec = dict(PAIR_BASE, input=str(tmp_path / "t.dat"), pairs=declared, seed=5)
+    outcome = run(spec, tmp_path / "run")
+    assert inspect_run(outcome["run_dir"])["status"] == "verified"
+    results = Path(outcome["run_dir"]) / "results.json"
+    data = json.loads(results.read_text())
+    data["pair_declaration"] = forged
+    results.write_text(json.dumps(data, indent=2))
+    _rehash(outcome["run_dir"], "results.json")
+    with pytest.raises(Exception):
+        inspect_run(outcome["run_dir"])
+
+
+def fisher_underflow_bundle(tmp_path):
+    (tmp_path / "t.dat").write_text(".\tA\tB\tC\nS1\t0\t600\t626\nS2\t1110\t300\t304\nS3\t10\t500\t520\n")
+    spec = {"method": "count_homogeneity", "input": str(tmp_path / "t.dat"), "format": "past",
+            "orientation": "samples_by_taxa", "value_type": "count", "missing": "error", "empty_samples": "error",
+            "pairs": [["S1", "S2"], ["S1", "S3"]], "simulations": 999, "seed": 1}
+    return run(spec, tmp_path / "out")["run_dir"]
+
+
+def test_runs_record_underflow_and_inspection_recomputes_it(tmp_path):
+    run_dir = fisher_underflow_bundle(tmp_path)
+    result = inspect_run(run_dir)["result"]
+    assert result["method_version"] == 3
+    tests = {(tuple(p["sample_ids"]), t["taxon_id"]): t for p in result["pairs"] for t in p["taxon_tests"]}
+    flagged = tests[(("S1", "S2"), "A")]
+    assert flagged["p_value"] == 0.0 and flagged["p_value_underflow"] and flagged["log10_p_value"] < -307
+    assert not tests[(("S1", "S3"), "B")]["p_value_underflow"]
+    header = (Path(run_dir) / "taxon_tests.csv").read_text().splitlines()[0]
+    assert header.endswith("p_value_underflow,log10_p_value")
+
+
+@pytest.mark.parametrize("tamper", [
+    lambda t: t.update(p_value_underflow=False, log10_p_value=None),
+    lambda t: t.update(log10_p_value=-1.0),
+])
+def test_rehashed_underflow_tampering_fails_inspection(tmp_path, tamper):
+    run_dir = fisher_underflow_bundle(tmp_path)
+    path = Path(run_dir) / "results.json"
+    data = json.loads(path.read_text())
+    tamper(next(t for p in data["pairs"] for t in p["taxon_tests"] if t["p_value_underflow"]))
+    path.write_text(json.dumps(data, indent=2))
+    _rehash(run_dir, "results.json")
+    with pytest.raises(Exception):
+        inspect_run(run_dir)

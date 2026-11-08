@@ -96,3 +96,83 @@ sentence changed.
 - **No dedicated tests** cover the metadata-presence check (12) or the
   step-outcome comparison (16). Both are single comparisons, and building
   their fixtures would cost more than they protect.
+
+## Round 2 — Codex
+
+Reviewed `524f2d5`, concentrating on the new evidence guards and on
+`permanova.py`, `count_homogeneity.py` and `neotoma.py`. The purpose remains
+reliable analysis bundles for agents. Inspection checks integrity and the
+specified consistency rules; reproduction checks fresh numerical agreement.
+Neither authenticates an independently rewritten scientific record.
+
+### Six repairs
+
+| Defect | Evidence and repair |
+| --- | --- |
+| PERMANOVA's saved tail could contradict its saved statistics. | With pseudo-F about 8 × 10¹⁰, changing it by 1 passed the relative numerical tolerance but crossed the absolute tie threshold. Changing one saved permutation statistic could do the same. Inspection now counts exceedances from the saved observed statistic and saved permutation statistics as well as checking their recomputation. |
+| Count-homogeneity warnings were not bound to the saved input. | Deleting an `identical_samples` warning and rehashing the result still verified. Inspection now recomputes label and duplicate-row diagnostics from the declared labels and retained counts, using the same helper as preparation. |
+| Fisher's underflow fallback could allocate an enormous support vector. | A permitted pair with a billion grains per sample has over a billion support entries. The fallback now checks estimated support/working memory against its existing 64 MiB budget before allocating and refuses with `resource_limit`. The regression replaces the allocation with a failing spy; no oversized allocation was attempted. |
+| Study reproduction did not bind its new input snapshots to the bytes previously verified. | Appending a blank line after inspection preserved every derived value and previously returned `reproduced`. Inspection now reports hashes of its cached input bytes; reproduction compares them with the fresh study and reports an input difference. |
+| An undeclared regular file named `runs` passed partial-study inspection. | When no analysis completed, a regular file at the hierarchy root escaped both the ordinary file set and the directory walk. An existing `runs` path must now be a directory. |
+| Neotoma inspection parsed files again after hashing them. | Replacing the environment file after its hash read made inspection return an unhashed Python-version string. Extraction inspection now retains each verified file's bytes and uses those bytes for parsing and re-extraction. |
+
+Seven regression cases cover these six defects. All seven fail against an
+isolated copy of `524f2d5` and pass with the repairs. Tamper cases update
+hashes and any affected derived tables, so the checksum is not the check
+being tested. Existing scientific estimators, seeds, permutation schedules
+and significance rules are unchanged.
+
+### Test organisation
+
+No existing case was removed. Collection was 791 cases before and after
+the moves, with the same case IDs after mapping module paths. The 54 moved
+test functions retain their bodies and decorators apart from required
+helper-name substitutions; the 104 existing destination functions are
+unchanged. Seven new regression cases bring collection to 798.
+
+- `test_sprint9.py` → study, count-homogeneity, assemblage-integration and
+  methods tests.
+- `test_sprint10.py` → community, study, methods and PERMANOVA-run tests.
+- `test_sprint11.py` → PERMANOVA and PERMANOVA-run tests.
+- `test_sprint12.py` → count-homogeneity and assemblage-integration tests.
+- `test_sprint2_items.py` → `test_evaluation_permanova.py`.
+- `test_references.py` and `test_vegan_reference.py` →
+  `test_community_references.py`.
+
+Three small test-only helper modules hold shared abundance fixtures,
+count-pair fixtures and manifest rehashing. The evaluation smoke harness
+now names the moved evaluation test. Its historical `FREEZE.json` is
+unchanged: it describes an earlier frozen source tree.
+
+### Verification and limits
+
+The untouched baseline passed **780 tests, with 11 skipped, in 139.45 s**.
+The affected subject files passed **394 tests in 25.08 s**. The final full
+suite passed **787 tests, with 11 skipped, in 83.07 s**. These wall times
+come from separate runs with differing cache and concurrent-work conditions;
+they do not establish a performance improvement.
+
+A fresh reproduction of application 3's saved study returned `reproduced`:
+all six child `results.json` files were byte-identical to their originals,
+and every derived preparation file matched. This round did not rerun the
+Lake Selina or Tasmanian surface application scripts; the preceding round's
+replays remain their latest application-wide check. Their affected engine
+paths are covered by the subject tests and independent probes above.
+
+Additional bounded probes confirmed equal/nested/symlink-alias output
+refusals through Python, CLI and live stdio MCP, with the source extraction
+unchanged. Moving the original download still permits extraction inspection
+and reproduction. Editing an isolated package's source and lockfile after
+import still records the captured originals. Exact and Monte Carlo
+PERMANOVA mode boundaries, three-group allocation schedules and range
+refusals were also checked.
+
+One numerical limit remains: at highly imbalanced billion-grain margins,
+the floating log-Fisher calculation differed from an integer reference by
+about 6.6 × 10⁻⁷ in log10 p (around −6432). No decision changed; this is
+not a claim of exact decimal accuracy at all supported margins. The earlier
+inspection/reproduction boundary and local filesystem trust model remain.
+Caching verified bytes does not make the directory immutable, and there
+is no transaction spanning separately inspected parent and child bundles.
+
+Application 4 remains on hold for Claude's review of this round.

@@ -562,6 +562,8 @@ def inspect_study(study_dir):
         verified = {}
         # runs/ holds exactly runs/<analysis id>/<run id> for each completed analysis, and nothing else.
         runs_root = directory / "runs"
+        if runs_root.exists() and not runs_root.is_dir():
+            raise ValueError("The runs path must be a directory")
         level1 = set(runs_root.iterdir()) if runs_root.is_dir() else set()
         level2 = {p for d in level1 if d.is_dir() for p in d.iterdir()}
         declared = {directory / item["run_dir"] for item in manifest["runs"].values()}
@@ -600,6 +602,7 @@ def inspect_study(study_dir):
         raise AnalysisError("invalid_study", "Study could not be verified", study_dir=str(directory), reason=str(exc)) from exc
     return {"status": "verified", "study_status": manifest["status"], "study_dir": str(directory),
             "steps": manifest["steps"], "runs": verified, "row_filter_warnings": filters,
+            "input_hashes": {name: _sha(value) for name, value in raw.items()},
             "scope": "Integrity, preparation recomputation and run provenance verified; scientific validity is separate"}
 
 
@@ -620,6 +623,8 @@ def reproduce_study(study_dir, output_root):
                 "differences": ["steps"]}
     recreated = inspect_study(fresh["study_dir"])
     differences = {}
+    if recreated["input_hashes"] != original["input_hashes"]:
+        differences["inputs"] = ["Input snapshots differ from the verified originals"]
     if recreated["row_filter_warnings"] != original["row_filter_warnings"]:
         differences["row_filter_warnings"] = ["row-filter warnings differ"]
     for analysis_id, item in original["runs"].items():

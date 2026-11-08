@@ -22,9 +22,14 @@ application 3 hit it twice, for *N. gunnii* with counts 0 against 1,110.
 - **Unchanged:** `p_value`, `p_value_holm`, every decision and every other
   field.
 - **Inspection** recomputes the flag and the log value.
+- **Resource limit:** reconstructing an underflowed tail is refused with
+  `resource_limit` when its estimated support and working arrays exceed
+  the existing 64 MiB temporary-allocation budget. The check precedes
+  allocation; ordinary representable Fisher probabilities need no reconstruction.
 - **Output files:** `taxon_tests.csv` gains `p_value_underflow` and
   `log10_p_value`. The new limitation text states the reading.
-- **Evidence:** `tests/test_sprint12.py`.
+- **Evidence:** `tests/test_count_homogeneity.py` and
+  `tests/test_assemblage_integration.py` (formerly `tests/test_sprint12.py`).
   - An exact two-sided Fisher tail is computed in Python integers (no
     SciPy), with the same tie tolerance. It agrees with `log10_p_value` to
     within 10⁻⁹ for three underflowing tables, including application 3's

@@ -87,7 +87,9 @@ specification's `value_type` is bound to the result, as before.
 
 ## Evidence
 
-- `tests/test_sprint10.py`, 21 tests:
+- Originally `tests/test_sprint10.py`, 21 tests; now grouped by subject in
+  `tests/test_community.py`, `tests/test_permanova_runs.py`,
+  `tests/test_methods.py` and `tests/test_study.py`:
   - honest labels;
   - invariance to a common factor;
   - row scaling against closure;

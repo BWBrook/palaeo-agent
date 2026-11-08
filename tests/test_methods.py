@@ -5,9 +5,14 @@ import sys
 
 import numpy as np
 import pytest
+from pydantic import ValidationError
 
 from palaeo_agent import AnalysisError, discover, inspect_run, reproduce, run, validate
+from palaeo_agent.count_homogeneity import calculate_count_homogeneity
 from palaeo_agent.methods import compare_results
+from abundance_helpers import ABUNDANCE_COMMUNITY, ABUNDANCE_TABLE, abundance_table
+from bundle_helpers import rehash as _rehash
+from count_homogeneity_helpers import pair_spec
 
 
 def community_request(tmp_path, *, metadata=True, transform="none"):
@@ -105,3 +110,41 @@ def test_ordination_comparison_uses_geometry_not_axis_signs(tmp_path):
     rotated["positive_gram"][0][0] += .1
     with pytest.raises(ValueError):
         compare_results(first, rotated)
+
+
+def test_discovery_version_matches_schema_and_results(tmp_path):
+    from palaeo_agent import discover
+    from palaeo_agent.count_homogeneity import CountHomogeneityResult
+    entry = next(m for m in discover()["methods"] if m["id"] == "count_homogeneity") if isinstance(discover(), dict) \
+        else next(m for m in discover() if m["id"] == "count_homogeneity")
+    schema = CountHomogeneityResult.model_json_schema()["properties"]["method_version"]
+    result = calculate_count_homogeneity(pair_spec(tmp_path, pairs="adjacent"), (tmp_path / "t.dat").read_bytes())
+    assert entry["version"] == schema["const"] == result["method_version"] == 3
+
+
+@pytest.mark.parametrize("method", ["rarefaction", "count_homogeneity"])
+def test_count_only_methods_refuse_abundance_even_when_integer_valued(tmp_path, method):
+    (tmp_path / "t.dat").write_text(".\tA\tB\nS1\t10\t5\nS2\t8\t7\n")
+    spec = {"method": method, "input": str(tmp_path / "t.dat"), "format": "past", "orientation": "samples_by_taxa",
+            "value_type": "abundance", "missing": "error", "empty_samples": "error"}
+    if method == "count_homogeneity":
+        spec.update(pairs=[["S1", "S2"]], simulations=999, seed=1)
+    with pytest.raises((ValidationError, AnalysisError)):
+        run(spec, tmp_path / "out")
+
+
+@pytest.mark.parametrize("tamper", [
+    lambda r: r.update(value_type="count", retained_counts=r.pop("retained_values")),
+    lambda r: r["retained_values"][0].__setitem__(0, 51.0),
+    lambda r: r.update(transform="none"),
+])
+def test_inspection_binds_value_type_values_and_transform(tmp_path, tamper):
+    (tmp_path / "c.dat").write_bytes(abundance_table(ABUNDANCE_TABLE))
+    outcome = run(dict(ABUNDANCE_COMMUNITY, input=str(tmp_path / "c.dat"), transform="relative_abundance"), tmp_path / "run")
+    results = Path(outcome["run_dir"]) / "results.json"
+    data = json.loads(results.read_text())
+    tamper(data)
+    results.write_text(json.dumps(data, indent=2))
+    _rehash(outcome["run_dir"], "results.json")
+    with pytest.raises(Exception):
+        inspect_run(outcome["run_dir"])

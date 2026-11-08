@@ -1,15 +1,18 @@
 import copy
+from fractions import Fraction
 import itertools
 import math
 
 import pytest
 from pydantic import ValidationError
 
+from palaeo_agent import validate
 from palaeo_agent.core import AnalysisError
 from palaeo_agent.count_homogeneity import (
     MAX_POOLED_TOTAL, CountHomogeneityResult, CountHomogeneitySpec,
-    _holm, _interval, calculate_count_homogeneity, validate_count_homogeneity,
+    _fisher, _holm, _interval, calculate_count_homogeneity, validate_count_homogeneity,
 )
+from count_homogeneity_helpers import PAIR_BASE, PAIR_TABLE, pair_spec
 
 
 def spec(**changes):
@@ -160,6 +163,38 @@ def test_preflight_identical_samples_and_unpaired_empty_drop(monkeypatch):
     assert valid["excluded"] == [{"sample_id": "c", "reason": "empty_sample"}]
 
 
+def test_rehashed_result_cannot_suppress_input_warnings(tmp_path):
+    import json
+    from pathlib import Path
+    from palaeo_agent import inspect_run, run
+    from bundle_helpers import rehash
+
+    path = tmp_path / "counts.tsv"
+    path.write_bytes(table({"a": [2, 2], "b": [2, 2]}))
+    bundle = Path(run(spec(input=str(path)), tmp_path / "runs")["run_dir"])
+    result = inspect_run(bundle)["result"]
+    assert any(warning["code"] == "identical_samples" for warning in result["warnings"])
+    result["warnings"] = []
+    (bundle / "results.json").write_text(json.dumps(result))
+    rehash(bundle, "results.json")
+    with pytest.raises(AnalysisError) as error:
+        inspect_run(bundle)
+    assert error.value.code == "invalid_bundle"
+    assert "diagnostics" in str(error.value.details)
+
+
+def test_fisher_underflow_budget_is_checked_before_allocating_support(monkeypatch):
+    from types import SimpleNamespace
+    from palaeo_agent import count_homogeneity as ch
+
+    monkeypatch.setattr(ch, "fisher_exact", lambda *args, **kwargs: SimpleNamespace(pvalue=0.0))
+    monkeypatch.setattr(ch.np, "arange", lambda *args, **kwargs: pytest.fail("Oversized support allocated"))
+    with pytest.raises(AnalysisError) as error:
+        ch._fisher(0, 10**9, 10**9, 10**9)
+    assert error.value.code == "resource_limit"
+    assert error.value.details["estimated_bytes"] > error.value.details["limit_bytes"]
+
+
 def test_mc_endpoint_intervals_and_never_zero_p_values():
     low = calculate_count_homogeneity(spec(), table({"a": [100, 0], "b": [0, 100]}))["pairs"][0]
     high = calculate_count_homogeneity(spec(), table({"a": [10, 10], "b": [10, 10]}))["pairs"][0]
@@ -238,3 +273,76 @@ def test_tiny_confidence_has_a_conservative_representable_zero_limit():
     result = calculate_count_homogeneity(spec(confidence=confidence), table({"a": [0, 10], "b": [10, 0]}))
     assert result["confidence"] == confidence
     assert result["zero_count_limits"][0]["upper_limit"] == confidence
+
+
+def test_holm_envelope_matches_holm_of_interval_bounds(tmp_path):
+    result = calculate_count_homogeneity(pair_spec(tmp_path, pairs="adjacent", extra_pairs=[["S1", "S5"]]),
+                                         (tmp_path / "t.dat").read_bytes())
+    assert result["method_version"] == 3
+    intervals = [p["monte_carlo"]["tail_probability_interval"] for p in result["pairs"]]
+    lower, upper = _holm([i[0] for i in intervals]), _holm([i[1] for i in intervals])
+    for pair, lo, hi in zip(result["pairs"], lower, upper):
+        mc = pair["monte_carlo"]
+        assert mc["holm_envelope"] == [lo, hi]
+        assert mc["holm_envelope_unresolved"] == (lo <= 0.05 <= hi)
+        assert mc["holm_envelope_scope"] == "sensitivity_diagnostic"
+        assert lo <= hi
+
+
+def test_adjacent_pairs_equal_the_explicit_list(tmp_path):
+    explicit = [["S1", "S2"], ["S2", "S3"], ["S3", "S4"], ["S4", "S5"], ["S1", "S5"]]
+    pair_spec(tmp_path)
+    data = (tmp_path / "t.dat").read_bytes()
+    short = calculate_count_homogeneity(pair_spec(tmp_path, pairs="adjacent", extra_pairs=[["S1", "S5"]]), data)
+    full = calculate_count_homogeneity(pair_spec(tmp_path, pairs=explicit), data)
+    assert short["pair_declaration"] == {"mode": "adjacent", "n_adjacent": 4, "n_extra": 1}
+    assert full["pair_declaration"] == {"mode": "explicit", "n_adjacent": 0, "n_extra": 5}
+    assert {k: v for k, v in short.items() if k != "pair_declaration"} == \
+        {k: v for k, v in full.items() if k != "pair_declaration"}
+
+
+def test_adjacent_pairs_follow_retained_order_after_drop(tmp_path):
+    (tmp_path / "t.dat").write_text(PAIR_TABLE.replace("S3\t10\t20\t5\t1", "S3\t0\t0\t0\t0"))
+    spec = dict(PAIR_BASE, input=str(tmp_path / "t.dat"), pairs="adjacent", empty_samples="drop")
+    result = calculate_count_homogeneity(spec, (tmp_path / "t.dat").read_bytes())
+    assert [p["sample_ids"] for p in result["pairs"]] == [["S1", "S2"], ["S2", "S4"], ["S4", "S5"]]
+    assert validate(spec)["n_pairs"] == 3
+
+
+@pytest.mark.parametrize("extra", [[["S2", "S1"]], [["S3", "S4"]]])
+def test_extra_pair_repeating_an_adjacent_pair_is_refused(tmp_path, extra):
+    with pytest.raises(AnalysisError) as error:
+        calculate_count_homogeneity(pair_spec(tmp_path, pairs="adjacent", extra_pairs=extra), (tmp_path / "t.dat").read_bytes())
+    assert error.value.code == "duplicate_pair"
+
+
+def test_extra_pairs_require_adjacent_mode(tmp_path):
+    with pytest.raises(Exception):
+        calculate_count_homogeneity(pair_spec(tmp_path, pairs=[["S1", "S2"]], extra_pairs=[["S1", "S3"]]),
+                                    (tmp_path / "t.dat").read_bytes())
+
+
+def _exact_log10_p(xa, na, xb, nb):
+    """Exact two-sided Fisher p in integers (SciPy's 1e-7 relative tie tolerance), as log10."""
+    total, column = na + nb, xa + xb
+    denominator = math.comb(total, na)
+    lo, hi = max(0, na - (total - column)), min(column, na)
+    masses = {k: math.comb(column, k) * math.comb(total - column, na - k) for k in range(lo, hi + 1)}
+    threshold = Fraction(masses[xa]) * (1 + Fraction(1, 10**7))
+    numerator = sum(m for m in masses.values() if m <= threshold)
+    return math.log10(numerator) - math.log10(denominator)
+
+
+@pytest.mark.parametrize("xa,na,xb,nb", [(0, 1226, 1110, 1714), (0, 1000, 990, 1000), (3, 900, 850, 1000)])
+def test_underflowed_fisher_values_are_flagged_and_bracketed(xa, na, xb, nb):
+    p, underflow, bounds = _fisher(xa, na, xb, nb)
+    exact = _exact_log10_p(xa, na, xb, nb)
+    assert exact < -307.6 and p == 0.0 and underflow
+    assert bounds == pytest.approx(exact, abs=1e-9)
+
+
+@pytest.mark.parametrize("xa,na,xb,nb", [(5, 500, 20, 500), (0, 100, 3, 100), (40, 532, 60, 540)])
+def test_ordinary_fisher_values_carry_no_bounds(xa, na, xb, nb):
+    p, underflow, bounds = _fisher(xa, na, xb, nb)
+    assert p > 0 and not underflow and bounds is None
+    assert math.log10(p) == pytest.approx(_exact_log10_p(xa, na, xb, nb), abs=1e-9)

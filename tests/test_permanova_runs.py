@@ -1,4 +1,3 @@
-import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -7,6 +6,12 @@ import sys
 import pytest
 
 from palaeo_agent import AnalysisError, discover, inspect_run, reproduce, run, validate
+from palaeo_agent.permanova import _monte_carlo_fields
+from abundance_helpers import (
+    ABUNDANCE_METADATA, ABUNDANCE_PERMANOVA, ABUNDANCE_TABLE,
+    abundance_table,
+)
+from bundle_helpers import rehash as _rehash
 
 
 def request(tmp_path, *, permutations=999):
@@ -26,11 +31,33 @@ def rewrite_record(directory, name, change):
     value = json.loads(path.read_text())
     change(value)
     path.write_text(json.dumps(value, allow_nan=False))
-    manifest_path = directory / "manifest.json"
-    manifest = json.loads(manifest_path.read_text())
-    data = path.read_bytes()
-    manifest["files"][name].update(sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
-    manifest_path.write_text(json.dumps(manifest))
+    _rehash(directory, name)
+
+
+@pytest.mark.parametrize("field", ["pseudo_f", "permutation_statistic"])
+def test_saved_tail_count_matches_saved_statistics_even_within_numeric_tolerance(tmp_path, field):
+    from palaeo_agent.methods import table_files
+
+    spec = request(tmp_path)
+    Path(spec["input"]).write_text(". A B\na 100000 0\nb 100000 1\nc 0 100000\nd 1 100000\n")
+    bundle = Path(run(spec, tmp_path / "runs")["run_dir"])
+    result = inspect_run(bundle)["result"]
+    assert result["permutation"]["mode"] == "exact"
+    assert result["permutation"]["count_extreme"] == 2
+    if field == "pseudo_f":
+        result["pseudo_f"] += 1
+    else:
+        statistics = result["permutation"]["statistics"]
+        statistics[statistics.index(max(statistics))] -= 1
+    (bundle / "results.json").write_text(json.dumps(result))
+    _rehash(bundle, "results.json")
+    for name, data in table_files(result).items():
+        (bundle / name).write_bytes(data)
+        _rehash(bundle, name)
+    with pytest.raises(AnalysisError) as error:
+        inspect_run(bundle)
+    assert error.value.code == "invalid_bundle"
+    assert "exceedances" in str(error.value.details)
 
 
 def test_compact_discovery_precedes_all_large_schemas():
@@ -129,3 +156,54 @@ def test_sensitivity_comparison_explicitly_refuses_permanova(tmp_path):
         compare_community_runs(bundle, bundle, tmp_path / "comparison")
     assert caught.value.code == "comparison_method"
     assert not (tmp_path / "comparison").exists()
+
+
+def test_abundance_permanova_runs_and_inspects(tmp_path):
+    (tmp_path / "p.dat").write_bytes(abundance_table(ABUNDANCE_TABLE))
+    (tmp_path / "m.csv").write_text(ABUNDANCE_METADATA)
+    outcome = run(dict(ABUNDANCE_PERMANOVA, input=str(tmp_path / "p.dat"), metadata=str(tmp_path / "m.csv")), tmp_path / "run")
+    inspected = inspect_run(outcome["run_dir"])
+    assert inspected["status"] == "verified"
+    result = inspected["result"]
+    assert result["value_type"] == "abundance" and "retained_counts" not in result
+    assert (Path(outcome["run_dir"]) / "retained_values.csv").is_file()
+    assert 0 < result["p_value"] <= 1 and 0 <= result["r_squared"] <= 1
+
+
+def abundance_run(tmp_path, permutations):
+    (tmp_path / "p.dat").write_bytes(abundance_table(ABUNDANCE_TABLE))
+    (tmp_path / "m.csv").write_text(ABUNDANCE_METADATA)
+    spec = dict(ABUNDANCE_PERMANOVA, input=str(tmp_path / "p.dat"), metadata=str(tmp_path / "m.csv"), permutations=permutations)
+    return run(spec, tmp_path / "run")
+
+
+@pytest.mark.parametrize("permutations,mode", [(9, "monte_carlo"), (999, "exact")])
+def test_runs_record_the_interval_and_keep_the_p_value(tmp_path, permutations, mode):
+    outcome = abundance_run(tmp_path, permutations)
+    result = inspect_run(outcome["run_dir"])["result"]
+    record = result["permutation"]
+    assert result["method_version"] == 2 and record["mode"] == mode
+    if mode == "exact":
+        assert record["tail_probability_interval"] is None and result["p_value"] == record["count_extreme"] / record["space_size"]
+    else:
+        assert result["p_value"] == (record["count_extreme"] + 1) / (permutations + 1)
+        assert record == {**record, **_monte_carlo_fields(mode, record["count_extreme"], permutations)}
+    header = (Path(outcome["run_dir"]) / "permanova.csv").read_text().splitlines()[0]
+    assert header.endswith("tail_interval_lower,tail_interval_upper,monte_carlo_unresolved")
+
+
+@pytest.mark.parametrize("tamper", [
+    lambda p: p.update(monte_carlo_unresolved=not p["monte_carlo_unresolved"]),
+    lambda p: p.update(tail_probability_interval=[0.0, 0.5]),
+    lambda p: p.update(tail_probability_interval=None, interval_status="not_applicable_exact_enumeration",
+                       monte_carlo_unresolved=None),
+])
+def test_rehashed_interval_tampering_fails_inspection(tmp_path, tamper):
+    outcome = abundance_run(tmp_path, 9)
+    results = Path(outcome["run_dir"]) / "results.json"
+    data = json.loads(results.read_text())
+    tamper(data["permutation"])
+    results.write_text(json.dumps(data, indent=2))
+    _rehash(outcome["run_dir"], "results.json")
+    with pytest.raises(Exception):
+        inspect_run(outcome["run_dir"])

@@ -11,6 +11,10 @@ import pytest
 
 from palaeo_agent import AnalysisError, inspect_study, reproduce_study, run_study
 
+from abundance_helpers import (
+    ABUNDANCE_COMMUNITY, ABUNDANCE_METADATA, ABUNDANCE_PERMANOVA, ABUNDANCE_TABLE,
+)
+
 COMMUNITY = {"method": "community", "format": "past", "orientation": "samples_by_taxa", "value_type": "count",
              "transform": "none", "distance": "braycurtis", "dimensions": 1, "missing": "error",
              "empty_samples": "error"}
@@ -119,6 +123,35 @@ def test_reproduce_in_a_fresh_process(tmp_path):
     reproduced = json.loads(completed.stdout)
     assert reproduced["status"] == "reproduced" and reproduced["derived_identical"]
     assert reproduce_study(outcome["study_dir"], tmp_path / "third")["status"] == "reproduced"
+
+
+def test_reproduction_detects_input_bytes_changed_after_inspection(tmp_path, monkeypatch):
+    from palaeo_agent import study as implementation
+
+    original = Path(run_study(community_study(tmp_path), tmp_path / "original")["study_dir"])
+    saved_run = implementation.run_study
+
+    def change_then_run(*args, **kwargs):
+        path = original / "inputs/counts"
+        path.write_bytes(path.read_bytes() + b"\n")
+        return saved_run(*args, **kwargs)
+
+    monkeypatch.setattr(implementation, "run_study", change_then_run)
+    outcome = reproduce_study(original, tmp_path / "replay")
+    assert outcome["status"] == "different"
+    assert set(outcome["differences"]) == {"inputs"}
+    assert outcome["derived_identical"]
+
+
+def test_partial_study_rejects_regular_file_at_runs_root(tmp_path):
+    spec = json.loads(community_study(tmp_path).read_text())
+    spec["datasets"]["clean"]["operations"][0]["samples"] = ["unknown"]
+    outcome = run_study(spec, tmp_path / "partial", base_dir=tmp_path)
+    assert outcome["status"] == "partial"
+    (Path(outcome["study_dir"]) / "runs").write_text("undeclared evidence")
+    with pytest.raises(AnalysisError) as error:
+        inspect_study(outcome["study_dir"])
+    assert error.value.code == "invalid_study"
 
 
 @pytest.mark.parametrize("tamper", ["derived", "report", "stray_run_file", "version"])
@@ -382,3 +415,117 @@ def test_row_filter_warning_resolves_columns_as_rma_does(tmp_path):
     outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
     assert outcome["status"] == "complete"
     assert [w["removed_rows"] for w in outcome["row_filter_warnings"]] == [["d"]]
+
+
+def _add_operation(path, operation):
+    study = json.loads(path.read_text())
+    study["datasets"]["clean"]["operations"].append(operation)
+    path.write_text(json.dumps(study))
+    return path
+
+
+def test_exclude_taxa_preserves_order_samples_and_cells(tmp_path):
+    path = _add_operation(community_study(tmp_path), {"op": "exclude_taxa", "taxa": ["Orbulina"], "reason": "test sum"})
+    outcome = run_study(path, tmp_path / "out")
+    assert outcome["status"] == "complete"
+    directory = Path(outcome["study_dir"])
+    derived = (directory / "derived/clean.dat").read_text().splitlines()
+    assert derived[0] == ".\tGlobigerina\tUvigerina"
+    assert derived[1:] == ["K1\t15\t5", "K2\t10\t5", "K3\t3\t6", "K4\t3\t9", "K6\t6\t3"]
+    record = next(op for op in json.loads((directory / "derived/clean.json").read_text())["operations"]
+                  if op["op"] == "exclude_taxa")
+    assert record == {"op": "exclude_taxa", "reason": "test sum", "removed": ["Orbulina"],
+                      "columns": ["Globigerina", "Uvigerina"], "emptied_samples": []}
+    assert "exclude_taxa: removed Orbulina" in (directory / "report.md").read_text()
+    assert inspect_study(directory)["status"] == "verified"
+    assert reproduce_study(directory, tmp_path / "again")["status"] == "reproduced"
+
+
+@pytest.mark.parametrize("taxa, code", [
+    (["Bolivina"], "unknown_taxon"),
+    (["Orbulina", "Orbulina"], "duplicate_id"),
+    (["Globigerina", "Orbulina", "Uvigerina"], "no_taxa"),
+    (["globigerina"], "unknown_taxon"),  # already merged by the earlier map_taxa step
+])
+def test_exclude_taxa_refusals(tmp_path, taxa, code):
+    path = _add_operation(community_study(tmp_path), {"op": "exclude_taxa", "taxa": taxa, "reason": "x"})
+    outcome = run_study(path, tmp_path / "out")
+    assert outcome["failed_step"] == "dataset:clean" and outcome["error"]["code"] == code
+
+
+def test_exclude_taxa_refused_for_measurements(tmp_path):
+    (tmp_path / "m.dat").write_text(".\ta\tb\tc\nS1\t1\t2\t1\nS2\t2\t3\t1\nS3\t3\t5\t1\n")
+    study = {"study_version": 1,
+             "inputs": {"m": {"kind": "measurements", "path": "m.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "m", "operations": [{"op": "exclude_taxa", "taxa": ["c"], "reason": "x"}]}},
+             "analyses": [{"id": "r", "dataset": "d", "spec": {"method": "rma", "format": "past", "x": "a", "y": "b",
+                                                              "transform": "none", "missing": "error"}}]}
+    assert run_study(study, tmp_path / "out", base_dir=tmp_path)["error"]["code"] == "operation_not_applicable"
+
+
+@pytest.mark.parametrize("policy", ["error", "drop"])
+def test_emptied_samples_follow_the_declared_policy(tmp_path, policy):
+    (tmp_path / "c.dat").write_text(".\taquatic\tA\tB\nS1\t9\t0\t0\nS2\t1\t4\t5\nS3\t2\t6\t1\nS4\t0\t3\t3\n")
+    study = {"study_version": 1,
+             "inputs": {"c": {"kind": "counts", "path": "c.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "c", "operations": [
+                 {"op": "exclude_taxa", "taxa": ["aquatic"], "reason": "dryland sum"}]}},
+             "analyses": [{"id": "a", "dataset": "d", "spec": dict(COMMUNITY, empty_samples=policy)}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    record = json.loads((Path(outcome["study_dir"]) / "derived/d.json").read_text())["operations"][-1]
+    assert record["emptied_samples"] == ["S1"]
+    if policy == "error":
+        assert outcome["status"] == "partial" and outcome["failed_step"] == "analysis:a"
+    else:
+        assert outcome["status"] == "complete"
+        result = json.loads(next((Path(outcome["study_dir"]) / "runs/a").rglob("results.json")).read_text())
+        assert [item["sample_id"] for item in result["excluded"]] == ["S1"]
+
+
+def abundance_study(tmp_path, analyses, operations=()):
+    (tmp_path / "p.dat").write_text(ABUNDANCE_TABLE.replace("\tC\n", "\tC1\n").replace(".\tA\tB", ".\tA\tB"))
+    (tmp_path / "p.dat").write_text(".\tA\tB\tC1\tC2\n" + "".join(
+        f"{r.split(chr(9))[0]}\t{r.split(chr(9))[1]}\t{r.split(chr(9))[2]}\t0.125\t{float(r.split(chr(9))[3]) - 0.125}\n"
+        for r in ABUNDANCE_TABLE.strip().split("\n")[1:]))
+    (tmp_path / "m.csv").write_text(ABUNDANCE_METADATA)
+    return {"study_version": 1,
+            "inputs": {"pct": {"kind": "abundance", "path": "p.dat", "orientation": "samples_by_taxa"},
+                       "meta": {"kind": "metadata", "path": "m.csv", "id_column": "sample_id"}},
+            "datasets": {"d": {"source": "pct", "metadata": "meta", "operations": list(operations)}},
+            "analyses": analyses}
+
+
+def test_study_merges_abundance_exactly_and_runs_end_to_end(tmp_path):
+    spec = {k: v for k, v in ABUNDANCE_PERMANOVA.items() if k not in ("input", "metadata")}
+    study = abundance_study(tmp_path, [{"id": "p", "dataset": "d", "spec": spec}],
+                   [{"op": "map_taxa", "mapping": {"C1": "C", "C2": "C"}, "reason": "disjoint parts of one category"},
+                    {"op": "exclude_taxa", "taxa": ["B"], "reason": "test exclusion; no renormalisation"}])
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert outcome["status"] == "complete", outcome
+    directory = Path(outcome["study_dir"])
+    lines = (directory / "derived/d.dat").read_text().splitlines()
+    assert lines[0] == ".\tA\tC" and lines[1] == "S1\t50.5\t19.250"
+    assert inspect_study(directory)["status"] == "verified"
+    assert reproduce_study(directory, tmp_path / "again")["status"] == "reproduced"
+
+
+@pytest.mark.parametrize("method_spec", [
+    {"method": "rarefaction", "format": "past", "orientation": "samples_by_taxa", "value_type": "count",
+     "missing": "error", "empty_samples": "error"},
+    dict(ABUNDANCE_COMMUNITY, value_type="count"),
+])
+def test_study_binds_abundance_inputs_to_abundance_methods(tmp_path, method_spec):
+    study = abundance_study(tmp_path, [{"id": "x", "dataset": "d", "spec": method_spec}])
+    with pytest.raises(AnalysisError) as error:
+        run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert error.value.code == "invalid_study"
+
+
+def test_counts_inputs_refuse_abundance_declarations(tmp_path):
+    (tmp_path / "c.dat").write_text(".\tA\tB\nS1\t1\t2\nS2\t3\t4\nS3\t2\t2\n")
+    study = {"study_version": 1, "inputs": {"c": {"kind": "counts", "path": "c.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "c"}},
+             "analyses": [{"id": "x", "dataset": "d", "spec": dict(ABUNDANCE_COMMUNITY, dimensions=1)}]}
+    with pytest.raises(AnalysisError) as error:
+        run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert error.value.code == "invalid_study"

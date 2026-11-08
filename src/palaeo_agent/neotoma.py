@@ -325,21 +325,22 @@ def inspect_neotoma(bundle: str | Path):
             raise ValueError("Manifest file set differs from the extraction layout")
         if {item.name for item in directory.iterdir()} != names | {"manifest.json"}:
             raise ValueError("Bundle file set differs from manifest")
+        snapshot = {}
         for name, expected in manifest["files"].items():
             path = directory / name
             if len(PurePosixPath(name).parts) != 1 or path.is_symlink() or not path.is_file():
                 raise ValueError("Unsafe artefact path")
-            data = path.read_bytes()
-            if _sha(data) != expected["sha256"] or len(data) != expected["bytes"]:
+            snapshot[name] = path.read_bytes()
+            if _sha(snapshot[name]) != expected["sha256"] or len(snapshot[name]) != expected["bytes"]:
                 raise ValueError(f"Artefact integrity failure: {name}")
-        spec = NeotomaSpec.model_validate_json((directory / "spec.json").read_bytes())
+        spec = NeotomaSpec.model_validate_json(snapshot["spec.json"])
         if spec.source != Path("source.json"):
             raise ValueError("Saved specification must reference its source snapshot")
-        derived = extract(spec, (directory / "source.json").read_bytes())
-        changed = [name for name in DERIVED if derived[name] != (directory / name).read_bytes()]
+        derived = extract(spec, snapshot["source.json"])
+        changed = [name for name in DERIVED if derived[name] != snapshot[name]]
         if changed:
             raise ValueError(f"Derived files differ from re-extraction: {', '.join(changed)}")
-        environment = RunEnvironment.model_validate_json((directory / "environment.json").read_bytes())
+        environment = RunEnvironment.model_validate_json(snapshot["environment.json"])
         if environment.lockfile.available != ("uv.lock" in names):
             raise ValueError("Lockfile provenance differs from the bundled files")
     except AnalysisError as exc:

@@ -5,10 +5,15 @@ import numpy as np
 import pytest
 from pydantic import ValidationError
 
-from palaeo_agent import AnalysisError
+from palaeo_agent import AnalysisError, run
 from palaeo_agent.community import (
     CommunityResult, CommunitySpec, analyse_community, calculate_community,
     selected_subspace_info, validate_community,
+)
+
+from abundance_helpers import (
+    ABUNDANCE_COMMUNITY, ABUNDANCE_PERMANOVA, ABUNDANCE_TABLE,
+    abundance_table,
 )
 
 
@@ -324,3 +329,106 @@ def test_schema_forbids_undeclared_options_and_noncount_semantics():
     with pytest.raises(AnalysisError) as caught:
         analyse(distance="jaccard", transform="relative_abundance")
     assert caught.value.code == "unsupported_combination"
+
+
+def abundance_community(data, **changes):
+    return calculate_community(dict(ABUNDANCE_COMMUNITY, input="x.dat", **changes), data)
+
+
+def test_abundance_community_labels_weights_honestly():
+    result = abundance_community(abundance_table(ABUNDANCE_TABLE))
+    assert result["value_type"] == "abundance" and "retained_counts" not in result
+    assert result["retained_values"][0] == [50.5, 30.25, 19.25]
+    row = result["diversity"][0]
+    assert "total" not in row and row["weight_sum"] == 100 and row["richness"] == 3
+    p = np.array([50.5, 30.25, 19.25]) / 100
+    assert row["shannon"] == pytest.approx(-(p * np.log(p)).sum(), rel=1e-12)
+    assert row["simpson"] == pytest.approx(1 - (p**2).sum(), rel=1e-12)
+    assert any("weights carry no specimen counts" in item for item in result["limitations"])
+
+
+def test_common_factor_leaves_distances_and_diversity_unchanged():
+    base = abundance_community(abundance_table(ABUNDANCE_TABLE))
+    scaled = abundance_community(abundance_table(ABUNDANCE_TABLE, [0.01] * 6))
+    assert np.allclose(base["distances"], scaled["distances"], rtol=0, atol=1e-12)
+    for key in ("richness", "shannon", "simpson"):
+        assert [r[key] for r in base["diversity"]] == pytest.approx([r[key] for r in scaled["diversity"]], rel=1e-12)
+
+
+def test_row_specific_scaling_affects_raw_braycurtis_only_before_closure():
+    factors = [1, 2, 0.5, 3, 1, 0.25]
+    raw = (abundance_community(abundance_table(ABUNDANCE_TABLE)), abundance_community(abundance_table(ABUNDANCE_TABLE, factors)))
+    assert not np.allclose(raw[0]["distances"], raw[1]["distances"])
+    closed = [abundance_community(abundance_table(ABUNDANCE_TABLE, f), transform="relative_abundance") for f in (None, factors)]
+    assert np.allclose(closed[0]["distances"], closed[1]["distances"], rtol=0, atol=1e-12)
+    jaccard = [abundance_community(abundance_table(ABUNDANCE_TABLE, f), distance="jaccard", dimensions=1) for f in (None, factors)]
+    assert jaccard[0]["distances"] == jaccard[1]["distances"]
+
+
+@pytest.mark.parametrize("token", ["-1", "inf", "NaN", "1e-400", "1e400", "abc"])
+def test_unsupported_abundance_tokens_are_refused(token):
+    with pytest.raises(AnalysisError) as error:
+        abundance_community(abundance_table(ABUNDANCE_TABLE.replace("50.5", token)))
+    assert error.value.code == "invalid_abundance"
+
+
+def test_empty_abundance_rows_follow_the_policy():
+    data = abundance_table(ABUNDANCE_TABLE.replace("S3\t0\t80.5\t19.5", "S3\t0\t0\t0.0"))
+    with pytest.raises(AnalysisError) as error:
+        abundance_community(data)
+    assert error.value.code == "empty_samples"
+    assert [e["sample_id"] for e in abundance_community(data, empty_samples="drop")["excluded"]] == ["S3"]
+
+
+def test_count_input_still_refuses_fractions_and_points_to_abundance():
+    with pytest.raises(AnalysisError) as error:
+        abundance_community(abundance_table(ABUNDANCE_TABLE), value_type="count")
+    assert error.value.code == "invalid_count" and "abundance" in error.value.args[0]
+
+
+OVERFLOW = ".\tA\tB\nx\t1e308\t0\ny\t1e308\t1e307\nz\t0\t1\n"
+
+
+@pytest.mark.parametrize("entry", ["validate", "run"])
+@pytest.mark.parametrize("table", [OVERFLOW, ".\tA\tB\nx\t1e308\t1e308\ny\t1\t2\nz\t2\t1\n"])
+def test_abundance_range_is_refused_in_validation_and_execution(tmp_path, entry, table):
+    from palaeo_agent import validate
+    (tmp_path / "o.dat").write_text(table)
+    spec = dict(ABUNDANCE_COMMUNITY, input=str(tmp_path / "o.dat"), dimensions=1)
+    for method_spec in (spec, dict(ABUNDANCE_PERMANOVA, input=spec["input"], transform="none", metadata=None)):
+        method_spec = {k: v for k, v in method_spec.items() if v is not None}
+        if method_spec["method"] == "permanova":
+            (tmp_path / "m.csv").write_text("sample_id,band\nx,a\ny,a\nz,b\n")
+            method_spec["metadata"] = str(tmp_path / "m.csv")
+        with pytest.raises(AnalysisError) as error:
+            validate(method_spec) if entry == "validate" else run(method_spec, tmp_path / f"out-{method_spec['method']}")
+        assert error.value.code == "abundance_range"
+
+
+def test_rescaled_overflow_table_gives_the_exact_distance():
+    rescaled = abundance_community(OVERFLOW.replace("1e308", "1").replace("1e307", "0.1").replace("z\t0\t1", "z\t0\t1e-308").encode(),
+                          dimensions=1)
+    assert rescaled["distances"][0][1] == pytest.approx(1 / 21, rel=1e-15)
+
+
+def test_community_distances_refuses_rows_outside_the_range():
+    from palaeo_agent.community import community_distances
+    with pytest.raises(AnalysisError) as error:
+        community_distances(np.array([[1e308, 0.0], [1e308, 1e307], [0.0, 1.0]]), transform="none", distance="braycurtis")
+    assert error.value.code == "abundance_range"
+
+
+def test_native_positive_weights_may_not_underflow_or_overflow():
+    from fractions import Fraction
+    from palaeo_agent import analyse_community
+    common = dict(sample_ids=["A", "B", "C"], taxon_ids=["x", "y", "z"], value_type="abundance", transform="none",
+                  distance="jaccard", dimensions=1, empty_samples="error")
+    for tiny in (Fraction(1, 10**400), Fraction(10**400)):
+        with pytest.raises(AnalysisError) as error:
+            analyse_community([[tiny, 1, 0], [1, 0, 0], [0, 1, 1]], **common)
+        assert error.value.code == "invalid_abundance"
+    with pytest.raises(AnalysisError) as error:
+        analyse_community([[1e308, 1e308, 0], [1, 0, 0], [0, 1, 1]], **common)
+    assert error.value.code == "abundance_range"
+    ok = analyse_community([[Fraction(1, 10**300), 1, 0], [1, 0, 0], [0, 1, 1]], **common)
+    assert ok["diversity"][0]["richness"] == 2 and ok["distances"][0][1] == 0.5

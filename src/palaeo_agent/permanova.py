@@ -426,6 +426,10 @@ def _validate_saved_result(result):
     for actual, expected in zip(record.statistics, statistics, strict=True):
         if (actual is None) != (expected is None) or (expected is not None and not _same_numeric(actual, expected)):
             raise ValueError("Permutation statistics disagree with the recorded schedule")
+    recorded_extreme = sum(status == "positive_infinity" or value >= result.pseudo_f - record.tie_tolerance
+                           for value, status in zip(record.statistics, record.statuses, strict=True))
+    if recorded_extreme != record.count_extreme:
+        raise ValueError("Saved statistics and observed pseudo-F imply different permutation exceedances")
     denominator = space if mode == "exact" else record.requested + 1
     expected_p = extreme / denominator if mode == "exact" else (extreme + 1) / denominator
     if (record.count_extreme != extreme or record.denominator != denominator or
