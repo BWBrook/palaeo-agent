@@ -1,0 +1,114 @@
+{
+  "reviewed_implementation": "239b209356437e3a6915ce9306ad83b0bacaf345",
+  "reviewed_application": "5b8874fcb814351d9d8a1d6354da14c7423803fc",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "f45b76b868bd1c317bb0c803935784bb9040a9d3f763ee8dc5cec7952d661e7b"
+  },
+  "full_pytest": {
+    "passed": 717,
+    "skipped": 11,
+    "native_confinement_opt_in": false
+  },
+  "independent_r": {
+    "fields": 492,
+    "passed": 492,
+    "atol": 1e-10,
+    "rtol": 1e-10,
+    "max_abs_difference": 1.7763568394002505e-15,
+    "r_version": "4.6.1",
+    "vegan_version": "2.7.6",
+    "bundles_verified": 24,
+    "scope": "Distances/diversity and PERMANOVA F/R2; not independent Monte Carlo p-values or ecological validity"
+  },
+  "live_mcp": {
+    "schema_exposure": true,
+    "abundance_methods_and_study_reproduce": true,
+    "honest_branch_fields": true,
+    "count_only_refusals": true,
+    "study_type_binding_refusals": true
+  },
+  "application": {
+    "reviewed_commit": "5b8874f",
+    "intake_byte_identical": {
+      "data/percent.tsv": true,
+      "data/samples.csv": true,
+      "study.json": true
+    },
+    "input_cells_match_source": true,
+    "results_byte_identical": true,
+    "study_inspection": "verified"
+  },
+  "range_findings": {
+    "raw_pair_overflow": {
+      "weights": [
+        [
+          1e+308,
+          0
+        ],
+        [
+          1e+308,
+          1e+307
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "reported_braycurtis_x_y": 0.0,
+      "common_scaled_result": 0.047619047619047616,
+      "inspection": "verified"
+    },
+    "native_underflow": {
+      "value": "Fraction(1, 10**400)",
+      "reported_richness": 1,
+      "expected_positive_category_richness": 2,
+      "reported_jaccard_a_b": 1.0,
+      "expected_jaccard_a_b": 0.5
+    },
+    "row_overflow": {
+      "weights": [
+        1e+308,
+        1e+308
+      ],
+      "actual_exception": "OverflowError",
+      "expected": "structured AnalysisError"
+    }
+  },
+  "example_mc_reference": {
+    "count_extreme": 687,
+    "draws": 9999,
+    "reported_plus_one_p": 0.0688,
+    "tail_probability_95cp": [
+      0.06382495537707165,
+      0.07384175661185997
+    ],
+    "scope": "Unsupported review arithmetic via scipy.stats.binomtest.proportion_ci; interval for the conditional randomisation exceedance probability, not the realised plus-one p-value"
+  },
+  "reference_inputs": [
+    {
+      "path": "api.csv",
+      "sha256": "19e05f9f9533e7b761b1dc5bc9c45341f4f21eac720cc0ce5e34754533f5bb4b"
+    },
+    {
+      "path": "metadata.csv",
+      "sha256": "9d41bf78f44df7d7465a9af688718ae4bc0e064d613b2c6ff86fd95a7b9d3c80"
+    },
+    {
+      "path": "percentage.tsv",
+      "sha256": "fa1d13de3e567c40594e7797839fe5874329e9d75e591d5109801dd4b9719931"
+    },
+    {
+      "path": "proportion.tsv",
+      "sha256": "d87865d69b7314e77f04acec10283f59c0483be48fa2d4ef09d22478d2c9dee0"
+    },
+    {
+      "path": "row_scaled.tsv",
+      "sha256": "4667589444b6fd2e9b8e42edbafbf5d93e88b6e255a6727f3b6725e8896009dd"
+    },
+    {
+      "path": "count_smoke.tsv",
+      "sha256": "3b0293152a6a0547e02dc336309a591b8b0d12bbea4f30f38815333caafb515c"
+    }
+  ]
+}

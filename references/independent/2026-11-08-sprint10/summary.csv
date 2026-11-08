@@ -1,0 +1,9 @@
+"method","metric","error"
+"community","distance",5.55111512312578e-17
+"permanova","pseudo_f",1.77635683940025e-15
+"permanova","r_squared",1.66533453693773e-16
+"community","richness",0
+"community","shannon",1.11022302462516e-16
+"community","simpson",0
+"community","total",0
+"community","weight_sum",2.77555756156289e-17
