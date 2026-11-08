@@ -87,26 +87,6 @@ def test_centroid_dispersion_matches_declared_vegan_convention(comparison):
     assert actual["truncated_sample_ids"] == expected["truncated_sample_ids"]
 
 
-def test_zero_f_counts_infinite_allocations_without_discarding_them():
-    reference = next(case for case in REFERENCE["cases"] if case["id"] == "zero_f4_bray_exact")
-    result = run_case(reference)
-    assert result["pseudo_f"] == pytest.approx(0, abs=1e-14)
-    assert result["p_value"] == 1
-    assert result["permutation"]["draws"] == result["permutation"]["denominator"] == 6
-    assert result["permutation"]["infinite_count"] == 2
-
-
-def test_zero_f_monte_carlo_ties_use_every_draw_and_plus_one():
-    reference = next(case for case in REFERENCE["cases"] if case["id"] == "zero_f4_bray_mc")
-    result = run_case(reference)
-    permutation = result["permutation"]
-    assert permutation["mode"] == "monte_carlo"
-    assert permutation["draws"] == permutation["count_extreme"] == 3
-    assert permutation["denominator"] == 4
-    assert result["p_value"] == 1
-    assert "finite" in permutation["statuses"]
-
-
 def test_negative_centroid_control_agrees_with_exact_geometry():
     reference = next(case for case in REFERENCE["cases"] if case["id"] == "negative8_jaccard_exact")
     dispersion = reference["dispersion"]

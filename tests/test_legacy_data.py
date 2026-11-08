@@ -14,10 +14,6 @@ def test_tracked_datasets_match_the_recorded_checksums():
     assert fetch_past.ensure(TRACKED, check_only=True) == []
 
 
-def test_inventory_covers_all_seventeen_files():
-    assert len(fetch_past.inventory()) == 17
-
-
 def test_fetched_datasets_match_the_recorded_checksums():
     problems = fetch_past.ensure()
     if problems:

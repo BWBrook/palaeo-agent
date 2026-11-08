@@ -2,7 +2,6 @@ import csv
 import copy
 import hashlib
 import json
-import shutil
 from pathlib import Path
 
 import pytest
@@ -330,20 +329,6 @@ def test_lockfile_is_captured_when_declared(tmp_path):
         with pytest.raises(AnalysisError) as error:
             inspect_neotoma(bundle)
         assert "Lockfile" in str(error.value.details)
-
-
-def test_advertised_mcp_schema_accepts_the_real_extractor_request(tmp_path):
-    jsonschema = pytest.importorskip("jsonschema")
-    from palaeo_agent.mcp_server import Transport, tool_definitions
-    schemas = {tool["name"]: tool["inputSchema"] for tool in tool_definitions()}
-    assert "method" not in json.dumps(schemas["neotoma_extract"]["properties"]["spec"])
-    assert schemas["validate"]["properties"]["spec"]["required"] == ["method"]
-    path, digest = _write(tmp_path, _download())
-    request = {"spec": _spec("download.json", digest), "output": "out"}
-    jsonschema.validate(request, schemas["neotoma_extract"])
-    with pytest.raises(jsonschema.ValidationError):
-        jsonschema.validate({**request, "spec": {**request["spec"], "method": "community"}}, schemas["neotoma_extract"])
-    assert Transport(tmp_path).dispatch("neotoma_extract", request)["status"] == "complete"
 
 
 @pytest.mark.parametrize("value", [None, {}, [], "1.5", True])

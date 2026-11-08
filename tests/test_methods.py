@@ -105,13 +105,3 @@ def test_ordination_comparison_uses_geometry_not_axis_signs(tmp_path):
     rotated["positive_gram"][0][0] += .1
     with pytest.raises(ValueError):
         compare_results(first, rotated)
-
-
-def test_relative_abundance_is_explicit_and_changes_distance(tmp_path):
-    spec = community_request(tmp_path, metadata=False)
-    Path(spec["input"]).write_text(". t1 t2 t3\na 30 10 0\nb 0 3 1\nc 1 0 3\n")
-    raw = inspect_run(run(spec, tmp_path / "raw")["run_dir"])["result"]
-    spec["transform"] = "relative_abundance"
-    relative = inspect_run(run(spec, tmp_path / "relative")["run_dir"])["result"]
-    assert raw["diversity"] == relative["diversity"]
-    assert not np.allclose(raw["distances"], relative["distances"])

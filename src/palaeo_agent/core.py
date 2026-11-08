@@ -1,12 +1,19 @@
 """The first supported operation: descriptive reduced-major-axis regression."""
 
 from collections import Counter, defaultdict
+from decimal import MAX_EMAX, MIN_EMIN, ROUND_HALF_EVEN, Context, DivisionByZero, InvalidOperation, Overflow
 from numbers import Real
 from pathlib import Path
 from typing import Literal
 
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
+
+
+def decimal_context(precision, *traps):
+    """A fully specified decimal context: results never depend on the caller's ambient decimal settings."""
+    return Context(prec=precision, rounding=ROUND_HALF_EVEN, Emin=MIN_EMIN, Emax=MAX_EMAX, capitals=1, clamp=0,
+                   flags=[], traps=[InvalidOperation, DivisionByZero, Overflow, *traps])
 
 
 class AnalysisError(Exception):
@@ -257,6 +264,26 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
                             "Vertical residuals are diagnostics, not an OLS fitting objective"]}).model_dump(mode="json")
 
 
+def resolve_columns(names, x, y):
+    """Indices of the x and y columns: the exact label, else the single label equal to it after stripping padding."""
+    selected, absent = [], []
+    for name in (x, y):
+        matches = [i for i, label in enumerate(names) if label == name]
+        if not matches and name == name.strip():
+            matches = [i for i, label in enumerate(names) if label.strip() == name]
+        if len(matches) > 1:
+            raise AnalysisError("ambiguous_column", "Selected column matches multiple whitespace-padded labels", column=name)
+        if not matches:
+            absent.append(name)
+        else:
+            selected.append(matches[0])
+    if absent:
+        raise AnalysisError("unknown_column", "Selected columns do not exist", columns=absent, available=names)
+    if selected[0] == selected[1]:
+        raise AnalysisError("same_column", "x and y must select different columns")
+    return selected
+
+
 def load_past(data: bytes, spec: RmaSpec):
     if spec.x == spec.y:
         raise AnalysisError("same_column", "x and y must select different columns")
@@ -271,22 +298,7 @@ def load_past(data: bytes, spec: RmaSpec):
     names = rows[0][1:]
     if len(names) != len(set(names)):
         raise AnalysisError("duplicate_column_id", "Column labels must be unique")
-    selected = []
-    absent = []
-    for name in (spec.x, spec.y):
-        matches = [i for i, label in enumerate(names) if label == name]
-        if not matches and name == name.strip():
-            matches = [i for i, label in enumerate(names) if label.strip() == name]
-        if len(matches) > 1:
-            raise AnalysisError("ambiguous_column", "Selected column matches multiple whitespace-padded labels", column=name)
-        if not matches:
-            absent.append(name)
-        else:
-            selected.append(matches[0])
-    if absent:
-        raise AnalysisError("unknown_column", "Selected columns do not exist", columns=absent, available=names)
-    if selected[0] == selected[1]:
-        raise AnalysisError("same_column", "x and y must select different columns")
+    selected = resolve_columns(names, spec.x, spec.y)
     ids, x, y = [], [], []
     for line_number, row in enumerate(rows[1:], 2):
         if len(row) > len(names) + 1 and all(not cell.strip() for cell in row[len(names) + 1:]):

@@ -152,8 +152,8 @@ does not need declaring.
 
 - Results are calculations with stated limitations, not conclusions. Read
   each result's `limitations`.
-- `inspect` verifies saved bundle integrity; it does not independently
-  recompute the analysis. `reproduce` reruns the calculation and compares
+- `inspect` verifies saved bundle integrity and that every table matches the
+  saved result; it does not independently recompute the analysis. `reproduce` reruns the calculation and compares
   numerical outputs. Integrity and numerical agreement do not establish
   that the population, design or interpretation is right.
 - **If you find that an operation is wrong,** for example through a

@@ -13,18 +13,21 @@ import hashlib
 import io
 import json
 import os
+import shutil
 from pathlib import Path, PurePosixPath
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from .community import FORMAT_HELP, check_delimiter, parse_table
-from .core import AnalysisError
+from .core import AnalysisError, decimal_context, resolve_columns
 from .methods import parse_spec, summary
-from .runs import inspect_run, run
+from .runs import inspect_run, require_outside, run
 
 STUDY_VERSION = 1
-ID = Annotated[str, Field(min_length=1, pattern=r"^[A-Za-z0-9_.-]+$")]
+MANIFEST_KEYS = {"study_version", "status", "steps", "runs", "row_filter_warnings", "files"}
+# IDs become path components (inputs/<id>, derived/<id>.dat, runs/<id>), so none may start with a dot.
+ID = Annotated[str, Field(min_length=1, pattern=r"^[A-Za-z0-9_-][A-Za-z0-9_.-]*$")]
 
 
 class Model(BaseModel):
@@ -197,9 +200,7 @@ def _integer(token, sample, column):
 
 def _weight_sum(tokens, sample, columns):
     """Exact decimal sum of abundance weights; refuses rather than rounds."""
-    with localcontext() as context:
-        context.prec = 1000
-        context.traps[Inexact] = True
+    with localcontext(decimal_context(1000, Inexact)):
         try:
             values = [Decimal(token) for token in tokens]
             if any(not value.is_finite() or value < 0 for value in values):
@@ -301,9 +302,12 @@ def row_filter_warnings(spec: StudySpec, raw: dict, datasets=None):
         for index, operation in enumerate(dataset.operations):
             incoming = table
             table, record = apply(operation, table, declaration.kind)
-            if operation.op not in ("exclude", "select") or x not in incoming["columns"] or y not in incoming["columns"]:
+            if operation.op not in ("exclude", "select"):
                 continue
-            i, j = incoming["columns"].index(x), incoming["columns"].index(y)
+            try:
+                i, j = resolve_columns(incoming["columns"], x, y)
+            except AnalysisError:
+                continue
             rows = dict(zip(incoming["samples"], incoming["values"]))
             removed = [s for s in record["removed"] if _present(rows[s][i]) and _present(rows[s][j])]
             if removed:
@@ -339,6 +343,10 @@ def derive(spec: StudySpec, raw: dict, name: str):
         table, record = apply(operation, table, declaration.kind)
         records.append(record)
     files = {f"{name}.dat": _past(table)}
+    if parse_table(files[f"{name}.dat"].decode(), "past") != [[".", *table["columns"]]] + [
+            [sample, *row] for sample, row in zip(table["samples"], table["values"])]:
+        raise AnalysisError("unsupported_label", "A sample or column label cannot be written to a PAST table "
+                            "(it contains a tab or line break)", dataset=name)
     if dataset.metadata is not None:
         metadata = read_metadata(raw[dataset.metadata], spec.inputs[dataset.metadata])
         missing = [s for s in table["samples"] if s not in metadata["rows"]]
@@ -423,6 +431,8 @@ def run_study(study, output_root, *, base_dir=None):
         try:
             outcome = run(parse_spec(method_spec), directory / "runs" / analysis.id)
         except (AnalysisError, ValidationError) as exc:
+            # A child bundle that failed while writing is incomplete evidence; its error is kept in the step record.
+            shutil.rmtree(directory / "runs" / analysis.id, ignore_errors=True)
             error = exc.as_dict() if isinstance(exc, AnalysisError) else {
                 "status": "error", "code": "invalid_specification",
                 "details": json.loads(exc.json(include_url=False, include_context=False, include_input=False))}
@@ -504,18 +514,23 @@ def inspect_study(study_dir):
                 if path.is_symlink() or not (path.is_dir() or path.is_file()):
                     raise ValueError(f"Study contains a link or special file: {path.relative_to(directory)}")
         manifest = json.loads((directory / "manifest.json").read_text())
+        if (not isinstance(manifest, dict) or set(manifest) != MANIFEST_KEYS
+                or type(manifest["study_version"]) is not int or manifest["study_version"] != STUDY_VERSION):
+            raise ValueError("Not a supported study manifest")
         present = {p.relative_to(directory).as_posix() for p in directory.rglob("*")
                    if p.is_file() and p.relative_to(directory).parts[0] != "runs"} - {"manifest.json"}
         if present != set(manifest["files"]):
             raise ValueError("Study file set differs from manifest")
+        data = {}
         for name, digest in manifest["files"].items():
             relative = PurePosixPath(name)
             path = directory / name
             if relative.is_absolute() or ".." in relative.parts or path.is_symlink():
                 raise ValueError("Unsafe study path")
-            if _sha(path.read_bytes()) != digest:
+            data[name] = path.read_bytes()
+            if _sha(data[name]) != digest:
                 raise ValueError(f"Study integrity failure: {name}")
-        spec = StudySpec.model_validate_json((directory / "study.json").read_bytes())
+        spec = StudySpec.model_validate_json(data["study.json"])
         steps = manifest["steps"]
         if [step["id"] for step in steps] != spec.step_ids():
             raise ValueError("Recorded steps differ from the study's declared steps")
@@ -528,27 +543,31 @@ def inspect_study(study_dir):
         if set(manifest["runs"]) != {step["id"].split(":", 1)[1] for step in steps
                                      if step["id"].startswith("analysis:") and step["status"] == "complete"}:
             raise ValueError("Run records differ from completed analyses")
-        raw = {name: (directory / "inputs" / name).read_bytes() for name in spec.inputs}
+        raw = {name: data[f"inputs/{name}"] for name in spec.inputs}
         for name in spec.inputs:
             if spec.inputs[name].path != Path(f"inputs/{name}"):
                 raise ValueError("Saved study must reference its input snapshots")
+        records = {}
         for step in manifest["steps"]:
             kind, _, name = step["id"].partition(":")
             if kind == "dataset" and step["status"] == "complete":
-                files, record = derive(spec, raw, name)
-                for filename, data in files.items():
-                    if (directory / "derived" / filename).read_bytes() != data:
+                files, records[name] = derive(spec, raw, name)
+                files[f"{name}.json"] = _json(records[name])
+                for filename, expected in files.items():
+                    if data.get(f"derived/{filename}") != expected:
                         raise ValueError(f"Derived file does not recompute: {filename}")
-                if json.loads((directory / "derived" / f"{name}.json").read_text()) != record:
-                    raise ValueError(f"Preparation record does not recompute: {name}")
-        datasets = {step["id"].split(":", 1)[1] for step in steps
-                    if step["id"].startswith("dataset:") and step["status"] == "complete"}
-        filters = row_filter_warnings(spec, raw, datasets)
+        filters = row_filter_warnings(spec, raw, records)
         if manifest["row_filter_warnings"] != filters:
             raise ValueError("Row-filter warnings do not recompute from the saved inputs")
         verified = {}
-        run_dirs = {p for p in (directory / "runs").glob("*/*") if p.is_dir()} if (directory / "runs").exists() else set()
-        if {directory / item["run_dir"] for item in manifest["runs"].values()} != run_dirs:
+        # runs/ holds exactly runs/<analysis id>/<run id> for each completed analysis, and nothing else.
+        runs_root = directory / "runs"
+        level1 = set(runs_root.iterdir()) if runs_root.is_dir() else set()
+        level2 = {p for d in level1 if d.is_dir() for p in d.iterdir()}
+        declared = {directory / item["run_dir"] for item in manifest["runs"].values()}
+        if (any(PurePosixPath(item["run_dir"]).parts[:2] != ("runs", analysis_id) or len(PurePosixPath(item["run_dir"]).parts) != 3
+                for analysis_id, item in manifest["runs"].items())
+                or level1 != {path.parent for path in declared} or level2 != declared):
             raise ValueError("Run directories differ from manifest")
         analyses = {analysis.id: analysis for analysis in spec.analyses}
         for analysis_id, item in manifest["runs"].items():
@@ -563,6 +582,8 @@ def inspect_study(study_dir):
             if spec.datasets[dataset].metadata is not None and (run_dir / "metadata.csv").read_bytes() != \
                     (directory / "derived" / f"{dataset}-metadata.csv").read_bytes():
                 raise ValueError(f"Run metadata is not its declared dataset: {analysis_id}")
+            if (record["specification"].get("metadata") is None) != (spec.datasets[dataset].metadata is None):
+                raise ValueError(f"Run metadata provenance differs from its dataset: {analysis_id}")
             saved = {k: v for k, v in record["specification"].items() if k not in ("input", "metadata")}
             placeholders = {"input": "x", **({"metadata": "x"} if spec.datasets[dataset].metadata is not None else {})}
             declared = {k: v for k, v in parse_spec(dict(analysis.spec, **placeholders)).model_dump(mode="json").items()
@@ -570,6 +591,8 @@ def inspect_study(study_dir):
             if saved != declared:
                 raise ValueError(f"Run specification differs from the study: {analysis_id}")
             verified[analysis_id] = {"run_dir": item["run_dir"], "summary": summary(record["result"])}
+        if data["report.md"] != report(spec, records, manifest["runs"], steps, directory, filters).encode():
+            raise ValueError("Study report does not recompute from the verified records")
     except AnalysisError as exc:
         raise AnalysisError("invalid_study", "A study run failed verification", study_dir=str(directory),
                             reason=str(exc), method_error=exc.code) from exc
@@ -585,11 +608,16 @@ def reproduce_study(study_dir, output_root):
     from .methods import compare_results
     original = inspect_study(study_dir)
     directory = Path(original["study_dir"])
+    require_outside(output_root, directory)
     spec = json.loads((directory / "study.json").read_text())
     fresh = run_study(spec, output_root, base_dir=directory)
-    if fresh["status"] != original["study_status"]:
+
+    def outcomes(steps):
+        return [(step["id"], step["status"], step.get("error", {}).get("code")) for step in steps]
+
+    if outcomes(fresh["steps"]) != outcomes(original["steps"]):
         return {"status": "different", "original": str(directory), "new": fresh["study_dir"],
-                "differences": ["study_status"]}
+                "differences": ["steps"]}
     recreated = inspect_study(fresh["study_dir"])
     differences = {}
     if recreated["row_filter_warnings"] != original["row_filter_warnings"]:

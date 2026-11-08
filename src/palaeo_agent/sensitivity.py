@@ -2,6 +2,7 @@
 
 import csv
 import hashlib
+import io
 import json
 from pathlib import Path, PurePosixPath
 import shutil
@@ -11,7 +12,7 @@ import numpy as np
 
 from .core import AnalysisError
 from .community import selected_subspace_info, value_keys
-from .runs import inspect_run
+from .runs import inspect_run, require_outside
 
 
 REPORT_TOLERANCE = 1e-10
@@ -159,6 +160,15 @@ def _report(baseline, sensitivity):
     return record
 
 
+def _bound_table(report, key):
+    stream = io.StringIO()
+    writer = csv.writer(stream, lineterminator="\n")
+    writer.writerow(["sample_id", *report["sample_ids"]])
+    for sample, row in zip(report["sample_ids"], report[key], strict=True):
+        writer.writerow([sample, *row])
+    return stream.getvalue().encode("utf-8")
+
+
 def _file_record(path):
     data = path.read_bytes()
     types = {".json": "application/json", ".csv": "text/csv", ".png": "image/png", ".svg": "image/svg+xml"}
@@ -167,6 +177,7 @@ def _file_record(path):
 
 def compare_community_runs(baseline_run, sensitivity_run, output_root):
     baseline, sensitivity = _checked_pair(baseline_run, sensitivity_run)
+    require_outside(output_root, baseline["run_dir"], sensitivity["run_dir"])
     report = _report(baseline, sensitivity)
     directory = Path(output_root).resolve() / uuid.uuid4().hex
     try:
@@ -177,11 +188,7 @@ def compare_community_runs(baseline_run, sensitivity_run, output_root):
         report = _report(baseline, sensitivity)
         _json(directory / "report.json", report)
         key = bound_key(baseline["result"]["value_type"])
-        with (directory / f"{key}.csv").open("w", newline="", encoding="utf-8") as stream:
-            writer = csv.writer(stream, lineterminator="\n")
-            writer.writerow(["sample_id", *report["sample_ids"]])
-            for sample, row in zip(report["sample_ids"], report[key], strict=True):
-                writer.writerow([sample, *row])
+        (directory / f"{key}.csv").write_bytes(_bound_table(report, key))
         files = {path.relative_to(directory).as_posix(): _file_record(path)
                  for path in sorted(directory.rglob("*")) if path.is_file()}
         _json(directory / "manifest.json", {"kind": "community_comparison", "schema_version": 1,
@@ -241,6 +248,9 @@ def inspect_comparison(comparison_dir):
         report = json.loads((directory / "report.json").read_text(encoding="utf-8"))
         if not _equivalent(report, _report(baseline, sensitivity)):
             raise ValueError("Comparison report disagrees with the verified child results")
+        key = bound_key(baseline["result"]["value_type"])
+        if (directory / f"{key}.csv").read_bytes() != _bound_table(report, key):
+            raise ValueError("Comparison bound table disagrees with its report")
     except (OSError, ValueError, TypeError, KeyError, AttributeError, AnalysisError) as exc:
         raise AnalysisError("invalid_comparison", "Comparison could not be verified", comparison_dir=str(directory), reason=str(exc)) from exc
     return {"status": "verified", "comparison_dir": str(directory), "manifest": manifest, "report": report,

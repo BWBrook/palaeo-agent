@@ -1,4 +1,5 @@
 from fractions import Fraction
+import hashlib
 from itertools import combinations
 import json
 import math
@@ -120,13 +121,55 @@ def test_reproduce_in_a_fresh_process(tmp_path):
     assert reproduce_study(outcome["study_dir"], tmp_path / "third")["status"] == "reproduced"
 
 
-def test_tampering_is_detected(tmp_path):
+@pytest.mark.parametrize("tamper", ["derived", "report", "stray_run_file", "version"])
+def test_rehashed_tampering_is_detected(tmp_path, tamper):
     directory = Path(run_study(community_study(tmp_path), tmp_path / "out")["study_dir"])
-    derived = directory / "derived/clean.dat"
-    derived.write_text(derived.read_text().replace("15", "16"))
+    manifest = json.loads((directory / "manifest.json").read_text())
+    if tamper in ("derived", "report"):
+        name, old, new = ("derived/clean.dat", "15", "16") if tamper == "derived" else ("report.md", "5 samples", "6 samples")
+        path = directory / name
+        assert old in path.read_text()
+        path.write_text(path.read_text().replace(old, new, 1))
+        manifest["files"][name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    elif tamper == "stray_run_file":
+        (directory / "runs/describe/notes.txt").write_text("unrecorded\n")
+    else:
+        manifest["study_version"] = 2
+    (directory / "manifest.json").write_text(json.dumps(manifest))
     with pytest.raises(AnalysisError) as error:
         inspect_study(directory)
     assert error.value.code == "invalid_study"
+
+
+def test_child_write_failure_leaves_an_inspectable_partial_study(tmp_path, monkeypatch):
+    from palaeo_agent import runs
+
+    def broken_plot(*args):
+        raise OSError("Deliberate plot failure")
+    monkeypatch.setattr(runs, "_plot", broken_plot)
+    outcome = run_study(community_study(tmp_path), tmp_path / "out")
+    assert (outcome["failed_step"], outcome["error"]["code"]) == ("analysis:describe", "bundle_write_failed")
+    assert inspect_study(outcome["study_dir"])["study_status"] == "partial"
+    assert not (Path(outcome["study_dir"]) / "runs/describe").exists()
+
+
+def test_ids_cannot_name_dot_directories(tmp_path):
+    path = community_study(tmp_path)
+    study = json.loads(path.read_text())
+    study["analyses"][0]["id"] = ".."
+    with pytest.raises(AnalysisError) as error:
+        run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert error.value.code == "invalid_study"
+
+
+def test_labels_that_cannot_be_written_to_a_past_table_are_refused(tmp_path):
+    (tmp_path / "counts.csv").write_text('id,A,"B\u2028C"\ns1,1,2\ns2,3,1\ns3,2,2\n')
+    study = {"study_version": 1,
+             "inputs": {"t": {"kind": "counts", "path": "counts.csv", "format": "delimited", "delimiter": "comma",
+                              "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "t"}}, "analyses": [{"id": "a", "dataset": "d", "spec": COMMUNITY}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert (outcome["failed_step"], outcome["error"]["code"]) == ("dataset:d", "unsupported_label")
 
 
 def test_a_consistent_upstream_change_passes_integrity(tmp_path):
@@ -327,3 +370,15 @@ def test_altered_row_filter_record_fails_inspection(tmp_path):
     path.write_text(json.dumps(manifest))
     with pytest.raises(AnalysisError, match="Study could not be verified"):
         inspect_study(outcome["study_dir"])
+
+
+def test_row_filter_warning_resolves_columns_as_rma_does(tmp_path):
+    (tmp_path / "m.dat").write_text(".\t x \ty\na\t1\t2\nb\t2\t3\nc\t3\t5\nd\t4\t4\n")
+    study = {"study_version": 1,
+             "inputs": {"m": {"kind": "measurements", "path": "m.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "m", "operations": [exclude(["d"], "outlier")]}},
+             "analyses": [{"id": "fit", "dataset": "d", "spec": {"method": "rma", "format": "past", "x": "x", "y": "y",
+                                                                 "transform": "none", "missing": "error"}}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert outcome["status"] == "complete"
+    assert [w["removed_rows"] for w in outcome["row_filter_warnings"]] == [["d"]]

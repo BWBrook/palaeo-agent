@@ -73,20 +73,33 @@ report.md             factual report; each number cites its result field
 manifest.json         status, per-step outcome, hashes, run-manifest hashes
 ```
 
+Input, dataset and analysis IDs become path components, so they use
+`A-Z a-z 0-9 _ . -` and may not start with a dot. A derived table must read
+back unchanged as a PAST table; a label holding a tab or line break is refused
+(`unsupported_label`).
+
 A failed step is recorded with its error, later steps are marked `not_run`,
-and the study status is `partial`, never `complete`.
+and the study status is `partial`, never `complete`. A run that failed while
+writing its bundle leaves no child directory; its error stays in the step
+record.
 
 `inspect_study` checks:
 
-- every hash;
+- the manifest version and every hash, reading each file once;
 - that each derived file and preparation record recomputes byte for byte from
   the saved inputs;
+- that `runs/` holds exactly one bundle per completed analysis, at
+  `runs/<analysis>/<id>`, and nothing else;
 - that each run bundle verifies;
-- that each run's input is exactly its declared dataset, and its saved
-  specification is exactly the study's.
+- that each run's input and metadata are exactly its declared dataset's, and
+  its saved specification is exactly the study's;
+- that `report.md` recomputes byte for byte from the verified records.
 
-`reproduce_study` reruns the whole study from its snapshots and compares every
-result under the run-level tolerance policy.
+`reproduce_study` reruns the whole study from its snapshots. It reports
+`different` when any step's outcome (status or error code) differs, and
+otherwise compares every result under the run-level tolerance policy. Neither
+reproduction nor any other operation may write inside a bundle it reads
+(`output_inside_bundle`).
 
 **What integrity checks do not catch.** A study that declares a wrong
 exclusion, or a merge of two genuinely different taxa, is internally consistent

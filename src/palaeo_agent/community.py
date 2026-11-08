@@ -502,8 +502,6 @@ def analyse_community(matrix, *, sample_ids, taxon_ids, transform, distance, dim
     data = _prepare(matrix, sample_ids=sample_ids, taxon_ids=taxon_ids, dimensions=dimensions,
                     empty_samples=empty_samples, metadata=metadata, value_type=value_type)
     counts = data["counts"]
-    totals = counts.sum(axis=1)
-    relative = counts / totals[:, None]
     diversity = [_diversity_row(name, row, value_type) for name, row in zip(data["sample_ids"], counts)]
     transformed, distances = community_distances(counts, transform=transform, distance=distance)
     n = len(counts)

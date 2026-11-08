@@ -8,7 +8,6 @@ from pydantic import ValidationError
 
 from palaeo_agent import AnalysisError, inspect_run, run, run_study, inspect_study, reproduce_study
 from palaeo_agent.community import calculate_community
-from palaeo_agent.permanova import calculate_permanova
 
 PCT = ".\tA\tB\tC\nS1\t50.5\t30.25\t19.25\nS2\t10\t60\t30\nS3\t0\t80.5\t19.5\nS4\t25\t25\t50\nS5\t70\t0\t30\nS6\t5.5\t44.5\t50\n"
 META = "sample_id,band\nS1,high\nS2,high\nS3,high\nS4,low\nS5,low\nS6,low\n"

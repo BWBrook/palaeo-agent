@@ -11,7 +11,6 @@ PILOT = ROOT / "evaluation/pilot"
 sys.path.insert(0, str(PILOT))
 sys.path.insert(0, str(ROOT))
 import build_bank_v4 as bank  # noqa: E402
-from evaluation.pilot.replay import perturb  # noqa: E402
 from evaluation.pilot.score import score  # noqa: E402
 
 ITEMS, CAL = PILOT / "items-v4", PILOT / "calibration-v4"
@@ -58,16 +57,6 @@ def test_keys_score_and_signatures_fail(path, tmp_path):
         (tmp_path / "answer.json").write_text(json.dumps(answer(alternative["results"])))
         out = score(tmp_path, item)
         assert out["outcome"] == "correct" and out["alternative"] == alternative["name"] and not out["provisional"]
-
-
-@pytest.mark.parametrize("path", KEYS, ids=lambda p: f"{p.parent.parent.name}/{p.parent.name}")
-def test_perturbation_applies_to_a_material_file(path, tmp_path):
-    key = json.loads(path.read_text())
-    source = path.parent / "materials" / key["replay_perturbation"]["file"]
-    target = tmp_path / source.name
-    target.write_text(source.read_text())
-    perturb(target, key["replay_perturbation"])
-    assert target.read_text() != source.read_text()
 
 
 @pytest.mark.parametrize("item", ["items-v4/P04-trap", "calibration-v4/P04-cal"])

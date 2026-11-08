@@ -13,7 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_valida
 
 from .community import MAX_EXACT_COUNT, parse_table
 from .core import AnalysisError
-from .runs import RunEnvironment, _environment, _find_lockfile, _json, _sha
+from .runs import RunEnvironment, _environment, _find_lockfile, _json, _sha, require_outside
 
 EXTRACTOR_VERSION = 1
 DERIVED = ("table.tsv", "samples.csv", "ages.csv", "taxa.csv", "extract.json")
@@ -294,7 +294,7 @@ def neotoma_extract(spec, output_root: str | Path):
         (directory / name).write_bytes(data)
     lock = _find_lockfile()
     if lock is not None:
-        (directory / "uv.lock").write_bytes(lock.read_bytes())
+        (directory / "uv.lock").write_bytes(lock)
     _json(directory / "environment.json", _environment(lock))
     files = {path.name: {"sha256": _sha(path.read_bytes()), "bytes": path.stat().st_size}
              for path in sorted(directory.iterdir())}
@@ -357,6 +357,7 @@ def inspect_neotoma(bundle: str | Path):
 def reproduce_neotoma(bundle: str | Path, output_root: str | Path):
     original = inspect_neotoma(bundle)
     directory = Path(original["bundle"])
+    require_outside(output_root, directory)
     spec = NeotomaSpec.model_validate(original["specification"]).model_copy(update={"source": directory / "source.json"})
     fresh = neotoma_extract(spec, output_root)
     recreated = inspect_neotoma(fresh["bundle"])

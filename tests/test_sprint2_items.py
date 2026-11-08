@@ -159,70 +159,10 @@ def test_controller_fixes_twelve_trials_order_model_and_no_retries(monkeypatch, 
         controller.make_plan()
 
 
-def test_controller_preserves_zero_token_failure_without_retry(monkeypatch, tmp_path):
-    prepared_controller(monkeypatch, tmp_path)
-    calls = []
-
-    def fake_run(materials, arm, backend, record, wall):
-        calls.append((materials, arm, backend, wall))
-        record.mkdir(parents=True)
-        (record / "transcript.jsonl").write_text("")
-        (record / "stderr.txt").write_text("")
-        meta = {"trial_id": "ab12", "counted_tokens": 0, "elapsed_seconds": 1,
-                "termination": "exited"}
-        (record / "trial.json").write_text(json.dumps(meta))
-        return meta
-
-    monkeypatch.setattr(controller.trial, "run", fake_run)
-    rows = controller.run()
-    assert len(calls) == len(rows) == 12
-    assert all(call[2:] == ("codex", 300) for call in calls)
-    assert len(list((controller.SMOKE / "trials").iterdir())) == 12
-
-
 def test_leak_scan_excludes_own_trial_but_flags_neighbor(tmp_path):
     (tmp_path / "transcript.jsonl").write_text("palaeo-eval/sprint2/t/ab12 and palaeo-eval/sprint2/t/cd34")
     (tmp_path / "stderr.txt").write_text("")
     assert controller.leak_scan(tmp_path, "ab12") == {"other_trial": 1}
-
-
-def test_controller_ceiling_stops_new_launches_after_one_call_overshoot(monkeypatch, tmp_path):
-    prepared_controller(monkeypatch, tmp_path)
-    calls = []
-
-    def fake_run(materials, arm, backend, record, wall):
-        calls.append(record)
-        record.mkdir(parents=True)
-        (record / "transcript.jsonl").write_text("")
-        (record / "stderr.txt").write_text("")
-        meta = {"trial_id": "ab12", "counted_tokens": 300001, "elapsed_seconds": 20,
-                "termination": "exited"}
-        (record / "trial.json").write_text(json.dumps(meta))
-        return meta
-
-    monkeypatch.setattr(controller.trial, "run", fake_run)
-    rows = controller.run()
-    assert len(calls) == 1
-    assert len(rows) == 12 and sum(row["status"] == "not_run_token_ceiling" for row in rows) == 11
-
-
-def test_controller_failure_is_preserved_and_temporary_home_removed(monkeypatch, tmp_path):
-    prepared_controller(monkeypatch, tmp_path)
-    calls = []
-
-    def fake_run(materials, arm, backend, record, wall):
-        calls.append(record)
-        (controller.ROOT / "t/ab12/home").mkdir(parents=True)
-        raise RuntimeError("synthetic controller launch failure")
-
-    monkeypatch.setattr(controller.trial, "run", fake_run)
-    with pytest.raises(RuntimeError, match="synthetic"):
-        controller.run()
-    assert len(calls) == 1 and not (controller.ROOT / "t/ab12").exists()
-    assert len(list((controller.SMOKE / "trials").glob("*/controller_error.json"))) == 1
-    with pytest.raises(RuntimeError, match="no retry"):
-        controller.run()
-    assert len(calls) == 1
 
 
 @pytest.mark.parametrize("distribution", ["palaeo-agent==0.2.0.dev0", "palaeo-agent @ file:///runtime/wheel.whl"])

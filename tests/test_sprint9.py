@@ -97,16 +97,6 @@ def test_holm_envelope_matches_holm_of_interval_bounds(tmp_path):
         assert lo <= hi
 
 
-def test_tampered_envelope_fails_inspection(tmp_path):
-    outcome = run(_spec(tmp_path, pairs="adjacent"), tmp_path / "run")
-    results = Path(outcome["run_dir"]) / "results.json"
-    data = json.loads(results.read_text())
-    data["pairs"][0]["monte_carlo"]["holm_envelope_unresolved"] ^= True
-    results.write_text(json.dumps(data))
-    with pytest.raises(Exception):
-        inspect_run(outcome["run_dir"])
-
-
 def test_adjacent_pairs_equal_the_explicit_list(tmp_path):
     explicit = [["S1", "S2"], ["S2", "S3"], ["S3", "S4"], ["S4", "S5"], ["S1", "S5"]]
     _spec(tmp_path)

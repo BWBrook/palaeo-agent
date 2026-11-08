@@ -1,6 +1,7 @@
 """Explicit dispatch for supported scientific methods."""
 
 import csv
+import io
 import json
 from pathlib import Path
 from typing import Annotated
@@ -223,42 +224,53 @@ def required_files(spec):
     )
 
 
-def _table(path, header, rows):
-    with path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.writer(stream, lineterminator="\n")
-        writer.writerow(header)
-        writer.writerows(rows)
+def _csv(header, rows):
+    stream = io.StringIO()
+    writer = csv.writer(stream, lineterminator="\n")
+    writer.writerow(header)
+    writer.writerows(rows)
+    return stream.getvalue().encode("utf-8")
 
 
-def write_tables(directory, result):
+def _json_bytes(value):
+    return (json.dumps(value, indent=2, allow_nan=False) + "\n").encode("utf-8")
+
+
+def table_files(result):
+    """Every derived table and record file, as bytes: a pure function of the validated result."""
+    files = {}
+
+    def _table(name, header, rows):
+        files[name] = _csv(header, rows)
+
     if result["method"] == "rma":
         fields = list(result["pairs"][0])
-        _table(directory / "used-pairs.csv", fields, ([row[key] for key in fields] for row in result["pairs"]))
-        return
+        _table("used-pairs.csv", fields, ([row[key] for key in fields] for row in result["pairs"]))
+        return files
     ids, taxa = result["sample_ids"], result["taxon_ids"]
     if result["method"] in {"rarefaction", "count_homogeneity"}:
-        _table(directory / "retained_counts.csv", ["sample_id", *taxa],
+        _table("retained_counts.csv", ["sample_id", *taxa],
                ([sid, *row] for sid, row in zip(ids, result["retained_counts"], strict=True)))
         if result["metadata"] is not None:
             fields = list(result["metadata"][0])
-            _table(directory / "aligned_metadata.csv", fields,
+            _table("aligned_metadata.csv", fields,
                    ([row[key] for key in fields] for row in result["metadata"]))
         if result["method"] == "rarefaction":
             fields = ["size", "expected_richness", "variance", "conditional_sd", "coverage", "coverage_unavailable_reason",
                       "variance_clamped"]
-            _table(directory / "rarefaction.csv", ["sample_id", *fields],
+            _table("rarefaction.csv", ["sample_id", *fields],
                    ([sample["sample_id"], *[row[key] for key in fields]]
                     for sample in result["samples"] for row in sample["estimates"]))
             fields = ["sample_id", "total", "observed_richness", "f1", "f2", "full_coverage",
                       "coverage_unavailable_reason", "coverage_boundary", "coverage_note"]
-            _table(directory / "coverage.csv", fields,
+            _table("coverage.csv", fields,
                    ([sample[key] for key in fields] for sample in result["samples"]))
         else:
             fields = ["sample_a", "sample_b", "pearson_chi_squared", "braycurtis_proportions", "p_value",
                       "p_value_holm", "simulations", "count_extreme", "tail_lower", "tail_upper",
                       "reporting_alpha", "monte_carlo_unresolved", "unresolved_scope", "holm_envelope_lower",
                       "holm_envelope_upper", "holm_envelope_unresolved", "holm_envelope_scope"]
-            _table(directory / "count_homogeneity.csv", fields,
+            _table("count_homogeneity.csv", fields,
                    ([*pair["sample_ids"], pair["pearson_chi_squared"], pair["braycurtis_proportions"],
                      pair["p_value"], pair["p_value_holm"], pair["monte_carlo"]["simulations"],
                      pair["monte_carlo"]["count_extreme"], *pair["monte_carlo"]["tail_probability_interval"],
@@ -266,49 +278,49 @@ def write_tables(directory, result):
                      pair["monte_carlo"]["unresolved_scope"], *pair["monte_carlo"]["holm_envelope"],
                      pair["monte_carlo"]["holm_envelope_unresolved"], pair["monte_carlo"]["holm_envelope_scope"]]
                     for pair in result["pairs"]))
-            _table(directory / "taxon_tests.csv",
+            _table("taxon_tests.csv",
                    ["sample_a", "sample_b", "taxon_id", "count_a", "count_b", "p_value", "p_value_holm",
                     "p_value_underflow", "log10_p_value"],
                    ([*pair["sample_ids"], test["taxon_id"], *test["counts"], test["p_value"], test["p_value_holm"],
                      test["p_value_underflow"], test["log10_p_value"]]
                     for pair in result["pairs"] for test in pair["taxon_tests"]))
-            _table(directory / "zero_count_limits.csv", ["sample_id", "taxon_id", "n", "confidence", "upper_limit", "scope"],
+            _table("zero_count_limits.csv", ["sample_id", "taxon_id", "n", "confidence", "upper_limit", "scope"],
                    ([row["sample_id"], taxon, row["n"], row["confidence"], row["upper_limit"], row["scope"]]
                     for row in result["zero_count_limits"] for taxon in row["taxon_ids"]))
-            (directory / "randomization.json").write_text(
-                json.dumps(result["randomization"], indent=2, allow_nan=False) + "\n", encoding="utf-8")
-        return
+            files["randomization.json"] = _json_bytes(result["randomization"])
+        return files
     matrix_key = value_keys(result["value_type"])[0]
     for filename, key in ((f"{matrix_key}.csv", matrix_key), ("transformed_matrix.csv", "transformed_matrix")):
-        _table(directory / filename, ["sample_id", *taxa], ([sid, *row] for sid, row in zip(ids, result[key], strict=True)))
-    _table(directory / "distances.csv", ["sample_id", *ids], ([sid, *row] for sid, row in zip(ids, result["distances"], strict=True)))
+        _table(filename, ["sample_id", *taxa], ([sid, *row] for sid, row in zip(ids, result[key], strict=True)))
+    _table("distances.csv", ["sample_id", *ids], ([sid, *row] for sid, row in zip(ids, result["distances"], strict=True)))
     if result["metadata"] is not None:
         fields = list(result["metadata"][0])
-        _table(directory / "aligned_metadata.csv", fields,
+        _table("aligned_metadata.csv", fields,
                ([row[key] for key in fields] for row in result["metadata"]))
     if result["method"] == "permanova":
         fields = ["pseudo_f", "r_squared", "p_value", "ss_total", "ss_within", "ss_between", "df_between", "df_within"]
         record = result["permutation"]
         interval = record["tail_probability_interval"] or ["", ""]
-        _table(directory / "permanova.csv", fields + ["tail_interval_lower", "tail_interval_upper", "monte_carlo_unresolved"],
+        _table("permanova.csv", fields + ["tail_interval_lower", "tail_interval_upper", "monte_carlo_unresolved"],
                [[result[key] for key in fields] + [*interval, record["monte_carlo_unresolved"]]])
-        _table(directory / "groups.csv", ["sample_id", result["group_column"]], zip(ids, result["groups"], strict=True))
+        _table("groups.csv", ["sample_id", result["group_column"]], zip(ids, result["groups"], strict=True))
         dispersion = result["dispersion"]
-        _table(directory / "dispersion.csv", ["sample_id", "group", "signed_squared_distance", "centroid_distance"],
+        _table("dispersion.csv", ["sample_id", "group", "signed_squared_distance", "centroid_distance"],
                zip(ids, result["groups"], dispersion["squared_distances"], dispersion["distances"], strict=True))
-        _table(directory / "group_dispersion.csv", ["group", "n", "mean_centroid_distance"],
+        _table("group_dispersion.csv", ["group", "n", "mean_centroid_distance"],
                ([group, result["group_sizes"][group], dispersion["group_mean_distances"][group]]
                 for group in result["group_labels"]))
-        _table(directory / "eigenvalues.csv", ["axis", "dispersion_eigenvalue"], enumerate(dispersion["eigenvalues"], start=1))
-        (directory / "permutations.json").write_text(json.dumps(result["permutation"], indent=2, allow_nan=False) + "\n", encoding="utf-8")
-        return
+        _table("eigenvalues.csv", ["axis", "dispersion_eigenvalue"], enumerate(dispersion["eigenvalues"], start=1))
+        files["permutations.json"] = _json_bytes(result["permutation"])
+        return files
     fields = list(result["diversity"][0])
-    _table(directory / "diversity.csv", fields, ([row[key] for key in fields] for row in result["diversity"]))
-    _table(directory / "ordination.csv", ["sample_id", *[f"PCoA{i + 1}" for i in range(result["dimensions"])]],
+    _table("diversity.csv", fields, ([row[key] for key in fields] for row in result["diversity"]))
+    _table("ordination.csv", ["sample_id", *[f"PCoA{i + 1}" for i in range(result["dimensions"])]],
            ([sid, *row] for sid, row in zip(ids, result["coordinates"], strict=True)))
-    _table(directory / "eigenvalues.csv", ["axis", "eigenvalue"], enumerate(result["eigenvalues"], start=1))
-    _table(directory / "positive_gram.csv", ["sample_id", *ids],
+    _table("eigenvalues.csv", ["axis", "eigenvalue"], enumerate(result["eigenvalues"], start=1))
+    _table("positive_gram.csv", ["sample_id", *ids],
            ([sid, *row] for sid, row in zip(ids, result["positive_gram"], strict=True)))
+    return files
 
 
 def steps_for(spec, has_lock):

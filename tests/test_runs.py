@@ -182,3 +182,38 @@ def test_malformed_bundle_records_produce_structured_cli_errors(tmp_path, filena
         assert completed.stdout == ""
         assert json.loads(completed.stderr)["code"] == "invalid_bundle"
     assert not (tmp_path / "fresh").exists()
+
+
+def _rehash(directory, manifest, name):
+    data = (directory / name).read_bytes()
+    manifest["files"][name].update(sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+
+
+@pytest.mark.parametrize("tamper", ["table", "extra_step"])
+def test_rehashed_tables_and_steps_must_derive_from_the_result(tmp_path, tamper):
+    _, first = make_run(tmp_path)
+    directory = Path(first["run_dir"])
+    manifest = json.loads((directory / "manifest.json").read_text())
+    if tamper == "table":
+        name, path = "used-pairs.csv", directory / "used-pairs.csv"
+        edited = path.read_text().replace("5.0", "5.5", 1)
+        assert edited != path.read_text()
+        path.write_text(edited)
+    else:
+        name = "notes.csv"
+        (directory / name).write_text("note\n")
+        manifest["steps"].append({"id": "annotate", "inputs": [], "outputs": [name]})
+        manifest["files"][name] = {"sha256": "0" * 64, "bytes": 0, "media_type": "text/csv", "produced_by": "annotate"}
+    _rehash(directory, manifest, name)
+    with pytest.raises(AnalysisError) as caught:
+        inspect_run(directory)
+    assert caught.value.code == "invalid_bundle"
+
+
+def test_output_inside_a_read_bundle_is_refused(tmp_path):
+    _, first = make_run(tmp_path)
+    with pytest.raises(AnalysisError) as caught:
+        reproduce(first["run_dir"], Path(first["run_dir"]) / "again")
+    assert caught.value.code == "output_inside_bundle"
+    assert inspect_run(first["run_dir"])["status"] == "verified"

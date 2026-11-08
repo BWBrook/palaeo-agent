@@ -2,7 +2,6 @@ import copy
 import itertools
 import math
 
-import numpy as np
 import pytest
 from pydantic import ValidationError
 

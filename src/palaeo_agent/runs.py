@@ -13,7 +13,7 @@ from pydantic import Field, model_validator
 from .core import AnalysisError, ResultItem
 from .methods import (
     PLOT_FILES, calculate_method, compare_results, parse_spec, read_inputs, required_files,
-    steps_for, summary, validate_result, write_tables,
+    steps_for, summary, table_files, validate_result,
 )
 
 
@@ -121,12 +121,23 @@ def _sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def _find_lockfile():
+def _checkout_lock():
     source = Path(__file__).resolve().parent
     candidate = source.parents[1] / "uv.lock"
     if source.parent.name == "src" and (candidate.parent / "pyproject.toml").is_file() and candidate.is_file():
-        return candidate
+        return candidate.read_bytes()
     return None
+
+
+# Captured once, when the package is imported, so a long-lived process (the MCP server) records the
+# code and lockfile it actually loaded rather than whatever is on disk when a run happens.
+_SOURCE_HASHES = {path.name: _sha(path.read_bytes()) for path in sorted(Path(__file__).parent.glob("*.py"))}
+_LOCK = _checkout_lock()
+
+
+def _find_lockfile():
+    """The checkout lockfile bytes captured at import, or None."""
+    return _LOCK
 
 
 def _rng_description(result):
@@ -145,8 +156,7 @@ def _rng_description(result):
 
 
 def _environment(lock, result=None):
-    source = Path(__file__).parent
-    hashes = {path.name: _sha(path.read_bytes()) for path in sorted(source.glob("*.py"))}
+    hashes = _SOURCE_HASHES
     packages, distributions = {}, []
     for distribution in importlib.metadata.distributions():
         name = distribution.metadata.get("Name")
@@ -224,6 +234,15 @@ def _plot_permanova(path, result):
     plt.close(fig)
 
 
+def require_outside(output_root, *bundles):
+    """Refuse an output location inside a bundle being read: writing there would change that evidence."""
+    output = Path(output_root).resolve()
+    for bundle in bundles:
+        if output.is_relative_to(Path(bundle).resolve()):
+            raise AnalysisError("output_inside_bundle", "The output location must not be inside a bundle it reads",
+                                output=str(output), bundle=str(Path(bundle).resolve()))
+
+
 def run(spec, output_root: str | Path):
     spec = parse_spec(spec)
     inputs = read_inputs(spec)
@@ -241,11 +260,12 @@ def run(spec, output_root: str | Path):
             portable = portable.model_copy(update={"metadata": Path("metadata.csv")})
         _json(directory / "spec.json", portable.model_dump(mode="json"))
         _json(directory / "results.json", result)
-        write_tables(directory, result)
+        for name, data in table_files(result).items():
+            (directory / name).write_bytes(data)
         lock = _find_lockfile()
         _json(directory / "environment.json", _environment(lock, result))
         if lock is not None:
-            (directory / "uv.lock").write_bytes(lock.read_bytes())
+            (directory / "uv.lock").write_bytes(lock)
         if PLOT_FILES <= required_files(spec):
             _plot(directory / "diagnostics.svg", result, spec)
         steps = steps_for(spec, lock is not None)
@@ -283,15 +303,16 @@ def inspect_run(run_dir: str | Path):
         names = set(manifest["files"])
         if {item.name for item in directory.iterdir()} != names | {"manifest.json"}:
             raise ValueError("Bundle file set differs from manifest")
+        data = {}
         for name, expected in manifest["files"].items():
             relative = PurePosixPath(name)
             artifact = directory / name
             if relative.is_absolute() or len(relative.parts) != 1 or "\\" in name or artifact.is_symlink() or not artifact.is_file():
                 raise ValueError("Unsafe artefact path")
-            data = artifact.read_bytes()
-            if _sha(data) != expected["sha256"] or len(data) != expected["bytes"]:
+            data[name] = artifact.read_bytes()
+            if _sha(data[name]) != expected["sha256"] or len(data[name]) != expected["bytes"]:
                 raise ValueError(f"Artefact integrity failure: {name}")
-        spec = parse_spec(json.loads((directory / "spec.json").read_text(encoding="utf-8")))
+        spec = parse_spec(json.loads(data["spec.json"]))
         if spec.input != Path("input.dat"):
             raise ValueError("Saved specification must reference its input snapshot")
         expected_roles = {"measurements" if spec.method == "rma" else "matrix": "input.dat"}
@@ -301,29 +322,25 @@ def inspect_run(run_dir: str | Path):
             expected_roles["metadata"] = "metadata.csv"
         if {role: item["path"] for role, item in manifest["inputs"].items()} != expected_roles:
             raise ValueError("Named input roles differ from the saved specification")
-        if not required_files(spec) <= names:
-            raise ValueError("Missing required artefact entries")
-        result = validate_result(spec, json.loads((directory / "results.json").read_text(encoding="utf-8")))
+        if manifest["steps"] != steps_for(spec, "uv.lock" in names):
+            raise ValueError("Recorded steps differ from the method's declared steps")
+        result = validate_result(spec, json.loads(data["results.json"]))
         if manifest["method"] != spec.method or manifest["method_version"] != result["method_version"]:
             raise ValueError("Manifest method identity differs from saved records")
-        environment = RunEnvironment.model_validate_json((directory / "environment.json").read_bytes()).model_dump(mode="json")
+        changed = sorted(name for name, expected in table_files(result).items() if data[name] != expected)
+        if changed:
+            raise ValueError(f"Derived tables differ from the validated result: {', '.join(changed)}")
+        environment = RunEnvironment.model_validate_json(data["environment.json"]).model_dump(mode="json")
         if environment["lockfile"]["available"] != ("uv.lock" in names):
             raise ValueError("Lockfile provenance differs from saved artefacts")
         if environment["rng"] != _rng_description(result):
             raise ValueError("RNG provenance differs from the method result")
-        if spec.method == "permanova":
-            if result["permutation"]["numpy_version"] != environment["packages"]["numpy"]:
-                raise ValueError("Permutation NumPy version differs from its recorded environment")
-            schedule = json.loads((directory / "permutations.json").read_text(encoding="utf-8"))
-            if schedule != result["permutation"]:
-                raise ValueError("Saved permutation artefact differs from the numerical result")
-        if spec.method == "count_homogeneity":
-            for package in ("numpy", "scipy"):
-                if result["randomization"][package + "_version"] != environment["packages"].get(package):
-                    raise ValueError("Sampling library version differs from its recorded environment")
-            randomization = json.loads((directory / "randomization.json").read_text(encoding="utf-8"))
-            if randomization != result["randomization"]:
-                raise ValueError("Saved randomization artefact differs from the numerical result")
+        if spec.method == "permanova" and result["permutation"]["numpy_version"] != environment["packages"]["numpy"]:
+            raise ValueError("Permutation NumPy version differs from its recorded environment")
+        if spec.method == "count_homogeneity" and any(
+                result["randomization"][package + "_version"] != environment["packages"].get(package)
+                for package in ("numpy", "scipy")):
+            raise ValueError("Sampling library version differs from its recorded environment")
     except AnalysisError as exc:
         if exc.code == "unsupported_schema":
             raise
@@ -339,6 +356,7 @@ def inspect_run(run_dir: str | Path):
 def reproduce(run_dir: str | Path, output_root: str | Path):
     original = inspect_run(run_dir)
     directory = Path(original["run_dir"])
+    require_outside(output_root, directory)
     spec = parse_spec(original["specification"])
     updates = {"input": directory / "input.dat"}
     if getattr(spec, "metadata", None) is not None:
@@ -347,6 +365,8 @@ def reproduce(run_dir: str | Path, output_root: str | Path):
     fresh = run(spec, output_root)
     recreated = inspect_run(fresh["run_dir"])
     differences, policy = compare_results(original["result"], recreated["result"])
+    if recreated["manifest"]["inputs"] != original["manifest"]["inputs"]:
+        differences.insert(0, "inputs")
     response = {"status": "reproduced" if not differences else "different", "original_run": str(directory),
             "new_run": fresh["run_dir"], "differences": differences,
             "tolerance": {key: policy[key] for key in ("rtol", "atol")},

@@ -8,7 +8,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 
 from .community import FORMAT_HELP, MAX_EXACT_COUNT, CommunityExclusion, _prepare_counts, _read_inputs, check_delimiter
-from .core import AnalysisError, ResultItem
+from .core import AnalysisError, ResultItem, decimal_context
 
 
 MAX_PRODUCT_FACTORS = 200_000
@@ -170,8 +170,7 @@ def _full_coverage(n, f1, f2):
         return None, False, UNAVAILABLE
     if f1 == 0:
         return 1.0, True, None
-    with localcontext() as context:
-        context.prec = DECIMAL_PRECISION
+    with localcontext(decimal_context(DECIMAL_PRECISION)):
         numerator = (n - 1) * (f1 if f2 else f1 - 1)
         denominator = numerator + (2 * f2 if f2 else 2)
         coverage = Decimal(1) - Decimal(f1) / Decimal(n) * Decimal(numerator) / Decimal(denominator)
@@ -251,8 +250,7 @@ def _resolve_and_budget(prepared, sizes):
 def _estimate(row, m, full_coverage, reason, n):
     richness = len(row)
     clamped = False
-    with localcontext() as context:
-        context.prec = DECIMAL_PRECISION
+    with localcontext(decimal_context(DECIMAL_PRECISION)):
         if m in (1, n) or richness in (1, n):
             expected, variance = Decimal(min(m, richness)), Decimal(0)
         else:

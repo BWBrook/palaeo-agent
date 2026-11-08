@@ -112,17 +112,23 @@ def test_environment_confounds_are_rejected_before_output_allocation(tmp_path, c
     assert not destination.exists()
 
 
-def test_tampered_comparison_report_and_symlink_rejected(tmp_path):
+@pytest.mark.parametrize("name", ["report.json", "raw_count_total_imbalance_bound.csv"])
+def test_tampered_comparison_records_and_symlink_rejected(tmp_path, name):
     _, baseline, sensitivity = make_pair(tmp_path)
     directory = Path(compare_community_runs(baseline, sensitivity, tmp_path / "comparison")["comparison_dir"])
-    report_path = directory / "report.json"
-    report = json.loads(report_path.read_text())
-    report["maximum_absolute_distance_change"] = 999
-    report_path.write_text(json.dumps(report))
+    report_path = directory / name
+    if name == "report.json":
+        report = json.loads(report_path.read_text())
+        report["maximum_absolute_distance_change"] = 999
+        report_path.write_text(json.dumps(report))
+    else:
+        rows = report_path.read_text().splitlines()
+        rows[1] = rows[1].rsplit(",", 1)[0] + ",0.5"
+        report_path.write_text("\n".join(rows) + "\n")
     manifest_path = directory / "manifest.json"
     manifest = json.loads(manifest_path.read_text())
-    manifest["files"]["report.json"].update(sha256=hashlib.sha256(report_path.read_bytes()).hexdigest(),
-                                               bytes=report_path.stat().st_size)
+    manifest["files"][name].update(sha256=hashlib.sha256(report_path.read_bytes()).hexdigest(),
+                                   bytes=report_path.stat().st_size)
     manifest_path.write_text(json.dumps(manifest))
     with pytest.raises(AnalysisError) as caught:
         inspect_comparison(directory)

@@ -239,3 +239,12 @@ def test_single_specimen_result_cannot_claim_coverage():
     result["samples"][0]["estimates"][0]["coverage"] = 1
     with pytest.raises(ValidationError):
         RarefactionResult.model_validate(result)
+
+
+def test_results_do_not_depend_on_the_ambient_decimal_context():
+    import decimal
+    expected = analyse([[4, 2, 1], [1, 1, 5]], sizes=[2, 3])
+    with decimal.localcontext() as context:
+        context.prec, context.rounding = 5, decimal.ROUND_FLOOR
+        context.traps[decimal.Inexact] = True
+        assert analyse([[4, 2, 1], [1, 1, 5]], sizes=[2, 3]) == expected
