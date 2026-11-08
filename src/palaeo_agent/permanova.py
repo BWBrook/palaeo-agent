@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 from .community import (FORMAT_HELP, MAX_EXACT_COUNT, VALUE_TYPE_HELP, value_keys, without_absent_branch, _near_duplicates, _prepare, _read_inputs, check_delimiter,
                         community_distances)
 from .core import AnalysisError, ResultItem
+from .count_homogeneity import _interval
 
 
 MAX_SCHEDULE_ENTRIES = 2_000_000
@@ -72,6 +73,11 @@ class PermutationRecord(ResultItem):
     infinite_count: int = Field(ge=0)
     tie_tolerance: FiniteFloat = Field(gt=0)
     index_semantics: Literal["distance_matrix_reordering_fixed_groups"]
+    tail_probability_interval: list[FiniteFloat] | None = Field(min_length=2, max_length=2)
+    interval_status: Literal["clopper_pearson_draw_exceedances", "not_applicable_exact_enumeration"]
+    confidence: Literal[0.95]
+    reporting_alpha: Literal[0.05]
+    monte_carlo_unresolved: bool | None
 
 
 class DispersionRecord(ResultItem):
@@ -93,7 +99,7 @@ class DispersionRecord(ResultItem):
 
 class PermanovaResult(ResultItem):
     method: Literal["permanova"]
-    method_version: Literal[1]
+    method_version: Literal[2]
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     canonical_orientation: Literal["samples_by_taxa"]
     value_type: Literal["count", "abundance"]
@@ -140,6 +146,15 @@ class PermanovaResult(ResultItem):
         except AnalysisError as exc:
             raise ValueError(f"{exc.code}: {exc}") from exc
         return self
+
+
+def _monte_carlo_fields(mode, extreme, requested):
+    if mode == "exact":
+        return {"tail_probability_interval": None, "interval_status": "not_applicable_exact_enumeration",
+                "confidence": 0.95, "reporting_alpha": 0.05, "monte_carlo_unresolved": None}
+    interval = list(_interval(extreme, requested))
+    return {"tail_probability_interval": interval, "interval_status": "clopper_pearson_draw_exceedances",
+            "confidence": 0.95, "reporting_alpha": 0.05, "monte_carlo_unresolved": interval[0] <= 0.05 <= interval[1]}
 
 
 def _grouping(metadata, group_column, sample_ids):
@@ -317,7 +332,8 @@ def calculate_permanova(spec, data, metadata):
                    "count_extreme": extreme, "denominator": denominator, "seed": spec.seed,
                    "bit_generator": "PCG64", "numpy_version": np.__version__, "indices": indices,
                    "statistics": statistics, "statuses": statuses, "infinite_count": statuses.count("positive_infinity"),
-                   "tie_tolerance": TIE_TOLERANCE, "index_semantics": "distance_matrix_reordering_fixed_groups"}
+                   "tie_tolerance": TIE_TOLERANCE, "index_semantics": "distance_matrix_reordering_fixed_groups",
+                   **_monte_carlo_fields(mode, extreme, spec.permutations)}
     dispersion = _dispersion(distances, groups, labels, samples)
     warnings = prepared["warnings"] + _near_duplicates(labels, "group")
     if len(set(sizes.values())) > 1:
@@ -329,7 +345,7 @@ def calculate_permanova(spec, data, metadata):
     if dispersion["negative_squared_count"]:
         warnings.append({"code": "negative_squared_dispersion", "message": "Negative signed squared centroid distances were truncated to zero for square roots",
                          "details": {"sample_ids": dispersion["truncated_sample_ids"]}})
-    result = {"method": "permanova", "method_version": 1, "orientation": spec.orientation,
+    result = {"method": "permanova", "method_version": 2, "orientation": spec.orientation,
               "canonical_orientation": "samples_by_taxa", "value_type": spec.value_type, "transform": spec.transform,
               "distance": spec.distance, "missing": "error", "empty_samples": "error", "design": "independent",
               "permutation_scheme": "free", "group_column": spec.group_column,
@@ -347,7 +363,8 @@ def calculate_permanova(spec, data, metadata):
                               "Distance-based group association can reflect location and dispersion, particularly with unequal group sizes",
                               "Centroid dispersion is descriptive, unadjusted for small-sample bias and has no p-value",
                               "Tiny eigenmodes below the recorded dispersion threshold are discarded; zero diagnostic distances do not prove zero variation",
-                              "Negative signed between-group sums of squares, pseudo-F and R-squared are retained for semimetric distances"]}
+                              "Negative signed between-group sums of squares, pseudo-F and R-squared are retained for semimetric distances",
+                              "The Monte Carlo interval is a 95% Clopper-Pearson interval for the conditional randomisation tail probability from the draw exceedances; it is not an interval for the plus-one p-value or for ecological uncertainty, and monte_carlo_unresolved flags only that Monte Carlo error alone could move the result across the recorded alpha. Exact enumeration has no Monte Carlo error"]}
     return without_absent_branch(PermanovaResult.model_validate(result).model_dump(mode="json"))
 
 
@@ -415,6 +432,9 @@ def _validate_saved_result(result):
         record.infinite_count != statuses.count("positive_infinity") or record.tie_tolerance != TIE_TOLERANCE or
         result.p_value != expected_p):
         raise ValueError("Permutation exceedances, denominator, tie rule or p-value are inconsistent")
+    expected_fields = _monte_carlo_fields(mode, extreme, record.requested)
+    if any(getattr(record, key) != value for key, value in expected_fields.items()):
+        raise ValueError("Monte Carlo interval, status or unresolved flag disagrees with the exceedances")
     expected_dispersion = _dispersion(distances, groups, labels, samples)
     dispersion = result.dispersion.model_dump(mode="json")
     for key in ("distances", "squared_distances", "eigenvalues", "discarded_eigenvalues", "threshold"):

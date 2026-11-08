@@ -168,7 +168,9 @@ asked to check someone else's analysis:
    the sample and taxon identities, the transformations, the estimands and
    the numerical conventions.
 3. Compare field by field with stated tolerances. For a Monte Carlo
-   quantity, use its Monte Carlo error.
+   quantity, use its Monte Carlo error (`count_homogeneity` and Monte
+   Carlo `permanova` report a Clopper–Pearson tail interval and a
+   `monte_carlo_unresolved` flag).
 4. Report agreement as an arithmetic check only. Agreement does not
    establish scientific validity, and neither does replay.
 

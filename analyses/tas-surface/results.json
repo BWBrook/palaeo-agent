@@ -2,7 +2,7 @@
  "study_status": "verified",
  "primer": {
   "version": "0.2.0.dev0",
-  "sha256": "f45b76b868bd1c317bb0c803935784bb9040a9d3f763ee8dc5cec7952d661e7b"
+  "sha256": "343bda600f9c0dd136d310efb1bcbb369c74d699b954beaeafa7f74214d3bc46"
  },
  "n_selected": 25,
  "n_categories": 89,
@@ -16,7 +16,12 @@
     "draws": 9999,
     "count_extreme": 687,
     "denominator": 10000,
-    "seed": 8112026
+    "seed": 8112026,
+    "tail_probability_interval": [
+     0.06382495537707157,
+     0.07384175661186007
+    ],
+    "monte_carlo_unresolved": false
    },
    "group_sizes": {
     "low": 14,
@@ -40,7 +45,12 @@
     "draws": 9999,
     "count_extreme": 1632,
     "denominator": 10000,
-    "seed": 8112026
+    "seed": 8112026,
+    "tail_probability_interval": [
+     0.15602151600921552,
+     0.17060784903644668
+    ],
+    "monte_carlo_unresolved": false
    },
    "group_sizes": {
     "low": 14,

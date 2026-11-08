@@ -17,6 +17,7 @@ from .core import AnalysisError, ResultItem, repeated_warnings
 
 
 MAX_EXACT_COUNT = 2**53 - 1
+MAX_ABUNDANCE_ROW_SUM = float(np.finfo(np.float64).max) / 4
 VALUE_TYPE_HELP = ("'count': exact nonnegative integer specimen counts. 'abundance': finite nonnegative fractional "
                    "weights such as percentages or proportions; never converted to counts, so count-only methods refuse them.")
 MAX_MATRIX_BYTES = 256 * 1024**2
@@ -199,8 +200,8 @@ class CommunityResult(ResultItem):
         if len(self.diversity) != self.n or [item.sample_id for item in self.diversity] != ids:
             raise ValueError("Diversity records must align with samples")
         values = np.asarray(retained, dtype=float)
-        if np.any(values.sum(axis=1) <= 0) or not np.all(np.isfinite(values.sum(axis=1))):
-            raise ValueError("Retained rows must have finite positive sums")
+        if np.any(values.sum(axis=1) <= 0) or not np.all(values.sum(axis=1) <= MAX_ABUNDANCE_ROW_SUM):
+            raise ValueError("Retained rows must have positive sums within the supported float64 range")
         expected_transformed, expected_distances = community_distances(values, transform=self.transform, distance=self.distance)
         if (not np.allclose(self.transformed_matrix, expected_transformed, rtol=1e-12, atol=0) or
                 not np.allclose(self.distances, expected_distances, rtol=1e-10, atol=1e-12)):
@@ -329,23 +330,27 @@ def _prepare_counts(matrix, *, sample_ids, taxon_ids, empty_samples, metadata, v
                 if value_type == "count":
                     valid = numeric and 0 <= value <= MAX_EXACT_COUNT and int(value) == value
                 else:
-                    valid = numeric and value >= 0
+                    valid = numeric and value >= 0 and not (value > 0 and float(value) == 0)
             except (ValueError, OverflowError, TypeError):
                 valid = False
             if not valid:
                 if value_type == "count":
                     raise AnalysisError("invalid_count", "Counts must be finite nonnegative exactly representable integers; proportions are unsupported and must not be rescaled or rounded into counts; declare value_type 'abundance' for weights",
                                         sample_id=samples[i], taxon_id=taxa[j])
-                raise AnalysisError("invalid_abundance", "Abundance weights must be finite nonnegative numbers",
+                raise AnalysisError("invalid_abundance", "Abundance weights must be finite nonnegative numbers representable in float64; a positive weight may not underflow to zero",
                                     sample_id=samples[i], taxon_id=taxa[j])
     if value_type == "count":
         exact_totals = [sum(int(value) for value in row) for row in values]
         if any(total > MAX_EXACT_COUNT for total in exact_totals):
             raise AnalysisError("count_range", "Sample totals exceed exact float64 integer range")
     else:
-        exact_totals = [math.fsum(float(value) for value in row) for row in values]
-        if any(not math.isfinite(total) for total in exact_totals):
-            raise AnalysisError("abundance_range", "Abundance row sums must be finite")
+        try:
+            exact_totals = [math.fsum(float(value) for value in row) for row in values]
+        except OverflowError:
+            exact_totals = [math.inf]
+        if any(not total <= MAX_ABUNDANCE_ROW_SUM for total in exact_totals):
+            raise AnalysisError("abundance_range", "Abundance row sums must be finite and at most a quarter of the float64 maximum, so pairwise sums cannot overflow; rescale the table by a common factor",
+                                limit=MAX_ABUNDANCE_ROW_SUM)
     counts = np.asarray(values, dtype=np.float64)
     total = np.asarray(exact_totals, dtype=np.float64)
     aligned = _metadata(metadata, samples)
@@ -459,7 +464,11 @@ def community_distances(counts, *, transform, distance):
         raise AnalysisError("invalid_option", "Declare supported transformation and distance explicitly")
     if distance == "jaccard" and transform != "none":
         raise AnalysisError("unsupported_combination", "Relative abundance is an unsupported no-op before binary Jaccard; request transform='none'")
-    transformed = counts if transform == "none" else counts / counts.sum(axis=1)[:, None]
+    sums = counts.sum(axis=1)
+    if not np.all(sums <= MAX_ABUNDANCE_ROW_SUM):
+        raise AnalysisError("abundance_range", "Row sums exceed the supported float64 range for pairwise dissimilarities",
+                            limit=MAX_ABUNDANCE_ROW_SUM)
+    transformed = counts if transform == "none" else counts / sums[:, None]
     n = len(counts)
     distances = np.zeros((n, n), dtype=np.float64)
     for i in range(n):

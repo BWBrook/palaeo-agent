@@ -30,7 +30,8 @@ def main():
         r = runs[name]
         association[name] = {
             "pseudo_f": r["pseudo_f"], "r_squared": r["r_squared"], "p_value": r["p_value"],
-            "permutation": {k: r["permutation"][k] for k in ("mode", "draws", "count_extreme", "denominator", "seed")},
+            "permutation": {k: r["permutation"][k] for k in ("mode", "draws", "count_extreme", "denominator", "seed",
+                                                                 "tail_probability_interval", "monte_carlo_unresolved")},
             "group_sizes": r["group_sizes"], "mean_centroid_distance": r["dispersion"]["group_mean_distances"],
             "warnings": [w["code"] for w in r["warnings"]]}
     c = runs["composition"]

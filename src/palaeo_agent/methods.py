@@ -79,7 +79,7 @@ def discover():
         "output_schema": CommunityResult.model_json_schema(),
     })
     methods.append({
-        "id": "permanova", "version": 1,
+        "id": "permanova", "version": 2,
         "description": METHOD_INDEX[2]["description"],
         "requirements": ["Independent sampling units and freely exchangeable labels explicitly declared",
                          "Exactly one categorical group factor, two or more samples per group",
@@ -87,7 +87,8 @@ def discover():
                          "Metadata joined by exact sample ID; finite observed pseudo-F"],
         "limitations": ["Association test, not a pure centroid-location test",
                         "No blocks, covariates, repeated measures or restricted permutations",
-                        "Dispersion is descriptive and has no p-value; design declarations are assumptions"],
+                        "Dispersion is descriptive and has no p-value; design declarations are assumptions",
+                        "Monte Carlo runs report a 95% Clopper-Pearson interval for the tail probability and a monte_carlo_unresolved flag at alpha 0.05; exact enumeration reports none"],
         "references": ["https://vegandevs.github.io/vegan/reference/adonis.html",
                        "https://vegandevs.github.io/vegan/reference/betadisper.html"],
         "input_schema": PermanovaSpec.model_json_schema(),
@@ -285,7 +286,10 @@ def write_tables(directory, result):
                ([row[key] for key in fields] for row in result["metadata"]))
     if result["method"] == "permanova":
         fields = ["pseudo_f", "r_squared", "p_value", "ss_total", "ss_within", "ss_between", "df_between", "df_within"]
-        _table(directory / "permanova.csv", fields, [[result[key] for key in fields]])
+        record = result["permutation"]
+        interval = record["tail_probability_interval"] or ["", ""]
+        _table(directory / "permanova.csv", fields + ["tail_interval_lower", "tail_interval_upper", "monte_carlo_unresolved"],
+               [[result[key] for key in fields] + [*interval, record["monte_carlo_unresolved"]]])
         _table(directory / "groups.csv", ["sample_id", result["group_column"]], zip(ids, result["groups"], strict=True))
         dispersion = result["dispersion"]
         _table(directory / "dispersion.csv", ["sample_id", "group", "signed_squared_distance", "centroid_distance"],

@@ -23,7 +23,18 @@ alongside the implementation, which follows it.
 
 Each token must be a finite, nonnegative decimal. A positive token that
 would underflow to 0.0, or overflow to infinity, in float64 is refused
-(`invalid_abundance`), as is any nonfinite row sum (`abundance_range`).
+(`invalid_abundance`). Native Python values (for example `Fraction`) follow
+the same rule before the float64 matrix is built.
+
+Row sums must be at most a quarter of the float64 maximum (about
+4.49 × 10³⁰⁷); otherwise the input is refused (`abundance_range`), in
+validation and in execution, including when the exact row sum overflows.
+The headroom guarantees that no pairwise denominator (raw Bray–Curtis,
+the row-sum imbalance bound) can overflow into a false zero distance.
+Bray–Curtis is invariant to a common factor, so rescaling the whole table
+is the supported remedy. `community_distances` and result inspection
+enforce the same limit. Count input is bounded far below it (2⁵³ − 1)
+and is unaffected.
 Missing cells, orientation, metadata, the empty-sample policy and the
 ordination rank rules are unchanged.
 

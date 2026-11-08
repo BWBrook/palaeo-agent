@@ -60,10 +60,15 @@ treeline.
 
 ## Results
 
-| Analysis | Pseudo-F | R² | p (9,999 permutations) | Mean distance to centroid, high / low |
-| --- | --- | --- | --- | --- |
-| Bray–Curtis on closed composition | 1.98 | 0.079 | 0.069 (687 extreme draws) | 0.442 / 0.508 |
-| Jaccard occurrence (sensitivity) | 1.36 | 0.056 | 0.163 | 0.485 / 0.477 |
+| Analysis | Pseudo-F | R² | p (9,999 permutations) | Monte Carlo tail interval (95%) | Mean distance to centroid, high / low |
+| --- | --- | --- | --- | --- | --- |
+| Bray–Curtis on closed composition | 1.98 | 0.079 | 0.069 (687 extreme draws) | 0.064–0.074 | 0.442 / 0.508 |
+| Jaccard occurrence (sensitivity) | 1.36 | 0.056 | 0.163 (1,632) | 0.156–0.171 | 0.485 / 0.477 |
+
+The tail intervals come from `permanova` method version 2
+(`permutation.tail_probability_interval`); neither run is
+`monte_carlo_unresolved` at 0.05. Each interval covers the conditional
+randomisation tail probability, not ecological uncertainty.
 
 - **Association.** Under these conventions, the altitude band accounts for
   about 8 % of the closed-composition variation, and the association does
@@ -83,11 +88,13 @@ treeline.
   16.5 (low). Median Shannon is 1.78 against 1.88. These describe weights;
   they are not count-based estimates.
 
-**Reading.** Montane and lowland spectra overlap widely in these 25
-records. The grass and *Eucalyptus* contrast fits open montane vegetation
-and the regional pollen rain. A single altitude threshold is a weak
-organiser of Tasmanian surface spectra, as expected where moorland, wet
-heath and rainforest occur at every elevation in the west.
+**Reading.** Under these working conventions, montane and lowland
+spectra overlap widely in these 25 selected records, and the 700 m split
+organises them only weakly. The grass and *Eucalyptus* contrast fits open
+montane vegetation and the regional pollen rain. Whether the weak
+separation holds for Tasmanian surface spectra generally is beyond this
+sample; moorland, wet heath and rainforest occurring across elevations in
+the west would be one reason to expect it.
 
 ## What the toolkit did, and what it lacked
 
@@ -97,14 +104,13 @@ verified. Sprint 10 worked as specified on its first real dataset.
 
 | # | Gap | Workaround here | Suggestion |
 | --- | --- | --- | --- |
-| 1 | PERMANOVA reports no Monte Carlo interval for its p-value; `count_homogeneity` does | Computed by hand: 687/9,999 gives about 0.064–0.074 | Add the same Clopper–Pearson tail interval and an unresolved flag to `permanova` |
+| 1 | PERMANOVA reported no Monte Carlo interval for its p-value | First computed by hand (0.064–0.074) | **Closed** in `permanova` method version 2; the table now quotes the toolkit field, which matches the hand and SciPy values |
 | 2 | Both applications needed bespoke code to turn a Neotoma download into a table and metadata (units, groups, zero-fill, sample notes) | `intake.py` (about 100 lines) | A Neotoma download reader that writes a declared table and a metadata CSV with provenance; it would remove the largest remaining glue |
 | 3 | Group summaries (mean closed composition per group) are reporting arithmetic | `analysis.py` | Leave as glue for now |
 
 ## Unsupported parts
 
-| Subtask | Why | What was used |
-| --- | --- | --- |
-| Reading the Neotoma JSON, choosing samples, assigning altitude bands | Intake outside the toolkit | `intake.py` |
-| Band means and medians | Reporting arithmetic | `analysis.py` (NumPy) |
-| Monte Carlo interval for the PERMANOVA p | Not reported by `permanova` | Hand calculation, quoted above |
+| Subtask | Why | What was used | How checked |
+| --- | --- | --- | --- |
+| Reading the Neotoma JSON, choosing samples, assigning altitude bands | Intake outside the toolkit | `intake.py` | Source SHA-256 checked on every run; Codex regenerated `percent.tsv`, `samples.csv` and `study.json` byte for byte and matched all 61 × 92 cells to the archive or declared zero-fill |
+| Band means and medians | Reporting arithmetic | `analysis.py` (NumPy) | Computed only from verified study fields (`transformed_matrix`, `diversity`, `metadata`); `results.json` replays byte for byte |
