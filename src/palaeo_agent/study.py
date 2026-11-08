@@ -8,7 +8,7 @@ unless the study declares it.
 """
 
 import csv
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, Inexact, InvalidOperation, localcontext
 import hashlib
 import io
 import json
@@ -32,7 +32,9 @@ class Model(BaseModel):
 
 
 class TableInput(Model):
-    kind: Literal["counts", "measurements"]
+    kind: Literal["counts", "abundance", "measurements"] = Field(
+        description="counts: exact integer specimen counts; abundance: fractional weights (percentages, proportions); "
+                    "measurements: continuous variables for rma")
     path: Path = Field(description="Table path, relative to the study file")
     format: Literal["past", "delimited"] = Field(default="past", description=FORMAT_HELP)
     delimiter: Literal["tab", "comma"] | None = Field(default=None, description="Required for format 'delimited'")
@@ -120,6 +122,10 @@ class StudySpec(Model):
             method = analysis.spec.get("method")
             if (method == "rma") != (kind == "measurements"):
                 raise ValueError(f"Analysis {analysis.id}: {method} cannot analyse a {kind} dataset")
+            if kind == "abundance" and method not in ("community", "permanova"):
+                raise ValueError(f"Analysis {analysis.id}: {method} requires counts; abundance weights are never converted")
+            if kind != "measurements" and analysis.spec.get("value_type") != ("abundance" if kind == "abundance" else "count"):
+                raise ValueError(f"Analysis {analysis.id}: value_type must match the {kind} input declaration")
             if analysis.spec.get("format") != "past" or analysis.spec.get("orientation", "samples_by_taxa") != "samples_by_taxa":
                 raise ValueError(f"Analysis {analysis.id}: derived datasets are PAST tables, samples by taxa")
         return self
@@ -189,6 +195,22 @@ def _integer(token, sample, column):
     return int(value)
 
 
+def _weight_sum(tokens, sample, columns):
+    """Exact decimal sum of abundance weights; refuses rather than rounds."""
+    with localcontext() as context:
+        context.prec = 1000
+        context.traps[Inexact] = True
+        try:
+            values = [Decimal(token) for token in tokens]
+            if any(not value.is_finite() or value < 0 for value in values):
+                raise InvalidOperation
+            total = sum(values, Decimal(0))
+        except (InvalidOperation, Inexact) as exc:
+            raise AnalysisError("invalid_abundance", "Merged abundance cells must be finite nonnegative decimals",
+                                sample=sample, columns=columns) from exc
+    return format(total, "f")
+
+
 def _is_zero(cell):
     try:
         return Decimal(cell) == 0
@@ -214,8 +236,8 @@ def apply(operation, table, kind):
         record = {"op": operation.op, "reason": operation.reason, "kept": keep,
                   "removed": [s for s in samples if s not in set(keep)]}
         return {"samples": keep, "columns": columns, "values": [values[index[s]] for s in keep]}, record
-    if kind != "counts":
-        raise AnalysisError("operation_not_applicable", "Taxon operations apply only to count tables")
+    if kind == "measurements":
+        raise AnalysisError("operation_not_applicable", "Taxon operations apply only to count or abundance tables")
     if operation.op == "exclude_taxa":
         unknown = sorted(set(operation.taxa) - set(columns))
         if unknown:
@@ -245,8 +267,10 @@ def apply(operation, table, kind):
                 new_row.append(cells[sources[0]])
             elif any(cells[c] == "." for c in sources):
                 raise AnalysisError("missing_counts", "Missing cells cannot be merged", sample=sample, columns=sources)
-            else:
+            elif kind == "counts":
                 new_row.append(str(sum(_integer(cells[c], sample, c) for c in sources)))
+            else:
+                new_row.append(_weight_sum([cells[c] for c in sources], sample, sources))
         new_values.append(new_row)
     record = {"op": "map_taxa", "reason": operation.reason, "mapping": operation.mapping,
               "merged": {t: s for t, s in merged.items() if len(s) > 1}, "columns": order}

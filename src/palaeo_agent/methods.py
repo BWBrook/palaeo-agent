@@ -11,6 +11,7 @@ from pydantic import Field, TypeAdapter
 from .core import AnalysisError, RmaResult, RmaSpec, calculate, discover as rma_discover
 from .community import (
     CommunityResult, CommunitySpec, REFERENCES, calculate_community, selected_subspace_info, validate_community,
+    value_keys, without_absent_branch,
 )
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .rarefaction import RarefactionResult, RarefactionSpec, calculate_rarefaction, validate_rarefaction
@@ -33,7 +34,7 @@ METHOD_INDEX = [
      "scope": "Paired measurements; no inferential uncertainty", "refuses": ["constant variables", "undefined covariance"],
      "provides": ["slope", "intercept", "correlation", "means and SDs", "residual RMSE", "raw or log10 scale",
                   "warnings for repeated pairs and repeated consecutive blocks"]},
-    {"id": "community", "description": "Count diversity, dissimilarities and uncorrected PCoA",
+    {"id": "community", "description": "Count or abundance diversity, dissimilarities and uncorrected PCoA",
      "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved positive eigenvalue cutoff"],
      "provides": ["per-sample total, richness, Shannon (natural log) and Simpson (1 - sum p^2)",
                   "Bray-Curtis or binary Jaccard distance matrix", "raw or relative-abundance input",
@@ -65,12 +66,14 @@ def discover():
     methods = rma_discover()["methods"]
     methods.append({
         "id": "community", "version": 1,
-        "description": "Count-community diversity, explicit dissimilarities and uncorrected PCoA",
-        "requirements": ["Declared count values and matrix orientation", "Unique sample/taxon IDs",
+        "description": "Count- or abundance-community diversity, explicit dissimilarities and uncorrected PCoA",
+        "requirements": ["Declared value type (count, or abundance weights such as percentages) and matrix orientation",
+                         "Unique sample/taxon IDs",
                          "Metadata joined by exact sample ID", "Sufficient positive eigenaxes",
                          "Requested dimensions must retain complete numerically resolved positive eigenvalue blocks"],
         "limitations": ["No group inference or causal claim", "Negative eigenvalues are reported, not corrected",
-                        "Jaccard is binary occurrence distance, not quantitative Jaccard"],
+                        "Jaccard is binary occurrence distance, not quantitative Jaccard",
+                        "Abundance row sums are weight sums, not specimen counts; no count-based estimator applies"],
         "references": REFERENCES,
         "input_schema": CommunitySpec.model_json_schema(),
         "output_schema": CommunityResult.model_json_schema(),
@@ -80,6 +83,7 @@ def discover():
         "description": METHOD_INDEX[2]["description"],
         "requirements": ["Independent sampling units and freely exchangeable labels explicitly declared",
                          "Exactly one categorical group factor, two or more samples per group",
+                         "Declared value type: count, or abundance weights such as percentages",
                          "Metadata joined by exact sample ID; finite observed pseudo-F"],
         "limitations": ["Association test, not a pure centroid-location test",
                         "No blocks, covariates, repeated measures or restricted permutations",
@@ -165,6 +169,8 @@ def validate_result(spec, value):
     model = {"rma": RmaResult, "community": CommunityResult, "permanova": PermanovaResult,
              "rarefaction": RarefactionResult, "count_homogeneity": CountHomogeneityResult}[spec.method]
     result = model.model_validate(value).model_dump(mode="json")
+    if spec.method in {"community", "permanova"}:
+        result = without_absent_branch(result)
     keys = ("method", "missing")
     if spec.method in {"rma", "community", "permanova"}:
         keys += ("transform",)
@@ -205,11 +211,11 @@ def required_files(spec):
             {"metadata.csv", "aligned_metadata.csv"} if spec.metadata is not None else set()
         )
     tables = {"used-pairs.csv"} if spec.method == "rma" else {
-        "retained_counts.csv", "transformed_matrix.csv", "diversity.csv", "distances.csv", "ordination.csv",
+        "retained_counts.csv" if spec.value_type == "count" else "retained_values.csv", "transformed_matrix.csv", "diversity.csv", "distances.csv", "ordination.csv",
         "eigenvalues.csv", "positive_gram.csv",
     }
     if spec.method == "permanova":
-        tables = {"retained_counts.csv", "transformed_matrix.csv", "distances.csv", "groups.csv",
+        tables = {"retained_counts.csv" if spec.value_type == "count" else "retained_values.csv", "transformed_matrix.csv", "distances.csv", "groups.csv",
                   "permanova.csv", "permutations.json", "dispersion.csv", "group_dispersion.csv", "eigenvalues.csv"}
     return COMMON_FILES | PLOT_FILES | {"input.dat"} | tables | (
         {"metadata.csv", "aligned_metadata.csv"} if getattr(spec, "metadata", None) is not None else set()
@@ -269,7 +275,8 @@ def write_tables(directory, result):
             (directory / "randomization.json").write_text(
                 json.dumps(result["randomization"], indent=2, allow_nan=False) + "\n", encoding="utf-8")
         return
-    for filename, key in (("retained_counts.csv", "retained_counts"), ("transformed_matrix.csv", "transformed_matrix")):
+    matrix_key = value_keys(result["value_type"])[0]
+    for filename, key in ((f"{matrix_key}.csv", matrix_key), ("transformed_matrix.csv", "transformed_matrix")):
         _table(directory / filename, ["sample_id", *taxa], ([sid, *row] for sid, row in zip(ids, result[key], strict=True)))
     _table(directory / "distances.csv", ["sample_id", *ids], ([sid, *row] for sid, row in zip(ids, result["distances"], strict=True)))
     if result["metadata"] is not None:
@@ -303,6 +310,7 @@ def steps_for(spec, has_lock):
     steps = [{"id": "snapshot_inputs", "inputs": [], "outputs": sources},
              {"id": "resolve_specification", "inputs": [], "outputs": ["spec.json"]},
              {"id": "record_environment", "inputs": [], "outputs": ["environment.json"] + (["uv.lock"] if has_lock else [])}]
+    retained = f"{value_keys(getattr(spec, 'value_type', 'count'))[0]}.csv"
     if spec.method in {"rarefaction", "count_homogeneity"}:
         tables = (["rarefaction.csv", "coverage.csv"] if spec.method == "rarefaction" else
                   ["count_homogeneity.csv", "taxon_tests.csv", "zero_count_limits.csv", "randomization.json"])
@@ -315,9 +323,10 @@ def steps_for(spec, has_lock):
     elif spec.method == "community":
         steps += [
             {"id": "orient_validate_exclude", "inputs": sources,
-             "outputs": ["retained_counts.csv"] + (["aligned_metadata.csv"] if spec.metadata is not None else [])},
-            {"id": "raw_count_diversity", "inputs": ["retained_counts.csv"], "outputs": ["diversity.csv"]},
-            {"id": "transform_for_distance", "inputs": ["retained_counts.csv"], "outputs": ["transformed_matrix.csv"]},
+             "outputs": [retained] + (["aligned_metadata.csv"] if spec.metadata is not None else [])},
+            {"id": "raw_count_diversity" if spec.value_type == "count" else "observed_weight_diversity",
+             "inputs": [retained], "outputs": ["diversity.csv"]},
+            {"id": "transform_for_distance", "inputs": [retained], "outputs": ["transformed_matrix.csv"]},
             {"id": "dissimilarity", "inputs": ["transformed_matrix.csv"], "outputs": ["distances.csv"]},
             {"id": "uncorrected_pcoa", "inputs": ["distances.csv"],
              "outputs": ["ordination.csv", "eigenvalues.csv", "positive_gram.csv"]},
@@ -325,8 +334,8 @@ def steps_for(spec, has_lock):
     elif spec.method == "permanova":
         steps += [
             {"id": "orient_validate_align_groups", "inputs": sources,
-             "outputs": ["retained_counts.csv", "aligned_metadata.csv", "groups.csv"]},
-            {"id": "transform_for_distance", "inputs": ["retained_counts.csv"], "outputs": ["transformed_matrix.csv"]},
+             "outputs": [retained, "aligned_metadata.csv", "groups.csv"]},
+            {"id": "transform_for_distance", "inputs": [retained], "outputs": ["transformed_matrix.csv"]},
             {"id": "dissimilarity", "inputs": ["transformed_matrix.csv"], "outputs": ["distances.csv"]},
             {"id": "permutation_association", "inputs": ["distances.csv", "groups.csv"],
              "outputs": ["permanova.csv", "permutations.json"]},

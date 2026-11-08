@@ -10,7 +10,7 @@ import uuid
 import numpy as np
 
 from .core import AnalysisError
-from .community import selected_subspace_info
+from .community import selected_subspace_info, value_keys
 from .runs import inspect_run
 
 
@@ -93,10 +93,14 @@ def _checked_pair(baseline_run, sensitivity_run):
     if declared is not None and declared != baseline_hash:
         raise AnalysisError("comparison_baseline", "The declared baseline fingerprint does not match this baseline")
     left, right = baseline["result"], sensitivity["result"]
-    for key in ("sample_ids", "input_sample_ids", "taxon_ids", "retained_counts", "diversity", "metadata", "excluded"):
-        if left[key] != right[key]:
+    for key in ("sample_ids", "input_sample_ids", "taxon_ids", "retained_counts", "retained_values", "value_type", "diversity", "metadata", "excluded"):
+        if left.get(key) != right.get(key):
             raise AnalysisError("comparison_confinement", "Results changed outside distance and ordination stages", field=key)
     return baseline, sensitivity
+
+
+def bound_key(value_type):
+    return "raw_count_total_imbalance_bound" if value_type == "count" else "raw_weight_sum_imbalance_bound"
 
 
 def _report(baseline, sensitivity):
@@ -117,7 +121,7 @@ def _report(baseline, sensitivity):
     warnings = []
     if pearson is None or spearman is None:
         warnings.append({"code": "undefined_distance_correlation", "message": "A distance vector is constant or too short"})
-    totals = np.asarray([row["total"] for row in left["diversity"]], dtype=float)
+    totals = np.asarray([row[value_keys(left["value_type"])[1]] for row in left["diversity"]], dtype=float)
     lower_bound = np.abs(totals[:, None] - totals[None, :]) / (totals[:, None] + totals[None, :])
     delta = np.abs(x - y)
     record = {
@@ -146,10 +150,10 @@ def _report(baseline, sensitivity):
         "eigengap_threshold": subspaces["baseline"]["threshold"],
         "negative_inertia_magnitude": {"baseline": left["negative_inertia_magnitude"],
                                        "sensitivity": right["negative_inertia_magnitude"]},
-        "raw_count_total_imbalance_bound": lower_bound.tolist(),
+        bound_key(left["value_type"]): lower_bound.tolist(),
         "warnings": warnings,
         "limitations": ["Descriptive comparison only; no p-values or group inference",
-                        "The total-imbalance matrix bounds raw-count Bray-Curtis only, not relative-abundance distances",
+                        "The row-sum imbalance matrix bounds untransformed Bray-Curtis on the supplied values (specimen counts or abundance weights) only, not relative-abundance distances",
                         "Correlation does not establish equality of distances or scientific equivalence"],
     }
     return record
@@ -172,10 +176,11 @@ def compare_community_runs(baseline_run, sensitivity_run, output_root):
         baseline, sensitivity = _checked_pair(directory / "baseline", directory / "sensitivity")
         report = _report(baseline, sensitivity)
         _json(directory / "report.json", report)
-        with (directory / "raw_count_total_imbalance_bound.csv").open("w", newline="", encoding="utf-8") as stream:
+        key = bound_key(baseline["result"]["value_type"])
+        with (directory / f"{key}.csv").open("w", newline="", encoding="utf-8") as stream:
             writer = csv.writer(stream, lineterminator="\n")
             writer.writerow(["sample_id", *report["sample_ids"]])
-            for sample, row in zip(report["sample_ids"], report["raw_count_total_imbalance_bound"], strict=True):
+            for sample, row in zip(report["sample_ids"], report[key], strict=True):
                 writer.writerow([sample, *row])
         files = {path.relative_to(directory).as_posix(): _file_record(path)
                  for path in sorted(directory.rglob("*")) if path.is_file()}
@@ -229,9 +234,10 @@ def inspect_comparison(comparison_dir):
                 raise ValueError("Symbolic links are not comparison artefacts")
             if not path.is_file() or _file_record(path) != expected:
                 raise ValueError(f"Comparison artefact integrity failure: {name}")
-        if not {"report.json", "raw_count_total_imbalance_bound.csv", "baseline/manifest.json", "sensitivity/manifest.json"} <= files.keys():
-            raise ValueError("Required comparison artefacts are missing")
         baseline, sensitivity = _checked_pair(directory / "baseline", directory / "sensitivity")
+        if not {"report.json", f"{bound_key(baseline['result']['value_type'])}.csv", "baseline/manifest.json",
+                "sensitivity/manifest.json"} <= files.keys():
+            raise ValueError("Required comparison artefacts are missing")
         report = json.loads((directory / "report.json").read_text(encoding="utf-8"))
         if not _equivalent(report, _report(baseline, sensitivity)):
             raise ValueError("Comparison report disagrees with the verified child results")

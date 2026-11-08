@@ -8,7 +8,7 @@ from typing import Literal
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 
-from .community import (FORMAT_HELP, MAX_EXACT_COUNT, _near_duplicates, _prepare, _read_inputs, check_delimiter,
+from .community import (FORMAT_HELP, MAX_EXACT_COUNT, VALUE_TYPE_HELP, value_keys, without_absent_branch, _near_duplicates, _prepare, _read_inputs, check_delimiter,
                         community_distances)
 from .core import AnalysisError, ResultItem
 
@@ -32,7 +32,7 @@ class PermanovaSpec(BaseModel):
     format: Literal["past", "delimited"] = Field(description=FORMAT_HELP)
     delimiter: Literal["tab", "comma"] | None = Field(default=None, description="Required for format 'delimited'")
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
-    value_type: Literal["count"]
+    value_type: Literal["count", "abundance"] = Field(description=VALUE_TYPE_HELP)
     distance: Literal["braycurtis", "jaccard"]
     transform: Literal["none", "relative_abundance"]
     missing: Literal["error"]
@@ -96,7 +96,7 @@ class PermanovaResult(ResultItem):
     method_version: Literal[1]
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     canonical_orientation: Literal["samples_by_taxa"]
-    value_type: Literal["count"]
+    value_type: Literal["count", "abundance"]
     transform: Literal["none", "relative_abundance"]
     distance: Literal["braycurtis", "jaccard"]
     missing: Literal["error"]
@@ -118,7 +118,8 @@ class PermanovaResult(ResultItem):
     input_sample_ids: list[str]
     sample_ids: list[str]
     taxon_ids: list[str]
-    retained_counts: list[list[FiniteFloat]]
+    retained_counts: list[list[FiniteFloat]] | None = Field(default=None, description="Count input only")
+    retained_values: list[list[FiniteFloat]] | None = Field(default=None, description="Abundance input only")
     transformed_matrix: list[list[FiniteFloat]]
     distances: list[list[FiniteFloat]]
     metadata: list[dict[str, str]]
@@ -283,7 +284,7 @@ def validate_permanova(spec, data, metadata):
     spec = spec if isinstance(spec, PermanovaSpec) else PermanovaSpec.model_validate(spec)
     matrix, samples, taxa, rows = _read_inputs(spec, data, metadata)
     prepared = _prepare(matrix, sample_ids=samples, taxon_ids=taxa, dimensions=1,
-                        empty_samples="error", metadata=rows)
+                        empty_samples="error", metadata=rows, value_type=spec.value_type)
     groups, labels, sizes = _grouping(prepared["metadata"], spec.group_column, prepared["sample_ids"])
     space = _space_size(list(sizes.values()))
     mode = "exact" if space - 1 <= spec.permutations and space <= MAX_EXACT_ALLOCATIONS else "monte_carlo"
@@ -293,14 +294,14 @@ def validate_permanova(spec, data, metadata):
                             entries=draws * len(groups), limit_entries=MAX_SCHEDULE_ENTRIES)
     return {"status": "valid", "n": len(samples), "n_input": len(samples), "n_taxa": len(taxa),
             "groups": labels, "group_sizes": sizes, "warnings": prepared["warnings"],
-            "scope": "Input/count/group requirements checked; independence and null exchangeability are declared assumptions, not verified"}
+            "scope": f"Input/{spec.value_type}/group requirements checked; independence and null exchangeability are declared assumptions, not verified"}
 
 
 def calculate_permanova(spec, data, metadata):
     spec = spec if isinstance(spec, PermanovaSpec) else PermanovaSpec.model_validate(spec)
     matrix, samples, taxa, rows = _read_inputs(spec, data, metadata)
     prepared = _prepare(matrix, sample_ids=samples, taxon_ids=taxa, dimensions=1,
-                        empty_samples="error", metadata=rows)
+                        empty_samples="error", metadata=rows, value_type=spec.value_type)
     groups, labels, sizes = _grouping(prepared["metadata"], spec.group_column, prepared["sample_ids"])
     mode, space, indices = _schedule(groups, labels, spec.permutations, spec.seed)
     counts = prepared["counts"]
@@ -329,7 +330,7 @@ def calculate_permanova(spec, data, metadata):
         warnings.append({"code": "negative_squared_dispersion", "message": "Negative signed squared centroid distances were truncated to zero for square roots",
                          "details": {"sample_ids": dispersion["truncated_sample_ids"]}})
     result = {"method": "permanova", "method_version": 1, "orientation": spec.orientation,
-              "canonical_orientation": "samples_by_taxa", "value_type": "count", "transform": spec.transform,
+              "canonical_orientation": "samples_by_taxa", "value_type": spec.value_type, "transform": spec.transform,
               "distance": spec.distance, "missing": "error", "empty_samples": "error", "design": "independent",
               "permutation_scheme": "free", "group_column": spec.group_column,
               "pseudo_f": statistic, "r_squared": between / total, "p_value": p_value,
@@ -337,7 +338,7 @@ def calculate_permanova(spec, data, metadata):
               "df_between": len(labels) - 1, "df_within": len(groups) - len(labels),
               "n": len(samples), "n_input": len(samples), "n_taxa": len(taxa),
               "input_sample_ids": samples, "sample_ids": samples, "taxon_ids": taxa,
-              "retained_counts": counts.tolist(), "transformed_matrix": transformed.tolist(),
+              value_keys(spec.value_type)[0]: counts.tolist(), "transformed_matrix": transformed.tolist(),
               "distances": distances.tolist(), "metadata": prepared["metadata"], "groups": groups,
               "group_labels": labels, "group_sizes": sizes, "excluded": [], "permutation": permutation,
               "dispersion": dispersion, "warnings": warnings, "references": REFERENCES,
@@ -347,7 +348,7 @@ def calculate_permanova(spec, data, metadata):
                               "Centroid dispersion is descriptive, unadjusted for small-sample bias and has no p-value",
                               "Tiny eigenmodes below the recorded dispersion threshold are discarded; zero diagnostic distances do not prove zero variation",
                               "Negative signed between-group sums of squares, pseudo-F and R-squared are retained for semimetric distances"]}
-    return PermanovaResult.model_validate(result).model_dump(mode="json")
+    return without_absent_branch(PermanovaResult.model_validate(result).model_dump(mode="json"))
 
 
 def _same_numeric(actual, expected, *, scale=1.0):
@@ -363,12 +364,19 @@ def _validate_saved_result(result):
         raise ValueError("PERMANOVA retains every input sample; counts and IDs must agree")
     if result.n_taxa != len(taxa):
         raise ValueError("Taxon count must agree with IDs")
-    for matrix in (result.retained_counts, result.transformed_matrix):
+    matrix_key = value_keys(result.value_type)[0]
+    other_key = value_keys("abundance" if result.value_type == "count" else "count")[0]
+    if getattr(result, matrix_key) is None or getattr(result, other_key) is not None:
+        raise ValueError(f"{result.value_type} results carry {matrix_key} only")
+    for matrix in (getattr(result, matrix_key), result.transformed_matrix):
         if len(matrix) != result.n or any(len(row) != result.n_taxa for row in matrix):
             raise ValueError("Matrix shape disagrees with IDs")
-    counts = np.asarray(result.retained_counts)
-    if np.any(counts < 0) or np.any(counts > MAX_EXACT_COUNT) or np.any(counts != np.floor(counts)) or np.any(counts.sum(axis=1) > MAX_EXACT_COUNT) or np.any(counts.sum(axis=1) == 0):
-        raise ValueError("Retained values must be nonempty exactly representable count samples")
+    counts = np.asarray(getattr(result, matrix_key))
+    if np.any(counts < 0) or not np.all(np.isfinite(counts.sum(axis=1))) or np.any(counts.sum(axis=1) == 0):
+        raise ValueError("Retained values must be nonnegative with finite positive row sums")
+    if result.value_type == "count" and (np.any(counts > MAX_EXACT_COUNT) or np.any(counts != np.floor(counts)) or
+                                         np.any(counts.sum(axis=1) > MAX_EXACT_COUNT)):
+        raise ValueError("Retained counts must be exactly representable count samples")
     groups, labels, sizes = _grouping(result.metadata, result.group_column, samples)
     if result.groups != groups or result.group_labels != labels or result.group_sizes != sizes:
         raise ValueError("Grouping records must match exactly aligned metadata")

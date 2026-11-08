@@ -27,7 +27,7 @@ def test_discovery_exposes_all_methods_with_typed_outputs():
     methods = {method["id"]: method for method in discover()["methods"]}
     assert set(methods) == {"rma", "community", "permanova", "rarefaction", "count_homogeneity"}
     assert methods["community"]["input_schema"]["additionalProperties"] is False
-    assert "retained_counts" in methods["community"]["output_schema"]["required"]
+    assert {"retained_counts", "retained_values"} <= set(methods["community"]["output_schema"]["properties"])
 
 
 def test_multi_input_bundle_reproduces_without_source_files(tmp_path):

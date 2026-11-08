@@ -55,7 +55,8 @@ def main():
     table_identical = [line.split("\t")[1:] for line in derived] == [line.split("\t")[1:] for line in manual]
 
     old = json.loads((HERE / "results-amended.json").read_text())
-    old_pairs = old["adjacent_steps"] + [v["primary"] for v in old["named_comparisons"].values()]
+    old_pairs = old["adjacent_steps"] + [v[k] for v in old["named_comparisons"].values()
+                                         for k in ("primary", "ippd1_sensitivity")]
     old_by = {(s["younger"], s["older"]): s for s in old_pairs}
     hom = runs["count_homogeneity"]
     diffs = {"p_value": 0.0, "p_value_holm": 0.0, "holm_envelope": 0.0}

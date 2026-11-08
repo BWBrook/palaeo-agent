@@ -78,6 +78,11 @@ exchangeability, so do not run it there.
 - **Never coerce data to pass a check.** Never convert percentages into
   integer counts, round values, or delete observations merely so that an
   operation accepts the input.
+- **Percentages and proportions** are `value_type: "abundance"` (study
+  input kind `abundance`). `community` and `permanova` accept them;
+  `rarefaction` and `count_homogeneity` do not, because they need specimen
+  counts. Abundance row sums are weight sums, not specimen N. Record the
+  source units and denominator in your intake.
 - If the refusal shows that the method does not fit the design, say so and
   use a suitable alternative, or stop.
 

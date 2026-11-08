@@ -33,6 +33,7 @@ record.
 
 | Operation | Effect | Refuses |
 | --- | --- | --- |
+| Input `kind` | `counts` (exact integers), `abundance` (percentages, proportions or other weights) or `measurements`; each analysis's `value_type` must match, and abundance feeds only `community` and `permanova`. `map_taxa` sums abundance as exact decimals. | mismatched declarations |
 | Input `orientation` | Declares the layout. Derived data are always samples by taxa. | duplicate sample or column IDs |
 | `exclude` | Removes the named samples (whole rows). In a measurement table whose column pairs hold different groups, a row removes values from every pair, so give such exclusions their own dataset. | unknown or duplicated IDs; removing every sample |
 | `select` | Keeps the named samples, in the order given. | unknown or duplicated IDs |
