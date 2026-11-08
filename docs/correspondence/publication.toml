@@ -1,11 +1,11 @@
-# Reviewed snapshot of Sprints 7–11 and the pollen application reviews.
+# Reviewed snapshot of Sprints 7–11, pollen applications and Neotoma intake.
 # The board exporter's CLI exports a whole project. This snapshot instead calls
 # its unchanged load_policy/fetch_thread/render functions for thread_ids only.
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
 thread_ids = [136, 145]
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037]
-reviewed_through = 3037
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039]
+reviewed_through = 3039
 exporter_revision = "5ca82a5ad2114960f19ab42cc7f3ff157ac32ce8"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -56,6 +56,9 @@ cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026]
 # 3032 and 3037 record sprint-11 delivery, independent range/interval checks
 # and the saved-download reader review. Both were reviewed in full and contain
 # no flagged material requiring clearance or withholding.
+# 3038 and 3039 record the reader implementation, independent demonstration
+# checks and six reproducible implementation findings. Both were reviewed in
+# full; neither contains flagged material requiring clearance or withholding.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],
