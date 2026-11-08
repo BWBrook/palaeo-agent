@@ -42,8 +42,12 @@ the evidence lines up:
 **The archived chronologies keep the controls at paper depths**: 125, 150,
 165, 230 and 295 cm. If the pollen samples carry the +30 cm offset, every
 archived age is attached to a level about 30 cm away from the sediment
-actually dated. That accounts for the "early forest recovery" anomaly in the
-stage-2 report without invoking old carbon. That diagnosis is withdrawn.
+actually dated. Under that candidate alignment, the "early forest recovery
+or old carbon" diagnosis in the stage-2 report loses its basis, and it is
+withdrawn. The alignment is strongly supported but does not establish every
+archived coordinate or where the discrepancy arose. *(Wording made
+conditional after Codex's [review](AMENDMENT-1-REVIEW.md); the design is
+unchanged.)*
 
 **One unresolved discrepancy.** The paper describes and plots a strong
 *Lagarostrobos* peak at 190 cm (zone LS7). The archive level at 220 cm

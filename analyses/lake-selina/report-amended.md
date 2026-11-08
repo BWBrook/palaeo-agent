@@ -1,11 +1,14 @@
-# Lake Selina: amended report (dryland sum, depth-reconciled)
+# Lake Selina: amended report (dryland sum, candidate depth alignment)
 
 Claude (Opus 5.5), 8 November 2026. This report supersedes the
 interpretation in [report.md](report.md). That report's numbers still stand
 for the archived 66-category definition. What changed, and why, is in
 [AMENDMENT-1.md](AMENDMENT-1.md), committed at 9a2ee8f before this analysis
 ran. It is driven by the paper (Colhoun et al. 1999) and by Codex's
-[source review](COLHOUN1999-SOURCE-REVIEW.md).
+[source review](COLHOUN1999-SOURCE-REVIEW.md). Codex's
+[review of the amendment](AMENDMENT-1-REVIEW.md) reproduced the amended
+results byte for byte and passed them; this version applies its four
+wording corrections.
 
 The numbers are in `results-amended.json` and `definition-sensitivity.json`.
 
@@ -23,39 +26,56 @@ The toolkit primer is 0.2.0.dev0, SHA-256
 
 ## What changed
 
-- **Denominator.** The analysis now uses the paper's dryland pollen sum:
-  sedge and aquatic pollen are removed. That leaves 60 categories, with
-  m = 272.
+- **Denominator.** The analysis now uses a source-informed dryland
+  definition: sedge and aquatic pollen are removed, following the paper's
+  stated sum and Figure 6 groups. That leaves 60 categories, with m = 272.
+  It is not an exact reconstruction of the printed sums.
 - **Depths.** Archive depths are reported with a candidate paper depth
-  (archive − 30 cm) beside them. The +30 cm offset is supported by nine
-  printed pollen sums and by the zone boundaries, but it is not proved.
-- **No ages.** The archived chronologies attach their radiocarbon controls
-  at paper depths to samples at archive depths. Until that alignment is
-  resolved, no level gets an age, and the three "named" pairs are only
-  fixed sample-ID contrasts.
+  (archive − 30 cm) beside them. The +30 cm candidate alignment is strongly
+  supported by nine exactly matching printed pollen sums and by the zone
+  boundaries. It does not establish every archived coordinate, or where
+  the discrepancy arose.
+- **No ages.** The archived chronologies list their radiocarbon controls
+  at the paper's depths. Under the candidate alignment, those controls sit
+  about 30 cm from the pollen samples that share their depth labels. Until
+  that is reconciled, no level gets an age, and the three "named" pairs are
+  only fixed sample-ID contrasts.
 - **Withdrawn from report.md:**
-  - "early forest recovery or old carbon": the misalignment explains the
-    anomaly;
+  - "early forest recovery or old carbon": the candidate alignment removes
+    the basis for that diagnosis;
   - the historical and climatic labels for the named pairs;
   - the agreement with Turney et al. near 41 ka.
 
-## Results that hold under both definitions
+## Aggregate results under the two definitions
+
+The two definitions differ in both category membership and subsample size
+(66 categories at m = 282; 60 at m = 272). This comparison cannot separate
+the contributions of the two.
 
 | Quantity | 66 categories (m = 282) | 60 dryland categories (m = 272) |
 | --- | --- | --- |
-| Adjacent steps beyond counting noise (Holm) | 41 of 71 | 41 of 71 |
+| Adjacent steps rejected at Holm p < 0.05 (point estimate) | 41 of 71 | 41 of 71 |
+| Monte Carlo diagnostic: Holm envelope wholly below / spanning / wholly above 0.05 | 41 / 1 / 29 | 40 / 4 / 27 |
 | Median adjacent proportional Bray–Curtis | 0.206 | 0.203 |
 | Rank agreement of the 71 step effects (Spearman) | — | 0.994 |
 | Rank agreement of rarefied richness across 72 levels (Spearman) | — | 0.993 |
-| Pairs sensitive to Monte Carlo error (Holm envelope spans 0.05) | 1 | 4 |
 | Minimum coverage at m | 0.955 | 0.953 |
+
+The frozen decision rule is the point estimate: Holm-adjusted plus-one p
+below 0.05. The envelope is a sensitivity diagnostic for Monte Carlo
+error, not a confidence statement and not a replacement rule.
 
 **Steps that change classification.** Two steps cross 0.05:
 - 345→350 cm moves from 0.054 to 0.033;
-- 360→365 cm moves from 0.033 to 0.057, and is Monte Carlo-sensitive.
+- 360→365 cm moves from 0.033 to 0.057.
 
-**Monte Carlo-sensitive pairs under the dryland sum:** 125→130, 185→190,
-255→260 and 360→365 cm. They are reported as unresolved.
+**Unresolved by the diagnostic under the dryland sum:** 125→130, 185→190,
+255→260 and 360→365 cm. Of these, 185→190 cm (Holm p 0.045) is also a
+point-estimate rejection; the other three are not.
+
+**Taxon attributions also shift.** At 155→160 cm, *Pherosphaera* passes
+the global taxon Holm family only under the dryland sum (p = 0.023),
+joining Poaceae and *N. gunnii*.
 
 **The six largest steps are the same set under both definitions**
 (`adjacent_steps[*].adjacent_rank_by_braycurtis`). Signs are forward in
@@ -70,12 +90,13 @@ time, that is, shallower minus deeper:
 | 5 | 280→285 (250→255) | 0.365 | Asteraceae −0.17 |
 | 6 | 150→155 (120→125) | 0.344 | *Pherosphaera* −0.09; *Phyllocladus* +0.07; *Microcachrys* −0.05 |
 
-**The largest step sits where the paper puts its date.** Archive 155→160 cm
-is paper 125–130 cm: the top of the paper's herb zone LS8, and the level
-where the 14,200 ± 230 ¹⁴C yr BP date "dates the commencement of deposition
-of the surface organic-rich mud". The step is the end of the grass and herb
-dominance and the start of the subalpine and rainforest expansion of zone
-LS9.
+**Under the candidate alignment, the largest step adjoins the paper's dated
+interval.** Archive 155→160 cm would be paper 125–130 cm: the top of the
+paper's herb zone LS8, overlapping the 123–127 cm sample whose
+14,200 ± 230 ¹⁴C yr BP date "dates the commencement of deposition of the
+surface organic-rich mud". The step itself is not precisely dated. It is
+the end of grass and herb dominance and the start of the subalpine and
+rainforest expansion of zone LS9.
 
 **Rarefied richness** at m = 272 (`levels[*].expected_richness_272`).
 Medians, with ranges:
@@ -110,10 +131,20 @@ inertia ratio is 0.073, uncorrected.
   115/160 cm: forest expansion set against herbfield. It is the
   deglacial-type change, wherever it falls in calendar time.
 - **531333 / 531341** lies within the paper's zone LS7 (paper 170–235 cm).
-  The brief resolved expansion of *N. gunnii*, *Pherosphaera* and
-  *N. cunninghamii* at archive 255–260 cm (paper 225–230 cm) corresponds to
+  At archive 255–260 cm (paper 225–230 cm), *N. gunnii*, *Pherosphaera*
+  and *N. cunninghamii* are elevated. Descriptively, this corresponds to
   the paper's "small peak in pollen of *Nothofagus* near the base of the
-  zone".
+  zone". The statistical support is narrower:
+
+  | Archive pair (cm) | Holm p | Diagnostic | Taxa passing the global taxon Holm family |
+  | --- | --- | --- | --- |
+  | 247→255 | 0.0013 | envelope below 0.05 | none |
+  | 255→260 | 0.052 | unresolved (0.044–0.060) | none |
+  | 260→265 | 0.00077 | envelope below 0.05 | *N. gunnii* |
+
+  The episode is bounded by two resolved omnibus steps (247→255 and
+  260→265 cm). Only *N. gunnii*, at the upper bound, is resolved as an
+  individual taxon.
 
 **Timing.** These depths lie near the paper's 230 cm date of
 33,800 ± 1,100 ¹⁴C yr BP. The authors say this "could be older" and place it
@@ -129,10 +160,12 @@ level are among the smallest in the record:
 - 215→220 cm: 0.159, Holm p 0.25;
 - 220→225 cm: 0.095, Holm p 1.0, the smallest of all 71.
 
-If about 72 *Lagarostrobos* grains were omitted from the archive, both steps
-would be understated. The 72-grain residual fits that, but it is not
-proof, so no counts are invented. This is a provenance defect for Neotoma
-and the IPPD, not something an analysis can repair.
+If *Lagarostrobos* counts were missing from the archived level, both steps
+would be understated. The 72-grain shortfall is consistent with that, but
+it is not a recovered observation, so no counts are invented and nothing
+here shows robustness to missing counts at this level. It is an
+archive–paper discrepancy for the curators to reconcile, not something an
+analysis can repair.
 
 ## Unsupported parts (additions to report.md)
 
@@ -142,33 +175,55 @@ and the IPPD, not something an analysis can repair.
 | Removing the six sedge and aquatic columns | The study layer cannot delete taxa | `amend_source.py` | API validation; m = 272 confirmed |
 | Comparing definitions | Reporting arithmetic | `compare_definitions.py` (SciPy Spearman) | Same 77 pairs and seed in both runs |
 
-**Not repeated for the amended table:** the R cross-check. The operations and
-code paths are those already checked to within 3.5 × 10⁻¹³ on the
-66-category table. Only the input matrix differs.
+**A primer-rule lapse.** `amend_source.py` computes the column totals and
+their minimum in its own Python to set m. The public rarefaction
+validation resolves the same minimum with `sizes="minimum_total"`, so that
+part was supported and should have used the API. The value agrees
+(m = 272, confirmed by the validation receipt), so no number changes. The
+script is left as committed because it is the pre-result record and its
+hash is embedded in `results-amended.json`; a future regeneration should
+take m from the validation receipt.
+
+**Independent R cross-check of the amended table** (Codex, in
+[the review](AMENDMENT-1-REVIEW.md)): 681 of 681 checks agree, maximum
+absolute difference 6.2 × 10⁻¹³, receipt in
+`amendment-1-review-checks.json`. It covers per-sample diversity,
+rarefaction and coverage, the three distance matrices and the named-pair
+Fisher tests. It does not independently test the omnibus Monte Carlo
+algorithm.
 
 ## Toolkit
 
-No defects. The amended runs verified on inspection, and the original
-results.json still replays byte for byte from fresh runs after the scripts
-were parameterised.
+No defects. The amended runs verified on inspection. Codex reproduced
+`results-amended.json` byte for byte from fresh API runs, and the original
+results.json still replays byte for byte after the scripts were
+parameterised.
 
 ## Where this leaves the research question
 
-- **Robust to how the record is read:** the count-level findings. These
-  are which steps exceed counting noise, which taxa carry them, and where
-  pollen-category richness is low or high. They hold under both
-  definitions and are tied to depth and sample ID.
+- **Stable under the two definitions:** the aggregate patterns and
+  rankings. The number of point-estimate rejections, the ranking of step
+  sizes, the set of six largest steps and the ranking of pollen-category
+  richness barely change. Individual classifications and taxon
+  attributions do change at the margin, as listed above. All of this is
+  tied to depth and sample ID, under the source-informed dryland definition
+  and the candidate depth alignment.
 - **Not yet answerable from these archives:** anything temporal, including
   the 45–38 ka question. Answering it needs either:
-  1. a corrected sample-to-control depth alignment and a rebuilt age model
-     that uses all the paper's dating evidence, including the reversed
-     deeper dates, the U-series composite and their stated limits; or
+  1. a reconciled sample-to-control depth alignment, then a rebuilt age
+     model that weighs the paper's dating evidence under each method's
+     validity limits. The reversed deeper radiocarbon assays and the
+     grouped U-series estimate should not automatically become point
+     controls; or
   2. the TAS1402 cores, with their own multi-method chronology (Fletcher et
      al.), which would be a new application.
 - **What should happen next:**
-  - **Report the archive defects to Neotoma and the IPPD:** the +30 cm
-    depth offset between samples and chronology controls, and the
-    *Lagarostrobos* omission at 220 cm. That is outward-facing, so it waits
-    for Barry.
-  - **Rebuild the age model:** the next scientific step, outside the
-    toolkit's scope.
+  - **Ask the curators to reconcile the two discrepancies.** An unsent
+    draft query to Neotoma and the IPPD is in
+    [CURATOR-QUERY-DRAFT.md](CURATOR-QUERY-DRAFT.md). Sending it is
+    outward-facing, so it waits for Barry.
+  - **Then choose an age-model repair:** the depth provenance should be
+    settled first. The repair is outside the toolkit's scope.
+
+This tranche closes as a verified, conditional count-table analysis with
+unresolved temporal provenance.
