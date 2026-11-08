@@ -1,0 +1,37 @@
+{
+ "extraction_status": "verified",
+ "shape": [
+  72,
+  66
+ ],
+ "table_byte_identical_to_frozen_counts": true,
+ "age_rows": 144,
+ "default_chronology_rows": 72,
+ "ages_match_levels": true,
+ "dropped": [
+  {
+   "element": "pollen",
+   "ecologicalgroup": "AQVP",
+   "units": "NISP",
+   "n": 48
+  },
+  {
+   "element": "spore",
+   "ecologicalgroup": "AQBR",
+   "units": "NISP",
+   "n": 2
+  },
+  {
+   "element": "spore",
+   "ecologicalgroup": "AQVP",
+   "units": "NISP",
+   "n": 61
+  },
+  {
+   "element": "spore",
+   "ecologicalgroup": "VACR",
+   "units": "NISP",
+   "n": 193
+  }
+ ]
+}

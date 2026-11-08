@@ -1,23 +1,29 @@
 """Intake for the Tasmanian surface-pollen worked example. Run: uv run analyses/tas-surface/intake.py
 
-Unsupported intake glue (declared in REPORT.md): reading the Neotoma download, choosing one sample per
-record from the archived notes, assigning altitude bands, and writing the abundance table, metadata and the
-toolkit study. Writes data/percent.tsv (all 61 percent samples), data/samples.csv (the 25 selected samples)
-and study.json. Computes no composition result.
+The toolkit's neotoma_extract reads the saved download (declared datasets, units, filters, zero-fill) into a
+verified extraction bundle under extraction/ (gitignored, regenerable). Its table becomes data/percent.tsv.
+Remaining declared glue (REPORT.md): choosing sample 1 per dataset, reading sample altitudes from the archived
+collection notes, assigning altitude bands and writing data/samples.csv and study.json. Computes no
+composition result.
 """
 
 import csv
-import hashlib
 import json
 import re
+import shutil
 from pathlib import Path
 
 import palaeo_agent as pa
 
 HERE = Path(__file__).resolve().parent
-SOURCE = HERE / "source/neotoma-tas-surface-download.json"
-SOURCE_SHA256 = "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36"
-GROUPS = ("TRSH", "UPHE")
+EXTRACTION = {
+    "source": str(HERE / "source/neotoma-tas-surface-download.json"),
+    "source_sha256": "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36",
+    "datasets": [74429, 75430, 74914, 74643, 74779, 74795, 74778, 74764, 74160, 74142, 74304, 74699, 74569,
+                 74618, 74701, 74780, 73988, 74777, 74303, 74141, 75423, 74644, 74798, 74766, 75421],
+    "units": "percent", "elements": ["pollen", "pollen/spore", "spore"], "ecological_groups": ["TRSH", "UPHE"],
+    "absent_taxa": "zero", "row_order": "source",
+}
 WETLAND = ["Cyperaceae", "Restionaceae", "Gymnoschoenus"]
 THRESHOLD_M = 700
 PERMUTATIONS, SEED = 9999, 8112026
@@ -30,48 +36,26 @@ def note_altitude(notes, index):
 
 
 def main():
-    if hashlib.sha256(SOURCE.read_bytes()).hexdigest() != SOURCE_SHA256:
-        raise SystemExit("source download differs from the saved intake copy")
-    records = json.loads(SOURCE.read_text())["data"]
-    rows, taxa, chosen = {}, set(), []
-    for rec in records:
-        site, unit = rec["site"], rec["site"]["collectionunit"]
-        dataset = unit["dataset"]
-        units = {d["units"] for s in dataset["samples"] for d in s["datum"]}
-        if units != {"percent"}:
-            continue
-        for sample in dataset["samples"]:
-            values = {}
-            for d in sample["datum"]:
-                if d["ecologicalgroup"] in GROUPS:
-                    if d["variablename"] in values:
-                        raise SystemExit(f"repeated label {d['variablename']} in sample {sample['sampleid']}")
-                    values[d["variablename"]] = d["value"]
-            rows[str(sample["sampleid"])] = values
-            taxa |= set(values)
-        first = next(s for s in dataset["samples"] if s["depth"] == 1)
-        stated = note_altitude(unit["notes"], 1)
-        altitude = stated if stated is not None else site["altitude"]
-        lon, lat = json.loads(site["geography"])["coordinates"][:2]
-        chosen.append({"sample_id": str(first["sampleid"]), "site": site["sitename"],
-                       "datasetid": str(dataset["datasetid"]), "altitude_m": str(altitude),
-                       "altitude_source": "sample note" if stated is not None else "site altitude",
-                       "band": "high" if altitude >= THRESHOLD_M else "low",
-                       "environment": unit["depositionalenvironment"] or "",
-                       "source_pi": "; ".join(p["contactname"] for p in dataset["datasetpi"]),
-                       "lon": str(lon), "lat": str(lat)})
-    names = sorted(taxa)
-    lines = ["\t".join(["sample_id", *names])]
-    lines += ["\t".join([sid, *[repr(rows[sid].get(n, 0)) if n in rows[sid] else "0" for n in names]])
-              for sid in sorted(rows)]
+    root = HERE / "extraction"
+    shutil.rmtree(root, ignore_errors=True)
+    extracted = pa.neotoma_extract(EXTRACTION, root)
+    inspected = pa.inspect_neotoma(extracted["bundle"])
     (HERE / "data").mkdir(exist_ok=True)
-    (HERE / "data/percent.tsv").write_text("\n".join(lines) + "\n")
-    coords = {}
-    for c in chosen:
-        coords.setdefault((c["lon"], c["lat"]), []).append(c["site"])
-    for c in chosen:
-        shared = [s for s in coords[(c["lon"], c["lat"])] if s != c["site"]]
-        c["shares_coordinates_with"] = "; ".join(shared)
+    shutil.copyfile(extracted["table"], HERE / "data/percent.tsv")
+    chosen = []
+    for row in csv.DictReader(open(extracted["samples"], encoding="utf-8")):
+        if row["depth"] != "1":
+            continue
+        stated = note_altitude(row["collectionunit_notes"], 1)
+        altitude = stated if stated is not None else int(row["site_altitude"])
+        chosen.append({"sample_id": row["sample_id"], "site": row["sitename"], "datasetid": row["datasetid"],
+                       "altitude_m": str(altitude), "altitude_source": "sample note" if stated is not None else "site altitude",
+                       "band": "high" if altitude >= THRESHOLD_M else "low",
+                       "environment": row["depositionalenvironment"],
+                       "source_pi": "; ".join(p["contactname"] for p in json.loads(row["dataset_pi"])),
+                       "lon": row["lon"], "lat": row["lat"], "shares_coordinates_with": row["shares_coordinates_with"]})
+    if len(chosen) != len(EXTRACTION["datasets"]):
+        raise SystemExit("expected exactly one sample with archived depth 1 per dataset")
     with (HERE / "data/samples.csv").open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(chosen[0]), lineterminator="\n")
         writer.writeheader()
@@ -102,7 +86,8 @@ def main():
     }
     (HERE / "study.json").write_text(json.dumps(study, indent=1) + "\n")
     bands = {b: sum(c["band"] == b for c in chosen) for b in ("high", "low")}
-    print(json.dumps({"samples_in_table": len(rows), "taxa": len(names), "selected": len(chosen), "bands": bands,
+    print(json.dumps({"extraction": inspected["status"], "samples_in_table": extracted["n_samples"],
+                      "taxa": extracted["n_labels"], "selected": len(chosen), "bands": bands,
                       "altitude_from_notes": [c["site"] for c in chosen if c["altitude_source"] == "sample note"],
                       "shared_coordinates": sorted({c["site"] for c in chosen if c["shares_coordinates_with"]})}, indent=1))
 

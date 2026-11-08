@@ -105,12 +105,12 @@ verified. Sprint 10 worked as specified on its first real dataset.
 | # | Gap | Workaround here | Suggestion |
 | --- | --- | --- | --- |
 | 1 | PERMANOVA reported no Monte Carlo interval for its p-value | First computed by hand (0.064–0.074) | **Closed** in `permanova` method version 2; the table now quotes the toolkit field, which matches the hand and SciPy values |
-| 2 | Both applications needed bespoke code to turn a Neotoma download into a table and metadata (units, groups, zero-fill, sample notes) | `intake.py` (about 100 lines) | A Neotoma download reader that writes a declared table and a metadata CSV with provenance; it would remove the largest remaining glue |
+| 2 | Both applications needed bespoke code to turn a Neotoma download into a table and metadata (units, groups, zero-fill, sample notes) | First `intake.py` (about 100 lines) | **Closed** by `neotoma_extract` (8 November 2026). `intake.py` now extracts the 25 declared percentage datasets into a verified bundle. Its table equals the earlier one value for value (rows now in source order), `samples.csv` and `study.json` are byte-identical, and the study results are unchanged apart from the primer hash |
 | 3 | Group summaries (mean closed composition per group) are reporting arithmetic | `analysis.py` | Leave as glue for now |
 
 ## Unsupported parts
 
 | Subtask | Why | What was used | How checked |
 | --- | --- | --- | --- |
-| Reading the Neotoma JSON, choosing samples, assigning altitude bands | Intake outside the toolkit | `intake.py` | Source SHA-256 checked on every run; Codex regenerated `percent.tsv`, `samples.csv` and `study.json` byte for byte and matched all 61 × 92 cells to the archive or declared zero-fill |
+| Choosing sample 1 per dataset, reading sample altitudes from collection notes, assigning altitude bands | Caller decisions outside the extractor's scope | `intake.py`, reading `neotoma_extract`'s `samples.csv` | The extraction bundle inspects as verified (source hash, byte-for-byte re-derivation); `samples.csv` and `study.json` regenerate byte-identically to the versions Codex audited |
 | Band means and medians | Reporting arithmetic | `analysis.py` (NumPy) | Computed only from verified study fields (`transformed_matrix`, `diversity`, `metadata`); `results.json` replays byte for byte |

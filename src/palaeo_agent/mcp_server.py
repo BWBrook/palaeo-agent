@@ -15,6 +15,7 @@ from .primer import primer, primer_metadata
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 from .study import StudySpec, inspect_study, reproduce_study, run_study
+from .neotoma import NeotomaSpec, inspect_neotoma, neotoma_extract, reproduce_neotoma
 
 
 SERVER_INSTRUCTIONS = (
@@ -68,6 +69,11 @@ class StudyReproduceRequest(StudyRequest):
     output: str = Field(min_length=1)
 
 
+class NeotomaExtractRequest(Request):
+    spec: NeotomaSpec
+    output: str = Field(default="extractions", min_length=1)
+
+
 class ResultRequest(BundleRequest):
     field: str = Field(min_length=1, description="Dot-separated result-field path; discover fields with inspect")
     offset: int = Field(default=0, ge=0, strict=True)
@@ -89,6 +95,9 @@ REQUESTS = {
     "study_run": (StudyRunRequest, "Read the primer first. Run a multi-step study: declared preparation, then analyses; saves one bundle."),
     "study_inspect": (StudyRequest, "Verify a study's integrity, recompute its prepared data and verify every run."),
     "study_reproduce": (StudyReproduceRequest, "Rerun a verified study from its saved inputs and compare every analysis."),
+    "neotoma_extract": (NeotomaExtractRequest, "Extract a saved Neotoma download (declared datasets, units, filters, zero-fill, row order) into a portable intake bundle; selection, overrides, harmonisation and closure stay with the caller."),
+    "neotoma_inspect": (BundleRequest, "Verify an extraction bundle by re-deriving every file from its bundled source snapshot."),
+    "neotoma_reproduce": (ReproduceRequest, "Re-extract a verified extraction bundle and compare derived files byte for byte."),
 }
 
 
@@ -192,6 +201,13 @@ class Transport:
             return inspect_study(self._path(request.study_dir))
         if name == "study_reproduce":
             return reproduce_study(self._path(request.study_dir), self._path(request.output))
+        if name == "neotoma_extract":
+            spec = request.spec.model_copy(update={"source": Path(self._path(request.spec.source))})
+            return neotoma_extract(spec, self._path(request.output))
+        if name == "neotoma_inspect":
+            return inspect_neotoma(self._path(request.bundle))
+        if name == "neotoma_reproduce":
+            return reproduce_neotoma(self._path(request.bundle), self._path(request.output))
         directory = self._path(request.bundle)
         if name == "inspect_comparison":
             record = inspect_comparison(directory)

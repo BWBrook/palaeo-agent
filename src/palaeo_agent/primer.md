@@ -107,8 +107,18 @@ use the names advertised by your client.
 | Verify a run's integrity and read it | `inspect`, then `result` for one field | `palaeo_agent.inspect_run(run_dir)["result"]` |
 | Verify a study's integrity or recompute its analyses | `study_inspect`, `study_reproduce` | `palaeo_agent.inspect_study`, `palaeo_agent.reproduce_study` |
 | Recompute a run and compare its numbers | `reproduce` | `palaeo_agent.reproduce(run_dir, output_root)` |
+| Read a saved Neotoma download into a table and sample metadata | `neotoma_extract`, then `neotoma_inspect` / `neotoma_reproduce` | `palaeo_agent.neotoma_extract(spec, output_root)`, `palaeo_agent.inspect_neotoma(bundle)` |
 | Compare two community runs | `compare`, then `inspect_comparison` | `palaeo_agent.compare_community_runs(a, b, output_root)`, then `palaeo_agent.inspect_comparison(out["comparison_dir"])["report"]` |
 
+- **Neotoma intake.** `neotoma_extract` reads a saved `data/downloads`
+  file with a declared SHA-256, explicit datasets, units (NISP gives
+  counts, percent gives abundance), element and ecological-group filters,
+  zero-fill and row order. It writes `table.tsv`, `samples.csv`,
+  `ages.csv` and `taxa.csv`, plus a source snapshot, so its bundle verifies
+  on its own. It never retrieves live data, converts units, merges labels,
+  selects samples, parses notes, reads depth as a surface or chooses a
+  chronology. Declare those choices in your study and intake code
+  (`docs/neotoma-reader-contract.md`).
 - **Reproducibility.** Your `analysis.py` calls the Python API with
   specifications saved under `specs/`, and reads the numbers it reports from
   the resulting bundles. Keep run directories and IDs in a provenance file,

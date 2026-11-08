@@ -9,6 +9,7 @@ from pydantic import ValidationError
 
 from .core import AnalysisError
 from .methods import METHOD_INDEX, discover, parse_spec, validate
+from .neotoma import NeotomaSpec, inspect_neotoma, neotoma_extract, reproduce_neotoma
 from .primer import primer
 from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
@@ -53,6 +54,11 @@ def main(argv=None):
         sub.add_argument("study" if command == "study-run" else "study_dir")
         if command != "study-inspect":
             sub.add_argument("--output", required=True)
+    for command in ("neotoma-extract", "neotoma-inspect", "neotoma-reproduce"):
+        sub = commands.add_parser(command, help="Saved Neotoma download intake (read the contract in docs/)")
+        sub.add_argument("spec" if command == "neotoma-extract" else "bundle")
+        if command != "neotoma-inspect":
+            sub.add_argument("--output", required=True)
     comparison = commands.add_parser("compare")
     comparison.add_argument("baseline")
     comparison.add_argument("sensitivity")
@@ -85,6 +91,16 @@ def main(argv=None):
                 result = inspect_study(args.study_dir)
             case "study-reproduce":
                 result = reproduce_study(args.study_dir, args.output)
+            case "neotoma-extract":
+                spec_path = Path(args.spec).resolve()
+                spec = NeotomaSpec.model_validate(json.loads(spec_path.read_text(encoding="utf-8")))
+                if not spec.source.is_absolute():
+                    spec = spec.model_copy(update={"source": (spec_path.parent / spec.source).resolve()})
+                result = neotoma_extract(spec, args.output)
+            case "neotoma-inspect":
+                result = inspect_neotoma(args.bundle)
+            case "neotoma-reproduce":
+                result = reproduce_neotoma(args.bundle, args.output)
         print(json.dumps(result, allow_nan=False))
         return 1 if result.get("status") in ("different", "partial") else 0
     except ValidationError as exc:

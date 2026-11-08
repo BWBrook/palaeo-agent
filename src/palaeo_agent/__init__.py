@@ -8,6 +8,7 @@ from .runs import inspect_run, reproduce, run
 from .sensitivity import compare_community_runs, inspect_comparison
 from .study import StudySpec, inspect_study, reproduce_study, run_study
 from .primer import primer
+from .neotoma import NeotomaSpec, inspect_neotoma, neotoma_extract, reproduce_neotoma
 from .rarefaction import RarefactionSpec, RarefactionResult, calculate_rarefaction, validate_rarefaction
 from .count_homogeneity import (
     CountHomogeneitySpec, CountHomogeneityResult, calculate_count_homogeneity, validate_count_homogeneity,
@@ -21,6 +22,6 @@ __all__ = [
     "PermanovaResult", "PermanovaSpec",
     "calculate_permanova", "validate_permanova",
     "StudySpec", "run_study", "inspect_study", "reproduce_study",
-    "primer", "RarefactionSpec", "RarefactionResult", "calculate_rarefaction", "validate_rarefaction",
+    "primer", "NeotomaSpec", "neotoma_extract", "inspect_neotoma", "reproduce_neotoma", "RarefactionSpec", "RarefactionResult", "calculate_rarefaction", "validate_rarefaction",
     "CountHomogeneitySpec", "CountHomogeneityResult", "calculate_count_homogeneity", "validate_count_homogeneity",
 ]
