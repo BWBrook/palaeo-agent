@@ -1103,7 +1103,7 @@
  ],
  "trap_primary": {
   "method": "count_homogeneity",
-  "method_version": 2,
+  "method_version": 3,
   "orientation": "samples_by_taxa",
   "canonical_orientation": "samples_by_taxa",
   "value_type": "count",
@@ -2245,6 +2245,7 @@
    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html"
   ],
   "limitations": [
+   "A taxon p-value of 0.0 is float64 underflow of a positive Fisher probability, never probability zero: p_value_underflow marks it and log10_p_value gives the unadjusted value from a log-space tail sum; its Holm value is then also an underflowed positive number.",
    "Independent multinomial counting units with a common probability vector within each collection are assumed; clustering or taphonomic aggregation can make inference anticonservative.",
    "Counting error only: this does not test variation between replicate collections, ecological exchangeability between horizons, cause, time or rate.",
    "Full observed counts are used without rarefaction or rescaling.",
@@ -2562,7 +2563,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006280315644682545,
       "p_value": 0.3791968464463913,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -2572,7 +2575,9 @@
       ],
       "proportion_difference_b_minus_a": 0.11178393025204,
       "p_value": 1.2474346435162565e-18,
-      "p_value_holm": 2.5322923263380004e-16
+      "p_value_holm": 2.5322923263380004e-16,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -2582,7 +2587,9 @@
       ],
       "proportion_difference_b_minus_a": -0.08788563568481036,
       "p_value": 3.047819179090082e-11,
-      "p_value_holm": 6.095638358180164e-09
+      "p_value_holm": 6.095638358180164e-09,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma",
@@ -2592,7 +2599,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001375515818431912,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis/Diselma",
@@ -2602,7 +2611,9 @@
       ],
       "proportion_difference_b_minus_a": -0.04988054731050459,
       "p_value": 3.496916976332302e-09,
-      "p_value_holm": 6.818988103847989e-07
+      "p_value_holm": 6.818988103847989e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -2612,7 +2623,9 @@
       ],
       "proportion_difference_b_minus_a": -0.023701792307453638,
       "p_value": 0.002406769556177941,
-      "p_value_holm": 0.40915082455025
+      "p_value_holm": 0.40915082455025,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -2622,7 +2635,9 @@
       ],
       "proportion_difference_b_minus_a": -0.13564602703457404,
       "p_value": 4.436632619508851e-09,
-      "p_value_holm": 8.607067281847172e-07
+      "p_value_holm": 8.607067281847172e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Lagarostrobos franklinii",
@@ -2632,7 +2647,9 @@
       ],
       "proportion_difference_b_minus_a": 0.015727937450228047,
       "p_value": 0.08041014621448958,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microstrobos",
@@ -2642,7 +2659,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001375515818431912,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -2652,7 +2671,9 @@
       ],
       "proportion_difference_b_minus_a": 0.039889958734525444,
       "p_value": 1.0326584027697548e-07,
-      "p_value_holm": 1.9930307173456268e-05
+      "p_value_holm": 1.9930307173456268e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -2662,7 +2683,9 @@
       ],
       "proportion_difference_b_minus_a": 0.34809858208106237,
       "p_value": 6.919860466837348e-62,
-      "p_value_holm": 1.4808501399031924e-59
+      "p_value_holm": 1.4808501399031924e-59,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -2672,7 +2695,9 @@
       ],
       "proportion_difference_b_minus_a": 0.011004126547455296,
       "p_value": 0.02406769598446598,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -2682,7 +2707,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0966144729085437,
       "p_value": 5.180383124938337e-07,
-      "p_value_holm": 9.894531768632223e-05
+      "p_value_holm": 9.894531768632223e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus",
@@ -2692,7 +2719,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009535530711234757,
       "p_value": 0.13883182662197258,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -2702,7 +2731,9 @@
       ],
       "proportion_difference_b_minus_a": -0.029203855581181288,
       "p_value": 2.3806347961994246e-05,
-      "p_value_holm": 0.004427980720930929
+      "p_value_holm": 0.004427980720930929,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -2712,7 +2743,9 @@
       ],
       "proportion_difference_b_minus_a": -0.2836923808834328,
       "p_value": 6.682803143304004e-41,
-      "p_value_holm": 1.4100714632371448e-38
+      "p_value_holm": 1.4100714632371448e-38,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -2722,7 +2755,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005502063273727648,
       "p_value": 0.1424682737325318,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -2732,7 +2767,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0082970493634361,
       "p_value": 0.2613795377458357,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rhamnaceae",
@@ -2742,7 +2779,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002751031636863824,
       "p_value": 0.511606733584961,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -3014,7 +3053,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003777031697442479,
       "p_value": 0.5786776742730877,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -3024,7 +3065,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0037593984962406013,
       "p_value": 0.24929577464788738,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -3034,7 +3077,9 @@
       ],
       "proportion_difference_b_minus_a": -0.04710533369069954,
       "p_value": 0.0056310052060699785,
-      "p_value_holm": 0.9122228433833365
+      "p_value_holm": 0.9122228433833365,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis/Diselma",
@@ -3044,7 +3089,9 @@
       ],
       "proportion_difference_b_minus_a": -0.03949837069220894,
       "p_value": 0.00024844169616748636,
-      "p_value_holm": 0.044719505310147546
+      "p_value_holm": 0.044719505310147546,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -3054,7 +3101,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00568847070772616,
       "p_value": 0.5909398608860024,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -3064,7 +3113,9 @@
       ],
       "proportion_difference_b_minus_a": -0.06806768327949328,
       "p_value": 0.010457335949048827,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Lagarostrobos franklinii",
@@ -3074,7 +3125,9 @@
       ],
       "proportion_difference_b_minus_a": 0.014984694381356769,
       "p_value": 0.12978057577144395,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -3084,7 +3137,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001876172607879925,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -3094,7 +3149,9 @@
       ],
       "proportion_difference_b_minus_a": 0.2419980532945873,
       "p_value": 2.3475408782394845e-35,
-      "p_value_holm": 4.9298358443029174e-33
+      "p_value_holm": 4.9298358443029174e-33,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -3104,7 +3161,9 @@
       ],
       "proportion_difference_b_minus_a": 0.1311804370212586,
       "p_value": 1.303507740085222e-09,
-      "p_value_holm": 2.554875170567035e-07
+      "p_value_holm": 2.554875170567035e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus",
@@ -3114,7 +3173,9 @@
       ],
       "proportion_difference_b_minus_a": -0.015037593984962405,
       "p_value": 0.003775507926131077,
-      "p_value_holm": 0.6229588078116277
+      "p_value_holm": 0.6229588078116277,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -3124,7 +3185,9 @@
       ],
       "proportion_difference_b_minus_a": -0.020697851570765563,
       "p_value": 0.021183488669382626,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -3134,7 +3197,9 @@
       ],
       "proportion_difference_b_minus_a": -0.18636883014289948,
       "p_value": 8.687083381137717e-13,
-      "p_value_holm": 1.7547908429898189e-10
+      "p_value_holm": 1.7547908429898189e-10,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -3144,7 +3209,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0056673108662839075,
       "p_value": 0.49933939942722333,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rhamnaceae",
@@ -3154,7 +3221,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005628517823639775,
       "p_value": 0.24929577464788735,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -3867,7 +3936,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0050112809392261785,
       "p_value": 0.056776949630690854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -3877,7 +3948,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004893964110929853,
       "p_value": 0.012359678079541822,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -3887,7 +3960,9 @@
       ],
       "proportion_difference_b_minus_a": -0.01241088551976912,
       "p_value": 0.0005926018513521905,
-      "p_value_holm": 0.10607573139204209
+      "p_value_holm": 0.10607573139204209,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -3897,7 +3972,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anopterus",
@@ -3907,7 +3984,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -3917,7 +3996,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Aristotelia",
@@ -3927,7 +4008,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -3937,7 +4020,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006813020439061317,
       "p_value": 0.004046297365635494,
-      "p_value_holm": 0.6635927679642211
+      "p_value_holm": 0.6635927679642211,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -3947,7 +4032,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001930170553970061,
       "p_value": 0.7480083623323346,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -3957,7 +4044,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -3967,7 +4056,9 @@
       ],
       "proportion_difference_b_minus_a": -0.016153909799412926,
       "p_value": 0.03607953024470936,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -3977,7 +4068,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.23160035172226398,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -3987,7 +4080,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016899797844581134,
       "p_value": 0.3571039372235738,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -3997,7 +4092,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003849226882101528,
       "p_value": 0.4123409599326121,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -4007,7 +4104,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Boronia",
@@ -4017,7 +4116,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001514004542013626,
       "p_value": 0.5004994863263498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Brassicaceae",
@@ -4027,7 +4128,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -4037,7 +4140,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.23160035172226398,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -4047,7 +4152,9 @@
       ],
       "proportion_difference_b_minus_a": -0.007868871893728244,
       "p_value": 0.07951594935479125,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -4057,7 +4164,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006056018168054504,
       "p_value": 0.008030543969840586,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -4067,7 +4176,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005810270285623257,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -4077,7 +4188,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0010502943417476252,
       "p_value": 0.7457198367584843,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -4087,7 +4200,9 @@
       ],
       "proportion_difference_b_minus_a": -5.865841414816255e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -4097,7 +4212,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -4107,7 +4224,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0028520338415827648,
       "p_value": 0.34621129714890625,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -4117,7 +4236,9 @@
       ],
       "proportion_difference_b_minus_a": -0.11011419249592169,
       "p_value": 2.367831948527208e-45,
-      "p_value_holm": 5.019803730877682e-43
+      "p_value_holm": 5.019803730877682e-43,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -4127,7 +4248,9 @@
       ],
       "proportion_difference_b_minus_a": 0.08268366566926781,
       "p_value": 1.5783235004284697e-24,
-      "p_value_holm": 3.267129645886932e-22
+      "p_value_holm": 3.267129645886932e-22,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -4137,7 +4260,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002271006813020439,
       "p_value": 0.2507492294895246,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -4147,7 +4272,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002271006813020439,
       "p_value": 0.2507492294895246,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -4157,7 +4284,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004569799190637373,
       "p_value": 0.6513599054689245,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -4167,7 +4296,9 @@
       ],
       "proportion_difference_b_minus_a": 0.008327024981074944,
       "p_value": 0.0010299346470939467,
-      "p_value_holm": 0.1812684978885346
+      "p_value_holm": 0.1812684978885346,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -4177,7 +4308,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02225747215577699,
       "p_value": 5.719693269042728e-07,
-      "p_value_holm": 0.00010867417211181183
+      "p_value_holm": 0.00010867417211181183,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Euphrasia",
@@ -4187,7 +4320,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001514004542013626,
       "p_value": 0.5004994863263498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -4197,7 +4332,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001514004542013626,
       "p_value": 0.5004994863263498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -4207,7 +4344,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008743190993031381,
       "p_value": 0.6113905630358241,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -4217,7 +4356,9 @@
       ],
       "proportion_difference_b_minus_a": -5.865841414816255e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -4227,7 +4368,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006396854427104879,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -4237,7 +4380,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.23160035172226398,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -4247,7 +4392,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014553461278654636,
       "p_value": 0.6257495595274247,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -4257,7 +4404,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002798932540353902,
       "p_value": 0.44063928782204986,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -4267,7 +4416,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001514004542013626,
       "p_value": 0.5004994863263498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -4277,7 +4428,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0001173168282963251,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -4287,7 +4440,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006983438568586505,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -4297,7 +4452,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -4307,7 +4464,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -4317,7 +4476,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02715699337962614,
       "p_value": 2.0841520425950848e-05,
-      "p_value_holm": 0.0038973643196528085
+      "p_value_holm": 0.0038973643196528085,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -4327,7 +4488,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -4337,7 +4500,9 @@
       ],
       "proportion_difference_b_minus_a": -0.27259799968633186,
       "p_value": 1.6404490402684112e-62,
-      "p_value_holm": 3.526965436577084e-60
+      "p_value_holm": 3.526965436577084e-60,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -4347,7 +4512,9 @@
       ],
       "proportion_difference_b_minus_a": 0.5412566237698713,
       "p_value": 1.476065210974889e-261,
-      "p_value_holm": 3.203061507815509e-259
+      "p_value_holm": 3.203061507815509e-259,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -4357,7 +4524,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -4367,7 +4536,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005826941624381154,
       "p_value": 0.032495916976814816,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -4377,7 +4548,9 @@
       ],
       "proportion_difference_b_minus_a": -0.07873626312559198,
       "p_value": 9.9243809584016e-13,
-      "p_value_holm": 1.9948005726387219e-10
+      "p_value_holm": 1.9948005726387219e-10,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -4387,7 +4560,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006983438568586505,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -4397,7 +4572,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006983438568586505,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -4407,7 +4584,9 @@
       ],
       "proportion_difference_b_minus_a": -0.01147790800631782,
       "p_value": 0.00017187255896904805,
-      "p_value_holm": 0.031452678291335794
+      "p_value_holm": 0.031452678291335794,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -4417,7 +4596,9 @@
       ],
       "proportion_difference_b_minus_a": -0.07335636036271893,
       "p_value": 8.60078611891387e-21,
-      "p_value_holm": 1.7545603682584295e-18
+      "p_value_holm": 1.7545603682584295e-18,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -4427,7 +4608,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006813020439061317,
       "p_value": 0.004046297365635494,
-      "p_value_holm": 0.6635927679642211
+      "p_value_holm": 0.6635927679642211,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -4437,7 +4620,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006695703610764993,
       "p_value": 0.023296123688295402,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -4447,7 +4632,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006983438568586505,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -4457,7 +4644,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0024469820554649264,
       "p_value": 0.11138657387349749,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -4467,7 +4656,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0032626427406199023,
       "p_value": 0.0535478694368268,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -4477,7 +4668,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -4487,7 +4680,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.48135060855908907,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -4497,7 +4692,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0032626427406199023,
       "p_value": 0.0535478694368268,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -5192,7 +5389,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0065252854812398045,
       "p_value": 0.0009022894015453855,
-      "p_value_holm": 0.15970522407353324
+      "p_value_holm": 0.15970522407353324,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -5202,7 +5401,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004310533539167893,
       "p_value": 0.023521235506889355,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -5212,7 +5413,9 @@
       ],
       "proportion_difference_b_minus_a": -0.011181308902217798,
       "p_value": 0.0012990587594219677,
-      "p_value_holm": 0.2247371653800004
+      "p_value_holm": 0.2247371653800004,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -5222,7 +5425,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000351200458368945,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anemone",
@@ -5232,7 +5437,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5136103029166752,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -5242,7 +5449,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009346310301309055,
       "p_value": 0.6451512045320431,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -5252,7 +5461,9 @@
       ],
       "proportion_difference_b_minus_a": 0.008168028004667444,
       "p_value": 0.0006081056804486316,
-      "p_value_holm": 0.10824281111985642
+      "p_value_holm": 0.10824281111985642,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -5262,7 +5473,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0034777411243363827,
       "p_value": 0.4355124023407347,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -5272,7 +5485,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.4170068027210884,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -5282,7 +5497,9 @@
       ],
       "proportion_difference_b_minus_a": -0.031674664646391584,
       "p_value": 3.8550336594622716e-07,
-      "p_value_holm": 7.401664626167562e-05
+      "p_value_holm": 7.401664626167562e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -5292,7 +5509,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.1738119541794261,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -5302,7 +5521,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0024469820554649264,
       "p_value": 0.07241178758189841,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -5312,7 +5533,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009085527305121816,
       "p_value": 0.0028307739357203484,
-      "p_value_holm": 0.4784007951367389
+      "p_value_holm": 0.4784007951367389,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -5322,7 +5545,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5136103029166752,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -5332,7 +5557,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.1738119541794261,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -5342,7 +5569,9 @@
       ],
       "proportion_difference_b_minus_a": -0.010597878330455838,
       "p_value": 0.0034014548124758227,
-      "p_value_holm": 0.5646414988709866
+      "p_value_holm": 0.5646414988709866,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -5352,7 +5581,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001750291715285881,
       "p_value": 0.27041545437501296,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -5362,7 +5593,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0012801209119410058,
       "p_value": 0.6551424058576621,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -5372,7 +5605,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0029114422822509567,
       "p_value": 0.13615423311269437,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Diplaspis",
@@ -5382,7 +5617,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -5392,7 +5629,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009346310301309055,
       "p_value": 0.6451512045320431,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -5402,7 +5641,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0016370319468687958,
       "p_value": 0.5359642275409826,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -5412,7 +5653,9 @@
       ],
       "proportion_difference_b_minus_a": -0.11011419249592169,
       "p_value": 5.599802281311347e-54,
-      "p_value_holm": 1.192757885919317e-51
+      "p_value_holm": 1.192757885919317e-51,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -5422,7 +5665,9 @@
       ],
       "proportion_difference_b_minus_a": 0.07702425662569645,
       "p_value": 3.2329490839075285e-24,
-      "p_value_holm": 6.659875112849508e-22
+      "p_value_holm": 6.659875112849508e-22,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -5432,7 +5677,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002333722287047841,
       "p_value": 0.14550353765600302,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -5442,7 +5689,9 @@
       ],
       "proportion_difference_b_minus_a": -0.011010943368212261,
       "p_value": 0.18305457320628699,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -5452,7 +5701,9 @@
       ],
       "proportion_difference_b_minus_a": 0.009334889148191364,
       "p_value": 0.00019160070201001384,
-      "p_value_holm": 0.03487132776582252
+      "p_value_holm": 0.03487132776582252,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -5462,7 +5713,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02411862009628032,
       "p_value": 2.565920748225095e-10,
-      "p_value_holm": 5.106182288967939e-08
+      "p_value_holm": 5.106182288967939e-08,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -5472,7 +5725,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5136103029166752,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -5482,7 +5737,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.1738119541794261,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -5492,7 +5749,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0002322301133930153,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -5502,7 +5761,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00070240091673789,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -5512,7 +5773,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.1738119541794261,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -5522,7 +5785,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.4170068027210884,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -5532,7 +5797,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005007223879346939,
       "p_value": 0.05127822957660507,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -5542,7 +5809,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5136103029166752,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -5552,7 +5821,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0004644602267860306,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -5562,7 +5833,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0038517838889407068,
       "p_value": 0.08939599409345039,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -5572,7 +5845,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001750291715285881,
       "p_value": 0.27041545437501296,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -5582,7 +5857,9 @@
       ],
       "proportion_difference_b_minus_a": -0.033781867396605256,
       "p_value": 2.994008963572625e-10,
-      "p_value_holm": 5.928137747873797e-08
+      "p_value_holm": 5.928137747873797e-08,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -5592,7 +5869,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.4170068027210884,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -5602,7 +5881,9 @@
       ],
       "proportion_difference_b_minus_a": -0.29131459375910124,
       "p_value": 3.2446091520385627e-85,
-      "p_value_holm": 7.008355768403296e-83
+      "p_value_holm": 7.008355768403296e-83,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -5612,7 +5893,9 @@
       ],
       "proportion_difference_b_minus_a": 0.6476079346557759,
       "p_value": 0.0,
-      "p_value_holm": 0.0
+      "p_value_holm": 0.0,
+      "p_value_underflow": true,
+      "log10_p_value": -363.140482382935
      },
      {
       "taxon_id": "Orites",
@@ -5622,7 +5905,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.4170068027210884,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -5632,7 +5917,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00675751559463282,
       "p_value": 0.0023475511725108847,
-      "p_value_holm": 0.4014312504993613
+      "p_value_holm": 0.4014312504993613,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -5642,7 +5929,9 @@
       ],
       "proportion_difference_b_minus_a": -0.10309018332854279,
       "p_value": 1.3610486887964638e-28,
-      "p_value_holm": 2.830981272696645e-26
+      "p_value_holm": 2.830981272696645e-26,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -5652,7 +5941,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009346310301309055,
       "p_value": 0.6451512045320431,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -5662,7 +5953,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009346310301309055,
       "p_value": 0.6451512045320431,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -5672,7 +5965,9 @@
       ],
       "proportion_difference_b_minus_a": -0.011068049133800714,
       "p_value": 9.722599298720675e-05,
-      "p_value_holm": 0.01788958270964604
+      "p_value_holm": 0.01788958270964604,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -5682,7 +5977,9 @@
       ],
       "proportion_difference_b_minus_a": -0.07036191730704439,
       "p_value": 4.523847474207409e-21,
-      "p_value_holm": 9.273887322125188e-19
+      "p_value_holm": 9.273887322125188e-19,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -5692,7 +5989,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5136103029166752,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -5702,7 +6001,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001869262060261811,
       "p_value": 0.48137147893790755,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -5712,7 +6013,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000351200458368945,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Potentilla",
@@ -5722,7 +6025,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ranunculus",
@@ -5732,7 +6037,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -5742,7 +6049,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0024469820554649264,
       "p_value": 0.07241178758189841,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -5752,7 +6061,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0032626427406199023,
       "p_value": 0.030153086895696898,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -5762,7 +6073,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -5772,7 +6085,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008156606851549756,
       "p_value": 0.4170068027210884,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -5782,7 +6097,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0026792121688579418,
       "p_value": 0.16774805779386492,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Telopea",
@@ -5792,7 +6109,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Tetracarpaea",
@@ -5802,7 +6121,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -6461,7 +6782,9 @@
       ],
       "proportion_difference_b_minus_a": 0.013108222372163338,
       "p_value": 0.009583490773413306,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Actinotus",
@@ -6471,7 +6794,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.14727534100871376,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -6481,7 +6806,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004893964110929853,
       "p_value": 0.0882460597960217,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -6491,7 +6818,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007569416567733999,
       "p_value": 0.22298762046019532,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -6501,7 +6830,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0044199414090858626,
       "p_value": 0.07500589466965112,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -6511,7 +6842,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0031110408855256526,
       "p_value": 0.16094247487758584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -6521,7 +6854,9 @@
       ],
       "proportion_difference_b_minus_a": 0.03866060828642929,
       "p_value": 3.404949033282003e-06,
-      "p_value_holm": 0.0006435353672902986
+      "p_value_holm": 0.0006435353672902986,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -6531,7 +6866,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0004932398384052339,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -6541,7 +6878,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02997019208595612,
       "p_value": 0.00020811934069505067,
-      "p_value_holm": 0.03766960066580417
+      "p_value_holm": 0.03766960066580417,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -6551,7 +6890,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.526711486037528,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -6561,7 +6902,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014797195152157017,
       "p_value": 0.6810653334669761,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -6571,7 +6914,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01737656192615495,
       "p_value": 0.00847414581867503,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -6581,7 +6926,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3839195979899498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -6591,7 +6938,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00032242084674974163,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -6601,7 +6950,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01280501866197484,
       "p_value": 0.06587135642705597,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -6611,7 +6962,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.05645060857577459,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -6621,7 +6974,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0024469820554649264,
       "p_value": 0.29006722905629206,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -6631,7 +6986,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002769402902214668,
       "p_value": 0.4161122499039732,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -6641,7 +6998,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0031110408855256526,
       "p_value": 0.16094247487758584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -6651,7 +7010,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007853403141361256,
       "p_value": 0.0031635232517642506,
-      "p_value_holm": 0.5314719062963941
+      "p_value_holm": 0.5314719062963941,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -6661,7 +7022,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004097520562336121,
       "p_value": 0.27303131335940334,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -6671,7 +7034,9 @@
       ],
       "proportion_difference_b_minus_a": -0.11011419249592169,
       "p_value": 2.384342272444858e-30,
-      "p_value_holm": 4.983275349409754e-28
+      "p_value_holm": 4.983275349409754e-28,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -6681,7 +7046,9 @@
       ],
       "proportion_difference_b_minus_a": 0.04550831461441883,
       "p_value": 1.0720097456365317e-09,
-      "p_value_holm": 2.1118591989039674e-07
+      "p_value_holm": 2.1118591989039674e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -6691,7 +7058,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007853403141361256,
       "p_value": 0.0031635232517642506,
-      "p_value_holm": 0.5314719062963941
+      "p_value_holm": 0.5314719062963941,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -6701,7 +7070,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3839195979899498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -6711,7 +7082,9 @@
       ],
       "proportion_difference_b_minus_a": 0.03860509211414125,
       "p_value": 0.0012594250355314426,
-      "p_value_holm": 0.219139956182471
+      "p_value_holm": 0.219139956182471,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -6721,7 +7094,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0074370318492009944,
       "p_value": 0.33253453959161133,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -6731,7 +7106,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.14727534100871376,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -6741,7 +7118,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.526711486037528,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -6751,7 +7130,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0018021403619654435,
       "p_value": 0.5625414263551096,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -6761,7 +7142,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009864796768104679,
       "p_value": 0.6406983431361544,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -6771,7 +7154,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0016313213703099511,
       "p_value": 0.526711486037528,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -6781,7 +7166,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0031110408855256526,
       "p_value": 0.16094247487758584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -6791,7 +7178,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004439158545647105,
       "p_value": 0.33600721727701877,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -6801,7 +7190,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004913181247491096,
       "p_value": 0.11461557323710589,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -6811,7 +7202,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0044199414090858626,
       "p_value": 0.07500589466965112,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -6821,7 +7214,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.05645060857577459,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -6831,7 +7226,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0041338195980629155,
       "p_value": 0.7219977502789852,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -6841,7 +7238,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0004932398384052339,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -6851,7 +7250,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0998607825218008,
       "p_value": 4.053611191256274e-06,
-      "p_value_holm": 0.0007620789039561796
+      "p_value_holm": 0.0007620789039561796,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -6861,7 +7262,9 @@
       ],
       "proportion_difference_b_minus_a": 0.009162303664921465,
       "p_value": 0.0012086444681639625,
-      "p_value_holm": 0.21151278192869344
+      "p_value_holm": 0.21151278192869344,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -6871,7 +7274,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0031110408855256526,
       "p_value": 0.16094247487758584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -6881,7 +7286,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00734094616639478,
       "p_value": 0.015386805583385801,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -6891,7 +7298,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00577154668055993,
       "p_value": 0.7308575793903977,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -6901,7 +7310,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0031110408855256526,
       "p_value": 0.16094247487758584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -6911,7 +7322,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0004932398384052339,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -6921,7 +7334,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009617109230204215,
       "p_value": 0.02377739983813575,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -6931,7 +7346,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02822356789627871,
       "p_value": 0.020464789661817896,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -6941,7 +7358,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.14727534100871376,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -6951,7 +7370,9 @@
       ],
       "proportion_difference_b_minus_a": 0.011457683865292143,
       "p_value": 0.0018963275550691946,
-      "p_value_holm": 0.32616833947190144
+      "p_value_holm": 0.32616833947190144,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -6961,7 +7382,9 @@
       ],
       "proportion_difference_b_minus_a": 0.014891145597567537,
       "p_value": 8.200451085003687e-05,
-      "p_value_holm": 0.015170834507256821
+      "p_value_holm": 0.015170834507256821,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Richea",
@@ -6971,7 +7394,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.05645060857577459,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -6981,7 +7406,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00017081899165549263,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -6991,7 +7418,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0019537422170596928,
       "p_value": 0.6549003471964827,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -7001,7 +7430,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.05645060857577459,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -7011,7 +7442,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0004932398384052339,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stylidium",
@@ -7021,7 +7454,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3839195979899498,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -7031,7 +7466,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0032626427406199023,
       "p_value": 0.3047336811421419,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    }
@@ -7039,7 +7476,7 @@
  },
  "trap_inclusive": {
   "method": "count_homogeneity",
-  "method_version": 2,
+  "method_version": 3,
   "orientation": "samples_by_taxa",
   "canonical_orientation": "samples_by_taxa",
   "value_type": "count",
@@ -8212,6 +8649,7 @@
    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html"
   ],
   "limitations": [
+   "A taxon p-value of 0.0 is float64 underflow of a positive Fisher probability, never probability zero: p_value_underflow marks it and log10_p_value gives the unadjusted value from a log-space tail sum; its Holm value is then also an underflowed positive number.",
    "Independent multinomial counting units with a common probability vector within each collection are assumed; clustering or taphonomic aggregation can make inference anticonservative.",
    "Counting error only: this does not test variation between replicate collections, ecological exchangeability between horizons, cause, time or rate.",
    "Full observed counts are used without rarefaction or rescaling.",
@@ -8541,7 +8979,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006240482364077871,
       "p_value": 0.37931226365830534,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -8551,7 +8991,9 @@
       ],
       "proportion_difference_b_minus_a": 0.11163929703255547,
       "p_value": 1.2302130427206258e-18,
-      "p_value_holm": 2.6326559114221393e-16
+      "p_value_holm": 2.6326559114221393e-16,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -8561,7 +9003,9 @@
       ],
       "proportion_difference_b_minus_a": -0.08751080380293863,
       "p_value": 3.112098020747863e-11,
-      "p_value_holm": 6.535405843570513e-09
+      "p_value_holm": 6.535405843570513e-09,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma",
@@ -8571,7 +9015,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013736263736263737,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis/Diselma",
@@ -8581,7 +9027,9 @@
       ],
       "proportion_difference_b_minus_a": -0.04968720418158621,
       "p_value": 3.6340357130927676e-09,
-      "p_value_holm": 7.449773211840173e-07
+      "p_value_holm": 7.449773211840173e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -8591,7 +9039,9 @@
       ],
       "proportion_difference_b_minus_a": -0.023593447750751124,
       "p_value": 0.0024347192365195788,
-      "p_value_holm": 0.4382494625735242
+      "p_value_holm": 0.4382494625735242,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -8601,7 +9051,9 @@
       ],
       "proportion_difference_b_minus_a": -0.13479544799769522,
       "p_value": 4.702322015419546e-09,
-      "p_value_holm": 9.54571369130168e-07
+      "p_value_holm": 9.54571369130168e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gymnoschoenus",
@@ -8611,7 +9063,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0023716919784335516,
       "p_value": 0.5771529400232,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Lagarostrobos franklinii",
@@ -8621,7 +9075,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01573753961394411,
       "p_value": 0.08035550549863166,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microstrobos",
@@ -8631,7 +9087,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013736263736263737,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -8641,7 +9099,9 @@
       ],
       "proportion_difference_b_minus_a": 0.03983516483516483,
       "p_value": 1.0082780533179289e-07,
-      "p_value_holm": 2.026638887169037e-05
+      "p_value_holm": 2.026638887169037e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -8651,7 +9111,9 @@
       ],
       "proportion_difference_b_minus_a": 0.34765608922912294,
       "p_value": 6.23444336808968e-62,
-      "p_value_holm": 1.4089842011882678e-59
+      "p_value_holm": 1.4089842011882678e-59,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -8661,7 +9123,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01098901098901099,
       "p_value": 0.02407669687893294,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -8671,7 +9135,9 @@
       ],
       "proportion_difference_b_minus_a": 0.09667345762851381,
       "p_value": 5.103253403899722e-07,
-      "p_value_holm": 0.00010206506807799443
+      "p_value_holm": 0.00010206506807799443,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus",
@@ -8681,7 +9147,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009486767913734206,
       "p_value": 0.13896658881029184,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -8691,7 +9159,9 @@
       ],
       "proportion_difference_b_minus_a": -0.029087953245256617,
       "p_value": 2.4339988718957193e-05,
-      "p_value_holm": 0.004746297800196653
+      "p_value_holm": 0.004746297800196653,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -8701,7 +9171,9 @@
       ],
       "proportion_difference_b_minus_a": -0.2825091575091575,
       "p_value": 1.457551455927163e-40,
-      "p_value_holm": 3.235764232158302e-38
+      "p_value_holm": 3.235764232158302e-38,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -8711,7 +9183,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005494505494505495,
       "p_value": 0.142198924184406,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -8721,7 +9195,9 @@
       ],
       "proportion_difference_b_minus_a": -0.008236613573692224,
       "p_value": 0.26195819213317867,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rhamnaceae",
@@ -8731,7 +9207,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0027472527472527475,
       "p_value": 0.5114284313885666,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -9015,7 +9493,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0037802560232545156,
       "p_value": 0.5783279697555339,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -9025,7 +9505,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003745318352059925,
       "p_value": 0.2488324313927769,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -9035,7 +9517,9 @@
       ],
       "proportion_difference_b_minus_a": -0.04704008049639443,
       "p_value": 0.0055988201574441905,
-      "p_value_holm": 0.9517994267655124
+      "p_value_holm": 0.9517994267655124,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis/Diselma",
@@ -9045,7 +9529,9 @@
       ],
       "proportion_difference_b_minus_a": -0.039374755436301645,
       "p_value": 0.00024561232285616377,
-      "p_value_holm": 0.046175116696958785
+      "p_value_holm": 0.046175116696958785,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -9055,7 +9541,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005715803007434739,
       "p_value": 0.5906221227426277,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -9065,7 +9553,9 @@
       ],
       "proportion_difference_b_minus_a": -0.06820532170607638,
       "p_value": 0.010455691794617649,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gymnoschoenus",
@@ -9075,7 +9565,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0018516965733132089,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Lagarostrobos franklinii",
@@ -9085,7 +9577,9 @@
       ],
       "proportion_difference_b_minus_a": 0.014876460394655934,
       "p_value": 0.12981067023382603,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -9095,7 +9589,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0018656716417910447,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -9105,7 +9601,9 @@
       ],
       "proportion_difference_b_minus_a": 0.2406157415171334,
       "p_value": 2.5371367022255393e-35,
-      "p_value_holm": 5.6070721119184415e-33
+      "p_value_holm": 5.6070721119184415e-33,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -9115,7 +9613,9 @@
       ],
       "proportion_difference_b_minus_a": 0.13029655095309967,
       "p_value": 1.3344672653556243e-09,
-      "p_value_holm": 2.7623472392861425e-07
+      "p_value_holm": 2.7623472392861425e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus",
@@ -9125,7 +9625,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0149812734082397,
       "p_value": 0.0037477605799799683,
-      "p_value_holm": 0.6521103409165144
+      "p_value_holm": 0.6521103409165144,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -9135,7 +9637,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0206411761417631,
       "p_value": 0.021073471269506584,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -9145,7 +9649,9 @@
       ],
       "proportion_difference_b_minus_a": -0.18594527363184077,
       "p_value": 8.661276689931769e-13,
-      "p_value_holm": 1.8448519349554667e-10
+      "p_value_holm": 1.8448519349554667e-10,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -9155,7 +9661,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005673877802001228,
       "p_value": 0.498956184372371,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rhamnaceae",
@@ -9165,7 +9673,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005597014925373134,
       "p_value": 0.2493010324960877,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -9908,7 +10418,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004529797881328394,
       "p_value": 0.06120669347291071,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -9918,7 +10430,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004484304932735426,
       "p_value": 0.014150210355894019,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -9928,7 +10442,9 @@
       ],
       "proportion_difference_b_minus_a": -0.011279001754728018,
       "p_value": 0.0006995424471838153,
-      "p_value_holm": 0.13011489517618965
+      "p_value_holm": 0.13011489517618965,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -9938,7 +10454,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anopterus",
@@ -9948,7 +10466,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -9958,7 +10478,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Aristotelia",
@@ -9968,7 +10490,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -9978,7 +10502,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006521739130434782,
       "p_value": 0.003888052019193707,
-      "p_value_holm": 0.6726329993205112
+      "p_value_holm": 0.6726329993205112,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -9988,7 +10514,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0011795671670891007,
       "p_value": 0.8723534518733429,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -9998,7 +10526,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -10008,7 +10538,9 @@
       ],
       "proportion_difference_b_minus_a": -0.013592643140313252,
       "p_value": 0.059958440284529915,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -10018,7 +10550,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.2422414346429682,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -10028,7 +10562,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0015175147852082927,
       "p_value": 0.36717016228961113,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -10038,7 +10574,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003217001364788458,
       "p_value": 0.41638078012734314,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -10048,7 +10586,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Boronia",
@@ -10058,7 +10598,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014492753623188406,
       "p_value": 0.4999354079172831,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Brassicaceae",
@@ -10068,7 +10610,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -10078,7 +10622,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.2422414346429682,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -10088,7 +10634,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0069311756677714964,
       "p_value": 0.08177594247071693,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -10098,7 +10646,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005797101449275362,
       "p_value": 0.0077842059515187195,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -10108,7 +10658,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006563982582699682,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Cyperaceae",
@@ -10118,7 +10670,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02552479365698317,
       "p_value": 4.484590402574075e-08,
-      "p_value_holm": 9.058872613199632e-06
+      "p_value_holm": 9.058872613199632e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -10128,7 +10682,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0008383700526418403,
       "p_value": 0.7499632110779102,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -10138,7 +10694,9 @@
       ],
       "proportion_difference_b_minus_a": -2.274647429648406e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -10148,7 +10706,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -10158,7 +10718,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0028303113017482287,
       "p_value": 0.3434322971217961,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -10168,7 +10730,9 @@
       ],
       "proportion_difference_b_minus_a": -0.10089686098654709,
       "p_value": 7.552487139900005e-44,
-      "p_value_holm": 1.6842046321977012e-41
+      "p_value_holm": 1.6842046321977012e-41,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -10178,7 +10742,9 @@
       ],
       "proportion_difference_b_minus_a": 0.07948268018457139,
       "p_value": 1.6573292247240842e-25,
-      "p_value_holm": 3.596404417651263e-23
+      "p_value_holm": 3.596404417651263e-23,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -10188,7 +10754,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002173913043478261,
       "p_value": 0.24990311187592468,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -10198,7 +10766,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002173913043478261,
       "p_value": 0.24990311187592468,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -10208,7 +10778,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002203158510430882,
       "p_value": 0.7875905284680449,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -10218,7 +10790,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007971014492753623,
       "p_value": 0.0009696033963945338,
-      "p_value_holm": 0.17937662833298876
+      "p_value_holm": 0.17937662833298876,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -10228,7 +10802,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02027035809449535,
       "p_value": 1.268911514471382e-06,
-      "p_value_holm": 0.00025251339137980503
+      "p_value_holm": 0.00025251339137980503,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Euphrasia",
@@ -10238,7 +10814,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014492753623188406,
       "p_value": 0.4999354079172831,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -10248,7 +10826,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014492753623188406,
       "p_value": 0.4999354079172831,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -10258,7 +10838,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007701306297523884,
       "p_value": 0.6191518377308174,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gymnoschoenus",
@@ -10268,7 +10850,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002173913043478261,
       "p_value": 0.24990311187592468,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -10278,7 +10862,9 @@
       ],
       "proportion_difference_b_minus_a": -2.274647429648406e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -10288,7 +10874,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0006791447325664522,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -10298,7 +10886,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.2422414346429682,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -10308,7 +10898,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014265288880223564,
       "p_value": 0.6249031359455637,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -10318,7 +10910,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0023786313121466176,
       "p_value": 0.4469689007063375,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -10328,7 +10922,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014492753623188406,
       "p_value": 0.4999354079172831,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -10338,7 +10934,9 @@
       ],
       "proportion_difference_b_minus_a": -4.549294859296812e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -10348,7 +10946,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007018912068629362,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -10358,7 +10958,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -10368,7 +10970,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -10378,7 +10982,9 @@
       ],
       "proportion_difference_b_minus_a": -0.024325729511925652,
       "p_value": 6.263360981842444e-05,
-      "p_value_holm": 0.012150920304774342
+      "p_value_holm": 0.012150920304774342,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -10388,7 +10994,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -10398,7 +11006,9 @@
       ],
       "proportion_difference_b_minus_a": -0.24581139923311884,
       "p_value": 2.4731068961112043e-57,
-      "p_value_holm": 5.56449051625021e-55
+      "p_value_holm": 5.56449051625021e-55,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -10408,7 +11018,9 @@
       ],
       "proportion_difference_b_minus_a": 0.5181159420289855,
       "p_value": 8.483329891456097e-266,
-      "p_value_holm": 1.93419921525199e-263
+      "p_value_holm": 1.93419921525199e-263,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -10418,7 +11030,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -10428,7 +11042,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005277182036784299,
       "p_value": 0.035555389204656715,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -10438,7 +11054,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0701923701826217,
       "p_value": 1.0440034320653712e-11,
-      "p_value_holm": 2.202847241657933e-09
+      "p_value_holm": 2.202847241657933e-09,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -10448,7 +11066,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007018912068629362,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -10458,7 +11078,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007018912068629362,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -10468,7 +11090,9 @@
       ],
       "proportion_difference_b_minus_a": -0.010486124650679144,
       "p_value": 0.00021964832116980437,
-      "p_value_holm": 0.04173318102226283
+      "p_value_holm": 0.04173318102226283,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -10478,7 +11102,9 @@
       ],
       "proportion_difference_b_minus_a": -0.06681289400142977,
       "p_value": 8.567067988809966e-20,
-      "p_value_holm": 1.8504866855829525e-17
+      "p_value_holm": 1.8504866855829525e-17,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -10488,7 +11114,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006521739130434782,
       "p_value": 0.003888052019193707,
-      "p_value_holm": 0.6726329993205112
+      "p_value_holm": 0.6726329993205112,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -10498,7 +11126,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006476246181841814,
       "p_value": 0.02235256016547322,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -10508,7 +11138,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007018912068629362,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Restionaceae",
@@ -10518,7 +11150,9 @@
       ],
       "proportion_difference_b_minus_a": -0.01760252160915058,
       "p_value": 0.034092920584869776,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -10528,7 +11162,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002242152466367713,
       "p_value": 0.11915852602467068,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -10538,7 +11174,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0029895366218236174,
       "p_value": 0.05859176141544581,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -10548,7 +11186,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007246376811594203,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -10558,7 +11198,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.4922737306843267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -10568,7 +11210,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0029895366218236174,
       "p_value": 0.05859176141544581,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -11293,7 +11937,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005979073243647235,
       "p_value": 0.001240437136829093,
-      "p_value_holm": 0.226999996039724
+      "p_value_holm": 0.226999996039724,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -11303,7 +11949,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003911567246595678,
       "p_value": 0.04772564210127028,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -11313,7 +11961,9 @@
       ],
       "proportion_difference_b_minus_a": -0.01001648868136779,
       "p_value": 0.002881833409723554,
-      "p_value_holm": 0.5158481803405162
+      "p_value_holm": 0.5158481803405162,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -11323,7 +11973,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0003980912168235917,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anemone",
@@ -11333,7 +11985,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -11343,7 +11997,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009708289029633396,
       "p_value": 0.6377851804500946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -11353,7 +12009,9 @@
       ],
       "proportion_difference_b_minus_a": 0.008018327605956471,
       "p_value": 0.0004963744591032438,
-      "p_value_holm": 0.09282202385230658
+      "p_value_holm": 0.09282202385230658,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -11363,7 +12021,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0023474540140436297,
       "p_value": 0.63909688475002,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -11373,7 +12033,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.433852140077821,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -11383,7 +12045,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02810780823817669,
       "p_value": 1.6416428285543418e-06,
-      "p_value_holm": 0.0003250452800537597
+      "p_value_holm": 0.0003250452800537597,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -11393,7 +12057,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.18814800884983676,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -11403,7 +12069,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002242152466367713,
       "p_value": 0.08155929260979296,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -11413,7 +12081,9 @@
       ],
       "proportion_difference_b_minus_a": -0.008172427431823668,
       "p_value": 0.0036900573035453556,
-      "p_value_holm": 0.6457600281204372
+      "p_value_holm": 0.6457600281204372,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -11423,7 +12093,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -11433,7 +12105,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.18814800884983676,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -11443,7 +12117,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009443750995228043,
       "p_value": 0.004288203666591846,
-      "p_value_holm": 0.7332828269872057
+      "p_value_holm": 0.7332828269872057,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -11453,7 +12129,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001718213058419244,
       "p_value": 0.2628876063160472,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -11463,7 +12141,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001096677094088217,
       "p_value": 0.6581695642342885,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Cyperaceae",
@@ -11473,7 +12153,9 @@
       ],
       "proportion_difference_b_minus_a": -0.028002506690500775,
       "p_value": 1.4622819880905466e-12,
-      "p_value_holm": 3.1000378147519587e-10
+      "p_value_holm": 3.1000378147519587e-10,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -11483,7 +12165,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002591445405000025,
       "p_value": 0.2508868930800959,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Diplaspis",
@@ -11493,7 +12177,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -11503,7 +12189,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009708289029633396,
       "p_value": 0.6377851804500946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -11513,7 +12201,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0017670113366105226,
       "p_value": 0.5290156377521581,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -11523,7 +12213,9 @@
       ],
       "proportion_difference_b_minus_a": -0.10089686098654709,
       "p_value": 1.9692103922498757e-51,
-      "p_value_holm": 4.411031278639722e-49
+      "p_value_holm": 4.411031278639722e-49,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -11533,7 +12225,9 @@
       ],
       "proportion_difference_b_minus_a": 0.07614586062184416,
       "p_value": 4.736922237833206e-26,
-      "p_value_holm": 1.0326490478476389e-23
+      "p_value_holm": 1.0326490478476389e-23,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -11543,7 +12237,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002290950744558992,
       "p_value": 0.13792174827136472,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -11553,7 +12249,9 @@
       ],
       "proportion_difference_b_minus_a": -0.007342856702571926,
       "p_value": 0.33326374433293726,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -11563,7 +12261,9 @@
       ],
       "proportion_difference_b_minus_a": 0.009163802978235968,
       "p_value": 0.0001412230611439702,
-      "p_value_holm": 0.02711482773964228
+      "p_value_holm": 0.02711482773964228,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -11573,7 +12273,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02202343344685354,
       "p_value": 8.485397549034006e-10,
-      "p_value_holm": 1.7734480877481073e-07
+      "p_value_holm": 1.7734480877481073e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -11583,7 +12285,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -11593,7 +12297,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.18814800884983676,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gymnoschoenus",
@@ -11603,7 +12309,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -11613,7 +12321,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00017464646931615634,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -11623,7 +12333,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0007961824336471834,
       "p_value": 0.7033546851685673,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -11633,7 +12345,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.18814800884983676,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -11643,7 +12357,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.433852140077821,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -11653,7 +12369,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004435506654544147,
       "p_value": 0.08936454032482585,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -11663,7 +12381,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -11673,7 +12393,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0003492929386323127,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -11683,7 +12405,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0038345173336620797,
       "p_value": 0.0870590048607136,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -11693,7 +12417,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001718213058419244,
       "p_value": 0.2628876063160472,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -11703,7 +12429,9 @@
       ],
       "proportion_difference_b_minus_a": -0.030496355539118242,
       "p_value": 2.1412722925680737e-09,
-      "p_value_holm": 4.411020922690232e-07
+      "p_value_holm": 4.411020922690232e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -11713,7 +12441,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.433852140077821,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -11723,7 +12453,9 @@
       ],
       "proportion_difference_b_minus_a": -0.2618181724787984,
       "p_value": 1.4385427342237655e-76,
-      "p_value_holm": 3.265492006687948e-74
+      "p_value_holm": 3.265492006687948e-74,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -11733,7 +12465,9 @@
       ],
       "proportion_difference_b_minus_a": 0.6357388316151202,
       "p_value": 0.0,
-      "p_value_holm": 0.0
+      "p_value_holm": 0.0,
+      "p_value_underflow": true,
+      "log10_p_value": -377.4465777409229
      },
      {
       "taxon_id": "Orites",
@@ -11743,7 +12477,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.433852140077821,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -11753,7 +12489,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006153719712963392,
       "p_value": 0.003277167324681283,
-      "p_value_holm": 0.5767814491439058
+      "p_value_holm": 0.5767814491439058,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -11763,7 +12501,9 @@
       ],
       "proportion_difference_b_minus_a": -0.09293503665007526,
       "p_value": 2.34779164434108e-26,
-      "p_value_holm": 5.141663701106965e-24
+      "p_value_holm": 5.141663701106965e-24,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -11773,7 +12513,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009708289029633396,
       "p_value": 0.6377851804500946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -11783,7 +12525,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0009708289029633396,
       "p_value": 0.6377851804500946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -11793,7 +12537,9 @@
       ],
       "proportion_difference_b_minus_a": -0.010065286959559069,
       "p_value": 0.00022893946016928755,
-      "p_value_holm": 0.043269557971995345
+      "p_value_holm": 0.043269557971995345,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -11803,7 +12549,9 @@
       ],
       "proportion_difference_b_minus_a": -0.06363295476142779,
       "p_value": 2.115926971640308e-19,
-      "p_value_holm": 4.549242989026662e-17
+      "p_value_holm": 4.549242989026662e-17,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -11813,7 +12561,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001145475372279496,
       "p_value": 0.5085917375440315,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -11823,7 +12573,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0019416578059266792,
       "p_value": 0.47862921952512605,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -11833,7 +12585,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0003980912168235917,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Potentilla",
@@ -11843,7 +12597,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ranunculus",
@@ -11853,7 +12609,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Restionaceae",
@@ -11863,7 +12621,9 @@
       ],
       "proportion_difference_b_minus_a": -0.038522388136368074,
       "p_value": 4.1502266933735755e-09,
-      "p_value_holm": 8.466462454482094e-07
+      "p_value_holm": 8.466462454482094e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -11873,7 +12633,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002242152466367713,
       "p_value": 0.08155929260979296,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -11883,7 +12645,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0029895366218236174,
       "p_value": 0.035339712961400066,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -11893,7 +12657,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -11903,7 +12669,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0007473841554559044,
       "p_value": 0.433852140077821,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -11913,7 +12681,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0024167989356838693,
       "p_value": 0.17349245998489896,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Telopea",
@@ -11923,7 +12693,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Tetracarpaea",
@@ -11933,7 +12705,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000572737686139748,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -12622,7 +13396,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01196351048841018,
       "p_value": 0.009729408237066818,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Actinotus",
@@ -12632,7 +13408,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0023923444976076554,
       "p_value": 0.14776564942924603,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -12642,7 +13420,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004484304932735426,
       "p_value": 0.08820526718964519,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -12652,7 +13432,9 @@
       ],
       "proportion_difference_b_minus_a": 0.006882013431458792,
       "p_value": 0.2239579838012591,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -12662,7 +13444,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004037304839759406,
       "p_value": 0.0754637686067371,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -12672,7 +13456,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002841132590955579,
       "p_value": 0.1616440030678943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -12682,7 +13468,9 @@
       ],
       "proportion_difference_b_minus_a": 0.03529155134064268,
       "p_value": 3.5399226330774315e-06,
-      "p_value_holm": 0.000697364758716254
+      "p_value_holm": 0.000697364758716254,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -12692,7 +13480,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00044878809334792334,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -12702,7 +13492,9 @@
       ],
       "proportion_difference_b_minus_a": -0.02749944571988471,
       "p_value": 0.00020951464853244937,
-      "p_value_holm": 0.04001729786969783
+      "p_value_holm": 0.04001729786969783,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Baeckea",
@@ -12712,7 +13504,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.5264420624279492,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -12722,7 +13516,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013463642800437704,
       "p_value": 0.6813594373970917,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -12732,7 +13528,9 @@
       ],
       "proportion_difference_b_minus_a": 0.015852411297301548,
       "p_value": 0.008542538020999095,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -12742,7 +13540,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011961722488038277,
       "p_value": 0.38454461821527136,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -12752,7 +13552,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000298596062107981,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -12762,7 +13564,9 @@
       ],
       "proportion_difference_b_minus_a": 0.011666702426674103,
       "p_value": 0.06618318557598189,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -12772,7 +13576,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0035885167464114833,
       "p_value": 0.056738743841616576,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -12782,7 +13588,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002242152466367713,
       "p_value": 0.2896630936419239,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Cyperaceae",
@@ -12792,7 +13600,9 @@
       ],
       "proportion_difference_b_minus_a": -0.010009226081919027,
       "p_value": 0.1621459914547748,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -12802,7 +13612,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0025407485284756936,
       "p_value": 0.4159449762626843,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -12812,7 +13624,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002841132590955579,
       "p_value": 0.1616440030678943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -12822,7 +13636,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007177033492822967,
       "p_value": 0.003197937404486361,
-      "p_value_holm": 0.5692328579985723
+      "p_value_holm": 0.5692328579985723,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -12832,7 +13648,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0037387087776514258,
       "p_value": 0.2732717338035267,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Elytranthe",
@@ -12842,7 +13660,9 @@
       ],
       "proportion_difference_b_minus_a": -0.10089686098654709,
       "p_value": 2.9911120132188032e-30,
-      "p_value_holm": 6.580446429081367e-28
+      "p_value_holm": 6.580446429081367e-28,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -12852,7 +13672,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0415692206463979,
       "p_value": 1.1333778977954227e-09,
-      "p_value_holm": 2.3574260274144792e-07
+      "p_value_holm": 2.3574260274144792e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -12862,7 +13684,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007177033492822967,
       "p_value": 0.003197937404486361,
-      "p_value_holm": 0.5692328579985723
+      "p_value_holm": 0.5692328579985723,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -12872,7 +13696,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011961722488038277,
       "p_value": 0.38454461821527136,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -12882,7 +13708,9 @@
       ],
       "proportion_difference_b_minus_a": 0.03515208731163417,
       "p_value": 0.0013129613729697895,
-      "p_value_holm": 0.2389589698805017
+      "p_value_holm": 0.2389589698805017,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -12892,7 +13720,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0067353974009626595,
       "p_value": 0.33383956755207167,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -12902,7 +13732,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0023923444976076554,
       "p_value": 0.14776564942924603,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -12912,7 +13744,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.5264420624279492,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gymnoschoenus",
@@ -12922,7 +13756,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011961722488038277,
       "p_value": 0.38454461821527136,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -12932,7 +13768,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001644960342151751,
       "p_value": 0.5627438104048123,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -12942,7 +13780,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0008975761866958467,
       "p_value": 0.641225690588564,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Hibbertia",
@@ -12952,7 +13792,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0014947683109118087,
       "p_value": 0.5264420624279492,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -12962,7 +13804,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002841132590955579,
       "p_value": 0.1616440030678943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -12972,7 +13816,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004039092840131311,
       "p_value": 0.3367748144406275,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -12982,7 +13828,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00448609293310733,
       "p_value": 0.11496960866603395,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -12992,7 +13840,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004037304839759406,
       "p_value": 0.0754637686067371,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -13002,7 +13852,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0035885167464114833,
       "p_value": 0.056738743841616576,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -13012,7 +13864,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00387638480628804,
       "p_value": 0.722442758319868,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -13022,7 +13876,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00044878809334792334,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -13032,7 +13888,9 @@
       ],
       "proportion_difference_b_minus_a": -0.09215353916793612,
       "p_value": 5.089139822795672e-06,
-      "p_value_holm": 0.0009974714052679518
+      "p_value_holm": 0.0009974714052679518,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -13042,7 +13900,9 @@
       ],
       "proportion_difference_b_minus_a": 0.008373205741626795,
       "p_value": 0.0012243026041160886,
-      "p_value_holm": 0.2252716791573603
+      "p_value_holm": 0.2252716791573603,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -13052,7 +13912,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002841132590955579,
       "p_value": 0.1616440030678943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -13062,7 +13924,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006726457399103139,
       "p_value": 0.015321869193652547,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -13072,7 +13936,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004968853033521431,
       "p_value": 0.7327496658389017,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -13082,7 +13948,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002841132590955579,
       "p_value": 0.1616440030678943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -13092,7 +13960,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00044878809334792334,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -13102,7 +13972,9 @@
       ],
       "proportion_difference_b_minus_a": -0.008818417834230909,
       "p_value": 0.023724517684679557,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -13112,7 +13984,9 @@
       ],
       "proportion_difference_b_minus_a": -0.025993949406741476,
       "p_value": 0.02088692093415099,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -13122,7 +13996,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0023923444976076554,
       "p_value": 0.14776564942924603,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -13132,7 +14008,9 @@
       ],
       "proportion_difference_b_minus_a": 0.010466954177126469,
       "p_value": 0.0019288652204738313,
-      "p_value_holm": 0.34912460490576347
+      "p_value_holm": 0.34912460490576347,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -13142,7 +14020,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01360668283019003,
       "p_value": 8.390138190152736e-05,
-      "p_value_holm": 0.016192966706994782
+      "p_value_holm": 0.016192966706994782,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Restionaceae",
@@ -13152,7 +14032,9 @@
       ],
       "proportion_difference_b_minus_a": 0.011230430335929506,
       "p_value": 0.30310253026947137,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Richea",
@@ -13162,7 +14044,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0035885167464114833,
       "p_value": 0.056738743841616576,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -13172,7 +14056,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00015019203123994244,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -13182,7 +14068,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0017933643730197897,
       "p_value": 0.654865727697524,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -13192,7 +14080,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0035885167464114833,
       "p_value": 0.056738743841616576,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -13202,7 +14092,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00044878809334792334,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stylidium",
@@ -13212,7 +14104,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011961722488038277,
       "p_value": 0.38454461821527136,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -13222,7 +14116,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0029895366218236174,
       "p_value": 0.30487477551534264,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    }
@@ -13230,7 +14126,7 @@
  },
  "baseline_tyndall_surface": {
   "method": "count_homogeneity",
-  "method_version": 2,
+  "method_version": 3,
   "orientation": "samples_by_taxa",
   "canonical_orientation": "samples_by_taxa",
   "value_type": "count",
@@ -14110,6 +15006,7 @@
    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html"
   ],
   "limitations": [
+   "A taxon p-value of 0.0 is float64 underflow of a positive Fisher probability, never probability zero: p_value_underflow marks it and log10_p_value gives the unadjusted value from a log-space tail sum; its Holm value is then also an underflowed positive number.",
    "Independent multinomial counting units with a common probability vector within each collection are assumed; clustering or taphonomic aggregation can make inference anticonservative.",
    "Counting error only: this does not test variation between replicate collections, ecological exchangeability between horizons, cause, time or rate.",
    "Full observed counts are used without rarefaction or rescaling.",
@@ -14796,7 +15693,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.18936620551921712,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -14806,7 +15705,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -14816,7 +15717,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001229576617551323,
       "p_value": 0.7398321958611729,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -14826,7 +15729,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5082217026364574,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anemone",
@@ -14836,7 +15741,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0011668611435239206,
       "p_value": 0.5082217026364574,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anopterus",
@@ -14846,7 +15753,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -14856,7 +15765,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001750291715285881,
       "p_value": 0.262332553954686,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Aristotelia",
@@ -14866,7 +15777,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -14876,7 +15789,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013550075656061271,
       "p_value": 0.8334207023831272,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -14886,7 +15801,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0015475705703663217,
       "p_value": 0.7525007550791711,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -14896,7 +15813,9 @@
       ],
       "proportion_difference_b_minus_a": -0.015520754846978659,
       "p_value": 0.004351364476695116,
-      "p_value_holm": 0.6744614938877429
+      "p_value_holm": 0.6744614938877429,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -14906,7 +15825,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -14916,7 +15837,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005236300423020289,
       "p_value": 0.05487725982816549,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -14926,7 +15849,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00040985887251710753,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Boronia",
@@ -14936,7 +15861,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.18936620551921712,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Brassicaceae",
@@ -14946,7 +15873,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -14956,7 +15885,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002729006436727595,
       "p_value": 0.3225789508591269,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -14966,7 +15897,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004305726452768623,
       "p_value": 0.0669412080371909,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -14976,7 +15909,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0018611479405033315,
       "p_value": 0.4134253926249843,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -14986,7 +15921,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0018611479405033315,
       "p_value": 0.4134253926249843,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Diplaspis",
@@ -14996,7 +15933,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -15006,7 +15945,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000993289444279068,
       "p_value": 0.6372392420620704,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -15016,7 +15957,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -15026,7 +15969,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001215001894713969,
       "p_value": 0.7882444721877266,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -15036,7 +15981,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005659409043571359,
       "p_value": 0.6047567549914801,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -15046,7 +15993,9 @@
       ],
       "proportion_difference_b_minus_a": 6.271547402740205e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -15056,7 +16005,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002271006813020439,
       "p_value": 0.08235213487630973,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -15066,7 +16017,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006441144177574888,
       "p_value": 0.4260702938830239,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -15076,7 +16029,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0010078641671164203,
       "p_value": 0.8469656303240869,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -15086,7 +16041,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0018611479405033315,
       "p_value": 0.4134253926249843,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Euphrasia",
@@ -15096,7 +16053,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.18936620551921712,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -15106,7 +16065,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0003471433984897055,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -15116,7 +16077,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -15126,7 +16089,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00017357169924485274,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -15136,7 +16101,9 @@
       ],
       "proportion_difference_b_minus_a": 6.271547402740205e-05,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -15146,7 +16113,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002271006813020439,
       "p_value": 0.08235213487630973,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -15156,7 +16125,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002208291338993037,
       "p_value": 0.3472961071564359,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -15166,7 +16137,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0003471433984897055,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -15176,7 +16149,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0003471433984897055,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -15186,7 +16161,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003153440032082056,
       "p_value": 0.20205855147110846,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -15196,7 +16173,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000993289444279068,
       "p_value": 0.6372392420620704,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -15206,7 +16185,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 0.43525535420098854,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -15216,7 +16197,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00662487401697911,
       "p_value": 0.09419489203173555,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -15226,7 +16209,9 @@
       ],
       "proportion_difference_b_minus_a": -0.018716594072769377,
       "p_value": 0.07825253563218779,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -15236,7 +16221,9 @@
       ],
       "proportion_difference_b_minus_a": 0.10635131088590466,
       "p_value": 3.3672794148398876e-09,
-      "p_value_holm": 5.960084564266601e-07
+      "p_value_holm": 5.960084564266601e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -15246,7 +16233,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0009305739702516658,
       "p_value": 0.5833747658834082,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -15256,7 +16245,9 @@
       ],
       "proportion_difference_b_minus_a": -0.024353920202950807,
       "p_value": 0.00035522830158769603,
-      "p_value_holm": 0.05648129995244367
+      "p_value_holm": 0.05648129995244367,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -15266,7 +16257,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000236287173272255,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -15276,7 +16269,9 @@
       ],
       "proportion_difference_b_minus_a": 0.000236287173272255,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -15286,7 +16281,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00040985887251710753,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -15296,7 +16293,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0029944430556745564,
       "p_value": 0.4958963041351686,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -15306,7 +16305,9 @@
       ],
       "proportion_difference_b_minus_a": -0.005646159295537396,
       "p_value": 0.013172708858343938,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -15316,7 +16317,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004826441550503182,
       "p_value": 0.0889213287381075,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -15326,7 +16329,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0003471433984897055,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Potentilla",
@@ -15336,7 +16341,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ranunculus",
@@ -15346,7 +16353,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -15356,7 +16365,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00017357169924485274,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -15366,7 +16377,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Telopea",
@@ -15376,7 +16389,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Tetracarpaea",
@@ -15386,7 +16401,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -16081,7 +17098,9 @@
       ],
       "proportion_difference_b_minus_a": 0.018119503311389513,
       "p_value": 1.56915241729455e-05,
-      "p_value_holm": 0.002604793012708953
+      "p_value_holm": 0.002604793012708953,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Actinotus",
@@ -16091,7 +17110,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.13415724234432033,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -16101,7 +17122,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01998030208750312,
       "p_value": 1.128178439589819e-05,
-      "p_value_holm": 0.0018840579941149977
+      "p_value_holm": 0.0018840579941149977,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -16111,7 +17134,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005235602094240838,
       "p_value": 0.01793840213399196,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anopterus",
@@ -16121,7 +17146,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -16131,7 +17158,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.04907720531270865,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Aristotelia",
@@ -16141,7 +17170,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -16151,7 +17182,9 @@
       ],
       "proportion_difference_b_minus_a": -0.006813020439061317,
       "p_value": 0.030896222652302588,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -16161,7 +17194,9 @@
       ],
       "proportion_difference_b_minus_a": 0.04059077884039935,
       "p_value": 2.5795773642625584e-07,
-      "p_value_holm": 4.411077292888975e-05
+      "p_value_holm": 4.411077292888975e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -16171,7 +17206,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -16181,7 +17218,9 @@
       ],
       "proportion_difference_b_minus_a": -0.013816282286543195,
       "p_value": 0.05545200790764101,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -16191,7 +17230,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003169699299673815,
       "p_value": 0.14249361484885859,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -16201,7 +17242,9 @@
       ],
       "proportion_difference_b_minus_a": 0.021225788808256478,
       "p_value": 0.0002800814650697452,
-      "p_value_holm": 0.04481303441115923
+      "p_value_holm": 0.04481303441115923,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -16211,7 +17254,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005518982525533965,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Boronia",
@@ -16221,7 +17266,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.5354607676622618,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Brassicaceae",
@@ -16231,7 +17278,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -16241,7 +17290,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -16251,7 +17302,9 @@
       ],
       "proportion_difference_b_minus_a": 0.02067389055570308,
       "p_value": 0.00021076413412705945,
-      "p_value_holm": 0.03414378972858363
+      "p_value_holm": 0.03414378972858363,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -16261,7 +17314,9 @@
       ],
       "proportion_difference_b_minus_a": -0.002129316597373876,
       "p_value": 0.7555530219784792,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -16271,7 +17326,9 @@
       ],
       "proportion_difference_b_minus_a": -0.003028009084027252,
       "p_value": 0.3033592157451801,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -16281,7 +17338,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0017191085604670426,
       "p_value": 0.6581043370880897,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -16291,7 +17350,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003169699299673815,
       "p_value": 0.14249361484885859,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -16301,7 +17362,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007096400870354443,
       "p_value": 0.011504461954782419,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -16311,7 +17374,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001245486720753356,
       "p_value": 0.7676928670779084,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -16321,7 +17386,9 @@
       ],
       "proportion_difference_b_minus_a": -0.03717535105484898,
       "p_value": 0.0021068178022322845,
-      "p_value_holm": 0.32866357714823635
+      "p_value_holm": 0.32866357714823635,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -16331,7 +17398,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005582396328340817,
       "p_value": 0.08236786311133419,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -16341,7 +17410,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0009621062894602296,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -16351,7 +17422,9 @@
       ],
       "proportion_difference_b_minus_a": 0.043174891304778626,
       "p_value": 0.0001868070281414517,
-      "p_value_holm": 0.030449545587056627
+      "p_value_holm": 0.030449545587056627,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -16361,7 +17434,9 @@
       ],
       "proportion_difference_b_minus_a": -0.008327024981074944,
       "p_value": 0.009385604430795029,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -16371,7 +17446,9 @@
       ],
       "proportion_difference_b_minus_a": 0.029694504004977983,
       "p_value": 4.2786357909123236e-08,
-      "p_value_holm": 7.359253560369196e-06
+      "p_value_holm": 7.359253560369196e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Euphrasia",
@@ -16381,7 +17458,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.5354607676622618,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -16391,7 +17470,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001103796505106793,
       "p_value": 0.6270066188625502,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gentianella",
@@ -16401,7 +17482,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -16411,7 +17494,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001860798776113606,
       "p_value": 0.5584312625882277,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -16421,7 +17506,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00034679423409997995,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -16431,7 +17518,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001655694757660189,
       "p_value": 0.6750347473188238,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -16441,7 +17530,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007238091086001007,
       "p_value": 0.10266254566360644,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -16451,7 +17542,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.5354607676622618,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -16461,7 +17554,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005030498075787421,
       "p_value": 0.10772209641453721,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -16471,7 +17566,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003721597552227212,
       "p_value": 0.200163852183347,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -16481,7 +17578,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003169699299673815,
       "p_value": 0.14249361484885859,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Milligania",
@@ -16491,7 +17590,9 @@
       ],
       "proportion_difference_b_minus_a": -0.000757002271006813,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -16501,7 +17602,9 @@
       ],
       "proportion_difference_b_minus_a": 0.023023173781563225,
       "p_value": 0.000943260788754286,
-      "p_value_holm": 0.1480919438344229
+      "p_value_holm": 0.1480919438344229,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -16511,7 +17614,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -16521,7 +17626,9 @@
       ],
       "proportion_difference_b_minus_a": 0.17273721716453105,
       "p_value": 4.219113308435847e-24,
-      "p_value_holm": 7.636595088268883e-22
+      "p_value_holm": 7.636595088268883e-22,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -16531,7 +17638,9 @@
       ],
       "proportion_difference_b_minus_a": -0.5320943201049498,
       "p_value": 1.3750960955456173e-172,
-      "p_value_holm": 2.5301768158039358e-170
+      "p_value_holm": 2.5301768158039358e-170,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -16541,7 +17650,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.04907720531270865,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -16551,7 +17662,9 @@
       ],
       "proportion_difference_b_minus_a": -0.001514004542013626,
       "p_value": 0.5354607676622618,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -16561,7 +17674,9 @@
       ],
       "proportion_difference_b_minus_a": 0.08450780980615191,
       "p_value": 1.769984913278639e-11,
-      "p_value_holm": 3.18597284390155e-09
+      "p_value_holm": 3.18597284390155e-09,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -16571,7 +17686,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002412697028667002,
       "p_value": 0.36281044212223273,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -16581,7 +17698,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00020510401845341654,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -16591,7 +17710,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001860798776113606,
       "p_value": 0.5584312625882277,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -16601,7 +17722,9 @@
       ],
       "proportion_difference_b_minus_a": 0.045132792466440225,
       "p_value": 1.6551890194090846e-09,
-      "p_value_holm": 2.9462364545481706e-07
+      "p_value_holm": 2.9462364545481706e-07,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -16611,7 +17734,9 @@
       ],
       "proportion_difference_b_minus_a": -0.004195219391940898,
       "p_value": 0.34672444961919485,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -16621,7 +17746,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00476198025452715,
       "p_value": 0.3628696591539281,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -16631,7 +17758,9 @@
       ],
       "proportion_difference_b_minus_a": 0.014192801740708886,
       "p_value": 0.0002235365173811718,
-      "p_value_holm": 0.03598937929836866
+      "p_value_holm": 0.03598937929836866,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Richea",
@@ -16641,7 +17770,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.04907720531270865,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -16651,7 +17782,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.13415724234432033,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -16661,7 +17794,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -16671,7 +17806,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003169699299673815,
       "p_value": 0.14249361484885859,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -16681,7 +17818,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stylidium",
@@ -16691,7 +17830,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.36642685851318946,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    },
@@ -17395,7 +18536,9 @@
       ],
       "proportion_difference_b_minus_a": 0.01963350785340314,
       "p_value": 1.9644947160320673e-08,
-      "p_value_holm": 3.3985758587354764e-06
+      "p_value_holm": 3.3985758587354764e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Actinotus",
@@ -17405,7 +18548,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.09497090749015234,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Agastachys",
@@ -17415,7 +18560,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amaranthaceae",
@@ -17425,7 +18572,9 @@
       ],
       "proportion_difference_b_minus_a": 0.018750725469951796,
       "p_value": 2.4274990490946737e-05,
-      "p_value_holm": 0.004005373431006211
+      "p_value_holm": 0.004005373431006211,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Amperea",
@@ -17435,7 +18584,9 @@
       ],
       "proportion_difference_b_minus_a": 0.004068740950716918,
       "p_value": 0.07701810078938094,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Anemone",
@@ -17445,7 +18596,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0011668611435239206,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Apiaceae",
@@ -17455,7 +18608,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002176409855394747,
       "p_value": 0.3802762569602044,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Astelia",
@@ -17465,7 +18620,9 @@
       ],
       "proportion_difference_b_minus_a": -0.008168028004667444,
       "p_value": 0.007687271202735112,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Asteraceae",
@@ -17475,7 +18632,9 @@
       ],
       "proportion_difference_b_minus_a": 0.04213834941076567,
       "p_value": 7.874643993898557e-09,
-      "p_value_holm": 1.3859373429261461e-06
+      "p_value_holm": 1.3859373429261461e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Atherosperma moschatum",
@@ -17485,7 +18644,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Athrotaxis",
@@ -17495,7 +18656,9 @@
       ],
       "proportion_difference_b_minus_a": 0.001704472560435464,
       "p_value": 0.7194135644945132,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Banksia",
@@ -17505,7 +18668,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.02922771870254284,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bauera",
@@ -17515,7 +18680,9 @@
       ],
       "proportion_difference_b_minus_a": 0.026462089231276766,
       "p_value": 1.7719792753567556e-08,
-      "p_value_holm": 3.0832439391207545e-06
+      "p_value_holm": 3.0832439391207545e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bellendena",
@@ -17525,7 +18692,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00014203938003628895,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Bursaria",
@@ -17535,7 +18704,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Casuarina",
@@ -17545,7 +18716,9 @@
       ],
       "proportion_difference_b_minus_a": 0.02340289699243068,
       "p_value": 1.6791416783019585e-06,
-      "p_value_holm": 0.00028377494363303096
+      "p_value_holm": 0.00028377494363303096,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Centrolepis",
@@ -17555,7 +18728,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002176409855394747,
       "p_value": 0.3802762569602044,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Coprosma",
@@ -17565,7 +18740,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0011668611435239206,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dacrydium franklinii",
@@ -17575,7 +18752,9 @@
       ],
       "proportion_difference_b_minus_a": 0.00014203938003628895,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Diplaspis",
@@ -17585,7 +18764,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Dodonaea",
@@ -17595,7 +18776,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002176409855394747,
       "p_value": 0.3802762569602044,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Donatia",
@@ -17605,7 +18788,9 @@
       ],
       "proportion_difference_b_minus_a": 0.007853403141361256,
       "p_value": 0.0008472975076500396,
-      "p_value_holm": 0.13387300620870626
+      "p_value_holm": 0.13387300620870626,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Drimys",
@@ -17615,7 +18800,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002460488615467325,
       "p_value": 0.5310242804402172,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacrideae",
@@ -17625,7 +18812,9 @@
       ],
       "proportion_difference_b_minus_a": -0.03151594201127762,
       "p_value": 0.006418570509833181,
-      "p_value_holm": 0.9756227174946435
+      "p_value_holm": 0.9756227174946435,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Epacris",
@@ -17635,7 +18824,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005519680854313415,
       "p_value": 0.07824522171765626,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ericaceae cf. Archeria",
@@ -17645,7 +18836,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus",
@@ -17655,7 +18848,9 @@
       ],
       "proportion_difference_b_minus_a": 0.049616035482353514,
       "p_value": 2.2483586828496094e-06,
-      "p_value_holm": 0.0003777242587187344
+      "p_value_holm": 0.0003777242587187344,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucalyptus vernicosa",
@@ -17665,7 +18860,9 @@
       ],
       "proportion_difference_b_minus_a": -0.009334889148191364,
       "p_value": 0.004631205435346102,
-      "p_value_holm": 0.7132056370432998
+      "p_value_holm": 0.7132056370432998,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Eucryphia",
@@ -17675,7 +18872,9 @@
       ],
       "proportion_difference_b_minus_a": 0.031555651945481315,
       "p_value": 2.2564422952541137e-11,
-      "p_value_holm": 4.0390317085048634e-09
+      "p_value_holm": 4.0390317085048634e-09,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Exocarpos",
@@ -17685,7 +18884,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014509399035964985,
       "p_value": 0.5916127840774916,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Gyrostemonaceae",
@@ -17695,7 +18896,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002034370475358459,
       "p_value": 0.22645728506537133,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Haloragis",
@@ -17705,7 +18908,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0002840787600725779,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Isophysis",
@@ -17715,7 +18920,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.02922771870254284,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Leptospermum",
@@ -17725,7 +18932,9 @@
       ],
       "proportion_difference_b_minus_a": 0.009446382424994043,
       "p_value": 0.004846588615993639,
-      "p_value_holm": 0.7415280582470267
+      "p_value_holm": 0.7415280582470267,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Liliaceae",
@@ -17735,7 +18944,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0011668611435239206,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca",
@@ -17745,7 +18956,9 @@
       ],
       "proportion_difference_b_minus_a": 0.005377641474277127,
       "p_value": 0.032216318192869596,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Melaleuca squamea",
@@ -17755,7 +18968,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0005681575201451558,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Microcachrys",
@@ -17765,7 +18980,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002176409855394747,
       "p_value": 0.3802762569602044,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Monotoca",
@@ -17775,7 +18992,9 @@
       ],
       "proportion_difference_b_minus_a": 0.029648047798542337,
       "p_value": 3.1943605890521696e-07,
-      "p_value_holm": 5.4304130013886884e-05
+      "p_value_holm": 5.4304130013886884e-05,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Myoporum",
@@ -17785,7 +19004,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus cunninghamii",
@@ -17795,7 +19016,9 @@
       ],
       "proportion_difference_b_minus_a": 0.19145381123730043,
       "p_value": 1.428408573147027e-34,
-      "p_value_holm": 2.6139876888590596e-32
+      "p_value_holm": 2.6139876888590596e-32,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Nothofagus gunnii",
@@ -17805,7 +19028,9 @@
       ],
       "proportion_difference_b_minus_a": -0.6384456309908545,
       "p_value": 7.811153869681714e-242,
-      "p_value_holm": 1.445063465891117e-239
+      "p_value_holm": 1.445063465891117e-239,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Orites",
@@ -17815,7 +19040,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.02922771870254284,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Persoonia",
@@ -17825,7 +19052,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Phyllocladus",
@@ -17835,7 +19064,9 @@
       ],
       "proportion_difference_b_minus_a": 0.10886173000910272,
       "p_value": 1.0196125592458555e-24,
-      "p_value_holm": 1.855694857827457e-22
+      "p_value_holm": 1.855694857827457e-22,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pinus radiata",
@@ -17845,7 +19076,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002176409855394747,
       "p_value": 0.3802762569602044,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago",
@@ -17855,7 +19088,9 @@
       ],
       "proportion_difference_b_minus_a": -0.00044139119172567154,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Plantago lanceolata",
@@ -17865,7 +19100,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014509399035964985,
       "p_value": 0.5916127840774916,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Poaceae",
@@ -17875,7 +19112,9 @@
       ],
       "proportion_difference_b_minus_a": 0.04213834941076567,
       "p_value": 7.874643993898557e-09,
-      "p_value_holm": 1.3859373429261461e-06
+      "p_value_holm": 1.3859373429261461e-06,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Podocarpus",
@@ -17885,7 +19124,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0014509399035964985,
       "p_value": 0.5916127840774916,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris",
@@ -17895,7 +19136,9 @@
       ],
       "proportion_difference_b_minus_a": 0.009588421805030332,
       "p_value": 0.011306728151966167,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Pomaderris apetala",
@@ -17905,7 +19148,9 @@
       ],
       "proportion_difference_b_minus_a": 0.014539945139198592,
       "p_value": 3.2660620234765595e-05,
-      "p_value_holm": 0.0053563417185015574
+      "p_value_holm": 0.0053563417185015574,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Potentilla",
@@ -17915,7 +19160,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Ranunculus",
@@ -17925,7 +19172,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Richea",
@@ -17935,7 +19184,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003926701570680628,
       "p_value": 0.02922771870254284,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rumex",
@@ -17945,7 +19196,9 @@
       ],
       "proportion_difference_b_minus_a": 0.002617801047120419,
       "p_value": 0.09497090749015234,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Rutaceae",
@@ -17955,7 +19208,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Sprengelia",
@@ -17965,7 +19220,9 @@
       ],
       "proportion_difference_b_minus_a": 0.003343270998918668,
       "p_value": 0.08995051852818943,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stellaria",
@@ -17975,7 +19232,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Stylidium",
@@ -17985,7 +19244,9 @@
       ],
       "proportion_difference_b_minus_a": 0.0013089005235602095,
       "p_value": 0.3083131557707829,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Taraxacum",
@@ -17995,7 +19256,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Telopea",
@@ -18005,7 +19268,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      },
      {
       "taxon_id": "Tetracarpaea",
@@ -18015,7 +19280,9 @@
       ],
       "proportion_difference_b_minus_a": -0.0005834305717619603,
       "p_value": 1.0,
-      "p_value_holm": 1.0
+      "p_value_holm": 1.0,
+      "p_value_underflow": false,
+      "log10_p_value": null
      }
     ]
    }

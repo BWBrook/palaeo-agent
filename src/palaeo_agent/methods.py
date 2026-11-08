@@ -105,7 +105,7 @@ def discover():
                         "https://esapubs.org/archive/ecol/E093/238/appendix-D.pdf"],
          "input_schema": RarefactionSpec.model_json_schema(),
          "output_schema": RarefactionResult.model_json_schema()},
-        {"id": "count_homogeneity", "version": 2, "description": METHOD_INDEX[4]["description"],
+        {"id": "count_homogeneity", "version": 3, "description": METHOD_INDEX[4]["description"],
          "requirements": ["Independent multinomial counts under a common composition null",
                           "Declared distinct pairs (or 'adjacent' in table order, plus extras), simulation count and seed"],
          "limitations": ["Counting-model inference only; no ecological cause or between-collection variance",
@@ -267,8 +267,10 @@ def write_tables(directory, result):
                      pair["monte_carlo"]["holm_envelope_unresolved"], pair["monte_carlo"]["holm_envelope_scope"]]
                     for pair in result["pairs"]))
             _table(directory / "taxon_tests.csv",
-                   ["sample_a", "sample_b", "taxon_id", "count_a", "count_b", "p_value", "p_value_holm"],
-                   ([*pair["sample_ids"], test["taxon_id"], *test["counts"], test["p_value"], test["p_value_holm"]]
+                   ["sample_a", "sample_b", "taxon_id", "count_a", "count_b", "p_value", "p_value_holm",
+                    "p_value_underflow", "log10_p_value"],
+                   ([*pair["sample_ids"], test["taxon_id"], *test["counts"], test["p_value"], test["p_value_holm"],
+                     test["p_value_underflow"], test["log10_p_value"]]
                     for pair in result["pairs"] for test in pair["taxon_tests"]))
             _table(directory / "zero_count_limits.csv", ["sample_id", "taxon_id", "n", "confidence", "upper_limit", "scope"],
                    ([row["sample_id"], taxon, row["n"], row["confidence"], row["upper_limit"], row["scope"]]

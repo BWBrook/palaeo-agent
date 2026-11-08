@@ -205,7 +205,19 @@ class Transport:
             spec = request.spec.model_copy(update={"source": Path(self._path(request.spec.source))})
             return neotoma_extract(spec, self._path(request.output))
         if name == "neotoma_inspect":
-            return inspect_neotoma(self._path(request.bundle))
+            record = inspect_neotoma(self._path(request.bundle))
+            extract, environment = record["extract"], record["environment"]
+            directory = Path(record["bundle"])
+            return {"status": record["status"], "bundle": record["bundle"],
+                    "summary": {key: extract[key] for key in (
+                        "kind", "datasets_selected", "n_samples", "n_labels", "n_age_rows", "data_seen", "data_kept",
+                        "dropped", "all_zero_samples", "source_sha256")},
+                    "specification": record["specification"],
+                    "environment": {"implementation_sha256": environment["implementation_sha256"],
+                                    "python": environment["python"].split()[0],
+                                    "lockfile_captured": environment["lockfile"]["available"]},
+                    "files": sorted(self._relative(path) for path in directory.iterdir()),
+                    "scope": record["scope"]}
         if name == "neotoma_reproduce":
             return reproduce_neotoma(self._path(request.bundle), self._path(request.output))
         directory = self._path(request.bundle)

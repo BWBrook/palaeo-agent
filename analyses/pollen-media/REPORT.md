@@ -140,11 +140,14 @@ exceedances: their plus-one p is the resolution floor **0.00001**. T2/T3 had
 one exceedance, giving **0.00002**. Neither is an exactly known tail probability.
 The built-in Holm simulation-error envelopes, which are sensitivity diagnostics,
 are resolved below 0.05 for every comparison.
-Two Fisher probabilities underflow to numeric zero: the *N. gunnii* trap/T3
-test in the primary and inclusive runs. Their Holm values are also zero.
-These are not mathematical zero probabilities and do not affect the decisions
-here. The missing machine-readable underflow diagnostic is recorded in
-[toolkit-gaps.json](toolkit-gaps.json); the native numerical outputs are unchanged.
+Two Fisher probabilities underflow float64 to 0.0: the *N. gunnii* trap/T3
+test in the primary and inclusive runs. Their Holm values are also 0.0.
+These are not zero probabilities and do not affect the decisions here.
+Under `count_homogeneity` method version 3 (8 November 2026), these tests
+carry `p_value_underflow: true` and `log10_p_value` from a log-space tail
+sum: **−363.14** (primary) and **−377.45** (inclusive). The gap that
+[toolkit-gaps.json](toolkit-gaps.json) records is closed. All other numerical
+outputs are unchanged.
 The complete native probabilities and diagnostics remain in `results.json`.
 
 There is one trap per site, unknown exposure durations, and no precise

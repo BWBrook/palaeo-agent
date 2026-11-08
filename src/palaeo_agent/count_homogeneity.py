@@ -7,7 +7,8 @@ from typing import Literal
 import numpy as np
 import scipy
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, field_validator, model_validator
-from scipy.stats import beta, fisher_exact, random_table
+from scipy.special import logsumexp
+from scipy.stats import beta, fisher_exact, hypergeom, random_table
 
 from .community import (FORMAT_HELP, MAX_EXACT_COUNT, CommunityExclusion, CommunityWarning,
                         _prepare_counts, _read_inputs, check_delimiter)
@@ -28,6 +29,7 @@ REFERENCES = [
     "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html",
 ]
 LIMITATIONS = [
+    "A taxon p-value of 0.0 is float64 underflow of a positive Fisher probability, never probability zero: p_value_underflow marks it and log10_p_value gives the unadjusted value from a log-space tail sum; its Holm value is then also an underflowed positive number.",
     "Independent multinomial counting units with a common probability vector within each collection are assumed; clustering or taphonomic aggregation can make inference anticonservative.",
     "Counting error only: this does not test variation between replicate collections, ecological exchangeability between horizons, cause, time or rate.",
     "Full observed counts are used without rarefaction or rescaling.",
@@ -139,6 +141,9 @@ class TaxonTest(ResultItem):
     proportion_difference_b_minus_a: FiniteFloat = Field(ge=-1, le=1)
     p_value: FiniteFloat = Field(ge=0, le=1)
     p_value_holm: FiniteFloat = Field(ge=0, le=1)
+    p_value_underflow: bool = Field(description="True when the positive Fisher probability underflowed float64 to 0")
+    log10_p_value: FiniteFloat | None = Field(
+        description="Only when underflowed: log10 of the unadjusted two-sided p, summed in log space")
 
 
 class PairResult(ResultItem):
@@ -199,7 +204,7 @@ class PairDeclaration(ResultItem):
 
 class CountHomogeneityResult(ResultItem):
     method: Literal["count_homogeneity"]
-    method_version: Literal[2]
+    method_version: Literal[3]
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     canonical_orientation: Literal["samples_by_taxa"]
     value_type: Literal["count"]
@@ -231,6 +236,20 @@ class CountHomogeneityResult(ResultItem):
         except AnalysisError as exc:
             raise ValueError(f"{exc.code}: {exc}") from exc
         return self
+
+
+def _fisher(xa, na, xb, nb):
+    """Two-sided Fisher p, an underflow flag, and when underflowed log10 p from a log-space tail sum.
+
+    Same tail as SciPy: tables no more probable than the observed one, with relative tolerance 1e-7."""
+    p = float(fisher_exact([[xa, na - xa], [xb, nb - xb]], alternative="two-sided").pvalue)
+    if p > 0:
+        return p, False, None
+    total, column = na + nb, xa + xb
+    support = np.arange(max(0, na - (total - column)), min(column, na) + 1)
+    masses = hypergeom.logpmf(support, total, column, na)
+    observed = float(hypergeom.logpmf(xa, total, column, na))
+    return p, True, float(logsumexp(masses[masses <= observed + math.log1p(1e-7)])) / math.log(10)
 
 
 def _holm(values):
@@ -341,10 +360,11 @@ def calculate_count_homogeneity(spec, data, metadata=None):
                                  "unresolved_scope": "unadjusted_tail_only", "spawn_key": [index]}, taxon_tests=[])
         na, nb = pair["sample_totals"]
         for taxon, (xa, xb) in zip(pair["taxon_ids"], pair["observed_counts"], strict=True):
-            fisher_p = float(fisher_exact([[xa, na - xa], [xb, nb - xb]], alternative="two-sided").pvalue)
+            fisher_p, underflow, bounds = _fisher(xa, na, xb, nb)
             pair["taxon_tests"].append({"taxon_id": taxon, "counts": [xa, xb],
                                         "proportion_difference_b_minus_a": xb / nb - xa / na,
-                                        "p_value": fisher_p, "p_value_holm": fisher_p})
+                                        "p_value": fisher_p, "p_value_holm": fisher_p,
+                                        "p_value_underflow": underflow, "log10_p_value": bounds})
     for pair, adjusted in zip(pairs, _holm([pair["p_value"] for pair in pairs]), strict=True):
         pair["p_value_holm"] = adjusted
     for pair, envelope in zip(pairs, _holm_envelopes([pair["monte_carlo"]["tail_probability_interval"] for pair in pairs]), strict=True):
@@ -354,7 +374,7 @@ def calculate_count_homogeneity(spec, data, metadata=None):
     for test, adjusted in zip(taxon_tests, _holm([test["p_value"] for test in taxon_tests]), strict=True):
         test["p_value_holm"] = adjusted
     counts = [[int(value) for value in row] for row in prepared["counts"]]
-    result = {"method": "count_homogeneity", "method_version": 2, "orientation": spec.orientation,
+    result = {"method": "count_homogeneity", "method_version": 3, "orientation": spec.orientation,
               "canonical_orientation": "samples_by_taxa", "value_type": "count", "missing": spec.missing,
               "empty_samples": spec.empty_samples, "n_input": len(prepared["input_sample_ids"]),
               "n": len(prepared["sample_ids"]), "n_taxa": len(prepared["taxon_ids"]),
@@ -440,7 +460,12 @@ def _validate_saved_result(result):
                 raise ValueError("Taxon counts disagree with pair table")
             xa, xb = observed
             _close(test.proportion_difference_b_minus_a, xb / nb - xa / na)
-            _close(test.p_value, float(fisher_exact([[xa, na - xa], [xb, nb - xb]], alternative="two-sided").pvalue))
+            p, underflow, bounds = _fisher(xa, na, xb, nb)
+            _close(test.p_value, p)
+            if test.p_value_underflow != underflow or (bounds is None) != (test.log10_p_value is None):
+                raise ValueError("Underflow flag or log10 p-value disagrees with the Fisher calculation")
+            if bounds is not None:
+                _close(test.log10_p_value, bounds)
     for pair, adjusted in zip(result.pairs, _holm([pair.p_value for pair in result.pairs]), strict=True):
         _close(pair.p_value_holm, adjusted)
     envelopes = _holm_envelopes([pair.monte_carlo.tail_probability_interval for pair in result.pairs])

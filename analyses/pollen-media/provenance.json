@@ -1,13 +1,13 @@
 {
- "extraction_bundle": "extraction/9364ee1039c24f5191d147ae9867c2b0",
- "extraction_manifest_sha256": "4209061ce39c9c11fb564b923454d1558872d5c8209fbe7a5961755f5e7694c7",
+ "extraction_bundle": "extraction/30450aaf9f5e45f3adb803df61a5ab9f",
+ "extraction_manifest_sha256": "400e97ac4ee8a525aef3c2950f90e2414c074082d43de561f9cb9d584faa4102",
  "study_dir": "runs-study",
- "study_manifest_sha256": "257e7a0106b35027b27ed0866b7a2f3846071ec521ca74b44fc6f7482d30b8c2",
+ "study_manifest_sha256": "560aed3397b5131c18e9b8ec166b0635f351bb684b577139eebb7a52fd31ef35",
  "runs": {
   "primary_community": {
-   "run_dir": "runs/primary_community/a654890a1a094802a85fbc6aa96f6b00",
-   "run_id": "a654890a1a094802a85fbc6aa96f6b00",
-   "run_manifest_sha256": "4551efa10fa861eb93b2f44dba3f539e832b99fa5223181621c9524d952adad0",
+   "run_dir": "runs/primary_community/0201ddf198e6431098cda63b75e0eb0a",
+   "run_id": "0201ddf198e6431098cda63b75e0eb0a",
+   "run_manifest_sha256": "2ff726f0c08d6b39bbce31f62a6739152a1d000635a70ca81509a236dc53028a",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -245,16 +245,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
@@ -272,9 +272,9 @@
    }
   },
   "inclusive_community": {
-   "run_dir": "runs/inclusive_community/aab1bdb7e65343fba76847da04613cae",
-   "run_id": "aab1bdb7e65343fba76847da04613cae",
-   "run_manifest_sha256": "7af4b7d6287efba16b74f627bc3b121ff19ca2d82e503e50b29a26ab9c734c89",
+   "run_dir": "runs/inclusive_community/433ff5a1db6d41d9996543b55b2cb61f",
+   "run_id": "433ff5a1db6d41d9996543b55b2cb61f",
+   "run_manifest_sha256": "59f0e3e78f37ead66e81dfb9885f3ac023d7bad897ad819f867c61dd1f20d45f",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -512,16 +512,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
@@ -539,9 +539,9 @@
    }
   },
   "primary_rarefaction": {
-   "run_dir": "runs/primary_rarefaction/a641eb69c0ad469a9240ced16aef77a2",
-   "run_id": "a641eb69c0ad469a9240ced16aef77a2",
-   "run_manifest_sha256": "9e0f73e4bd1a836a0f6aac56e4d57e1652105f91ac913314a18df0d3aaf9d859",
+   "run_dir": "runs/primary_rarefaction/dcfe8ac37ab5427bbd7d16c76a5eb230",
+   "run_id": "dcfe8ac37ab5427bbd7d16c76a5eb230",
+   "run_manifest_sha256": "af2cbdac1d15a27c8a702cb3738418ff7b17d37ce585c5c177e0e4ffc2f349c2",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -779,16 +779,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
@@ -806,9 +806,9 @@
    }
   },
   "trap_primary": {
-   "run_dir": "runs/trap_primary/a4692273e0ef4701bcd6a1bf147e03b5",
-   "run_id": "a4692273e0ef4701bcd6a1bf147e03b5",
-   "run_manifest_sha256": "b703b46e35f17e3d55843305bbea36a12727fe817345d8875e47784ec804e746",
+   "run_dir": "runs/trap_primary/5aa3665c699a4200b338cc9157b48901",
+   "run_id": "5aa3665c699a4200b338cc9157b48901",
+   "run_manifest_sha256": "7f87122ac492112d72bb382635a3225b93a8572c871faee902ad7b94ccf9320f",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -1046,16 +1046,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
@@ -1073,9 +1073,9 @@
    }
   },
   "trap_inclusive": {
-   "run_dir": "runs/trap_inclusive/f85f62b189f24e51bb57be50fdadd3bd",
-   "run_id": "f85f62b189f24e51bb57be50fdadd3bd",
-   "run_manifest_sha256": "58aa2d4c4fd4bea1216590705a0a7bf2fa2d7a5659b3647467024edd94d289f6",
+   "run_dir": "runs/trap_inclusive/bec2a883a6b8492597d318c9c9289f29",
+   "run_id": "bec2a883a6b8492597d318c9c9289f29",
+   "run_manifest_sha256": "4c18a657cf8e267adc7b04773a00dc8a2f3f7d49e638d8aff1a007ec4f7b02cd",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -1313,16 +1313,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
@@ -1340,9 +1340,9 @@
    }
   },
   "baseline_tyndall_surface": {
-   "run_dir": "runs/baseline_tyndall_surface/e2c394a86f3946bead8e14a006d451bc",
-   "run_id": "e2c394a86f3946bead8e14a006d451bc",
-   "run_manifest_sha256": "53e91ed555b8dec3831b2722a6b0c15f0e4ea7340b1af96714fdaba99f2ebe1e",
+   "run_dir": "runs/baseline_tyndall_surface/5e9abf52fbca45e19e1f962064a6a2af",
+   "run_id": "5e9abf52fbca45e19e1f962064a6a2af",
+   "run_manifest_sha256": "99a3e448c4217755f62b9a2e94cdcf0496d4213cc520c7029877e877ad040195",
    "environment": {
     "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
     "platform": "macOS-27.2-arm64-arm-64bit",
@@ -1580,16 +1580,16 @@
       "version": "0.54.0"
      }
     ],
-    "implementation_sha256": "d853c91a7bb49bd1546cd7de9b9bab5a1593694c82742812824ade1c9efa05a8",
+    "implementation_sha256": "cc5c82e0a6bc34e50c032cfefe19c30589f80743756013956d50bdf7c11d6621",
     "source_files_sha256": {
      "__init__.py": "015d9137940e6ccd7f4a1e6a351c70833562f05ecdb570d3bf4bbdd7dbd17199",
      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
      "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
      "community.py": "ea86eb55195f2d69e461d3aa0c498d700c84457369b8115ca1024e03903b5cf6",
      "core.py": "93e397e230d34f60513abf952deb55187963bfb386accb5f871a5ea72ceb16fe",
-     "count_homogeneity.py": "e6df2a727be8185fd7a8f3d7f8348f714ab70d7d7f637cda1521d471d5802d82",
-     "mcp_server.py": "41e9b8fd55b0cb165c2f360d1a6f93c507a710464fed304c0629e0d0cbd6f851",
-     "methods.py": "b537f63eb42c2ae59239e4aa2f84c2c8e58307e6bd29c3ffca7b4fccd43be055",
+     "count_homogeneity.py": "bfff7f1b546b04311c1a62ca4e2e904bc5f3ac7d6028544ac3f2405354eb7af7",
+     "mcp_server.py": "47a038d56b953e73a80f904a5c7130ffda1d239d5c538c5e419849f7524cf7f1",
+     "methods.py": "d56925dc95d028f5280c248174f3e4a8ac97d191f878e9d0143becc65d58ddf4",
      "neotoma.py": "7ad54b1459d61518843988ba42f36309b26cff6249bfd793ca86871847bf1349",
      "permanova.py": "241d4a6be8e7455e167459cd8fc0ad991a8251bc314702ea5b9f8d221c260c95",
      "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",

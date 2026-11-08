@@ -370,3 +370,14 @@ def test_mcp_returns_structured_refusal_for_null_percent(tmp_path):
     response = Transport(tmp_path).dispatch("neotoma_extract", {"spec": _spec("download.json", digest, datasets=[3],
                                                                               units="percent"), "output": "out"})
     assert response["code"] == "invalid_abundance"
+
+
+def test_mcp_inspection_is_compact(tmp_path):
+    from palaeo_agent.mcp_server import Transport
+    path, digest = _write(tmp_path, _download())
+    transport = Transport(tmp_path)
+    bundle = transport.dispatch("neotoma_extract", {"spec": _spec("download.json", digest), "output": "out"})["bundle"]
+    response = transport.dispatch("neotoma_inspect", {"bundle": bundle})
+    assert response["status"] == "verified" and response["summary"]["n_samples"] == 4
+    assert "distributions" not in json.dumps(response) and len(json.dumps(response)) < 4000
+    assert "out/" in response["files"][0]

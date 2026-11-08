@@ -1,6 +1,6 @@
 {
   "gap_id": "count-homogeneity-fisher-underflow",
-  "status": "recorded; not implemented",
+  "status": "implemented in count_homogeneity method version 3 (docs/sprint-12.md)",
   "reported_in": "Board 3055",
   "method": "count_homogeneity",
   "method_version": 2,
@@ -43,5 +43,16 @@
     "Use an explicit underflow flag or a numerical bound supported by the calculation; do not infer an arbitrary bound solely from a returned zero.",
     "Cover the two saved examples and ordinary small nonzero p-values with an independent reference check."
   ],
-  "scope": "Documentation only. No numerical result, analysis specification, randomisation setting or toolkit implementation changed."
+  "scope": "Documentation only. No numerical result, analysis specification, randomisation setting or toolkit implementation changed.",
+  "resolution": {
+    "fields": [
+      "p_value_underflow",
+      "log10_p_value"
+    ],
+    "log10_p_value": {
+      "trap_primary": -363.140482382935,
+      "trap_inclusive": -377.4465777409229
+    },
+    "independent_check": "tests/test_sprint12.py: exact integer two-sided Fisher tail, agreement within 1e-9 in log10"
+  }
 }

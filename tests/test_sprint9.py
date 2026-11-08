@@ -86,7 +86,7 @@ def _spec(tmp_path, **changes):
 def test_holm_envelope_matches_holm_of_interval_bounds(tmp_path):
     result = calculate_count_homogeneity(_spec(tmp_path, pairs="adjacent", extra_pairs=[["S1", "S5"]]),
                                          (tmp_path / "t.dat").read_bytes())
-    assert result["method_version"] == 2
+    assert result["method_version"] == 3
     intervals = [p["monte_carlo"]["tail_probability_interval"] for p in result["pairs"]]
     lower, upper = _holm([i[0] for i in intervals]), _holm([i[1] for i in intervals])
     for pair, lo, hi in zip(result["pairs"], lower, upper):
@@ -182,4 +182,4 @@ def test_discovery_version_matches_schema_and_results(tmp_path):
         else next(m for m in discover() if m["id"] == "count_homogeneity")
     schema = CountHomogeneityResult.model_json_schema()["properties"]["method_version"]
     result = calculate_count_homogeneity(_spec(tmp_path, pairs="adjacent"), (tmp_path / "t.dat").read_bytes())
-    assert entry["version"] == schema["const"] == result["method_version"] == 2
+    assert entry["version"] == schema["const"] == result["method_version"] == 3
