@@ -1,0 +1,132 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "archive": {
+   "kind": "counts",
+   "path": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa"
+  }
+ },
+ "datasets": {
+  "dryland": {
+   "source": "archive",
+   "operations": [
+    {
+     "op": "exclude_taxa",
+     "taxa": [
+      "Cyperaceae",
+      "Gymnoschoenus sphaerocephalus",
+      "Restionaceae",
+      "Xyridaceae",
+      "Portulacaceae",
+      "Ranunculus"
+     ],
+     "reason": "dryland pollen sum, Colhoun et al. (1999): sedges and aquatics excluded"
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "rarefaction",
+   "dataset": "dryland",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "rarefaction",
+    "sizes": "minimum_total"
+   }
+  },
+  {
+   "id": "count_homogeneity",
+   "dataset": "dryland",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "count_homogeneity",
+    "pairs": "adjacent",
+    "extra_pairs": [
+     [
+      "531333",
+      "531341"
+     ],
+     [
+      "531310",
+      "531319"
+     ],
+     [
+      "531321",
+      "531332"
+     ],
+     [
+      "531319",
+      "531342"
+     ],
+     [
+      "531308",
+      "531314"
+     ],
+     [
+      "531329",
+      "531332"
+     ]
+    ],
+    "simulations": 99999,
+    "seed": 7112026
+   }
+  },
+  {
+   "id": "community_relative_braycurtis",
+   "dataset": "dryland",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "distance": "braycurtis",
+    "transform": "relative_abundance",
+    "dimensions": 3
+   }
+  },
+  {
+   "id": "community_raw_braycurtis",
+   "dataset": "dryland",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "distance": "braycurtis",
+    "transform": "none",
+    "dimensions": 3
+   }
+  },
+  {
+   "id": "community_jaccard",
+   "dataset": "dryland",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "distance": "jaccard",
+    "transform": "none",
+    "dimensions": 3
+   }
+  }
+ ]
+}

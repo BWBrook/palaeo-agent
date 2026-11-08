@@ -1,0 +1,21 @@
+{
+ "study_status": "verified",
+ "derived_table_identical_to_amend_source_output": true,
+ "pair_declaration": {
+  "mode": "adjacent",
+  "n_adjacent": 71,
+  "n_extra": 6
+ },
+ "resolved_pairs_identical_to_amendment_1": true,
+ "rarefaction_size": [
+  272
+ ],
+ "pairs_compared": 74,
+ "max_abs_difference": {
+  "p_value": 0.0,
+  "p_value_holm": 0.0,
+  "holm_envelope": 0.0
+ },
+ "holm_flags_agree": true,
+ "max_abs_richness_difference": 0.0
+}
