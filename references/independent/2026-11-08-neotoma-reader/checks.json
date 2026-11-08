@@ -1,0 +1,637 @@
+{
+  "reviewed_commit": "6f17b504a8737b51f7d4e96359b233c22e642043",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac"
+  },
+  "full_suite": {
+    "passed": 764,
+    "skipped": 11,
+    "seconds": 88.73,
+    "optional_native_confinement": false
+  },
+  "input_probes": [
+    {
+      "case": "baseline",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "source_sha256": "f657602b0457151e4e0a7dca683a9914c3a2436c2d559f520bf87e18f4cb8b1d"
+    },
+    {
+      "case": "all_mixed_units",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "mixed_units",
+      "message": "A kept datum has other units than declared",
+      "source_sha256": "f657602b0457151e4e0a7dca683a9914c3a2436c2d559f520bf87e18f4cb8b1d"
+    },
+    {
+      "case": "unknown_dataset",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "unknown_dataset",
+      "message": "Declared datasets are absent from the download",
+      "source_sha256": "f657602b0457151e4e0a7dca683a9914c3a2436c2d559f520bf87e18f4cb8b1d"
+    },
+    {
+      "case": "duplicate_sample",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "duplicate_sample",
+      "message": "A sample ID repeats",
+      "source_sha256": "2fe795717389f72b2a4ff9bd73ba06f5d61426469f8adf87375d560e4e5af4cc"
+    },
+    {
+      "case": "repeated_label",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "repeated_label",
+      "message": "One sample has two kept data with the same label",
+      "source_sha256": "e044d49bda164629eb9ecbd20e6d4f25b52af7352a0cb755661e6cefdd64cead"
+    },
+    {
+      "case": "label_collision",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "label_collision",
+      "message": "One label maps to more than one taxon identity",
+      "source_sha256": "ed4d423f8224de71b9fddc4be38df9a1ffea49b20de427bbe87ed3f3e42b5c86"
+    },
+    {
+      "case": "wrong_data_shape",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type",
+      "source_sha256": "598cf9d2ffa249837533110abba1c8831da3d1ce42bd08a9d8f2001875f82310"
+    },
+    {
+      "case": "wrong_ages_shape",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "invalid_source",
+      "message": "Saved download lacks a required key or has the wrong type",
+      "source_sha256": "9e4ae17d0564cc36616a2469636d5219c08d93a250a22fa1e86da8eb042eb649"
+    },
+    {
+      "case": "wrong_element_type",
+      "status": "raised",
+      "type": "TypeError",
+      "code": null,
+      "message": "unhashable type: 'list'",
+      "source_sha256": "98b75a7885432c9bf0f2cc13bc010993ac77b099fd45e4c89758cbaf7826fb7d"
+    },
+    {
+      "case": "wrong_group_type",
+      "status": "raised",
+      "type": "TypeError",
+      "code": null,
+      "message": "unhashable type: 'dict'",
+      "source_sha256": "06a7a9b1bc29a8e19366ab9f27988011972d86e68fb6466f4d34b78141d8593f"
+    },
+    {
+      "case": "wrong_taxonid_type",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "source_sha256": "46f8884ec8151bacf8901c9787ed5741582e6da6cf862f2f256ee3a8b8e870ad",
+      "table": "sample_id\tPinus\tPoaceae\n10\t5\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+      "taxa": [
+        {
+          "label": "Pinus",
+          "taxonid": "{\"bad\":1}",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "TRSH",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        },
+        {
+          "label": "Poaceae",
+          "taxonid": "2",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "UPHE",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        }
+      ]
+    },
+    {
+      "case": "tab_label",
+      "status": "complete",
+      "downstream_validation": {
+        "type": "AnalysisError",
+        "code": "row_width",
+        "message": "Row width differs from the header"
+      },
+      "source_sha256": "cbe024ef11ed4bfd69d7eee09cc45b34b5dec28fa381dba5c8af350176ee4a4e",
+      "table": "sample_id\tPi\tnus\tPoaceae\n10\t5\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+      "taxa": [
+        {
+          "label": "Pi\tnus",
+          "taxonid": "1",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "TRSH",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        },
+        {
+          "label": "Poaceae",
+          "taxonid": "2",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "UPHE",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        }
+      ]
+    },
+    {
+      "case": "newline_label",
+      "status": "complete",
+      "downstream_validation": {
+        "type": "AnalysisError",
+        "code": "invalid_count",
+        "message": "Invalid count token; proportions are unsupported and must not be rescaled or rounded into counts; declare value_type 'abundance' for weights"
+      },
+      "source_sha256": "a629fd48e3330ac4afd0ba0e13721f5e257d6d8b0381f131e40ce9cc1da86831",
+      "table": "sample_id\tPi\nnus\tPoaceae\n10\t5\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+      "taxa": [
+        {
+          "label": "Pi\nnus",
+          "taxonid": "1",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "TRSH",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        },
+        {
+          "label": "Poaceae",
+          "taxonid": "2",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "UPHE",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        }
+      ]
+    },
+    {
+      "case": "quoted_label",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "parsed_taxon_ids": [
+        "Pinus",
+        "Poaceae"
+      ],
+      "diversity": [
+        {
+          "sample_id": "10",
+          "total": 8.0,
+          "richness": 2,
+          "shannon": 0.6615632381579821,
+          "simpson": 0.46875
+        },
+        {
+          "sample_id": "11",
+          "total": 2.0,
+          "richness": 1,
+          "shannon": -0.0,
+          "simpson": 0.0
+        },
+        {
+          "sample_id": "20",
+          "total": 7.0,
+          "richness": 1,
+          "shannon": -0.0,
+          "simpson": 0.0
+        }
+      ],
+      "source_sha256": "81bd4355f5f48f5d66c032b0c3a0a4f321729e101e7daf1ef94c83d7cb9ec7db",
+      "table": "sample_id\t\"Pinus\"\tPoaceae\n10\t5\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+      "taxa": [
+        {
+          "label": "\"Pinus\"",
+          "taxonid": "1",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "TRSH",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        },
+        {
+          "label": "Poaceae",
+          "taxonid": "2",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "UPHE",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "NISP",
+          "n_samples_positive": "2"
+        }
+      ]
+    },
+    {
+      "case": "age_duplicate",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "duplicate_age",
+      "message": "A sample has two ages for one chronology",
+      "source_sha256": "d93d64b723da567e725d7db0362271ef861fe5fc228e0d24e99a3f89c93b07fc"
+    },
+    {
+      "case": "depth_order",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "source_sha256": "f657602b0457151e4e0a7dca683a9914c3a2436c2d559f520bf87e18f4cb8b1d"
+    },
+    {
+      "case": "depth_tie",
+      "status": "raised",
+      "type": "AnalysisError",
+      "code": "depth_order",
+      "message": "Depth ordering needs a distinct numeric depth for every sample",
+      "source_sha256": "b6a9c8872f80db90a6d9239e466486c89c136492b3bdc1834a425977ce41b029"
+    },
+    {
+      "case": "depth_infinite",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "source_sha256": "546b6f0cc07c61a51f4c13b7077a9453853d969fba24b5822c8ed5daf439cb09"
+    },
+    {
+      "case": "percent_underflow",
+      "status": "complete",
+      "downstream_validation": {
+        "status": "valid",
+        "n_input": 4,
+        "n": 3,
+        "n_taxa": 2,
+        "excluded": [
+          {
+            "sample_id": "12",
+            "reason": "empty_sample"
+          }
+        ],
+        "warnings": [],
+        "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed"
+      },
+      "parsed_taxon_ids": [
+        "Pinus",
+        "Poaceae"
+      ],
+      "diversity": [
+        {
+          "sample_id": "10",
+          "weight_sum": 3.0,
+          "richness": 1,
+          "shannon": -0.0,
+          "simpson": 0.0
+        },
+        {
+          "sample_id": "11",
+          "weight_sum": 2.0,
+          "richness": 1,
+          "shannon": -0.0,
+          "simpson": 0.0
+        },
+        {
+          "sample_id": "20",
+          "weight_sum": 7.0,
+          "richness": 1,
+          "shannon": -0.0,
+          "simpson": 0.0
+        }
+      ],
+      "source_sha256": "d34b145822b37aa7037f9862bf3dc1f76c84d54eba9a51dfdaa53d55cd87af57",
+      "table": "sample_id\tPinus\tPoaceae\n10\t0.0\t3\n11\t2\t0\n12\t0\t0\n20\t0\t7\n",
+      "taxa": [
+        {
+          "label": "Pinus",
+          "taxonid": "1",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "TRSH",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "percent",
+          "n_samples_positive": "1"
+        },
+        {
+          "label": "Poaceae",
+          "taxonid": "2",
+          "taxongroup": "Vascular plants",
+          "ecologicalgroup": "UPHE",
+          "element": "pollen",
+          "elementtype": "pollen",
+          "units": "percent",
+          "n_samples_positive": "2"
+        }
+      ]
+    },
+    {
+      "case": "percent_huge_integer",
+      "status": "raised",
+      "type": "OverflowError",
+      "code": null,
+      "message": "int too large to convert to float",
+      "source_sha256": "3637258829a5502351d49660ac8cec3733b13ede34adf630a10d985824d05885"
+    }
+  ],
+  "transport_and_bundle": {
+    "reviewed_commit": "6f17b50",
+    "primer": {
+      "version": "0.2.0.dev0",
+      "sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac"
+    },
+    "live_tool_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "spec": {
+          "type": "object",
+          "required": [
+            "method"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "method": {
+              "enum": [
+                "rma",
+                "community",
+                "permanova",
+                "rarefaction",
+                "count_homogeneity"
+              ]
+            }
+          },
+          "description": "A complete method specification. Its exact schema comes from the discover tool with that method; invalid specifications are refused with details."
+        },
+        "output": {
+          "default": "extractions",
+          "minLength": 1,
+          "title": "Output",
+          "type": "string"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "title": "NeotomaExtractRequest"
+    },
+    "valid_call": {
+      "status": "complete",
+      "kind": "counts",
+      "n_samples": 72,
+      "n_labels": 66
+    },
+    "call_with_advertised_method": {
+      "status": "error",
+      "code": "invalid_request",
+      "message": "Request does not match the tool schema",
+      "details": [
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "spec",
+            "method"
+          ],
+          "msg": "Extra inputs are not permitted"
+        }
+      ]
+    },
+    "inspection_before_source_move": "verified",
+    "inspection_after_source_move": "verified",
+    "reproduction": {
+      "status": "reproduced",
+      "differences": [],
+      "environment_identical": true
+    },
+    "outside_root": {
+      "status": "error",
+      "code": "path_outside_root"
+    },
+    "lockfile_record": {
+      "available": true,
+      "path": "uv.lock",
+      "reason": "Project checkout lockfile captured"
+    },
+    "lockfile_in_bundle": false,
+    "lockfile_in_manifest": false,
+    "bundle_files": [
+      "ages.csv",
+      "environment.json",
+      "extract.json",
+      "samples.csv",
+      "source.json",
+      "spec.json",
+      "table.tsv",
+      "taxa.csv"
+    ],
+    "manifest_probes": [
+      {
+        "case": "list",
+        "exception": "AttributeError",
+        "code": null,
+        "message": "'list' object has no attribute 'get'"
+      },
+      {
+        "case": "bool_schema",
+        "status": "verified"
+      },
+      {
+        "case": "external_manifest_symlink",
+        "status": "verified"
+      }
+    ]
+  },
+  "demonstrations": {
+    "tas-surface": {
+      "inspection": "verified",
+      "source_sha256": "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36",
+      "table_shape": [
+        61,
+        92
+      ],
+      "checked_cells": 5612,
+      "source_kept_values": 1370,
+      "zero_filled_cells": 4242,
+      "data_seen": 1575,
+      "data_kept": 1370,
+      "metadata_rows_fields_checked": [
+        61,
+        22
+      ],
+      "null_fields": {
+        "thickness": 61,
+        "samplename": 61,
+        "collectionunit_notes": 45,
+        "sample_notes": 61
+      },
+      "geometry": {
+        "Point": 61
+      },
+      "age_rows": 61,
+      "default_ages": 61,
+      "blank_ageolder": 61,
+      "blank_ageyounger": 61,
+      "taxa_rows_fields_checked": [
+        92,
+        8
+      ],
+      "file_sha256": {
+        "table.tsv": "f431fa06b79220c212fdfae6f9f5d39481678951796ba08c5594e6698e7ff201",
+        "samples.csv": "079aa5f658fe17c4ed936ae0db7038c2a8a3c5513b1ce1334b8919f9bbb8fe09",
+        "ages.csv": "3c17fcaf6c8fe0d2dfbd64190cd037dafd386a25d11bc6addeed3ada9e0249cf",
+        "taxa.csv": "b3aab6da2e1a8c3868e6d559c5c719814a8e5d6f8cc7a396ca4b213527477bfa",
+        "extract.json": "eb7a0fdedd1acb287ac1b142ef946c4e2fc8a63273e2acb7093244ae91285519"
+      },
+      "data/percent.tsv_equals_current": true,
+      "data/samples.csv_equals_current": true,
+      "study.json_equals_current": true,
+      "matches_old_surface_by_id_and_label": true,
+      "old_surface_row_order_equals_new": false,
+      "data/samples.csv_equals_pre_reader": true,
+      "study.json_equals_pre_reader": true
+    },
+    "lake-selina": {
+      "inspection": "verified",
+      "source_sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
+      "table_shape": [
+        72,
+        66
+      ],
+      "checked_cells": 4752,
+      "source_kept_values": 1891,
+      "zero_filled_cells": 2861,
+      "data_seen": 2195,
+      "data_kept": 1891,
+      "metadata_rows_fields_checked": [
+        72,
+        22
+      ],
+      "null_fields": {
+        "thickness": 72,
+        "samplename": 72,
+        "analysisunitname": 72,
+        "lon": 72,
+        "lat": 72,
+        "collectionunit_notes": 72,
+        "sample_notes": 72
+      },
+      "geometry": {
+        "Polygon": 72
+      },
+      "age_rows": 144,
+      "default_ages": 72,
+      "blank_ageolder": 72,
+      "blank_ageyounger": 72,
+      "taxa_rows_fields_checked": [
+        66,
+        8
+      ],
+      "file_sha256": {
+        "table.tsv": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6",
+        "samples.csv": "ed8193bb5a43c19319f58d3f69734cab043ff6fd0015fd5a4800f86b6dc81228",
+        "ages.csv": "7b6a1d368dc9f9013c4a122bac32631fa548aaa39a2d1e7c8f9a450c49a35408",
+        "taxa.csv": "05b6cd4011f5f281e8ae5520727b0190234c290e0c2480124a75308b66d37637",
+        "extract.json": "25fe19cdd562bb4f5b1cc1fa791132d96fa35494dd238ac0be02a3160af5b1e2"
+      },
+      "table_equals_frozen_counts": true,
+      "extract_check_equals_saved": true
+    }
+  },
+  "surface_analysis": {
+    "fresh_surface_results_byte_identical": true,
+    "fresh_results_sha256": "8aaa8a5d3ac55f9b430f68c1300f157040035056c0c9254ac90a504bd8edd538",
+    "previous_to_current_changed_fields": [
+      "/primer/sha256"
+    ],
+    "old_primer_sha256": "343bda600f9c0dd136d310efb1bcbb369c74d699b954beaeafa7f74214d3bc46",
+    "new_primer_sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac"
+  },
+  "reference_files": [
+    {
+      "path": "audit_inputs.py",
+      "sha256": "e5b9be2f9d0455ad5bae9c0e7954954ae58e70a6c84bc9ce74fcb978d8de929d"
+    },
+    {
+      "path": "audit_transport.py",
+      "sha256": "b5c56d747da94875ea849d0858890c6b3566e43f745c12477cd3e588715f6b74"
+    }
+  ],
+  "scope": "Source fidelity, validation, portable bundles, live transport and preservation of existing results. No new ecological claim."
+}
