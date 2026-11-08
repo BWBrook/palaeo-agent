@@ -1,0 +1,24 @@
+{
+  "reproduction": "fresh Python processes for copied intake.py and analysis.py",
+  "status": "verified",
+  "study_status": "complete",
+  "files": {
+    "data/counts.tsv": {
+      "byte_identical": true,
+      "sha256": "a3843fab629838b497f7eb75d5c39caced4490b41911a6030060a548c734a93f"
+    },
+    "data/samples.csv": {
+      "byte_identical": true,
+      "sha256": "7d91825e45497ad86d9c318b5d79ab40ecf9eef061e5278519a162b4e6a45bee"
+    },
+    "study.json": {
+      "byte_identical": true,
+      "sha256": "7572991944a12c47c0192ef3ecf4024eb5fe6af87950556f037ded7f5f6d70d1"
+    },
+    "results.json": {
+      "byte_identical": true,
+      "sha256": "1672d42058fde6ea63ffe6ff592413d1ec85cf4a49d2823c6213d5b35df842ef"
+    }
+  },
+  "scope": "Byte-identical data, design and numerical summary; UUID/environment provenance may differ."
+}

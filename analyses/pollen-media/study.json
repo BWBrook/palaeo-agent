@@ -1,0 +1,211 @@
+{
+ "study_version": 1,
+ "inputs": {
+  "counts": {
+   "kind": "counts",
+   "path": "data/counts.tsv",
+   "format": "delimited",
+   "delimiter": "tab",
+   "orientation": "samples_by_taxa"
+  },
+  "samples": {
+   "kind": "metadata",
+   "path": "data/samples.csv",
+   "id_column": "sample_id"
+  }
+ },
+ "datasets": {
+  "primary": {
+   "source": "counts",
+   "metadata": "samples",
+   "operations": [
+    {
+     "op": "select",
+     "samples": [
+      "1466027",
+      "1466028",
+      "1466029",
+      "1480879",
+      "1480880",
+      "1480881",
+      "1480882"
+     ],
+     "reason": "predeclared presentation order from archived sample identities"
+    },
+    {
+     "op": "exclude_taxa",
+     "taxa": [
+      "Cyperaceae",
+      "Restionaceae",
+      "Gymnoschoenus"
+     ],
+     "reason": "dryland pollen sum excludes the three declared sedge/rush categories"
+    }
+   ]
+  },
+  "inclusive": {
+   "source": "counts",
+   "metadata": "samples",
+   "operations": [
+    {
+     "op": "select",
+     "samples": [
+      "1466027",
+      "1466028",
+      "1466029",
+      "1480879",
+      "1480880",
+      "1480881",
+      "1480882"
+     ],
+     "reason": "predeclared presentation order from archived sample identities"
+    }
+   ]
+  }
+ },
+ "analyses": [
+  {
+   "id": "primary_community",
+   "dataset": "primary",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "transform": "relative_abundance",
+    "distance": "braycurtis",
+    "dimensions": 2
+   }
+  },
+  {
+   "id": "inclusive_community",
+   "dataset": "inclusive",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "community",
+    "transform": "relative_abundance",
+    "distance": "braycurtis",
+    "dimensions": 2
+   }
+  },
+  {
+   "id": "primary_rarefaction",
+   "dataset": "primary",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "rarefaction",
+    "sizes": "minimum_total"
+   }
+  },
+  {
+   "id": "trap_primary",
+   "dataset": "primary",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "count_homogeneity",
+    "pairs": [
+     [
+      "1466029",
+      "1466027"
+     ],
+     [
+      "1466029",
+      "1466028"
+     ],
+     [
+      "1480879",
+      "1480880"
+     ],
+     [
+      "1480879",
+      "1480881"
+     ],
+     [
+      "1480879",
+      "1480882"
+     ]
+    ],
+    "simulations": 99999,
+    "seed": 20261108
+   }
+  },
+  {
+   "id": "trap_inclusive",
+   "dataset": "inclusive",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "count_homogeneity",
+    "pairs": [
+     [
+      "1466029",
+      "1466027"
+     ],
+     [
+      "1466029",
+      "1466028"
+     ],
+     [
+      "1480879",
+      "1480880"
+     ],
+     [
+      "1480879",
+      "1480881"
+     ],
+     [
+      "1480879",
+      "1480882"
+     ]
+    ],
+    "simulations": 99999,
+    "seed": 20261108
+   }
+  },
+  {
+   "id": "baseline_tyndall_surface",
+   "dataset": "primary",
+   "spec": {
+    "format": "past",
+    "orientation": "samples_by_taxa",
+    "value_type": "count",
+    "missing": "error",
+    "empty_samples": "error",
+    "method": "count_homogeneity",
+    "pairs": [
+     [
+      "1480880",
+      "1480881"
+     ],
+     [
+      "1480880",
+      "1480882"
+     ],
+     [
+      "1480881",
+      "1480882"
+     ]
+    ],
+    "simulations": 99999,
+    "seed": 20261108
+   }
+  }
+ ]
+}

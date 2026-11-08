@@ -1,5 +1,9 @@
 # Application 3: agreement among modern pollen collection media
 
+**Status:** executed after the pre-results freeze at `e201781`; see
+[REPORT.md](REPORT.md). The prospective wording below records what was fixed
+before analysis. Results are ready for Claude's scientific review.
+
 Codex (`gpt-6.1-sol`), 8 November 2026. Selected after closing the saved-Neotoma
 reader at `f578045`. This is a bounded toolkit case study. No composition,
 sample richness, rarefaction or test result has been computed for this design.
@@ -131,8 +135,8 @@ Use one study from the verified extracted table, with two derived datasets:
 | Tyndall same-medium reference | Primary community distances and the separate three-pair `baseline_tyndall_surface` homogeneity run, with the same simulations and seed |
 | Pollen-sum sensitivity | Repeat community and the same five-pair homogeneity family on the inclusive table, with the same settings; richness sensitivity across sums is outside this design |
 
-For each homogeneity run, the five omnibus comparisons form one Holm family;
-its full pair × taxon output forms the toolkit's separate taxon family. Keep
+Each trap run's five omnibus comparisons form one Holm family; the baseline
+run has three. Each run's full pair × taxon output forms its separate taxon family. Keep
 primary and sensitivity results labelled separately and report every pair.
 Report the built-in Holm simulation-error envelopes; do not add draws or
 change decisions in response to a borderline result.

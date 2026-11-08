@@ -22,3 +22,6 @@ benchmarks/past/legacy-data/*
 /analyses/lake-selina/runs-*/
 /analyses/tas-surface/runs-*/
 /analyses/tas-surface/extraction/
+/analyses/pollen-media/extraction/
+/analyses/pollen-media/runs-*/
+/analyses/pollen-media/intake-receipt.json
