@@ -7,6 +7,14 @@ Only extraction, metadata and the presence of the three exclusion labels
 have been checked. Codex handles implementation and execution; Claude reviews
 the scientific design and interpretation.
 
+**Pre-results amendment:** Claude's review (Board 3049) is adopted in full.
+The report leads with Bray–Curtis distances and taxon differences, adds the
+three Tyndall surface–surface pairs as a separately tested baseline, reports
+both pollen-sum totals per sample, and declares the medium-label transcription.
+The inclusive minimum of 534 was checked during validation only; no distances,
+richness estimates or test outcomes informed the amendment. This amended
+design is committed before analytical execution.
+
 ## Question
 
 Within an archived mountain site, how closely do pollen traps agree with
@@ -81,6 +89,25 @@ No cross-site hypothesis tests or selection of contrasts after viewing
 distances. The three Tyndall surface samples are separate records, not three
 independent replicates of a general collection-medium effect.
 
+### Same-medium baseline added before results
+
+Report these three Tyndall surface–surface distances beside its three
+trap–surface distances, all from the same primary community matrix:
+
+```json
+[
+  ["1480880", "1480881"],
+  ["1480880", "1480882"],
+  ["1480881", "1480882"]
+]
+```
+
+Test these pairs in a separate primary-table homogeneity run named
+`baseline_tyndall_surface`, with the same 99,999 simulations and seed
+20261108. Its omnibus and pair × taxon Holm families stay separate from
+the five trap pairs. Do not add a baseline run to the inclusive sensitivity.
+Hartz has no same-medium reference; state that limitation explicitly.
+
 ## Analysis fixed before results
 
 All analytical specifications declare `value_type: "count"`,
@@ -101,6 +128,7 @@ Use one study from the verified extracted table, with two derived datasets:
 | Primary totals, observed category richness, diversity and composition | `community`, counts, `relative_abundance`, Bray–Curtis, 2 PCoA dimensions; no eigenvalue correction |
 | Primary expected richness at equal count and estimated coverage | `rarefaction`, `sizes: "minimum_total"`; the API resolves and records the common size |
 | Primary pair differences and taxon contributions beyond counting noise | `count_homogeneity`, the five explicit pairs, `simulations: 99999`, `seed: 20261108` |
+| Tyndall same-medium reference | Primary community distances and the separate three-pair `baseline_tyndall_surface` homogeneity run, with the same simulations and seed |
 | Pollen-sum sensitivity | Repeat community and the same five-pair homogeneity family on the inclusive table, with the same settings; richness sensitivity across sums is outside this design |
 
 For each homogeneity run, the five omnibus comparisons form one Holm family;
@@ -108,6 +136,17 @@ its full pair × taxon output forms the toolkit's separate taxon family. Keep
 primary and sensitivity results labelled separately and report every pair.
 Report the built-in Holm simulation-error envelopes; do not add draws or
 change decisions in response to a borderline result.
+
+The report leads with each predefined pair's relative Bray–Curtis distance
+and the taxa passing the relevant pair × taxon Holm correction, showing their
+API-reported proportions/effects. Omnibus p-values give counting-error context;
+a rejection alone is not the main finding. No post hoc threshold will label
+an effect as large. Set Tyndall's trap and same-medium distances side by side
+and interpret their magnitudes descriptively, without a new test of distances.
+Do not claim global family-wise error control across the three separate runs.
+
+Report every sample's inclusive and primary dryland totals from the respective
+community diversity records, making the effect of sedge/rush exclusion visible.
 
 Handle validation refusals through the primer's documented correction route.
 Record any empty primary row or failed assumption before a justified,
