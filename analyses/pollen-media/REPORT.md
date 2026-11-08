@@ -9,12 +9,13 @@ by **0.634** and its moss polster by **0.396**, but Hartz has no same-medium
 reference. [Fields: `primary_community.distances`, mapped in
 `primary_pair_distances` in [results.json](results.json).]
 
-Standardising to **532 dryland grains** also changes the richness comparison:
-Tyndall surface T4 is clearly highest in expected category richness, while
-the trap overtakes T3. Composition and richness tell different parts of the
-story: the Hartz moss and trap each retain about 13 expected categories,
-despite their compositional distance of 0.396. These are conditional
-descriptions, not tests of a causal medium effect.
+Standardising to **532 dryland grains** removes T3's observed richness lead
+over the trap. The conditional subsampling ranges for the trap, T2 and T3
+overlap; T4 has the highest expected category richness. This supports no firm
+ordering among the first three, and is neither a test of population richness
+differences nor evidence of equivalence. At Hartz, the moss and trap are
+already at almost the common count, so rarefaction adds little information
+about their richness comparison.
 
 ![Primary contrasts and inclusive-sum sensitivity](figures/pair-distances.png)
 
@@ -44,6 +45,9 @@ useful distinction:
 Distances are from the respective community matrices. P-values and taxon
 decisions are from `trap_primary.pairs`, `baseline_tyndall_surface.pairs`
 and `trap_inclusive.pairs`; the taxon-count column concerns the primary sum.
+The five trap rows use a 218-test taxon Holm family, while the three surface
+rows use a separate 185-test family. Their significant-taxon counts are
+therefore not directly comparable as measures of difference magnitude.
 [Machine-readable pairs](tables/pairs.csv) and
 [all significant taxon records](tables/significant-taxa.csv).
 
@@ -53,13 +57,19 @@ changes in the opposite direction, by **−28.4** and **−18.6 points**.
 *Phyllocladus* also passes Holm in both comparisons. These differences
 describe the counted assemblages; they do not establish why the media differ.
 
-At Tyndall, *N. gunnii* dominates the largest contrasts. Its increase from
-the trap to T2 and T3 is **54.1** and **64.8 points**; its decrease from
-those surfaces to T4 is **53.2** and **63.8 points**. It is also the only
-taxon passing Holm in the close T2/T3 comparison. The strong variation among
-surface samples therefore involves the same taxon that drives the largest
-trap contrasts. *N. cunninghamii*, *Elytranthe* and *Phyllocladus* account
-for other substantial, Holm-supported contrasts.
+At Tyndall, the largest surface–surface shifts involve *N. gunnii*: it falls
+by **53.2** and **63.8 percentage points** from T2 and T3 to T4. The same
+taxon rises by **54.1** and **64.8 points** from the trap to T2 and T3, and
+is the only taxon passing Holm in the close T2/T3 comparison. Thus the
+within-medium variation and the largest trap contrasts share a dominant
+taxon. *N. cunninghamii*, *Elytranthe* and *Phyllocladus* account for other
+substantial, Holm-supported contrasts.
+
+Local variation in *N. gunnii* abundance, including sample placement relative
+to nearby plants, is a plausible explanation. The archive lacks the sample
+positions and local vegetation observations needed to establish that account
+or rank it against collection medium and integration time. No taxon-removal
+analysis was run; such a sensitivity would need a future prospective design.
 
 All effects above are the API's `proportion_difference_b_minus_a`, displayed
 in percentage points, from the named run's `pairs[].taxon_tests`. Pair order
@@ -85,10 +95,19 @@ Totals and observed richness are `inclusive_community.diversity` and
 [Machine-readable sample table](tables/samples.csv).
 
 T2 and T4 tie at 50 observed categories, but T4 retains more expected
-categories at equal count. T3 has 48 observed categories against the trap's
-45, but their expected richnesses reverse to 32.10 and 34.35. This is a
-descriptive comparison of conditional expectations; no population-level
-richness-difference test is claimed.
+categories at equal count. T3's observed lead over the trap (48 against 45)
+disappears after count standardisation: the trap is **34.35 ± 2.34**, T2
+**36.74 ± 2.59**, and T3 **32.10 ± 2.70** categories (mean ± one conditional
+SD). These ranges overlap. T4 is higher at **46.02 ± 1.71**. The numerical
+ordering of the first three point estimates is not a robust richness ranking;
+no test of population richness differences or equivalence was performed.
+
+At Hartz, 532 is H3's entire dryland count, giving its observed **13**
+categories with zero conditional SD. H2 has only one additional grain:
+**12.998 ± 0.043** categories at 532 mainly restates its observed count of
+13. Rarefaction provides little additional comparison between those two.
+The substantive Hartz standardisation is H1's larger count against them:
+**18.24 ± 0.78** categories at the common size.
 
 ![Count totals and observed versus rarefied richness](figures/counts-richness.png)
 
@@ -121,8 +140,11 @@ exceedances: their plus-one p is the resolution floor **0.00001**. T2/T3 had
 one exceedance, giving **0.00002**. Neither is an exactly known tail probability.
 The built-in Holm simulation-error envelopes, which are sensitivity diagnostics,
 are resolved below 0.05 for every comparison.
-Some extremely small Fisher probabilities underflow to numeric zero; these
-are not mathematical zero probabilities and do not affect the decisions here.
+Two Fisher probabilities underflow to numeric zero: the *N. gunnii* trap/T3
+test in the primary and inclusive runs. Their Holm values are also zero.
+These are not mathematical zero probabilities and do not affect the decisions
+here. The missing machine-readable underflow diagnostic is recorded in
+[toolkit-gaps.json](toolkit-gaps.json); the native numerical outputs are unchanged.
 The complete native probabilities and diagnostics remain in `results.json`.
 
 There is one trap per site, unknown exposure durations, and no precise
@@ -193,9 +215,10 @@ R is a validation reference, not a toolkit runtime dependency.
 
 The primer is **0.2.0.dev0**, SHA-256
 `bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac`.
-No toolkit numerical defect or additional method requirement was found.
-The existing verbose MCP extraction-inspection response remains a deferred
-minor issue; this application used the native Python API.
+No arithmetic discrepancy affecting a decision or additional method
+requirement was found. The Fisher underflow diagnostic gap and the existing
+verbose MCP extraction-inspection response remain deferred minor issues;
+this application used the native Python API.
 
 Codex (`gpt-6.1-sol`) chose and amended the design, interpreted the results,
 checked reproduction and prepared this report and figures. A prescribed

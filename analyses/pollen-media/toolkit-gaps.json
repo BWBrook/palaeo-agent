@@ -1,0 +1,47 @@
+{
+  "gap_id": "count-homogeneity-fisher-underflow",
+  "status": "recorded; not implemented",
+  "reported_in": "Board 3055",
+  "method": "count_homogeneity",
+  "method_version": 2,
+  "implementation_commit": "f578045c23fc8d63f07b3fb7eefd3318bb64fdd3",
+  "evidence": "results.json: each analysis_id .pairs[].taxon_tests[]",
+  "observed": "Extremely small positive Fisher probabilities are returned as floating-point 0.0, with no explicit underflow diagnostic; their Holm-adjusted values are also 0.0.",
+  "impact": "No decision changes in this case, but bare zero can be misread as mathematical probability zero.",
+  "cases": [
+    {
+      "analysis_id": "trap_primary",
+      "sample_ids": [
+        "1480879",
+        "1480881"
+      ],
+      "taxon_id": "Nothofagus gunnii",
+      "counts": [
+        0,
+        1110
+      ],
+      "p_value": 0.0,
+      "p_value_holm": 0.0
+    },
+    {
+      "analysis_id": "trap_inclusive",
+      "sample_ids": [
+        "1480879",
+        "1480881"
+      ],
+      "taxon_id": "Nothofagus gunnii",
+      "counts": [
+        0,
+        1110
+      ],
+      "p_value": 0.0,
+      "p_value_holm": 0.0
+    }
+  ],
+  "future_work": [
+    "Distinguish numerical underflow from an exact zero probability in machine-readable output and human-facing tables.",
+    "Use an explicit underflow flag or a numerical bound supported by the calculation; do not infer an arbitrary bound solely from a returned zero.",
+    "Cover the two saved examples and ordinary small nonzero p-values with an independent reference check."
+  ],
+  "scope": "Documentation only. No numerical result, analysis specification, randomisation setting or toolkit implementation changed."
+}
