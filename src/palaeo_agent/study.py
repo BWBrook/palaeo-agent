@@ -70,7 +70,13 @@ class MapTaxa(Model):
     reason: str = Field(min_length=1, pattern=r"\S")
 
 
-Operation = Annotated[Exclude | Select | MapTaxa, Field(discriminator="op")]
+class ExcludeTaxa(Model):
+    op: Literal["exclude_taxa"]
+    taxa: list[str] = Field(min_length=1, description="Exact count-column labels removed; retained order is kept")
+    reason: str = Field(min_length=1, pattern=r"\S")
+
+
+Operation = Annotated[Exclude | Select | MapTaxa | ExcludeTaxa, Field(discriminator="op")]
 
 
 class Dataset(Model):
@@ -183,6 +189,13 @@ def _integer(token, sample, column):
     return int(value)
 
 
+def _is_zero(cell):
+    try:
+        return Decimal(cell) == 0
+    except InvalidOperation:
+        return False
+
+
 def apply(operation, table, kind):
     """Apply one declared operation; return the new table and its record."""
     samples, columns, values = table["samples"], table["columns"], table["values"]
@@ -202,7 +215,20 @@ def apply(operation, table, kind):
                   "removed": [s for s in samples if s not in set(keep)]}
         return {"samples": keep, "columns": columns, "values": [values[index[s]] for s in keep]}, record
     if kind != "counts":
-        raise AnalysisError("operation_not_applicable", "Taxon mapping applies only to count tables")
+        raise AnalysisError("operation_not_applicable", "Taxon operations apply only to count tables")
+    if operation.op == "exclude_taxa":
+        unknown = sorted(set(operation.taxa) - set(columns))
+        if unknown:
+            raise AnalysisError("unknown_taxon", "Excluded labels do not exist", labels=unknown)
+        _unique(operation.taxa, "declared_taxon")
+        keep = [i for i, c in enumerate(columns) if c not in set(operation.taxa)]
+        if not keep:
+            raise AnalysisError("no_taxa", "The operation removes every taxon")
+        new_values = [[row[i] for i in keep] for row in values]
+        emptied = [s for s, row in zip(samples, new_values) if all(_is_zero(cell) for cell in row)]
+        record = {"op": "exclude_taxa", "reason": operation.reason, "removed": list(operation.taxa),
+                  "columns": [columns[i] for i in keep], "emptied_samples": emptied}
+        return {"samples": samples, "columns": [columns[i] for i in keep], "values": new_values}, record
     unknown = sorted(set(operation.mapping) - set(columns))
     if unknown:
         raise AnalysisError("unknown_taxon", "Mapped labels do not exist", labels=unknown)
@@ -413,6 +439,10 @@ def report(spec, datasets, runs, steps, directory, filters):
             elif operation["op"] == "map_taxa":
                 merged = "; ".join(f"{t} ← {' + '.join(s)}" for t, s in operation["merged"].items()) or "renames only"
                 lines.append(f"- map_taxa: {merged} — {operation['reason']}")
+            elif operation["op"] == "exclude_taxa":
+                emptied = ", ".join(operation["emptied_samples"]) or "none"
+                lines.append(f"- exclude_taxa: removed {', '.join(operation['removed'])}; samples left empty: "
+                             f"{emptied} — {operation['reason']}")
             elif operation["op"] == "join_metadata":
                 dropped = ", ".join(operation["dropped_unmatched"]) or "none"
                 lines.append(f"- metadata joined on exact IDs; unmatched metadata rows dropped: {dropped}")

@@ -37,6 +37,7 @@ record.
 | `exclude` | Removes the named samples (whole rows). In a measurement table whose column pairs hold different groups, a row removes values from every pair, so give such exclusions their own dataset. | unknown or duplicated IDs; removing every sample |
 | `select` | Keeps the named samples, in the order given. | unknown or duplicated IDs |
 | `map_taxa` | Renames exact labels. Labels mapped to the same target are summed as exact integers. | unknown labels; merging a missing cell; non-integer cells; use on measurements |
+| `exclude_taxa` | Removes named count columns, keeping retained column order, sample IDs and cells. Samples left all-zero are listed (`emptied_samples`) and governed by each analysis's `empty_samples` policy. | unknown or duplicated labels; removing every column; use on measurements |
 | Metadata join | Reorders metadata to the dataset by exact ID and renames the declared ID column to `sample_id`. | dataset samples without metadata; metadata rows without samples, unless `drop_unmatched_metadata` is declared, in which case they are listed |
 
 Transformations (`log10` for RMA, relative abundance for community analysis)

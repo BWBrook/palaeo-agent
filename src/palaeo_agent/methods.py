@@ -15,7 +15,8 @@ from .community import (
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .rarefaction import RarefactionResult, RarefactionSpec, calculate_rarefaction, validate_rarefaction
 from .count_homogeneity import (
-    CountHomogeneityResult, CountHomogeneitySpec, calculate_count_homogeneity, validate_count_homogeneity,
+    CountHomogeneityResult, CountHomogeneitySpec, calculate_count_homogeneity, resolve_pairs,
+    validate_count_homogeneity,
 )
 from .primer import primer_metadata
 
@@ -187,7 +188,7 @@ def validate_result(spec, value):
     if spec.method == "count_homogeneity":
         if (result["randomization"]["simulations"] != spec.simulations or
                 result["randomization"]["seed"] != spec.seed or
-                [pair["sample_ids"] for pair in result["pairs"]] != [list(pair) for pair in spec.pairs] or
+                [pair["sample_ids"] for pair in result["pairs"]] != resolve_pairs(spec, result["sample_ids"]) or
                 any(row["confidence"] != spec.confidence for row in result["zero_count_limits"])):
             raise ValueError("Pairwise comparison settings differ from the saved specification")
     return result
@@ -245,13 +246,16 @@ def write_tables(directory, result):
         else:
             fields = ["sample_a", "sample_b", "pearson_chi_squared", "braycurtis_proportions", "p_value",
                       "p_value_holm", "simulations", "count_extreme", "tail_lower", "tail_upper",
-                      "reporting_alpha", "monte_carlo_unresolved", "unresolved_scope"]
+                      "reporting_alpha", "monte_carlo_unresolved", "unresolved_scope", "holm_envelope_lower",
+                      "holm_envelope_upper", "holm_envelope_unresolved", "holm_envelope_scope"]
             _table(directory / "count_homogeneity.csv", fields,
                    ([*pair["sample_ids"], pair["pearson_chi_squared"], pair["braycurtis_proportions"],
                      pair["p_value"], pair["p_value_holm"], pair["monte_carlo"]["simulations"],
                      pair["monte_carlo"]["count_extreme"], *pair["monte_carlo"]["tail_probability_interval"],
                      pair["monte_carlo"]["reporting_alpha"], pair["monte_carlo"]["monte_carlo_unresolved"],
-                     pair["monte_carlo"]["unresolved_scope"]] for pair in result["pairs"]))
+                     pair["monte_carlo"]["unresolved_scope"], *pair["monte_carlo"]["holm_envelope"],
+                     pair["monte_carlo"]["holm_envelope_unresolved"], pair["monte_carlo"]["holm_envelope_scope"]]
+                    for pair in result["pairs"]))
             _table(directory / "taxon_tests.csv",
                    ["sample_a", "sample_b", "taxon_id", "count_a", "count_b", "p_value", "p_value_holm"],
                    ([*pair["sample_ids"], test["taxon_id"], *test["counts"], test["p_value"], test["p_value_holm"]]

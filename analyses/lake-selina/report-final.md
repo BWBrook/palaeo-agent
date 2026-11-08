@@ -77,10 +77,23 @@ in the peak herbfield and in the basal *Lagarostrobos* forest (archive
   *Lagarostrobos*.
 - **Holm family effects.** 125→130 and 255→260 cm cross from Holm p 0.052
   to 0.049. Their raw p-values are identical, because the random streams
-  are unchanged. Two new very small p-values in the family lower their
-  step-down multipliers. Both remain unresolved under the diagnostic.
-- **Everything else** is the amendment-1 result: the same raw p-values,
-  ranks and top six steps.
+  are unchanged. The testing family changed in two ways:
+  - the two imputation-adjacent raw p-values fell;
+  - the reselected endpoints replaced all six earlier extra pairs with five
+    new ones (omnibus family 77 → 76; taxon family 2,350 → 2,324).
+
+  Together these lower the two steps' step-down multipliers. Both remain
+  unresolved under the diagnostic.
+- **Everything else:** among adjacent pairs, only 215→220 and 220→225 cm
+  change raw p-values, and the top six steps are the same. 51 adjacent
+  ranks shift as the two affected effects move through the ranking.
+
+**Checks and their reach.** The R cross-checks (agreement about
+6 × 10⁻¹³) cover the original and amendment-1 tables, not the final imputed
+table. The regional timing agreement is a plausibility check within the
+assumed reconstruction, not an independent validation of the chronology.
+The interpolated younger and older age curves are working annotations, not
+propagated age-model confidence intervals.
 
 ## Toolkit: what this case study taught
 

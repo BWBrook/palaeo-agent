@@ -219,7 +219,8 @@ def test_unresolved_flag_true_is_only_unadjusted_scope():
     pair = result["pairs"][0]
     pair["p_value"] = pair["p_value_holm"] = .05
     pair["monte_carlo"].update(count_extreme=49, p_value=.05, tail_probability_interval=_interval(49, 999),
-                                monte_carlo_unresolved=True)
+                                monte_carlo_unresolved=True, holm_envelope=_interval(49, 999),
+                                holm_envelope_unresolved=True)
     assert CountHomogeneityResult.model_validate(result).pairs[0].monte_carlo.monte_carlo_unresolved
     pair["monte_carlo"]["monte_carlo_unresolved"] = False
     with pytest.raises(ValidationError, match="Unresolved flag"):

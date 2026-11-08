@@ -39,6 +39,7 @@ and in which taxa.
 | `method` | `"count_homogeneity"` |
 | input fields | as `community` |
 | `pairs` | list of distinct `[sample_a, sample_b]`, with a ≠ b; order is recorded and defines the signed taxon effect (b minus a) |
+| `pairs: "adjacent"`, `extra_pairs` | sprint 9: consecutive retained samples, then explicit extras; see [sprint-9-contracts.md](sprint-9-contracts.md) |
 | `simulations` | integer B, 999 ≤ B ≤ 99,999; no default, so the caller fixes it before seeing results |
 | `seed` | strict integer, required, 0 ≤ seed ≤ 2³² − 1 |
 | `confidence` | for zero-count limits; default 0.95 |

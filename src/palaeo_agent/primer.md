@@ -60,8 +60,11 @@ exchangeability, so do not run it there.
 **When an operation refuses:**
 - Read the refusal, then inspect the source data and its documentation.
 - Correct a justified error only with a recorded reason and provenance. Use
-  `study` operations where they apply: `exclude`, `select`, `map_taxa`, and
-  metadata joins. They are not a general data-editing language.
+  `study` operations where they apply: `exclude`, `select`, `map_taxa`,
+  `exclude_taxa`, and metadata joins. They are not a general data-editing language.
+- `exclude_taxa` removes named count columns, for example categories
+  outside a declared pollen sum. Samples it leaves empty are listed and
+  then governed by each analysis's `empty_samples` policy.
 - `exclude` and `select` act on whole rows. In a measurement table whose
   column pairs hold different groups (for example localities side by side),
   a row number is not one specimen across groups: excluding it removes
@@ -107,7 +110,15 @@ use the names advertised by your client.
   not in the numerical results that must replay.
 - **Citations.** Cite every number by its bundle and field.
 - **Sensitivity analyses** are declared alternatives (for example raw against
-  relative abundance, compared with `compare`), never quiet tuning.
+  relative abundance, compared with `compare`), never quiet tuning. For
+  `compare` to report `baseline_link_verified: true`, give the second run's
+  specification `baseline_run` (the first run's ID) and a `purpose`, after
+  the first run exists. A shared input hash shows shared data, not an
+  intended baseline.
+- **Holm families.** Holm-adjusted values depend on the whole declared
+  family. Adding, removing or replacing pairs, including long-interval
+  extras, can move a borderline pair across 0.05 with no change in its own
+  data or draws. Fix the family before seeing results.
 
 ## 5. Declaring unsupported parts
 
@@ -169,7 +180,7 @@ Example: taxon counts in ten horizons of one section, with totals from 13 to
 | Composition dissimilarity and ordination | `community` with `transform: relative_abundance` and `distance: braycurtis`; uncorrected PCoA |
 | How much unequal totals affect raw distances | a second run with `transform: none`, then `compare` |
 | Expected richness at a common count, and estimated coverage | `rarefaction` (sizes default to the smallest total, and the resolved sizes are recorded) |
-| Is each declared pair of samples different beyond counting noise, and in which taxa? | `count_homogeneity` with fixed `simulations` and `seed`: an omnibus Holm family across pairs, one taxon Holm family across all pair × taxon tests, and upper limits for zero counts |
+| Is each declared pair of samples different beyond counting noise, and in which taxa? | `count_homogeneity` with fixed `simulations` and `seed`: an omnibus Holm family across pairs, one taxon Holm family across all pair × taxon tests, and upper limits for zero counts. `pairs: "adjacent"` (plus any `extra_pairs`) compares consecutive samples in table order. Each pair's `holm_envelope` and `holm_envelope_unresolved` show whether Monte Carlo error alone could move it across 0.05; the decision rule stays `p_value_holm` |
 | Differences between groups of horizons in this section | not `permanova`: the grouping lacks justified exchangeability. Describe the groups; do not test them |
 | Rates, durations, causes | not establishable from these counts; say so |
 

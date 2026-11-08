@@ -33,6 +33,8 @@ LIMITATIONS = [
     "Full observed counts are used without rarefaction or rescaling.",
     "Omnibus and taxon tests have separate Holm families; they do not jointly control a single 5% error rate across both families.",
     "Monte Carlo intervals are pointwise 95% intervals for unadjusted conditional tail probabilities, not adjusted p-values or simultaneous intervals; unresolved flags do not establish stability near Holm thresholds.",
+    "The Holm envelope applies Holm separately to all lower and all upper tail bounds; it is a sensitivity diagnostic, not a simultaneous interval, an interval for the adjusted plus-one p-value, or a measure of stability across seeds.",
+    "Holm-adjusted values depend on the whole declared family: adding, removing or replacing pairs can move a pair across the reporting threshold without any change in its own data or draws.",
     "Zero-count upper limits are marginal, pointwise bounds for supplied taxa observed elsewhere in the prepared input; a zero count is not evidence of absence.",
     "SciPy two-sided Fisher tests sum table probabilities at most the observed probability times (1 + 1e-14); R uses (1 + 1e-7).",
     "Zero-count bounds smaller than the least positive float64 are rounded up to that representable value.",
@@ -52,7 +54,9 @@ class CountHomogeneitySpec(BaseModel):
     metadata: Path | None = None
     missing: Literal["error"]
     empty_samples: Literal["error", "drop"]
-    pairs: list[list[str]] = Field(min_length=1)
+    pairs: list[list[str]] | Literal["adjacent"] = Field(
+        description="Explicit pairs, or 'adjacent': consecutive retained samples in input order")
+    extra_pairs: list[list[str]] = Field(default=[], description="Pairs after the adjacent ones; only with 'adjacent'")
     simulations: int = Field(strict=True, ge=999, le=99999)
     seed: int = Field(strict=True, ge=0, le=2**32 - 1)
     confidence: float = Field(default=0.95, strict=True, gt=0, lt=1, allow_inf_nan=False)
@@ -60,13 +64,37 @@ class CountHomogeneitySpec(BaseModel):
     @field_validator("pairs", mode="before")
     @classmethod
     def exact_pairs(cls, pairs):
-        _check_pairs(pairs)
+        if pairs != "adjacent":
+            _check_pairs(pairs)
+        return pairs
+
+    @field_validator("extra_pairs", mode="before")
+    @classmethod
+    def exact_extra_pairs(cls, pairs):
+        if pairs:
+            _check_pairs(pairs)
         return pairs
 
     @model_validator(mode="after")
     def supported_inputs(self):
         check_delimiter(self)
+        if self.extra_pairs and self.pairs != "adjacent":
+            raise ValueError("extra_pairs is allowed only with pairs: 'adjacent'")
         return self
+
+
+def resolve_pairs(spec, sample_ids):
+    """The complete declared pair list: explicit pairs, or adjacent retained samples then the extras."""
+    if spec.pairs != "adjacent":
+        return [list(pair) for pair in spec.pairs]
+    if len(sample_ids) < 2:
+        raise AnalysisError("insufficient_samples", "Adjacent pairs need at least two retained samples")
+    adjacent = [[a, b] for a, b in zip(sample_ids, sample_ids[1:])]
+    seen = {frozenset(pair) for pair in adjacent}
+    repeated = [pair for pair in spec.extra_pairs if frozenset(pair) in seen]
+    if repeated:
+        raise AnalysisError("duplicate_pair", "Extra pairs repeat adjacent pairs; remove them", pairs=repeated)
+    return adjacent + [list(pair) for pair in spec.extra_pairs]
 
 
 def _check_pairs(pairs):
@@ -92,6 +120,9 @@ class MonteCarloRecord(ResultItem):
     reporting_alpha: Literal[0.05]
     monte_carlo_unresolved: bool
     unresolved_scope: Literal["unadjusted_tail_only"]
+    holm_envelope: list[FiniteFloat] = Field(min_length=2, max_length=2)
+    holm_envelope_unresolved: bool
+    holm_envelope_scope: Literal["sensitivity_diagnostic"]
     spawn_key: list[int] = Field(min_length=1, max_length=1)
 
 
@@ -153,9 +184,15 @@ class RandomizationRecord(ResultItem):
     stream_policy: Literal["SeedSequence.spawn_declared_pair_order"]
 
 
+class PairDeclaration(ResultItem):
+    mode: Literal["adjacent", "explicit"]
+    n_adjacent: int = Field(ge=0)
+    n_extra: int = Field(ge=0)
+
+
 class CountHomogeneityResult(ResultItem):
     method: Literal["count_homogeneity"]
-    method_version: Literal[1]
+    method_version: Literal[2]
     orientation: Literal["samples_by_taxa", "taxa_by_samples"]
     canonical_orientation: Literal["samples_by_taxa"]
     value_type: Literal["count"]
@@ -171,6 +208,7 @@ class CountHomogeneityResult(ResultItem):
     metadata: list[dict[str, str]] | None
     excluded: list[CommunityExclusion]
     warnings: list[CommunityWarning]
+    pair_declaration: PairDeclaration
     pairs: list[PairResult] = Field(min_length=1)
     zero_count_limits: list[ZeroCountLimit] = Field(min_length=2)
     confidence: FiniteFloat = Field(gt=0, lt=1)
@@ -196,6 +234,12 @@ def _holm(values):
         previous = min(1.0, max(previous, (len(values) - rank) * values[index]))
         adjusted[index] = previous
     return adjusted
+
+
+def _holm_envelopes(intervals):
+    lower = _holm([interval[0] for interval in intervals])
+    upper = _holm([interval[1] for interval in intervals])
+    return [[lo, hi] for lo, hi in zip(lower, upper, strict=True)]
 
 
 def _interval(b, simulations):
@@ -238,7 +282,8 @@ def _prepare_input(spec, data, metadata):
     matrix, samples, taxa, meta = _read_inputs(spec, data, metadata)
     prepared = _prepare_counts(matrix, sample_ids=samples, taxon_ids=taxa,
                                empty_samples=spec.empty_samples, metadata=meta)
-    pairs = [_pair_data(prepared["counts"], prepared["sample_ids"], taxa, pair) for pair in spec.pairs]
+    declared = resolve_pairs(spec, prepared["sample_ids"])
+    pairs = [_pair_data(prepared["counts"], prepared["sample_ids"], taxa, pair) for pair in declared]
     return prepared, pairs
 
 
@@ -295,19 +340,26 @@ def calculate_count_homogeneity(spec, data, metadata=None):
                                         "p_value": fisher_p, "p_value_holm": fisher_p})
     for pair, adjusted in zip(pairs, _holm([pair["p_value"] for pair in pairs]), strict=True):
         pair["p_value_holm"] = adjusted
+    for pair, envelope in zip(pairs, _holm_envelopes([pair["monte_carlo"]["tail_probability_interval"] for pair in pairs]), strict=True):
+        pair["monte_carlo"].update(holm_envelope=envelope, holm_envelope_unresolved=envelope[0] <= 0.05 <= envelope[1],
+                                   holm_envelope_scope="sensitivity_diagnostic")
     taxon_tests = [test for pair in pairs for test in pair["taxon_tests"]]
     for test, adjusted in zip(taxon_tests, _holm([test["p_value"] for test in taxon_tests]), strict=True):
         test["p_value_holm"] = adjusted
     counts = [[int(value) for value in row] for row in prepared["counts"]]
-    result = {"method": "count_homogeneity", "method_version": 1, "orientation": spec.orientation,
+    n_adjacent = len(prepared["sample_ids"]) - 1 if spec.pairs == "adjacent" else 0
+    result = {"method": "count_homogeneity", "method_version": 2, "orientation": spec.orientation,
               "canonical_orientation": "samples_by_taxa", "value_type": "count", "missing": spec.missing,
               "empty_samples": spec.empty_samples, "n_input": len(prepared["input_sample_ids"]),
               "n": len(prepared["sample_ids"]), "n_taxa": len(prepared["taxon_ids"]),
               "input_sample_ids": prepared["input_sample_ids"], "sample_ids": prepared["sample_ids"],
               "taxon_ids": prepared["taxon_ids"], "retained_counts": counts, "metadata": prepared["metadata"],
-              "excluded": prepared["excluded"], "warnings": prepared["warnings"], "pairs": pairs,
+              "excluded": prepared["excluded"], "warnings": prepared["warnings"],
+              "pair_declaration": {"mode": "adjacent" if spec.pairs == "adjacent" else "explicit",
+                                   "n_adjacent": n_adjacent, "n_extra": len(pairs) - n_adjacent}, "pairs": pairs,
               "confidence": spec.confidence,
-              "zero_count_limits": _zero_limits(counts, prepared["sample_ids"], prepared["taxon_ids"], spec.pairs, spec.confidence),
+              "zero_count_limits": _zero_limits(counts, prepared["sample_ids"], prepared["taxon_ids"],
+                                                [pair["sample_ids"] for pair in pairs], spec.confidence),
               "multiplicity": {"omnibus": {"method": "holm", "size": len(pairs)},
                                "taxon": {"method": "holm", "size": len(taxon_tests)}, "joint_control": False},
               "randomization": {"seed": spec.seed, "simulations": spec.simulations, "bit_generator": "PCG64",
@@ -386,6 +438,21 @@ def _validate_saved_result(result):
             _close(test.p_value, float(fisher_exact([[xa, na - xa], [xb, nb - xb]], alternative="two-sided").pvalue))
     for pair, adjusted in zip(result.pairs, _holm([pair.p_value for pair in result.pairs]), strict=True):
         _close(pair.p_value_holm, adjusted)
+    envelopes = _holm_envelopes([pair.monte_carlo.tail_probability_interval for pair in result.pairs])
+    for pair, envelope in zip(result.pairs, envelopes, strict=True):
+        for actual, value in zip(pair.monte_carlo.holm_envelope, envelope, strict=True):
+            _close(actual, value)
+        if pair.monte_carlo.holm_envelope_unresolved != (envelope[0] <= 0.05 <= envelope[1]):
+            raise ValueError("Holm envelope flag disagrees with its envelope")
+    declaration = result.pair_declaration
+    if declaration.n_adjacent + declaration.n_extra != len(pairs):
+        raise ValueError("Pair declaration counts disagree with the saved pairs")
+    if declaration.mode == "explicit" and declaration.n_adjacent:
+        raise ValueError("Explicit pair lists have no adjacent block")
+    if declaration.mode == "adjacent" and (
+            declaration.n_adjacent != len(result.sample_ids) - 1 or
+            pairs[:declaration.n_adjacent] != [[a, b] for a, b in zip(result.sample_ids, result.sample_ids[1:])]):
+        raise ValueError("Adjacent pairs must be the consecutive retained samples")
     tests = [test for pair in result.pairs for test in pair.taxon_tests]
     if result.multiplicity.omnibus.size != len(pairs) or result.multiplicity.taxon.size != len(tests):
         raise ValueError("Holm family sizes must match every declared pair and pair-present taxon")
