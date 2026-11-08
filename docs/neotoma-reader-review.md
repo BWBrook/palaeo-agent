@@ -7,8 +7,8 @@ Production code, tests and demonstrations are unchanged by this review.
 six issues below before accepting the reader for general use.** None changes
 the supplied examples' tables or numerical results.
 
-**Update at `7642a7b`: all six original findings are closed.** One regression
-in percentage type validation remains; see the
+**Closed at `f578045`: all seven reader findings are resolved.** The six
+original repairs and final percentage-type guard are verified in the
 [repair confirmation](neotoma-reader-confirmation.md). The original findings
 below are retained as the historical review.
 

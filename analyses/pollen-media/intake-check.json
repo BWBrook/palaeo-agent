@@ -1,0 +1,196 @@
+{
+  "commit": "f578045",
+  "primer_version": "0.2.0.dev0",
+  "primer_sha256": "bea68f9f65925dcbe4aeeeb2ccb7b74a0915ac4c8ce856e1b49b2e038271d5ac",
+  "inspection": "verified",
+  "table_sha256": "a3843fab629838b497f7eb75d5c39caced4490b41911a6030060a548c734a93f",
+  "scope": "metadata reconnaissance only; no composition, distance, richness or test statistics",
+  "datasets": [
+    {
+      "datasetid": 74305,
+      "sitename": "Hartz Mountains",
+      "datasetname": "HartzMountains_pollen",
+      "collectionunitid": "55665",
+      "collunittype": "Modern",
+      "depositionalenvironment": "Unknown",
+      "site_altitude": "980",
+      "collection_date": null,
+      "samples": [
+        {
+          "sample_id": "1466028",
+          "depth": "2",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "moss polster"
+        },
+        {
+          "sample_id": "1466029",
+          "depth": "3",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "pollen trap"
+        },
+        {
+          "sample_id": "1466027",
+          "depth": "1",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "core top"
+        }
+      ],
+      "ages": [
+        {
+          "sample_id": "1466028",
+          "chronologyid": "57691",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-30",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        },
+        {
+          "sample_id": "1466029",
+          "chronologyid": "57691",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-30",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        },
+        {
+          "sample_id": "1466027",
+          "chronologyid": "57691",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-30",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        }
+      ]
+    },
+    {
+      "datasetid": 74913,
+      "sitename": "Tyndall Ranges",
+      "datasetname": "TyndallRanges_pollen",
+      "collectionunitid": "56139",
+      "collunittype": "Modern",
+      "depositionalenvironment": "Air Pollen Sampler",
+      "site_altitude": "1000",
+      "collection_date": "1986-01-01",
+      "samples": [
+        {
+          "sample_id": "1480879",
+          "depth": "1",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "pollen trap"
+        },
+        {
+          "sample_id": "1480881",
+          "depth": "3",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "surface sample"
+        },
+        {
+          "sample_id": "1480882",
+          "depth": "4",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "surface sample"
+        },
+        {
+          "sample_id": "1480880",
+          "depth": "2",
+          "thickness": "",
+          "samplename": "",
+          "analysisunitname": "surface sample",
+          "sample_notes": "",
+          "medium_from_archived_notes": "surface sample"
+        }
+      ],
+      "ages": [
+        {
+          "sample_id": "1480879",
+          "chronologyid": "58062",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-36",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        },
+        {
+          "sample_id": "1480881",
+          "chronologyid": "58062",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-36",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        },
+        {
+          "sample_id": "1480882",
+          "chronologyid": "58062",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-36",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        },
+        {
+          "sample_id": "1480880",
+          "chronologyid": "58062",
+          "chronologyname": "IPPD1",
+          "agetype": "Calendar years BP",
+          "age": "-36",
+          "ageolder": "",
+          "ageyounger": "",
+          "is_default_chronology": "true"
+        }
+      ]
+    }
+  ],
+  "source_specification": {
+    "source": "../tas-surface/source/neotoma-tas-surface-download.json",
+    "source_sha256": "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36",
+    "datasets": [
+      74305,
+      74913
+    ],
+    "units": "NISP",
+    "elements": [
+      "pollen",
+      "pollen/spore",
+      "spore"
+    ],
+    "ecological_groups": [
+      "TRSH",
+      "UPHE"
+    ],
+    "absent_taxa": "zero",
+    "row_order": "source"
+  },
+  "shape": [
+    7,
+    82
+  ],
+  "decision_scope": "Structural intake and collection-medium metadata only; no composition, sample richness, rarefaction or tests computed."
+}

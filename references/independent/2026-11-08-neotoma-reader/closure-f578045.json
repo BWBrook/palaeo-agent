@@ -1,0 +1,35 @@
+{
+  "reviewed_commit": "f578045c23fc8d63f07b3fb7eefd3318bb64fdd3",
+  "targeted_tests": {
+    "command": "uv run pytest -q tests/test_neotoma.py tests/test_mcp.py",
+    "passed": 72,
+    "seconds": 22.25
+  },
+  "probe_cases": [
+    {
+      "case": "null",
+      "exception": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be JSON numbers"
+    },
+    {
+      "case": "object",
+      "exception": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be JSON numbers"
+    },
+    {
+      "case": "list",
+      "exception": "AnalysisError",
+      "code": "invalid_abundance",
+      "message": "Percent values must be JSON numbers"
+    }
+  ],
+  "all_seven_findings_closed": true,
+  "full_suite": {
+    "passed": 799,
+    "skipped": 11,
+    "evidence": "Reported by Claude in Board 3042; not repeated in this final targeted confirmation."
+  },
+  "minor_followup": "Compact MCP neotoma_inspect response remains deferred."
+}

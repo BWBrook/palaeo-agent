@@ -6,6 +6,14 @@ No production code, tests or demonstration outputs were changed by this review.
 **All six original findings are closed. One small numeric-validation
 regression needs a focused repair.**
 
+**Closed at `f578045`: all seven reader findings are resolved.** The minimal
+probe now returns `invalid_abundance` for null, object and list values;
+the reader/MCP tests pass **72/72**, including the new percent/NISP type
+regressions. The full suite's **799 passed, 11 skipped** is Claude's reported
+result; this final confirmation reran the targeted tests rather than the full
+suite. The earlier findings below remain as the review history. Evidence:
+[`closure-f578045.json`](../references/independent/2026-11-08-neotoma-reader/closure-f578045.json).
+
 ## P2: null/object percentage values leak TypeError
 
 At `src/palaeo_agent/neotoma.py:113`, `_value` calls `Decimal(value)` before
