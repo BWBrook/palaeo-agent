@@ -344,3 +344,29 @@ def test_advertised_mcp_schema_accepts_the_real_extractor_request(tmp_path):
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.validate({**request, "spec": {**request["spec"], "method": "community"}}, schemas["neotoma_extract"])
     assert Transport(tmp_path).dispatch("neotoma_extract", request)["status"] == "complete"
+
+
+@pytest.mark.parametrize("value", [None, {}, [], "1.5", True])
+def test_nonnumeric_percent_values_are_refused(tmp_path, value):
+    with pytest.raises(AnalysisError) as error:
+        _extract(tmp_path, _mutate(lambda d: d["data"][2]["site"]["collectionunit"]["dataset"]["samples"][0]["datum"][0]
+                                   .update(value=value)), datasets=[3], units="percent")
+    assert error.value.code == "invalid_abundance"
+
+
+@pytest.mark.parametrize("value", [None, {}, [], "5", True, 2.0])
+def test_nonnumeric_nisp_values_are_refused(tmp_path, value):
+    with pytest.raises(AnalysisError) as error:
+        _extract(tmp_path, _mutate(lambda d: d["data"][0]["site"]["collectionunit"]["dataset"]["samples"][1]["datum"][0]
+                                   .update(value=value)))
+    assert error.value.code == "invalid_count"
+
+
+def test_mcp_returns_structured_refusal_for_null_percent(tmp_path):
+    from palaeo_agent.mcp_server import Transport
+    document = _mutate(lambda d: d["data"][2]["site"]["collectionunit"]["dataset"]["samples"][0]["datum"][0]
+                       .update(value=None))
+    path, digest = _write(tmp_path, document)
+    response = Transport(tmp_path).dispatch("neotoma_extract", {"spec": _spec("download.json", digest, datasets=[3],
+                                                                              units="percent"), "output": "out"})
+    assert response["code"] == "invalid_abundance"

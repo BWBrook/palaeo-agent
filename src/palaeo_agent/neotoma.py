@@ -109,10 +109,12 @@ def _value(datum, units, sample_id, label):
             raise AnalysisError("invalid_count", "NISP values must be integers from zero to 2**53 - 1",
                                 sample_id=sample_id, label=label)
         return value
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise AnalysisError("invalid_abundance", "Percent values must be JSON numbers", sample_id=sample_id, label=label)
     try:
         exact = Decimal(value.text) if isinstance(value, _Number) else Decimal(value)
         number = float(value) if isinstance(value, _Number) else float(exact)
-        valid = (not isinstance(value, bool) and isinstance(value, (int, float)) and exact.is_finite() and exact >= 0
+        valid = (exact.is_finite() and exact >= 0
                  and math.isfinite(number) and not (exact > 0 and number == 0))
     except (OverflowError, ValueError, ArithmeticError):
         valid = False
