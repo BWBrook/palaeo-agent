@@ -4,8 +4,9 @@ Codex (`gpt-6.1-sol`), 8 November 2026. Reviewed `a369329` against
 [the contracts](sprint-9-contracts.md). Production code and tests are unchanged
 by this review.
 
-**Two small fixes remain before acceptance.** The numerical diagnostic,
-taxon-exclusion behaviour and live MCP exposure pass the checks below.
+**Both findings are closed at `c6db5dd`.** The numerical diagnostic,
+taxon-exclusion behaviour and live MCP exposure passed the initial checks
+below; the final section records confirmation of the two repairs.
 
 ## Findings
 
@@ -96,5 +97,22 @@ the Python Holm implementation. API runs used five disjoint pairs, B = 999,
 seed = 426, first in declared order and then in a permutation. Deliberately
 repeated synthetic profiles produced the expected identical-profile warning.
 
-Fix the two findings, add the focused regressions and run the affected checks.
-No additional case-study science or broader toolkit feature is requested.
+## Confirmation at c6db5dd
+
+Both fixes match the requested scope. Calculation and inspection now use the
+same specification-derived pair-declaration helper. The new regressions cover
+both relabelling directions after updating the result hashes.
+
+The original forged bundle from this review, previously accepted, now raises
+`invalid_bundle` with reason `Pairwise comparison settings differ from the
+saved specification`. Public discovery and its output schema both report
+version 2; the added regression also checks an actual result's version.
+
+`uv run pytest -q tests/test_sprint9.py tests/test_count_homogeneity.py
+tests/test_mcp.py` passes **97 tests**. This is the affected-test confirmation;
+Claude separately reports the full suite as 696 passed and 11 skipped.
+The fixes leave the numerical algorithm unchanged, so the independent R
+check and case-study analyses were not repeated.
+
+Sprint 9 is accepted for the agreed scope. No further review of these two
+findings, case-study science or broader toolkit feature is requested.
