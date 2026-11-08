@@ -1,0 +1,4 @@
+"check","fields","max_abs_error","tolerance","passed"
+"public_API",80,2.08166817117217e-16,1e-12,TRUE
+"edge_vectors",64,0,1e-12,TRUE
+"CP_endpoints",44,6.4637011021329e-13,1e-12,TRUE
