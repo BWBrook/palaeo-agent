@@ -15,7 +15,7 @@ from .community import (
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .rarefaction import RarefactionResult, RarefactionSpec, calculate_rarefaction, validate_rarefaction
 from .count_homogeneity import (
-    CountHomogeneityResult, CountHomogeneitySpec, calculate_count_homogeneity, resolve_pairs,
+    CountHomogeneityResult, CountHomogeneitySpec, calculate_count_homogeneity, pair_declaration, resolve_pairs,
     validate_count_homogeneity,
 )
 from .primer import primer_metadata
@@ -100,12 +100,14 @@ def discover():
                         "https://esapubs.org/archive/ecol/E093/238/appendix-D.pdf"],
          "input_schema": RarefactionSpec.model_json_schema(),
          "output_schema": RarefactionResult.model_json_schema()},
-        {"id": "count_homogeneity", "version": 1, "description": METHOD_INDEX[4]["description"],
+        {"id": "count_homogeneity", "version": 2, "description": METHOD_INDEX[4]["description"],
          "requirements": ["Independent multinomial counts under a common composition null",
-                          "Declared distinct pairs, simulation count and seed"],
+                          "Declared distinct pairs (or 'adjacent' in table order, plus extras), simulation count and seed"],
          "limitations": ["Counting-model inference only; no ecological cause or between-collection variance",
                          "Two Holm families do not jointly guarantee one global error rate",
                          "Monte Carlo intervals describe unadjusted tails, not adjusted decision stability",
+                         "The Holm envelope over tail bounds is a sensitivity diagnostic, not a simultaneous interval",
+                         "Holm-adjusted values depend on the whole declared pair family",
                          "Zero-count limits are pointwise, not evidence of absence"],
          "references": ["https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.random_table.html",
                         "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html"],
@@ -189,6 +191,7 @@ def validate_result(spec, value):
         if (result["randomization"]["simulations"] != spec.simulations or
                 result["randomization"]["seed"] != spec.seed or
                 [pair["sample_ids"] for pair in result["pairs"]] != resolve_pairs(spec, result["sample_ids"]) or
+                result["pair_declaration"] != pair_declaration(spec, result["sample_ids"]) or
                 any(row["confidence"] != spec.confidence for row in result["zero_count_limits"])):
             raise ValueError("Pairwise comparison settings differ from the saved specification")
     return result

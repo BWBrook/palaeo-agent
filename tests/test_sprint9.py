@@ -146,3 +146,40 @@ def test_adjacent_run_inspects_and_saves_resolved_pairs(tmp_path):
     assert inspected["status"] == "verified"
     assert [p["sample_ids"] for p in inspected["result"]["pairs"]][-1] == ["S1", "S5"]
     assert "holm_envelope_lower" in (Path(outcome["run_dir"]) / "count_homogeneity.csv").read_text()
+
+
+def _rehash(run_dir, name):
+    import hashlib
+    manifest_path = Path(run_dir) / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    data = (Path(run_dir) / name).read_bytes()
+    manifest["files"][name].update(sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
+    manifest_path.write_text(json.dumps(manifest, indent=2))
+
+
+@pytest.mark.parametrize("declared, forged", [
+    ("adjacent", {"mode": "explicit", "n_adjacent": 0, "n_extra": 2}),
+    ([["S1", "S2"], ["S2", "S3"]], {"mode": "adjacent", "n_adjacent": 2, "n_extra": 0}),
+])
+def test_inspection_binds_pair_declaration_to_the_specification(tmp_path, declared, forged):
+    (tmp_path / "t.dat").write_text(".\tA\tB\nS1\t10\t5\nS2\t8\t7\nS3\t2\t12\n")
+    spec = dict(BASE, input=str(tmp_path / "t.dat"), pairs=declared, seed=5)
+    outcome = run(spec, tmp_path / "run")
+    assert inspect_run(outcome["run_dir"])["status"] == "verified"
+    results = Path(outcome["run_dir"]) / "results.json"
+    data = json.loads(results.read_text())
+    data["pair_declaration"] = forged
+    results.write_text(json.dumps(data, indent=2))
+    _rehash(outcome["run_dir"], "results.json")
+    with pytest.raises(Exception):
+        inspect_run(outcome["run_dir"])
+
+
+def test_discovery_version_matches_schema_and_results(tmp_path):
+    from palaeo_agent import discover
+    from palaeo_agent.count_homogeneity import CountHomogeneityResult
+    entry = next(m for m in discover()["methods"] if m["id"] == "count_homogeneity") if isinstance(discover(), dict) \
+        else next(m for m in discover() if m["id"] == "count_homogeneity")
+    schema = CountHomogeneityResult.model_json_schema()["properties"]["method_version"]
+    result = calculate_count_homogeneity(_spec(tmp_path, pairs="adjacent"), (tmp_path / "t.dat").read_bytes())
+    assert entry["version"] == schema["const"] == result["method_version"] == 2

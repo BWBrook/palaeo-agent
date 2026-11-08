@@ -83,6 +83,13 @@ class CountHomogeneitySpec(BaseModel):
         return self
 
 
+def pair_declaration(spec, sample_ids):
+    """How the saved pair list was declared, as implied by the specification and retained samples."""
+    if spec.pairs != "adjacent":
+        return {"mode": "explicit", "n_adjacent": 0, "n_extra": len(spec.pairs)}
+    return {"mode": "adjacent", "n_adjacent": len(sample_ids) - 1, "n_extra": len(spec.extra_pairs)}
+
+
 def resolve_pairs(spec, sample_ids):
     """The complete declared pair list: explicit pairs, or adjacent retained samples then the extras."""
     if spec.pairs != "adjacent":
@@ -347,7 +354,6 @@ def calculate_count_homogeneity(spec, data, metadata=None):
     for test, adjusted in zip(taxon_tests, _holm([test["p_value"] for test in taxon_tests]), strict=True):
         test["p_value_holm"] = adjusted
     counts = [[int(value) for value in row] for row in prepared["counts"]]
-    n_adjacent = len(prepared["sample_ids"]) - 1 if spec.pairs == "adjacent" else 0
     result = {"method": "count_homogeneity", "method_version": 2, "orientation": spec.orientation,
               "canonical_orientation": "samples_by_taxa", "value_type": "count", "missing": spec.missing,
               "empty_samples": spec.empty_samples, "n_input": len(prepared["input_sample_ids"]),
@@ -355,8 +361,7 @@ def calculate_count_homogeneity(spec, data, metadata=None):
               "input_sample_ids": prepared["input_sample_ids"], "sample_ids": prepared["sample_ids"],
               "taxon_ids": prepared["taxon_ids"], "retained_counts": counts, "metadata": prepared["metadata"],
               "excluded": prepared["excluded"], "warnings": prepared["warnings"],
-              "pair_declaration": {"mode": "adjacent" if spec.pairs == "adjacent" else "explicit",
-                                   "n_adjacent": n_adjacent, "n_extra": len(pairs) - n_adjacent}, "pairs": pairs,
+              "pair_declaration": pair_declaration(spec, prepared["sample_ids"]), "pairs": pairs,
               "confidence": spec.confidence,
               "zero_count_limits": _zero_limits(counts, prepared["sample_ids"], prepared["taxon_ids"],
                                                 [pair["sample_ids"] for pair in pairs], spec.confidence),
