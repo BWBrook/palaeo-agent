@@ -1,0 +1,32 @@
+{
+  "dataset_title": "Measurement verification data for AutoMorph vs. hand measurements",
+  "creators": [
+    "Hsiang, Allison Y.",
+    "Nelson, Kaylea",
+    "Elder, Leanne E.",
+    "Sibert, Elizabeth C.",
+    "Kahanamoku, Sara S.",
+    "Burke, Janet E.",
+    "Kelly, Abigail",
+    "Liu, Yusu",
+    "Hull, Pincelli M."
+  ],
+  "dataset_doi": "10.5281/zenodo.1002768",
+  "record_url": "https://zenodo.org/records/1002768",
+  "metadata_url": "https://zenodo.org/api/records/1002768",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "retrieved_date": "2026-11-09",
+  "file": "STable1_2DLimpets.csv",
+  "download_url": "https://zenodo.org/api/records/1002768/files/STable1_2DLimpets.csv/content",
+  "bytes": 9416,
+  "registered_checksum": "md5:32f5ae747488f2710b015bd575d6761c",
+  "sha256": "481c968bebeb96716ae03623361aebb2c6d64e1ee636f30e5406d1a3071285fe",
+  "article_doi": "10.1111/2041-210X.12915",
+  "supplement_url": "https://finneganlab.org/wp-content/uploads/2024/08/hsiang-et-al-2018-supplemental.pdf",
+  "supplement_pages": [
+    7,
+    8
+  ],
+  "changes_to_source": "None; the CSV is the exact downloaded file. Intake makes a separate table with ObjectID as the row identifier and copies measurement text unchanged."
+}

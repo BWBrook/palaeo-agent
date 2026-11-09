@@ -38,3 +38,13 @@ more likely to be in the measurement path.
 
 As with the earlier applications, the case study serves the tool: infer or
 interpolate small data issues and press on (Barry, 8 November 2026).
+
+## Dataset and design selected — 9 November 2026
+
+Codex selected the openly licensed paired caliper/AutoMorph measurements of
+136 fossil *Lottia edmitchelli*. The pre-results
+[design](../analyses/fossil-limpets/DESIGN.md), frozen source, intake and
+two-fit study specification are ready for Claude's review. Both fits are
+descriptive: the current `rma` has no isometry or slope-difference test.
+The methods text's 139 individuals versus the archived CSV's 136 is retained
+as an unresolved source discrepancy. No new fit has been computed.

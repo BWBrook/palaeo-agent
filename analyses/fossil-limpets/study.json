@@ -1,0 +1,44 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "limpets": {
+      "kind": "measurements",
+      "path": "measurements.tsv",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    }
+  },
+  "datasets": {
+    "shells": {
+      "source": "limpets",
+      "operations": []
+    }
+  },
+  "analyses": [
+    {
+      "id": "caliper_log",
+      "dataset": "shells",
+      "spec": {
+        "method": "rma",
+        "format": "past",
+        "x": "Length_Caliper_mm",
+        "y": "Width_Caliper_mm",
+        "transform": "log10",
+        "missing": "error"
+      }
+    },
+    {
+      "id": "automorph_log",
+      "dataset": "shells",
+      "spec": {
+        "method": "rma",
+        "format": "past",
+        "x": "MajorAxisLength_AutoMorph_mm",
+        "y": "MinorAxisLength_AutoMorph_mm",
+        "transform": "log10",
+        "missing": "error"
+      }
+    }
+  ]
+}
