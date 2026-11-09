@@ -1,0 +1,814 @@
+{
+  "freeze_commit": "73596b8ad2370672627047ce957a2d4654888ec0",
+  "approval_board_message": 3131,
+  "study_dir": "runs-amended-study",
+  "source_sha256": "481c968bebeb96716ae03623361aebb2c6d64e1ee636f30e5406d1a3071285fe",
+  "study_sha256": "9f689be10499294c48f5aedea173f12a1a31c746f153f796d2219b961ce7ea46",
+  "study_manifest_sha256": "c4d784994a24e10ef24e3e0ef54a2da9d6ceeb603492c7dc031a00e7e35289bf",
+  "runs": {
+    "caliper_log": {
+      "run_dir": "runs/caliper_log/16d7d404eeb94d7da8b7ec01ad8c7eba",
+      "run_id": "16d7d404eeb94d7da8b7ec01ad8c7eba",
+      "results_sha256": "a1873391b606036a89399928f9d7b6e0c0d5addba2fff9db3639a72a32d843e9",
+      "environment": {
+        "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit",
+        "packages": {
+          "annotated-types": "0.8.0",
+          "anyio": "4.15.1",
+          "attrs": "26.1.0",
+          "cffi": "2.1.1",
+          "click": "8.5.0",
+          "contourpy": "1.4.0",
+          "cryptography": "50.0.2",
+          "cycler": "0.12.1",
+          "fonttools": "4.68.0",
+          "h11": "0.16.0",
+          "httpcore2": "2.16.0",
+          "httpx2": "2.16.0",
+          "idna": "3.20",
+          "iniconfig": "2.3.1",
+          "jsonschema": "4.26.0",
+          "jsonschema-specifications": "2025.9.1",
+          "kiwisolver": "1.5.1",
+          "matplotlib": "3.11.2",
+          "mcp": "2.3.0",
+          "mcp-types": "2.3.0",
+          "numpy": "2.5.4",
+          "opentelemetry-api": "1.45.2",
+          "packaging": "26.3",
+          "palaeo-agent": "0.2.0.dev0",
+          "pillow": "13.0.0",
+          "pluggy": "1.7.0",
+          "pycparser": "3.12",
+          "pydantic": "2.14.2",
+          "pydantic-core": "2.50.2",
+          "pygments": "2.21.0",
+          "pyjwt": "2.15.1",
+          "pyparsing": "3.3.3",
+          "pytest": "9.2.0",
+          "python-dateutil": "3.0.0",
+          "python-multipart": "0.0.32",
+          "referencing": "0.37.0",
+          "rpds-py": "2026.9.1",
+          "scipy": "1.18.1",
+          "six": "1.17.0",
+          "sse-starlette": "3.6.0",
+          "starlette": "1.10.0",
+          "truststore": "0.10.5",
+          "typing-extensions": "4.16.0",
+          "typing-inspection": "0.4.4",
+          "tzdata": "2026.6",
+          "uvicorn": "0.54.0"
+        },
+        "distributions": [
+          {
+            "name": "annotated-types",
+            "version": "0.8.0"
+          },
+          {
+            "name": "anyio",
+            "version": "4.15.1"
+          },
+          {
+            "name": "attrs",
+            "version": "26.1.0"
+          },
+          {
+            "name": "cffi",
+            "version": "2.1.1"
+          },
+          {
+            "name": "click",
+            "version": "8.5.0"
+          },
+          {
+            "name": "contourpy",
+            "version": "1.4.0"
+          },
+          {
+            "name": "cryptography",
+            "version": "50.0.2"
+          },
+          {
+            "name": "cycler",
+            "version": "0.12.1"
+          },
+          {
+            "name": "fonttools",
+            "version": "4.68.0"
+          },
+          {
+            "name": "h11",
+            "version": "0.16.0"
+          },
+          {
+            "name": "httpcore2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "httpx2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "idna",
+            "version": "3.20"
+          },
+          {
+            "name": "iniconfig",
+            "version": "2.3.1"
+          },
+          {
+            "name": "jsonschema",
+            "version": "4.26.0"
+          },
+          {
+            "name": "jsonschema-specifications",
+            "version": "2025.9.1"
+          },
+          {
+            "name": "kiwisolver",
+            "version": "1.5.1"
+          },
+          {
+            "name": "matplotlib",
+            "version": "3.11.2"
+          },
+          {
+            "name": "mcp",
+            "version": "2.3.0"
+          },
+          {
+            "name": "mcp-types",
+            "version": "2.3.0"
+          },
+          {
+            "name": "numpy",
+            "version": "2.5.4"
+          },
+          {
+            "name": "opentelemetry-api",
+            "version": "1.45.2"
+          },
+          {
+            "name": "packaging",
+            "version": "26.3"
+          },
+          {
+            "name": "palaeo-agent",
+            "version": "0.2.0.dev0"
+          },
+          {
+            "name": "pillow",
+            "version": "13.0.0"
+          },
+          {
+            "name": "pluggy",
+            "version": "1.7.0"
+          },
+          {
+            "name": "pycparser",
+            "version": "3.12"
+          },
+          {
+            "name": "pydantic",
+            "version": "2.14.2"
+          },
+          {
+            "name": "pydantic-core",
+            "version": "2.50.2"
+          },
+          {
+            "name": "pygments",
+            "version": "2.21.0"
+          },
+          {
+            "name": "pyjwt",
+            "version": "2.15.1"
+          },
+          {
+            "name": "pyparsing",
+            "version": "3.3.3"
+          },
+          {
+            "name": "pytest",
+            "version": "9.2.0"
+          },
+          {
+            "name": "python-dateutil",
+            "version": "3.0.0"
+          },
+          {
+            "name": "python-multipart",
+            "version": "0.0.32"
+          },
+          {
+            "name": "referencing",
+            "version": "0.37.0"
+          },
+          {
+            "name": "rpds-py",
+            "version": "2026.9.1"
+          },
+          {
+            "name": "scipy",
+            "version": "1.18.1"
+          },
+          {
+            "name": "six",
+            "version": "1.17.0"
+          },
+          {
+            "name": "sse-starlette",
+            "version": "3.6.0"
+          },
+          {
+            "name": "starlette",
+            "version": "1.10.0"
+          },
+          {
+            "name": "truststore",
+            "version": "0.10.5"
+          },
+          {
+            "name": "typing-extensions",
+            "version": "4.16.0"
+          },
+          {
+            "name": "typing-inspection",
+            "version": "0.4.4"
+          },
+          {
+            "name": "tzdata",
+            "version": "2026.6"
+          },
+          {
+            "name": "uvicorn",
+            "version": "0.54.0"
+          }
+        ],
+        "implementation_sha256": "d8428082e4b54844eee50c810164e0c0cd9382e7c5c0c4fd3ffa786bac609689",
+        "source_files_sha256": {
+          "__init__.py": "e1c7fe813007c51a6dc2bb7fd9e1252c9d0ca1f1f594f482714d8298f0169e5e",
+          "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+          "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
+          "community.py": "3f87e84b629d7065850cd32f8153aba4c8af99d714f29396b9ad31556c8f21b2",
+          "core.py": "3f109b6a81074e6b66bb8f20f0272c3baf3b88149773bc82ca8e3cafd72a345c",
+          "count_homogeneity.py": "fd414b21046289c4f436e4a9fc8059a880002da8d5235c112fe4ad9be19b44b1",
+          "mcp_server.py": "54f2103a23497d17c0a8158e15d13a6d1090d7abba70eaa2038ea79b27c53390",
+          "methods.py": "7aee54187986038951c05e9a8ea304a72587f9518fdffeb0fed55672e497c1e7",
+          "neotoma.py": "b5463045a464c08721ba15945e57a3739765fb35bb25b4212b4c8103a3d82885",
+          "permanova.py": "d583358490a13be936964d9c21746531d7bb248bef3b854937079bc3e2876109",
+          "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
+          "rarefaction.py": "d4f97ea7c37412be27376021e8c07e27633db2627815059580a513eac2d5ab37",
+          "rma_paired.py": "1ed2213103e2677b0b95ff342fa23166efbd5b0828825d5a7294979cea958182",
+          "runs.py": "383625a57df34debf27eff8613f1197d675a821445fcd926839056379d490efc",
+          "sensitivity.py": "cbd00eb70a372e2f88007a21796ee2b10dcc017319fee670c01db5bf3a71b2b4",
+          "study.py": "9249dbecb1fdf79bf0df5fcebb741f6b8feadd1e8274262083c02d1ad57231a0"
+        },
+        "lockfile": {
+          "available": true,
+          "path": "uv.lock",
+          "reason": "Project checkout lockfile captured"
+        },
+        "rng": "not used; deterministic method"
+      }
+    },
+    "automorph_log": {
+      "run_dir": "runs/automorph_log/ea47afdc88064017bd49fd629cb2eaec",
+      "run_id": "ea47afdc88064017bd49fd629cb2eaec",
+      "results_sha256": "f56de9cdd9ddfe7ebaf869d6d5682c7f901d20a78b1847dc7981583eb3ca4646",
+      "environment": {
+        "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit",
+        "packages": {
+          "annotated-types": "0.8.0",
+          "anyio": "4.15.1",
+          "attrs": "26.1.0",
+          "cffi": "2.1.1",
+          "click": "8.5.0",
+          "contourpy": "1.4.0",
+          "cryptography": "50.0.2",
+          "cycler": "0.12.1",
+          "fonttools": "4.68.0",
+          "h11": "0.16.0",
+          "httpcore2": "2.16.0",
+          "httpx2": "2.16.0",
+          "idna": "3.20",
+          "iniconfig": "2.3.1",
+          "jsonschema": "4.26.0",
+          "jsonschema-specifications": "2025.9.1",
+          "kiwisolver": "1.5.1",
+          "matplotlib": "3.11.2",
+          "mcp": "2.3.0",
+          "mcp-types": "2.3.0",
+          "numpy": "2.5.4",
+          "opentelemetry-api": "1.45.2",
+          "packaging": "26.3",
+          "palaeo-agent": "0.2.0.dev0",
+          "pillow": "13.0.0",
+          "pluggy": "1.7.0",
+          "pycparser": "3.12",
+          "pydantic": "2.14.2",
+          "pydantic-core": "2.50.2",
+          "pygments": "2.21.0",
+          "pyjwt": "2.15.1",
+          "pyparsing": "3.3.3",
+          "pytest": "9.2.0",
+          "python-dateutil": "3.0.0",
+          "python-multipart": "0.0.32",
+          "referencing": "0.37.0",
+          "rpds-py": "2026.9.1",
+          "scipy": "1.18.1",
+          "six": "1.17.0",
+          "sse-starlette": "3.6.0",
+          "starlette": "1.10.0",
+          "truststore": "0.10.5",
+          "typing-extensions": "4.16.0",
+          "typing-inspection": "0.4.4",
+          "tzdata": "2026.6",
+          "uvicorn": "0.54.0"
+        },
+        "distributions": [
+          {
+            "name": "annotated-types",
+            "version": "0.8.0"
+          },
+          {
+            "name": "anyio",
+            "version": "4.15.1"
+          },
+          {
+            "name": "attrs",
+            "version": "26.1.0"
+          },
+          {
+            "name": "cffi",
+            "version": "2.1.1"
+          },
+          {
+            "name": "click",
+            "version": "8.5.0"
+          },
+          {
+            "name": "contourpy",
+            "version": "1.4.0"
+          },
+          {
+            "name": "cryptography",
+            "version": "50.0.2"
+          },
+          {
+            "name": "cycler",
+            "version": "0.12.1"
+          },
+          {
+            "name": "fonttools",
+            "version": "4.68.0"
+          },
+          {
+            "name": "h11",
+            "version": "0.16.0"
+          },
+          {
+            "name": "httpcore2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "httpx2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "idna",
+            "version": "3.20"
+          },
+          {
+            "name": "iniconfig",
+            "version": "2.3.1"
+          },
+          {
+            "name": "jsonschema",
+            "version": "4.26.0"
+          },
+          {
+            "name": "jsonschema-specifications",
+            "version": "2025.9.1"
+          },
+          {
+            "name": "kiwisolver",
+            "version": "1.5.1"
+          },
+          {
+            "name": "matplotlib",
+            "version": "3.11.2"
+          },
+          {
+            "name": "mcp",
+            "version": "2.3.0"
+          },
+          {
+            "name": "mcp-types",
+            "version": "2.3.0"
+          },
+          {
+            "name": "numpy",
+            "version": "2.5.4"
+          },
+          {
+            "name": "opentelemetry-api",
+            "version": "1.45.2"
+          },
+          {
+            "name": "packaging",
+            "version": "26.3"
+          },
+          {
+            "name": "palaeo-agent",
+            "version": "0.2.0.dev0"
+          },
+          {
+            "name": "pillow",
+            "version": "13.0.0"
+          },
+          {
+            "name": "pluggy",
+            "version": "1.7.0"
+          },
+          {
+            "name": "pycparser",
+            "version": "3.12"
+          },
+          {
+            "name": "pydantic",
+            "version": "2.14.2"
+          },
+          {
+            "name": "pydantic-core",
+            "version": "2.50.2"
+          },
+          {
+            "name": "pygments",
+            "version": "2.21.0"
+          },
+          {
+            "name": "pyjwt",
+            "version": "2.15.1"
+          },
+          {
+            "name": "pyparsing",
+            "version": "3.3.3"
+          },
+          {
+            "name": "pytest",
+            "version": "9.2.0"
+          },
+          {
+            "name": "python-dateutil",
+            "version": "3.0.0"
+          },
+          {
+            "name": "python-multipart",
+            "version": "0.0.32"
+          },
+          {
+            "name": "referencing",
+            "version": "0.37.0"
+          },
+          {
+            "name": "rpds-py",
+            "version": "2026.9.1"
+          },
+          {
+            "name": "scipy",
+            "version": "1.18.1"
+          },
+          {
+            "name": "six",
+            "version": "1.17.0"
+          },
+          {
+            "name": "sse-starlette",
+            "version": "3.6.0"
+          },
+          {
+            "name": "starlette",
+            "version": "1.10.0"
+          },
+          {
+            "name": "truststore",
+            "version": "0.10.5"
+          },
+          {
+            "name": "typing-extensions",
+            "version": "4.16.0"
+          },
+          {
+            "name": "typing-inspection",
+            "version": "0.4.4"
+          },
+          {
+            "name": "tzdata",
+            "version": "2026.6"
+          },
+          {
+            "name": "uvicorn",
+            "version": "0.54.0"
+          }
+        ],
+        "implementation_sha256": "d8428082e4b54844eee50c810164e0c0cd9382e7c5c0c4fd3ffa786bac609689",
+        "source_files_sha256": {
+          "__init__.py": "e1c7fe813007c51a6dc2bb7fd9e1252c9d0ca1f1f594f482714d8298f0169e5e",
+          "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+          "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
+          "community.py": "3f87e84b629d7065850cd32f8153aba4c8af99d714f29396b9ad31556c8f21b2",
+          "core.py": "3f109b6a81074e6b66bb8f20f0272c3baf3b88149773bc82ca8e3cafd72a345c",
+          "count_homogeneity.py": "fd414b21046289c4f436e4a9fc8059a880002da8d5235c112fe4ad9be19b44b1",
+          "mcp_server.py": "54f2103a23497d17c0a8158e15d13a6d1090d7abba70eaa2038ea79b27c53390",
+          "methods.py": "7aee54187986038951c05e9a8ea304a72587f9518fdffeb0fed55672e497c1e7",
+          "neotoma.py": "b5463045a464c08721ba15945e57a3739765fb35bb25b4212b4c8103a3d82885",
+          "permanova.py": "d583358490a13be936964d9c21746531d7bb248bef3b854937079bc3e2876109",
+          "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
+          "rarefaction.py": "d4f97ea7c37412be27376021e8c07e27633db2627815059580a513eac2d5ab37",
+          "rma_paired.py": "1ed2213103e2677b0b95ff342fa23166efbd5b0828825d5a7294979cea958182",
+          "runs.py": "383625a57df34debf27eff8613f1197d675a821445fcd926839056379d490efc",
+          "sensitivity.py": "cbd00eb70a372e2f88007a21796ee2b10dcc017319fee670c01db5bf3a71b2b4",
+          "study.py": "9249dbecb1fdf79bf0df5fcebb741f6b8feadd1e8274262083c02d1ad57231a0"
+        },
+        "lockfile": {
+          "available": true,
+          "path": "uv.lock",
+          "reason": "Project checkout lockfile captured"
+        },
+        "rng": "not used; deterministic method"
+      }
+    },
+    "paired_log": {
+      "run_dir": "runs/paired_log/2b5bb0ed3ce14a05ae93ad006751cd23",
+      "run_id": "2b5bb0ed3ce14a05ae93ad006751cd23",
+      "results_sha256": "b4303086ef61bc7cf0e5557ad4342c6596d972a3be7de1ef21c3cdb52f3d3035",
+      "environment": {
+        "python": "3.12.13 (main, Mar 10 2026, 18:18:07) [Clang 21.1.4 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit",
+        "packages": {
+          "annotated-types": "0.8.0",
+          "anyio": "4.15.1",
+          "attrs": "26.1.0",
+          "cffi": "2.1.1",
+          "click": "8.5.0",
+          "contourpy": "1.4.0",
+          "cryptography": "50.0.2",
+          "cycler": "0.12.1",
+          "fonttools": "4.68.0",
+          "h11": "0.16.0",
+          "httpcore2": "2.16.0",
+          "httpx2": "2.16.0",
+          "idna": "3.20",
+          "iniconfig": "2.3.1",
+          "jsonschema": "4.26.0",
+          "jsonschema-specifications": "2025.9.1",
+          "kiwisolver": "1.5.1",
+          "matplotlib": "3.11.2",
+          "mcp": "2.3.0",
+          "mcp-types": "2.3.0",
+          "numpy": "2.5.4",
+          "opentelemetry-api": "1.45.2",
+          "packaging": "26.3",
+          "palaeo-agent": "0.2.0.dev0",
+          "pillow": "13.0.0",
+          "pluggy": "1.7.0",
+          "pycparser": "3.12",
+          "pydantic": "2.14.2",
+          "pydantic-core": "2.50.2",
+          "pygments": "2.21.0",
+          "pyjwt": "2.15.1",
+          "pyparsing": "3.3.3",
+          "pytest": "9.2.0",
+          "python-dateutil": "3.0.0",
+          "python-multipart": "0.0.32",
+          "referencing": "0.37.0",
+          "rpds-py": "2026.9.1",
+          "scipy": "1.18.1",
+          "six": "1.17.0",
+          "sse-starlette": "3.6.0",
+          "starlette": "1.10.0",
+          "truststore": "0.10.5",
+          "typing-extensions": "4.16.0",
+          "typing-inspection": "0.4.4",
+          "tzdata": "2026.6",
+          "uvicorn": "0.54.0"
+        },
+        "distributions": [
+          {
+            "name": "annotated-types",
+            "version": "0.8.0"
+          },
+          {
+            "name": "anyio",
+            "version": "4.15.1"
+          },
+          {
+            "name": "attrs",
+            "version": "26.1.0"
+          },
+          {
+            "name": "cffi",
+            "version": "2.1.1"
+          },
+          {
+            "name": "click",
+            "version": "8.5.0"
+          },
+          {
+            "name": "contourpy",
+            "version": "1.4.0"
+          },
+          {
+            "name": "cryptography",
+            "version": "50.0.2"
+          },
+          {
+            "name": "cycler",
+            "version": "0.12.1"
+          },
+          {
+            "name": "fonttools",
+            "version": "4.68.0"
+          },
+          {
+            "name": "h11",
+            "version": "0.16.0"
+          },
+          {
+            "name": "httpcore2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "httpx2",
+            "version": "2.16.0"
+          },
+          {
+            "name": "idna",
+            "version": "3.20"
+          },
+          {
+            "name": "iniconfig",
+            "version": "2.3.1"
+          },
+          {
+            "name": "jsonschema",
+            "version": "4.26.0"
+          },
+          {
+            "name": "jsonschema-specifications",
+            "version": "2025.9.1"
+          },
+          {
+            "name": "kiwisolver",
+            "version": "1.5.1"
+          },
+          {
+            "name": "matplotlib",
+            "version": "3.11.2"
+          },
+          {
+            "name": "mcp",
+            "version": "2.3.0"
+          },
+          {
+            "name": "mcp-types",
+            "version": "2.3.0"
+          },
+          {
+            "name": "numpy",
+            "version": "2.5.4"
+          },
+          {
+            "name": "opentelemetry-api",
+            "version": "1.45.2"
+          },
+          {
+            "name": "packaging",
+            "version": "26.3"
+          },
+          {
+            "name": "palaeo-agent",
+            "version": "0.2.0.dev0"
+          },
+          {
+            "name": "pillow",
+            "version": "13.0.0"
+          },
+          {
+            "name": "pluggy",
+            "version": "1.7.0"
+          },
+          {
+            "name": "pycparser",
+            "version": "3.12"
+          },
+          {
+            "name": "pydantic",
+            "version": "2.14.2"
+          },
+          {
+            "name": "pydantic-core",
+            "version": "2.50.2"
+          },
+          {
+            "name": "pygments",
+            "version": "2.21.0"
+          },
+          {
+            "name": "pyjwt",
+            "version": "2.15.1"
+          },
+          {
+            "name": "pyparsing",
+            "version": "3.3.3"
+          },
+          {
+            "name": "pytest",
+            "version": "9.2.0"
+          },
+          {
+            "name": "python-dateutil",
+            "version": "3.0.0"
+          },
+          {
+            "name": "python-multipart",
+            "version": "0.0.32"
+          },
+          {
+            "name": "referencing",
+            "version": "0.37.0"
+          },
+          {
+            "name": "rpds-py",
+            "version": "2026.9.1"
+          },
+          {
+            "name": "scipy",
+            "version": "1.18.1"
+          },
+          {
+            "name": "six",
+            "version": "1.17.0"
+          },
+          {
+            "name": "sse-starlette",
+            "version": "3.6.0"
+          },
+          {
+            "name": "starlette",
+            "version": "1.10.0"
+          },
+          {
+            "name": "truststore",
+            "version": "0.10.5"
+          },
+          {
+            "name": "typing-extensions",
+            "version": "4.16.0"
+          },
+          {
+            "name": "typing-inspection",
+            "version": "0.4.4"
+          },
+          {
+            "name": "tzdata",
+            "version": "2026.6"
+          },
+          {
+            "name": "uvicorn",
+            "version": "0.54.0"
+          }
+        ],
+        "implementation_sha256": "d8428082e4b54844eee50c810164e0c0cd9382e7c5c0c4fd3ffa786bac609689",
+        "source_files_sha256": {
+          "__init__.py": "e1c7fe813007c51a6dc2bb7fd9e1252c9d0ca1f1f594f482714d8298f0169e5e",
+          "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+          "cli.py": "1bcd93a17cdd855de021ea7449d2d6feb7428ab9165d7cdbebbd53fcaf39f49c",
+          "community.py": "3f87e84b629d7065850cd32f8153aba4c8af99d714f29396b9ad31556c8f21b2",
+          "core.py": "3f109b6a81074e6b66bb8f20f0272c3baf3b88149773bc82ca8e3cafd72a345c",
+          "count_homogeneity.py": "fd414b21046289c4f436e4a9fc8059a880002da8d5235c112fe4ad9be19b44b1",
+          "mcp_server.py": "54f2103a23497d17c0a8158e15d13a6d1090d7abba70eaa2038ea79b27c53390",
+          "methods.py": "7aee54187986038951c05e9a8ea304a72587f9518fdffeb0fed55672e497c1e7",
+          "neotoma.py": "b5463045a464c08721ba15945e57a3739765fb35bb25b4212b4c8103a3d82885",
+          "permanova.py": "d583358490a13be936964d9c21746531d7bb248bef3b854937079bc3e2876109",
+          "primer.py": "2a15898177dbddcca4a87c2f80e1e581fbc203bd662138fc04f3293a94659749",
+          "rarefaction.py": "d4f97ea7c37412be27376021e8c07e27633db2627815059580a513eac2d5ab37",
+          "rma_paired.py": "1ed2213103e2677b0b95ff342fa23166efbd5b0828825d5a7294979cea958182",
+          "runs.py": "383625a57df34debf27eff8613f1197d675a821445fcd926839056379d490efc",
+          "sensitivity.py": "cbd00eb70a372e2f88007a21796ee2b10dcc017319fee670c01db5bf3a71b2b4",
+          "study.py": "9249dbecb1fdf79bf0df5fcebb741f6b8feadd1e8274262083c02d1ad57231a0"
+        },
+        "lockfile": {
+          "available": true,
+          "path": "uv.lock",
+          "reason": "Project checkout lockfile captured"
+        },
+        "rng": "NumPy Generator(PCG64), seed=9112026; integers(0, n, size=(replicates, n), dtype=int64), one call, row r is replicate r; replicate slopes saved in bootstrap.csv"
+      }
+    }
+  }
+}

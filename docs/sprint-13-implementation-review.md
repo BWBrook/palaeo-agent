@@ -66,3 +66,13 @@ and its Monte Carlo resolution must be reported. Inspection checks saved
 consistency; reproduction alone binds the bootstrap statistics to the
 seed-generated resamples. Numerical agreement does not establish the
 normal sampling model, fossil sampling independence or measurement truth.
+
+## Application acceptance
+
+Amendment 1 was frozen at `73596b8` before the paired limpet analysis.
+The [amended report](../analyses/fossil-limpets/REPORT-AMENDED.md) records
+the resulting marginal inferences, fresh byte-identical reproduction and
+30,021 base-R comparisons. A separate read-only Codex scientific review
+checked the report against the saved results and accepted its numbers,
+assumptions, prior-knowledge disclosure and interpretation without changes.
+The original descriptive artifacts remain byte-identical to `fd74076`.

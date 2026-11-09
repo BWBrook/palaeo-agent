@@ -1,0 +1,30 @@
+{
+  "portable_study": {
+    "status": "reproduced",
+    "derived_identical": true,
+    "original_path_probe_refused": true,
+    "original_path_read_attempts_during_replay": 0,
+    "byte_identical_child_results": {
+      "caliper_log": "a1873391b606036a89399928f9d7b6e0c0d5addba2fff9db3639a72a32d843e9",
+      "automorph_log": "f56de9cdd9ddfe7ebaf869d6d5682c7f901d20a78b1847dc7981583eb3ca4646",
+      "paired_log": "b4303086ef61bc7cf0e5557ad4342c6596d972a3be7de1ef21c3cdb52f3d3035"
+    }
+  },
+  "freeze_commit": "73596b8ad2370672627047ce957a2d4654888ec0",
+  "source_study": "runs-amended-study",
+  "exports": [
+    {
+      "file": "results-amended.json",
+      "sha256": "c6e8be52800cedccbdd4d32fe049b377ff7c393f27915f71f5331f99822ce0bd"
+    },
+    {
+      "file": "bootstrap-amended.csv",
+      "sha256": "c5c86bc0be2aedd9a0b6f98631e4258ceabedee8b48157aae3b10394c4076c6f"
+    },
+    {
+      "file": "inference-amended.csv",
+      "sha256": "3a6e42c43b93d0ddac94227f86d9302e66e7cd3ae70f22d5111d6304194669b7"
+    }
+  ],
+  "scope": "Copied study reproduces all three complete native results byte for byte in a fresh worker; original application paths blocked; scientific assumptions not validated"
+}

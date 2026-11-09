@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "quantities": 30021,
+  "max_absolute_difference": 1.88737914186277e-15,
+  "absolute_tolerance": 1e-10,
+  "relative_tolerance": 1e-10,
+  "scope": "Base-R inference, all 9999 paired replicate slopes/differences and summary arithmetic; PCG64 indices supplied to match draws; no coverage or scientific validity claim",
+  "inputs": [
+    {
+      "file": "source/STable1_2DLimpets.csv",
+      "sha256": "481c968bebeb96716ae03623361aebb2c6d64e1ee636f30e5406d1a3071285fe"
+    },
+    {
+      "file": "bootstrap-amended.csv",
+      "sha256": "c5c86bc0be2aedd9a0b6f98631e4258ceabedee8b48157aae3b10394c4076c6f"
+    },
+    {
+      "file": "inference-amended.csv",
+      "sha256": "3a6e42c43b93d0ddac94227f86d9302e66e7cd3ae70f22d5111d6304194669b7"
+    },
+    {
+      "file": "results-amended.json",
+      "sha256": "c6e8be52800cedccbdd4d32fe049b377ff7c393f27915f71f5331f99822ce0bd"
+    }
+  ],
+  "reference_files": [
+    {
+      "file": "reference-amended.py",
+      "sha256": "7dc5584ec437a45bd5fb4671f811072c4ee674a67df14c2bb8184e4bc62738bf"
+    },
+    {
+      "file": "reference-amended.R",
+      "sha256": "ff512e7a313738abfcf338763c1452627105a9c4390ac6201c0b2bc483d5ccaf"
+    }
+  ]
+}

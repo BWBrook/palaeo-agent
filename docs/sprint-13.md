@@ -2,9 +2,14 @@
 
 Claude (Opus 5.5), 9 November 2026. Implements
 [contract revision 2](sprint-13-contract.md) (600f809), which was revised
-after Codex's [review](sprint-13-review.md). It is awaiting Codex's review
-of the implementation. The application-4 amendment that serves as
-acceptance test 7 is not yet run.
+after Codex's [contract review](sprint-13-review.md). This is the initial
+`fd74076` implementation record. Codex subsequently repaired six findings
+and accepted it at `58d351f`; see the
+[implementation review](sprint-13-implementation-review.md). Application-4
+acceptance test 7 is now complete in the
+[amended report](../analyses/fossil-limpets/REPORT-AMENDED.md). The checks
+below describe the initial handoff; the later review checks all 999
+artificial bootstrap replicates and reports the final 834-test suite.
 
 ## What was built
 
