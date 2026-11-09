@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "command": "Rscript --vanilla analyses/fossil-limpets/reference.R",
+  "scope": "Independent base-R arithmetic on the saved API pairs; no inference or new fit selection",
+  "transform": "log10 applied independently to x_raw and y_raw",
+  "absolute_tolerance": 1e-10,
+  "relative_tolerance": 1e-10,
+  "criterion": "abs(R - API) <= 1e-10 + 1e-10 * abs(API)",
+  "fits_checked": 2,
+  "scalar_quantities_checked": 18,
+  "specimen_quantities_checked": 816,
+  "total_quantities_checked": 834,
+  "max_absolute_difference": 4.4408920985006262e-16,
+  "inputs": [
+    {"file": "api-pairs.csv", "md5": "1c1ab10236ba1a38c9f54b57906c95c7"},
+    {"file": "api-scalars.csv", "md5": "9bf30134359c0b08a2941d1c9d54d194"}
+  ]
+}

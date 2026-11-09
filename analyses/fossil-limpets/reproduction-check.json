@@ -1,0 +1,30 @@
+{
+  "portable_study": {
+    "status": "reproduced",
+    "derived_identical": true,
+    "original_path_probe_refused": true,
+    "original_path_read_attempts_during_replay": 0,
+    "byte_identical_child_results": {
+      "caliper_log": "6503ba2704f4c116bc2df5f8f71e37d8b5b941eb16a17fe3dcfcb43c2ad800d7",
+      "automorph_log": "e5bd61bf6d38289cc62d660471cb69495b5ed000695c116c63aa8eb4e3e0b93f"
+    }
+  },
+  "fresh_process_exports_identical": true,
+  "exports": [
+    {
+      "file": "results.json",
+      "sha256": "dd9171189e1c711b51881eddf1b753e9437621f58b09144efc5196821499d836"
+    },
+    {
+      "file": "api-pairs.csv",
+      "sha256": "97e8335184d9a7a9e05638f7c03278e4be91f05b5879eb40482a1c94362ea4da"
+    },
+    {
+      "file": "api-scalars.csv",
+      "sha256": "7f0615194611bd839ef94dd4109b278388e63893057187716e050e406bbfe716"
+    }
+  ],
+  "source_study": "runs-export-tqhxgvkk/study",
+  "export_replay_study": "runs-export-jzem95a_/study",
+  "scope": "Byte-identical numerical results and preparation; figures and scientific interpretation are not validated"
+}

@@ -66,10 +66,10 @@ receipt <- c(
   paste0('  "specimen_quantities_checked": ', nrow(out) - nrow(scalars) * length(fields), ','),
   paste0('  "total_quantities_checked": ', nrow(out), ','),
   paste0('  "max_absolute_difference": ', format(max(out$absolute_difference), scientific = TRUE, digits = 17), ','),
-  '  "input_md5": {',
-  paste0('    ', quote_json(basename(paths[1])), ': ', quote_json(unname(hashes[1])), ','),
-  paste0('    ', quote_json(basename(paths[2])), ': ', quote_json(unname(hashes[2]))),
-  "  }",
+  '  "inputs": [',
+  paste0('    {"file": ', quote_json(basename(paths[1])), ', "md5": ', quote_json(unname(hashes[1])), '},'),
+  paste0('    {"file": ', quote_json(basename(paths[2])), ', "md5": ', quote_json(unname(hashes[2])), '}'),
+  "  ]",
   "}")
 writeLines(receipt, paths[4])
 cat(status, ":", nrow(out), "quantities; max absolute difference",

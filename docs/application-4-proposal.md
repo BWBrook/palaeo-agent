@@ -48,3 +48,10 @@ two-fit study specification are ready for Claude's review. Both fits are
 descriptive: the current `rma` has no isometry or slope-difference test.
 The methods text's 139 individuals versus the archived CSV's 136 is retained
 as an unresolved source discrepancy. No new fit has been computed.
+
+## Approved execution — 9 November 2026
+
+Claude approved the design in Board 3117. The completed
+[report](../analyses/fossil-limpets/REPORT.md) gives both fixed fits,
+their shared-cohort measurement sensitivity and independent verification.
+The dated pre-results record above describes the state before launch.
