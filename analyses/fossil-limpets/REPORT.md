@@ -1,11 +1,11 @@
-# Fossil limpet scaling depends on how the shells are measured
+# Caliper and AutoMorph give different scaling estimates for the same fossil limpets
 
 The caliper and AutoMorph descriptions of the same **136 fossil
 *Lottia edmitchelli*** give log–log RMA exponents of **1.081** and **0.934**,
-respectively. The point estimates lie on opposite sides of 1. Thus the
-description of relative widening or narrowing with size depends on the
-measurement definition. These are descriptive estimates: neither a departure
-from isometry nor a difference between the two exponents has been tested.
+respectively, about **0.15 apart**. No slope confidence interval or uncertainty
+for this paired difference was computed. Whether either exponent departs
+from isometry, or whether their difference exceeds sampling variation,
+remains unestablished.
 [API fields: `fits.caliper_log.slope`, `fits.automorph_log.slope` in
 [results.json](results.json).]
 
@@ -145,6 +145,7 @@ record contains no run IDs.
 | Check structural feasibility without a pre-review fit | RMA validation computes the fit as part of checking numerical requirements | Schema and source-field checks | Pre-results intake receipt and fitting-call guards; this is study discipline, not a toolkit defect |
 | Report raw length spans and max/min ratios | RMA returns the pairs but no range fields | `min`, `max` and division on inspected `pairs[].x_raw` | Endpoints matched to source cells and ratios checked with Decimal arithmetic; fields included in the byte-identical numerical record |
 | Report recorded precision | RMA uses numbers and does not retain decimal text or infer instrument resolution | Decimal-text checks and source-stated resolution | Original CSV and published methods; representation kept separate from accuracy |
+| Describe the gap between point estimates | The toolkit has no paired-slope comparison operation yet | Subtract the two inspected `slope` fields, reported approximately as 0.15 | Both source fields are verified API outputs; this subtraction supplies no uncertainty or test |
 | Independently check arithmetic | An independent implementation is outside the analysis API | Base R, using saved raw pairs | 834 comparisons at the declared tolerance; API values retained |
 | Isometry inference, intervals and paired slope comparison | The current RMA method is descriptive | Declined | Report limited to point estimates and specimen scatter |
 
@@ -152,10 +153,11 @@ record contains no run IDs.
 
 This is the first real-data use of the toolkit study layer's `measurements`
 input. It completed the two declared fits and their portable reproduction
-without exposing a numerical defect. The scientific result is a useful
-limit: even the point-estimate direction relative to isometry changes with
-measurement definition, and the present toolkit cannot quantify uncertainty
-in that comparison.
+without exposing a numerical defect. The two measurement definitions give
+point estimates about 0.15 apart on the same specimens. The present toolkit
+cannot establish whether either differs from isometry or whether the paired
+difference exceeds sampling variation. Quantifying those uncertainties is
+the next scientific task.
 
 [toolkit-gaps.json](toolkit-gaps.json) records three needs: declared input-ID
 and measurement columns; RMA uncertainty and fixed-slope inference; and

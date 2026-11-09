@@ -1,0 +1,53 @@
+{
+  "scope": "Independent artificial contract review; no toolkit implementation or application-4 inference",
+  "numpy_version": "2.5.4",
+  "scipy_version": "1.18.1",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "normal_simulation": {
+    "generator": "default_rng(9132026); standard_normal((2000,20,2)); constructed y=rho*x+sqrt(1-rho**2)*z2",
+    "n": 20,
+    "trials": 2000,
+    "rho": 0.05,
+    "true_signed_slope": 1,
+    "sample_sign_reversals": 803,
+    "sample_sign_primary_coverage": 0.5665,
+    "prior_positive_component_coverage": 0.9505,
+    "binomial_99_9_percent_band": [
+      0.9335,
+      0.9655
+    ]
+  },
+  "opposite_null_signs": [
+    {
+      "null_slope": 1.0,
+      "r_rf": 0.0,
+      "t": 0.0,
+      "p_value": 1.0
+    },
+    {
+      "null_slope": -1.0,
+      "r_rf": 0.0,
+      "t": 0.0,
+      "p_value": 1.0
+    }
+  ],
+  "interval_cancellation": {
+    "n": 3,
+    "r": 0.5,
+    "confidence": 0.9999999999999999,
+    "subtractive_lower_factor": 0.0,
+    "rationalized_lower_factor": 1.0068609081116497e-16
+  },
+  "tail_underflow": {
+    "t": 100,
+    "df": 1000,
+    "scipy_sf": 0.0,
+    "scipy_logsf": "-inf",
+    "base_r_two_sided_log_p": -1202.5800000769482
+  },
+  "rounded_bootstrap_fixture": {
+    "rows": 136,
+    "identical_rows": 135,
+    "probability_all_resampled_rows_identical": 0.3665227842462039
+  }
+}
