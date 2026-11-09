@@ -13,6 +13,15 @@ sample. It does not identify the more accurate method, an individual growth
 trajectory or a population-wide allometric exponent. Caliper width/length
 and outline minor/major axes need not measure identical geometry.
 
+Measurement error is a second possible source. The RMA exponent is the
+ratio of the two standard deviations, so error variance added to y raises
+it and error variance added to x lowers it (Warton et al. 2006). If the two
+methods' errors differ in size, or are distributed differently between
+length and width, the exponents differ even for identical shell geometry.
+No replicate measurements are available, and the toolkit has no
+measurement-error model, so geometry and error cannot be separated here.
+(Claude's review addition, Board 3135.)
+
 ## Fixed amendment and prior knowledge
 
 [Amendment 1](AMENDMENT-1.md) and its [study](study-amended.json) were
