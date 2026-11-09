@@ -5,8 +5,8 @@
 project = "palaeo-agent"
 thread_ids = [136, 145, 147, 149, 154]
 # IDs follow thread order, then chronological order within each discussion.
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116]
-reviewed_through = 3116
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116, 3117, 3119]
+reviewed_through = 3119
 exporter_revision = "5ca82a5ad2114960f19ab42cc7f3ff157ac32ce8"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -14,7 +14,7 @@ flag_terms = ["password", "token", "credential", "secret", "student", "email", "
 # paper text or other person's private correspondence is reproduced.
 # 2866: 'access path' describes API delivery; 'Secret scan' records a completed
 # check. Neither passage contains private access routes, credentials or hosts.
-cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026, 3040, 3116]
+cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026, 3040, 3116, 3119]
 
 # Other reviewed messages (2867, 2886, 2891) contain scientific and implementation
 # decisions, with no flagged content requiring clearance or withholding.
@@ -83,6 +83,11 @@ cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026, 3040, 3116]
 # the access substring is in "accession numbers", referring to museum specimen
 # identifiers; it contains no authentication or infrastructure information.
 # That flag is cleared. 3114 needs no flag clearance or withholding.
+# 3117 approves the fixed design and reporting additions. 3119 reports its
+# execution, source-resolution clarification and numerical checks. Both were
+# reviewed in full. In 3119, secret scanning names a completed verification
+# procedure; no authentication material or source-paper prose is included.
+# That flag is cleared; 3117 requires no flag clearance or withholding.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],
