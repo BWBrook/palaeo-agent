@@ -148,3 +148,26 @@ def test_inspection_binds_value_type_values_and_transform(tmp_path, tamper):
     _rehash(outcome["run_dir"], "results.json")
     with pytest.raises(Exception):
         inspect_run(outcome["run_dir"])
+
+
+@pytest.mark.parametrize("method", ["community", "permanova", "rarefaction"])
+def test_deleted_table_diagnostic_fails_inspection(tmp_path, method):
+    (tmp_path / "c.dat").write_text(".\tA\tB\tC\ns1\t3\t2\t1\ns2\t3\t2\t1\ns3\t1\t5\t2\ns4\t0\t4\t4\n")
+    (tmp_path / "m.csv").write_text("sample_id,g\ns1,a\ns2,a\ns3,b\ns4,b\n")
+    spec = {"method": method, "input": str(tmp_path / "c.dat"), "format": "past", "orientation": "samples_by_taxa",
+            "value_type": "count", "missing": "error", "empty_samples": "error"}
+    spec.update({"community": {"transform": "none", "distance": "braycurtis", "dimensions": 1},
+                 "permanova": {"metadata": str(tmp_path / "m.csv"), "group_column": "g", "transform": "none",
+                               "distance": "braycurtis", "design": "independent", "permutation_scheme": "free",
+                               "permutations": 99, "seed": 1},
+                 "rarefaction": {"sizes": [2]}}[method])
+    run_dir = Path(run(spec, tmp_path / "runs")["run_dir"])
+    path = run_dir / "results.json"
+    result = json.loads(path.read_text())
+    assert "identical_samples" in [warning["code"] for warning in result["warnings"]]
+    result["warnings"] = [warning for warning in result["warnings"] if warning["code"] != "identical_samples"]
+    path.write_text(json.dumps(result, indent=2) + "\n")
+    _rehash(run_dir, "results.json")
+    with pytest.raises(AnalysisError) as caught:
+        inspect_run(run_dir)
+    assert "Input diagnostics" in caught.value.details["reason"]

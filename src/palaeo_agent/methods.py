@@ -12,7 +12,7 @@ from pydantic import Field, TypeAdapter
 from .core import AnalysisError, RmaResult, RmaSpec, calculate, discover as rma_discover
 from .community import (
     CommunityResult, CommunitySpec, REFERENCES, calculate_community, selected_subspace_info, validate_community,
-    value_keys, without_absent_branch,
+    _table_warnings, value_keys, without_absent_branch,
 )
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .rarefaction import RarefactionResult, RarefactionSpec, calculate_rarefaction, validate_rarefaction
@@ -167,6 +167,11 @@ def validate(spec):
             "scope": "Data and numerical requirements checked; scientific sampling assumptions are not established"}
 
 
+def _from_table(warning):
+    return (warning["code"] in {"identical_samples", "repeated_block"} or
+            (warning["code"] == "near_duplicate_labels" and warning["details"]["role"] in {"sample", "taxon"}))
+
+
 def validate_result(spec, value):
     model = {"rma": RmaResult, "community": CommunityResult, "permanova": PermanovaResult,
              "rarefaction": RarefactionResult, "count_homogeneity": CountHomogeneityResult}[spec.method]
@@ -184,6 +189,11 @@ def validate_result(spec, value):
         keys += ("value_type", "empty_samples", "orientation")
     if any(getattr(spec, key) != result[key] for key in keys):
         raise ValueError("Saved specification and result describe different analyses")
+    if spec.method in {"community", "permanova", "rarefaction"}:
+        counts = result[value_keys(result["value_type"])[0]]
+        expected = _table_warnings(result["input_sample_ids"], result["taxon_ids"], counts, result["sample_ids"])
+        if [warning for warning in result["warnings"] if _from_table(warning)] != expected:
+            raise ValueError("Input diagnostics disagree with the retained table and declared labels")
     if spec.method == "rma" and spec.x == spec.y:
         raise ValueError("Saved specification must select distinct measurement columns")
     if spec.method != "rma" and (spec.metadata is None) != (result["metadata"] is None):

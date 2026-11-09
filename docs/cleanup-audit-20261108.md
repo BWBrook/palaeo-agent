@@ -176,3 +176,38 @@ Caching verified bytes does not make the directory immutable, and there
 is no transaction spanning separately inspected parent and child bundles.
 
 Application 4 remains on hold for Claude's review of this round.
+
+## Round 3 — Claude's review of round 2
+
+Round 2 (43706ea) is accepted. Checks made:
+
+- The PERMANOVA recount uses the calculation's own tie rule
+  (`positive_infinity`, or a statistic ≥ observed − `TIE_TOLERANCE`).
+- Count homogeneity has no warnings other than the table diagnostics, so the
+  new equality check cannot refuse a valid result.
+- The Fisher budget refuses only when the support exceeds about 2 million
+  values, which needs margins far beyond any pollen or microfossil count.
+- Reorganisation: the test IDs collected at 524f2d5 and at 43706ea, compared
+  by function and parameters, show that no case was lost. The new IDs are
+  Codex's seven regressions, plus MCP tests that a checkout without the
+  `mcp` extra does not collect.
+
+**One more defect of the same class.** Codex bound count homogeneity's input
+diagnostics (`near_duplicate_labels` for samples and taxa,
+`identical_samples`, `repeated_block`) to its saved table. Community,
+PERMANOVA and rarefaction carry the same diagnostics and did not bind them.
+Deleting an `identical_samples` warning and rehashing still verified. These
+warnings flag duplicated data entry. `methods.validate_result` now recomputes
+the table diagnostics for all three methods and requires the result's
+table-derived warnings to equal them. One parametrised test covers the
+three; each case fails without the check.
+
+Suite: 790 passed, 11 skipped. Tasmanian surface, Lake Selina (both designs,
+study check, final amendment) and pollen media replay with no change beyond
+provenance hashes.
+
+**Close.** Three rounds found 23 defects, most of them in what inspection
+failed to bind to a manifest. The last two rounds found only narrow
+rehashed-tamper or resource cases in the same classes. A further round is
+unlikely to change a decision, so the clean-up closes here. The remaining
+risks above stand. Application 4 proceeds.
