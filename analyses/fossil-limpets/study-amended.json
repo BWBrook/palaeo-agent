@@ -1,0 +1,82 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "limpets": {
+      "kind": "measurements",
+      "path": "source/STable1_2DLimpets.csv",
+      "format": "delimited",
+      "delimiter": "comma",
+      "orientation": "samples_by_taxa",
+      "id_column": "ObjectID",
+      "columns": [
+        "Length_Caliper_mm",
+        "MajorAxisLength_AutoMorph_mm",
+        "Width_Caliper_mm",
+        "MinorAxisLength_AutoMorph_mm"
+      ]
+    }
+  },
+  "datasets": {
+    "shells": {
+      "source": "limpets",
+      "operations": []
+    }
+  },
+  "analyses": [
+    {
+      "id": "caliper_log",
+      "dataset": "shells",
+      "spec": {
+        "method": "rma",
+        "format": "past",
+        "x": "Length_Caliper_mm",
+        "y": "Width_Caliper_mm",
+        "transform": "log10",
+        "missing": "error",
+        "inference": {
+          "confidence": 0.95,
+          "null_magnitude": 1
+        }
+      }
+    },
+    {
+      "id": "automorph_log",
+      "dataset": "shells",
+      "spec": {
+        "method": "rma",
+        "format": "past",
+        "x": "MajorAxisLength_AutoMorph_mm",
+        "y": "MinorAxisLength_AutoMorph_mm",
+        "transform": "log10",
+        "missing": "error",
+        "inference": {
+          "confidence": 0.95,
+          "null_magnitude": 1
+        }
+      }
+    },
+    {
+      "id": "paired_log",
+      "dataset": "shells",
+      "spec": {
+        "method": "rma_paired",
+        "format": "past",
+        "a": {
+          "x": "Length_Caliper_mm",
+          "y": "Width_Caliper_mm"
+        },
+        "b": {
+          "x": "MajorAxisLength_AutoMorph_mm",
+          "y": "MinorAxisLength_AutoMorph_mm"
+        },
+        "transform": "log10",
+        "missing": "error",
+        "bootstrap": {
+          "replicates": 9999,
+          "seed": 9112026,
+          "confidence": 0.95
+        }
+      }
+    }
+  ]
+}
