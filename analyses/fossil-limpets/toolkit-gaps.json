@@ -1,0 +1,29 @@
+{
+  "application": "fossil-limpet allometry",
+  "design_commit": "39815c3",
+  "gaps": [
+    {
+      "id": "measurement_id_column",
+      "status": "open",
+      "need": "Declare the specimen-ID column and explicit measurement columns in delimited input.",
+      "evidence": "The source CSV starts with SampleID, followed by ObjectID and four measurement columns. Current first-column ID semantics require custom intake.",
+      "priority": "Small intake improvement."
+    },
+    {
+      "id": "rma_inference",
+      "status": "open",
+      "need": "Slope uncertainty, a fixed-slope test such as isometry, and independent-group common-slope inference.",
+      "evidence": "RMA currently reports a descriptive fit only; this application declines those inferential claims.",
+      "boundary": "Comparing measurement methods on the same specimens is paired. Independent-group inference would not solve this application's method comparison.",
+      "priority": "Strongest scientific development candidate; requires a methods contract and review before implementation."
+    },
+    {
+      "id": "measurement_ranges",
+      "status": "open",
+      "need": "Raw-axis ranges and max/min ratios in regression output.",
+      "evidence": "The report derives the approved length spans from inspected pairs[].x_raw because no range fields exist.",
+      "priority": "Small reporting convenience; lower priority than inference."
+    }
+  ],
+  "not_a_gap": "RMA validation computes the fit because it checks numerical requirements. The pre-results no-fit boundary was study discipline."
+}

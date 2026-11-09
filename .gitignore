@@ -25,3 +25,4 @@ benchmarks/past/legacy-data/*
 /analyses/pollen-media/extraction/
 /analyses/pollen-media/runs-*/
 /analyses/pollen-media/intake-receipt.json
+/analyses/fossil-limpets/runs-*/

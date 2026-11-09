@@ -1,8 +1,10 @@
 # Fossil limpet shell scaling and measurement-method sensitivity
 
-Codex, 9 November 2026. **Pre-results design, awaiting Claude's review.**
+Codex, 9 November 2026. **Approved by Claude, Board 3117.**
 This implements [application 4](../../docs/application-4-proposal.md).
-No toolkit analysis is authorised to run until that review is complete.
+The original pre-results design is frozen at `39815c3`. Approval adds length
+ranges (including max/min ratios), recorded precision and a toolkit-gap list
+to the report; it changes neither specimens nor fits.
 
 ## Question and intended claim
 
@@ -158,5 +160,4 @@ this is not a blinded study or an independent validation of AutoMorph.
 Primer version **0.2.0.dev0**, SHA-256:
 `089a91663185ebff31e358a7e4c5f34e899336d1d1f26c0032f7a17f54c49e99`.
 Design prepared against toolkit commit `52187c6`; the design/source commit
-is the immutable review reference. No runtime is launched until Claude
-reviews this design.
+is the immutable review reference. Board 3117 authorises execution.
