@@ -529,3 +529,51 @@ def test_counts_inputs_refuse_abundance_declarations(tmp_path):
     with pytest.raises(AnalysisError) as error:
         run_study(study, tmp_path / "out", base_dir=tmp_path)
     assert error.value.code == "invalid_study"
+
+
+LIMPETS = Path(__file__).resolve().parents[1] / "analyses/fossil-limpets"
+LIMPET_COLUMNS = ["Length_Caliper_mm", "MajorAxisLength_AutoMorph_mm", "Width_Caliper_mm", "MinorAxisLength_AutoMorph_mm"]
+
+
+def test_declared_id_and_columns_read_the_raw_limpet_source():
+    from palaeo_agent.study import StudySpec, derive
+    study = json.loads((LIMPETS / "study.json").read_text())
+    current, _ = derive(StudySpec.model_validate(study), {"limpets": (LIMPETS / "measurements.tsv").read_bytes()}, "shells")
+    study["inputs"]["limpets"] = {"kind": "measurements", "path": "source/STable1_2DLimpets.csv", "format": "delimited",
+                                  "delimiter": "comma", "orientation": "samples_by_taxa", "id_column": "ObjectID",
+                                  "columns": LIMPET_COLUMNS}
+    direct, record = derive(StudySpec.model_validate(study),
+                            {"limpets": (LIMPETS / "source/STable1_2DLimpets.csv").read_bytes()}, "shells")
+    assert direct == current
+    assert record["operations"][0]["dropped_columns"] == ["SampleID"]
+
+
+@pytest.mark.parametrize("columns, code", [(["Length_Caliper_mm", "Nope"], "unknown_column"),
+                                            (["Length_Caliper_mm", "Length_Caliper_mm"], "invalid_study")])
+def test_declared_columns_are_exact_and_unique(tmp_path, columns, code):
+    study = {"study_version": 1,
+             "inputs": {"t": {"kind": "measurements", "path": str(LIMPETS / "source/STable1_2DLimpets.csv"),
+                              "format": "delimited", "delimiter": "comma", "orientation": "samples_by_taxa",
+                              "id_column": "ObjectID", "columns": columns}},
+             "datasets": {"d": {"source": "t"}},
+             "analyses": [{"id": "fit", "dataset": "d", "spec": rma_spec("x") | {"x": columns[0], "y": columns[-1]}}]}
+    try:
+        outcome = run_study(study, tmp_path / "out")
+    except AnalysisError as error:
+        assert error.code == code
+    else:
+        assert outcome["error"]["code"] == code
+
+
+def test_paired_row_filter_counts_specimens_complete_in_every_column(tmp_path):
+    (tmp_path / "m.dat").write_text(".\tL\tW\tL2\tW2\na\t1\t2\t1.1\t2.1\nb\t2\t3\t2.1\t3.2\nc\t3\t5\t3.1\t.\n"
+                                    "d\t4\t4\t4.2\t4.1\ne\t5\t7\t5.1\t6.8\n")
+    paired = {"method": "rma_paired", "format": "past", "a": {"x": "L", "y": "W"}, "b": {"x": "L2", "y": "W2"},
+              "transform": "none", "missing": "drop_pairs", "bootstrap": {"replicates": 999, "seed": 1, "confidence": 0.9}}
+    study = {"study_version": 1,
+             "inputs": {"m": {"kind": "measurements", "path": "m.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "m", "operations": [exclude(["c", "d"], "checking")]}},
+             "analyses": [{"id": "paired", "dataset": "d", "spec": paired}]}
+    from palaeo_agent.study import StudySpec, row_filter_warnings
+    warnings = row_filter_warnings(StudySpec.model_validate(study), {"m": (tmp_path / "m.dat").read_bytes()})
+    assert [(w["removed_rows"], w["columns"]) for w in warnings] == [(["d"], ["L", "W", "L2", "W2"])]

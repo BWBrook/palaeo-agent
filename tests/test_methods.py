@@ -30,7 +30,7 @@ def community_request(tmp_path, *, metadata=True, transform="none"):
 
 def test_discovery_exposes_all_methods_with_typed_outputs():
     methods = {method["id"]: method for method in discover()["methods"]}
-    assert set(methods) == {"rma", "community", "permanova", "rarefaction", "count_homogeneity"}
+    assert set(methods) == {"rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity"}
     assert methods["community"]["input_schema"]["additionalProperties"] is False
     assert {"retained_counts", "retained_values"} <= set(methods["community"]["output_schema"]["properties"])
 

@@ -70,8 +70,12 @@ exchangeability, so do not run it there.
   a row number is not one specimen across groups: excluding it removes
   values from every column. Exclude rows in a dataset used only by the
   analyses they concern. A study reports `row_filter_removes_pairs` when a
-  filter removes complete pairs from an `rma` analysis's columns; confirm
-  that each such filter applies to that analysis.
+  filter removes complete pairs from an `rma` analysis's columns, or
+  specimens complete in every `rma_paired` column; confirm that each such
+  filter applies to that analysis.
+- A delimited study table whose ID is not its first column, or that carries
+  text columns, declares `id_column` and `columns`; nothing else is
+  rearranged.
 - A sensitivity analysis that removes suspect records (for example
   duplicated rows) is a declared `study` exclusion followed by the same
   operation. Do not recompute a supported quantity on an edited array.
@@ -110,6 +114,16 @@ use the names advertised by your client.
 | Read a saved Neotoma download into a table and sample metadata | `neotoma_extract`, then `neotoma_inspect` / `neotoma_reproduce` | `palaeo_agent.neotoma_extract(spec, output_root)`, `palaeo_agent.inspect_neotoma(bundle)` |
 | Compare two community runs | `compare`, then `inspect_comparison` | `palaeo_agent.compare_community_runs(a, b, output_root)`, then `palaeo_agent.inspect_comparison(out["comparison_dir"])["report"]` |
 
+- **Allometry.** `rma` with `inference: {confidence, null_magnitude}` gives an
+  exact interval and test for the slope *magnitude* sd(y)/sd(x) (isometry on
+  log10 axes is 1) and a separate test of direction. There is no joint
+  interval for the signed slope, and the model is bivariate normal on the
+  analysed scale. To compare two measurement definitions of the same
+  specimens, use `rma_paired`: a seeded specimen bootstrap of the slope
+  difference with an approximate percentile interval. Read its
+  `resolution`; `monte_carlo_unresolved` means more replicates are needed
+  before deciding whether the interval includes 0. Comparing slopes of
+  independent groups is not supported.
 - **Neotoma intake.** `neotoma_extract` reads a saved `data/downloads`
   file with a declared SHA-256, explicit datasets, units (NISP gives
   counts, percent gives abundance), element and ecological-group filters,
@@ -180,7 +194,8 @@ asked to check someone else's analysis:
 3. Compare field by field with stated tolerances. For a Monte Carlo
    quantity, use its Monte Carlo error (`count_homogeneity` and Monte
    Carlo `permanova` report a Clopper–Pearson tail interval and a
-   `monte_carlo_unresolved` flag).
+   `monte_carlo_unresolved` flag; `rma_paired` reports endpoint bands and a
+   `resolution`).
 4. Report agreement as an arithmetic check only. Agreement does not
    establish scientific validity, and neither does replay.
 

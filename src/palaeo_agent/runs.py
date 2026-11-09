@@ -12,7 +12,7 @@ from pydantic import Field, model_validator
 
 from .core import AnalysisError, ResultItem
 from .methods import (
-    PLOT_FILES, calculate_method, compare_results, parse_spec, read_inputs, required_files,
+    MEASUREMENT_METHODS, PLOT_FILES, calculate_method, compare_results, parse_spec, read_inputs, required_files,
     steps_for, summary, table_files, validate_result,
 )
 
@@ -146,6 +146,10 @@ def _rng_description(result):
         return (f"NumPy Generator({randomization['bit_generator']}), seed={randomization['seed']}; "
                 "SeedSequence.spawn in declared pair order; SciPy random_table patefield; "
                 "settings saved in randomization.json")
+    if result is not None and result["method"] == "rma_paired":
+        bootstrap = result["bootstrap"]
+        return (f"NumPy Generator({bootstrap['bit_generator']}), seed={bootstrap['seed']}; {bootstrap['draw']}; "
+                "replicate slopes saved in bootstrap.csv")
     if result is None or result["method"] != "permanova":
         return "not used; deterministic method"
     permutation = result["permutation"]
@@ -315,7 +319,7 @@ def inspect_run(run_dir: str | Path):
         spec = parse_spec(json.loads(data["spec.json"]))
         if spec.input != Path("input.dat"):
             raise ValueError("Saved specification must reference its input snapshot")
-        expected_roles = {"measurements" if spec.method == "rma" else "matrix": "input.dat"}
+        expected_roles = {"measurements" if spec.method in MEASUREMENT_METHODS else "matrix": "input.dat"}
         if getattr(spec, "metadata", None) is not None:
             if spec.metadata != Path("metadata.csv"):
                 raise ValueError("Saved metadata must reference its snapshot")
@@ -335,6 +339,8 @@ def inspect_run(run_dir: str | Path):
             raise ValueError("Lockfile provenance differs from saved artefacts")
         if environment["rng"] != _rng_description(result):
             raise ValueError("RNG provenance differs from the method result")
+        if spec.method == "rma_paired" and result["bootstrap"]["numpy_version"] != environment["packages"]["numpy"]:
+            raise ValueError("Bootstrap NumPy version differs from its recorded environment")
         if spec.method == "permanova" and result["permutation"]["numpy_version"] != environment["packages"]["numpy"]:
             raise ValueError("Permutation NumPy version differs from its recorded environment")
         if spec.method == "count_homogeneity" and any(

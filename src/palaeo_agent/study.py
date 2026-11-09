@@ -49,6 +49,19 @@ class TableInput(Model):
 
     orientation: Literal["samples_by_taxa", "taxa_by_samples"] = Field(
         description="Declared layout; derived datasets are always samples_by_taxa")
+    id_column: str | None = Field(default=None, min_length=1,
+                                  description="Delimited samples_by_taxa only: exact header naming the row-ID column (default: first)")
+    columns: list[str] | None = Field(default=None, min_length=1,
+                                      description="Delimited samples_by_taxa only: exact data-column headers kept, in this order")
+
+    @model_validator(mode="after")
+    def declared_projection(self):
+        if (self.id_column is not None or self.columns is not None) and (
+                self.format != "delimited" or self.orientation != "samples_by_taxa"):
+            raise ValueError("id_column and columns apply only to delimited samples_by_taxa tables")
+        if self.columns is not None and (len(set(self.columns)) != len(self.columns) or self.id_column in self.columns):
+            raise ValueError("columns must be unique and exclude the ID column")
+        return self
 
 
 class MetadataInput(Model):
@@ -123,7 +136,7 @@ class StudySpec(Model):
                 raise ValueError(f"Analysis {analysis.id}: the study supplies input and metadata paths")
             kind = self.inputs[self.datasets[analysis.dataset].source].kind
             method = analysis.spec.get("method")
-            if (method == "rma") != (kind == "measurements"):
+            if (method in ("rma", "rma_paired")) != (kind == "measurements"):
                 raise ValueError(f"Analysis {analysis.id}: {method} cannot analyse a {kind} dataset")
             if kind == "abundance" and method not in ("community", "permanova"):
                 raise ValueError(f"Analysis {analysis.id}: {method} requires counts; abundance weights are never converted")
@@ -154,7 +167,8 @@ def read_table(data: bytes, declaration: TableInput):
         text = data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise AnalysisError("invalid_encoding", "Tables must be UTF-8 text") from exc
-    rows = parse_table(text, declaration.format, declaration.delimiter)
+    rows = parse_table(text, declaration.format, declaration.delimiter,
+                       id_column=declaration.id_column, columns=declaration.columns)
     columns, labels = rows[0][1:], [row[0] for row in rows[1:]]
     for line, row in enumerate(rows[1:], 2):
         if len(row) != len(columns) + 1:
@@ -293,11 +307,15 @@ def row_filter_warnings(spec: StudySpec, raw: dict, datasets=None):
     double-count. Recomputed from saved inputs during inspection."""
     warnings = []
     for analysis in spec.analyses:
-        if analysis.spec.get("method") != "rma" or (datasets is not None and analysis.dataset not in datasets):
+        method = analysis.spec.get("method")
+        if method not in ("rma", "rma_paired") or (datasets is not None and analysis.dataset not in datasets):
             continue
         dataset = spec.datasets[analysis.dataset]
         declaration = spec.inputs[dataset.source]
-        x, y = analysis.spec.get("x"), analysis.spec.get("y")
+        selectors = ([(analysis.spec.get("x"), analysis.spec.get("y"))] if method == "rma" else
+                     [(analysis.spec.get(fit, {}).get("x"), analysis.spec.get(fit, {}).get("y")) for fit in ("a", "b")])
+        labels = {"x": selectors[0][0], "y": selectors[0][1]} if method == "rma" else {
+            "columns": [name for pair in selectors for name in pair]}
         table = read_table(raw[dataset.source], declaration)
         for index, operation in enumerate(dataset.operations):
             incoming = table
@@ -305,14 +323,14 @@ def row_filter_warnings(spec: StudySpec, raw: dict, datasets=None):
             if operation.op not in ("exclude", "select"):
                 continue
             try:
-                i, j = resolve_columns(incoming["columns"], x, y)
+                indices = sorted({i for x, y in selectors for i in resolve_columns(incoming["columns"], x, y)})
             except AnalysisError:
                 continue
             rows = dict(zip(incoming["samples"], incoming["values"]))
-            removed = [s for s in record["removed"] if _present(rows[s][i]) and _present(rows[s][j])]
+            removed = [s for s in record["removed"] if all(_present(rows[s][i]) for i in indices)]
             if removed:
                 warnings.append({"code": "row_filter_removes_pairs", "message": ROW_FILTER_MESSAGE,
-                                 "analysis": analysis.id, "dataset": analysis.dataset, "x": x, "y": y,
+                                 "analysis": analysis.id, "dataset": analysis.dataset, **labels,
                                  "operation_index": index, "op": operation.op, "removed_rows": removed,
                                  "complete_pairs_removed": len(removed), "reason": operation.reason})
     return warnings
@@ -339,6 +357,12 @@ def derive(spec: StudySpec, raw: dict, name: str):
     table = read_table(raw[dataset.source], declaration)
     records = [{"op": "read", "input": dataset.source, "orientation": declaration.orientation,
                 "samples": len(table["samples"]), "columns": len(table["columns"])}]
+    if declaration.id_column is not None or declaration.columns is not None:
+        header = next(row for row in csv.reader(io.StringIO(raw[dataset.source].decode("utf-8-sig")),
+                                                delimiter="\t" if declaration.delimiter == "tab" else ",") if row)
+        records[0].update(id_column=declaration.id_column, selected_columns=declaration.columns,
+                          dropped_columns=[name for name in header if name != (declaration.id_column or header[0])
+                                           and name not in table["columns"]])
     for operation in dataset.operations:
         table, record = apply(operation, table, declaration.kind)
         records.append(record)
@@ -487,8 +511,10 @@ def report(spec, datasets, runs, steps, directory, filters):
         result = json.loads((directory / run_dir / "results.json").read_text())
         lines += ["", f"## Analysis `{analysis.id}` ({result['method']}, dataset `{analysis.dataset}`)", ""]
         for item in (w for w in filters if w["analysis"] == analysis.id):
+            removed = (f"{'/'.join(item['columns'])} records" if "columns" in item else
+                       f"{item['x']}/{item['y']} pairs")
             lines.append(f"- **row filter `{item['code']}`**: {item['op']} (operation {item['operation_index']}) removed "
-                         f"{item['complete_pairs_removed']} complete {item['x']}/{item['y']} pairs "
+                         f"{item['complete_pairs_removed']} complete {removed} "
                          f"(rows {', '.join(item['removed_rows'])}); recorded reason: \"{item['reason']}\". "
                          "Confirm it applies to this analysis (`manifest.json#row_filter_warnings`).")
         for key, value in summary(result).items():

@@ -1,6 +1,7 @@
 """The first supported operation: descriptive reduced-major-axis regression."""
 
 from collections import Counter, defaultdict
+import math
 from decimal import MAX_EMAX, MIN_EMIN, ROUND_HALF_EVEN, Context, DivisionByZero, InvalidOperation, Overflow
 from numbers import Real
 from pathlib import Path
@@ -8,6 +9,8 @@ from typing import Literal
 
 import numpy as np
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
+from scipy.special import betaln
+from scipy.stats import f as f_distribution, t as t_distribution
 
 
 def decimal_context(precision, *traps):
@@ -27,6 +30,13 @@ class AnalysisError(Exception):
                 "message": str(self), "details": self.details}
 
 
+class RmaInferenceSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    confidence: float = Field(gt=0, lt=1, strict=True, description="Interval confidence and test level 1 - confidence")
+    null_magnitude: FiniteFloat = Field(gt=0, description="Slope magnitude sd(y)/sd(x) under the null, on the analysed scale; isometry on log10 axes is 1")
+
+
 class RmaSpec(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -37,6 +47,9 @@ class RmaSpec(BaseModel):
     y: str = Field(min_length=1, description="Exact response column label")
     transform: Literal["none", "log10"]
     missing: Literal["error", "drop_pairs"]
+    inference: RmaInferenceSpec | None = Field(
+        default=None, description="Optional exact interval and test for the slope magnitude, and a test of direction, "
+                                  "under bivariate normality on the analysed scale")
 
 
 class ResultItem(BaseModel):
@@ -70,9 +83,43 @@ class RmaWarning(ResultItem):
     details: dict = Field(default_factory=dict)
 
 
+class MagnitudeTest(ResultItem):
+    r_rf: FiniteFloat = Field(gt=-1, lt=1)
+    t: FiniteFloat
+    df: int = Field(ge=1)
+    p_value: FiniteFloat = Field(ge=0, le=1)
+    p_value_underflow: bool
+    log10_p_value: FiniteFloat | None
+
+
+class DirectionTest(ResultItem):
+    r: FiniteFloat = Field(gt=-1, lt=1)
+    t: FiniteFloat
+    df: int = Field(ge=1)
+    p_value: FiniteFloat = Field(ge=0, le=1)
+    p_value_underflow: bool
+    log10_p_value: FiniteFloat | None
+    direction: Literal["positive", "negative", "not_established"]
+
+
+INFERENCE_SCOPE = ("Interval and test concern the magnitude sd(y)/sd(x); direction is tested separately; "
+                   "no joint signed confidence set; intervals are marginal")
+
+
+class RmaInference(ResultItem):
+    confidence: float = Field(gt=0, lt=1)
+    magnitude_estimate: FiniteFloat = Field(gt=0)
+    magnitude_interval: list[FiniteFloat] = Field(min_length=2, max_length=2)
+    null_magnitude: FiniteFloat = Field(gt=0)
+    magnitude_test: MagnitudeTest
+    direction_test: DirectionTest
+    model: Literal["independent pairs from a nonsingular bivariate normal on the analysed scale"]
+    scope: Literal[INFERENCE_SCOPE]
+
+
 class RmaResult(ResultItem):
     method: Literal["rma"]
-    method_version: Literal[1]
+    method_version: Literal[2]
     transform: Literal["none", "log10"]
     missing: Literal["error", "drop_pairs"]
     n_input: int = Field(ge=2)
@@ -86,6 +133,9 @@ class RmaResult(ResultItem):
     slope: FiniteFloat
     intercept: FiniteFloat
     vertical_residual_rmse: FiniteFloat = Field(ge=0)
+    x_raw_range: list[FiniteFloat] = Field(min_length=2, max_length=2)
+    y_raw_range: list[FiniteFloat] = Field(min_length=2, max_length=2)
+    inference: RmaInference | None
     warnings: list[RmaWarning]
     pairs: list[RmaPair] = Field(min_length=2)
     references: list[str] = Field(min_length=1)
@@ -105,25 +155,36 @@ class RmaResult(ResultItem):
             raise ValueError("RMA requires nonzero covariance and slope")
         if self.transform == "log10" and any(pair.x_raw <= 0 or pair.y_raw <= 0 for pair in self.pairs):
             raise ValueError("Log-transformed records require positive raw measurements")
+        _check_saved_fit(self)
         return self
 
 
 REFERENCE = "https://palaeo-electronica.org/2001_1/past/pastprog/study1.html"
+INFERENCE_REFERENCES = ["https://doi.org/10.1017/S1464793106007007", "https://doi.org/10.1093/biomet/31.1-2.9",
+                        "https://doi.org/10.1093/biomet/31.1-2.13"]
+INFERENCE_MODEL = "independent pairs from a nonsingular bivariate normal on the analysed scale"
+INFERENCE_LIMITATIONS = [
+    "The magnitude interval and test concern sd(y)/sd(x) and are exact only for independent pairs from a nonsingular bivariate normal on the analysed scale",
+    "Direction is tested separately by the correlation; there is no joint confidence set for the signed slope, and intervals are marginal",
+    "No measurement-error model; a p-value is not an effect size",
+]
 RMA_ASSOCIATION_LIMITATION = "RMA slope magnitude is sd(y)/sd(x), independent of correlation strength; a fitted line does not establish association"
 
 
 def discover():
     return {"methods": [{
-        "id": "rma", "version": 1,
-        "description": "Descriptive reduced-major-axis regression of labelled paired measurements",
+        "id": "rma", "version": 2,
+        "description": "Reduced-major-axis regression of labelled paired measurements, with optional exact magnitude inference",
         "definition": "slope = sign(r) * sample_sd(y) / sample_sd(x); intercept = mean(y) - slope * mean(x)",
-        "requirements": ["At least two complete pairs", "Nonzero variance and covariance",
+        "inference": ("Optional: interval |b|/H to |b|*H, H = sqrt(1+B) + sqrt(B), B = (1 - r^2) F(confidence; 1, n-2)/(n-2), "
+                      "for sd(y)/sd(x); Pitman-Morgan test of a declared magnitude; correlation t-test of direction"),
+        "requirements": ["At least two complete pairs (three for inference)", "Nonzero variance and covariance",
                          "Positive measurements when log10 is requested"],
-        "limitations": ["No standard errors, confidence intervals or significance tests",
+        "limitations": ["Without inference: no standard errors, confidence intervals or significance tests",
                         "RMA is symmetric regression, not ordinary least squares",
-                        RMA_ASSOCIATION_LIMITATION,
+                        RMA_ASSOCIATION_LIMITATION, *INFERENCE_LIMITATIONS,
                         "No inference of sampling independence or causal effects"],
-        "references": [REFERENCE], "input_schema": RmaSpec.model_json_schema(),
+        "references": [REFERENCE, *INFERENCE_REFERENCES], "input_schema": RmaSpec.model_json_schema(),
         "output_schema": RmaResult.model_json_schema(),
     }]}
 
@@ -181,7 +242,7 @@ def repeated_warnings(records, ids, what):
     return warnings
 
 
-def rma_regression(x, y, *, sample_ids=None, transform, missing):
+def rma_regression(x, y, *, sample_ids=None, transform, missing, inference=None):
     """Fit RMA, retaining pair identities and declared exclusions.
 
     Missing values in the native API are None. NaN and infinity are invalid;
@@ -226,6 +287,43 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
     yy = np.asarray([row["y_raw"] for row in used], dtype=np.float64)
     if transform == "log10":
         xx, yy = np.log10(xx), np.log10(yy)
+    fit = fit_rma(xx, yy)
+    settings = None if inference is None else (
+        inference if isinstance(inference, RmaInferenceSpec) else RmaInferenceSpec.model_validate(inference))
+    inferred = None if settings is None else rma_inference(xx, yy, fit, settings.confidence, settings.null_magnitude)
+    r = fit["correlation"]
+    for row, xv, yv, residual in zip(used, xx, yy, fit["residuals"], strict=True):
+        row.update(x=float(xv), y=float(yv), residual=float(residual))
+    warnings = [{"code": "small_computed_correlation",
+                 "message": "Computed |r| is below 1e-8; this numerical diagnostic is not a statistical test of association"}] if abs(r) < 1e-8 else []
+    if len(used) == 2:
+        warnings.append({"code": "two_pairs", "message": "Two pairs determine a line; residual diagnostics cannot assess its adequacy"})
+    warnings += repeated_warnings([(row["x_raw"], row["y_raw"]) for row in used], [row["sample_id"] for row in used],
+                                  "pairs")
+    summary = {key: fit[key] for key in SUMMARY_KEYS}
+    return RmaResult.model_validate({"method": "rma", "method_version": 2, "transform": transform,
+            "missing": missing, "n_input": len(ids), "n": len(used), "excluded": excluded, **summary,
+            "x_raw_range": _range(row["x_raw"] for row in used), "y_raw_range": _range(row["y_raw"] for row in used),
+            "inference": inferred, "warnings": warnings, "pairs": used,
+            "references": [REFERENCE] + (INFERENCE_REFERENCES if inferred else []),
+            "limitations": rma_limitations(inferred is not None)}).model_dump(mode="json")
+
+
+SUMMARY_KEYS = ("mean_x", "mean_y", "sd_x", "sd_y", "correlation", "slope", "intercept", "vertical_residual_rmse")
+
+
+def rma_limitations(inferred):
+    return ([RMA_ASSOCIATION_LIMITATION, "Vertical residuals are diagnostics, not an OLS fitting objective"] +
+            (INFERENCE_LIMITATIONS if inferred else ["Descriptive fit only; no inferential uncertainty or hypothesis test"]))
+
+
+def _range(values):
+    values = list(values)
+    return [min(values), max(values)]
+
+
+def fit_rma(xx, yy):
+    """Moments, RMA line and vertical residuals of analysed float64 pairs."""
     try:
         with np.errstate(all="raise"):
             mean_x, mean_y = float(xx.mean()), float(yy.mean())
@@ -245,23 +343,105 @@ def rma_regression(x, y, *, sample_ids=None, transform, missing):
     values = [mean_x, mean_y, sd_x, sd_y, r, slope, intercept, rmse]
     if not np.isfinite(values).all():
         raise AnalysisError("numerical_range", "Computed summaries are not finite")
-    for row, xv, yv, residual in zip(used, xx, yy, residuals, strict=True):
-        row.update(x=float(xv), y=float(yv), residual=float(residual))
-    warnings = [{"code": "small_computed_correlation",
-                 "message": "Computed |r| is below 1e-8; this numerical diagnostic is not a statistical test of association"}] if abs(r) < 1e-8 else []
-    if len(used) == 2:
-        warnings.append({"code": "two_pairs", "message": "Two pairs determine a line; residual diagnostics cannot assess its adequacy"})
-    warnings += repeated_warnings([(row["x_raw"], row["y_raw"]) for row in used], [row["sample_id"] for row in used],
-                                  "pairs")
-    return RmaResult.model_validate({"method": "rma", "method_version": 1, "transform": transform,
-            "missing": missing, "n_input": len(ids), "n": len(used),
-            "excluded": excluded, "mean_x": mean_x, "mean_y": mean_y,
-            "sd_x": sd_x, "sd_y": sd_y, "correlation": r,
-            "slope": slope, "intercept": intercept, "vertical_residual_rmse": rmse,
-            "warnings": warnings, "pairs": used, "references": [REFERENCE],
-            "limitations": ["Descriptive fit only; no inferential uncertainty or hypothesis test",
-                            RMA_ASSOCIATION_LIMITATION,
-                            "Vertical residuals are diagnostics, not an OLS fitting objective"]}).model_dump(mode="json")
+    return dict(zip(SUMMARY_KEYS, values), residuals=residuals)
+
+
+def _log10_t_two_sided(t, df):
+    """log10 of the two-sided t tail I_z(df/2, 1/2), z = df/(df + t^2), by the series DLMF 8.17.22 in log space."""
+    a, b = df / 2, 0.5
+    log_z = math.log(df) - 2 * math.log(abs(t)) - math.log1p(df / (t * t))
+    total = 1.0
+    for k in range(MAX_SERIES_TERMS):
+        term = math.exp(betaln(a + 1, k + 1) - betaln(a + b, k + 1) + (k + 1) * log_z)
+        total += term
+        if term < 1e-17 * total:
+            break
+    else:
+        raise AnalysisError("numerical_range", "The tail-probability series did not converge", t=t, df=df)
+    log_one_minus_z = math.log(t * t / df) + log_z
+    return (a * log_z + b * log_one_minus_z - math.log(a) - betaln(a, b) + math.log(total)) / math.log(10)
+
+
+MAX_SERIES_TERMS = 10_000
+
+
+def _t_test(t, df):
+    p = float(min(1.0, 2 * t_distribution.sf(abs(t), df)))
+    if p > 0:
+        return {"t": t, "df": df, "p_value": p, "p_value_underflow": False, "log10_p_value": None}
+    return {"t": t, "df": df, "p_value": 0.0, "p_value_underflow": True, "log10_p_value": _log10_t_two_sided(t, df)}
+
+
+def rma_inference(xx, yy, fit, confidence, null_magnitude):
+    """Exact interval and Pitman-Morgan test for sd(y)/sd(x), and the correlation test of direction.
+
+    Both are exact for independent pairs from a nonsingular bivariate normal on the analysed scale."""
+    n = len(xx)
+    if n < 3:
+        raise AnalysisError("inference_unavailable", "Inference needs at least three complete pairs", n=n)
+    df, r, magnitude = n - 2, fit["correlation"], abs(fit["slope"])
+    try:
+        with np.errstate(all="raise"):
+            if not 1 - r * r > 0:
+                raise AnalysisError("degenerate_inference", "Perfect correlation leaves no sampling variation to infer from")
+            b_term = (1 - r * r) * float(f_distribution.ppf(confidence, 1, df)) / df
+            h = math.sqrt(1 + b_term) + math.sqrt(b_term)
+            interval = [magnitude / h, magnitude * h]
+            zx = (xx - fit["mean_x"]) / fit["sd_x"]
+            zy = (yy - fit["mean_y"]) / fit["sd_y"]
+            log_ratio = math.log(null_magnitude) + math.log(fit["sd_x"]) - math.log(fit["sd_y"])
+            u, v = (zy, math.exp(log_ratio) * zx) if log_ratio <= 0 else (math.exp(-log_ratio) * zy, zx)
+            var_u, var_v, cov_uv = float(np.mean(u * u)), float(np.mean(v * v)), float(np.mean(u * v))
+            r_rf = (var_u - var_v) / math.sqrt((var_u + var_v) ** 2 - 4 * cov_uv * cov_uv)
+            if not 1 - r_rf * r_rf > 0:
+                raise AnalysisError("degenerate_inference", "The magnitude test statistic is degenerate at this null magnitude")
+            t_rf = r_rf * math.sqrt(df) / math.sqrt(1 - r_rf * r_rf)
+            t_r = r * math.sqrt(df) / math.sqrt(1 - r * r)
+    except (FloatingPointError, OverflowError, ValueError, ZeroDivisionError) as exc:
+        raise AnalysisError("numerical_range", "Inference exceeded floating-point range") from exc
+    if not (np.isfinite(interval + [r_rf, t_rf, t_r]).all() and interval[0] > 0):
+        raise AnalysisError("numerical_range", "Interval bounds or test statistics are not representable", interval=interval)
+    direction = _t_test(t_r, df)
+    established = direction["p_value"] < 1 - confidence
+    return {"confidence": confidence, "magnitude_estimate": magnitude, "magnitude_interval": interval,
+            "null_magnitude": float(null_magnitude), "magnitude_test": {"r_rf": r_rf, **_t_test(t_rf, df)},
+            "direction_test": {"r": r, **direction,
+                               "direction": ("positive" if r > 0 else "negative") if established else "not_established"},
+            "model": INFERENCE_MODEL, "scope": INFERENCE_SCOPE}
+
+
+def _same(a, b):
+    if isinstance(a, dict) and isinstance(b, dict):
+        return a.keys() == b.keys() and all(_same(a[key], b[key]) for key in a)
+    if isinstance(a, list) and isinstance(b, list):
+        return len(a) == len(b) and all(_same(x, y) for x, y in zip(a, b))
+    if isinstance(a, float) and isinstance(b, (int, float)) and not isinstance(b, bool):
+        return math.isclose(a, b, rel_tol=1e-10, abs_tol=1e-12)
+    return type(a) is type(b) and a == b
+
+
+def _check_saved_fit(result):
+    """Recompute the line, residuals, ranges and inference from the saved pairs."""
+    raw_x = np.asarray([pair.x_raw for pair in result.pairs])
+    raw_y = np.asarray([pair.y_raw for pair in result.pairs])
+    xx = np.asarray([pair.x for pair in result.pairs])
+    yy = np.asarray([pair.y for pair in result.pairs])
+    expected = (np.log10(raw_x), np.log10(raw_y)) if result.transform == "log10" else (raw_x, raw_y)
+    if not (np.allclose(xx, expected[0], rtol=1e-12, atol=0) and np.allclose(yy, expected[1], rtol=1e-12, atol=0)):
+        raise ValueError("Analysed pairs differ from the raw pairs under the declared transform")
+    fit = fit_rma(xx, yy)
+    saved = {key: getattr(result, key) for key in SUMMARY_KEYS}
+    if not _same(saved, {key: fit[key] for key in SUMMARY_KEYS}) or not _same(
+            [pair.residual for pair in result.pairs], [float(value) for value in fit["residuals"]]):
+        raise ValueError("Saved RMA summaries or residuals do not recompute from the saved pairs")
+    if result.x_raw_range != _range(raw_x.tolist()) or result.y_raw_range != _range(raw_y.tolist()):
+        raise ValueError("Saved ranges differ from the retained raw values")
+    if result.inference is not None:
+        recomputed = rma_inference(xx, yy, fit, result.inference.confidence, result.inference.null_magnitude)
+        if not _same(result.inference.model_dump(mode="json"), recomputed):
+            raise ValueError("Saved inference does not recompute from the saved pairs")
+    if result.limitations != rma_limitations(result.inference is not None):
+        raise ValueError("Limitations do not match the inference record")
 
 
 def resolve_columns(names, x, y):
@@ -284,9 +464,8 @@ def resolve_columns(names, x, y):
     return selected
 
 
-def load_past(data: bytes, spec: RmaSpec):
-    if spec.x == spec.y:
-        raise AnalysisError("same_column", "x and y must select different columns")
+def past_header(data: bytes):
+    """Column names and raw token rows of a classic PAST measurement table."""
     try:
         lines = [line for line in data.decode("utf-8-sig").splitlines() if line.strip()]
     except UnicodeDecodeError as exc:
@@ -298,9 +477,13 @@ def load_past(data: bytes, spec: RmaSpec):
     names = rows[0][1:]
     if len(names) != len(set(names)):
         raise AnalysisError("duplicate_column_id", "Column labels must be unique")
-    selected = resolve_columns(names, spec.x, spec.y)
-    ids, x, y = [], [], []
-    for line_number, row in enumerate(rows[1:], 2):
+    return names, rows[1:]
+
+
+def past_values(names, rows):
+    """Row IDs and parsed values (None for the explicit '.' missing marker) of every column."""
+    ids, values = [], []
+    for line_number, row in enumerate(rows, 2):
         if len(row) > len(names) + 1 and all(not cell.strip() for cell in row[len(names) + 1:]):
             row = row[:len(names) + 1]
         if len(row) != len(names) + 1:
@@ -315,20 +498,31 @@ def load_past(data: bytes, spec: RmaSpec):
             if value is not None and not np.isfinite(value):
                 raise AnalysisError("invalid_numeric", "Nonfinite measurement token", sample_id=row[0], column=column)
             parsed.append(value)
-        x.append(parsed[selected[0]])
-        y.append(parsed[selected[1]])
-    selection_warnings = [
-        {"code": "padded_column_label",
-         "message": f"{axis} selector {name!r} uses PAST header label {names[index]!r} at data column {index + 1}"}
-        for axis, name, index in zip(("x", "y"), (spec.x, spec.y), selected, strict=True)
-        if name != names[index]
-    ]
-    return x, y, ids, selection_warnings
+        values.append(parsed)
+    return ids, values
+
+
+def padded_warnings(names, selectors):
+    """Warnings for selectors that matched a whitespace-padded header label; selectors are (axis, name, index)."""
+    return [{"code": "padded_column_label",
+             "message": f"{axis} selector {name!r} uses PAST header label {names[index]!r} at data column {index + 1}"}
+            for axis, name, index in selectors if name != names[index]]
+
+
+def load_past(data: bytes, spec: RmaSpec):
+    if spec.x == spec.y:
+        raise AnalysisError("same_column", "x and y must select different columns")
+    names, rows = past_header(data)
+    selected = resolve_columns(names, spec.x, spec.y)
+    ids, values = past_values(names, rows)
+    x, y = [row[selected[0]] for row in values], [row[selected[1]] for row in values]
+    return x, y, ids, padded_warnings(names, zip(("x", "y"), (spec.x, spec.y), selected, strict=True))
 
 
 def calculate(spec: RmaSpec, data: bytes):
     x, y, ids, selection_warnings = load_past(data, spec)
-    result = rma_regression(x, y, sample_ids=ids, transform=spec.transform, missing=spec.missing)
+    result = rma_regression(x, y, sample_ids=ids, transform=spec.transform, missing=spec.missing,
+                            inference=spec.inference)
     result["warnings"].extend(selection_warnings)
     return result
 

@@ -1,0 +1,248 @@
+{
+  "kind": "independent_rma_inference_reference",
+  "generator": "references/r/rma_inference_reference.R",
+  "generated_at": "2026-11-09T21:19:56+1100",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "platform": "aarch64-apple-darwin27.0.0",
+  "packages": {
+    "smatr": "3.5.2",
+    "jsonlite": "2.0.0"
+  },
+  "rtol": 1e-10,
+  "atol": 1e-10,
+  "note": "smatr's slope interval is the sample-sign component; the API's magnitude interval is compared with its absolute values. smatr's slope test uses 1 - pf(), so tails come from base R pt(log.p = TRUE).",
+  "cases": [
+    {
+      "id": "dielasma_L1_log",
+      "input": "../../benchmarks/past/legacy-data/dielasma.dat",
+      "x": "L1/X1",
+      "y": "L1/X2",
+      "transform": "log10",
+      "null_magnitude": 1,
+      "confidence": 0.95,
+      "n": 103,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1 * sign(cor(x, y)), alpha = 0.05) on log10 pairs",
+        "slope": 1.01836544356768,
+        "slope_low": 0.989351797521646,
+        "slope_high": 1.04822994131176,
+        "r2": 0.978551509502801,
+        "correlation_p": 4.35366687838833e-86,
+        "slope_test_r": 0.123322233521457,
+        "slope_test_p": 0.214586234947567
+      },
+      "base": {
+        "r": 0.989217624945492,
+        "r_rf": 0.123322233521461,
+        "t_rf": 1.24890641103295,
+        "t_r": 67.8819275832678,
+        "df": 101,
+        "magnitude_log10_p": -0.668398140142924,
+        "direction_log10_p": -85.3611448041448
+      }
+    },
+    {
+      "id": "dielasma_L3_log",
+      "input": "../../benchmarks/past/legacy-data/dielasma.dat",
+      "x": "L3/X1",
+      "y": "L3/X2",
+      "transform": "log10",
+      "null_magnitude": 1,
+      "confidence": 0.95,
+      "n": 35,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1 * sign(cor(x, y)), alpha = 0.05) on log10 pairs",
+        "slope": 1.10711239004506,
+        "slope_low": 0.98550630010797,
+        "slope_high": 1.24372400669279,
+        "r2": 0.891577193159509,
+        "correlation_p": 1.74705985115572e-17,
+        "slope_test_r": 0.295715614639312,
+        "slope_test_p": 0.084572019123742
+      },
+      "base": {
+        "r": 0.944233653901146,
+        "r_rf": 0.295715614639313,
+        "t_rf": 1.77828903633937,
+        "t_r": 16.473129865084,
+        "df": 33,
+        "magnitude_log10_p": -1.07277330067477,
+        "direction_log10_p": -16.7576922166076
+      }
+    },
+    {
+      "id": "limpet_caliper_log",
+      "input": "../../analyses/fossil-limpets/measurements.tsv",
+      "x": "Length_Caliper_mm",
+      "y": "Width_Caliper_mm",
+      "transform": "log10",
+      "null_magnitude": 1,
+      "confidence": 0.95,
+      "n": 136,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1 * sign(cor(x, y)), alpha = 0.05) on log10 pairs",
+        "slope": 1.08073739946382,
+        "slope_low": 0.991960470522045,
+        "slope_high": 1.17745954733975,
+        "r2": 0.747703112047574,
+        "correlation_p": 6.7257180794772e-42,
+        "slope_test_r": 0.152914297947949,
+        "slope_test_p": 0.0755222892788762
+      },
+      "base": {
+        "r": 0.864698278041291,
+        "r_rf": 0.152914297947949,
+        "t_rf": 1.79117618392449,
+        "t_r": 19.9278775759872,
+        "df": 134,
+        "magnitude_log10_p": -1.12192485390444,
+        "direction_log10_p": -41.1722613408711
+      }
+    },
+    {
+      "id": "limpet_automorph_log",
+      "input": "../../analyses/fossil-limpets/measurements.tsv",
+      "x": "MajorAxisLength_AutoMorph_mm",
+      "y": "MinorAxisLength_AutoMorph_mm",
+      "transform": "log10",
+      "null_magnitude": 1,
+      "confidence": 0.95,
+      "n": 136,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1 * sign(cor(x, y)), alpha = 0.05) on log10 pairs",
+        "slope": 0.933878280356391,
+        "slope_low": 0.847458333249628,
+        "slope_high": 1.02911094068446,
+        "r2": 0.675980257786639,
+        "correlation_p": 1.3470428393491e-34,
+        "slope_test_r": -0.119412178139845,
+        "slope_test_p": 0.166150543944542
+      },
+      "base": {
+        "r": 0.822180185717607,
+        "r_rf": -0.119412178139846,
+        "t_rf": -1.39225782725665,
+        "t_r": 16.7198997564048,
+        "df": 134,
+        "magnitude_log10_p": -0.779498232587345,
+        "direction_log10_p": -33.8706185924009
+      }
+    },
+    {
+      "id": "negative_raw",
+      "input": "rma/negative.dat",
+      "x": "x",
+      "y": "y",
+      "transform": "none",
+      "null_magnitude": 1.5,
+      "confidence": 0.95,
+      "n": 12,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1.5 * sign(cor(x, y)), alpha = 0.05) on raw pairs",
+        "slope": -1.81063191775193,
+        "slope_low": -2.311795645428,
+        "slope_high": -1.41811320912626,
+        "r2": 0.877323434852385,
+        "correlation_p": 7.21747758869616e-06,
+        "slope_test_r": 0.47551404642407,
+        "slope_test_p": 0.118185162465507
+      },
+      "base": {
+        "r": -0.936655451514795,
+        "r_rf": 0.47551404642407,
+        "t_rf": 1.70932539678964,
+        "t_r": -8.45666372364087,
+        "df": 10,
+        "magnitude_log10_p": -0.927437043453367,
+        "direction_log10_p": -5.14161455599185
+      }
+    },
+    {
+      "id": "three_raw",
+      "input": "rma/three.dat",
+      "x": "x",
+      "y": "y",
+      "transform": "none",
+      "null_magnitude": 1,
+      "confidence": 0.95,
+      "n": 3,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 1 * sign(cor(x, y)), alpha = 0.05) on raw pairs",
+        "slope": 1.27733274731701,
+        "slope_low": 0.196466871869825,
+        "slope_high": 8.30460083086919,
+        "r2": 0.937606112054329,
+        "correlation_p": 0.160721654241594,
+        "slope_test_r": 0.703452458112659,
+        "slope_test_p": 0.503281603348942
+      },
+      "base": {
+        "r": 0.968300631030637,
+        "r_rf": 0.703452458112659,
+        "t_rf": 0.989743318610787,
+        "t_r": 3.87649466455892,
+        "df": 1,
+        "magnitude_log10_p": -0.29818894425031,
+        "direction_log10_p": -0.793925606223105
+      }
+    },
+    {
+      "id": "raw_magnitude_two",
+      "input": "rma/raw.dat",
+      "x": "x",
+      "y": "y",
+      "transform": "none",
+      "null_magnitude": 2,
+      "confidence": 0.95,
+      "n": 15,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 2 * sign(cor(x, y)), alpha = 0.05) on raw pairs",
+        "slope": 2.36923611007787,
+        "slope_low": 2.17638839014769,
+        "slope_high": 2.57917188435104,
+        "r2": 0.979874148243923,
+        "correlation_p": 2.06466414837389e-12,
+        "slope_test_r": 0.768208930488488,
+        "slope_test_p": 0.000821952452123798
+      },
+      "base": {
+        "r": 0.989885926884468,
+        "r_rf": 0.768208930488485,
+        "t_rf": 4.32649183246583,
+        "t_r": 25.158207305222,
+        "df": 13,
+        "magnitude_log10_p": -3.08515330457371,
+        "direction_log10_p": -11.6851505834122
+      }
+    },
+    {
+      "id": "extreme_tails",
+      "input": "rma/tails.dat",
+      "x": "x",
+      "y": "y",
+      "transform": "none",
+      "null_magnitude": 10,
+      "confidence": 0.95,
+      "n": 500,
+      "smatr": {
+        "call": "sma(y ~ x, slope.test = 10 * sign(cor(x, y)), alpha = 0.05) on raw pairs",
+        "slope": 1.00000644849862,
+        "slope_low": 0.999925899476803,
+        "slope_high": 1.00008700400907,
+        "r2": 0.999999162915033,
+        "correlation_p": 0,
+        "slope_test_r": -0.999999982918152,
+        "slope_test_p": 0
+      },
+      "base": {
+        "r": 0.999999581457429,
+        "r_rf": -0.999999982918152,
+        "t_rf": -120734.737197306,
+        "t_r": 24391.0062974107,
+        "df": 498,
+        "magnitude_log10_p": -1860.58924604755,
+        "direction_log10_p": -1514.67727635064
+      }
+    }
+  ]
+}

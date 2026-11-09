@@ -69,7 +69,7 @@ def test_compact_discovery_precedes_all_large_schemas():
     assert len(prefix) < 3072
     completed = subprocess.run([sys.executable, "-m", "palaeo_agent", "--help"], capture_output=True, text=True)
     assert completed.returncode == 0
-    assert "Supported methods: rma, community, permanova" in completed.stdout
+    assert "Supported methods: rma, rma_paired, community, permanova" in completed.stdout
 
 
 @pytest.mark.parametrize("permutations,mode", [(999, "exact"), (3, "monte_carlo")])

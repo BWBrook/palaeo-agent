@@ -58,14 +58,18 @@ def check_delimiter(spec):
         raise ValueError("Declare a delimiter exactly when format is 'delimited'")
 
 
-def parse_table(text, format, delimiter=None):
-    """Header and rows of a count or measurement table. Nothing is inferred from file names or repaired."""
+def parse_table(text, format, delimiter=None, *, id_column=None, columns=None):
+    """Header and rows of a count or measurement table. Nothing is inferred from file names or repaired.
+
+    For delimited tables, id_column and columns project the table by exact header names before any value is read."""
     if format == "delimited":
         try:
             rows = [row for row in csv.reader(io.StringIO(text), delimiter="\t" if delimiter == "tab" else ",",
                                              strict=True) if row]
         except csv.Error as exc:
             raise AnalysisError("invalid_delimited", "Malformed delimited table", reason=str(exc)) from exc
+        if id_column is not None or columns is not None:
+            rows = _project(rows, id_column, columns)
         if len(rows) < 2 or not rows[0][0].strip():
             raise AnalysisError("invalid_header", "A delimited table needs a header whose first cell names the ID column")
         if any(not cell.strip() for cell in rows[0][1:]):
@@ -80,6 +84,24 @@ def parse_table(text, format, delimiter=None):
     if len(rows) < 2 or not rows[0] or rows[0][0] != ".":
         raise AnalysisError("invalid_past_header", "Expected a classic PAST header beginning with '.'")
     return rows
+
+
+def _project(rows, id_column, columns):
+    if not rows:
+        raise AnalysisError("invalid_header", "A delimited table needs a header")
+    header = rows[0]
+    if any(len(row) != len(header) for row in rows[1:]):
+        raise AnalysisError("row_width", "Row width differs from the header")
+    wanted = [id_column or header[0], *(columns if columns is not None else
+                                         [name for name in header if name != (id_column or header[0])])]
+    unknown = [name for name in wanted if name not in header]
+    if unknown:
+        raise AnalysisError("unknown_column", "Declared columns do not exist", columns=unknown, available=header)
+    repeated = sorted({name for name in wanted if header.count(name) > 1} | {name for name in wanted if wanted.count(name) > 1})
+    if repeated:
+        raise AnalysisError("duplicate_id", "Declared columns must name unique header labels, once each", ids=repeated)
+    index = [header.index(name) for name in wanted]
+    return [[row[i] for i in index] for row in rows]
 
 
 class CommunitySpec(BaseModel):

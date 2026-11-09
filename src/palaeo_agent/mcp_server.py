@@ -31,7 +31,7 @@ class Request(BaseModel):
 
 
 class DiscoverRequest(Request):
-    method: Literal["rma", "community", "permanova", "rarefaction", "count_homogeneity"] | None = None
+    method: Literal["rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity"] | None = None
 
 
 class ValidateRequest(Request):
@@ -102,7 +102,7 @@ REQUESTS = {
 
 
 COMPACT_SPEC = {"type": "object", "required": ["method"], "additionalProperties": True,
-                "properties": {"method": {"enum": ["rma", "community", "permanova", "rarefaction", "count_homogeneity"]}},
+                "properties": {"method": {"enum": ["rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity"]}},
                 "description": "A complete method specification. Its exact schema comes from "
                                "the discover tool with that method; invalid specifications are refused with details."}
 

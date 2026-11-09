@@ -21,20 +21,27 @@ from .count_homogeneity import (
     validate_count_homogeneity,
 )
 from .primer import primer_metadata
+from .rma_paired import (
+    RmaPairedResult, RmaPairedSpec, calculate_rma_paired, discover as rma_paired_discover, validate_rma_paired,
+)
 
 
 MethodSpec = Annotated[
-    RmaSpec | CommunitySpec | PermanovaSpec | RarefactionSpec | CountHomogeneitySpec,
+    RmaSpec | RmaPairedSpec | CommunitySpec | PermanovaSpec | RarefactionSpec | CountHomogeneitySpec,
     Field(discriminator="method"),
 ]
 SPEC_ADAPTER = TypeAdapter(MethodSpec)
 COMMON_FILES = {"spec.json", "results.json", "environment.json"}
+MEASUREMENT_METHODS = {"rma", "rma_paired"}
 PLOT_FILES = {"diagnostics.svg", "diagnostics.png"}
 METHOD_INDEX = [
-    {"id": "rma", "description": "Descriptive reduced-major-axis regression",
-     "scope": "Paired measurements; no inferential uncertainty", "refuses": ["constant variables", "undefined covariance"],
-     "provides": ["slope", "intercept", "correlation", "means and SDs", "residual RMSE", "raw or log10 scale",
-                  "warnings for repeated pairs and repeated consecutive blocks"]},
+    {"id": "rma", "description": "Reduced-major-axis regression; optional exact magnitude inference",
+     "scope": "Paired measurements; inference assumes bivariate-normal pairs", "refuses": ["constant variables", "undefined covariance"],
+     "provides": ["slope, intercept, correlation, residual RMSE", "raw or log10 scale",
+                  "optional sd(y)/sd(x) interval and test; direction test", "repeated-pair warnings"]},
+    {"id": "rma_paired", "description": "Two RMA fits on the same specimens; bootstrap slope difference",
+     "scope": "Two measurements of the same specimens", "refuses": ["undefined replicate slopes", "over-budget bootstrap"],
+     "provides": ["percentile interval and SE", "Monte Carlo endpoint bands", "sign-change counts"]},
     {"id": "community", "description": "Count or abundance diversity, dissimilarities and uncorrected PCoA",
      "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved positive eigenvalue cutoff"],
      "provides": ["per-sample total, richness, Shannon (natural log) and Simpson (1 - sum p^2)",
@@ -64,7 +71,7 @@ def parse_spec(value):
 
 
 def discover():
-    methods = rma_discover()["methods"]
+    methods = rma_discover()["methods"] + [rma_paired_discover()]
     methods.append({
         "id": "community", "version": 1,
         "description": "Count- or abundance-community diversity, explicit dissimilarities and uncorrected PCoA",
@@ -106,7 +113,7 @@ def discover():
                         "https://esapubs.org/archive/ecol/E093/238/appendix-D.pdf"],
          "input_schema": RarefactionSpec.model_json_schema(),
          "output_schema": RarefactionResult.model_json_schema()},
-        {"id": "count_homogeneity", "version": 3, "description": METHOD_INDEX[4]["description"],
+        {"id": "count_homogeneity", "version": 3, "description": METHOD_INDEX[5]["description"],
          "requirements": ["Independent multinomial counts under a common composition null",
                           "Declared distinct pairs (or 'adjacent' in table order, plus extras), simulation count and seed"],
          "limitations": ["Counting-model inference only; no ecological cause or between-collection variance",
@@ -125,7 +132,7 @@ def discover():
 
 
 def read_inputs(spec):
-    paths = {"measurements" if spec.method == "rma" else "matrix": spec.input}
+    paths = {"measurements" if spec.method in MEASUREMENT_METHODS else "matrix": spec.input}
     if getattr(spec, "metadata", None) is not None:
         paths["metadata"] = spec.metadata
     payload = {}
@@ -141,6 +148,8 @@ def read_inputs(spec):
 def calculate_method(spec, inputs):
     if spec.method == "rma":
         return calculate(spec, inputs["measurements"])
+    if spec.method == "rma_paired":
+        return calculate_rma_paired(spec, inputs["measurements"])
     if spec.method == "permanova":
         return calculate_permanova(spec, inputs["matrix"], inputs["metadata"])
     if spec.method == "rarefaction":
@@ -153,6 +162,8 @@ def calculate_method(spec, inputs):
 def validate(spec):
     spec = parse_spec(spec)
     inputs = read_inputs(spec)
+    if spec.method == "rma_paired":
+        return validate_rma_paired(spec, inputs["measurements"])
     if spec.method == "community":
         return validate_community(spec, inputs["matrix"], inputs.get("metadata"))
     if spec.method == "permanova":
@@ -173,13 +184,13 @@ def _from_table(warning):
 
 
 def validate_result(spec, value):
-    model = {"rma": RmaResult, "community": CommunityResult, "permanova": PermanovaResult,
+    model = {"rma": RmaResult, "rma_paired": RmaPairedResult, "community": CommunityResult, "permanova": PermanovaResult,
              "rarefaction": RarefactionResult, "count_homogeneity": CountHomogeneityResult}[spec.method]
     result = model.model_validate(value).model_dump(mode="json")
     if spec.method in {"community", "permanova"}:
         result = without_absent_branch(result)
     keys = ("method", "missing")
-    if spec.method in {"rma", "community", "permanova"}:
+    if spec.method in {"rma", "rma_paired", "community", "permanova"}:
         keys += ("transform",)
     if spec.method == "community":
         keys += ("value_type", "distance", "empty_samples", "dimensions")
@@ -194,9 +205,18 @@ def validate_result(spec, value):
         expected = _table_warnings(result["input_sample_ids"], result["taxon_ids"], counts, result["sample_ids"])
         if [warning for warning in result["warnings"] if _from_table(warning)] != expected:
             raise ValueError("Input diagnostics disagree with the retained table and declared labels")
+    if spec.method == "rma" and (None if spec.inference is None else spec.inference.model_dump()) != (
+            None if result["inference"] is None else
+            {key: result["inference"][key] for key in ("confidence", "null_magnitude")}):
+        raise ValueError("Saved inference settings differ from the specification")
+    if spec.method == "rma_paired" and (
+            {key: result["bootstrap"][key] for key in ("replicates", "seed", "confidence")} != spec.bootstrap.model_dump()
+            or [result["fit_a"]["x"], result["fit_a"]["y"], result["fit_b"]["x"], result["fit_b"]["y"]] !=
+            [spec.a.x, spec.a.y, spec.b.x, spec.b.y]):
+        raise ValueError("Saved bootstrap settings or fitted columns differ from the specification")
     if spec.method == "rma" and spec.x == spec.y:
         raise ValueError("Saved specification must select distinct measurement columns")
-    if spec.method != "rma" and (spec.metadata is None) != (result["metadata"] is None):
+    if spec.method not in MEASUREMENT_METHODS and (spec.metadata is None) != (result["metadata"] is None):
         raise ValueError("Metadata specification and result disagree")
     if spec.method == "permanova":
         if result["permutation"]["requested"] != spec.permutations or result["permutation"]["seed"] != spec.seed:
@@ -216,6 +236,8 @@ def validate_result(spec, value):
 
 
 def required_files(spec):
+    if spec.method == "rma_paired":
+        return COMMON_FILES | {"input.dat", "paired-pairs.csv", "bootstrap.csv"}
     if spec.method in {"rarefaction", "count_homogeneity"}:
         tables = ({"rarefaction.csv", "coverage.csv"} if spec.method == "rarefaction" else
                   {"count_homogeneity.csv", "taxon_tests.csv", "zero_count_limits.csv", "randomization.json"})
@@ -256,6 +278,14 @@ def table_files(result):
     if result["method"] == "rma":
         fields = list(result["pairs"][0])
         _table("used-pairs.csv", fields, ([row[key] for key in fields] for row in result["pairs"]))
+        return files
+    if result["method"] == "rma_paired":
+        fields = list(result["pairs"][0])
+        _table("paired-pairs.csv", fields, ([row[key] for key in fields] for row in result["pairs"]))
+        record = result["bootstrap"]
+        _table("bootstrap.csv", ["replicate", "slope_a", "slope_b", "difference"],
+               zip(range(1, record["replicates"] + 1), record["slope_a"], record["slope_b"], record["difference"],
+                   strict=True))
         return files
     ids, taxa = result["sample_ids"], result["taxon_ids"]
     if result["method"] in {"rarefaction", "count_homogeneity"}:
@@ -370,6 +400,9 @@ def steps_for(spec, has_lock):
             {"id": "descriptive_centroid_dispersion", "inputs": ["distances.csv", "groups.csv"],
              "outputs": ["dispersion.csv", "group_dispersion.csv", "eigenvalues.csv"]},
         ]
+    elif spec.method == "rma_paired":
+        steps += [{"id": "paired_rma_bootstrap", "inputs": sources + ["spec.json"],
+                   "outputs": ["paired-pairs.csv", "bootstrap.csv"]}]
     else:
         steps += [{"id": "descriptive_rma", "inputs": sources, "outputs": ["used-pairs.csv"]}]
     steps += [{"id": "collect_results", "inputs": sources + ["spec.json"], "outputs": ["results.json"]}]
@@ -381,7 +414,13 @@ def steps_for(spec, has_lock):
 def summary(result):
     keys = ("method", "n", "n_input", "excluded", "warnings")
     if result["method"] == "rma":
-        keys += ("slope", "intercept", "correlation")
+        keys += ("slope", "intercept", "correlation", "inference")
+    elif result["method"] == "rma_paired":
+        record = result["bootstrap"]
+        return {**{key: result[key] for key in keys}, "slope_a": result["fit_a"]["slope"],
+                "slope_b": result["fit_b"]["slope"], "difference": result["difference"],
+                **{key: record[key] for key in ("confidence", "interval", "standard_error", "resolution",
+                                                "sign_changes", "replicates", "seed")}}
     elif result["method"] == "community":
         keys += ("n_taxa", "transform", "distance", "negative_inertia_magnitude")
     elif result["method"] == "rarefaction":
@@ -406,6 +445,10 @@ def compare_results(expected, actual):
         PermanovaResult.model_validate(right)
         left["permutation"] = {key: value for key, value in left["permutation"].items() if key != "numpy_version"}
         right["permutation"] = {key: value for key, value in right["permutation"].items() if key != "numpy_version"}
+    if expected["method"] == "rma_paired":
+        for record in (left, right):
+            RmaPairedResult.model_validate(record)
+            record["bootstrap"] = {key: value for key, value in record["bootstrap"].items() if key != "numpy_version"}
     if expected["method"] == "rarefaction":
         RarefactionResult.model_validate(left)
         RarefactionResult.model_validate(right)
