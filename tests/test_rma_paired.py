@@ -53,7 +53,7 @@ def test_replicates_recompute_independently_and_replay(tmp_path):
     result = compute(request)
     pairs = result["pairs"]
     index = np.random.Generator(np.random.PCG64(7)).integers(0, N, size=(999, N), dtype=np.int64)
-    for r in range(0, 999, 37):
+    for r in range(999):
         rows = [pairs[i] for i in index[r]]
         for fit in ("a", "b"):
             expected = plain_slope([p[f"{fit}_x"] for p in rows], [p[f"{fit}_y"] for p in rows])
@@ -89,6 +89,31 @@ def test_budget_is_refused_before_allocation(tmp_path, monkeypatch):
     with pytest.raises(AnalysisError) as caught:
         compute(spec(table(tmp_path), replicates=100_000))
     assert caught.value.code == "resource_limit"
+
+
+def test_extreme_endpoint_bands_keep_unbounded_limits(tmp_path):
+    request = spec(table(tmp_path))
+    request["bootstrap"]["confidence"] = 0.999
+    result = compute(request)["bootstrap"]
+    lower, upper = result["endpoint_bands"]
+    assert lower["order_statistics"][0] == 0 and lower["band"][0] is None
+    assert upper["order_statistics"][1] == 1000 and upper["band"][1] is None
+    assert lower["unbounded"] and upper["unbounded"]
+    assert result["resolution"] == "monte_carlo_unresolved"
+
+
+def test_overflow_only_in_bootstrap_is_a_structured_refusal(tmp_path):
+    rows = [(str(i), v, v, v, v) for i, v in enumerate([*range(1, 24), 1e154])]
+    with pytest.raises(AnalysisError) as caught:
+        run(spec(table(tmp_path, rows), transform="none"), tmp_path / "runs")
+    assert caught.value.code == "numerical_range"
+
+
+@pytest.mark.parametrize("values", [[-1e308, 1e308], [1e200, 2e200]])
+def test_summary_overflow_is_a_structured_refusal(values):
+    with pytest.raises(AnalysisError) as caught:
+        module.summarise(values, values, values, 0.95, {"a": 1, "b": 1})
+    assert caught.value.code == "numerical_range"
 
 
 def test_bundle_inspects_and_reproduces(tmp_path):

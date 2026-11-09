@@ -83,6 +83,17 @@ class RmaWarning(ResultItem):
     details: dict = Field(default_factory=dict)
 
 
+def _check_probability_record(record):
+    if record.p_value_underflow != (record.p_value == 0):
+        raise ValueError("Zero p-values must be marked as underflow")
+    if record.p_value_underflow:
+        if record.log10_p_value is None or record.log10_p_value >= 0:
+            raise ValueError("Underflow requires a finite negative log10 p-value")
+    elif record.log10_p_value is not None:
+        raise ValueError("A representable p-value must not carry an underflow log value")
+    return record
+
+
 class MagnitudeTest(ResultItem):
     r_rf: FiniteFloat = Field(gt=-1, lt=1)
     t: FiniteFloat
@@ -90,6 +101,10 @@ class MagnitudeTest(ResultItem):
     p_value: FiniteFloat = Field(ge=0, le=1)
     p_value_underflow: bool
     log10_p_value: FiniteFloat | None
+
+    @model_validator(mode="after")
+    def coherent_probability(self):
+        return _check_probability_record(self)
 
 
 class DirectionTest(ResultItem):
@@ -100,6 +115,10 @@ class DirectionTest(ResultItem):
     p_value_underflow: bool
     log10_p_value: FiniteFloat | None
     direction: Literal["positive", "negative", "not_established"]
+
+    @model_validator(mode="after")
+    def coherent_probability(self):
+        return _check_probability_record(self)
 
 
 INFERENCE_SCOPE = ("Interval and test concern the magnitude sd(y)/sd(x); direction is tested separately; "
@@ -115,6 +134,14 @@ class RmaInference(ResultItem):
     direction_test: DirectionTest
     model: Literal["independent pairs from a nonsingular bivariate normal on the analysed scale"]
     scope: Literal[INFERENCE_SCOPE]
+
+    @model_validator(mode="after")
+    def coherent_direction(self):
+        test = self.direction_test
+        expected = ("positive" if test.r > 0 else "negative") if test.p_value < 1 - self.confidence else "not_established"
+        if test.direction != expected:
+            raise ValueError("Direction must agree with its saved p-value and confidence")
+        return self
 
 
 class RmaResult(ResultItem):
@@ -440,6 +467,10 @@ def _check_saved_fit(result):
         recomputed = rma_inference(xx, yy, fit, result.inference.confidence, result.inference.null_magnitude)
         if not _same(result.inference.model_dump(mode="json"), recomputed):
             raise ValueError("Saved inference does not recompute from the saved pairs")
+        for name in ("magnitude_test", "direction_test"):
+            if not math.isclose(getattr(result.inference, name).p_value, recomputed[name]["p_value"],
+                                rel_tol=1e-10, abs_tol=0):
+                raise ValueError("Saved p-value does not recompute from the saved pairs")
     if result.limitations != rma_limitations(result.inference is not None):
         raise ValueError("Limitations do not match the inference record")
 

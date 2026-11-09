@@ -565,6 +565,32 @@ def test_declared_columns_are_exact_and_unique(tmp_path, columns, code):
         assert outcome["error"]["code"] == code
 
 
+def test_projection_refuses_duplicate_unselected_headers(tmp_path):
+    (tmp_path / "m.csv").write_text("id,x,y,note,note\na,1,2,A,B\nb,2,3,A,B\nc,3,5,A,B\n")
+    study = {"study_version": 1,
+             "inputs": {"m": {"kind": "measurements", "path": "m.csv", "format": "delimited",
+                              "delimiter": "comma", "orientation": "samples_by_taxa", "id_column": "id", "columns": ["x", "y"]}},
+             "datasets": {"d": {"source": "m"}},
+             "analyses": [{"id": "fit", "dataset": "d", "spec": rma_spec("x") | {"x": "x", "y": "y"}}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert outcome["status"] == "partial" and outcome["error"]["code"] == "duplicate_id"
+    assert inspect_study(outcome["study_dir"])["status"] == "verified"
+
+
+@pytest.mark.parametrize("selector", [[], {"x": [], "y": "W"}])
+def test_malformed_paired_selector_leaves_an_inspectable_partial_study(tmp_path, selector):
+    (tmp_path / "m.dat").write_text(".\tL\tW\na\t1\t2\nb\t2\t3\nc\t3\t5\n")
+    study = {"study_version": 1,
+             "inputs": {"m": {"kind": "measurements", "path": "m.dat", "orientation": "samples_by_taxa"}},
+             "datasets": {"d": {"source": "m"}},
+             "analyses": [{"id": "paired", "dataset": "d", "spec": {"method": "rma_paired", "format": "past",
+                 "a": selector, "b": {"x": "L", "y": "W"}, "transform": "none", "missing": "error",
+                 "bootstrap": {"replicates": 999, "seed": 1, "confidence": 0.95}}}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert outcome["status"] == "partial" and outcome["error"]["code"] == "invalid_specification"
+    assert inspect_study(outcome["study_dir"])["status"] == "verified"
+
+
 def test_paired_row_filter_counts_specimens_complete_in_every_column(tmp_path):
     (tmp_path / "m.dat").write_text(".\tL\tW\tL2\tW2\na\t1\t2\t1.1\t2.1\nb\t2\t3\t2.1\t3.2\nc\t3\t5\t3.1\t.\n"
                                     "d\t4\t4\t4.2\t4.1\ne\t5\t7\t5.1\t6.8\n")

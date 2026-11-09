@@ -97,7 +97,7 @@ def _project(rows, id_column, columns):
     unknown = [name for name in wanted if name not in header]
     if unknown:
         raise AnalysisError("unknown_column", "Declared columns do not exist", columns=unknown, available=header)
-    repeated = sorted({name for name in wanted if header.count(name) > 1} | {name for name in wanted if wanted.count(name) > 1})
+    repeated = sorted({name for name in header if header.count(name) > 1} | {name for name in wanted if wanted.count(name) > 1})
     if repeated:
         raise AnalysisError("duplicate_id", "Declared columns must name unique header labels, once each", ids=repeated)
     index = [header.index(name) for name in wanted]

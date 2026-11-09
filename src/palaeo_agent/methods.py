@@ -71,6 +71,7 @@ def parse_spec(value):
 
 
 def discover():
+    descriptions = {method["id"]: method["description"] for method in METHOD_INDEX}
     methods = rma_discover()["methods"] + [rma_paired_discover()]
     methods.append({
         "id": "community", "version": 1,
@@ -88,7 +89,7 @@ def discover():
     })
     methods.append({
         "id": "permanova", "version": 2,
-        "description": METHOD_INDEX[2]["description"],
+        "description": descriptions["permanova"],
         "requirements": ["Independent sampling units and freely exchangeable labels explicitly declared",
                          "Exactly one categorical group factor, two or more samples per group",
                          "Declared value type: count, or abundance weights such as percentages",
@@ -103,7 +104,7 @@ def discover():
         "output_schema": PermanovaResult.model_json_schema(),
     })
     methods.extend([
-        {"id": "rarefaction", "version": 1, "description": METHOD_INDEX[3]["description"],
+        {"id": "rarefaction", "version": 1, "description": descriptions["rarefaction"],
          "requirements": ["Nonnegative integer counts and declared orientation", "Positive retained sample totals",
                           "Subsample sizes from one through each retained total"],
          "limitations": ["Conditional richness variance is not population uncertainty",
@@ -113,7 +114,7 @@ def discover():
                         "https://esapubs.org/archive/ecol/E093/238/appendix-D.pdf"],
          "input_schema": RarefactionSpec.model_json_schema(),
          "output_schema": RarefactionResult.model_json_schema()},
-        {"id": "count_homogeneity", "version": 3, "description": METHOD_INDEX[5]["description"],
+        {"id": "count_homogeneity", "version": 3, "description": descriptions["count_homogeneity"],
          "requirements": ["Independent multinomial counts under a common composition null",
                           "Declared distinct pairs (or 'adjacent' in table order, plus extras), simulation count and seed"],
          "limitations": ["Counting-model inference only; no ecological cause or between-collection variance",

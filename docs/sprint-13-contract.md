@@ -191,10 +191,14 @@ no random numbers, so inspection binds the inference to the pairs.
 6. **Monte Carlo endpoint bands.**
    - For each endpoint quantile q, take the 0.995 binomial band of order
      statistics, k_lo = binom.ppf(0.005, R, q) and
-     k_hi = binom.ppf(0.995, R, q) + 1, clipped to [1, R].
+     k_hi = binom.ppf(0.995, R, q) + 1. Ranks 0 and R + 1 are
+     unbounded, serialized as null lower and upper endpoints respectively.
    - Report [d₍k_lo₎, d₍k_hi₎] from the sorted differences (ties included).
      This is a 99% band for each endpoint of the infinite-replicate
      percentile interval.
+   - `unbounded` identifies such bands; any unbounded endpoint makes the
+     resolution `"monte_carlo_unresolved"`. No finite sample extreme is
+     substituted for an unbounded limit.
    - `zero_excluded_resolved` is true when both bands lie strictly on the
      same side of 0. `zero_included_resolved` is true when the lower band
      lies entirely ≤ 0 and the upper band entirely ≥ 0. Otherwise the

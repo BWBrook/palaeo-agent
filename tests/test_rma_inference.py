@@ -10,6 +10,7 @@ import pytest
 
 from palaeo_agent import AnalysisError, inspect_run, rma_regression, run
 from palaeo_agent.core import RmaSpec, calculate, fit_rma, rma_inference
+from palaeo_agent.methods import table_files
 from bundle_helpers import rehash
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,4 +121,37 @@ def test_rehashed_results_must_recompute_from_pairs(tmp_path, field, update):
     rehash(outcome["run_dir"], "results.json")
     with pytest.raises(AnalysisError) as caught:
         inspect_run(outcome["run_dir"])
+    assert caught.value.code == "invalid_bundle"
+
+
+@pytest.mark.parametrize("change", ["threshold", "zero", "tiny_positive"])
+def test_probability_consistency_survives_rehashed_tables(tmp_path, change):
+    source = tmp_path / "m.dat"
+    if change == "threshold":
+        source.write_text(".\tx\ty\na\t-2\t-1\nb\t-1\t-2\nc\t0\t0\nd\t1\t2\ne\t2\t1\n")
+        confidence = 1 - 0.10408803866222782
+    else:
+        source.write_text(".\tx\ty\n" + "".join(f"s{i}\t{i}\t{i + 0.01 * (i % 3)}\n" for i in range(1, 25)))
+        confidence = 0.95
+    directory = Path(run({"method": "rma", "input": str(source), "format": "past", "x": "x", "y": "y",
+                          "transform": "none", "missing": "error",
+                          "inference": {"confidence": confidence, "null_magnitude": 1}}, tmp_path / "runs")["run_dir"])
+    result = json.loads((directory / "results.json").read_text())
+    record = result["inference"]["direction_test"]
+    if change == "threshold":
+        assert record["direction"] == "positive"
+        record["p_value"] += 8e-13
+    elif change == "zero":
+        assert 0 < record["p_value"] < 1e-12
+        record["p_value"] = 0.0
+    else:
+        assert 0 < record["p_value"] < 1e-12
+        record["p_value"] *= 2
+    (directory / "results.json").write_text(json.dumps(result, indent=2) + "\n")
+    rehash(directory, "results.json")
+    for name, data in table_files(result).items():
+        (directory / name).write_bytes(data)
+        rehash(directory, name)
+    with pytest.raises(AnalysisError) as caught:
+        inspect_run(directory)
     assert caught.value.code == "invalid_bundle"

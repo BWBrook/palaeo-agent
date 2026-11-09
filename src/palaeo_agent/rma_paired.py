@@ -93,8 +93,8 @@ class FitSummary(ResultItem):
 class EndpointBand(ResultItem):
     quantile: float
     order_statistics: list[int] = Field(min_length=2, max_length=2)
-    band: list[FiniteFloat] = Field(min_length=2, max_length=2)
-    clipped: bool
+    band: list[FiniteFloat | None] = Field(min_length=2, max_length=2)
+    unbounded: bool
 
 
 class BootstrapRecord(ResultItem):
@@ -163,12 +163,18 @@ def _fits(pairs, transform, labels):
 
 def _signed_slopes(x, y):
     """Signed RMA slopes of each row of x and y (replicates by specimens), with undefined rows flagged by reason."""
-    sd_x, sd_y = x.std(axis=1, ddof=1), y.std(axis=1, ddof=1)
-    covariance = ((x - x.mean(axis=1, keepdims=True)) * (y - y.mean(axis=1, keepdims=True))).sum(axis=1)
+    try:
+        with np.errstate(over="raise", invalid="raise"):
+            sd_x, sd_y = x.std(axis=1, ddof=1), y.std(axis=1, ddof=1)
+            covariance = ((x - x.mean(axis=1, keepdims=True)) * (y - y.mean(axis=1, keepdims=True))).sum(axis=1)
+    except FloatingPointError as exc:
+        raise AnalysisError("numerical_range", "Bootstrap refits exceed the supported numerical range") from exc
     zero_variance = (sd_x == 0) | (sd_y == 0)
     zero_covariance = ~zero_variance & (covariance == 0)
-    with np.errstate(divide="ignore", invalid="ignore"):
+    with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
         slopes = np.copysign(sd_y / sd_x, covariance)
+    if not np.isfinite(slopes[~zero_variance & ~zero_covariance]).all():
+        raise AnalysisError("numerical_range", "Bootstrap slopes exceed the supported numerical range")
     return slopes, zero_variance, zero_covariance
 
 
@@ -193,20 +199,29 @@ def bootstrap_slopes(analysed, replicates, seed):
 def summarise(slope_a, slope_b, difference, confidence, observed):
     """Interval, standard error, Monte Carlo endpoint bands, resolution and sign changes from saved replicates."""
     d = np.asarray(difference, dtype=np.float64)
+    if not np.isfinite(d).all():
+        raise AnalysisError("numerical_range", "Bootstrap differences exceed the supported numerical range")
     replicates = len(d)
     quantiles = [(1 - confidence) / 2, (1 + confidence) / 2]
-    interval = [float(value) for value in np.quantile(d, quantiles, method="linear")]
+    try:
+        with np.errstate(over="raise", invalid="raise"):
+            interval = [float(value) for value in np.quantile(d, quantiles, method="linear")]
+            standard_error = float(np.std(d, ddof=1))
+    except FloatingPointError as exc:
+        raise AnalysisError("numerical_range", "Bootstrap summaries exceed the supported numerical range") from exc
+    if not all(np.isfinite([*interval, standard_error])):
+        raise AnalysisError("numerical_range", "Bootstrap summaries exceed the supported numerical range")
     ordered = np.sort(d)
     bands = []
     for q in quantiles:
         low = int(binom.ppf((1 - BAND_LEVEL) / 2, replicates, q))
         high = int(binom.ppf((1 + BAND_LEVEL) / 2, replicates, q)) + 1
-        clipped = low < 1 or high > replicates
-        low, high = min(max(low, 1), replicates), min(max(high, 1), replicates)
         bands.append({"quantile": q, "order_statistics": [low, high],
-                      "band": [float(ordered[low - 1]), float(ordered[high - 1])], "clipped": clipped})
+                      "band": [float(ordered[low - 1]) if low > 0 else None,
+                               float(ordered[high - 1]) if high <= replicates else None],
+                      "unbounded": low == 0 or high == replicates + 1})
     lower, upper = bands[0]["band"], bands[1]["band"]
-    if any(band["clipped"] for band in bands):
+    if any(band["unbounded"] for band in bands):
         resolution = "monte_carlo_unresolved"
     elif lower[0] > 0 or upper[1] < 0:
         resolution = "zero_excluded"
@@ -216,7 +231,7 @@ def summarise(slope_a, slope_b, difference, confidence, observed):
         resolution = "monte_carlo_unresolved"
     sign_changes = {fit: int(np.sum(np.sign(np.asarray(values)) != np.sign(observed[fit])))
                     for fit, values in (("a", slope_a), ("b", slope_b))}
-    return {"interval": interval, "standard_error": float(np.std(d, ddof=1)), "band_level": BAND_LEVEL,
+    return {"interval": interval, "standard_error": standard_error, "band_level": BAND_LEVEL,
             "endpoint_bands": bands, "resolution": resolution, "sign_changes": sign_changes}
 
 
@@ -270,14 +285,18 @@ def calculate_rma_paired(spec: RmaPairedSpec, data: bytes):
     if any(count for fit in undefined.values() for count in fit.values()):
         raise AnalysisError("degenerate_bootstrap", "Some bootstrap replicates have an undefined RMA slope; no draw is "
                             "dropped or redrawn", undefined=undefined, replicates=spec.bootstrap.replicates)
-    difference = slopes["b"] - slopes["a"]
+    with np.errstate(over="ignore", invalid="ignore"):
+        difference = slopes["b"] - slopes["a"]
     observed = {fit: fits[fit]["slope"] for fit in ("a", "b")}
     summary = summarise(slopes["a"], slopes["b"], difference, spec.bootstrap.confidence, observed)
+    observed_difference = fits["b"]["slope"] - fits["a"]["slope"]
+    if not np.isfinite(observed_difference):
+        raise AnalysisError("numerical_range", "Observed slope difference exceeds the supported numerical range")
     selection = padded_warnings(names, [(f"{fit}.{axis}", name, index) for fit, axes in labels.items()
                                         for axis, name, index in zip(("x", "y"), axes, selected[fit], strict=True)])
     result = {"method": "rma_paired", "method_version": 1, "transform": spec.transform, "missing": spec.missing,
               "n_input": len(ids), "n": n, "excluded": excluded, "fit_a": fits["a"], "fit_b": fits["b"],
-              "difference": fits["b"]["slope"] - fits["a"]["slope"],
+              "difference": observed_difference,
               "bootstrap": {"replicates": spec.bootstrap.replicates, "seed": spec.bootstrap.seed, "bit_generator": "PCG64",
                             "numpy_version": np.__version__, "dtype": "int64",
                             "draw": "integers(0, n, size=(replicates, n), dtype=int64), one call, row r is replicate r",

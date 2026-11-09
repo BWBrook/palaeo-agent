@@ -13,7 +13,7 @@ from mcp import Client, StdioServerParameters
 from palaeo_agent.mcp_server import SERVER_INSTRUCTIONS, Transport, create_server, tool_definitions
 from palaeo_agent.methods import calculate_method, parse_spec, read_inputs, summary
 from palaeo_agent.primer import primer, primer_metadata
-from palaeo_agent.runs import run
+from palaeo_agent.runs import inspect_run, run
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -45,6 +45,33 @@ def unpack(result):
     assert result.structured_content is not None
     assert json.loads(result.content[0].text) == result.structured_content
     return result.structured_content
+
+
+def test_stdio_rma_inference_and_paired_bootstrap(tmp_path):
+    from test_rma_paired import table, spec
+    path = table(tmp_path)
+    paired = spec(path)
+    paired["input"] = path.name
+    paired["bootstrap"]["confidence"] = 0.999
+    single = {"method": "rma", "input": path.name, "format": "past", "x": "L", "y": "W",
+              "transform": "log10", "missing": "error", "inference": {"confidence": 0.95, "null_magnitude": 1}}
+
+    async def scenario():
+        async with client(tmp_path) as session:
+            for request in (single, paired):
+                schema = unpack(await session.call_tool("discover", {"method": request["method"]}))
+                expected_spec = parse_spec(request | {"input": str(path)})
+                expected = calculate_method(expected_spec, read_inputs(expected_spec))
+                record = unpack(await session.call_tool("run", {"spec": request}))
+                saved = inspect_run(tmp_path / record["run_dir"])["result"]
+                assert saved == expected
+                assert schema["output_schema"]["properties"]["method_version"]["const"] == saved["method_version"]
+                verified = unpack(await session.call_tool("inspect", {"bundle": record["run_dir"]}))
+                assert verified["status"] == "verified"
+                async with client(tmp_path) as fresh:
+                    replay = unpack(await fresh.call_tool("reproduce", {"bundle": record["run_dir"]}))
+                    assert replay["status"] == "reproduced" and replay["differences"] == []
+    asyncio.run(scenario())
 
 
 def test_stdio_equivalence_and_fresh_reproduction(materials):

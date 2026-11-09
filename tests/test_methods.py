@@ -9,7 +9,7 @@ from pydantic import ValidationError
 
 from palaeo_agent import AnalysisError, discover, inspect_run, reproduce, run, validate
 from palaeo_agent.count_homogeneity import calculate_count_homogeneity
-from palaeo_agent.methods import compare_results
+from palaeo_agent.methods import METHOD_INDEX, compare_results
 from abundance_helpers import ABUNDANCE_COMMUNITY, ABUNDANCE_TABLE, abundance_table
 from bundle_helpers import rehash as _rehash
 from count_homogeneity_helpers import pair_spec
@@ -33,6 +33,13 @@ def test_discovery_exposes_all_methods_with_typed_outputs():
     assert set(methods) == {"rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity"}
     assert methods["community"]["input_schema"]["additionalProperties"] is False
     assert {"retained_counts", "retained_values"} <= set(methods["community"]["output_schema"]["properties"])
+
+
+def test_discovery_descriptions_follow_method_ids():
+    descriptions = {method["id"]: method["description"] for method in discover()["methods"]}
+    for entry in METHOD_INDEX:
+        if entry["id"] in ("permanova", "rarefaction", "count_homogeneity"):
+            assert descriptions[entry["id"]] == entry["description"]
 
 
 def test_multi_input_bundle_reproduces_without_source_files(tmp_path):

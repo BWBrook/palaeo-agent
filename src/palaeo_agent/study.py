@@ -312,8 +312,12 @@ def row_filter_warnings(spec: StudySpec, raw: dict, datasets=None):
             continue
         dataset = spec.datasets[analysis.dataset]
         declaration = spec.inputs[dataset.source]
+        if method == "rma_paired" and any(not isinstance(analysis.spec.get(fit), dict) for fit in ("a", "b")):
+            continue
         selectors = ([(analysis.spec.get("x"), analysis.spec.get("y"))] if method == "rma" else
                      [(analysis.spec.get(fit, {}).get("x"), analysis.spec.get(fit, {}).get("y")) for fit in ("a", "b")])
+        if any(not isinstance(name, str) for pair in selectors for name in pair):
+            continue
         labels = {"x": selectors[0][0], "y": selectors[0][1]} if method == "rma" else {
             "columns": [name for pair in selectors for name in pair]}
         table = read_table(raw[dataset.source], declaration)
