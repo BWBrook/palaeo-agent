@@ -1,6 +1,6 @@
 # Sprint 14 contract: constrained zonation (CONISS) with broken-stick retention
 
-Claude (Opus 5.5), 12 November 2026. **Revision 2.** It replaces draft
+Claude (Opus 5.5), 12 November 2026. **Revision 2.1** (bounded rounding; Board 3299). Revision 2 replaced draft
 `cb4b0f5` after Codex's [review](sprint-14-review.md) (Board 3275). It
 implements the method that [application 5](application-5-proposal.md)
 (Lake Selina zonation, Board 3138) needs. That application is the
@@ -132,14 +132,31 @@ the existing parser produced. Row totals T_i are exact (`Fraction` sums).
   exact square root of the exact proportion, not a square root of a
   rounded proportion.
 
-**Rounding.** One helper produces both kinds of ⌊·⌉.
-- It takes a candidate from `float(q)` or `math.sqrt(float(q))`.
-- It accepts the candidate only after exact rational comparisons with the
-  midpoints to its `math.nextafter` neighbours. It steps to a neighbour
-  otherwise, applying round-half-even at an exact midpoint.
-- Correctness therefore never depends on the platform's `sqrt` or
-  division.
+**Rounding.** One helper produces both kinds of ⌊·⌉ from a positive
+rational a/b, using integer arithmetic only. (Revision 2.1, after Codex's
+[review](sprint-14-revision-2-review.md): the earlier `float`/`sqrt` seed
+plus `nextafter` walk had no practical bound when the seed underflowed.)
+- It picks the binary exponent e so that the target t (a/b, or √(a/b))
+  satisfies 2⁵² ≤ t·2⁻ᵉ < 2⁵³, or e = −1074 for a subnormal result. The
+  bit lengths of a and b place log₂ t within one of the answer, so at most
+  one correction step is needed.
+- It forms the integer m = ⌊t·2⁻ᵉ⌋ directly: an integer division, or
+  `math.isqrt` of an integer division for the root.
+- It rounds by one exact integer comparison of t·2⁻ᵉ with m + ½ (for the
+  root, of 4a·2⁻²ᵉ with (2m + 1)²·b), applying round-half-even at an
+  exact midpoint, and returns m·2ᵉ via `math.ldexp`, which is exact.
+- The work is a fixed number of big-integer operations whatever the
+  magnitude, so seeds that underflow (Codex's 1e-600 proportions, whose
+  roots are 1e-300) and subnormal proportions are handled like any other.
+- Correctness never depends on the platform's `sqrt` or division.
 - The same helper produces every reported double.
+
+The test module checks the helper against an independent bisection over
+binary64 encodings with exact midpoint rounding, which shares no code with
+it. Cases: seeds that underflow to zero or are subnormal but have normal
+roots; exact midpoint ties on even and odd significands, for both the
+quotient and the root; and the normal/subnormal boundary, together with the
+`numerical_range` rule below.
 
 **Representability.** The method refuses with `numerical_range`:
 - if a positive cell gives a coordinate below the smallest positive normal
@@ -175,8 +192,8 @@ There is no centroid rounding, no cancellation and no tolerance:
 **Portability.** Given the validated input values, every decision and
 every reported double is a function of Python integer arithmetic.
 Inspection and fresh reproduction can therefore require exact equality
-in any CPython environment. The candidates from `float`, `math.sqrt` and
-`math.nextafter` affect speed only, never results. Reading abundance
+in any CPython environment. No floating-point library call enters a
+coordinate or a reported value. Reading abundance
 values from text is the existing parser's responsibility, and its
 round-trip is already tested.
 
@@ -347,7 +364,10 @@ and `collect_results`. No plot.
    - it keeps `Fraction` centroids rather than integer sums;
    - at every step it recomputes every eligible cost from the cluster
      members;
-   - it computes each partition's SS directly about its exact centroid.
+   - it computes each partition's SS directly about its exact centroid;
+   - it takes the method's coordinates only after checking each one
+     against the independent bisection rounding reference above, so it
+     cannot inherit a coordinate mistake from the production helper.
 
    It must agree with the method **exactly** (structure, every exact
    quantity and the verdict) on all of the following cases.

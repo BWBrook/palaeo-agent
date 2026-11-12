@@ -603,3 +603,30 @@ def test_paired_row_filter_counts_specimens_complete_in_every_column(tmp_path):
     from palaeo_agent.study import StudySpec, row_filter_warnings
     warnings = row_filter_warnings(StudySpec.model_validate(study), {"m": (tmp_path / "m.dat").read_bytes()})
     assert [(w["removed_rows"], w["columns"]) for w in warnings] == [(["d"], ["L", "W", "L2", "W2"])]
+
+
+def test_coniss_study_with_excluded_taxa_join_and_abundance(tmp_path):
+    (tmp_path / "c.dat").write_text(".\taquatic\tA\tB\tC\nL1\t9\t20\t5\t1\nL2\t1\t18\t7\t2\nL3\t4\t3\t15\t9\n"
+                                    "L4\t0\t2\t17\t11\nL5\t3\t12\t9\t4\n")
+    (tmp_path / "p.dat").write_text(".\tA\tB\tC\nL1\t76.5\t19.25\t4.25\nL2\t66.5\t26\t7.5\nL3\t11\t55.5\t33.5\n"
+                                    "L4\t6.5\t56\t37.5\nL5\t48\t36\t16\n")
+    (tmp_path / "levels.csv").write_text("level,depth_cm\nL1,10\nL2,20.5\nL3,31\nL4,40\nL5,52\nL9,90\n")
+    spec = {"method": "coniss", "position_column": "depth_cm", "format": "past", "orientation": "samples_by_taxa",
+            "transform": "hellinger", "missing": "error", "empty_samples": "error"}
+    study = {"study_version": 1,
+             "inputs": {"c": {"kind": "counts", "path": "c.dat", "orientation": "samples_by_taxa"},
+                        "p": {"kind": "abundance", "path": "p.dat", "orientation": "samples_by_taxa"},
+                        "levels": {"kind": "metadata", "path": "levels.csv", "id_column": "level"}},
+             "datasets": {"dry": {"source": "c", "metadata": "levels", "drop_unmatched_metadata": True,
+                                  "operations": [{"op": "exclude_taxa", "taxa": ["aquatic"], "reason": "dryland sum"}]},
+                          "pct": {"source": "p", "metadata": "levels", "drop_unmatched_metadata": True}},
+             "analyses": [{"id": "zc", "dataset": "dry", "spec": dict(spec, value_type="count")},
+                          {"id": "za", "dataset": "pct", "spec": dict(spec, value_type="abundance")}]}
+    outcome = run_study(study, tmp_path / "out", base_dir=tmp_path)
+    assert outcome["status"] == "complete", outcome
+    directory = Path(outcome["study_dir"])
+    result = json.loads(next((directory / "runs/zc").rglob("results.json")).read_text())
+    assert result["taxon_ids"] == ["A", "B", "C"] and result["positions"] == [10.0, 20.5, 31.0, 40.0, 52.0]
+    assert result["boundaries"][0]["left_id"] == "L1"
+    assert inspect_study(directory)["status"] == "verified"
+    assert reproduce_study(directory, tmp_path / "again")["status"] == "reproduced"

@@ -57,6 +57,20 @@ exchangeable labels and at least two samples per group. Ten horizons from
 one section, grouped by lithostratigraphic unit, do not have that
 exchangeability, so do not run it there.
 
+**Zoning a sequence.** `coniss` is stratigraphically constrained
+incremental-sum-of-squares clustering (Grimm 1987): only adjacent samples or
+zones merge, each time the pair with the least increase in within-zone sum
+of squares. Adjacency is table order, checked against a declared metadata
+`position_column` (depth or a sequence index) that must strictly increase;
+gaps between positions carry no weight. It keeps zones by the broken-stick
+comparison (Bennett 1996) as a declared consecutive prefix: splits are kept
+while each one's gain exceeds its broken-stick expectation, and later
+exceedances are reported but not used. That is a heuristic, not a
+significance test; zones and boundaries have no p-values or intervals. Every
+boundary carries a `split_rank`, so the partition into any k zones is the
+boundaries with rank at most k − 1; use it to compare runs at a common k.
+Never test zones chosen from the same data, for example with `permanova`.
+
 **When an operation refuses:**
 - Read the refusal, then inspect the source data and its documentation.
 - Correct a justified error only with a recorded reason and provenance. Use
@@ -83,7 +97,7 @@ exchangeability, so do not run it there.
   integer counts, round values, or delete observations merely so that an
   operation accepts the input.
 - **Percentages and proportions** are `value_type: "abundance"` (study
-  input kind `abundance`). `community` and `permanova` accept them;
+  input kind `abundance`). `community`, `permanova` and `coniss` accept them;
   `rarefaction` and `count_homogeneity` do not, because they need specimen
   counts. Abundance row sums are weight sums, not specimen N. Record the
   source units and denominator in your intake.

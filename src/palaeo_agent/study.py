@@ -138,7 +138,7 @@ class StudySpec(Model):
             method = analysis.spec.get("method")
             if (method in ("rma", "rma_paired")) != (kind == "measurements"):
                 raise ValueError(f"Analysis {analysis.id}: {method} cannot analyse a {kind} dataset")
-            if kind == "abundance" and method not in ("community", "permanova"):
+            if kind == "abundance" and method not in ("community", "permanova", "coniss"):
                 raise ValueError(f"Analysis {analysis.id}: {method} requires counts; abundance weights are never converted")
             if kind != "measurements" and analysis.spec.get("value_type") != ("abundance" if kind == "abundance" else "count"):
                 raise ValueError(f"Analysis {analysis.id}: value_type must match the {kind} input declaration")

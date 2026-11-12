@@ -14,6 +14,7 @@ from .community import (
     CommunityResult, CommunitySpec, REFERENCES, calculate_community, selected_subspace_info, validate_community,
     _table_warnings, value_keys, without_absent_branch,
 )
+from .coniss import ConissResult, ConissSpec, LIMITATIONS as CONISS_LIMITATIONS, REFERENCES as CONISS_REFERENCES, calculate_coniss, validate_coniss
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .rarefaction import RarefactionResult, RarefactionSpec, calculate_rarefaction, validate_rarefaction
 from .count_homogeneity import (
@@ -27,7 +28,7 @@ from .rma_paired import (
 
 
 MethodSpec = Annotated[
-    RmaSpec | RmaPairedSpec | CommunitySpec | PermanovaSpec | RarefactionSpec | CountHomogeneitySpec,
+    RmaSpec | RmaPairedSpec | CommunitySpec | PermanovaSpec | RarefactionSpec | CountHomogeneitySpec | ConissSpec,
     Field(discriminator="method"),
 ]
 SPEC_ADAPTER = TypeAdapter(MethodSpec)
@@ -38,32 +39,36 @@ METHOD_INDEX = [
     {"id": "rma", "description": "Reduced-major-axis regression; optional exact magnitude inference",
      "scope": "Paired measurements; inference assumes bivariate-normal pairs", "refuses": ["constant variables", "undefined covariance"],
      "provides": ["slope, intercept, correlation, residual RMSE", "raw or log10 scale",
-                  "optional sd(y)/sd(x) interval and test; direction test", "repeated-pair warnings"]},
+                  "optional sd(y)/sd(x) interval and test; direction test"]},
     {"id": "rma_paired", "description": "Two RMA fits on the same specimens; bootstrap slope difference",
      "scope": "Two measurements of the same specimens", "refuses": ["undefined replicate slopes", "over-budget bootstrap"],
      "provides": ["percentile interval and SE", "Monte Carlo endpoint bands", "sign-change counts"]},
     {"id": "community", "description": "Count or abundance diversity, dissimilarities and uncorrected PCoA",
-     "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved positive eigenvalue cutoff"],
-     "provides": ["per-sample total, richness, Shannon (natural log) and Simpson (1 - sum p^2)",
-                  "Bray-Curtis or binary Jaccard distance matrix", "raw or relative-abundance input",
-                  "PCoA coordinates and eigenvalues", "warnings for identical sample count profiles"]},
+     "scope": "Declared counts and orientation", "refuses": ["missing counts", "unresolved eigenvalue cutoff"],
+     "provides": ["total, richness, Shannon (ln), Simpson (1 - sum p^2)",
+                  "Bray-Curtis or binary Jaccard distances", "raw or relative-abundance input",
+                  "PCoA coordinates and eigenvalues"]},
     {"id": "permanova", "description": "One-factor free-label PERMANOVA with descriptive dispersion",
      "scope": "Independent units; exchangeable labels; two or more samples per group",
-     "refuses": ["restricted or repeated designs", "empty samples", "undefined observed finite F"],
+     "refuses": ["restricted or repeated designs", "empty samples", "undefined F"],
      "provides": ["pseudo-F", "R-squared", "permutation p-value", "group dispersions"]},
     {"id": "rarefaction", "description": "Equal-count richness and estimated sample coverage",
      "scope": "Individual-count interpolation; conditional subsample variance",
      "refuses": ["extrapolation", "invalid sizes", "unsupported numerical workload"],
-     "provides": ["expected richness, conditional variance and SD", "estimated coverage at declared sizes",
-                  "full-sample coverage with singleton/doubleton diagnostics"]},
+     "provides": ["expected richness, conditional variance and SD", "coverage at declared sizes",
+                  "full-sample coverage, singleton/doubleton counts"]},
     {"id": "count_homogeneity", "description": "Conditional comparison of declared count-sample pairs",
-     "scope": "Independent multinomial counting units; no between-collection or causal inference",
-     "refuses": ["undeclared or duplicate pairs", "empty samples in pairs", "unsupported sampling workload"],
+     "scope": "Independent multinomial counts; no between-collection or causal inference",
+     "refuses": ["undeclared or duplicate pairs", "empty samples in pairs", "over-budget simulation"],
      "provides": ["fixed-margin Pearson Monte Carlo p and uncertainty", "proportional Bray-Curtis effect",
-                  "separate omnibus and taxon Holm families", "pointwise zero-count upper limits"]},
+                  "separate omnibus and taxon Holm families", "zero-count upper limits"]},
+    {"id": "coniss", "description": "Constrained Ward zonation (CONISS); broken-stick zones",
+     "scope": "Ordered samples; adjacency is checked table order",
+     "refuses": ["unordered positions", "subnormal values"],
+     "provides": ["exact merge hierarchy", "split ranks to cut at any k", "zone records"]},
 ]
-INPUT_FORMATS = ("Count tables: format 'past' (first header cell '.', tab-separated) or 'delimited' with delimiter "
-                 "'tab' or 'comma' (first header cell names the ID column). Metadata: UTF-8 CSV joined by exact ID.")
+INPUT_FORMATS = ("Tables: 'past' (header starts '.', tab-separated) or 'delimited' with delimiter 'tab' or 'comma' "
+                 "(first header cell names IDs). Metadata: UTF-8 CSV joined by exact ID.")
 
 
 def parse_spec(value):
@@ -128,6 +133,15 @@ def discover():
          "input_schema": CountHomogeneitySpec.model_json_schema(),
          "output_schema": CountHomogeneityResult.model_json_schema()},
     ])
+    methods.append({
+        "id": "coniss", "version": 1, "description": descriptions["coniss"],
+        "requirements": ["Declared value type (count or abundance) and orientation",
+                         "Metadata position column, strictly increasing in table order",
+                         "At least 3 and at most 2,000 retained samples; at most 500,000 retained cells"],
+        "limitations": CONISS_LIMITATIONS,
+        "references": CONISS_REFERENCES,
+        "input_schema": ConissSpec.model_json_schema(),
+        "output_schema": ConissResult.model_json_schema()})
     return {"primer": primer_metadata(), "method_index": METHOD_INDEX, "input_formats": INPUT_FORMATS,
             "methods": methods}
 
@@ -157,6 +171,8 @@ def calculate_method(spec, inputs):
         return calculate_rarefaction(spec, inputs["matrix"], inputs.get("metadata"))
     if spec.method == "count_homogeneity":
         return calculate_count_homogeneity(spec, inputs["matrix"], inputs.get("metadata"))
+    if spec.method == "coniss":
+        return calculate_coniss(spec, inputs["matrix"], inputs["metadata"])
     return calculate_community(spec, inputs["matrix"], inputs.get("metadata"))
 
 
@@ -173,6 +189,8 @@ def validate(spec):
         return validate_rarefaction(spec, inputs["matrix"], inputs.get("metadata"))
     if spec.method == "count_homogeneity":
         return validate_count_homogeneity(spec, inputs["matrix"], inputs.get("metadata"))
+    if spec.method == "coniss":
+        return validate_coniss(spec, inputs["matrix"], inputs["metadata"])
     result = calculate_method(spec, inputs)
     return {"status": "valid", "n": result["n"], "n_input": result["n_input"],
             "excluded": result["excluded"], "warnings": result["warnings"],
@@ -186,12 +204,13 @@ def _from_table(warning):
 
 def validate_result(spec, value):
     model = {"rma": RmaResult, "rma_paired": RmaPairedResult, "community": CommunityResult, "permanova": PermanovaResult,
-             "rarefaction": RarefactionResult, "count_homogeneity": CountHomogeneityResult}[spec.method]
+             "rarefaction": RarefactionResult, "count_homogeneity": CountHomogeneityResult,
+             "coniss": ConissResult}[spec.method]
     result = model.model_validate(value).model_dump(mode="json")
-    if spec.method in {"community", "permanova"}:
+    if spec.method in {"community", "permanova", "coniss"}:
         result = without_absent_branch(result)
     keys = ("method", "missing")
-    if spec.method in {"rma", "rma_paired", "community", "permanova"}:
+    if spec.method in {"rma", "rma_paired", "community", "permanova", "coniss"}:
         keys += ("transform",)
     if spec.method == "community":
         keys += ("value_type", "distance", "empty_samples", "dimensions")
@@ -199,9 +218,11 @@ def validate_result(spec, value):
         keys += ("value_type", "distance", "empty_samples", "orientation", "group_column", "design", "permutation_scheme")
     if spec.method in {"rarefaction", "count_homogeneity"}:
         keys += ("value_type", "empty_samples", "orientation")
+    if spec.method == "coniss":
+        keys += ("value_type", "empty_samples", "orientation", "position_column")
     if any(getattr(spec, key) != result[key] for key in keys):
         raise ValueError("Saved specification and result describe different analyses")
-    if spec.method in {"community", "permanova", "rarefaction"}:
+    if spec.method in {"community", "permanova", "rarefaction", "coniss"}:
         counts = result[value_keys(result["value_type"])[0]]
         expected = _table_warnings(result["input_sample_ids"], result["taxon_ids"], counts, result["sample_ids"])
         if [warning for warning in result["warnings"] if _from_table(warning)] != expected:
@@ -237,6 +258,9 @@ def validate_result(spec, value):
 
 
 def required_files(spec):
+    if spec.method == "coniss":
+        return COMMON_FILES | {"input.dat", "metadata.csv", "aligned_metadata.csv", f"{value_keys(spec.value_type)[0]}.csv",
+                               "coniss_merges.csv", "coniss_boundaries.csv", "broken_stick.csv", "zones.csv"}
     if spec.method == "rma_paired":
         return COMMON_FILES | {"input.dat", "paired-pairs.csv", "bootstrap.csv"}
     if spec.method in {"rarefaction", "count_homogeneity"}:
@@ -289,6 +313,17 @@ def table_files(result):
                    strict=True))
         return files
     ids, taxa = result["sample_ids"], result["taxon_ids"]
+    if result["method"] == "coniss":
+        matrix_key = value_keys(result["value_type"])[0]
+        _table(f"{matrix_key}.csv", ["sample_id", *taxa],
+               ([sid, *row] for sid, row in zip(ids, result[matrix_key], strict=True)))
+        fields = list(result["metadata"][0])
+        _table("aligned_metadata.csv", fields, ([row[key] for key in fields] for row in result["metadata"]))
+        for name, key in (("coniss_merges.csv", "merges"), ("coniss_boundaries.csv", "boundaries"),
+                          ("broken_stick.csv", "broken_stick"), ("zones.csv", "zones")):
+            fields = list(result[key][0])
+            _table(name, fields, ([row[field] for field in fields] for row in result[key]))
+        return files
     if result["method"] in {"rarefaction", "count_homogeneity"}:
         _table("retained_counts.csv", ["sample_id", *taxa],
                ([sid, *row] for sid, row in zip(ids, result["retained_counts"], strict=True)))
@@ -401,6 +436,13 @@ def steps_for(spec, has_lock):
             {"id": "descriptive_centroid_dispersion", "inputs": ["distances.csv", "groups.csv"],
              "outputs": ["dispersion.csv", "group_dispersion.csv", "eigenvalues.csv"]},
         ]
+    elif spec.method == "coniss":
+        steps += [
+            {"id": "orient_validate_order", "inputs": sources, "outputs": [retained, "aligned_metadata.csv"]},
+            {"id": "constrained_hierarchy", "inputs": [retained, "aligned_metadata.csv", "spec.json"],
+             "outputs": ["coniss_merges.csv", "coniss_boundaries.csv"]},
+            {"id": "broken_stick_retention", "inputs": ["coniss_merges.csv"], "outputs": ["broken_stick.csv", "zones.csv"]},
+        ]
     elif spec.method == "rma_paired":
         steps += [{"id": "paired_rma_bootstrap", "inputs": sources + ["spec.json"],
                    "outputs": ["paired-pairs.csv", "bootstrap.csv"]}]
@@ -426,6 +468,11 @@ def summary(result):
         keys += ("n_taxa", "transform", "distance", "negative_inertia_magnitude")
     elif result["method"] == "rarefaction":
         keys += ("n_taxa", "sizes")
+    elif result["method"] == "coniss":
+        return {**{key: result[key] for key in keys}, "n_taxa": result["n_taxa"], "transform": result["transform"],
+                "selected_zones": result["retention"]["selected_zones"],
+                "boundaries": [[b["left_id"], b["right_id"]] for b in result["boundaries"]
+                               if b["split_rank"] < result["retention"]["selected_zones"]]}
     elif result["method"] == "count_homogeneity":
         return {**{key: result[key] for key in keys}, "n_taxa": result["n_taxa"],
                 "n_pairs": len(result["pairs"]), "simulations": result["randomization"]["simulations"],
@@ -436,7 +483,7 @@ def summary(result):
 
 
 def compare_results(expected, actual):
-    tolerance = 1e-12 if expected["method"] == "rma" else 1e-10
+    tolerance = 1e-12 if expected["method"] == "rma" else 0.0 if expected["method"] == "coniss" else 1e-10
     absolute = 1e-12 if expected["method"] in {"rarefaction", "count_homogeneity"} else tolerance
     policy = {"rtol": tolerance, "atol": absolute}
     differences = []
@@ -450,6 +497,9 @@ def compare_results(expected, actual):
         for record in (left, right):
             RmaPairedResult.model_validate(record)
             record["bootstrap"] = {key: value for key, value in record["bootstrap"].items() if key != "numpy_version"}
+    if expected["method"] == "coniss":
+        ConissResult.model_validate(left)
+        ConissResult.model_validate(right)
     if expected["method"] == "rarefaction":
         RarefactionResult.model_validate(left)
         RarefactionResult.model_validate(right)

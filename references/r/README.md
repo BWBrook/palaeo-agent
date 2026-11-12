@@ -34,6 +34,29 @@ eigenvalues for all three cases, plus the Gram matrices over all positive axes
 and over the two selected axes. The declared tolerance is `1e-10`, scaled by
 the largest eigenvalue for spectral quantities.
 
+## Constrained zonation: rioja
+
+[`coniss/make_cases.py`](coniss/make_cases.py) writes three public count
+tables and the toolkit's coordinates for four cases to
+[`coniss/cases.json`](coniss/cases.json): a 30 × 8 two-block table under
+both transforms (seed chosen so each has a cost inversion and a later
+broken-stick exceedance), a 40 × 12 Dirichlet-like table under `hellinger`,
+and the three-row exact-tie fixture. It asserts that no case carries a
+small-margin flag except the declared tie.
+[`coniss_reference.R`](coniss_reference.R) reads only those coordinates and
+calls rioja 1.0-7: `chclust(dist(X)^2, "coniss")`, the wrapper's own
+`.Call("chclust_c", ...)` for unsorted per-boundary dispersion, `cutree` for
+every k and `bstick(tree, ng = n - 1)`. Rank m, which rioja's
+`diff(rev(height))` omits, is recorded from `bstick(m, H_m)[m]` and the
+smallest height. [`coniss-reference.json`](coniss-reference.json) holds the
+results; `tests/test_coniss.py` compares them (rtol 1e-10, partitions and
+verdicts exactly) and pins the generator and cases hashes.
+
+rioja uses a double-precision Lance–Williams recurrence, so it is a
+reference for ordinary cases only. Exact ties beyond the declared fixture,
+nearly constant data and underflow are checked against the exact oracle in
+the test module instead.
+
 ## What this does and does not establish
 
 vegan is an independently authored community-ecology implementation, and its
@@ -53,9 +76,11 @@ method validation, a PAST comparison or held-out evidence.
 cd references/r
 Rscript -e 'renv::restore()'
 Rscript community_vegan.R
+uv run python coniss/make_cases.py
+Rscript coniss_reference.R
 ```
 
-renv pins vegan 2.7-6, permute and jsonlite on R 4.6.1. Regenerate references
+renv pins vegan 2.7-6, permute, smatr, rioja 1.0-7 and jsonlite on R 4.6.1. Regenerate references
 only when a definition or the input changes, and commit the JSON with the
 script.
 

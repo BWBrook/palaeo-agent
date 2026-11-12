@@ -83,7 +83,7 @@ def test_stdio_equivalence_and_fresh_reproduction(materials):
             assert {tool.name for tool in tools.tools} == set(item["name"] for item in tool_definitions())
             discovery = unpack(await session.call_tool("discover", {}))
             assert [m["id"] for m in discovery["method_index"]] == [
-                "rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity"]
+                "rma", "rma_paired", "community", "permanova", "rarefaction", "count_homogeneity", "coniss"]
             for method, spec in specs.items():
                 schema = unpack(await session.call_tool("discover", {"method": method}))
                 assert schema["input_schema"]["properties"]["method"]["const"] == method

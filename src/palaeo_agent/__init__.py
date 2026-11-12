@@ -2,6 +2,7 @@
 
 from .core import AnalysisError, RmaResult, RmaSpec, rma_regression
 from .community import CommunityResult, CommunitySpec, analyse_community
+from .coniss import ConissResult, ConissSpec, calculate_coniss, validate_coniss
 from .permanova import PermanovaResult, PermanovaSpec, calculate_permanova, validate_permanova
 from .methods import discover, validate
 from .runs import inspect_run, reproduce, run
@@ -25,4 +26,5 @@ __all__ = [
     "StudySpec", "run_study", "inspect_study", "reproduce_study",
     "primer", "NeotomaSpec", "neotoma_extract", "inspect_neotoma", "reproduce_neotoma", "RarefactionSpec", "RarefactionResult", "calculate_rarefaction", "validate_rarefaction",
     "CountHomogeneitySpec", "CountHomogeneityResult", "calculate_count_homogeneity", "validate_count_homogeneity",
+    "ConissSpec", "ConissResult", "calculate_coniss", "validate_coniss",
 ]
