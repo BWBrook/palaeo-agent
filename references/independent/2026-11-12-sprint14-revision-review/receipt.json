@@ -1,0 +1,59 @@
+{
+  "reviewed_commit": "d132377",
+  "prototype_sha256": "19f21bcf2de69b30550745eb24656c5603ad2cb3db8d6fab91b34182ee124501",
+  "probe_sha256": "5698e7a70b19beb45a000fec068130a1f1b9721faa1f66193bbd6b0ba82c8d53",
+  "scope": "Artificial bounded rounding and independent exact partition-SS checks; no core or production API results",
+  "source_rows": [
+    [
+      1e+300,
+      1e-300
+    ],
+    [
+      1e+300,
+      1e+300
+    ],
+    [
+      1e-300,
+      1e+300
+    ]
+  ],
+  "existing_abundance_validation": "valid",
+  "prototype_walk_deliberately_aborted": true,
+  "nextafter_calls_at_abort": 129,
+  "float_tiny_proportion": 0.0,
+  "neighbour_steps_from_zero_to_expected_root": 118622047889322841,
+  "independent_binary64_coordinates": [
+    [
+      1.0,
+      1e-300
+    ],
+    [
+      0.7071067811865476,
+      0.7071067811865476
+    ],
+    [
+      1e-300,
+      1.0
+    ]
+  ],
+  "maximum_bisection_iterations": 62,
+  "independent_midpoint_half_even_cases": 6,
+  "subnormal_seed_case": {
+    "source_row": [
+      3.0,
+      1e-323
+    ],
+    "float_proportion": 5e-324,
+    "seed_sqrt": 2.2227587494850775e-162,
+    "nearest_sqrt": 1.8148749191817537e-162,
+    "prototype_walk_deliberately_aborted": true,
+    "nextafter_calls_at_abort": 129
+  },
+  "hierarchy_matches_independent_partition_ss": true,
+  "selected_zones": 1,
+  "costs": [
+    0.2928932188134525,
+    0.7642977396044842
+  ],
+  "synthetic_exact_hierarchies_checked": 20
+}
