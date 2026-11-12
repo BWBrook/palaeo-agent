@@ -1,0 +1,42 @@
+{
+  "freeze_commit": "20c68c2e64030893479af27b9bdcdcc243c5e0f5",
+  "portable_bundles": {
+    "studies": {
+      "zonation": {
+        "status": "reproduced",
+        "derived_identical": true,
+        "byte_identical_results": {
+          "archive_hellinger": "f2ebbcb454385a4baa92219b542a4c8e40ec322b97fce25c7fe2125b0f90e07a",
+          "repaired_hellinger": "f7e45fbb2f27c42d745e685227861b22333025c3add5f7d1755536825d99731e",
+          "archive_relative": "9c5210e82ee23ba7a22bcf33249b2adce9e5b1099276de3252158dd430e4aa9e",
+          "repaired_relative": "e25c4e49a85e8baca96003b602229cc1875a08346300ebb8f0ff7eb358319488"
+        }
+      },
+      "plot": {
+        "status": "reproduced",
+        "derived_identical": true,
+        "byte_identical_results": {
+          "plot_composition": "fc942a02e73be0c279f618ef3a51f7969d5f034ba0af3eddc5c2eed9d2517c4f"
+        }
+      }
+    },
+    "extraction_status": "reproduced",
+    "original_path_probe_refused": true,
+    "original_path_read_attempts": 0
+  },
+  "exports": [
+    {
+      "file": "results.json",
+      "sha256": "bc6551982ab837f33f3520dca1613c562a3e44a3a7f777a498416c091867549c"
+    },
+    {
+      "file": "boundaries.csv",
+      "sha256": "94c4fca83fd562ddc74e0e9f8f9a6496943213e00247da3657bbdb3f62f52717"
+    },
+    {
+      "file": "boundary-offsets.csv",
+      "sha256": "08ad0ac4da15d76403a546e0e00d3844d0ff3253fa8cddbad0bf0e3b27f5f6e7"
+    }
+  ],
+  "scope": "All five complete native child results reproduce byte for byte; copied extraction reproduces; original application paths blocked; interpretation not validated"
+}

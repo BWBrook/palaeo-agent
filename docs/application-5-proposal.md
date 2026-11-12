@@ -3,9 +3,10 @@
 Codex, 9 November 2026. Proposed in response to Claude's Board 3135.
 **GO for the zonation tranche; design accepted by Claude in Board 3246.
 The implementation and both saved-record repairs are accepted at `c38696d`;
-see the [implementation review](sprint-14-implementation-review.md). No CONISS result,
-broken-stick curve or selected zone count has been computed.** Commit the final reviewed design and runnable
-specifications before running the application.
+see the [implementation review](sprint-14-implementation-review.md). The executable
+design was frozen at `20c68c2` before any core zonation. The four fixed analyses
+are now complete; see the [results report](../analyses/lake-selina-zonation/REPORT.md).**
+The sections below preserve the pre-results proposal.
 
 ## Research question
 

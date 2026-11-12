@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "scope": "Independent exact coordinate rounding and rioja arithmetic on matched coordinates; no sampling coverage or ecological-validity claim",
+  "coordinate_rounding": "Independent bounded binary64 bisection with exact midpoint/half-even checks; compared with production coordinates",
+  "coordinate_values_checked": 17280,
+  "rtol": 1e-10,
+  "atol": 0.0,
+  "partition_rule": "Every k from 1 to n; labels normalized to first occurrence, no membership tolerance",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "packages": {
+    "rioja": "1.0.7",
+    "vegan": "2.7.6",
+    "jsonlite": "2.0.0"
+  },
+  "cases": {
+    "archive_hellinger": {
+      "n": 72,
+      "numeric_quantities_checked": 214,
+      "numeric_failures": 0,
+      "maximum_absolute_difference": 3.552713678800501e-15,
+      "maximum_relative_difference": 2.5460579798954895e-15,
+      "zero_expected_nonzero_reference": 0,
+      "partition_memberships_checked": 5184,
+      "partition_mismatches": [],
+      "split_rank_mismatches": [],
+      "retention_comparisons_checked": 72,
+      "retention_verdict_mismatches": [],
+      "selection_mismatch": null,
+      "small_margin_warnings": [],
+      "passed": true
+    },
+    "repaired_hellinger": {
+      "n": 72,
+      "numeric_quantities_checked": 214,
+      "numeric_failures": 0,
+      "maximum_absolute_difference": 3.552713678800501e-15,
+      "maximum_relative_difference": 2.5460579798954895e-15,
+      "zero_expected_nonzero_reference": 0,
+      "partition_memberships_checked": 5184,
+      "partition_mismatches": [],
+      "split_rank_mismatches": [],
+      "retention_comparisons_checked": 72,
+      "retention_verdict_mismatches": [],
+      "selection_mismatch": null,
+      "small_margin_warnings": [],
+      "passed": true
+    },
+    "archive_relative": {
+      "n": 72,
+      "numeric_quantities_checked": 214,
+      "numeric_failures": 0,
+      "maximum_absolute_difference": 8.881784197001252e-16,
+      "maximum_relative_difference": 1.8168087441405935e-15,
+      "zero_expected_nonzero_reference": 0,
+      "partition_memberships_checked": 5184,
+      "partition_mismatches": [],
+      "split_rank_mismatches": [],
+      "retention_comparisons_checked": 72,
+      "retention_verdict_mismatches": [],
+      "selection_mismatch": null,
+      "small_margin_warnings": [],
+      "passed": true
+    },
+    "repaired_relative": {
+      "n": 72,
+      "numeric_quantities_checked": 214,
+      "numeric_failures": 0,
+      "maximum_absolute_difference": 6.661338147750939e-16,
+      "maximum_relative_difference": 1.8168087441405935e-15,
+      "zero_expected_nonzero_reference": 0,
+      "partition_memberships_checked": 5184,
+      "partition_mismatches": [],
+      "split_rank_mismatches": [],
+      "retention_comparisons_checked": 72,
+      "retention_verdict_mismatches": [],
+      "selection_mismatch": null,
+      "small_margin_warnings": [],
+      "passed": true
+    }
+  },
+  "numeric_quantities_checked": 856,
+  "partition_memberships_checked": 20736,
+  "retention_comparisons_checked": 288,
+  "reference_retention": "Declared consecutive-prefix rule applied to R gains and expectations; rioja does not return a selected k",
+  "maximum_absolute_difference": 3.552713678800501e-15,
+  "inputs": [
+    {
+      "file": "analyses/lake-selina-zonation/results.json",
+      "sha256": "bc6551982ab837f33f3520dca1613c562a3e44a3a7f777a498416c091867549c"
+    }
+  ],
+  "reference_files": [
+    {
+      "file": "analyses/lake-selina-zonation/reference.py",
+      "sha256": "09cc48e67e6c0faea0fa2d8a03c64d9c5f0b3b70a4959679c875aa85c3b3b095"
+    },
+    {
+      "file": "analyses/lake-selina-zonation/reference.R",
+      "sha256": "e073f414cfa815f17212b047794576b85acd9ef91fb078803e7c7eb2eac501ce"
+    },
+    {
+      "file": "references/r/renv.lock",
+      "sha256": "d5faffa85b057deeae8e15da534a26badc39cd83db2093f26357eac4b0ccce15"
+    }
+  ],
+  "intermediates": [
+    {
+      "file": "coordinates.json",
+      "sha256": "96983e63d6d73d1b2a452b993ad5b5f96aff1bea3cad3dc9065ad571f6fd64fc"
+    },
+    {
+      "file": "rioja.json",
+      "sha256": "51e8e97f27b5105861b22eb51f519dd010db82a8a9c886ca99829c0ed3178451"
+    }
+  ],
+  "command": "uv run analyses/lake-selina-zonation/reference.py"
+}
