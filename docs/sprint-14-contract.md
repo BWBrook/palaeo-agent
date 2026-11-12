@@ -1,9 +1,55 @@
 # Sprint 14 contract: constrained zonation (CONISS) with broken-stick retention
 
-Claude (Opus 5.5), 11 November 2026. **Draft for Codex's review.** It
+Claude (Opus 5.5), 12 November 2026. **Revision 2.** It replaces draft
+`cb4b0f5` after Codex's [review](sprint-14-review.md) (Board 3275). It
 implements the method that [application 5](application-5-proposal.md)
 (Lake Selina zonation, Board 3138) needs. That application is the
 acceptance test. No zonation of the Lake Selina core has been computed.
+
+## What changed from the draft
+
+Codex showed that the draft's floating-point arithmetic was wrong in
+ordinary cases:
+- **Constant data were split.** Four identical count rows gave two zones.
+  The weighted centroid update moved a centroid by one ulp, and that
+  invented variation passed the broken stick.
+- **The tolerance failed nearly constant data.** On such rows the
+  zone-SS identity check missed by about 1.6%.
+- **Squares underflowed.** Distinct coordinates of about 1e-200 produced
+  squared differences of exactly zero, so the method reported zero
+  dispersion.
+- **The portability claim was too strong.** Python documents that
+  `math.fsum` may round differently by a bit on some platforms.
+
+**The repair is to make every clustering decision with exact rational
+arithmetic on the coordinates.**
+- Coordinates are the nearest doubles to the exact proportions or their
+  square roots.
+- Merge costs, comparisons, cumulative dispersion, broken-stick
+  expectations and the retention verdict are then computed exactly from
+  those doubles, using Python integers and `Fraction`.
+- Reported numbers are the nearest doubles to the exact values.
+
+Consequences:
+- Constant data have exactly zero dispersion and keep one zone.
+- Ward's identity holds exactly at every step.
+- Ties are exact.
+- Inspection needs no tolerance.
+- A quantity too small to report as a normal double is refused with
+  `numerical_range`, never reported as zero.
+
+A prototype passes all seven of Codex's probes. Its per-boundary heights
+agree with a double-precision Lance–Williams recurrence (rioja's
+algorithm) on 100 random count tables. Ward's identity held exactly at
+every step. It takes 0.05 s at Lake Selina's size (72 × 60) and about
+9 s at 2,000 × 250.
+
+Also adopted from the review:
+- the common names `method_version`, `retained_counts` and
+  `retained_values`;
+- the 1e-9 checks renamed as small-margin diagnostics;
+- raw-coordinate fixtures labelled as internal tests;
+- public count-table tie and constant cases.
 
 ## Why
 
@@ -35,7 +81,9 @@ One new method, `coniss` (method version 1), and study support for it.
 - p-values for zones or boundaries;
 - age models, and any weighting by depth or time;
 - stratigraphic diagrams. Application 5 draws its figure from inspected
-  API fields.
+  API fields;
+- extended-precision clustering of inputs whose variation cannot be
+  reported in double precision. Such inputs are refused.
 
 ## Specification
 
@@ -49,11 +97,9 @@ One new method, `coniss` (method version 1), and study support for it.
 - **`value_type`:** `count` or `abundance`. Both are validated exactly as
   in `community`. The method uses only row proportions, so it never
   converts one kind into the other.
-- **`transform`:**
-  - `relative_abundance`: coordinates are the row proportions p_ik = x_ik / Σ_k x_ik;
-  - `hellinger`: coordinates are √p_ik.
-  - There is no `none`. Raw counts would weight levels by pollen sum, a
-    choice application 5 does not make, and nothing else needs it now.
+- **`transform`:** `relative_abundance` or `hellinger`. There is no
+  `none`. Raw counts would weight levels by pollen sum, a choice
+  application 5 does not make, and nothing else needs it now.
 - **`metadata` and `position_column` are required.**
   - The position column must hold finite numbers that strictly increase
     in table order after any `empty_samples` drop. Otherwise the method
@@ -69,50 +115,89 @@ One new method, `coniss` (method version 1), and study support for it.
     adjacent.
   - The order check runs on the retained rows.
 - **Size:** at least 3 retained samples (`insufficient_samples`). At most
-  5,000 samples, and at most 5,000,000 retained cells; above either limit
+  2,000 samples, and at most 500,000 retained cells; above either limit
   the method refuses before computing (`resource_limit`).
 
-## Algorithm
+## Numerical model
+
+Write ⌊q⌉ for the double nearest to a real number q, with ties to even.
+
+**Input values.** Each value is the exact rational value of the cell as
+validated. A count is an integer, and an abundance is the double that
+the existing parser produced. Row totals T_i are exact (`Fraction` sums).
 
 **Coordinates.**
-- Each row total is `math.fsum` of the row.
-- Each proportion is one IEEE division.
-- `hellinger` takes `np.sqrt`, which is correctly rounded.
+- `relative_abundance`: x_ik = ⌊v_ik / T_i⌉.
+- `hellinger`: x_ik = ⌊√(v_ik / T_i)⌉. This is the nearest double to the
+  exact square root of the exact proportion, not a square root of a
+  rounded proportion.
 
-**Hierarchy.**
-- Start with n singleton clusters. Each cluster is a contiguous run of
-  rows and keeps a size and a centroid.
-- At each step, every adjacent pair (A, B) has the merge cost
+**Rounding.** One helper produces both kinds of ⌊·⌉.
+- It takes a candidate from `float(q)` or `math.sqrt(float(q))`.
+- It accepts the candidate only after exact rational comparisons with the
+  midpoints to its `math.nextafter` neighbours. It steps to a neighbour
+  otherwise, applying round-half-even at an exact midpoint.
+- Correctness therefore never depends on the platform's `sqrt` or
+  division.
+- The same helper produces every reported double.
 
-  c(A, B) = n_A·n_B/(n_A + n_B) · Σ_k (ā_k − b̄_k)²
+**Representability.** The method refuses with `numerical_range`:
+- if a positive cell gives a coordinate below the smallest positive normal
+  double (2⁻¹⁰²²), which includes a coordinate lost to zero;
+- if any positive reported quantity would be below 2⁻¹⁰²².
 
-  with the sum taken by `math.fsum`.
-- Merge the pair with the least cost. `np.argmin` returns the first
-  minimum, so an exact tie goes to the leftmost pair, which is also the
-  shallowest when positions are depths.
-- The merged centroid is (n_A·ā + n_B·b̄)/(n_A + n_B), computed elementwise.
-- Only the two costs next to the merged cluster change at each step.
+The reported quantities are the costs, runner-up costs, cumulative
+dispersions, gains, expectations and zone SS. Codex's example (rows
+[1, 1e-200], [1, 2e-200], [1, 3e-200]) has positive exact dispersion
+whose squares underflow, so it is refused. It is never reported as
+constant. Counts can never trigger the coordinate check, because every
+positive proportion is at least 2⁻⁵³.
+
+**Exact arithmetic.**
+- Every coordinate is a dyadic rational. Scale them all by one common
+  power of two, 2⁻ᴱ, so that every coordinate becomes an integer.
+- A cluster keeps its size and its exact integer coordinate sums S.
+- For adjacent clusters A and B, the merge cost is
+
+  c(A, B) = Σ_k (n_B·S_Ak − n_A·S_Bk)² / (n_A·n_B·(n_A + n_B)) · 2²ᴱ
+
+  This is algebraically identical to n_A·n_B/(n_A + n_B) · ‖ā − b̄‖². It is
+  held as an exact `Fraction`.
+- H_j = c_1 + … + c_j exactly.
+- Within-zone SS is Σ‖x‖² − ‖S‖²/n per zone, exactly.
+
+There is no centroid rounding, no cancellation and no tolerance:
+- constant data have exactly zero cost at every merge;
+- Ward's identity (H_j equals the within-zone SS of the partition after j
+  merges) holds exactly;
+- equal costs are exactly equal.
+
+**Portability.** Given the validated input values, every decision and
+every reported double is a function of Python integer arithmetic.
+Inspection and fresh reproduction can therefore require exact equality
+in any CPython environment. The candidates from `float`, `math.sqrt` and
+`math.nextafter` affect speed only, never results. Reading abundance
+values from text is the existing parser's responsibility, and its
+round-trip is already tested.
+
+## Hierarchy
+
+- Start with n singleton clusters, one per row, each a contiguous run.
+- At each step, merge the adjacent pair with the least exact cost. An
+  exact tie goes to the leftmost pair, which is also the shallowest when
+  positions are depths.
+- Only the two costs next to the merged cluster change.
 - Step j (j = 1, …, m, where m = n − 1) records:
   - the boundary removed;
   - both clusters' first and last sample IDs and their sizes;
-  - the cost c_j;
-  - the runner-up cost: the least cost among the other eligible pairs, or
-    null at step m;
-  - the cumulative dispersion H_j = `math.fsum(c_1 … c_j)`.
+  - ⌊c_j⌉;
+  - ⌊runner-up⌉: the least cost among the other eligible pairs, or null
+    at step m;
+  - ⌊H_j⌉.
 
-Every reduction is correctly rounded, and the other operations are single
-IEEE operations. Results are therefore bit-identical across platforms for
-the same NumPy major version.
-- Inspection recomputes everything and requires exact equality. It needs
-  no tolerance.
-- Fresh reproduction uses the existing `compare_results`.
-
-**Required properties.**
-- H_j equals the total within-cluster sum of squares of the partition
-  after j merges (Ward's identity). This is tested, not assumed.
-- H_m equals the total sum of squares about the grand centroid.
-- Merge costs need not increase. Inversions are common under the adjacency
-  constraint: a prototype found them in 194 of 200 random 12 × 4 tables.
+**Properties:**
+- Merge costs need not increase. Inversions are common under the
+  adjacency constraint: they appeared in 194 of 200 random 12 × 4 tables.
   Costs are never sorted or monotonised. H_j is non-decreasing because
   every c_j ≥ 0.
 - The greedy hierarchy is not the optimal k-zone segmentation for every k,
@@ -131,18 +216,17 @@ the same NumPy major version.
 
 ## Broken-stick comparison and retention
 
-For split rank r = 1, …, m:
+For split rank r = 1, …, m, with every quantity exact:
 
 - **gain:** g_r = c_(m−r+1), the cost of the merge undone by that split.
-  It equals H_(m−r+1) − H_(m−r) in exact arithmetic. Using the cost
-  directly avoids cancellation.
-- **expectation:** e_r = (H_m / m) · Σ_{j=r}^{m} 1/j, with the tail sum by
-  `math.fsum`. The m expectations sum to H_m.
+- **expectation:** e_r = (H_m / m) · Σ_{j=r}^{m} 1/j. The m expectations
+  sum to H_m exactly.
 - **exceeds:** g_r > e_r (strict).
 
 This is vegan's `bstick(m, H_m)` (rioja imports it) with exactly rioja's
 indexing. `bstick.chclust` pairs the comparison for `nGroups` = r + 1 with
-`bs[r]`, and so does this contract.
+`bs[r]`, and so does this contract. The result reports ⌊g_r⌉ and ⌊e_r⌉
+and the exact verdict.
 
 **Retention rule (declared convention: the consecutive prefix).**
 - Retained zones: k = 1 + L, where L is the largest number such that every
@@ -158,45 +242,49 @@ indexing. `bstick.chclust` pairs the comparison for `nGroups` = r + 1 with
   toolkit's own, and the result names it
   (`retention_rule: "broken_stick_consecutive_prefix"`).
 
-**Zero dispersion.** When H_m = 0, every g_r and e_r is 0, so the rule
-keeps one zone. The result also carries a `zero_dispersion` warning.
+**Zero dispersion.** When H_m = 0 exactly, every g_r and e_r is 0, so the
+rule keeps one zone. The result also carries a `zero_dispersion` warning.
+This happens only for exactly constant coordinates.
 
 **Zones.** For the selected k, each zone records:
 - its label, from 1 at the first table row;
 - its first and last sample IDs and positions;
 - its size;
-- its within-zone SS, by direct two-pass `math.fsum` about the zone
-  centroid. This is a second route to H_(n−k), compared by the validator
-  within 1e-12 · max(H_m, smallest positive normal).
+- ⌊its exact within-zone SS⌉.
 
 **Warnings.** In addition to the existing table warnings
 (`near_duplicate_labels`, `identical_samples`, `repeated_block`):
 
-- **`near_tie_merge`** lists each step whose runner-up cost is within
-  1e-9 · max(c_j, runner-up) of c_j, including exact ties.
-  - An exact tie is resolved to the left, as specified.
-  - A near-tie means a different but equally valid rounding path (rioja's
-    Lance–Williams recurrence, for instance) could merge another pair.
-  - It flags numerical fragility only. The scientific margin is visible
-    in every step's `runner_up_cost`.
-- **`near_tie_retention`** lists each rank r ≤ `stopped_at_rank` (or every
-  rank, if none fails) where |g_r − e_r| ≤ 1e-9 · e_r. A rounding-level
-  change at such a rank could change k.
+- **`small_margin_merge`** lists each step where runner-up − c_j ≤
+  1e-9 · runner-up, compared exactly. Each entry carries `exact_tie: true`
+  or `false`.
+- **`small_margin_retention`** lists each rank r ≤ `stopped_at_rank` (or
+  every rank, if none fails) where |g_r − e_r| ≤ 1e-9 · e_r, compared
+  exactly.
 - **`zero_dispersion`**, as defined above.
 
-## Result (`coniss`, version 1)
+The two small-margin warnings are diagnostics, not bounds. Every decision
+is exact for the coordinates as rounded. A flag says only that the data,
+or the roughly 1e-16 relative rounding of the coordinates, would need to
+change by little to alter that decision. An unflagged decision is not
+thereby certified against every perturbation. The scientific margin is
+visible in every step's runner-up cost and every rank's gain and
+expectation.
 
-The result keeps the common fields: `method`, `version`, `value_type`,
-`transform`, `missing`, `empty_samples`, `orientation`, `input_sample_ids`,
-`sample_ids`, `taxon_ids`, `excluded`, `metadata` and `warnings`, and the
-retained `counts` or `values`, as in `community`. The `coniss` fields:
+## Result (`coniss`, `method_version` 1)
+
+The result keeps the common fields: `method`, `method_version`,
+`value_type`, `transform`, `missing`, `empty_samples`, `orientation`,
+`input_sample_ids`, `sample_ids`, `taxon_ids`, `excluded`, `metadata` and
+`warnings`, and `retained_counts` or `retained_values`, as in `community`.
+The `coniss` fields:
 
 | Field | Content |
 | --- | --- |
 | `position_column`, `positions` | Declared column; one number per retained sample |
 | `merges` | m records: step, boundary, left/right first–last IDs and sizes, cost, runner_up_cost, cumulative |
 | `boundaries` | n − 1 records in table order: boundary, left/right IDs and positions, merge_step, split_rank |
-| `total_dispersion` | H_m |
+| `total_dispersion` | ⌊H_m⌉ |
 | `broken_stick` | m records: rank, zones (r + 1), gain, expected, exceeds |
 | `retention` | rule, selected_zones, stopped_at_rank, later_exceedances |
 | `zones` | the selected partition, as above |
@@ -209,14 +297,14 @@ retained `counts` or `values`, as in `community`. The `coniss` fields:
 - equal sample weights, with no propagation of count sampling error;
 - adjacency is table order, and gaps between positions are unweighted.
 
-**Inspection** validates the saved specification against the result, then
-recomputes from the saved retained values and positions:
-- coordinates, the full merge record, boundaries and split ranks;
-- the broken stick, retention, zones and every warning.
-
-Every value must match exactly, apart from the zone-SS identity
-tolerance above. A rehashed `results.json` whose hierarchy, retention or
-zones have been edited consistently is therefore refused.
+**Inspection** validates the saved specification against the result. It
+then recomputes the complete result from the saved retained values and
+positions, using the exact model, and requires every field to be equal,
+including warnings and refusals. Because nothing in the recomputation
+depends on floating-point library behaviour, exact equality is the
+correct test in any environment. A rehashed `results.json` whose
+hierarchy, retention, zones or reported numbers have been edited
+consistently is therefore refused.
 
 **Bundle files:**
 - `input.dat`, `metadata.csv` and `aligned_metadata.csv`;
@@ -254,65 +342,100 @@ and `collect_results`. No plot.
 
 ## Acceptance
 
-1. **Independent reference: pinned R `rioja` 1.0-7**, added to the
-   reference renv. The generator `coniss_reference.R` calls `chclust(dist(X)^2,
-   "coniss")` on our coordinates. Squared Euclidean input is the convention
-   for this objective; the manual's unsquared `dist` example is a
-   different objective.
-   - **Per boundary:** the generator also makes the wrapper's own call,
-     `.Call("chclust_c", as.matrix(d), 2L, PACKAGE = "rioja")`. Its
-     output, before the wrapper sorts it, gives each boundary the
-     cumulative dispersion at which it disappeared. Compare it with our
-     H at that boundary's `merge_step`. This identifies the whole merge
-     order, which is stronger than comparing sorted heights or plotted
-     trees.
-   - **Partitions:** `cutree(tree, k)` against our split ranks, for every
-     k.
-   - **Broken stick:** `bstick(tree, ng = n − 1)` against our ranks 1 to
-     m − 1. Rank m, which rioja's `diff(rev(height))` omits, is checked
-     against `bstick(m, H_m)[m]` and the smallest height, both computed
-     in R.
-   - **Tolerance:** rtol 1e-10 on dispersions. Partitions and ranks must
-     match exactly unless our record flags `near_tie_merge` at the step
-     concerned, and the test then asserts that flag.
+1. **Exact oracle, without R.** A separately written brute-force
+   reference in the test file:
+   - it keeps `Fraction` centroids rather than integer sums;
+   - at every step it recomputes every eligible cost from the cluster
+     members;
+   - it computes each partition's SS directly about its exact centroid.
+
+   It must agree with the method **exactly** (structure, every exact
+   quantity and the verdict) on all of the following cases.
+   - **Internal hierarchy cases** (raw coordinates, n ≥ 2):
+     - the 0/2 fixture: H = 2;
+     - the 1-D 0/1/2 tie, merged to the left.
+   - **Codex's seven probes**, as public count or abundance tables:
+     - constant [1, 9] rows under both transforms: zero dispersion and
+       one zone;
+     - the nearly constant [1, 1+1e-15, 1+2e-15] rows under both
+       transforms: exact agreement;
+     - the underflow rows: refused with `numerical_range`.
+   - **Public tie, inversion and later exceedance:** count rows
+     [1, 0], [0, 1], [1, 0]. Costs are 1 (an exact tie, taken at the
+     left), then 1/3 (an inversion). Rank 1 fails (1/3 < 1), so one zone
+     is kept, and rank 2 is reported as a later exceedance.
+   - **Public duplicate blocks** under `hellinger`: count rows [5, 0, 1]
+     twice, [0, 4, 2] twice, then [3, 3, 0]. There are two exact
+     zero-cost merges.
+   - **Ward's identity:** on a 30 × 8 two-block synthetic count table under
+     both transforms, H_j equals the direct partition SS at every step.
+2. **Independent implementation: pinned R `rioja` 1.0-7**, added to the
+   reference renv.
+   - **Calls:**
+     - the generator `coniss_reference.R` calls `chclust(dist(X)^2,
+       "coniss")` on our coordinates. Squared Euclidean input is the
+       convention for this objective; the manual's unsquared `dist`
+       example is a different objective;
+     - it also makes the wrapper's own `.Call("chclust_c", as.matrix(d),
+       2L, PACKAGE = "rioja")`. That call's output, before the wrapper
+       sorts it, gives each boundary the cumulative dispersion at which
+       it disappeared.
+   - **Comparisons:**
+     - per-boundary dispersion within rtol 1e-10;
+     - `cutree(tree, k)` partitions for every k, which must match
+       exactly;
+     - `bstick(tree, ng = n − 1)` for ranks 1 to m − 1. Rank m, which
+       rioja's `diff(rev(height))` omits, is checked against `bstick(m,
+       H_m)[m]` and the smallest height, both computed in R.
    - **Cases:**
-     - the 0/2 fixture: H = 2; supplying unsquared distances gives 1,
-       which the generator records as the trap;
-     - an exact tie (1-D 0, 1, 2), merged to the left;
-     - exact duplicate rows with representable values;
-     - a constant sequence (zero dispersion);
-     - a 30 × 8 two-block synthetic table under both transforms, with at
-       least one inversion and at least one later exceedance;
-     - n = 3.
-2. **Ward identity, without R:** on the synthetic table, H_j equals the
-   directly computed within-zone SS of the partition after every j.
-3. **Retention rule unit cases:** passing a prefix and then failing; a
-   tie at the stop (fails); a later exceedance reported but not used;
-   all ranks passing; zero dispersion.
+     - the 30 × 8 table under both transforms (with at least one
+       inversion and one later exceedance);
+     - a 40 × 12 Dirichlet-like count table;
+     - the public tie fixture.
+
+     The generator asserts that none of these has a small-margin flag
+     except the declared exact tie. Partitions and ranks must then match
+     exactly, with no exceptions.
+
+     Nearly constant and underflow cases stay with the exact oracle.
+     There, a double-precision recurrence such as rioja's is not a
+     meaningful reference.
+3. **Retention rule unit cases:**
+   - a prefix that passes, then a failure;
+   - an exact tie at the stop, which fails;
+   - a later exceedance, reported but not used;
+   - every rank passing;
+   - zero dispersion.
 4. **Refusals:**
    - `order_mismatch` for a decreasing position, a repeated position and
      a non-finite position;
    - `insufficient_samples` for n < 3;
    - `resource_limit` before allocation;
+   - `numerical_range` both for a coordinate below 2⁻¹⁰²² and for a
+     reported quantity below it;
    - `empty_samples: drop` recorded, and the order check applied to the
      retained rows.
-5. **Bundles:** inspection and fresh reproduction succeed. Rehashed tampers
-   are refused at inspection, each with its tables refreshed so that the
-   semantic check is the one exercised:
-   - a merge cost;
+5. **Bundles:** inspection and fresh reproduction succeed, with exact
+   equality. Rehashed tampers are refused at inspection, each with its
+   tables refreshed so that the semantic check is the one exercised:
+   - a merge cost changed by one ulp;
    - a split rank;
    - `selected_zones`;
-   - a zone's within-SS.
+   - a small-margin warning removed.
 6. **Study:** an `exclude_taxa` plus metadata-join study with a `coniss`
    analysis runs, inspects and reproduces. An abundance dataset is
    accepted.
 7. **Application 5** freezes its study (four analyses) before any core
    zonation is computed. It then runs, inspects and reproduces in a fresh
    worker, and cross-checks against rioja on the frozen coordinates as
-   declared external work.
+   declared external work. A boundary persists only when it lies between
+   the same two sample IDs, as the application now defines.
 
-Tests replace rather than accumulate: one reference module
-(`tests/test_coniss.py`), plus one study case added to `test_study.py`.
+Tests replace rather than accumulate: one module (`tests/test_coniss.py`)
+holds the oracle, the reference comparison, the retention cases and the
+refusals, plus one study case added to `test_study.py`. Codex's probe stays
+under `references/independent/` as review evidence. Its cases enter the
+suite through the oracle tests, not as a second copy.
 
 ## References
 
