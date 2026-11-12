@@ -158,10 +158,18 @@ roots; exact midpoint ties on even and odd significands, for both the
 quotient and the root; and the normal/subnormal boundary, together with the
 `numerical_range` rule below.
 
-**Representability.** The method refuses with `numerical_range`:
-- if a positive cell gives a coordinate below the smallest positive normal
-  double (2⁻¹⁰²²), which includes a coordinate lost to zero;
-- if any positive reported quantity would be below 2⁻¹⁰²².
+**Representability.** The method refuses with `numerical_range` at two
+stages, each tested on what that stage holds:
+- **coordinate stage (after rounding):** a positive cell whose coordinate,
+  the rounded double, is below the smallest positive normal double
+  (2⁻¹⁰²²), which includes a coordinate lost to zero. Coordinates are
+  doubles by definition, so an exact proportion (or root) just below
+  2⁻¹⁰²² that rounds up to 2⁻¹⁰²² is accepted;
+- **reported-quantity stage (before rounding):** any positive reported
+  quantity whose exact value is below 2⁻¹⁰²².
+
+Raw input cells are not themselves tested: subnormal abundance weights can
+give ordinary proportions and are accepted (revision 2.1, Board 3321).
 
 The reported quantities are the costs, runner-up costs, cumulative
 dispersions, gains, expectations and zone SS. Codex's example (rows

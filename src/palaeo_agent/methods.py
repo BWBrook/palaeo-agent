@@ -64,7 +64,7 @@ METHOD_INDEX = [
                   "separate omnibus and taxon Holm families", "zero-count upper limits"]},
     {"id": "coniss", "description": "Constrained Ward zonation (CONISS); broken-stick zones",
      "scope": "Ordered samples; adjacency is checked table order",
-     "refuses": ["unordered positions", "subnormal values"],
+     "refuses": ["unordered positions", "tiny derived values"],
      "provides": ["exact merge hierarchy", "split ranks to cut at any k", "zone records"]},
 ]
 INPUT_FORMATS = ("Tables: 'past' (header starts '.', tab-separated) or 'delimited' with delimiter 'tab' or 'comma' "

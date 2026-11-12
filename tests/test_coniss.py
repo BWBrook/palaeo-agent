@@ -342,3 +342,33 @@ def test_rehashed_tampering_with_refreshed_tables_fails(tmp_path, update):
     with pytest.raises(AnalysisError) as caught:
         inspect_run(run_dir)
     assert caught.value.code == "invalid_bundle"
+
+
+def _ghost_exclusion(result):
+    result["excluded"].append({"sample_id": "ghost", "reason": "empty_sample"})
+
+
+def _duplicate_exclusion(result):
+    result["excluded"].append(dict(result["excluded"][0]))
+
+
+def _unmatched_warning_role(result):
+    result["warnings"].append({"code": "near_duplicate_labels", "message": "invented",
+                               "details": {"role": "banana", "groups": [["a", "A"]]}})
+
+
+@pytest.mark.parametrize("update", [_ghost_exclusion, _duplicate_exclusion, _unmatched_warning_role],
+                         ids=["ghost_exclusion", "duplicate_exclusion", "warning_role"])
+def test_rehashed_record_inventions_fail(tmp_path, update):
+    path = write(tmp_path, [[1, 2], [0, 0], [3, 1], [2, 2]])
+    run_dir = Path(run(spec(path, empty_samples="drop"), tmp_path / "runs")["run_dir"])
+    result = json.loads((run_dir / "results.json").read_text())
+    update(result)
+    (run_dir / "results.json").write_text(json.dumps(result, indent=2) + "\n")
+    rehash(run_dir, "results.json")
+    for name, data in table_files(result).items():
+        (run_dir / name).write_bytes(data)
+        rehash(run_dir, name)
+    with pytest.raises(AnalysisError) as caught:
+        inspect_run(run_dir)
+    assert caught.value.code == "invalid_bundle"

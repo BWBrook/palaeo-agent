@@ -13,7 +13,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
 
-from .community import FORMAT_HELP, VALUE_TYPE_HELP, _prepare_counts, _read_inputs, check_delimiter, value_keys
+from .community import FORMAT_HELP, VALUE_TYPE_HELP, _prepare_counts, _read_inputs, _table_warnings, check_delimiter, value_keys
 from .core import AnalysisError, ResultItem
 
 
@@ -410,16 +410,16 @@ def calculate_coniss(spec, data, metadata):
     return dumped
 
 
-TABLE_WARNINGS = {"near_duplicate_labels", "identical_samples", "repeated_block"}
-
-
 def _validate_saved_result(result):
     samples, taxa = result.sample_ids, result.taxon_ids
     for ids in (samples, taxa, result.input_sample_ids):
         if any(not value.strip() for value in ids) or len(set(ids)) != len(ids):
             raise ValueError("IDs must be nonblank and unique")
     excluded = [item.get("sample_id") for item in result.excluded]
-    if (result.n != len(samples) or result.n_input != len(result.input_sample_ids) or result.n_taxa != len(taxa)
+    if (any(not isinstance(s, str) for s in excluded) or len(set(excluded)) != len(excluded)
+            or not set(excluded) <= set(result.input_sample_ids)
+            or result.n != len(samples) or result.n_input != len(result.input_sample_ids)
+            or result.n_input != result.n + len(excluded) or result.n_taxa != len(taxa)
             or [s for s in result.input_sample_ids if s not in set(excluded)] != samples
             or result.excluded != [{"sample_id": s, "reason": "empty_sample"} for s in excluded]
             or (excluded and result.empty_samples != "drop")):
@@ -439,12 +439,13 @@ def _validate_saved_result(result):
         raise ValueError("Positions disagree with the aligned metadata column")
     expected = zonation(values, transform=result.transform, sample_ids=samples, taxon_ids=taxa, positions=positions)
     saved = result.model_dump(mode="json")
+    table = _table_warnings(result.input_sample_ids, taxa, values, samples)
+    if saved["warnings"] != table + expected["warnings"]:
+        raise ValueError("Warnings are not exactly the recomputed table and zonation warnings")
     for key, value in expected.items():
         if key == "warnings":
-            saved_own = [warning for warning in saved["warnings"] if warning["code"] not in TABLE_WARNINGS]
-            if saved_own != value:
-                raise ValueError("Zonation warnings disagree with the exact recomputation")
-        elif saved[key] != value:
+            continue
+        if saved[key] != value:
             raise ValueError(f"{key} disagrees with the exact recomputation")
     if result.references != REFERENCES or result.limitations != LIMITATIONS:
         raise ValueError("References or limitations differ from the method's fixed text")
