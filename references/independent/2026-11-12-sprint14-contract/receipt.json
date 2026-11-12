@@ -1,0 +1,392 @@
+{
+  "reviewed_commit": "cb4b0f5",
+  "scope": "Artificial numerical contract checks; no toolkit implementation or Lake Selina results",
+  "python": "3.12.13",
+  "numpy": "2.5.4",
+  "probe_sha256": "e562e0c350812e3ccc597cc949e5fb1d0771cd4f13f19add849c551150eae938",
+  "cases": [
+    {
+      "id": "identical_counts_relative_abundance",
+      "transform": "relative_abundance",
+      "input": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ]
+      ],
+      "update": "weighted",
+      "coordinates": [
+        [
+          0.1,
+          0.9
+        ],
+        [
+          0.1,
+          0.9
+        ],
+        [
+          0.1,
+          0.9
+        ],
+        [
+          0.1,
+          0.9
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 0.0
+        },
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 5.7777898331617076e-34
+        },
+        {
+          "cost": 1.4444474582904269e-34,
+          "cumulative": 1.4444474582904269e-34,
+          "direct_partition_ss": 0.0
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 1.4444474582904269e-34,
+      "direct_total_ss": 0.0,
+      "exact_float_coordinate_ss": 0.0,
+      "exact_total_positive": false,
+      "identity_tolerance": 1.444447458290427e-46
+    },
+    {
+      "id": "nearconstant_relative_abundance_weighted",
+      "transform": "relative_abundance",
+      "input": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1.000000000000001
+        ],
+        [
+          1,
+          1.000000000000002
+        ]
+      ],
+      "update": "weighted",
+      "coordinates": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.4999999999999998,
+          0.5000000000000003
+        ],
+        [
+          0.49999999999999956,
+          0.5000000000000006
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 4.930380657631324e-32,
+          "cumulative": 4.930380657631324e-32,
+          "direct_partition_ss": 4.930380657631324e-32
+        },
+        {
+          "cost": 2.0543252740130513e-31,
+          "cumulative": 2.5473633397761837e-31,
+          "direct_partition_ss": 2.588449845256445e-31
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 2.5473633397761837e-31,
+      "direct_total_ss": 2.588449845256445e-31,
+      "exact_float_coordinate_ss": 2.547363339776184e-31,
+      "exact_total_positive": true,
+      "identity_tolerance": 2.5473633397761835e-43
+    },
+    {
+      "id": "nearconstant_relative_abundance_difference",
+      "transform": "relative_abundance",
+      "input": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1.000000000000001
+        ],
+        [
+          1,
+          1.000000000000002
+        ]
+      ],
+      "update": "difference",
+      "coordinates": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.4999999999999998,
+          0.5000000000000003
+        ],
+        [
+          0.49999999999999956,
+          0.5000000000000006
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 4.930380657631324e-32,
+          "cumulative": 4.930380657631324e-32,
+          "direct_partition_ss": 4.930380657631324e-32
+        },
+        {
+          "cost": 2.0543252740130513e-31,
+          "cumulative": 2.5473633397761837e-31,
+          "direct_partition_ss": 2.588449845256445e-31
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 2.5473633397761837e-31,
+      "direct_total_ss": 2.588449845256445e-31,
+      "exact_float_coordinate_ss": 2.547363339776184e-31,
+      "exact_total_positive": true,
+      "identity_tolerance": 2.5473633397761835e-43
+    },
+    {
+      "id": "identical_counts_hellinger",
+      "transform": "hellinger",
+      "input": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          9
+        ]
+      ],
+      "update": "weighted",
+      "coordinates": [
+        [
+          0.31622776601683794,
+          0.9486832980505138
+        ],
+        [
+          0.31622776601683794,
+          0.9486832980505138
+        ],
+        [
+          0.31622776601683794,
+          0.9486832980505138
+        ],
+        [
+          0.31622776601683794,
+          0.9486832980505138
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 0.0
+        },
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 3.697785493223493e-32
+        },
+        {
+          "cost": 9.244463733058732e-33,
+          "cumulative": 9.244463733058732e-33,
+          "direct_partition_ss": 0.0
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 9.244463733058732e-33,
+      "direct_total_ss": 0.0,
+      "exact_float_coordinate_ss": 0.0,
+      "exact_total_positive": false,
+      "identity_tolerance": 9.244463733058733e-45
+    },
+    {
+      "id": "nearconstant_hellinger_weighted",
+      "transform": "hellinger",
+      "input": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1.000000000000001
+        ],
+        [
+          1,
+          1.000000000000002
+        ]
+      ],
+      "update": "weighted",
+      "coordinates": [
+        [
+          0.7071067811865476,
+          0.7071067811865476
+        ],
+        [
+          0.7071067811865474,
+          0.7071067811865478
+        ],
+        [
+          0.7071067811865472,
+          0.7071067811865479
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 1.232595164407831e-32,
+          "cumulative": 1.232595164407831e-32,
+          "direct_partition_ss": 2.465190328815662e-32
+        },
+        {
+          "cost": 1.4791141972893971e-31,
+          "cumulative": 1.6023737137301802e-31,
+          "direct_partition_ss": 1.232595164407831e-31
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 1.6023737137301802e-31,
+      "direct_total_ss": 1.232595164407831e-31,
+      "exact_float_coordinate_ss": 1.150422153447309e-31,
+      "exact_total_positive": true,
+      "identity_tolerance": 1.6023737137301803e-43
+    },
+    {
+      "id": "nearconstant_hellinger_difference",
+      "transform": "hellinger",
+      "input": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1.000000000000001
+        ],
+        [
+          1,
+          1.000000000000002
+        ]
+      ],
+      "update": "difference",
+      "coordinates": [
+        [
+          0.7071067811865476,
+          0.7071067811865476
+        ],
+        [
+          0.7071067811865474,
+          0.7071067811865478
+        ],
+        [
+          0.7071067811865472,
+          0.7071067811865479
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 1.232595164407831e-32,
+          "cumulative": 1.232595164407831e-32,
+          "direct_partition_ss": 2.465190328815662e-32
+        },
+        {
+          "cost": 1.4791141972893971e-31,
+          "cumulative": 1.6023737137301802e-31,
+          "direct_partition_ss": 1.232595164407831e-31
+        }
+      ],
+      "selected_zones": 2,
+      "total_dispersion": 1.6023737137301802e-31,
+      "direct_total_ss": 1.232595164407831e-31,
+      "exact_float_coordinate_ss": 1.150422153447309e-31,
+      "exact_total_positive": true,
+      "identity_tolerance": 1.6023737137301803e-43
+    },
+    {
+      "id": "underflow_relative_abundance",
+      "transform": "relative_abundance",
+      "input": [
+        [
+          1,
+          1e-200
+        ],
+        [
+          1,
+          2e-200
+        ],
+        [
+          1,
+          3e-200
+        ]
+      ],
+      "update": "weighted",
+      "coordinates": [
+        [
+          1.0,
+          1e-200
+        ],
+        [
+          1.0,
+          2e-200
+        ],
+        [
+          1.0,
+          3e-200
+        ]
+      ],
+      "merges": [
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 0.0
+        },
+        {
+          "cost": 0.0,
+          "cumulative": 0.0,
+          "direct_partition_ss": 0.0
+        }
+      ],
+      "selected_zones": 1,
+      "total_dispersion": 0.0,
+      "direct_total_ss": 0.0,
+      "exact_float_coordinate_ss": 0.0,
+      "exact_total_positive": true,
+      "identity_tolerance": 2.2253e-320
+    }
+  ]
+}

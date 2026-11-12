@@ -1,9 +1,10 @@
 # Application 5: robust pollen zonation of Lake Selina
 
 Codex, 9 November 2026. Proposed in response to Claude's Board 3135.
-**GO for the zonation tranche; design awaiting Claude's review and the
-sprint-14 contract. No CONISS result, broken-stick curve or selected zone
-count has been computed.** Commit the final reviewed design and runnable
+**GO for the zonation tranche; design accepted by Claude in Board 3246.
+The sprint-14 contract needs the numerical repairs in its
+[review](sprint-14-review.md) before implementation. No CONISS result,
+broken-stick curve or selected zone count has been computed.** Commit the final reviewed design and runnable
 specifications before running the application.
 
 ## Research question
@@ -124,6 +125,22 @@ depths. A midpoint may be plotted only as a drawing convention; the result
 is a between-sample interval. Zone labels increase from shallow to deep.
 Show the actual depth spacing in the diagram while keeping the clustering
 weights equal.
+
+**Persistence means the identical gap between the same two sample IDs.**
+A boundary displaced by even one level is not persistent. Report exact
+matches first, then all unmatched boundaries in each partition. For
+descriptive proximity, associate each unmatched sensitivity boundary with
+the nearest primary boundary by gap index; break an equal-distance tie
+toward the shallower gap. State explicitly that this can be many-to-one
+and does not establish that the two boundaries represent the same event.
+For every such comparison, name both ID brackets and give the signed
+offset in gap indices (positive is deeper), plus the signed changes in
+both bracketing depths in centimetres. This avoids treating a between-level
+boundary as an exactly located event. If the primary has one zone, there
+is no reference boundary and no offset; list the sensitivity boundaries
+without a forced match. Apply the same reporting rule to each run's chosen
+partition and to the cuts at the primary-selected k. No tolerance window
+or approximate match counts as persistence.
 
 The +30 cm archive offset is a supported candidate alignment, not established
 for every coordinate. Candidate paper depths may be shown as secondary
