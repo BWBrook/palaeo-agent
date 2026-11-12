@@ -1,0 +1,107 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "archive": {
+      "kind": "counts",
+      "path": "data/archive.tsv",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    },
+    "repaired": {
+      "kind": "counts",
+      "path": "data/reconstructed.tsv",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    },
+    "positions": {
+      "kind": "metadata",
+      "path": "data/positions.csv",
+      "id_column": "sample_id"
+    }
+  },
+  "datasets": {
+    "archive": {
+      "source": "archive",
+      "metadata": "positions",
+      "operations": [
+        {
+          "op": "exclude_taxa",
+          "taxa": [
+            "Cyperaceae",
+            "Gymnoschoenus sphaerocephalus",
+            "Restionaceae",
+            "Xyridaceae",
+            "Portulacaceae",
+            "Ranunculus"
+          ],
+          "reason": "Previously fixed dryland sum: exclude sedges and aquatics; application 1 amendment 1"
+        }
+      ]
+    },
+    "repaired": {
+      "source": "repaired",
+      "metadata": "positions",
+      "operations": []
+    }
+  },
+  "analyses": [
+    {
+      "id": "archive_hellinger",
+      "dataset": "archive",
+      "spec": {
+        "method": "coniss",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "position_column": "depth_cm",
+        "transform": "hellinger",
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    },
+    {
+      "id": "repaired_hellinger",
+      "dataset": "repaired",
+      "spec": {
+        "method": "coniss",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "position_column": "depth_cm",
+        "transform": "hellinger",
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    },
+    {
+      "id": "archive_relative",
+      "dataset": "archive",
+      "spec": {
+        "method": "coniss",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "position_column": "depth_cm",
+        "transform": "relative_abundance",
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    },
+    {
+      "id": "repaired_relative",
+      "dataset": "repaired",
+      "spec": {
+        "method": "coniss",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "position_column": "depth_cm",
+        "transform": "relative_abundance",
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    }
+  ]
+}

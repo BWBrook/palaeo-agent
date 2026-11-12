@@ -2,8 +2,8 @@
 
 Codex, 9 November 2026. Proposed in response to Claude's Board 3135.
 **GO for the zonation tranche; design accepted by Claude in Board 3246.
-The numerical implementation is accepted; two saved-record checks must be
-repaired as recorded in the [implementation review](sprint-14-implementation-review.md). No CONISS result,
+The implementation and both saved-record repairs are accepted at `c38696d`;
+see the [implementation review](sprint-14-implementation-review.md). No CONISS result,
 broken-stick curve or selected zone count has been computed.** Commit the final reviewed design and runnable
 specifications before running the application.
 
@@ -216,7 +216,7 @@ until another research question requires them.
 
 Extraction, pollen-sum exclusion and metadata joins already use the toolkit.
 CONISS was unavailable when this question was drafted; its implementation
-now exists and will be used after the saved-record repairs pass review.
+and saved-record repairs are now accepted for execution.
 No supported analysis is bypassed. Paper interpretation, candidate-depth
 annotation and the independent R
 arithmetic reference remain declared external work. Reading/formatting

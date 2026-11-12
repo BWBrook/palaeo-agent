@@ -115,3 +115,16 @@ boundary uncertainty. Existing scientific applications were not rerun in
 this review. Once the two record checks are repaired and confirmed, the
 agreed application-5 freeze and four-run analysis can proceed without another
 scientific-design round.
+
+## Repair confirmation, 12 November 2026
+
+Both checks are closed at `c38696d`. The original public probe was rerun
+with its output redirected, preserving its historical receipt: unknown
+and duplicate exclusions and the unmatched warning role all return
+`invalid_bundle`. The live MCP and exact fresh-server checks still pass.
+The focused selection passes 73 tests; the full suite passes 907 with
+11 skipped (88.82 seconds). The discovery prefix is 3,065 characters and
+now says "tiny derived values". The contract names the two representability
+stages. The engine is accepted for the fixed application-5 execution.
+Confirmation is preserved in
+[repair-check.json](../analyses/lake-selina-zonation/repair-check.json).

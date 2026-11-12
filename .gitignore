@@ -26,3 +26,5 @@ benchmarks/past/legacy-data/*
 /analyses/pollen-media/runs-*/
 /analyses/pollen-media/intake-receipt.json
 /analyses/fossil-limpets/runs-*/
+
+/analyses/lake-selina-zonation/runs-*/

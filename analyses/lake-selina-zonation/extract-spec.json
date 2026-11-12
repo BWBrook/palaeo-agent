@@ -1,0 +1,17 @@
+{
+  "source": "../lake-selina/source/neotoma-52767-download.json",
+  "source_sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
+  "datasets": [
+    52767
+  ],
+  "units": "NISP",
+  "elements": [
+    "pollen"
+  ],
+  "ecological_groups": [
+    "TRSH",
+    "UPHE"
+  ],
+  "absent_taxa": "zero",
+  "row_order": "depth"
+}

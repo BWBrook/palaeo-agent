@@ -1,0 +1,54 @@
+{
+  "study_version": 1,
+  "inputs": {
+    "archive": {
+      "kind": "counts",
+      "path": "data/archive.tsv",
+      "format": "delimited",
+      "delimiter": "tab",
+      "orientation": "samples_by_taxa"
+    },
+    "positions": {
+      "kind": "metadata",
+      "path": "data/positions.csv",
+      "id_column": "sample_id"
+    }
+  },
+  "datasets": {
+    "archive": {
+      "source": "archive",
+      "metadata": "positions",
+      "operations": [
+        {
+          "op": "exclude_taxa",
+          "taxa": [
+            "Cyperaceae",
+            "Gymnoschoenus sphaerocephalus",
+            "Restionaceae",
+            "Xyridaceae",
+            "Portulacaceae",
+            "Ranunculus"
+          ],
+          "reason": "Previously fixed dryland sum: exclude sedges and aquatics; application 1 amendment 1"
+        }
+      ]
+    }
+  },
+  "analyses": [
+    {
+      "id": "plot_composition",
+      "dataset": "archive",
+      "spec": {
+        "method": "community",
+        "format": "past",
+        "orientation": "samples_by_taxa",
+        "value_type": "count",
+        "transform": "relative_abundance",
+        "distance": "braycurtis",
+        "dimensions": 3,
+        "missing": "error",
+        "empty_samples": "error"
+      }
+    }
+  ]
+}

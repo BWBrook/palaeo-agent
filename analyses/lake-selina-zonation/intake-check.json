@@ -1,0 +1,56 @@
+{
+  "extraction_status": "verified",
+  "extraction_bundle": "runs-extraction/0c3ab11935174f11bc9fd3b9be6a009b",
+  "extraction_manifest_sha256": "1af94504e9ee43c602ad6c34ad83573fe9e4680767441feb86e101aa51b93b1e",
+  "source_sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
+  "archive_matches_original": true,
+  "dryland_matches_original": true,
+  "metadata_depths_match_original": true,
+  "exact_count_changes": [
+    {
+      "sample_id": "531331",
+      "taxon": "Lagarostrobos franklinii",
+      "archive": "0",
+      "reconstructed": "72"
+    }
+  ],
+  "zonation_guard_active": true,
+  "validations": {
+    "archive_hellinger": {
+      "status": "valid",
+      "n": 72,
+      "n_input": 72,
+      "n_taxa": 60,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input, value type, size and strictly increasing positions checked; the zonation itself is descriptive"
+    },
+    "repaired_hellinger": {
+      "status": "valid",
+      "n": 72,
+      "n_input": 72,
+      "n_taxa": 60,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input, value type, size and strictly increasing positions checked; the zonation itself is descriptive"
+    },
+    "archive_relative": {
+      "status": "valid",
+      "n": 72,
+      "n_input": 72,
+      "n_taxa": 60,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input, value type, size and strictly increasing positions checked; the zonation itself is descriptive"
+    },
+    "repaired_relative": {
+      "status": "valid",
+      "n": 72,
+      "n_input": 72,
+      "n_taxa": 60,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input, value type, size and strictly increasing positions checked; the zonation itself is descriptive"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "confirmed_commit": "c38696d012fec2fb3a68cba886b13f75a21b3c5f",
+  "probe_original_review_commit": "8b0254d",
+  "confirmation": {
+    "primer_sha256": "fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6",
+    "scope": "Synthetic public-API and live-MCP checks only; no core data or new scientific application outputs",
+    "probe_sha256": "b82c618a3416944198468d7af22caed04cfe43093a81a6e528dca09cb97f9729",
+    "engine_sha256": "ec2901218b8687807f8fd5102723c7351a9023b32b41d51830a320ed46dd96aa",
+    "tamper_cases": [
+      {
+        "case": "ghost_exclusion",
+        "inspection": "refused",
+        "code": "invalid_bundle"
+      },
+      {
+        "case": "duplicate_exclusion",
+        "inspection": "refused",
+        "code": "invalid_bundle"
+      },
+      {
+        "case": "warning_role",
+        "inspection": "refused",
+        "code": "invalid_bundle"
+      }
+    ],
+    "live_mcp": {
+      "advertised_schema_accepts_request": true,
+      "validation": "valid",
+      "inspection": "verified",
+      "scalar_result_matches_native": true,
+      "fresh_server_reproduction": "reproduced",
+      "tolerance": {
+        "rtol": 0.0,
+        "atol": 0.0
+      }
+    },
+    "compact_discovery_prefix_characters": 3065,
+    "full_schema_warning_codes": {
+      "rma": true,
+      "community": true
+    },
+    "subnormal_raw_abundance_input_accepted": true,
+    "rioja_reference_byte_identical": true
+  },
+  "targeted_tests": "73 passed, 50 deselected",
+  "full_suite": "907 passed, 11 skipped"
+}

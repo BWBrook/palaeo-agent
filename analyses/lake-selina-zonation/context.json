@@ -1,0 +1,38 @@
+{
+  "scope": "Known context locked before zonation; not independent validation or dated events",
+  "candidate_offset_cm": 30,
+  "source": "../lake-selina/AMENDMENT-1.md, source-paper review",
+  "landmarks": [
+    {
+      "label": "LS8 herb-rich interval",
+      "paper_depth_cm": [
+        125,
+        170
+      ],
+      "candidate_archive_depth_cm": [
+        155,
+        200
+      ]
+    },
+    {
+      "label": "LS9 forest-rise interval",
+      "paper_depth_cm": [
+        105,
+        125
+      ],
+      "candidate_archive_depth_cm": [
+        135,
+        155
+      ]
+    }
+  ],
+  "plot_taxa": [
+    "Poaceae",
+    "Asteraceae",
+    "Nothofagus gunnii",
+    "Nothofagus cunninghamii",
+    "Phyllocladus aspleniifolius",
+    "Lagarostrobos franklinii",
+    "Pherosphaera hookeriana"
+  ]
+}

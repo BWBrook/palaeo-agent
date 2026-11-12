@@ -1,0 +1,37 @@
+{
+  "implementation_commit": "c38696d012fec2fb3a68cba886b13f75a21b3c5f",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6"
+  },
+  "files": [
+    {
+      "file": "data/archive.tsv",
+      "sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
+    },
+    {
+      "file": "data/reconstructed.tsv",
+      "sha256": "a15f912401a46242a38b48d51211acfb731d70743190cefa27c75474c429d429"
+    },
+    {
+      "file": "data/positions.csv",
+      "sha256": "6f907b0c7ba887926aac6704e4ab84e33180d3680ab0cc3e2d693ad1d3087ca0"
+    },
+    {
+      "file": "study.json",
+      "sha256": "8532ac5efe2b673edc4eb8ae3f2df5d1bb56c5247a23b86fb0c133c0ce0b76df"
+    },
+    {
+      "file": "plot-study.json",
+      "sha256": "b49118f1a1e13432cffc55a5def0e2a62df33c283698b172b824c41fd5368858"
+    },
+    {
+      "file": "extract-spec.json",
+      "sha256": "a08ce8163f7dbff748a8ecc334bc5eb65038e4589fc15a6765f0108964343830"
+    },
+    {
+      "file": "context.json",
+      "sha256": "316d7172043e980f930637bada22e851c4b4ecb6ca244b578ad684ca980ef2d8"
+    }
+  ]
+}
