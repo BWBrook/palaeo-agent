@@ -1,0 +1,73 @@
+{
+  "reviewed_commit": "8b0254d",
+  "primer_sha256": "fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6",
+  "scope": "Synthetic public-API and live-MCP checks only; no core data or new scientific application outputs",
+  "probe_sha256": "b82c618a3416944198468d7af22caed04cfe43093a81a6e528dca09cb97f9729",
+  "engine_sha256": "877016eea2ee7818e337baa2e0919b56d53706bf5ada1e7cd53f7597982bd873",
+  "tamper_cases": [
+    {
+      "case": "ghost_exclusion",
+      "inspection": "verified",
+      "n_input": 3,
+      "n": 3,
+      "excluded": [
+        {
+          "sample_id": "ghost",
+          "reason": "empty_sample"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "case": "duplicate_exclusion",
+      "inspection": "verified",
+      "n_input": 4,
+      "n": 3,
+      "excluded": [
+        {
+          "sample_id": "s2",
+          "reason": "empty_sample"
+        },
+        {
+          "sample_id": "s2",
+          "reason": "empty_sample"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "case": "warning_role",
+      "inspection": "verified",
+      "n_input": 3,
+      "n": 3,
+      "excluded": [],
+      "warnings": [
+        {
+          "code": "near_duplicate_labels",
+          "message": "Injected unsupported warning role",
+          "details": {
+            "role": "banana"
+          }
+        }
+      ]
+    }
+  ],
+  "live_mcp": {
+    "advertised_schema_accepts_request": true,
+    "validation": "valid",
+    "inspection": "verified",
+    "scalar_result_matches_native": true,
+    "fresh_server_reproduction": "reproduced",
+    "tolerance": {
+      "rtol": 0.0,
+      "atol": 0.0
+    }
+  },
+  "compact_discovery_prefix_characters": 3062,
+  "full_schema_warning_codes": {
+    "rma": true,
+    "community": true
+  },
+  "subnormal_raw_abundance_input_accepted": true,
+  "rioja_reference_byte_identical": true
+}
