@@ -7,7 +7,9 @@ boundaries unchanged. Using relative abundances instead of their square
 roots selects **six zones**, with only **290–295 cm** retained as exactly
 the same sample gap. The count repair also leaves those six zones unchanged.
 For these two declared sensitivities, taxon weighting matters more to the
-selected partition than the single inferred count.
+selected partition than the single inferred count. The primary four-zone
+stop is narrow (rank 4 falls 2.2% short); two boundaries still move when
+both transforms are cut into four zones.
 
 This is a descriptive summary of one reused archive, not a discovery of
 dated events or a test of the number of ecological zones. Fields are
@@ -36,6 +38,9 @@ merge costs need not increase. [Vector PDF](figures/zonation.pdf).
 | Reconstructed, relative abundance | 6 | 120–125; 155–160; 190–195; 290–295; 380–382 | 1 of 3 |
 
 Persistence requires the **same two sample IDs**, not proximity in depth.
+Numeric IDs decrease at eight places along the depth-ordered sequence
+(for example 531332 at 120 cm precedes 531330 at 125 cm); order comes from
+verified depth, not from sorting IDs.
 The primary gaps are 531309/531310, 531346/531347 and 531367/531368.
 All retained gaps, IDs, ranks and alternative cuts are in
 [boundaries.csv](boundaries.csv). The one shared gap is 531346/531347.
@@ -64,6 +69,16 @@ reported cuts, not identical numerical results or every possible k.
 
 The primary broken-stick passing prefix stops at split rank 4: gain
 **0.98114** falls below expectation **1.00338**. The first three pass.
+The rank-4 gain/expectation ratio is **0.978**, a **2.2% shortfall**;
+with reconstructed counts it is **0.969**, a **3.1% shortfall**
+(gain 0.97396, expectation 1.00536). In both saved Hellinger hierarchies,
+accepting rank 4 would yield five zones by adding a fourth boundary at
+**160–165 cm (531313/531314)**, one sample gap deeper than the
+relative-abundance boundary at 155–160 cm (531312/531313). Thus part of
+the four-versus-six contrast depends on a narrow retention shortfall;
+the fixed-four-zone location changes stand separately. This review-only
+description of the saved hierarchy changes no retention rule or result.
+
 Relative abundance stops at rank 6, selecting six zones. Later exceedances
 are saved but do not restart the fixed prefix rule: ranks 66–71 for both
 Hellinger runs, rank 71 for archived relative abundances, and ranks 70–71
@@ -103,6 +118,14 @@ The method is greedy, gives every level equal weight regardless of physical
 spacing, and does not propagate counting error or sampling uncertainty.
 It supplies no boundary intervals or p-values. Numerical repeatability
 cannot establish ecological validity.
+
+The relative-abundance boundary **380–382 cm (531365/531364)** falls at
+the extra 382 cm level in the otherwise mostly 5 cm sequence, as recorded
+in [the original intake](../lake-selina/INTAKE.md). That extra sample
+receives a full sample weight despite its 2 cm separation. The deeper zone
+contains 11 levels, so the cut does not isolate the extra sample as a
+singleton; this does not establish how the boundary would respond to
+removing or downweighting it.
 
 The separate graphics-only community run reports **31 material negative
 PCoA eigenvalues**, with negative inertia magnitude **0.97137**, without
@@ -144,11 +167,21 @@ coordinates**. Pinned **rioja 1.0-7** agreed on **856 numerical comparisons**
 (maximum absolute difference **3.55 × 10⁻¹⁵**, tolerance rtol 10⁻¹⁰,
 atol 0), **284 split ranks**, and **20,736 sample memberships across every
 k**. All **288 retention comparisons/selected-count checks** agreed, with
-no discrepancies or small-margin flags. The selected count is the declared
+no discrepancies or small-margin flags. The latter use a **10⁻⁹ relative
+threshold** for near-tied merge costs and for gain/expectation comparisons
+up to the stopping rank: they flag extremely small numerical margins, not
+ecological or sampling uncertainty. Their absence does not mean that the
+retention decision has a wide margin; the rank-4 shortfall above is 2.2%.
+The selected count is the declared
 prefix rule applied to R's gains and expectations; rioja does not itself
 return a selected k. These are arithmetic checks, not ecological validation
 or sampling-coverage checks. [Reference receipt](reference-check.json),
 [Python](reference.py), [R](reference.R).
+
+Claude's final scientific review (Board 3341) accepted the results and
+figure subject to the rank-4 margin and irregular-spacing additions above.
+Those report additions complete application 5; no input, specification,
+native result, exported table or figure changed.
 
 | Part | Toolkit route or work outside the toolkit | Check |
 | --- | --- | --- |
