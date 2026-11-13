@@ -1,0 +1,241 @@
+source_table,source_label,action,target_bin,loss_class,mapping_kind,reason,evidence
+fossil,Acacia,map,Acacia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Agastachys odorata,map,Agastachys,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Amaranthaceae,map,Amaranthaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Amperea xiphoclada,map,Amperea,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Anopterus glandulosus,map,Anopterus,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Apiaceae cf. Dichosciadium,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Astelia alpina,map,Astelia,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Asteraceae,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Atherosperma moschatum,map,Atherosperma,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Athrotaxis/Diselma,exclude,,incomparable,uncertain,Composite fossil and modern genus/family bins cannot be equated without an unsupported split or residual-category sum.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Banksia,map,Banksia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Bauera rubioides,map,Bauera,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Bellendena montana,map,Bellendena,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Boronia,map,Boronia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Brassicaceae,map,Brassicaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE; BRASSICACEAE
+fossil,Caryophyllaceae,exclude,,incomparable,uncertain,A shared family requires combining broad and named modern bins with unverified exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Casuarina,exclude,,incomparable,uncertain,Genera are not family synonyms; a complete shared family needs unresolved broad/narrow modern bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Cenarrhenes nitida,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Coprosma,map,Coprosma,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Cyperaceae,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+fossil,Dodonaea viscosa,map,Dodonaea,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Epacrideae,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Eucalyptus,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; undocumented exclusivity prevents constructing a complete shared genus.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Eucryphia,map,Eucryphia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Fabaceae,exclude,,incomparable,uncertain,Unresolved broad Fabaceae is not added to separately retained Acacia.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Gentianaceae,map,Gentianaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GENTIANACEAE
+fossil,Gymnoschoenus sphaerocephalus,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+fossil,Gyrostemonaceae,map,Gyrostemonaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GYROSTEMONACEAE
+fossil,Hakea,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Haloragis,map,Haloragis,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Hibbertia,map,Hibbertia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Lagarostrobos franklinii,map,Lagarostrobos,none,pooling,"Resolve the verified species synonym and pool to genus; the two NISP spellings occur in different source datasets, not together in one row.",HEADERS; BINOMIAL_RULE; LAGAROSTROBOS; NISP_LABEL_SCOPE
+fossil,Lamiaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Leptospermum,map,Leptospermum,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Liliaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Melaleuca,exclude,,incomparable,uncertain,"Genus, species and type bins require unverified broad/narrow pooling or allocation.",HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Microcachrys tetragona,map,Microcachrys,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Milligania,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Monotoca,map,Monotoca,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Myrtaceae cf. Baeckea,exclude,,incomparable,uncertain,"Residual, cf and composite bins are not equivalent to identified Leptospermum; do not split them or force them into one family.",HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Nothofagus cunninghamii,map,Nothofagus cunninghamii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Nothofagus gunnii,map,Nothofagus gunnii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Orites,map,Orites,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Phebalium squameum,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Pherosphaera hookeriana,map,Pherosphaera,none,pooling,Shared genus-level Pherosphaera/Microstrobos bin; modern genus-only pollen is not promoted to P. hookeriana.,HEADERS; BINOMIAL_RULE; PHEROSPHAERA
+fossil,Phyllocladus aspleniifolius,map,Phyllocladus,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Pimelea,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Plantago,exclude,,incomparable,uncertain,Modern sources carry broad and species bins without verified exclusivity; the broad bin alone is not a verified complete genus total.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Poaceae,map,Poaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Podocarpus lawrencei,map,Podocarpus,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Pomaderris apetala,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; no complete shared genus is constructed without exclusivity evidence.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Portulacaceae,exclude,,outside_dryland,identity,"Inherited paper-informed dryland exclusion applies to the same bin wherever present, not automatically to every relative.",DRYLAND
+fossil,Proteaceae,exclude,,incomparable,uncertain,Unresolved broad Proteaceae is not added to named genera; retain only the explicitly shared identified bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Ranunculus,exclude,,outside_dryland,identity,"Inherited paper-informed dryland exclusion applies to the same bin wherever present, not automatically to every relative.",DRYLAND
+fossil,Restionaceae,exclude,,outside_dryland,identity,Declared rush-family exclusion; current authorities place Centrolepis in Restionaceae.,DRYLAND; CENTROLEPIS
+fossil,Richea,map,Richea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Rosaceae,exclude,,incomparable,uncertain,A shared family would combine broad and named modern bins without evidence of exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Rutaceae,exclude,,incomparable,uncertain,Unresolved broad Rutaceae is not added to identified Boronia or other genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+fossil,Scrophulariaceae,exclude,,incomparable,uncertain,Legacy family and genus bins lack a documented compatible circumscription; no unsupported split or synonymy.,HEADERS
+fossil,Sprengelia incarnata,map,Sprengelia,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Spyridium,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Tasmannia lanceolata,map,Winteraceae,none,pooling,Drimys and Tasmannia are pooled to their family; no genus synonymy or species identification is inferred.,HEADERS; BINOMIAL_RULE; WINTERACEAE
+fossil,Telopea truncata,map,Telopea,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+fossil,Tetracarpaea tasmannica,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Tetratheca pilosa,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+fossil,Xyridaceae,exclude,,outside_dryland,identity,"Inherited paper-informed dryland exclusion applies to the same bin wherever present, not automatically to every relative.",DRYLAND
+modern_percent,Acacia,map,Acacia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Acaena,exclude,,incomparable,uncertain,A shared family would combine broad and named modern bins without evidence of exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Agastachys,map,Agastachys,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Allocasuarina,exclude,,incomparable,uncertain,Genera are not family synonyms; a complete shared family needs unresolved broad/narrow modern bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Amaranthaceae,map,Amaranthaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Amperea,map,Amperea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Anopterus,map,Anopterus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Apiaceae,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Astelia,map,Astelia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Asteraceae,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Asteroideae,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Atherosperma,map,Atherosperma,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Athrotaxis,exclude,,incomparable,uncertain,Composite fossil and modern genus/family bins cannot be equated without an unsupported split or residual-category sum.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Banksia,map,Banksia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Bauera rubioides,map,Bauera,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Baumea,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_percent,Bellendena montana,map,Bellendena,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Boronia,map,Boronia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Brassica,map,Brassicaceae,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE; BRASSICACEAE
+modern_percent,Bursaria,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Callistemon,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Carex,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_percent,Caryophyllaceae,exclude,,incomparable,uncertain,A shared family requires combining broad and named modern bins with unverified exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Casuarinaceae,exclude,,incomparable,uncertain,Genera are not family synonyms; a complete shared family needs unresolved broad/narrow modern bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Cichorioideae,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Coprosma,map,Coprosma,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Correa,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Cupressaceae,exclude,,incomparable,uncertain,Composite fossil and modern genus/family bins cannot be equated without an unsupported split or residual-category sum.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Cyperaceae,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_percent,Didymotheca,map,Gyrostemonaceae,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GYROSTEMONACEAE
+modern_percent,Dodonaea,map,Dodonaea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Donatia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Droseraceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Eleocharis,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_percent,Epacrideae,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Ericaceae,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Eucalyptus,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; undocumented exclusivity prevents constructing a complete shared genus.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Eucryphia,map,Eucryphia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Euphorbiaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Exocarpos,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Fabaceae,exclude,,incomparable,uncertain,Unresolved broad Fabaceae is not added to separately retained Acacia.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Gentiana,map,Gentianaceae,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GENTIANACEAE
+modern_percent,Goodenia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Gunnera,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Gymnoschoenus,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_percent,Hakea,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Haloragis,map,Haloragis,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Hibbertia,map,Hibbertia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Iridaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Lagarostrobos,map,Lagarostrobos,none,identity,"Resolve the verified species synonym and pool to genus; the two NISP spellings occur in different source datasets, not together in one row.",HEADERS; BINOMIAL_RULE; LAGAROSTROBOS; NISP_LABEL_SCOPE
+modern_percent,Leptospermum,map,Leptospermum,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Leptospermum/Baeckea,exclude,,incomparable,uncertain,"Residual, cf and composite bins are not equivalent to identified Leptospermum; do not split them or force them into one family.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Leucopogon,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Lomatia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Melaleuca squamea,exclude,,incomparable,uncertain,"Genus, species and type bins require unverified broad/narrow pooling or allocation.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Melaleuca-type,exclude,,incomparable,uncertain,"Genus, species and type bins require unverified broad/narrow pooling or allocation.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Melastomataceae/Myrtaceae,exclude,,incomparable,uncertain,"Residual, cf and composite bins are not equivalent to identified Leptospermum; do not split them or force them into one family.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Microcachrys,map,Microcachrys,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Microstrobos,map,Pherosphaera,none,synonym,Shared genus-level Pherosphaera/Microstrobos bin; modern genus-only pollen is not promoted to P. hookeriana.,HEADERS; BINOMIAL_RULE; PHEROSPHAERA
+modern_percent,Monotoca,map,Monotoca,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Myoporum,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Myrtaceae,exclude,,incomparable,uncertain,"Residual, cf and composite bins are not equivalent to identified Leptospermum; do not split them or force them into one family.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Nothofagus,exclude,,incomparable,uncertain,Primary keeps both species; genus-only pollen cannot be allocated to them. The parent ledger excludes the six genus-only percent datasets.,HEADERS; NOTHOFAGUS_RULE
+modern_percent,Nothofagus cunninghamii,map,Nothofagus cunninghamii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Nothofagus gunnii,map,Nothofagus gunnii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Oreomyrrhis,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Orites,map,Orites,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Persoonia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Phebalium,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Phyllocladus,map,Phyllocladus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Pittosporaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Pittosporum,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Plantago,exclude,,incomparable,uncertain,Modern sources carry broad and species bins without verified exclusivity; the broad bin alone is not a verified complete genus total.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Plantago lanceolata,exclude,,incomparable,uncertain,Modern sources carry broad and species bins without verified exclusivity; the broad bin alone is not a verified complete genus total.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Platanus,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Poaceae,map,Poaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Podocarpaceae,exclude,,incomparable,uncertain,Unresolved broad podocarp bin is not added to named genera; coarse pooling only combines already retained named bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Podocarpus,map,Podocarpus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Pomaderris,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; no complete shared genus is constructed without exclusivity evidence.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Proteaceae,exclude,,incomparable,uncertain,Unresolved broad Proteaceae is not added to named genera; retain only the explicitly shared identified bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Ranunculaceae,exclude,,incomparable,uncertain,Family cannot be split to remove the excluded Ranunculus component; do not declare the whole family aquatic.,HEADERS; DRYLAND
+modern_percent,Restionaceae,exclude,,outside_dryland,identity,Declared rush-family exclusion; current authorities place Centrolepis in Restionaceae.,DRYLAND; CENTROLEPIS
+modern_percent,Rhamnaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Richea,map,Richea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Rosaceae,exclude,,incomparable,uncertain,A shared family would combine broad and named modern bins without evidence of exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Rutaceae,exclude,,incomparable,uncertain,Unresolved broad Rutaceae is not added to identified Boronia or other genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Scrophulariaceae,exclude,,incomparable,uncertain,Legacy family and genus bins lack a documented compatible circumscription; no unsupported split or synonymy.,HEADERS
+modern_percent,Sprengelia,map,Sprengelia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_percent,Spyridium,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_percent,Stellaria,exclude,,incomparable,uncertain,A shared family requires combining broad and named modern bins with unverified exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_percent,Tasmannia,map,Winteraceae,none,pooling,Drimys and Tasmannia are pooled to their family; no genus synonymy or species identification is inferred.,HEADERS; BINOMIAL_RULE; WINTERACEAE
+modern_percent,Telopea,map,Telopea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Acacia,map,Acacia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Actinotus,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Agastachys,map,Agastachys,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Amaranthaceae,map,Amaranthaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Amperea,map,Amperea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Anemone,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Anopterus,map,Anopterus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Apiaceae,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Aristotelia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Astelia,map,Astelia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Asteraceae,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Atherosperma,map,Atherosperma,none,identity,Genus/species labels occur in separate NISP datasets (74305 versus 74913); no source row can add both. Target remains genus-level.,HEADERS; BINOMIAL_RULE; NISP_LABEL_SCOPE
+modern_nisp,Atherosperma moschatum,map,Atherosperma,none,pooling,Genus/species labels occur in separate NISP datasets (74305 versus 74913); no source row can add both. Target remains genus-level.,HEADERS; BINOMIAL_RULE; NISP_LABEL_SCOPE
+modern_nisp,Athrotaxis,exclude,,incomparable,uncertain,Composite fossil and modern genus/family bins cannot be equated without an unsupported split or residual-category sum.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Athrotaxis/Diselma,exclude,,incomparable,uncertain,Composite fossil and modern genus/family bins cannot be equated without an unsupported split or residual-category sum.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Baeckea,exclude,,incomparable,uncertain,"Residual, cf and composite bins are not equivalent to identified Leptospermum; do not split them or force them into one family.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Banksia,map,Banksia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Bauera,map,Bauera,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Bellendena,map,Bellendena,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Boronia,map,Boronia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Brassicaceae,map,Brassicaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE; BRASSICACEAE
+modern_nisp,Bursaria,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Casuarina,exclude,,incomparable,uncertain,Genera are not family synonyms; a complete shared family needs unresolved broad/narrow modern bins.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Centrolepis,exclude,,outside_dryland,identity,Declared rush-family exclusion; current authorities place Centrolepis in Restionaceae.,DRYLAND; CENTROLEPIS
+modern_nisp,Coprosma,map,Coprosma,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Cyperaceae,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_nisp,Dacrydium franklinii,map,Lagarostrobos,none,synonym,"Resolve the verified species synonym and pool to genus; the two NISP spellings occur in different source datasets, not together in one row.",HEADERS; BINOMIAL_RULE; LAGAROSTROBOS; NISP_LABEL_SCOPE
+modern_nisp,Diplaspis,exclude,,incomparable,uncertain,"Family, cf-genus and nested genera need an unverified residual-category assumption to become one complete common bin.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Dodonaea,map,Dodonaea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Donatia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Drimys,map,Winteraceae,none,pooling,Drimys and Tasmannia are pooled to their family; no genus synonymy or species identification is inferred.,HEADERS; BINOMIAL_RULE; WINTERACEAE
+modern_nisp,Elytranthe,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Epacrideae,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Epacris,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Ericaceae cf. Archeria,exclude,,incomparable,uncertain,Unresolved broad/residual heath bins are not added to retained shared named genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Eucalyptus,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; undocumented exclusivity prevents constructing a complete shared genus.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Eucalyptus vernicosa,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; undocumented exclusivity prevents constructing a complete shared genus.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Eucryphia,map,Eucryphia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Euphrasia,exclude,,incomparable,uncertain,Legacy family and genus bins lack a documented compatible circumscription; no unsupported split or synonymy.,HEADERS
+modern_nisp,Exocarpos,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Gentianella,map,Gentianaceae,none,pooling,Explicit whole-bin upward pooling to the named genus/family; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GENTIANACEAE
+modern_nisp,Gymnoschoenus,exclude,,outside_dryland,identity,Declared sedge exclusion applies to the family and named descendants.,DRYLAND; CYPERACEAE
+modern_nisp,Gyrostemonaceae,map,Gyrostemonaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE; GYROSTEMONACEAE
+modern_nisp,Haloragis,map,Haloragis,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Hibbertia,map,Hibbertia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Isophysis,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Lagarostrobos franklinii,map,Lagarostrobos,none,pooling,"Resolve the verified species synonym and pool to genus; the two NISP spellings occur in different source datasets, not together in one row.",HEADERS; BINOMIAL_RULE; LAGAROSTROBOS; NISP_LABEL_SCOPE
+modern_nisp,Leptospermum,map,Leptospermum,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Liliaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Melaleuca,exclude,,incomparable,uncertain,"Genus, species and type bins require unverified broad/narrow pooling or allocation.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Melaleuca squamea,exclude,,incomparable,uncertain,"Genus, species and type bins require unverified broad/narrow pooling or allocation.",HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Microcachrys,map,Microcachrys,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Microstrobos,map,Pherosphaera,none,synonym,Shared genus-level Pherosphaera/Microstrobos bin; modern genus-only pollen is not promoted to P. hookeriana.,HEADERS; BINOMIAL_RULE; PHEROSPHAERA
+modern_nisp,Milligania,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Monotoca,map,Monotoca,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Myoporum,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Nothofagus cunninghamii,map,Nothofagus cunninghamii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Nothofagus gunnii,map,Nothofagus gunnii,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Orites,map,Orites,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Persoonia,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Phyllocladus,map,Phyllocladus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Pinus,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Pinus radiata,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Plantago,exclude,,incomparable,uncertain,Modern sources carry broad and species bins without verified exclusivity; the broad bin alone is not a verified complete genus total.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Plantago lanceolata,exclude,,incomparable,uncertain,Modern sources carry broad and species bins without verified exclusivity; the broad bin alone is not a verified complete genus total.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Poaceae,map,Poaceae,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Podocarpus,map,Podocarpus,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Pomaderris,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; no complete shared genus is constructed without exclusivity evidence.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Pomaderris apetala,exclude,,incomparable,uncertain,NISP dataset 74913 records broad and species bins together; no complete shared genus is constructed without exclusivity evidence.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Potentilla,exclude,,incomparable,uncertain,A shared family would combine broad and named modern bins without evidence of exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Ranunculus,exclude,,outside_dryland,identity,"Inherited paper-informed dryland exclusion applies to the same bin wherever present, not automatically to every relative.",DRYLAND
+modern_nisp,Restionaceae,exclude,,outside_dryland,identity,Declared rush-family exclusion; current authorities place Centrolepis in Restionaceae.,DRYLAND; CENTROLEPIS
+modern_nisp,Rhamnaceae,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Richea,map,Richea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Rumex,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Rutaceae,exclude,,incomparable,uncertain,Unresolved broad Rutaceae is not added to identified Boronia or other genera.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Sprengelia,map,Sprengelia,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Stellaria,exclude,,incomparable,uncertain,A shared family requires combining broad and named modern bins with unverified exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Stylidium,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE
+modern_nisp,Taraxacum,exclude,,incomparable,uncertain,A complete common Asteraceae bin would require summing broad and narrower categories without documented exclusivity.,HEADERS; EXCLUSIVITY_UNRESOLVED
+modern_nisp,Telopea,map,Telopea,none,identity,Same explicit pollen bin; no finer identification inferred.,HEADERS; BINOMIAL_RULE
+modern_nisp,Tetracarpaea,exclude,,incomparable,identity,No explicit identified bin with a defensible match across all three source tables; no unknown column is zero-filled to retain it.,HEADERS; COMMON_TARGET_RULE

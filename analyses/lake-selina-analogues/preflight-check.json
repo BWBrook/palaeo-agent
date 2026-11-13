@@ -1,0 +1,358 @@
+{
+  "status": "draft_for_review",
+  "proposal_commit": "a351379",
+  "primer": {
+    "version": "0.2.0.dev0",
+    "sha256": "fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6"
+  },
+  "proposed_retained_weight_floor": "0.80; not frozen",
+  "guard_probe_passed": true,
+  "forbidden_calls_after_probe": 0,
+  "source_tables": {
+    "fossil": {
+      "rows": 72,
+      "columns": 66,
+      "units": "NISP",
+      "sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
+    },
+    "modern_percent": {
+      "rows": 61,
+      "columns": 92,
+      "units": "percent",
+      "sha256": "f431fa06b79220c212fdfae6f9f5d39481678951796ba08c5594e6698e7ff201"
+    },
+    "modern_nisp": {
+      "rows": 7,
+      "columns": 82,
+      "units": "NISP",
+      "sha256": "a3843fab629838b497f7eb75d5c39caced4490b41911a6030060a548c734a93f"
+    }
+  },
+  "source_column_accounting": "Every input bin accounted exactly once per scheme; no zero-fill",
+  "exact_weight_partition_check": true,
+  "exact_api_merge_total_check": true,
+  "same_dryland_bins_across_schemes": true,
+  "retained_weight_preserved_by_coarsening_for_primary_eligible_rows": true,
+  "representatives": {
+    "primary": {
+      "candidate_ids": [
+        "1463450",
+        "1468412",
+        "1468413",
+        "1477443",
+        "1477445",
+        "1477741",
+        "1477745",
+        "1477742",
+        "1477744",
+        "1477746",
+        "1477747",
+        "1477743",
+        "1477749",
+        "1480881",
+        "1480883",
+        "1480888",
+        "1480885"
+      ],
+      "calibration_ids": [
+        "1463450",
+        "1468412",
+        "1477443",
+        "1477445",
+        "1477741",
+        "1477749",
+        "1480881",
+        "1480883"
+      ],
+      "units_without_qualifying_candidate": [
+        "55380",
+        "55520",
+        "55521",
+        "55663",
+        "55664",
+        "55665",
+        "55863",
+        "55901",
+        "55913",
+        "55914",
+        "55962",
+        "55964",
+        "56030",
+        "56032",
+        "56041",
+        "56044",
+        "56580",
+        "56582",
+        "56589"
+      ],
+      "fallback_representatives": [
+        "1463450",
+        "1480881"
+      ]
+    },
+    "coarse": {
+      "candidate_ids": [
+        "1463450",
+        "1468412",
+        "1468413",
+        "1477443",
+        "1477445",
+        "1477741",
+        "1477745",
+        "1477742",
+        "1477744",
+        "1477746",
+        "1477747",
+        "1477743",
+        "1477749",
+        "1480881",
+        "1480883",
+        "1480888",
+        "1480885"
+      ],
+      "calibration_ids": [
+        "1463450",
+        "1468412",
+        "1477443",
+        "1477445",
+        "1477741",
+        "1477749",
+        "1480881",
+        "1480883"
+      ],
+      "units_without_qualifying_candidate": [
+        "55380",
+        "55520",
+        "55521",
+        "55663",
+        "55664",
+        "55665",
+        "55863",
+        "55901",
+        "55913",
+        "55914",
+        "55962",
+        "55964",
+        "56030",
+        "56032",
+        "56041",
+        "56044",
+        "56580",
+        "56582",
+        "56589"
+      ],
+      "fallback_representatives": [
+        "1463450",
+        "1480881"
+      ]
+    }
+  },
+  "validations": {
+    "raw/fossil": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 66,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+    },
+    "raw/modern_percent": {
+      "status": "valid",
+      "n_input": 61,
+      "n": 61,
+      "n_taxa": 92,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed"
+    },
+    "raw/modern_nisp": {
+      "status": "valid",
+      "n_input": 7,
+      "n": 7,
+      "n_taxa": 82,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+    },
+    "raw/repaired_dryland": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 60,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed"
+    },
+    "primary/fossil": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 34,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "primary/modern_percent": {
+      "status": "valid",
+      "n_input": 61,
+      "n": 61,
+      "n_taxa": 34,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "primary/modern_nisp": {
+      "status": "valid",
+      "n_input": 7,
+      "n": 7,
+      "n_taxa": 34,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "primary/repaired_query": {
+      "status": "not_applicable",
+      "intake_empty_ids": [],
+      "scope": "Fewer than two nonempty rows; community ordination validation is not applicable; source values and API preparation checked"
+    },
+    "coarse/fossil": {
+      "status": "valid",
+      "n_input": 72,
+      "n": 72,
+      "n_taxa": 22,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "coarse/modern_percent": {
+      "status": "valid",
+      "n_input": 61,
+      "n": 61,
+      "n_taxa": 22,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "coarse/modern_nisp": {
+      "status": "valid",
+      "n_input": 7,
+      "n": 7,
+      "n_taxa": 22,
+      "excluded": [],
+      "warnings": [],
+      "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
+      "intake_empty_ids": [],
+      "scope_note": "Validation uses nonempty rows only; no intake row is silently removed"
+    },
+    "coarse/repaired_query": {
+      "status": "not_applicable",
+      "intake_empty_ids": [],
+      "scope": "Fewer than two nonempty rows; community ordination validation is not applicable; source values and API preparation checked"
+    }
+  },
+  "input_files": [
+    {
+      "file": "prepare.py",
+      "sha256": "e4781b29927ccf8cb929f616d0a78891c5f645ad1af742d2b1918edcac5ffc6b"
+    },
+    {
+      "file": "metadata-seed.csv",
+      "sha256": "15d9b009e6a15bb72d1e562e61c268a5f998edfe643602f57591267869283997"
+    },
+    {
+      "file": "crosswalk-primary.csv",
+      "sha256": "2c2f0ff127199ee8858076ea27bab3cc52de0726b9b33584963a61cacae43c86"
+    },
+    {
+      "file": "crosswalk-coarse.csv",
+      "sha256": "a241227309bacbe386e64b307bd933c7ef8d9dec60e094c05991f9388b8f98e5"
+    }
+  ],
+  "fossil_status_counts": {
+    "primary": {
+      "taxonomy_limited": 69,
+      "ready": 3
+    },
+    "coarse": {
+      "taxonomy_limited": 69,
+      "ready": 3
+    }
+  },
+  "artifacts": [
+    {
+      "file": "coverage.csv",
+      "sha256": "754c63528ddcd9351dedef8dd332759439d7612794aebdfdd19e90e363ab6798"
+    },
+    {
+      "file": "data/coarse-fossil.tsv",
+      "sha256": "dd486f2111beb1220d884910818936be865d1309de29275b4e4168c4b194400b"
+    },
+    {
+      "file": "data/coarse-modern_nisp.tsv",
+      "sha256": "bd53e9deef598f3ea859f4c64bfe45ab21efe30c05de555d5a93e636b20ca5b1"
+    },
+    {
+      "file": "data/coarse-modern_percent.tsv",
+      "sha256": "474fcec295c992fd4d1036cb52774c79e7ce2a28dc1d48c37cf88e0b864a7f03"
+    },
+    {
+      "file": "data/coarse-repaired_query.tsv",
+      "sha256": "701fbcba62806c1be9289c2580cc6c028a72f7e22e221824aa188cf979c9669c"
+    },
+    {
+      "file": "data/fossil.tsv",
+      "sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
+    },
+    {
+      "file": "data/modern_nisp.tsv",
+      "sha256": "a3843fab629838b497f7eb75d5c39caced4490b41911a6030060a548c734a93f"
+    },
+    {
+      "file": "data/modern_percent.tsv",
+      "sha256": "f431fa06b79220c212fdfae6f9f5d39481678951796ba08c5594e6698e7ff201"
+    },
+    {
+      "file": "data/primary-fossil.tsv",
+      "sha256": "c5f08e4108013868a27e41ed78c22ce7a2177bfaadec55a9f6eaa8ab7f54d7b0"
+    },
+    {
+      "file": "data/primary-modern_nisp.tsv",
+      "sha256": "89bb21bad20cc1231055ca174a5a8a387c848099cfc6d7f811551eedc5b873cc"
+    },
+    {
+      "file": "data/primary-modern_percent.tsv",
+      "sha256": "2cd7db657d56cf26444b35289caae8ca7b07199cd810f8fe56ffa3add7ce14c3"
+    },
+    {
+      "file": "data/primary-repaired_query.tsv",
+      "sha256": "28e0269bc4d21d5e58fd47b88dd2731ed6f207725cb1f8a566a5dce0fee7c6fa"
+    },
+    {
+      "file": "data/repaired-query.tsv",
+      "sha256": "c271b9ba2c46297be993e5b6843cb5d2b5538b636bcaee58a0e2eb4065effd0a"
+    },
+    {
+      "file": "derivation-records.json",
+      "sha256": "eafee9fc1a95bfca6f7c830eded56408e63eaf5fbbc003f2364e384f4fed5b04"
+    },
+    {
+      "file": "fossil-ledger.csv",
+      "sha256": "a45338981cdbc3cfb53cd878d8dad03bbf28a0a4396295136a16d588771adc58"
+    },
+    {
+      "file": "sample-ledger.csv",
+      "sha256": "e9eaf4ab65f78691758629be9a2b70abd023fa24bee3cb496f2c23bfd655abcf"
+    }
+  ]
+}

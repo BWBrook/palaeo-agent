@@ -1,0 +1,7 @@
+{
+  "status": "identical",
+  "deterministic_artifacts_checked": 16,
+  "preflight_receipt_identical": true,
+  "native_extraction_ids_excluded_from_comparison": true,
+  "scope": "Fresh output directory; no distances or matching; recorded provenance UUIDs intentionally vary"
+}

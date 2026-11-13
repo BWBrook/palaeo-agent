@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "scope": "Independent exact accounting and metadata selection from saved source tables and crosswalks; no distance calculation or scientific-validity claim",
+  "coverage_rows_verified": 282,
+  "mapped_cells_verified": 7896,
+  "mass_mismatches": 0,
+  "candidate_counts": {
+    "primary": 17,
+    "coarse": 17
+  },
+  "representative_counts": {
+    "primary": 8,
+    "coarse": 8
+  },
+  "identical_candidate_sets": true,
+  "identical_calibration_sets": true,
+  "fossil_status_counts": {
+    "primary": {
+      "taxonomy_limited": 69,
+      "ready": 3
+    },
+    "coarse": {
+      "taxonomy_limited": 69,
+      "ready": 3
+    }
+  },
+  "ready_fossil_ids": [
+    "531368",
+    "531369",
+    "531370"
+  ],
+  "same_dryland_bins_verified": true,
+  "retained_weight_and_dryland_preserved_for_primary_eligible_rows": true,
+  "preparation_receipt_forbidden_calls": 0,
+  "audit_uses_only_standard_library": true,
+  "inputs": [
+    {
+      "file": "audit.py",
+      "sha256": "07e0c44bc116a017408e9526fb14e4cb3586eabc55fb86fad25503b5bc427b2b"
+    },
+    {
+      "file": "preflight-check.json",
+      "sha256": "3b71dcc17a0b789f99160b4d82e6ef59b1587813f2946aa3d6d8c4fb1faa486a"
+    }
+  ],
+  "command": "uv run analyses/lake-selina-analogues/audit.py"
+}
