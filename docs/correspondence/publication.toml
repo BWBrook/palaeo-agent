@@ -3,10 +3,10 @@
 # its unchanged load_policy/fetch_thread/render functions for thread_ids only.
 # New messages must be reviewed before extending reviewed_message_ids/through.
 project = "palaeo-agent"
-thread_ids = [136, 145, 147, 149, 154, 155]
+thread_ids = [136, 145, 147, 149, 154, 155, 163]
 # IDs follow thread order, then chronological order within each discussion.
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116, 3117, 3119, 3121, 3125, 3127, 3131, 3134, 3135, 3138, 3246, 3275, 3293, 3299, 3315, 3321, 3324, 3338, 3341, 3342, 3343]
-reviewed_through = 3343
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116, 3117, 3119, 3121, 3125, 3127, 3131, 3134, 3135, 3138, 3246, 3275, 3293, 3299, 3315, 3321, 3324, 3338, 3341, 3342, 3343, 3345, 3347]
+reviewed_through = 3347
 exporter_revision = "45ffca1c17522f81072102225ddc19152bb146d3"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
@@ -127,6 +127,10 @@ cleared = [2865, 2866, 2915, 2923, 2927, 2957, 2967, 3026, 3040, 3116, 3119, 312
 # quotations come from our own report/intake, not third-party paper prose.
 # 3342 records the checked prose-only closeout; 3343 resolves the discussion.
 # All three were reviewed in full and require no new flag clearance or withholding.
+# 3345 proposes application 6; 3347 reviews its sampling, taxonomy and metric
+# design using archived metadata and primary documentation. Both were reviewed
+# in full and contain no source-paper prose or new flagged content needing
+# clearance or withholding. Scientific computation remains prospective.
 # The built-in exporter also redacts addresses, email addresses and home paths.
 redact = [
   ['\b[\w.-]+\.tail[\w-]+\.ts\.net\b', '[host]'],
