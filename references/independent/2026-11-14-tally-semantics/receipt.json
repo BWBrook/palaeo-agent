@@ -1,0 +1,260 @@
+{
+ "question": "Do broad archived bins include co-recorded narrower bins?",
+ "rule": "inclusion implies broad >= sum(narrow) in every row; one violation contradicts it for that dataset",
+ "results": [
+  {
+   "source": "fossil",
+   "broad": "Proteaceae",
+   "narrow": [
+    "Banksia",
+    "Orites"
+   ],
+   "rows_with_both": 57,
+   "rows_contradicting_inclusion": 21,
+   "datasets_contradicting": [
+    "52767"
+   ],
+   "datasets_with_both": [
+    "52767"
+   ]
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Asteraceae",
+   "narrow": [
+    "Asteroideae",
+    "Cichorioideae"
+   ],
+   "rows_with_both": 0,
+   "rows_contradicting_inclusion": 0,
+   "datasets_contradicting": [],
+   "datasets_with_both": []
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Plantago",
+   "narrow": [
+    "Plantago lanceolata"
+   ],
+   "rows_with_both": 10,
+   "rows_contradicting_inclusion": 3,
+   "datasets_contradicting": [
+    "74142",
+    "74160",
+    "74644"
+   ],
+   "datasets_with_both": [
+    "74142",
+    "74160",
+    "74644",
+    "74914"
+   ]
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Casuarinaceae",
+   "narrow": [
+    "Allocasuarina"
+   ],
+   "rows_with_both": 0,
+   "rows_contradicting_inclusion": 0,
+   "datasets_contradicting": [],
+   "datasets_with_both": []
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Ericaceae",
+   "narrow": [
+    "Epacrideae",
+    "Richea",
+    "Sprengelia",
+    "Monotoca",
+    "Leucopogon"
+   ],
+   "rows_with_both": 44,
+   "rows_contradicting_inclusion": 11,
+   "datasets_contradicting": [
+    "74160",
+    "74429",
+    "74778",
+    "74914"
+   ],
+   "datasets_with_both": [
+    "73988",
+    "74142",
+    "74160",
+    "74303",
+    "74304",
+    "74429",
+    "74618",
+    "74644",
+    "74699",
+    "74701",
+    "74766",
+    "74778",
+    "74780",
+    "74798",
+    "74914"
+   ]
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Proteaceae",
+   "narrow": [
+    "Agastachys",
+    "Banksia",
+    "Orites",
+    "Telopea",
+    "Lomatia",
+    "Persoonia"
+   ],
+   "rows_with_both": 18,
+   "rows_contradicting_inclusion": 10,
+   "datasets_contradicting": [
+    "74644",
+    "74701",
+    "74778",
+    "74779",
+    "74780",
+    "74798"
+   ],
+   "datasets_with_both": [
+    "74142",
+    "74303",
+    "74304",
+    "74644",
+    "74699",
+    "74701",
+    "74778",
+    "74779",
+    "74780",
+    "74798",
+    "74914"
+   ]
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Myrtaceae",
+   "narrow": [
+    "Leptospermum",
+    "Eucalyptus",
+    "Leptospermum/Baeckea",
+    "Melaleuca-type"
+   ],
+   "rows_with_both": 37,
+   "rows_contradicting_inclusion": 34,
+   "datasets_contradicting": [
+    "73988",
+    "74142",
+    "74160",
+    "74303",
+    "74304",
+    "74429",
+    "74618",
+    "74644",
+    "74699",
+    "74701",
+    "74778",
+    "74780",
+    "74798",
+    "74914"
+   ],
+   "datasets_with_both": [
+    "73988",
+    "74142",
+    "74160",
+    "74303",
+    "74304",
+    "74429",
+    "74618",
+    "74644",
+    "74699",
+    "74701",
+    "74778",
+    "74780",
+    "74798",
+    "74914"
+   ]
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Cupressaceae",
+   "narrow": [
+    "Athrotaxis"
+   ],
+   "rows_with_both": 0,
+   "rows_contradicting_inclusion": 0,
+   "datasets_contradicting": [],
+   "datasets_with_both": []
+  },
+  {
+   "source": "modern_percent",
+   "broad": "Apiaceae",
+   "narrow": [
+    "Oreomyrrhis"
+   ],
+   "rows_with_both": 0,
+   "rows_contradicting_inclusion": 0,
+   "datasets_contradicting": [],
+   "datasets_with_both": []
+  },
+  {
+   "source": "modern_nisp",
+   "broad": "Eucalyptus",
+   "narrow": [
+    "Eucalyptus vernicosa"
+   ],
+   "rows_with_both": 2,
+   "rows_contradicting_inclusion": 0,
+   "datasets_contradicting": [],
+   "datasets_with_both": [
+    "74913"
+   ]
+  },
+  {
+   "source": "modern_nisp",
+   "broad": "Melaleuca",
+   "narrow": [
+    "Melaleuca squamea"
+   ],
+   "rows_with_both": 4,
+   "rows_contradicting_inclusion": 1,
+   "datasets_contradicting": [
+    "74913"
+   ],
+   "datasets_with_both": [
+    "74913"
+   ]
+  },
+  {
+   "source": "modern_nisp",
+   "broad": "Plantago",
+   "narrow": [
+    "Plantago lanceolata"
+   ],
+   "rows_with_both": 4,
+   "rows_contradicting_inclusion": 2,
+   "datasets_contradicting": [
+    "74913"
+   ],
+   "datasets_with_both": [
+    "74913"
+   ]
+  },
+  {
+   "source": "modern_nisp",
+   "broad": "Pomaderris",
+   "narrow": [
+    "Pomaderris apetala"
+   ],
+   "rows_with_both": 4,
+   "rows_contradicting_inclusion": 1,
+   "datasets_contradicting": [
+    "74913"
+   ],
+   "datasets_with_both": [
+    "74913"
+   ]
+  }
+ ]
+}

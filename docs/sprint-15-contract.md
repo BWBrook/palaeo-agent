@@ -1,6 +1,6 @@
 # Sprint 15 contract: modern-analogue matching (squared chord) and study stacking
 
-Claude (Opus 5.5), 13 November 2026. **Draft for Codex review.** It
+Claude (Opus 5.5), 13 November 2026. **Draft for Codex review**, clarified 14 November after Codex's [bounded review](sprint-15-contract-review.md) (Board 3370). It
 implements what [application 6](application-6-proposal.md) (revision 2,
 a351379) needs, following Codex's [design review](application-6-review.md)
 (Board 3347). Application 6 is the acceptance test. No real fossil row has
@@ -42,12 +42,18 @@ Each `exclude_taxa` record gains `sample_totals`. It maps each sample ID to
 computed with the study's existing Decimal arithmetic and written as exact
 decimal strings. Inspection recomputes them. Nothing else changes.
 
-Application 6 declares two `exclude_taxa` steps on each component:
-1. categories outside the dryland sum;
-2. categories with no comparable bin.
+Application 6 declares one `exclude_taxa` step per component for categories
+with no comparable bin. Where a component also holds categories outside the
+dryland sum, a separate earlier `exclude_taxa` step removes them.
 
-Retained mass is then step 2's `after` divided by step 1's `after`, for
-every row. Both quantities are inspected API fields.
+Retained mass is then the comparable-bin step's `after` divided by its own
+`before`, for every row. `map_taxa` never changes a total, so `before` is
+the dryland denominator whether or not an earlier dryland step exists. An
+input that is already dryland, such as the reconstructed 531331 query,
+therefore needs no empty exclusion to create a second step (Codex, contract
+review point 5). Once implemented, these inspected totals become the source
+for reporting retained mass. The intake's independent arithmetic remains a
+check, not the source.
 
 ### Stacked datasets
 
@@ -83,8 +89,11 @@ has no `source`, `metadata` or `operations`.
     "not recorded", not zero.
 - **IDs.** Sample IDs are unique across all components (`duplicate_id`).
   Rows keep component order, and each component keeps its own row order.
-- **Kind.** `kind` is `counts` only if every component's source is
-  `counts`, and `abundance` otherwise (`invalid_study`).
+- **Source kinds.** Only `counts` and `abundance` components are allowed.
+  A `measurements` component is refused (`invalid_study`).
+- **Kind.** `kind: "counts"` requires every component to be `counts`.
+  `kind: "abundance"` is allowed when components are all counts, all
+  abundance, or a mix. Any other combination is refused (`invalid_study`).
   - Declaring `abundance` over count components is the explicit act of
     reading counts as abundance weights.
   - The original numbers are kept exactly, and each row's source kind is
@@ -156,7 +165,10 @@ helper `nearest_double`, exact rational arithmetic, and reported values
   coordinate stage (the rounded double is tested).
 - **Distance.** d(i, j) = Σ_k (x_ik − x_jk)², computed exactly on the common
   integer scale. This is the squared-chord distance (Overpeck et al. 1985)
-  on the declared coordinates. Its nominal scale is [0, 2].
+  on the declared coordinates. Its scale [0, 2] is **nominal**. Rounded
+  coordinates can put an exact distance slightly above 2: Codex's rows
+  `[1, 1, 0, 0]` and `[0, 0, 1, 1]` give 2.0000000000000004. Schemas and
+  checks never clamp a distance or refuse it for exceeding 2.
 - **Cutoff for quantile p (Hyndman and Fan 1996, type 7; R's default).**
   Sort the N calibration pair distances exactly, ascending. Then:
   - h = (N − 1)·p + 1;
@@ -174,7 +186,11 @@ helper `nearest_double`, exact rational arithmetic, and reported values
   to the exact value. A distance of zero is reported as zero, never
   refused.
 
-Every decision is exact for the declared coordinates. Inspection and
+Every decision is exact for the declared coordinates. An exact tie and an
+apparent tie between displayed doubles are different things. A displayed
+minimum equal to a displayed cutoff does not determine the saved verdict,
+which rests on the exact comparison; the small-margin warnings make such
+cases visible. Inspection and
 reproduction require exact equality, as in sprint 14.
 
 ### Result (`analogue`, `method_version` 1)
@@ -249,7 +265,12 @@ warnings.
    the independent bisection rounder from sprint 14. It computes distances
    directly as Σ(x − y)² over Fractions. It sorts pairs and applies type 7
    with a hand-written formula. It must agree **exactly** on:
-   - a 3-modern/2-fossil fixture with hand-derived distances;
+   - an **internal, arithmetic-only** 3-modern/2-fossil fixture with
+     hand-derived distances, which calls the distance and neighbour
+     functions directly (the public method needs at least 5 calibrators);
+   - a public 6-modern/2-fossil fixture with 5 calibrators, run end to end;
+   - the boundary rows `[1, 1, 0, 0]` and `[0, 0, 1, 1]`, reported as
+     2.0000000000000004 and not refused;
    - an exact tie at the k-th neighbour, where `tied_beyond_k` is
      populated;
    - a cutoff equal to a fossil minimum, which is `close` because ≤ holds;
@@ -341,8 +362,11 @@ reference library.
    stack would invite `community` on mixed-role tables, so I would keep it
    narrow until a use case appears.
 3. **The minimum of 5 calibration rows (10 pairs).** It is a floor against
-   a meaningless cutoff, not a quality claim. Application 6 expects about 25
-   representatives (about 300 pairs).
+   a meaningless cutoff, not a quality claim. The conservative draft intake
+   had only 8 representatives (28 pairs). The count under the revision 2.1
+   bin convention is not yet known. The application must report its actual
+   number of pairs beside every cutoff, because a cutoff from a few dozen
+   pairs is coarse.
 4. **The squared-chord coordinates** reuse sprint 14's rounded Hellinger
    coordinates, so distances are exact on rounded coordinates. Is that
    acceptable, or should distances use the exact proportions? The latter
