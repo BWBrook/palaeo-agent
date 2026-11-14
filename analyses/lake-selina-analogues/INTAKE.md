@@ -24,7 +24,7 @@ NISP source. These are weight-accounting results, not analogue results.
 Primary retains the two named *Nothofagus* species and excludes six fixed
 genus-only datasets in their entirety. Coarse pools to genus and admits
 their seven rows. Thus this sensitivity changes **both taxonomic resolution
-and reference membership**, including calibration. The original 61 rows have
+and reference membership**, including calibration. The 61 primary-eligible modern rows have
 exactly the same retained weight under coarsening; both schemes exclude the
 same outside-dryland categories.
 

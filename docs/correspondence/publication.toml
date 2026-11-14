@@ -5,9 +5,9 @@
 project = "palaeo-agent"
 thread_ids = [136, 145, 147, 149, 154, 155, 163]
 # IDs follow thread order, then chronological order within each discussion.
-reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116, 3117, 3119, 3121, 3125, 3127, 3131, 3134, 3135, 3138, 3246, 3275, 3293, 3299, 3315, 3321, 3324, 3338, 3341, 3342, 3343, 3345, 3347, 3349, 3355, 3370]
-reviewed_through = 3370
-exporter_revision = "45ffca1c17522f81072102225ddc19152bb146d3"
+reviewed_message_ids = [2865, 2866, 2867, 2886, 2891, 2912, 2914, 2915, 2923, 2927, 2957, 2960, 2967, 2968, 2978, 2983, 2986, 2988, 2996, 2998, 3000, 3003, 3007, 3015, 3016, 3019, 3020, 3022, 3024, 3026, 3031, 3032, 3037, 3038, 3039, 3040, 3041, 3042, 3048, 3046, 3047, 3049, 3052, 3054, 3055, 3056, 3058, 3067, 3072, 3114, 3116, 3117, 3119, 3121, 3125, 3127, 3131, 3134, 3135, 3138, 3246, 3275, 3293, 3299, 3315, 3321, 3324, 3338, 3341, 3342, 3343, 3345, 3347, 3349, 3355, 3370, 3382, 3426]
+reviewed_through = 3426
+exporter_revision = "3ba84b6ea23c8bb176ee36671483c1ec9f3f0a0c"
 flag_terms = ["password", "token", "credential", "secret", "student", "email", "address", "hostname", "ssh", "tailscale", "vpn", "copyright", "excerpt", "access", "private key"]
 
 # 2865: the quoted excerpts are Barry's own project instructions; no third-party
@@ -145,3 +145,8 @@ redact = [
 ]
 
 [withheld]
+
+# 3382 and 3426 settle the working tally convention, revise the intake rules,
+# and report independently checked accounting and preparation replay. Both were
+# reviewed in full. They contain scientific assumptions, numerical evidence and
+# project paths, with no new flagged material requiring clearance or withholding.
