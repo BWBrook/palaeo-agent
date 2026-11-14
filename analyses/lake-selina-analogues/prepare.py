@@ -19,6 +19,7 @@ from palaeo_agent.study import ExcludeTaxa, MapTaxa, Select, TableInput, apply, 
 HERE = Path(__file__).resolve().parent
 PRIMER = 'fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6'
 FLOOR = Fraction(4, 5)
+PERCENT_LIMIT = Fraction(201, 2)
 PERCENT_DATASETS = [74429, 75430, 74914, 74643, 74779, 74795, 74778, 74764, 74160,
                     74142, 74304, 74699, 74569, 74618, 74701, 74780, 73988, 74777,
                     74303, 74141, 75423, 74644, 74798, 74766, 75421]
@@ -67,6 +68,10 @@ def number(token):
 
 def text(value):
     return format(float(value), '.12g')
+
+
+def denominator_unresolved(units, total):
+    return units == 'percent' and total > PERCENT_LIMIT
 
 
 def validate_file(path, kind):
@@ -260,7 +265,7 @@ def main():
                         source_weight_exact=str(total), dryland_weight_exact=str(dryland), retained_weight_exact=str(retained),
                         retained_fraction='' if ratio is None else text(ratio),
                         retained_fraction_exact='' if ratio is None else str(ratio),
-                        proposed_floor='0.8', meets_proposed_floor=ratio is not None and ratio >= FLOOR,
+                        retained_weight_floor='0.8', meets_floor=ratio is not None and ratio >= FLOOR,
                         empty_retained=retained == 0))
                 validations[f'{scheme}/{name}'] = validate_mapped(destination, current, kind, out, f'{scheme}/{name}')
             assert all(group == target_sets[0] for group in target_sets), (scheme, target_sets)
@@ -271,6 +276,12 @@ def main():
         for sample in raw_fossil['samples']:
             assert indexed['primary', sample]['retained_weight_exact'] == indexed['coarse', sample]['retained_weight_exact']
         ledger = [dict(row) for row in seeds]
+        for row in ledger:
+            account = indexed['primary', row['sample_id']]
+            row['source_input_weight'] = account['source_weight']
+            row['source_input_weight_exact'] = account['source_weight_exact']
+            row['denominator_unresolved'] = denominator_unresolved(row['source_units'], Fraction(account['source_weight_exact']))
+            row['denominator_screen'] = 'raw_extracted_land_plant_weight_above_100.5_for_percent_only'
         representatives = {}
         for scheme in schemes:
             candidates = []
@@ -280,19 +291,28 @@ def main():
                 if row['metadata_modern_eligible'] != 'true': reasons.append('metadata_ineligible')
                 if row[f'{scheme}_taxonomic_eligible'] != 'true': reasons.append('dataset_resolution_ineligible')
                 if accounting['empty_retained']: reasons.append('empty_retained')
-                if not accounting['meets_proposed_floor']: reasons.append('below_proposed_retained_weight_floor')
+                if not accounting['meets_floor']: reasons.append('below_retained_weight_floor')
                 row[f'{scheme}_retained_fraction'] = accounting['retained_fraction']
                 row[f'{scheme}_candidate_provisional'] = not reasons
-                row[f'{scheme}_candidate_reason'] = ';'.join(reasons) if reasons else 'qualifies_under_proposed_0.80_rule'
+                row[f'{scheme}_candidate_reason'] = ';'.join(reasons) if reasons else 'qualifies_under_fixed_0.80_rule'
+                calibration_reasons = list(reasons)
+                if row['denominator_unresolved']: calibration_reasons.append('denominator_unresolved')
+                row[f'{scheme}_calibration_eligible'] = not calibration_reasons
+                row[f'{scheme}_calibration_reason'] = ';'.join(calibration_reasons) if calibration_reasons else 'passes_declared_calibration_eligibility_rule'
                 row[f'{scheme}_calibration_provisional'] = False
                 if not reasons: candidates.append(row)
+            candidate_units = {r['collectionunitid'] for r in candidates}
             by_unit = defaultdict(list)
-            for row in candidates: by_unit[row['collectionunitid']].append(row)
+            for row in candidates:
+                if row[f'{scheme}_calibration_eligible']: by_unit[row['collectionunitid']].append(row)
             chosen = [min(group, key=lambda r: int(r['representative_preference'])) for group in by_unit.values()]
             for row in chosen: row[f'{scheme}_calibration_provisional'] = True
             representatives[scheme] = {'candidate_ids': [r['sample_id'] for r in candidates],
                 'calibration_ids': [r['sample_id'] for r in chosen],
-                'units_without_qualifying_candidate': sorted(set(r['collectionunitid'] for r in ledger) - set(by_unit)),
+                'units_without_qualifying_candidate': sorted(set(r['collectionunitid'] for r in ledger) - candidate_units),
+                'units_without_eligible_calibrator': sorted(set(r['collectionunitid'] for r in ledger) - set(by_unit)),
+                'units_with_candidates_without_calibrator': sorted(candidate_units - set(by_unit)),
+                'candidate_denominator_unresolved_ids': [r['sample_id'] for r in candidates if r['denominator_unresolved']],
                 'fallback_representatives': [r['sample_id'] for r in chosen if int(r['representative_preference']) > 1]}
         positions = {r['sample_id']: r['depth'] for r in metadata['fossil']}
         fossils = []
@@ -302,7 +322,7 @@ def main():
                 account = indexed[scheme, sample]
                 row[f'{scheme}_retained_fraction'] = account['retained_fraction']
                 row[f'{scheme}_provisional_status'] = ('empty_retained_row' if account['empty_retained'] else
-                    'ready' if account['meets_proposed_floor'] else 'taxonomy_limited')
+                    'ready' if account['meets_floor'] else 'taxonomy_limited')
             fossils.append(row)
         assert len(fossils) == 72 and not guarded_calls
         (out / 'coverage.csv').write_bytes(csv_bytes(weights))
@@ -314,8 +334,11 @@ def main():
                   ('prepare.py', 'metadata-seed.csv', 'crosswalk-primary.csv', 'crosswalk-coarse.csv')]
         artifacts = [path for path in (out / 'data').glob('*.tsv')]
         artifacts += [out / name for name in ('coverage.csv', 'sample-ledger.csv', 'fossil-ledger.csv', 'derivation-records.json')]
-        receipt = dict(status='draft_for_review', proposal_commit='a351379', primer={k: primer[k] for k in ('version', 'sha256')},
-            proposed_retained_weight_floor='0.80; not frozen', guard_probe_passed=True, forbidden_calls_after_probe=0,
+        receipt = dict(status='revision_2.1_intake_for_review', proposal_commit='f0a33a6', primer={k: primer[k] for k in ('version', 'sha256')},
+            retained_weight_floor='0.80; fixed by f0a33a6 before revised coverage',
+            calibration_percent_limit='100.5; raw extracted land-plant weights; candidates unaffected',
+            denominator_unresolved_ids=[r['sample_id'] for r in ledger if r['denominator_unresolved']],
+            guard_probe_passed=True, forbidden_calls_after_probe=0,
             source_tables={name: {'rows': len(raw['samples']), 'columns': len(raw['columns']), 'units': units,
                                  'sha256': sha(out / 'data' / f'{name}.tsv')} for name, (raw, _, units) in extracted.items()},
             source_column_accounting='Every input bin accounted exactly once per scheme; no zero-fill',

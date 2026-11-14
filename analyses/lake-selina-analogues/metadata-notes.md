@@ -1,7 +1,8 @@
 # Application 6 metadata seed
 
-Codex, 13 November 2026. Implements the metadata portion of proposal revision 2
-(`a351379`, Board 3349). This is a pre-distance draft, not the final eligibility
+Codex, 13 November 2026; calibration policy amended 14 November under revision
+2.1 (`f0a33a6`, Board 3382). The seed implements the metadata portion of
+revision 2 (`a351379`, Board 3349). This is a pre-distance draft, not the final eligibility
 or representative selection. Only metadata, source-bin labels and their
 presence were audited; no distance, cutoff, harmonised composition, diversity
 or analogue outcome was computed.
@@ -120,12 +121,19 @@ The earlier [Tasmanian surface report](../tas-surface/REPORT.md) records
 retained percentage weights summing to **242.5 at Naracoopa**, for unresolved
 reasons. This is an existing reported quantity, not recalculated here.
 Sample 1477443 carries a source-quality flag in `unresolved_metadata`.
-Neither corrected units nor a new numerical exclusion is inferred.
+No corrected units are inferred. Revision 2.1 adds an explicit calibration-only
+screen: a native-percent row whose exact extracted land-plant weight before
+any exclusions exceeds 100.5 cannot be a representative. It remains a
+candidate if the ordinary taxonomy and fixed 0.80 floor rules allow it.
+NISP rows are exempt from this percentage screen. Equality to 100.5 passes
+this particular rule, without proving a consistent denominator. The final
+ledger carries the calculated flag for every affected row, not just the
+previously noted Naracoopa example.
 
 Consequently, a retained-weight fraction is not automatically a demonstrated
 fraction of counted pollen grains. Explicit row closure can define a
 compositional working input without proving a shared source denominator.
-This source-quality issue is separate from the proposed retained-weight
+This source-quality issue is separate from the fixed retained-weight
 coverage floor. The earlier report's sums concern its own pollen sum, not
 the new crosswalk's retained weight.
 
@@ -136,8 +144,10 @@ sample code 1 first, then ascending numeric original sample code, then
 numeric sample ID to break a tie. The ledger is ordered by collection-unit
 ID and preference. Each unit currently belongs to just one dataset.
 
-The parent intake chooses the first qualifying row separately under the
-primary and coarse eligibility/retained-weight rules. No representative,
+The parent intake chooses the first calibration-eligible row separately under
+the primary and coarse taxonomy, fixed 0.80 retained-weight, and percentage
+screening rules. A unit can have candidates but no eligible representative;
+the final ledger and receipt distinguish those cases. No representative,
 threshold or nearest neighbour is selected by this seed. If sample 1 fails
 eligibility, the next preference can qualify without an outcome-driven
 choice. Coincident site Points remain visible without being silently

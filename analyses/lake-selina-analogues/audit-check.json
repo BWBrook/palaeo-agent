@@ -2,45 +2,485 @@
   "status": "passed",
   "scope": "Independent exact accounting and metadata selection from saved source tables and crosswalks; no distance calculation or scientific-validity claim",
   "coverage_rows_verified": 282,
-  "mapped_cells_verified": 7896,
+  "mapped_cells_verified": 10716,
   "mass_mismatches": 0,
   "candidate_counts": {
-    "primary": 17,
-    "coarse": 17
+    "primary": 61,
+    "coarse": 68
   },
   "representative_counts": {
-    "primary": 8,
-    "coarse": 8
+    "primary": 19,
+    "coarse": 20
   },
-  "identical_candidate_sets": true,
-  "identical_calibration_sets": true,
+  "identical_candidate_sets": false,
+  "identical_calibration_sets": false,
+  "percentage_calibration_limit_exact": "201/2",
+  "percentage_screen_scope": "Native percent rows only; exact raw extracted land-plant sum before exclusions; NISP exempt; candidates unaffected",
+  "denominator_unresolved_ids": [
+    "1472789",
+    "1477443",
+    "1477740",
+    "1477748",
+    "1478920",
+    "1489992",
+    "1490001",
+    "1490011"
+  ],
+  "candidate_denominator_unresolved_ids": {
+    "primary": [
+      "1472789",
+      "1477443"
+    ],
+    "coarse": [
+      "1472789",
+      "1477443",
+      "1477740",
+      "1477748",
+      "1478920",
+      "1489992",
+      "1490001",
+      "1490011"
+    ]
+  },
   "fossil_status_counts": {
     "primary": {
-      "taxonomy_limited": 69,
-      "ready": 3
+      "ready": 72
     },
     "coarse": {
-      "taxonomy_limited": 69,
-      "ready": 3
+      "ready": 72
     }
   },
   "ready_fossil_ids": [
+    "531306",
+    "531305",
+    "531304",
+    "531329",
+    "531321",
+    "531323",
+    "531327",
+    "531328",
+    "531332",
+    "531330",
+    "531307",
+    "531308",
+    "531309",
+    "531310",
+    "531311",
+    "531312",
+    "531313",
+    "531314",
+    "531315",
+    "531316",
+    "531317",
+    "531318",
+    "531319",
+    "531320",
+    "531322",
+    "531324",
+    "531325",
+    "531326",
+    "531331",
+    "531333",
+    "531334",
+    "531335",
+    "531336",
+    "531337",
+    "531338",
+    "531339",
+    "531340",
+    "531341",
+    "531342",
+    "531343",
+    "531345",
+    "531344",
+    "531346",
+    "531347",
+    "531348",
+    "531349",
+    "531350",
+    "531351",
+    "531352",
+    "531353",
+    "531354",
+    "531355",
+    "531356",
+    "531357",
+    "531358",
+    "531359",
+    "531360",
+    "531361",
+    "531362",
+    "531363",
+    "531365",
+    "531364",
+    "531366",
+    "531367",
     "531368",
     "531369",
-    "531370"
+    "531370",
+    "531371",
+    "531373",
+    "531372",
+    "531374",
+    "531375"
   ],
   "same_dryland_bins_verified": true,
   "retained_weight_and_dryland_preserved_for_primary_eligible_rows": true,
   "preparation_receipt_forbidden_calls": 0,
   "audit_uses_only_standard_library": true,
+  "inclusion_diagnostics": {
+    "arithmetic": "Exact decimal-to-rational comparisons; original float calculation not imported",
+    "canonical_specification": "FAMILIES literal read by AST from committed check.py; no script execution",
+    "historical_sum_receipt_matches_exact": true,
+    "cooccurring_dataset_family_combinations": 49,
+    "sum_contradicting_combinations": 31,
+    "max_child_contradicting_combinations": 30,
+    "cases": [
+      {
+        "source": "fossil",
+        "broad": "Proteaceae",
+        "narrow": [
+          "Banksia",
+          "Orites"
+        ],
+        "rows_with_both": 57,
+        "sum_contradiction_rows": 21,
+        "max_child_contradiction_rows": 18,
+        "sum_contradicting_datasets": [
+          "52767"
+        ],
+        "max_child_contradicting_datasets": [
+          "52767"
+        ],
+        "datasets_with_both": [
+          "52767"
+        ]
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Asteraceae",
+        "narrow": [
+          "Asteroideae",
+          "Cichorioideae"
+        ],
+        "rows_with_both": 0,
+        "sum_contradiction_rows": 0,
+        "max_child_contradiction_rows": 0,
+        "sum_contradicting_datasets": [],
+        "max_child_contradicting_datasets": [],
+        "datasets_with_both": []
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Plantago",
+        "narrow": [
+          "Plantago lanceolata"
+        ],
+        "rows_with_both": 10,
+        "sum_contradiction_rows": 3,
+        "max_child_contradiction_rows": 3,
+        "sum_contradicting_datasets": [
+          "74142",
+          "74160",
+          "74644"
+        ],
+        "max_child_contradicting_datasets": [
+          "74142",
+          "74160",
+          "74644"
+        ],
+        "datasets_with_both": [
+          "74142",
+          "74160",
+          "74644",
+          "74914"
+        ]
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Casuarinaceae",
+        "narrow": [
+          "Allocasuarina"
+        ],
+        "rows_with_both": 0,
+        "sum_contradiction_rows": 0,
+        "max_child_contradiction_rows": 0,
+        "sum_contradicting_datasets": [],
+        "max_child_contradicting_datasets": [],
+        "datasets_with_both": []
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Ericaceae",
+        "narrow": [
+          "Epacrideae",
+          "Richea",
+          "Sprengelia",
+          "Monotoca",
+          "Leucopogon"
+        ],
+        "rows_with_both": 44,
+        "sum_contradiction_rows": 11,
+        "max_child_contradiction_rows": 11,
+        "sum_contradicting_datasets": [
+          "74160",
+          "74429",
+          "74778",
+          "74914"
+        ],
+        "max_child_contradicting_datasets": [
+          "74160",
+          "74429",
+          "74778",
+          "74914"
+        ],
+        "datasets_with_both": [
+          "73988",
+          "74142",
+          "74160",
+          "74303",
+          "74304",
+          "74429",
+          "74618",
+          "74644",
+          "74699",
+          "74701",
+          "74766",
+          "74778",
+          "74780",
+          "74798",
+          "74914"
+        ]
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Proteaceae",
+        "narrow": [
+          "Agastachys",
+          "Banksia",
+          "Orites",
+          "Telopea",
+          "Lomatia",
+          "Persoonia"
+        ],
+        "rows_with_both": 18,
+        "sum_contradiction_rows": 10,
+        "max_child_contradiction_rows": 7,
+        "sum_contradicting_datasets": [
+          "74644",
+          "74701",
+          "74778",
+          "74779",
+          "74780",
+          "74798"
+        ],
+        "max_child_contradicting_datasets": [
+          "74644",
+          "74778",
+          "74779",
+          "74780",
+          "74798"
+        ],
+        "datasets_with_both": [
+          "74142",
+          "74303",
+          "74304",
+          "74644",
+          "74699",
+          "74701",
+          "74778",
+          "74779",
+          "74780",
+          "74798",
+          "74914"
+        ]
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Myrtaceae",
+        "narrow": [
+          "Leptospermum",
+          "Eucalyptus",
+          "Leptospermum/Baeckea",
+          "Melaleuca-type"
+        ],
+        "rows_with_both": 37,
+        "sum_contradiction_rows": 34,
+        "max_child_contradiction_rows": 27,
+        "sum_contradicting_datasets": [
+          "73988",
+          "74142",
+          "74160",
+          "74303",
+          "74304",
+          "74429",
+          "74618",
+          "74644",
+          "74699",
+          "74701",
+          "74778",
+          "74780",
+          "74798",
+          "74914"
+        ],
+        "max_child_contradicting_datasets": [
+          "73988",
+          "74142",
+          "74160",
+          "74303",
+          "74304",
+          "74429",
+          "74618",
+          "74644",
+          "74699",
+          "74701",
+          "74778",
+          "74780",
+          "74798",
+          "74914"
+        ],
+        "datasets_with_both": [
+          "73988",
+          "74142",
+          "74160",
+          "74303",
+          "74304",
+          "74429",
+          "74618",
+          "74644",
+          "74699",
+          "74701",
+          "74778",
+          "74780",
+          "74798",
+          "74914"
+        ]
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Cupressaceae",
+        "narrow": [
+          "Athrotaxis"
+        ],
+        "rows_with_both": 0,
+        "sum_contradiction_rows": 0,
+        "max_child_contradiction_rows": 0,
+        "sum_contradicting_datasets": [],
+        "max_child_contradicting_datasets": [],
+        "datasets_with_both": []
+      },
+      {
+        "source": "modern_percent",
+        "broad": "Apiaceae",
+        "narrow": [
+          "Oreomyrrhis"
+        ],
+        "rows_with_both": 0,
+        "sum_contradiction_rows": 0,
+        "max_child_contradiction_rows": 0,
+        "sum_contradicting_datasets": [],
+        "max_child_contradicting_datasets": [],
+        "datasets_with_both": []
+      },
+      {
+        "source": "modern_nisp",
+        "broad": "Eucalyptus",
+        "narrow": [
+          "Eucalyptus vernicosa"
+        ],
+        "rows_with_both": 2,
+        "sum_contradiction_rows": 0,
+        "max_child_contradiction_rows": 0,
+        "sum_contradicting_datasets": [],
+        "max_child_contradicting_datasets": [],
+        "datasets_with_both": [
+          "74913"
+        ]
+      },
+      {
+        "source": "modern_nisp",
+        "broad": "Melaleuca",
+        "narrow": [
+          "Melaleuca squamea"
+        ],
+        "rows_with_both": 4,
+        "sum_contradiction_rows": 1,
+        "max_child_contradiction_rows": 1,
+        "sum_contradicting_datasets": [
+          "74913"
+        ],
+        "max_child_contradicting_datasets": [
+          "74913"
+        ],
+        "datasets_with_both": [
+          "74913"
+        ]
+      },
+      {
+        "source": "modern_nisp",
+        "broad": "Plantago",
+        "narrow": [
+          "Plantago lanceolata"
+        ],
+        "rows_with_both": 4,
+        "sum_contradiction_rows": 2,
+        "max_child_contradiction_rows": 2,
+        "sum_contradicting_datasets": [
+          "74913"
+        ],
+        "max_child_contradicting_datasets": [
+          "74913"
+        ],
+        "datasets_with_both": [
+          "74913"
+        ]
+      },
+      {
+        "source": "modern_nisp",
+        "broad": "Pomaderris",
+        "narrow": [
+          "Pomaderris apetala"
+        ],
+        "rows_with_both": 4,
+        "sum_contradiction_rows": 1,
+        "max_child_contradiction_rows": 1,
+        "sum_contradicting_datasets": [
+          "74913"
+        ],
+        "max_child_contradicting_datasets": [
+          "74913"
+        ],
+        "datasets_with_both": [
+          "74913"
+        ]
+      }
+    ],
+    "limitations": [
+      "Counts use the historical subset with positive broad and at least one positive child; broad-zero rows are not included",
+      "Broad < sum(children) rejects full inclusion only if child tallies are disjoint and share a common numerical basis",
+      "Broad < max(single child) avoids the disjoint-child assumption, but still requires a common numerical basis",
+      "Neither diagnostic proves universal mutual exclusivity, residual identification, common denominators or a uniform counting protocol",
+      "Additive archived tallies remain the explicitly authorized working convention"
+    ],
+    "evidence_files": [
+      {
+        "file": "references/independent/2026-11-14-tally-semantics/check.py",
+        "sha256": "09ca9ed86d87a7b543f4f50307a5bbbcc2a3614c7c6692ed7a961cf3e49c7025"
+      },
+      {
+        "file": "references/independent/2026-11-14-tally-semantics/receipt.json",
+        "sha256": "0ae3d1816dc265e0d137fa3582b44a588ba5bca4b70fa06e006e4720a28443c0"
+      }
+    ]
+  },
   "inputs": [
     {
       "file": "audit.py",
-      "sha256": "07e0c44bc116a017408e9526fb14e4cb3586eabc55fb86fad25503b5bc427b2b"
+      "sha256": "544aa5d348db7a971389de2cab611d155bcd1d30fb6f6605f8abfaccc3ca27d0"
     },
     {
       "file": "preflight-check.json",
-      "sha256": "3b71dcc17a0b789f99160b4d82e6ef59b1587813f2946aa3d6d8c4fb1faa486a"
+      "sha256": "be972eeecab5d73d33fb14c9106548e3a7dbde829bd1c357138ad733dab60afa"
     }
   ],
   "command": "uv run analyses/lake-selina-analogues/audit.py"

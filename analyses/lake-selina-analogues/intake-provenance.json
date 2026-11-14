@@ -1,18 +1,18 @@
 {
   "fossil": {
-    "bundle": "runs-extraction/8782fd008e8e4d2a9c6efd6bfc8c65c7",
+    "bundle": "runs-extraction/266beb78adb6463db9823283e748f866",
     "source_sha256": "5dd1a71cf7a655f08441e59b866b3eb64c893b164cc8e9320d9ea2d7507ead24",
     "manifest_sha256": "1af94504e9ee43c602ad6c34ad83573fe9e4680767441feb86e101aa51b93b1e",
     "table_sha256": "db922456a78fc78754f8d950066f9032659079808966dcd6de38f2457c6423a6"
   },
   "modern_percent": {
-    "bundle": "runs-extraction/2a23e0f332f34ce8879059c5cdb08d68",
+    "bundle": "runs-extraction/01fbca2b2a154220a2504f2274a87ff1",
     "source_sha256": "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36",
     "manifest_sha256": "4577f42c6bd8d758271a3f68915980677e133a3e8662332e4057406e6905c742",
     "table_sha256": "f431fa06b79220c212fdfae6f9f5d39481678951796ba08c5594e6698e7ff201"
   },
   "modern_nisp": {
-    "bundle": "runs-extraction/5eee6990dd994dee91e6cc979e4ba172",
+    "bundle": "runs-extraction/629d0ebd8d1841e280b43244e260933c",
     "source_sha256": "0205169197c51e03da06e914d157136c965cd7bffb13f103817888ff2fb58c36",
     "manifest_sha256": "4a0b499dbf016f554c25075acf585c2a406418dbb6dd7522149845b39e110866",
     "table_sha256": "a3843fab629838b497f7eb75d5c39caced4490b41911a6030060a548c734a93f"

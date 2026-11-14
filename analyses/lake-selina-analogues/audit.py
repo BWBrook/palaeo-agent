@@ -1,5 +1,6 @@
 """Independently check the saved intake's exact accounting and metadata selections."""
 
+import ast
 import collections
 import csv
 from decimal import Decimal
@@ -10,7 +11,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 FLOOR = Fraction(4, 5)
+PERCENT_CALIBRATION_LIMIT = Fraction(201, 2)
 SCHEMES = ('primary', 'coarse')
+TALLY_DIR = HERE.parents[1] / 'references/independent/2026-11-14-tally-semantics'
 
 
 def rational(token):
@@ -39,6 +42,68 @@ def sha(path):
 def preference(row):
     return (row['original_sample_code'] != '1', rational(row['original_sample_code']),
             int(row['sample_id']))
+
+
+def inclusion_diagnostics(sources, seed):
+    declarations = [node for node in ast.parse((TALLY_DIR / 'check.py').read_text()).body
+                    if isinstance(node, ast.Assign)
+                    and any(isinstance(target, ast.Name) and target.id == 'FAMILIES'
+                            for target in node.targets)]
+    assert len(declarations) == 1
+    families = ast.literal_eval(declarations[0].value)
+    historical = json.loads((TALLY_DIR / 'receipt.json').read_text())
+    exact_sum, cases = [], []
+    for source in ('fossil', 'modern_percent', 'modern_nisp'):
+        header = set(next(iter(sources[source].values())))
+        for broad, children in families.items():
+            present = [label for label in children if label in header]
+            if broad not in header or not present:
+                continue
+            cooccurring, sum_rows, single_rows = [], [], []
+            for sample, values in sources[source].items():
+                broad_value = values[broad]
+                child_values = [values[label] for label in present]
+                child_sum = sum(child_values, Fraction())
+                if broad_value <= 0 or child_sum <= 0:
+                    continue
+                dataset = '52767' if source == 'fossil' else seed[sample]['datasetid']
+                cooccurring.append(dataset)
+                if broad_value < child_sum:
+                    sum_rows.append((sample, dataset))
+                if broad_value < max(child_values):
+                    single_rows.append((sample, dataset))
+            sum_datasets = sorted({dataset for _, dataset in sum_rows})
+            single_datasets = sorted({dataset for _, dataset in single_rows})
+            datasets_with_both = sorted(set(cooccurring))
+            exact_sum.append(dict(source=source, broad=broad, narrow=present,
+                rows_with_both=len(cooccurring), rows_contradicting_inclusion=len(sum_rows),
+                datasets_contradicting=sum_datasets, datasets_with_both=datasets_with_both))
+            cases.append(dict(source=source, broad=broad, narrow=present,
+                rows_with_both=len(cooccurring), sum_contradiction_rows=len(sum_rows),
+                max_child_contradiction_rows=len(single_rows),
+                sum_contradicting_datasets=sum_datasets,
+                max_child_contradicting_datasets=single_datasets,
+                datasets_with_both=datasets_with_both))
+    assert exact_sum == historical['results']
+    total = sum(len(case['datasets_with_both']) for case in cases)
+    summed = sum(len(case['sum_contradicting_datasets']) for case in cases)
+    single = sum(len(case['max_child_contradicting_datasets']) for case in cases)
+    assert (summed, single, total) == (31, 30, 49)
+    return {'arithmetic': 'Exact decimal-to-rational comparisons; original float calculation not imported',
+            'canonical_specification': 'FAMILIES literal read by AST from committed check.py; no script execution',
+            'historical_sum_receipt_matches_exact': True,
+            'cooccurring_dataset_family_combinations': total,
+            'sum_contradicting_combinations': summed,
+            'max_child_contradicting_combinations': single,
+            'cases': cases,
+            'limitations': [
+                'Counts use the historical subset with positive broad and at least one positive child; broad-zero rows are not included',
+                'Broad < sum(children) rejects full inclusion only if child tallies are disjoint and share a common numerical basis',
+                'Broad < max(single child) avoids the disjoint-child assumption, but still requires a common numerical basis',
+                'Neither diagnostic proves universal mutual exclusivity, residual identification, common denominators or a uniform counting protocol',
+                'Additive archived tallies remain the explicitly authorized working convention'],
+            'evidence_files': [{'file': str(path.relative_to(HERE.parents[1])), 'sha256': sha(path)}
+                               for path in (TALLY_DIR / 'check.py', TALLY_DIR / 'receipt.json')]}
 
 
 def main():
@@ -125,7 +190,8 @@ def main():
                     assert saved[field] == format(float(value), '.12g'), field
                 assert saved['retained_fraction_exact'] == ('' if ratio is None else str(ratio))
                 assert saved['retained_fraction'] == ('' if ratio is None else format(float(ratio), '.12g'))
-                assert (saved['meets_proposed_floor'] == 'True') == (ratio is not None and ratio >= FLOOR)
+                assert Fraction(saved['retained_weight_floor']) == FLOOR
+                assert (saved['meets_floor'] == 'True') == (ratio is not None and ratio >= FLOOR)
                 assert (saved['empty_retained'] == 'True') == (retained == 0)
                 computed[scheme, name, sample_id] = ratio, retained, dryland
         assert all(targets == target_sets[0] for targets in target_sets)
@@ -145,28 +211,60 @@ def main():
         for rank, row in enumerate(sorted(group, key=preference), 1):
             assert int(row['representative_preference']) == rank
             ranks[row['sample_id']] = rank
-    candidates, calibrations = {}, {}
+    denominator_flags = {}
+    for row in ledger:
+        sample = row['sample_id']
+        source = modern_where[sample]
+        units = 'percent' if source == 'modern_percent' else 'NISP'
+        assert seed[sample]['source_units'] == units
+        source_total = sum(sources[source][sample].values(), Fraction())
+        assert Fraction(row['source_input_weight_exact']) == source_total
+        assert row['source_input_weight'] == format(float(source_total), '.12g')
+        denominator_flags[sample] = units == 'percent' and source_total > PERCENT_CALIBRATION_LIMIT
+        assert (row['denominator_unresolved'] == 'True') == denominator_flags[sample]
+        assert row['denominator_screen'] == 'raw_extracted_land_plant_weight_above_100.5_for_percent_only'
+    assert {sample for sample, flag in denominator_flags.items() if flag} == set(receipt['denominator_unresolved_ids'])
+    candidates, calibrations, flagged_candidates = {}, {}, {}
     for scheme in SCHEMES:
-        good = []
+        good, calibration_eligible = [], []
         for row in ledger:
             sample = row['sample_id']
             metadata = seed[sample]
             assert all(row[key] == value for key, value in metadata.items())
             ratio, retained, _ = computed[scheme, modern_where[sample], sample]
-            eligible = (metadata['metadata_modern_eligible'] == 'true'
-                        and metadata[f'{scheme}_taxonomic_eligible'] == 'true'
-                        and retained > 0 and ratio is not None and ratio >= FLOOR)
+            reasons = []
+            if metadata['metadata_modern_eligible'] != 'true':
+                reasons.append('metadata_ineligible')
+            if metadata[f'{scheme}_taxonomic_eligible'] != 'true':
+                reasons.append('dataset_resolution_ineligible')
+            if retained == 0:
+                reasons.append('empty_retained')
+            if ratio is None or ratio < FLOOR:
+                reasons.append('below_retained_weight_floor')
+            eligible = not reasons
             assert (row[f'{scheme}_candidate_provisional'] == 'True') == eligible
+            assert row[f'{scheme}_candidate_reason'] == (';'.join(reasons) if reasons else 'qualifies_under_fixed_0.80_rule')
+            calibration_reasons = [*reasons, *(['denominator_unresolved'] if denominator_flags[sample] else [])]
+            assert (row[f'{scheme}_calibration_eligible'] == 'True') == (not calibration_reasons)
+            assert row[f'{scheme}_calibration_reason'] == (';'.join(calibration_reasons) if calibration_reasons else
+                                                         'passes_declared_calibration_eligibility_rule')
             if eligible:
                 good.append(metadata)
+            if not calibration_reasons:
+                calibration_eligible.append(metadata)
+        candidate_units = {row['collectionunitid'] for row in good}
         units = collections.defaultdict(list)
-        for row in good:
+        for row in calibration_eligible:
             units[row['collectionunitid']].append(row)
         chosen = {min(group, key=preference)['sample_id'] for group in units.values()}
         saved = receipt['representatives'][scheme]
         assert chosen == set(saved['calibration_ids'])
         assert {row['sample_id'] for row in good} == set(saved['candidate_ids'])
-        assert set(saved['units_without_qualifying_candidate']) == set(all_units) - set(units)
+        assert set(saved['units_without_qualifying_candidate']) == set(all_units) - candidate_units
+        assert set(saved['units_without_eligible_calibrator']) == set(all_units) - set(units)
+        assert set(saved['units_with_candidates_without_calibrator']) == candidate_units - set(units)
+        flagged_candidates[scheme] = {row['sample_id'] for row in good if denominator_flags[row['sample_id']]}
+        assert set(saved['candidate_denominator_unresolved_ids']) == flagged_candidates[scheme]
         assert set(saved['fallback_representatives']) == {sample for sample in chosen if ranks[sample] > 1}
         for row in ledger:
             assert (row[f'{scheme}_calibration_provisional'] == 'True') == (row['sample_id'] in chosen)
@@ -196,6 +294,7 @@ def main():
             assert computed['primary', name, sample][1:] == computed['coarse', name, sample][1:]
     assert receipt['guard_probe_passed'] and receipt['forbidden_calls_after_probe'] == 0
     assert receipt['same_dryland_bins_across_schemes']
+    tally = inclusion_diagnostics(sources, seed)
     audit = {
         'status': 'passed',
         'scope': 'Independent exact accounting and metadata selection from saved source tables and crosswalks; no distance calculation or scientific-validity claim',
@@ -206,12 +305,17 @@ def main():
         'representative_counts': {key: len(value) for key, value in calibrations.items()},
         'identical_candidate_sets': candidates['primary'] == candidates['coarse'],
         'identical_calibration_sets': calibrations['primary'] == calibrations['coarse'],
+        'percentage_calibration_limit_exact': str(PERCENT_CALIBRATION_LIMIT),
+        'percentage_screen_scope': 'Native percent rows only; exact raw extracted land-plant sum before exclusions; NISP exempt; candidates unaffected',
+        'denominator_unresolved_ids': sorted(sample for sample, flag in denominator_flags.items() if flag),
+        'candidate_denominator_unresolved_ids': {scheme: sorted(samples) for scheme, samples in flagged_candidates.items()},
         'fossil_status_counts': statuses,
         'ready_fossil_ids': [row['sample_id'] for row in fossils if row['primary_provisional_status'] == 'ready'],
         'same_dryland_bins_verified': True,
         'retained_weight_and_dryland_preserved_for_primary_eligible_rows': True,
         'preparation_receipt_forbidden_calls': receipt['forbidden_calls_after_probe'],
         'audit_uses_only_standard_library': True,
+        'inclusion_diagnostics': tally,
         'inputs': [{'file': name, 'sha256': sha(HERE / name)}
                    for name in ('audit.py', 'preflight-check.json')],
         'command': 'uv run analyses/lake-selina-analogues/audit.py',

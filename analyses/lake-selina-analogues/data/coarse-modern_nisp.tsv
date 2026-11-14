@@ -1,8 +1,8 @@
-sample_id	Acacia	Amaranthaceae	Amperea	Anopterus	Astelia	Atherosperma	Boronia	Brassicaceae	Coprosma	Cunoniaceae	Dodonaea	Ericaceae	Gentianaceae	Gyrostemonaceae	Haloragis	Hibbertia	Leptospermum	Nothofagus	Poaceae	Podocarpaceae	Proteaceae	Winteraceae
-1466028	0	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	137	79	129	0	0
-1466029	0	7	0	0	2	0	0	0	0	0	0	0	0	0	0	0	0	8	178	50	0	0
-1466027	0	5	0	0	84	1	0	0	0	0	0	0	0	0	0	0	0	272	37	155	0	0
-1480879	8	18	1	0	0	1	0	0	3	45	1	50	2	1	2	2	9	453	102	160	10	3
-1480881	0	6	2	0	14	0	0	0	2	6	3	13	0	1	4	0	4	1244	22	47	4	7
-1480882	15	17	4	0	0	1	0	0	0	47	3	34	0	2	2	0	9	213	42	107	7	5
-1480880	2	3	0	1	9	0	2	1	4	14	1	19	1	1	3	0	6	843	13	77	2	7
+sample_id	Amaranthaceae	Anopterus	Apiaceae	Astelia	Asteraceae	Atherosperma	Brassicaceae	Caryophyllaceae	Casuarinaceae	Coprosma	Cunoniaceae	Cupressaceae	Dodonaea	Ericaceae	Euphorbiaceae	Fabaceae	Gentianaceae	Gyrostemonaceae	Haloragis	Hibbertia	Myrtaceae/Melastomataceae	Nothofagus	Plantago	Poaceae	Podocarpaceae	Proteaceae	Rhamnaceae	Rosaceae	Rutaceae	Winteraceae
+1466028	5	0	0	0	32	0	0	0	14	0	0	7	0	0	0	0	0	0	0	0	113	137	6	79	129	0	11	0	0	0
+1466029	7	0	0	2	57	0	0	0	17	0	0	28	0	0	0	0	0	0	0	0	149	8	17	178	50	0	11	0	0	0
+1466027	5	0	0	84	14	1	0	0	6	0	0	2	0	0	0	0	0	0	0	0	105	272	2	37	155	0	11	0	0	0
+1480879	18	0	1	0	24	1	0	1	18	3	45	56	1	60	1	8	2	1	2	2	79	453	16	102	160	19	3	0	4	3
+1480881	6	0	4	14	23	0	0	0	7	2	6	24	3	163	2	0	0	1	4	0	102	1244	5	22	47	5	8	1	0	7
+1480882	17	0	5	0	42	1	0	1	21	0	47	12	3	82	4	15	0	2	2	0	88	213	3	42	107	7	22	0	1	5
+1480880	3	1	0	9	19	0	1	0	9	4	14	39	1	145	0	2	1	1	3	0	85	843	3	13	77	4	13	0	2	7

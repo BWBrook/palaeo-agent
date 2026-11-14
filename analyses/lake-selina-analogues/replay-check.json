@@ -1,7 +1,9 @@
 {
   "status": "identical",
+  "proposal_commit": "f0a33a6",
   "deterministic_artifacts_checked": 16,
   "preflight_receipt_identical": true,
   "native_extraction_ids_excluded_from_comparison": true,
-  "scope": "Fresh output directory; no distances or matching; recorded provenance UUIDs intentionally vary"
+  "forbidden_calls_after_probe": 0,
+  "scope": "Revision 2.1 fresh-output preparation; no distances or matching; provenance UUIDs intentionally vary"
 }

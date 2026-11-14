@@ -1,77 +1,103 @@
-# Application 6: draft intake for review
+# Application 6: revision 2.1 intake for review
 
-Codex, 13 November 2026. Implements the preparation requested in proposal
-revision 2 (`a351379`, Board 3349). **This is not the scientific design
-freeze.** Crosswalks, the proposed 0.80 retained-weight floor and the resulting
-candidate/representative lists remain subject to Claude's intake review.
+Codex, 14 November 2026. Implements proposal revision 2.1 (`f0a33a6`,
+Board 3382). **This is not the scientific design freeze.** The 0.80
+retained-weight floor and calibration screen were fixed before this revised
+intake was computed. Crosswalks and the resulting candidate/representative
+lists await Claude's review before the executable analysis is frozen.
 No distance, percentile threshold, nearest neighbour or analogue verdict has
 been computed. The new `analogue` method and `stack` operation are not built
 or bypassed here.
 
-## Preflight finding: do not freeze this as a whole-spectrum comparison yet
+## Revised intake
 
-The proposed rule exposes a substantial information loss. Conservative
-treatment of unresolved broad/narrow categories leaves **69 of 72 fossil
-levels below the proposed 0.80 floor**, with retained fractions of recorded
-dryland weight ranging from **30.8% to 84.0%**. Only samples **531368,
-531369 and 531370**, at archive **395, 400 and 405 cm**, pass. This is a
-taxonomy/weight-retention check, not an analogue result.
+Whole-tally pooling leaves **all 72 fossil levels above the fixed 0.80 floor**
+in both schemes, retaining **85.3–100%** of recorded dryland weight. Modern
+rows retain **82.9–100%** in the percentage source and **88.3–100%** in the
+NISP source. These are weight-accounting results, not analogue results.
 
-| Draft scheme | Common bins | Modern rows taxonomically eligible | Modern candidates after 0.80 floor | Calibration representatives | Fossil levels passing floor |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Primary | 34 | 61 | 17 | 8 | 3 / 72 |
-| Coarse | 22 | 68 | 17 | 8 | 3 / 72 |
+| Scheme | Shared bins | Modern candidates | Calibration representatives | Fossil levels passing floor |
+| --- | ---: | ---: | ---: | ---: |
+| Primary | 46 | 61 | 19 | 72 / 72 |
+| Coarse | 30 | 68 | 20 | 72 / 72 |
 
-The actual candidate and calibration ID sets are **identical** between
-schemes at this floor. All seven newly taxonomically eligible genus-only
-rows fail it. Naracoopa is one of the eight proposed representatives despite
-its separately flagged unresolved source denominator: passing the weight
-floor does not resolve source quality. The Cradle Link Road representative
-falls back to sample code 6 (1463450), and Tyndall to code 3 (1480881), by
-the fixed first-qualifying preference rule.
+Primary retains the two named *Nothofagus* species and excludes six fixed
+genus-only datasets in their entirety. Coarse pools to genus and admits
+their seven rows. Thus this sensitivity changes **both taxonomic resolution
+and reference membership**, including calibration. The original 61 rows have
+exactly the same retained weight under coarsening; both schemes exclude the
+same outside-dryland categories.
 
-The main losses include Asteraceae and Eucalyptus, whose complete common
-bins would require unresolved broad/narrow pooling. The maps were chosen
-before these retained fractions were inspected and were not relaxed in
-response. This conservative draft implements the literal evidence rule;
-it is not evidence that broader, explicitly assumed recorded-weight pools
-would be mathematically invalid.
+Eight native-percent rows exceed the fixed **100.5** screen on their exact
+raw extracted land-plant weight. They remain candidate matches if otherwise
+eligible, but cannot set the thresholds. NISP rows are exempt. Equality to
+100.5 passes this particular screen without proving a consistent denominator.
 
-**Recommendation for the review:** settle the source-bin accounting
-assumption before freezing. Earlier worked examples explicitly used archived
-category weights with residual-bin assumptions; the revised proposal's
-evidence requirement is stronger. If additive recorded categories are accepted
-as a working reconstruction, record that assumption and revise the crosswalks
-prospectively. If confirmed exclusive counting is required, obtain that
-evidence or reconsider the reference/input scope. Lowering the floor alone
-does not restore the missing compositional information. No such amendment
-or matching was performed in this draft.
+| Sample | Site | Raw extracted percent-weight sum | Candidate schemes |
+| --- | --- | ---: | --- |
+| 1472789 | Lake Flannigan | 171.54 | Both |
+| 1477443 | Naracoopa | 242.54 | Both |
+| 1477740 | Peppertree Marsh | 133.54 | Coarse |
+| 1477748 | Phil's Hill | 105.35 | Coarse |
+| 1478920 | Snow Hill Marshes | 102.65 | Coarse |
+| 1489992 | Big Dam Marsh | 105.64 | Coarse |
+| 1490001 | Big Heathy Swamp | 139.73 | Coarse |
+| 1490011 | Forester Marsh | 112.88 | Coarse |
 
-`metadata-seed.csv` records all 68 modern samples, their actual collection
-units, dataset-level identification resolution, medium/altitude provenance
-and preference order for calibration. `sample-ledger.csv` adds the
-provisional crosswalk and 0.80-floor decisions. Every excluded candidate
-has a reason; every eligible unit's highest-preference qualifying row is
-its proposed representative. Shared site coordinates are flags, not an
-instruction to merge units. See [metadata-notes.md](metadata-notes.md).
+Representatives are the first calibration-eligible rows by the predeclared
+preference within actual collection units. All 19 primary representatives
+also represent their units in coarse. Coarse additionally uses Big Dam
+Marsh **1489993**, falling back from its flagged code-1 row. Primary has two
+units with candidates but no calibrator; coarse has seven. Shared site
+coordinates do not merge collection units. The full IDs, reasons and
+fallback are in `sample-ledger.csv` and `preflight-check.json`.
 
-The two complete crosswalks account for every source column exactly once:
-[primary](crosswalk-primary.csv) and [coarse](crosswalk-coarse.csv).
-Reasons distinguish deliberate dryland exclusions, incomparable categories,
-and supported mapping/pooling. The scientific rationale and unresolved
-counting-protocol issues are in [taxonomy-notes.md](taxonomy-notes.md).
-An identity between archived category labels does not establish botanical
-species identity or a shared source denominator.
+## Accounting assumptions and information retained
 
-The primary keeps the two named *Nothofagus* species and excludes the six
-genus-only datasets as specified. The coarse scheme pools to genus and
-allows those datasets through its taxonomic eligibility rule. Revision 2
-therefore permits **both resolution and reference membership** to change,
-including calibration. Actual membership must be reported after the floor
-is applied: in this conservative draft the resulting ID sets happen to be
-identical, as shown above. On original primary-eligible rows, the script
-checks that coarsening preserves retained weight exactly and that both
-schemes use the same outside-dryland bins.
+The conservative crosswalks preserved in **0bb8cb7** left 69/72 fossil rows
+below the floor. That result prompted this disclosed revision. The new
+rule treats archived variables as additive tallies and pools whole bins;
+it does not lower the floor or divide a source tally between targets.
+The revised maps were written before revised coverage was inspected.
+
+The historical tally check reproduces exactly: broad weight falls below
+the sum of selected narrower weights in **31/49** tested dataset/category
+combinations. That rejects inclusion only jointly with assumptions that
+children are disjoint and share a numerical base. An independent, stronger
+single-child diagnostic finds broad weight below the largest child in
+**30/49** combinations, avoiding the disjoint-children assumption. Neither
+check proves universal exclusivity, a common percentage denominator, or a
+uniform counting protocol. Additivity is the approved **working convention**,
+supported where full inclusion can be rejected and assumed elsewhere.
+
+Every source column appears once in each complete crosswalk: fossil 66,
+modern percent 92 and modern NISP 82, totalling 240 labels. Every retained
+target can be formed from each source without inventing zero columns.
+*Eucalyptus*, the two named *Nothofagus* species, *Lagarostrobos* and the
+shared *Pherosphaera/Microstrobos* genus bin remain separate in primary.
+Asteraceae pools to family. Explicit residual groups preserve narrower bins
+where possible, but their broad tallies can contain unassigned members of
+those narrower groups. The primary `Other Podocarpaceae` union deliberately
+loses distinctions among *Microcachrys*, *Phyllocladus* and *Podocarpus*.
+Legacy Liliaceae-related and Scrophulariaceae-related categories remain
+incomparable in both schemes. Higher retention therefore depends on pooling
+and reduced resolution, rather than establishing ecological equivalence.
+See [taxonomy-notes.md](taxonomy-notes.md) and the
+[primary](crosswalk-primary.csv) and [coarse](crosswalk-coarse.csv) maps.
+
+The scalar retained fraction is retained recorded weight divided by declared
+dryland recorded weight. It is **not** a guarantee that 80% of grains or
+ecological information are represented. Outside-dryland and incomparable
+weights are reported separately. `coverage.csv` carries exact rational values
+alongside display decimals, and decisions use exact values.
+
+`metadata-seed.csv` remains unchanged: 68 modern rows in 27 datasets and
+27 actual collection units, with medium, altitude, resolution and preference
+provenance. Unknown sample altitude or medium does not automatically exclude
+a row. The two all-zero *Nothofagus* datasets remain taxonomically eligible
+under the fixed six-dataset exclusion rule with unresolved resolution flagged;
+both fail the calibration percentage screen above. See
+[metadata-notes.md](metadata-notes.md).
 
 ## Sources and computation boundary
 
@@ -84,46 +110,41 @@ element/ecological-group filters, units and absent-taxa-zero declarations:
 | Tasmanian percentage datasets | 61 | 92 | percent |
 | Hartz 74305 and Tyndall 74913 | 7 | 82 | NISP |
 
-All extraction bundles inspect as verified and each table matches the prior
-application's table. Original units/numbers are preserved. Raw and mapped
-tables under `data/` are **unnormalised weights**; no stack or distance is
-constructed. Study `exclude_taxa` and `map_taxa` operations implement every
-declared exclusion and merge. Their records are in `derivation-records.json`.
-Community `validate` checks applicable nonempty subsets without calculating
-distances or ordination. Empty mapped rows remain in the saved inputs and
-ledgers with explicit status; they are excluded only from structural
-validation when that operation cannot accept them. A standalone one-row supplement is not treated as a community
-ordination: its full source table is validated, then its selection and mapping
-are checked.
+All extraction bundles inspect as verified and their tables match the prior
+applications' tables. Original units and numbers are preserved. Raw and
+mapped tables under `data/` are **unnormalised weights**. Study `exclude_taxa`
+and `map_taxa` implement every exclusion and merge, recorded in
+`derivation-records.json`. No stack or distance is constructed.
+Community `validate` checks applicable nonempty multirow tables without
+calculating distances or ordination. Empty mapped rows would remain in the
+saved inputs and ledgers with explicit status, excluded only from validation
+when that operation cannot accept them. The standalone repaired query is
+checked through its validated full source, selection and mapping.
+
+All 72 fossil IDs occur in `fossil-ledger.csv`. A below-floor level would be
+`taxonomy_limited`; a zero retained row would be `empty_retained_row`.
+The reconstructed 531331 query is prepared separately under both schemes,
+from the previously accepted `counts-final.tsv`. Its only retained-source
+cell change is the documented 0→72 *Lagarostrobos* count. This source is
+already dryland; its coverage record does not reconstruct earlier out-of-sum
+loss. The original 72-level table is unchanged.
 
 `prepare.py` guards the toolkit's distance/analysis entry points with
-exceptions, tests the guard, and requires zero subsequent calls. Extraction,
-study preparation and structural validation run inside that guard. This is
-a guard on the used code paths, not an operating-system sandbox.
+exceptions, probes the guard, then requires zero subsequent calls. Extraction,
+study preparation and validation run inside that guard. This checks the used
+code paths; it is not an operating-system sandbox.
 
 | Subtask outside a suitable public operation | Why | Implementation and check |
 | --- | --- | --- |
-| Per-sample metadata interpretation and identification-resolution audit | The reader copies metadata; it does not interpret collection notes or analyst resolution | Source-keyed seed ledger, dataset-wide bin audit, explicit uncertainty |
-| Retained-weight partition and ratio during no-distance intake | The public community calculation supplies totals together with distances/ordination; no suitable totals-only operation exists for this stage | Exact decimal-to-rational accounting; source = outside-dryland + incomparable + retained; API merge totals must agree exactly |
-| Provisional candidate and representative assignment | The new matching operation is not yet implemented, and eligibility is a scientific intake rule | Explicit taxonomic/floor predicates and first qualifying metadata preference per unit; all IDs/reasons exported |
-| Canonical column order and report CSVs | Formatting of derived fields | Identical target sets required; ordering recorded in file headers; no missing column filled with zero |
+| Metadata interpretation and identification-resolution audit | Reader copies metadata without interpreting notes or analyst resolution | Source-keyed seed, dataset-wide bin audit, explicit uncertainty |
+| Weight partition, retained ratio and raw percentage screen during intake | Public community calculation combines totals with distances/ordination; no suitable totals-only operation is implemented yet | Exact rational accounting; source = outside-dryland + incomparable + retained; native merge totals agree exactly |
+| Candidate and representative assignment | Matching method is not implemented; eligibility is a scientific intake rule | Explicit taxonomy, floor and calibration predicates; fixed preference per unit; all IDs/reasons exported |
+| Tally-inclusion diagnostics | No matching public operation | Independent exact single-child/sum checks, bound to the historical script and receipt |
+| Canonical column order and report CSVs | Formatting | Identical target sets required; no missing column filled with zero |
 
-The scalar retained fraction is retained recorded weight divided by the
-declared dryland recorded weight. Deliberately excluded wetland/aquatic
-weight is reported separately from incomparable dryland weight. Exact
-rational values accompany display decimals in `coverage.csv`; the 0.80
-comparison uses the exact value. It is **not** a guarantee that 80% of grains
-or ecological information are represented. Naracoopa's unresolved percentage
-denominator remains flagged, independently of whether its fraction passes.
-No source-unit repair or new source-quality exclusion is inferred here.
-
-All 72 fossil IDs occur in `fossil-ledger.csv`, including any below-floor
-`taxonomy_limited` levels. A zero retained row is distinguished as
-`empty_retained_row`, since it cannot be normalised for matching. The accepted
-reconstructed 531331 row is prepared separately, with both crosswalks, from
-the previously saved `counts-final.tsv`. Its only retained-source cell change
-is the documented 0→72 *Lagarostrobos* count. That source is already dryland;
-its coverage record does not claim to reconstruct earlier out-of-sum loss.
+Revision 2.1's planned study exclusion totals should replace custom totals as
+the main reporting source once implemented; the independent audit can remain
+a cross-check. The present intake does not claim that interface already exists.
 
 ## Checks and regeneration
 
@@ -131,39 +152,32 @@ its coverage record does not claim to reconstruct earlier out-of-sum loss.
 uv run palaeo-agent primer
 uv run analyses/lake-selina-analogues/prepare.py
 uv run analyses/lake-selina-analogues/audit.py
-# Independent destination for checking deterministic preparation:
 uv run analyses/lake-selina-analogues/prepare.py --output /tmp/selina-intake-check
 ```
 
-The full primer was read and its unchanged version checked before preparation:
+The full primer was read before preparation and its unchanged version checked:
 **0.2.0.dev0**, SHA-256
 `fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6`.
 
-`preflight-check.json` records bin coverage, exact weight invariants, validation
-warnings/refusals, provisional candidate/representative IDs and output hashes.
-It is a preparation receipt, not a claim of analytical or ecological validity.
-Transient extraction bundle paths and manifest hashes are separate in
-`intake-provenance.json`; native bundles are ignored by Git. No original
-application file is changed.
+All ten applicable raw/mapped multirow validations pass without warnings;
+the two standalone-query entries are not applicable to community ordination.
+The guard probe passes with **zero forbidden calls** afterwards. Exact checks
+cover mass partitions, native API merges, shared dryland definitions and
+retained-weight preservation under coarsening. A separate read-only audit
+checks **282 accounting rows and 10,716 mapped cells** with zero mismatches,
+as well as eligibility, calibration flags, preferences and tally diagnostics.
+Its executable and receipt are [audit.py](audit.py) and
+[audit-check.json](audit-check.json).
 
-All ten applicable raw/mapped multirow validations pass, with no warnings.
-Both single-query validation entries are marked not applicable to community
-ordination. Regeneration into a fresh destination gives identical bytes for
-all **16 deterministic preparation artifacts** and an identical preflight
-receipt; extraction UUIDs are deliberately separate. See
-[replay-check.json](replay-check.json). A separate read-only arithmetic audit
-checked all **282 accounting rows and 7,896 mapped cells** without a mismatch.
-Its executable check and receipt are [audit.py](audit.py) and
-[audit-check.json](audit-check.json); it shares no accounting functions with
-the preparation script.
-It also found two script gaps, now repaired: empty mapped rows are reported
-before subset validation, and the dryland denominator cannot drift between
-schemes. A synthetic zero-row check confirms the reporting path while the
-distance function is guarded. These fixes did not alter the real intake
-counts above.
+Fresh-output regeneration gives identical bytes for all **16 deterministic
+preparation artifacts** and the preflight receipt. Extraction UUIDs and their
+manifest hashes deliberately remain separate in `intake-provenance.json`;
+native bundles are ignored by Git. See [replay-check.json](replay-check.json).
+No engine code or original application files changed, so the full engine
+suite was not rerun for these intake changes.
 
-After intake review, one coherent freeze must fix the floor, eligibility,
-representatives, crosswalks and executable analysis design before any real
-matching or threshold preview. A numerically valid intake can still be
-scientifically inadequate; low retained weight or unresolved source bins are
-review findings, not reasons to silently change this draft.
+Claude next reviews the revised crosswalks, coverage, candidate sets and
+representatives. Only after that review will one coherent commit freeze the
+executable analysis and reviewed inputs before any real matching or threshold
+preview. This intake establishes reproducible accounting under explicit rules;
+it does not establish the scientific adequacy of the modern collection.

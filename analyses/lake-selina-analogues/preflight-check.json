@@ -1,11 +1,22 @@
 {
-  "status": "draft_for_review",
-  "proposal_commit": "a351379",
+  "status": "revision_2.1_intake_for_review",
+  "proposal_commit": "f0a33a6",
   "primer": {
     "version": "0.2.0.dev0",
     "sha256": "fcc02a57db1ffa2a86d14e7c2540bd7bfa89c14e7e5b3334286f9a24b16747f6"
   },
-  "proposed_retained_weight_floor": "0.80; not frozen",
+  "retained_weight_floor": "0.80; fixed by f0a33a6 before revised coverage",
+  "calibration_percent_limit": "100.5; raw extracted land-plant weights; candidates unaffected",
+  "denominator_unresolved_ids": [
+    "1472789",
+    "1477443",
+    "1477740",
+    "1477748",
+    "1478920",
+    "1489992",
+    "1490001",
+    "1490011"
+  ],
   "guard_probe_passed": true,
   "forbidden_calls_after_probe": 0,
   "source_tables": {
@@ -36,9 +47,39 @@
   "representatives": {
     "primary": {
       "candidate_ids": [
+        "1461835",
+        "1462953",
+        "1462954",
+        "1462955",
+        "1462956",
+        "1462958",
+        "1462957",
+        "1463448",
+        "1463449",
+        "1463452",
+        "1463453",
+        "1463451",
         "1463450",
+        "1466023",
+        "1466024",
+        "1466025",
+        "1466026",
+        "1466027",
+        "1466028",
+        "1466029",
         "1468412",
         "1468413",
+        "1472789",
+        "1474850",
+        "1474851",
+        "1476649",
+        "1476653",
+        "1476651",
+        "1476652",
+        "1476650",
+        "1477256",
+        "1477263",
+        "1477264",
         "1477443",
         "1477445",
         "1477741",
@@ -49,54 +90,112 @@
         "1477747",
         "1477743",
         "1477749",
+        "1477750",
+        "1477751",
+        "1477752",
+        "1477754",
+        "1477753",
+        "1477755",
+        "1478923",
+        "1480879",
+        "1480880",
         "1480881",
+        "1480882",
         "1480883",
+        "1480884",
         "1480888",
-        "1480885"
+        "1480887",
+        "1480885",
+        "1480886",
+        "1480889"
       ],
       "calibration_ids": [
-        "1463450",
+        "1461835",
+        "1462953",
+        "1462954",
+        "1463448",
+        "1466023",
+        "1466024",
+        "1466027",
         "1468412",
-        "1477443",
+        "1474850",
+        "1476649",
+        "1476653",
+        "1477256",
+        "1477263",
         "1477445",
         "1477741",
         "1477749",
-        "1480881",
+        "1478923",
+        "1480879",
         "1480883"
       ],
       "units_without_qualifying_candidate": [
-        "55380",
-        "55520",
-        "55521",
-        "55663",
-        "55664",
-        "55665",
-        "55863",
-        "55901",
-        "55913",
-        "55914",
-        "55962",
-        "55964",
         "56030",
         "56032",
         "56041",
-        "56044",
         "56580",
         "56582",
         "56589"
       ],
-      "fallback_representatives": [
-        "1463450",
-        "1480881"
-      ]
+      "units_without_eligible_calibrator": [
+        "55863",
+        "56022",
+        "56030",
+        "56032",
+        "56041",
+        "56580",
+        "56582",
+        "56589"
+      ],
+      "units_with_candidates_without_calibrator": [
+        "55863",
+        "56022"
+      ],
+      "candidate_denominator_unresolved_ids": [
+        "1472789",
+        "1477443"
+      ],
+      "fallback_representatives": []
     },
     "coarse": {
       "candidate_ids": [
+        "1461835",
+        "1462953",
+        "1462954",
+        "1462955",
+        "1462956",
+        "1462958",
+        "1462957",
+        "1463448",
+        "1463449",
+        "1463452",
+        "1463453",
+        "1463451",
         "1463450",
+        "1466023",
+        "1466024",
+        "1466025",
+        "1466026",
+        "1466027",
+        "1466028",
+        "1466029",
         "1468412",
         "1468413",
+        "1472789",
+        "1474850",
+        "1474851",
+        "1476649",
+        "1476653",
+        "1476651",
+        "1476652",
+        "1476650",
+        "1477256",
+        "1477263",
+        "1477264",
         "1477443",
         "1477445",
+        "1477740",
         "1477741",
         "1477745",
         "1477742",
@@ -104,46 +203,85 @@
         "1477746",
         "1477747",
         "1477743",
+        "1477748",
         "1477749",
+        "1477750",
+        "1477751",
+        "1477752",
+        "1477754",
+        "1477753",
+        "1477755",
+        "1478920",
+        "1478923",
+        "1480879",
+        "1480880",
         "1480881",
+        "1480882",
         "1480883",
+        "1480884",
         "1480888",
-        "1480885"
+        "1480887",
+        "1480885",
+        "1480886",
+        "1480889",
+        "1489992",
+        "1489993",
+        "1490001",
+        "1490011"
       ],
       "calibration_ids": [
-        "1463450",
+        "1461835",
+        "1462953",
+        "1462954",
+        "1463448",
+        "1466023",
+        "1466024",
+        "1466027",
         "1468412",
-        "1477443",
+        "1474850",
+        "1476649",
+        "1476653",
+        "1477256",
+        "1477263",
         "1477445",
         "1477741",
         "1477749",
-        "1480881",
-        "1480883"
+        "1478923",
+        "1480879",
+        "1480883",
+        "1489993"
       ],
-      "units_without_qualifying_candidate": [
-        "55380",
-        "55520",
-        "55521",
-        "55663",
-        "55664",
-        "55665",
+      "units_without_qualifying_candidate": [],
+      "units_without_eligible_calibrator": [
         "55863",
-        "55901",
-        "55913",
-        "55914",
-        "55962",
-        "55964",
+        "56022",
         "56030",
         "56032",
         "56041",
-        "56044",
-        "56580",
         "56582",
         "56589"
       ],
+      "units_with_candidates_without_calibrator": [
+        "55863",
+        "56022",
+        "56030",
+        "56032",
+        "56041",
+        "56582",
+        "56589"
+      ],
+      "candidate_denominator_unresolved_ids": [
+        "1472789",
+        "1477443",
+        "1477740",
+        "1477748",
+        "1478920",
+        "1489992",
+        "1490001",
+        "1490011"
+      ],
       "fallback_representatives": [
-        "1463450",
-        "1480881"
+        "1489993"
       ]
     }
   },
@@ -188,7 +326,7 @@
       "status": "valid",
       "n_input": 72,
       "n": 72,
-      "n_taxa": 34,
+      "n_taxa": 46,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
@@ -199,7 +337,7 @@
       "status": "valid",
       "n_input": 61,
       "n": 61,
-      "n_taxa": 34,
+      "n_taxa": 46,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed",
@@ -210,7 +348,7 @@
       "status": "valid",
       "n_input": 7,
       "n": 7,
-      "n_taxa": 34,
+      "n_taxa": 46,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
@@ -226,7 +364,7 @@
       "status": "valid",
       "n_input": 72,
       "n": 72,
-      "n_taxa": 22,
+      "n_taxa": 30,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
@@ -237,7 +375,7 @@
       "status": "valid",
       "n_input": 61,
       "n": 61,
-      "n_taxa": 22,
+      "n_taxa": 30,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and abundance semantics checked; no distance matrix or eigendecomposition computed",
@@ -248,7 +386,7 @@
       "status": "valid",
       "n_input": 7,
       "n": 7,
-      "n_taxa": 22,
+      "n_taxa": 30,
       "excluded": [],
       "warnings": [],
       "scope": "Input structure and count semantics checked; no distance matrix or eigendecomposition computed",
@@ -264,7 +402,7 @@
   "input_files": [
     {
       "file": "prepare.py",
-      "sha256": "e4781b29927ccf8cb929f616d0a78891c5f645ad1af742d2b1918edcac5ffc6b"
+      "sha256": "cae0f1cefb6a5e907a73771c751627590265418cafbffa7294b930f084b99da4"
     },
     {
       "file": "metadata-seed.csv",
@@ -272,43 +410,41 @@
     },
     {
       "file": "crosswalk-primary.csv",
-      "sha256": "2c2f0ff127199ee8858076ea27bab3cc52de0726b9b33584963a61cacae43c86"
+      "sha256": "79a3b8633315b17103d79b3f5e8cb9da6a4a04e36c768113a370eee0c0ef3fbf"
     },
     {
       "file": "crosswalk-coarse.csv",
-      "sha256": "a241227309bacbe386e64b307bd933c7ef8d9dec60e094c05991f9388b8f98e5"
+      "sha256": "4e7d986f7c93765523d3fc8b10f76f96815d9433cc9dd67d6c61e8fd9a7942b7"
     }
   ],
   "fossil_status_counts": {
     "primary": {
-      "taxonomy_limited": 69,
-      "ready": 3
+      "ready": 72
     },
     "coarse": {
-      "taxonomy_limited": 69,
-      "ready": 3
+      "ready": 72
     }
   },
   "artifacts": [
     {
       "file": "coverage.csv",
-      "sha256": "754c63528ddcd9351dedef8dd332759439d7612794aebdfdd19e90e363ab6798"
+      "sha256": "fbbc423dce385b73e9d4b2b22657d9a6c3eae46a7fca7ebe841905aae750e263"
     },
     {
       "file": "data/coarse-fossil.tsv",
-      "sha256": "dd486f2111beb1220d884910818936be865d1309de29275b4e4168c4b194400b"
+      "sha256": "1f5311740269aae9853fa170d49587bac63951fe7f6db49b9aca4c98c5d68f0a"
     },
     {
       "file": "data/coarse-modern_nisp.tsv",
-      "sha256": "bd53e9deef598f3ea859f4c64bfe45ab21efe30c05de555d5a93e636b20ca5b1"
+      "sha256": "c740b7f9892b92d7967c33ce310568411a93ed0b08a0bd5970fb07261f861ada"
     },
     {
       "file": "data/coarse-modern_percent.tsv",
-      "sha256": "474fcec295c992fd4d1036cb52774c79e7ce2a28dc1d48c37cf88e0b864a7f03"
+      "sha256": "da457a4eb47864225c118c2991783e88ed11e1d5b345ea45e7c2b0154476dbc4"
     },
     {
       "file": "data/coarse-repaired_query.tsv",
-      "sha256": "701fbcba62806c1be9289c2580cc6c028a72f7e22e221824aa188cf979c9669c"
+      "sha256": "7acacd58341b7dfe04ce030c9b614df28968453c7572a2fe67b40bf70f81f42a"
     },
     {
       "file": "data/fossil.tsv",
@@ -324,19 +460,19 @@
     },
     {
       "file": "data/primary-fossil.tsv",
-      "sha256": "c5f08e4108013868a27e41ed78c22ce7a2177bfaadec55a9f6eaa8ab7f54d7b0"
+      "sha256": "77f1ab844b3373b1b3fae89216a5632590289f1082f830df752842ddf4b190b5"
     },
     {
       "file": "data/primary-modern_nisp.tsv",
-      "sha256": "89bb21bad20cc1231055ca174a5a8a387c848099cfc6d7f811551eedc5b873cc"
+      "sha256": "eeeeb31953e6536c418c4fdc24859b38a321662e824236c10aaab3ac4e67ffa1"
     },
     {
       "file": "data/primary-modern_percent.tsv",
-      "sha256": "2cd7db657d56cf26444b35289caae8ca7b07199cd810f8fe56ffa3add7ce14c3"
+      "sha256": "732df53ef012026a073c4df7515bdf52e0c37f0fc53dd061308f2f86fbac3407"
     },
     {
       "file": "data/primary-repaired_query.tsv",
-      "sha256": "28e0269bc4d21d5e58fd47b88dd2731ed6f207725cb1f8a566a5dce0fee7c6fa"
+      "sha256": "64184569ee127ac600fa6de2e6ea88b932ad0b6f6efd72f6f4d23b32bb4cedc3"
     },
     {
       "file": "data/repaired-query.tsv",
@@ -344,15 +480,15 @@
     },
     {
       "file": "derivation-records.json",
-      "sha256": "eafee9fc1a95bfca6f7c830eded56408e63eaf5fbbc003f2364e384f4fed5b04"
+      "sha256": "6bb59107a643807f7ff9fb0536f2cb2e4f480fd8cea01a0fb1a7563616561fb9"
     },
     {
       "file": "fossil-ledger.csv",
-      "sha256": "a45338981cdbc3cfb53cd878d8dad03bbf28a0a4396295136a16d588771adc58"
+      "sha256": "8d7fe54fc7dcf1924c806d34d5cde28bba3a5a43a37a170d9f69870cd71aa7cd"
     },
     {
       "file": "sample-ledger.csv",
-      "sha256": "e9eaf4ab65f78691758629be9a2b70abd023fa24bee3cb496f2c23bfd655abcf"
+      "sha256": "a2106c284c18144238017ae74dd6522cc445e9978352449c30780c22c2525760"
     }
   ]
 }
